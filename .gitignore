@@ -1,0 +1,3 @@
+# sync artifact (used to transfer files from cloud build env to local repo)
+wwe-sync.tar.gz
+.DS_Store
