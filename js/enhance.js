@@ -69,6 +69,32 @@
     });
   }
 
+  /* ---- Record table filter (desktop rows + mobile cards) ---- */
+  document.querySelectorAll('[data-record-filter]').forEach(function (group) {
+    var scope = document.querySelector(group.getAttribute('data-record-filter')) || document;
+    var rows = [].slice.call(scope.querySelectorAll('.record-row, .fight-row-card'));
+    var countEl = document.querySelector(group.getAttribute('data-record-count') || '');
+    var total = rows.filter(function (r) { return r.classList.contains('record-row'); }).length;
+    function apply(key) {
+      var shown = 0;
+      rows.forEach(function (r) {
+        var res = r.getAttribute('data-result') || '';
+        var cats = (r.getAttribute('data-cats') || '').split(' ');
+        var ok = key === 'all' || (key === 'wins' && res === 'W') || (key === 'losses' && res === 'L') || cats.indexOf(key) !== -1;
+        r.classList.toggle('hide', !ok);
+        if (ok && r.classList.contains('record-row')) shown++;
+      });
+      if (countEl) countEl.textContent = shown;
+    }
+    group.querySelectorAll('button[data-filter]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('button[data-filter]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        btn.setAttribute('aria-pressed', 'true');
+        apply(btn.getAttribute('data-filter'));
+      });
+    });
+  });
+
   /* ---- Sticky header shadow ---- */
   var header = document.querySelector('.site-header');
   if (header) {
