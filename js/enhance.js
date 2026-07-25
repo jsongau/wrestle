@@ -95,6 +95,30 @@
     });
   });
 
+  /* ---- Tabs (record: All / PPV / WrestleMania) ---- */
+  document.querySelectorAll('[role="tablist"]').forEach(function (tl) {
+    var tabs = [].slice.call(tl.querySelectorAll('[role="tab"]'));
+    function activate(tab, focus) {
+      tabs.forEach(function (t) {
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { activate(tab, false); });
+      tab.addEventListener('keydown', function (e) {
+        var n;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+        if (n) { e.preventDefault(); activate(n, true); }
+      });
+    });
+  });
+
   /* ---- Sticky header shadow ---- */
   var header = document.querySelector('.site-header');
   if (header) {
