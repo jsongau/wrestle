@@ -61,7 +61,7 @@
 <!-- HERO -->
 <section class="section--tight" id="overview"><div class="wrap">
   <div class="profile">
-    <div class="profile__photo"><span class="card__initials">TAKER</span></div>
+    <div class="profile__photo duotone"><span class="pkicker">The Deadman</span><span class="pmono" aria-hidden="true">UT</span></div>
     <div class="stack">
       <div class="cluster"><span class="chip chip--wwe">WWE / WWF</span><span class="chip chip--gold">Hall of Fame 2022</span><span class="badge-era">1990–2020</span></div>
       <h1>The Undertaker</h1>
@@ -81,6 +81,7 @@
 <!-- SUB-NAV -->
 <nav class="subnav-page" aria-label="On this page"><div class="wrap"><ul>
   <li><a href="#record">Record</a></li>
+  <li><a href="#streak">The Streak</a></li>
   <li><a href="#finishes">Finishes</a></li>
   <li><a href="#championships">Championships</a></li>
   <li><a href="#timeline">Career</a></li>
@@ -95,20 +96,39 @@
   <div class="section-head" data-reveal><div><p class="eyebrow">The Career Ledger</p><h2>The record of the Deadman</h2><hr class="rule-gold"></div></div>
   <div class="rec-summary" data-reveal>
     <div class="rec-stat is-gold"><div class="n">25<span class="sub">–2</span></div><div class="l">WrestleMania record</div></div>
-    <div class="rec-stat is-gold"><div class="n">21<span class="sub">–0</span></div><div class="l">The Streak (1991–2013)</div></div>
+    <div class="rec-stat is-gold" id="streak"><div class="n">21<span class="sub">–0</span></div><div class="l">The Streak (1991–2013)</div></div>
     <div class="rec-stat"><div class="n">7<span class="sub">×</span></div><div class="l">World Championships</div></div>
     <div class="rec-stat"><div class="n">23<span class="sub">–5</span></div><div class="l">Curated landmark ledger</div></div>
   </div>
+  <div class="wl-strip" role="img" aria-label="Career ledger outcomes oldest to newest: 23 wins and 5 losses"><i></i><i></i><i></i><i class="l"></i><i></i><i></i><i class="l"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="l"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="l"></i><i></i><i></i><i class="l"></i><i></i><i></i></div><p class="wl-cap" data-reveal>Each square is one bout in the ledger, oldest → newest · <span style="color:var(--c-win)">■</span> win <span style="color:var(--c-loss)">■</span> loss. The isolated red marks are the only two men to beat him at WrestleMania.</p>
   <p class="notice" style="margin-top:var(--sp-4)" data-reveal><strong>How to read this:</strong> pro wrestling is scripted, and The Undertaker wrestled thousands of matches over 30 years, so this is a <strong>curated ledger of his 28 most significant singles matches and moments</strong> — title matches, WrestleMania, Hell in a Cell classics and his major losses — not a complete career record. Results are kayfabe outcomes, cross-checked against WWE, Wikipedia and Cagematch.</p>
+  <div class="engage" id="rateWidget" data-reveal style="margin-top:var(--sp-4)">
+    <h3>Rate the Deadman</h3>
+    <div class="row">
+      <fieldset class="rate"><legend class="sr-only">Rate The Undertaker all-time</legend>
+        <input type="radio" id="ur5" name="ustars" value="5"><label for="ur5" aria-label="5 stars">★</label>
+        <input type="radio" id="ur4" name="ustars" value="4"><label for="ur4" aria-label="4 stars">★</label>
+        <input type="radio" id="ur3" name="ustars" value="3"><label for="ur3" aria-label="3 stars">★</label>
+        <input type="radio" id="ur2" name="ustars" value="2"><label for="ur2" aria-label="2 stars">★</label>
+        <input type="radio" id="ur1" name="ustars" value="1"><label for="ur1" aria-label="1 star">★</label>
+      </fieldset>
+      <span class="muted">How do you rank him all-time?</span>
+      <span class="done">Saved! <a href="/membership/">Join free to lock it in →</a></span>
+    </div>
+    <div class="row">
+      <button type="button" class="chip-btn" id="shareBtn">↗ Share his 21–0 Streak</button>
+      <button type="button" class="chip-btn" onclick="location.href='/membership/'">★ Follow The Undertaker</button>
+    </div>
+  </div>
 
   <div class="rt-filters" role="group" aria-label="Filter the record" data-record-filter="#uttable" data-record-count="#utcount">
-    <button type="button" data-filter="all" aria-pressed="true">All</button>
-    <button type="button" data-filter="wins" aria-pressed="false">Wins</button>
-    <button type="button" data-filter="losses" aria-pressed="false">Losses</button>
-    <button type="button" data-filter="wrestlemania" aria-pressed="false">WrestleMania</button>
-    <button type="button" data-filter="hiac" aria-pressed="false">Hell in a Cell</button>
-    <button type="button" data-filter="title" aria-pressed="false">Title matches</button>
-    <button type="button" data-filter="tombstone" aria-pressed="false">By Tombstone</button>
+    <button type="button" data-filter="all" aria-pressed="true">All <span class="cnt">28</span></button>
+    <button type="button" data-filter="wins" aria-pressed="false">Wins <span class="cnt">23</span></button>
+    <button type="button" data-filter="losses" aria-pressed="false">Losses <span class="cnt">5</span></button>
+    <button type="button" data-filter="wrestlemania" aria-pressed="false">WrestleMania <span class="cnt">19</span></button>
+    <button type="button" data-filter="hiac" aria-pressed="false">Hell in a Cell <span class="cnt">6</span></button>
+    <button type="button" data-filter="title" aria-pressed="false">Title matches <span class="cnt">9</span></button>
+    <button type="button" data-filter="tombstone" aria-pressed="false">By Tombstone <span class="cnt">18</span></button>
   </div>
   <p class="rt-count" aria-live="polite">Showing <span id="utcount">28</span> of 28 landmark bouts, newest first.</p>
 
@@ -117,50 +137,67 @@
     <caption class="dim" style="text-align:left;padding:var(--sp-2)">Curated career match ledger for The Undertaker</caption>
     <thead><tr><th>Result</th><th>Opponent</th><th>Event</th><th>Date</th><th>Stipulation</th><th>Finish</th></tr></thead>
     <tbody>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/aj-styles/">AJ Styles</a></td><td>WrestleMania 36</td><td class="dim">2020</td><td>Boneyard Match</td><td>Tombstone / buried alive</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/john-cena/">John Cena</a></td><td>WrestleMania 34</td><td class="dim">2018</td><td>Singles</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="L" data-cats="wrestlemania"><td><span class="res res-l">L</span></td><td><a href="/wrestlers/roman-reigns/">Roman Reigns</a></td><td>WrestleMania 33</td><td class="dim">2017</td><td>No Holds Barred</td><td>Spear → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania hiac tombstone"><td><span class="res res-w">W</span></td><td>Shane McMahon</td><td>WrestleMania 32</td><td class="dim">2016</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td>Bray Wyatt</td><td>WrestleMania 31</td><td class="dim">2015</td><td>Singles</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="L" data-cats="wrestlemania"><td><span class="res res-l">L</span></td><td><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a></td><td>WrestleMania XXX</td><td class="dim">2014</td><td>Singles</td><td>F5 → pin <span class="title-tag">Streak ends</span></td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/cm-punk/">CM Punk</a></td><td>WrestleMania 29</td><td class="dim">2013</td><td>Singles</td><td>Tombstone → pin <span class="title-tag">21–0</span></td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania hiac tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/triple-h/">Triple H</a></td><td><a href="/matches/undertaker-vs-triple-h-wm28-2012/">WrestleMania XXVIII</a></td><td class="dim">2012</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/triple-h/">Triple H</a></td><td>WrestleMania XXVII</td><td class="dim">2011</td><td>No Holds Barred</td><td>Hell's Gate → submission</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td><a href="/matches/undertaker-vs-hbk-wm26-2010/">WrestleMania XXVI</a></td><td class="dim">2010</td><td>Streak vs Career</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="title hiac tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/cm-punk/">CM Punk</a> <span class="title-tag">Title</span></td><td>Hell in a Cell</td><td class="dim">2009</td><td>World Heavyweight Champ.</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td><a href="/matches/undertaker-vs-hbk-wm25/">WrestleMania XXV</a></td><td class="dim">2009</td><td>Singles</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania title"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/edge/">Edge</a> <span class="title-tag">Title</span></td><td>WrestleMania XXIV</td><td class="dim">2008</td><td>World Heavyweight Champ.</td><td>Hell's Gate → submission</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania title tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/batista/">Batista</a> <span class="title-tag">Title</span></td><td>WrestleMania 23</td><td class="dim">2007</td><td>World Heavyweight Champ.</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="L" data-cats="title"><td><span class="res res-l">L</span></td><td><a href="/wrestlers/kurt-angle/">Kurt Angle</a> <span class="title-tag">Title</span></td><td><a href="/matches/undertaker-vs-angle-no-way-out-2006/">No Way Out</a></td><td class="dim">2006</td><td>World Heavyweight Champ.</td><td>Jackknife counter → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="title tombstone"><td><span class="res res-w">W</span></td><td>Hulk Hogan <span class="title-tag">Title</span></td><td>Judgment Day</td><td class="dim">2002</td><td>Undisputed WWE Champ.</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/triple-h/">Triple H</a></td><td>WrestleMania X-Seven</td><td class="dim">2001</td><td>Singles (brawl)</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="title"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/stone-cold-steve-austin/">Steve Austin</a> <span class="title-tag">Title</span></td><td>Over the Edge</td><td class="dim">1999</td><td>WWF Championship</td><td>Pinfall (interference)</td></tr>
-      <tr class="record-row" data-result="W" data-cats="hiac tombstone"><td><span class="res res-w">W</span></td><td>Big Boss Man</td><td>WrestleMania XV</td><td class="dim">1999</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="hiac tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/mick-foley/">Mankind</a></td><td>King of the Ring</td><td class="dim">1998</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td><a href="/wrestlers/kane/">Kane</a></td><td>WrestleMania XIV</td><td class="dim">1998</td><td>Singles</td><td>3× Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="L" data-cats="hiac"><td><span class="res res-l">L</span></td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td><a href="/matches/hbk-vs-undertaker-badd-blood-1997/">Badd Blood</a></td><td class="dim">1997</td><td>First Hell in a Cell</td><td>Pinned (Kane debut)</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania title tombstone"><td><span class="res res-w">W</span></td><td>Sycho Sid <span class="title-tag">Title</span></td><td>WrestleMania 13</td><td class="dim">1997</td><td>WWF Championship</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td>Jake Roberts</td><td>WrestleMania VIII</td><td class="dim">1992</td><td>Singles</td><td>Tombstone → pin</td></tr>
-      <tr class="record-row" data-result="L" data-cats="title"><td><span class="res res-l">L</span></td><td>Hulk Hogan <span class="title-tag">Title</span></td><td>This Tuesday in Texas</td><td class="dim">1991</td><td>WWF Championship</td><td>Rollup (urn ashes)</td></tr>
-      <tr class="record-row" data-result="W" data-cats="title tombstone"><td><span class="res res-w">W</span></td><td>Hulk Hogan <span class="title-tag">Title</span></td><td>Survivor Series</td><td class="dim">1991</td><td>WWF Championship</td><td>Tombstone → pin <span class="title-tag">1st title</span></td></tr>
-      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W</span></td><td>Jimmy Snuka</td><td>WrestleMania VII</td><td class="dim">1991</td><td>Singles</td><td>Tombstone → pin <span class="title-tag">Streak 1–0</span></td></tr>
-      <tr class="record-row" data-result="W" data-cats=""><td><span class="res res-w">W</span></td><td>Survivor Series team</td><td>Survivor Series</td><td class="dim">1990</td><td>Elimination tag</td><td>WWE debut</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/aj-styles/">AJ Styles</a></td><td>WrestleMania 36</td><td class="dim">2020</td><td>Boneyard Match</td><td>Tombstone / buried alive</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/john-cena/">John Cena</a></td><td>WrestleMania 34</td><td class="dim">2018</td><td>Singles</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="L" data-cats="wrestlemania"><td><span class="res res-l">L<span class="sr-only">oss</span></span></td><td><a href="/wrestlers/roman-reigns/">Roman Reigns</a></td><td>WrestleMania 33</td><td class="dim">2017</td><td>No Holds Barred</td><td>Spear → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania hiac tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Shane McMahon</td><td>WrestleMania 32</td><td class="dim">2016</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Bray Wyatt</td><td>WrestleMania 31</td><td class="dim">2015</td><td>Singles</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="L" data-cats="wrestlemania"><td><span class="res res-l">L<span class="sr-only">oss</span></span></td><td><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a></td><td>WrestleMania XXX</td><td class="dim">2014</td><td>Singles</td><td>F5 → pin <span class="title-tag">Streak ends</span></td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/cm-punk/">CM Punk</a></td><td>WrestleMania 29</td><td class="dim">2013</td><td>Singles</td><td>Tombstone → pin <span class="title-tag">21–0</span></td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania hiac tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/triple-h/">Triple H</a></td><td><a href="/matches/undertaker-vs-triple-h-wm28-2012/">WrestleMania XXVIII</a></td><td class="dim">2012</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/triple-h/">Triple H</a></td><td>WrestleMania XXVII</td><td class="dim">2011</td><td>No Holds Barred</td><td>Hell's Gate → submission</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td><a href="/matches/undertaker-vs-hbk-wm26-2010/">WrestleMania XXVI</a></td><td class="dim">2010</td><td>Streak vs Career</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="title hiac tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/cm-punk/">CM Punk</a> <span class="title-tag">Title</span></td><td>Hell in a Cell</td><td class="dim">2009</td><td>World Heavyweight Champ.</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td><a href="/matches/undertaker-vs-hbk-wm25/">WrestleMania XXV</a></td><td class="dim">2009</td><td>Singles</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania title"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/edge/">Edge</a> <span class="title-tag">Title</span></td><td>WrestleMania XXIV</td><td class="dim">2008</td><td>World Heavyweight Champ.</td><td>Hell's Gate → submission</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania title tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/batista/">Batista</a> <span class="title-tag">Title</span></td><td>WrestleMania 23</td><td class="dim">2007</td><td>World Heavyweight Champ.</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="L" data-cats="title"><td><span class="res res-l">L<span class="sr-only">oss</span></span></td><td><a href="/wrestlers/kurt-angle/">Kurt Angle</a> <span class="title-tag">Title</span></td><td><a href="/matches/undertaker-vs-angle-no-way-out-2006/">No Way Out</a></td><td class="dim">2006</td><td>World Heavyweight Champ.</td><td>Jackknife counter → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="title tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Hulk Hogan <span class="title-tag">Title</span></td><td>Judgment Day</td><td class="dim">2002</td><td>Undisputed WWE Champ.</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/triple-h/">Triple H</a></td><td>WrestleMania X-Seven</td><td class="dim">2001</td><td>Singles (brawl)</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="title"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/stone-cold-steve-austin/">Steve Austin</a> <span class="title-tag">Title</span></td><td>Over the Edge</td><td class="dim">1999</td><td>WWF Championship</td><td>Pinfall (interference)</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania hiac tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Big Boss Man</td><td>WrestleMania XV</td><td class="dim">1999</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="hiac tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/mick-foley/">Mankind</a></td><td>King of the Ring</td><td class="dim">1998</td><td>Hell in a Cell</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td><a href="/wrestlers/kane/">Kane</a></td><td>WrestleMania XIV</td><td class="dim">1998</td><td>Singles</td><td>3× Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="L" data-cats="hiac"><td><span class="res res-l">L<span class="sr-only">oss</span></span></td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td><a href="/matches/hbk-vs-undertaker-badd-blood-1997/">Badd Blood</a></td><td class="dim">1997</td><td>First Hell in a Cell</td><td>Pinned (Kane debut)</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania title tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Sycho Sid <span class="title-tag">Title</span></td><td>WrestleMania 13</td><td class="dim">1997</td><td>WWF Championship</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Jake Roberts</td><td>WrestleMania VIII</td><td class="dim">1992</td><td>Singles</td><td>Tombstone → pin</td></tr>
+      <tr class="record-row" data-result="L" data-cats="title"><td><span class="res res-l">L<span class="sr-only">oss</span></span></td><td>Hulk Hogan <span class="title-tag">Title</span></td><td>This Tuesday in Texas</td><td class="dim">1991</td><td>WWF Championship</td><td>Rollup (urn ashes)</td></tr>
+      <tr class="record-row" data-result="W" data-cats="title tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Hulk Hogan <span class="title-tag">Title</span></td><td>Survivor Series</td><td class="dim">1991</td><td>WWF Championship</td><td>Tombstone → pin <span class="title-tag">1st title</span></td></tr>
+      <tr class="record-row" data-result="W" data-cats="wrestlemania tombstone"><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Jimmy Snuka</td><td>WrestleMania VII</td><td class="dim">1991</td><td>Singles</td><td>Tombstone → pin <span class="title-tag">Streak 1–0</span></td></tr>
+      <tr class="record-row" data-result="W" data-cats=""><td><span class="res res-w">W<span class="sr-only">in</span></span></td><td>Survivor Series team</td><td>Survivor Series</td><td class="dim">1990</td><td>Elimination tag</td><td>WWE debut</td></tr>
     </tbody>
   </table></div>
 
   <ol class="record-mobile" aria-label="The Undertaker match record, as cards">
-    <li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp"><a href="/wrestlers/aj-styles/">AJ Styles</a></span></div><p class="frc-line">WrestleMania 36 <span class="sep">·</span> 2020</p><p class="frc-line">Boneyard Match · Tombstone / buried alive</p></li>
-    <li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp"><a href="/wrestlers/john-cena/">John Cena</a></span></div><p class="frc-line">WrestleMania 34 <span class="sep">·</span> 2018</p><p class="frc-line">Singles · Tombstone → pin</p></li>
-    <li class="fight-row-card" data-result="L" data-cats="wrestlemania"><div class="frc-top"><span class="res res-l">L</span><span class="frc-opp"><a href="/wrestlers/roman-reigns/">Roman Reigns</a></span></div><p class="frc-line">WrestleMania 33 <span class="sep">·</span> 2017</p><p class="frc-line">No Holds Barred · Spear → pin</p></li>
-    <li class="fight-row-card" data-result="L" data-cats="wrestlemania"><div class="frc-top"><span class="res res-l">L</span><span class="frc-opp"><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a></span></div><p class="frc-line">WrestleMania XXX <span class="sep">·</span> 2014</p><p class="frc-line">Singles · F5 → pin</p><p class="frc-ctx">The Streak ends at 21–1.</p></li>
-    <li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></span></div><p class="frc-line"><a href="/matches/undertaker-vs-hbk-wm25/">WrestleMania XXV</a> <span class="sep">·</span> 2009</p><p class="frc-line">Singles · Tombstone → pin</p><p class="frc-ctx">Widely hailed as the greatest WrestleMania match.</p></li>
-    <li class="fight-row-card" data-result="W" data-cats="hiac tombstone"><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp"><a href="/wrestlers/mick-foley/">Mankind</a></span></div><p class="frc-line">King of the Ring <span class="sep">·</span> 1998</p><p class="frc-line">Hell in a Cell · Tombstone → pin</p><p class="frc-ctx">The famous falls off and through the Cell.</p></li>
-    <li class="fight-row-card" data-result="L" data-cats="hiac"><div class="frc-top"><span class="res res-l">L</span><span class="frc-opp"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></span></div><p class="frc-line"><a href="/matches/hbk-vs-undertaker-badd-blood-1997/">Badd Blood</a> <span class="sep">·</span> 1997</p><p class="frc-line">First Hell in a Cell · Pinned (Kane debut)</p></li>
-    <li class="fight-row-card" data-result="W" data-cats="title tombstone"><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp">Hulk Hogan <span class="title-tag">Title</span></span></div><p class="frc-line">Survivor Series <span class="sep">·</span> 1991</p><p class="frc-line">WWF Championship · Tombstone → pin</p><p class="frc-ctx">His first world title.</p></li>
-    <li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp">Jimmy Snuka</span></div><p class="frc-line">WrestleMania VII <span class="sep">·</span> 1991</p><p class="frc-line">Singles · Tombstone → pin · Streak 1–0</p></li>
-    <li class="fight-row-card" data-result="W" data-cats=""><div class="frc-top"><span class="res res-w">W</span><span class="frc-opp">Survivor Series team</span></div><p class="frc-line">Survivor Series <span class="sep">·</span> 1990</p><p class="frc-line">Elimination tag · WWE debut</p></li>
-    <li class="frc-ctx" style="list-style:none">Mobile shows highlights of the ledger; the full 28-match table is above on larger screens.</li>
-  </ol>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/aj-styles/">AJ Styles</a></span></div><p class="frc-line">WrestleMania 36 <span class="sep">·</span> 2020</p><p class="frc-line">Boneyard Match · Tombstone / buried alive</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/john-cena/">John Cena</a></span></div><p class="frc-line">WrestleMania 34 <span class="sep">·</span> 2018</p><p class="frc-line">Singles · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="L" data-cats="wrestlemania"><div class="frc-top"><span class="res res-l">L<span class="sr-only">oss</span></span><span class="frc-opp"><a href="/wrestlers/roman-reigns/">Roman Reigns</a></span></div><p class="frc-line">WrestleMania 33 <span class="sep">·</span> 2017</p><p class="frc-line">No Holds Barred · Spear → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania hiac tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Shane McMahon</span></div><p class="frc-line">WrestleMania 32 <span class="sep">·</span> 2016</p><p class="frc-line">Hell in a Cell · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Bray Wyatt</span></div><p class="frc-line">WrestleMania 31 <span class="sep">·</span> 2015</p><p class="frc-line">Singles · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="L" data-cats="wrestlemania"><div class="frc-top"><span class="res res-l">L<span class="sr-only">oss</span></span><span class="frc-opp"><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a></span></div><p class="frc-line">WrestleMania XXX <span class="sep">·</span> 2014</p><p class="frc-line">Singles · F5 → pin <span class="title-tag">Streak ends</span></p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/cm-punk/">CM Punk</a></span></div><p class="frc-line">WrestleMania 29 <span class="sep">·</span> 2013</p><p class="frc-line">Singles · Tombstone → pin <span class="title-tag">21–0</span></p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania hiac tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/triple-h/">Triple H</a></span></div><p class="frc-line"><a href="/matches/undertaker-vs-triple-h-wm28-2012/">WrestleMania XXVIII</a> <span class="sep">·</span> 2012</p><p class="frc-line">Hell in a Cell · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/triple-h/">Triple H</a></span></div><p class="frc-line">WrestleMania XXVII <span class="sep">·</span> 2011</p><p class="frc-line">No Holds Barred · Hell's Gate → submission</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></span></div><p class="frc-line"><a href="/matches/undertaker-vs-hbk-wm26-2010/">WrestleMania XXVI</a> <span class="sep">·</span> 2010</p><p class="frc-line">Streak vs Career · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="title hiac tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/cm-punk/">CM Punk</a> <span class="title-tag">Title</span></span></div><p class="frc-line">Hell in a Cell <span class="sep">·</span> 2009</p><p class="frc-line">World Heavyweight Champ. · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></span></div><p class="frc-line"><a href="/matches/undertaker-vs-hbk-wm25/">WrestleMania XXV</a> <span class="sep">·</span> 2009</p><p class="frc-line">Singles · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania title"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/edge/">Edge</a> <span class="title-tag">Title</span></span></div><p class="frc-line">WrestleMania XXIV <span class="sep">·</span> 2008</p><p class="frc-line">World Heavyweight Champ. · Hell's Gate → submission</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania title tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/batista/">Batista</a> <span class="title-tag">Title</span></span></div><p class="frc-line">WrestleMania 23 <span class="sep">·</span> 2007</p><p class="frc-line">World Heavyweight Champ. · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="L" data-cats="title"><div class="frc-top"><span class="res res-l">L<span class="sr-only">oss</span></span><span class="frc-opp"><a href="/wrestlers/kurt-angle/">Kurt Angle</a> <span class="title-tag">Title</span></span></div><p class="frc-line"><a href="/matches/undertaker-vs-angle-no-way-out-2006/">No Way Out</a> <span class="sep">·</span> 2006</p><p class="frc-line">World Heavyweight Champ. · Jackknife counter → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="title tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Hulk Hogan <span class="title-tag">Title</span></span></div><p class="frc-line">Judgment Day <span class="sep">·</span> 2002</p><p class="frc-line">Undisputed WWE Champ. · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/triple-h/">Triple H</a></span></div><p class="frc-line">WrestleMania X-Seven <span class="sep">·</span> 2001</p><p class="frc-line">Singles (brawl) · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="title"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/stone-cold-steve-austin/">Steve Austin</a> <span class="title-tag">Title</span></span></div><p class="frc-line">Over the Edge <span class="sep">·</span> 1999</p><p class="frc-line">WWF Championship · Pinfall (interference)</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania hiac tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Big Boss Man</span></div><p class="frc-line">WrestleMania XV <span class="sep">·</span> 1999</p><p class="frc-line">Hell in a Cell · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="hiac tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/mick-foley/">Mankind</a></span></div><p class="frc-line">King of the Ring <span class="sep">·</span> 1998</p><p class="frc-line">Hell in a Cell · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp"><a href="/wrestlers/kane/">Kane</a></span></div><p class="frc-line">WrestleMania XIV <span class="sep">·</span> 1998</p><p class="frc-line">Singles · 3× Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="L" data-cats="hiac"><div class="frc-top"><span class="res res-l">L<span class="sr-only">oss</span></span><span class="frc-opp"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></span></div><p class="frc-line"><a href="/matches/hbk-vs-undertaker-badd-blood-1997/">Badd Blood</a> <span class="sep">·</span> 1997</p><p class="frc-line">First Hell in a Cell · Pinned (Kane debut)</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania title tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Sycho Sid <span class="title-tag">Title</span></span></div><p class="frc-line">WrestleMania 13 <span class="sep">·</span> 1997</p><p class="frc-line">WWF Championship · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Jake Roberts</span></div><p class="frc-line">WrestleMania VIII <span class="sep">·</span> 1992</p><p class="frc-line">Singles · Tombstone → pin</p></li>
+<li class="fight-row-card" data-result="L" data-cats="title"><div class="frc-top"><span class="res res-l">L<span class="sr-only">oss</span></span><span class="frc-opp">Hulk Hogan <span class="title-tag">Title</span></span></div><p class="frc-line">This Tuesday in Texas <span class="sep">·</span> 1991</p><p class="frc-line">WWF Championship · Rollup (urn ashes)</p></li>
+<li class="fight-row-card" data-result="W" data-cats="title tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Hulk Hogan <span class="title-tag">Title</span></span></div><p class="frc-line">Survivor Series <span class="sep">·</span> 1991</p><p class="frc-line">WWF Championship · Tombstone → pin <span class="title-tag">1st title</span></p></li>
+<li class="fight-row-card" data-result="W" data-cats="wrestlemania tombstone"><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Jimmy Snuka</span></div><p class="frc-line">WrestleMania VII <span class="sep">·</span> 1991</p><p class="frc-line">Singles · Tombstone → pin <span class="title-tag">Streak 1–0</span></p></li>
+<li class="fight-row-card" data-result="W" data-cats=""><div class="frc-top"><span class="res res-w">W<span class="sr-only">in</span></span><span class="frc-opp">Survivor Series team</span></div><p class="frc-line">Survivor Series <span class="sep">·</span> 1990</p><p class="frc-line">Elimination tag · WWE debut</p></li>
+</ol>
   </div>
 </div></section>
 
@@ -171,9 +208,9 @@
       <div class="section-head"><div><p class="eyebrow">How he wins</p><h2>The Tombstone did the talking</h2><hr class="rule-gold"></div></div>
       <p class="muted">Across this curated ledger of 23 wins, the Tombstone Piledriver is the signature ending — the single most reliable finish in wrestling history. When the Tombstone wouldn't do it, the Hell's Gate submission (debuted on Edge at WrestleMania XXIV) closed the show.</p>
       <div class="method-bars">
-        <div class="mb-row"><div class="mb-head"><span>Tombstone Piledriver</span><span class="v">18</span></div><div class="mb-track"><div class="mb-fill" style="width:78%"></div></div></div>
-        <div class="mb-row"><div class="mb-head"><span>Hell's Gate (submission)</span><span class="v">2</span></div><div class="mb-track"><div class="mb-fill" style="width:9%"></div></div></div>
-        <div class="mb-row"><div class="mb-head"><span>Other (pin / cinematic / debut)</span><span class="v">3</span></div><div class="mb-track"><div class="mb-fill" style="width:13%"></div></div></div>
+        <div class="mb-row"><div class="mb-head"><span>Tombstone Piledriver</span><span class="v">18</span></div><div class="mb-track" role="img" aria-label="Tombstone Piledriver: 18 of 23 wins"><div class="mb-fill" style="--w:78%"></div></div></div>
+        <div class="mb-row"><div class="mb-head"><span>Hell's Gate (submission)</span><span class="v">2</span></div><div class="mb-track" role="img" aria-label="Hell's Gate submission: 2 of 23 wins"><div class="mb-fill" style="--w:9%"></div></div></div>
+        <div class="mb-row"><div class="mb-head"><span>Other (pin / cinematic / debut)</span><span class="v">3</span></div><div class="mb-track" role="img" aria-label="Other finishes: 3 of 23 wins"><div class="mb-fill" style="--w:13%"></div></div></div>
       </div>
     </div>
     <aside class="pull-facts">
@@ -224,6 +261,11 @@
     <article class="card"><a class="card__media" href="/matches/undertaker-vs-hbk-wm26-2010/"><span class="card__initials">WM26</span></a><div class="card__body"><h3 class="card__title"><a class="card__link" href="/matches/undertaker-vs-hbk-wm26-2010/">vs Shawn Michaels — WM26</a></h3><div class="rating" style="--rating:4.5"><span class="rating__stars" aria-hidden="true">★★★★★</span><span class="rating__num">4.5</span></div></div></article>
   </div>
 </div></section>
+
+<section class="section"><div class="wrap"><div class="engage" data-reveal style="display:flex;justify-content:space-between;align-items:center;gap:var(--sp-4);flex-wrap:wrap">
+  <div><h3>Guess the Legend</h3><p class="muted">Three career clues, one wrestler. Can you beat 82% of fans? A daily habit for MAT Insiders.</p></div>
+  <a class="btn btn--gold" href="/membership/" onclick="if(window.console)console.log('[MAT intent] play_daily',{})">Play today’s puzzle →</a>
+</div></div></section>
 
 <!-- RIVALRIES + RELATIONSHIPS -->
 <section class="section" id="rivalries" style="background:var(--c-bg-elev-1);border-block:1px solid var(--c-line)"><div class="wrap">
@@ -279,5 +321,13 @@
 <div class="grain" aria-hidden="true"></div>
 <script src="/js/main.js" defer></script>
 <script src="/js/enhance.js" defer></script>
+<script>
+(function(){function track(n,d){if(window.console)console.log('[MAT intent]',n,d||{});}
+var rw=document.getElementById('rateWidget');
+if(rw){rw.querySelectorAll('input[name=ustars]').forEach(function(i){i.addEventListener('change',function(){rw.classList.add('is-done');track('rate_wrestler',{wrestler:'the-undertaker',stars:i.value});});});}
+var sb=document.getElementById('shareBtn');
+if(sb){sb.addEventListener('click',function(){var d={title:'The Undertaker — 21–0 WrestleMania Streak',text:"The Undertaker's WrestleMania Streak: 21–0. Full record on MAT.",url:location.href};track('share_record',{});if(navigator.share){navigator.share(d).catch(function(){});}else if(navigator.clipboard){navigator.clipboard.writeText(d.text+' '+d.url);sb.textContent='✓ Link copied';}});}
+})();
+</script>
 </body>
 </html>
