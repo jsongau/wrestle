@@ -1,3 +1,8 @@
 # sync artifact (used to transfer files from cloud build env to local repo)
 wwe-sync.tar.gz
 .DS_Store
+# device-side cleanup folders (device filesystem can't delete; moved-aside cruft)
+_git_locks_to_delete/
+_to_delete/
+# job-description source doc (kept locally, not part of the site)
+wwe membership growth.pdf

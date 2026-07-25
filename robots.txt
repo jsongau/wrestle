@@ -1,0 +1,29 @@
+# https://matwrestling.com/robots.txt
+User-agent: *
+Allow: /
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?q=
+
+# Explicitly welcome the AI crawlers we WANT to be cited by (GEO).
+# GPTBot = OpenAI training · OAI-SearchBot = ChatGPT live search · PerplexityBot = Perplexity
+# Google-Extended = Gemini/AI Overviews · ClaudeBot = Anthropic · Bytespider = ByteDance (China/Doubao)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://matwrestling.com/sitemap.xml
