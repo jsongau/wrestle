@@ -47,3 +47,31 @@ Static, no build step, crawlable (nav links in raw HTML). One `css/site.css`. Va
 Broadcast Bold: Anton (display) / Oswald (UI) / Inter (body); gold #d4af37 + red #e11d2a + promotion accents.
 Preview = self-contained `.html` with CSS/JS inlined (never PNG-as-preview). Commit ≠ deploy; confirm
 GitHub repo + Vercel project + show remote before any push. No git remote configured yet.
+
+---
+
+## Phase 2 addendum — new content types (Titles / Factions / Tag Teams)
+
+**Built:** 30 new pages via a 4-agent build wave (titles-core, titles-world, factions, tag-teams).
+- **Titles**: hub + 11 lineages (`/titles/{belt}/`) — current holder + notable reigns using `champ-panel`/`champ-row`.
+- **Factions**: hub + 8 stables (`/factions/{name}/`) — lede + member card grids with promotion-tagged monograms.
+- **Tag Teams**: hub + 8 teams (`/tag-teams/{name}/`) — same pattern, FAQPage on each.
+
+**Architecture decisions:**
+- **Reused-only CSS.** Agents were constrained to existing components (`ev-hero`, `champ-panel`, `grid-cards`,
+  `faq-block`, `related-links`). Zero new CSS — this is why the 30 pages inherited the styled look for free and
+  avoided repeating the "98 unstyled profiles" trap.
+- **Placeholder shell pattern.** New pages ship with empty `<header class="site-header"></header>` /
+  `<footer class="site-footer"></footer>`; `build/apply_shell.py` stamps the real nav/palette/footer. This keeps
+  the nav single-source: the build agents never hand-copy nav markup that could drift.
+- **Nav wiring.** Added a "Titles & Teams" column to the "More" mega-panel (`apply_shell.py` NAV constant),
+  widened to `mega--wide`. One edit, stamped to all 225 pages.
+- **Zero-404 discipline.** Cross-links only to existing pages; unbuilt names render as plain text, hub tiles for
+  unbuilt lineages are non-links with name-only ItemList entries. Link check: 0 new broken links (16 pre-existing
+  legacy gaps remain, all from `/wrestlers/` pages — POLISH-BACKLOG #4).
+
+**Consolidation ran:** `apply_shell.py` (225 pages) → sitemap 198→225 URLs → search-index 177→207 entries →
+link check → 1366px render-verify (titles hub, lineage, faction, tag-team all clean) → commit `746a694`.
+
+**Next backend task (offered):** the still-unbuilt **waitlist/membership data layer** (Supabase) — the one piece
+that turns this from a browsable archive into a growth funnel with captured leads. Everything else is content depth.
