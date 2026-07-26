@@ -1,3 +1,12 @@
+## 2026-07-26 (Wrestle Lore revamp — multi-agent)
+- Renamed MAT -> Wrestle Lore across the site; unified canonical domain to matwrestling.com; sitemap 119 -> 198 URLs.
+- Ran 30-agent design orchestration (3 workflows): 13 design/brief/tech-lead docs + 7 vision + 10 data docs in docs/design/wrestle-lore/. Master brief resolves 5 cross-spec conflicts; content manifest maps ~211 new pages.
+- Phase 0: single-source 7-tab shell (build/apply_shell.py) stamped across ~195 pages; killed 3 forked navs + dead /titles//search/ links.
+- Phase 1 (9-agent build): NJPW + AEW, Hall of Fame (AJ Styles headlines 2026 class), current/legends/women hubs, Media + Chris Van Vliet, AJ Styles showcase, 18 champion profiles. Full 7-tab nav lit up.
+- Critique wave (8 agents) -> 56-item POLISH-BACKLOG.md. Verified + fixed its P0: 98 wrestler profiles were unstyled (athlete-hero/content-grid/etc. had no CSS) -> added full profile stylesheet.
+- UX: faceted filter bar (js/facets.js) on hubs; promotion-tinted cards; engagement layer (js/engage.js) = sticky left scroll-spy rail + "Keep going" bottom rail + Discover floater (Did-you-know facts, Stumble), all reading each page's own links.
+- Fixes: rail overlap at 1366/1440 (now >=1600 only); fonts missing on 93 pages (injected); Stone Cold restored to nav Featured; homepage reveal failsafe + real stats (7 promotions / 107 wrestlers); removed fabricated "12,840 waitlist" + AggregateRating counts on 30 match pages (-> honest first-party rating); rebuilt /wrestlers/ roster 41 -> 107 with A-Z filter.
+
 # Changelog — MAT (Pro Wrestling Database)
 
 ## 2026-07-26
