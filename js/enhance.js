@@ -10,6 +10,10 @@
 
   /* ---- Scroll reveal + count-up (one IntersectionObserver) ---- */
   var revealEls = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  /* failsafe: never leave content invisible — reveal everything shortly after load */
+  window.addEventListener('load', function () {
+    setTimeout(function () { revealEls.forEach(function (el) { el.classList.add('is-in'); }); }, 900);
+  });
   var countEls = [].slice.call(document.querySelectorAll('[data-count]'));
 
   function runCount(el) {
