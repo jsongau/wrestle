@@ -1774,3 +1774,89 @@ html.has-bottom-rail body{padding-bottom:76px;}
   .he-fab__chev{transition:none;}
   .he-fab--flare .he-fab__core{animation:none;}
 }
+
+
+/* HOF DOSSIER (home only) */
+.nav7 .mega7--dossier{grid-template-columns:1.5fr 1fr;gap:9px;width:min(968px,94vw);align-items:stretch;}
+/* --- featured inductee file --- */
+.nav7 .mega7--dossier .dsr-feat{position:relative;display:flex;flex-direction:column;justify-content:flex-start;
+  overflow:hidden;text-decoration:none;cursor:pointer;border-radius:6px;min-height:196px;padding:15px 16px 14px;
+  background:linear-gradient(158deg,#1d1913,#131009 58%,#191510);
+  border:1px solid #43391f;
+  box-shadow:inset 0 1px 0 rgba(232,185,35,.07),inset 0 -26px 46px #0007;
+  transition:transform .1s ease,border-color .1s ease,box-shadow .1s ease;}
+.nav7 .mega7--dossier .dsr-feat:hover{transform:translateY(-2px);border-color:#7a6427;
+  box-shadow:inset 0 1px 0 rgba(232,185,35,.14),0 14px 30px #000a;}
+.nav7 .mega7--dossier .dsr-mono{position:absolute;right:-8px;bottom:-34px;font-family:var(--anton);font-size:158px;
+  line-height:1;color:rgba(232,185,35,.05);pointer-events:none;user-select:none;letter-spacing:-.02em;transition:color .12s ease;}
+.nav7 .mega7--dossier .dsr-feat:hover .dsr-mono{color:rgba(232,185,35,.09);}
+.nav7 .mega7--dossier .dsr-tab{position:absolute;top:0;right:16px;font-family:var(--mono7);font-size:8.5px;letter-spacing:.16em;
+  color:#e8b923;background:#131009;border:1px solid #6b5824;border-top:none;padding:5px 9px 4px;
+  border-radius:0 0 4px 4px;user-select:none;}
+.nav7 .mega7--dossier .dsr-meta{font-family:var(--mono7);font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  color:#9c8442;user-select:none;position:relative;z-index:1;}
+.nav7 .mega7--dossier .dsr-name{font-family:var(--anton);font-weight:400;text-transform:uppercase;color:#efe7d3;
+  font-size:42px;line-height:.9;letter-spacing:.01em;margin:9px 0 0;position:relative;z-index:1;
+  text-shadow:0 1px 0 #000;user-select:none;transition:color .1s ease;}
+.nav7 .mega7--dossier .dsr-feat:hover .dsr-name{color:#fff;}
+.nav7 .mega7--dossier .dsr-rule{display:block;height:1px;width:66px;
+  background:linear-gradient(90deg,#e8b923,rgba(232,185,35,0));margin:10px 0;position:relative;z-index:1;
+  transition:width .12s ease;}
+.nav7 .mega7--dossier .dsr-feat:hover .dsr-rule{width:104px;}
+.nav7 .mega7--dossier .dsr-role{font-family:var(--osw);font-weight:600;text-transform:uppercase;font-size:11px;
+  letter-spacing:.1em;color:#b89a55;user-select:none;position:relative;z-index:1;}
+.nav7 .mega7--dossier .dsr-blurb{font-family:var(--osw);font-size:12px;line-height:1.45;color:#b0a992;margin:8px 0 0;
+  max-width:76%;position:relative;z-index:1;}
+.nav7 .mega7--dossier .dsr-go{font-family:var(--mono7);font-size:9px;letter-spacing:.16em;color:#8a7440;
+  margin-top:auto;padding-top:12px;position:relative;z-index:1;user-select:none;transition:color .1s ease,transform .1s ease;}
+.nav7 .mega7--dossier .dsr-feat:hover .dsr-go{color:#e8b923;transform:translateX(2px);}
+/* --- multi-time inductees ledger --- */
+.nav7 .mega7--dossier .dsr-ledger{display:flex;flex-direction:column;border-radius:6px;overflow:hidden;
+  background:linear-gradient(180deg,#16130d,#100e08);border:1px solid #3a3320;}
+.nav7 .mega7--dossier .ldg-head{font-family:var(--mono7);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:#e8b923;user-select:none;padding:10px 12px 9px;border-bottom:1px solid #4a3f22;
+  background:linear-gradient(180deg,rgba(232,185,35,.06),transparent);}
+.nav7 .mega7--dossier .ldg-row{display:grid;grid-template-columns:28px 1fr;grid-template-rows:auto auto;
+  column-gap:10px;row-gap:2px;align-items:center;padding:8px 12px;text-decoration:none;
+  border-bottom:1px solid #241f14;position:relative;transition:background .1s ease,transform .1s ease;}
+.nav7 .mega7--dossier .ldg-row:last-child{border-bottom:none;}
+.nav7 .mega7--dossier a.ldg-row{cursor:pointer;}
+.nav7 .mega7--dossier a.ldg-row:hover{background:#1d1910;transform:translateX(2px);}
+.nav7 .mega7--dossier a.ldg-row:hover .ldg-nm{color:#fff;}
+.nav7 .mega7--dossier a.ldg-row:hover .ldg-x{border-color:#e8b923;color:#f4d24e;}
+.nav7 .mega7--dossier .ldg-row--static{cursor:default;}
+.nav7 .mega7--dossier .ldg-x{grid-column:1;grid-row:1 / span 2;align-self:center;justify-self:center;
+  font-family:var(--mono7);font-size:9px;font-weight:600;color:#e8b923;border:1px solid #7a6427;border-radius:3px;
+  padding:3px 4px;line-height:1;user-select:none;transition:border-color .1s ease,color .1s ease;}
+.nav7 .mega7--dossier .ldg-nm{grid-column:2;grid-row:1;font-family:var(--osw);font-weight:600;text-transform:uppercase;
+  font-size:13px;letter-spacing:.04em;color:#d8cfb8;transition:color .1s ease;}
+.nav7 .mega7--dossier .ldg-row--static .ldg-nm{color:#a89e86;}
+.nav7 .mega7--dossier .ldg-aka{font-family:var(--mono7);font-style:normal;font-size:8px;letter-spacing:.08em;
+  color:#7c7360;margin-left:6px;text-transform:uppercase;}
+.nav7 .mega7--dossier .ldg-tags{grid-column:2;grid-row:2;display:flex;flex-wrap:wrap;gap:5px;}
+.nav7 .mega7--dossier .tg{font-family:var(--mono7);font-size:8px;letter-spacing:.07em;text-transform:uppercase;
+  color:#8f866f;border:1px solid #3f3826;border-radius:3px;padding:2px 5px;line-height:1.05;user-select:none;}
+/* --- secondary: classes + legend files --- */
+.nav7 .mega7--dossier .dsr-sec{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.nav7 .mega7--dossier .dsr-col{background:#14110a;border:1px solid #2e2817;border-radius:6px;padding:9px 10px 10px;}
+.nav7 .mega7--dossier .dsr-lbl{display:block;font-family:var(--mono7);font-size:8.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:#8a7440;user-select:none;margin:1px 0 6px 4px;}
+.nav7 .mega7--dossier .dsr-line{display:flex;align-items:center;justify-content:space-between;gap:.6em;
+  text-decoration:none;font-family:var(--osw);text-transform:uppercase;font-size:12.5px;letter-spacing:.04em;
+  color:#c9c3b4;padding:6px 8px;border-radius:4px;border:1px solid transparent;cursor:pointer;
+  transition:background .1s ease,border-color .1s ease,color .1s ease,transform .1s ease;}
+.nav7 .mega7--dossier .dsr-line:hover{background:#1c1810;border-color:#4a3f22;color:#fff;transform:translateX(2px);}
+.nav7 .mega7--dossier .dsr-vw{font-family:var(--mono7);font-size:8.5px;letter-spacing:.1em;color:#6f6a5a;user-select:none;
+  transition:color .1s ease;}
+.nav7 .mega7--dossier .dsr-line:hover .dsr-vw{color:#e8b923;}
+@media(prefers-reduced-motion:reduce){
+  .nav7 .mega7--dossier .dsr-feat:hover,.nav7 .mega7--dossier a.ldg-row:hover,
+  .nav7 .mega7--dossier .dsr-line:hover{transform:none;}
+  .nav7 .mega7--dossier .dsr-feat:hover .dsr-rule{width:66px;}
+  .nav7 .mega7--dossier .dsr-feat:hover .dsr-go{transform:none;}
+}
+@media(max-width:720px){
+  .nav7 .mega7--dossier{grid-template-columns:1fr;}
+  .nav7 .mega7--dossier .dsr-sec{grid-template-columns:1fr;}
+  .nav7 .mega7--dossier .dsr-blurb{max-width:100%;}
+}
