@@ -1407,14 +1407,14 @@ html.has-bottom-rail body{padding-bottom:76px;}
 :is(.nav7,.hv3) .plq--big{grid-column:span 2;min-height:96px;background:linear-gradient(160deg,#4a3f26,#241f12 52%,#3d341f 94%);}
 :is(.nav7,.hv3) .plq--wide{grid-column:span 2;}
 :is(.nav7,.hv3) .plq--big .eng{font-family:var(--anton);font-weight:400;font-size:23px;letter-spacing:.03em;line-height:.98;margin-top:5px;}
-/* ---- panel 6: belt rack with live wires ---- */
+/* ---- panel 6: belt rack with crest craft ---- */
 .nav7 .mega7--rack{width:min(980px,94vw);display:flex;flex-direction:column;}
 .nav7 .rackwrap{display:grid;grid-template-columns:2.1fr 1fr;gap:8px;}
 .nav7 .rackwrap>div{display:flex;flex-direction:column;gap:8px;}
 .nav7 .belt{position:relative;display:block;text-decoration:none;padding:2px;cursor:pointer;user-select:none;
   clip-path:polygon(0 50%,16px 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,16px 100%);
   background:linear-gradient(90deg,#8c7420,#f7e08a 50%,#8c7420);
-  transition:transform .09s ease,filter .09s ease;--wireacc:var(--goldb);}
+  transition:transform .09s ease,filter .09s ease;}
 .nav7 .belt:hover{transform:translateY(-1px);filter:brightness(1.18) saturate(1.1);}
 .nav7 .belt:active{transform:translateY(0);filter:brightness(1);}
 .nav7 .belt .bin{position:relative;display:flex;align-items:center;gap:12px;padding:8px 24px;
@@ -1426,42 +1426,58 @@ html.has-bottom-rail body{padding-bottom:76px;}
 .nav7 .bwho{flex:0 0 auto;font-family:var(--mono7);font-size:8.5px;letter-spacing:.12em;color:var(--dim);
   text-transform:uppercase;user-select:none;transition:color .09s;}
 .nav7 .belt:hover .bwho{color:var(--goldb);}
-/* live wire: a short bright dash laps the strap outline (SVG, dashoffset only) */
-.nav7 .wire{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:hidden;}
-.nav7 .wire path{fill:none;stroke:var(--wireacc);stroke-linecap:round;}
-.nav7 .w-slow{stroke-width:2;stroke-dasharray:6 94;stroke-dashoffset:0;opacity:.34;animation:wlap7 7s linear infinite paused;transition:opacity .12s ease;}
-.nav7 .w-fast{stroke-width:2.25;stroke-dasharray:9 91;stroke-dashoffset:0;opacity:0;animation:wlap7 1.2s linear infinite paused;transition:opacity .1s ease;}
-.nav7 .w-glow{stroke-width:6;stroke-dasharray:9 91;stroke-dashoffset:0;opacity:0;animation:wlap7 1.2s linear infinite paused;transition:opacity .1s ease;}
-.nav7 .navitem.open .wire path{animation-play-state:running;}
-@keyframes wlap7{to{stroke-dashoffset:-100}}
-.nav7 .rackwrap .belt:nth-child(2) .wire path{animation-delay:-1.13s;}
-.nav7 .rackwrap .belt:nth-child(3) .wire path{animation-delay:-2.31s;}
-.nav7 .rackwrap .belt:nth-child(4) .wire path{animation-delay:-3.47s;}
-.nav7 .rackwrap .belt:nth-child(5) .wire path{animation-delay:-4.61s;}
-.nav7 .rackwrap .belt:nth-child(6) .wire path{animation-delay:-5.77s;}
-.nav7 .belt:hover .w-slow,.nav7 .belt:focus-visible .w-slow,.nav7 .belt.flipped .w-slow{opacity:0;}
-.nav7 .belt:hover .w-fast,.nav7 .belt:focus-visible .w-fast,.nav7 .belt.flipped .w-fast{opacity:1;}
-.nav7 .belt:hover .w-glow,.nav7 .belt:focus-visible .w-glow,.nav7 .belt.flipped .w-glow{opacity:.3;}
-.nav7 .plate{flex:0 0 auto;font-family:var(--anton);font-size:12.5px;letter-spacing:.05em;color:#241c04;
-  text-transform:uppercase;white-space:nowrap;user-select:none;}
-.nav7 .pcore{display:grid;}
-.nav7 .pf{grid-area:1/1;display:flex;align-items:center;justify-content:center;gap:7px;padding:.3em .95em;white-space:nowrap;
+/* crest craft: original heraldic crest at each strap's left edge.
+   Panel open: outline draws on via stroke-dashoffset (~600ms, staggered
+   80ms per strap through --i); then a soft radial pulse breathes every 6s.
+   Hover: crest fills with its accent (--cr) and springs 8deg. */
+.nav7 .crest{flex:0 0 auto;width:28px;height:28px;color:var(--cr,var(--goldb));overflow:visible;}
+.nav7 .crest .cg{transform-box:fill-box;transform-origin:center;transition:transform .34s cubic-bezier(.34,1.7,.44,1);will-change:transform;}
+.nav7 .crest .cg path,.nav7 .crest .cg circle,.nav7 .crest .cg ellipse{fill:var(--cr,var(--goldb));fill-opacity:0;
+  stroke:var(--cr,var(--goldb));stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;transition:fill-opacity .16s ease;}
+.nav7 .navitem.open .crest .cg path,.nav7 .navitem.open .crest .cg circle,.nav7 .navitem.open .crest .cg ellipse{
+  animation:crestdraw7 .6s ease forwards;animation-delay:calc(var(--i,0)*80ms);}
+@keyframes crestdraw7{to{stroke-dashoffset:0}}
+.nav7 .crest .pulse{fill:var(--cr,var(--goldb));opacity:0;transform-box:fill-box;transform-origin:center;}
+.nav7 .navitem.open .crest .pulse{animation:crestbreathe7 6s ease-in-out infinite;
+  animation-delay:calc(.7s + var(--i,0)*80ms);will-change:transform,opacity;}
+@keyframes crestbreathe7{0%,100%{transform:scale(.9);opacity:.04}50%{transform:scale(1.12);opacity:.13}}
+.nav7 .belt:hover .crest .cg,.nav7 .belt:focus-visible .crest .cg,.nav7 .belt.flipped .crest .cg{transform:rotate(8deg);}
+.nav7 .belt:hover .crest .cg path,.nav7 .belt:hover .crest .cg circle,.nav7 .belt:hover .crest .cg ellipse,
+.nav7 .belt:focus-visible .crest .cg path,.nav7 .belt:focus-visible .crest .cg circle,.nav7 .belt:focus-visible .crest .cg ellipse,
+.nav7 .belt.flipped .crest .cg path,.nav7 .belt.flipped .crest .cg circle,.nav7 .belt.flipped .crest .cg ellipse{fill-opacity:.3;}
+/* plate roll: one gold plate window; the day-count face rolls up and the
+   champion face rolls in from below. Completes in <400ms. */
+.nav7 .plate{flex:0 0 auto;position:relative;overflow:hidden;font-family:var(--anton);font-size:12.5px;letter-spacing:.05em;color:#241c04;
+  text-transform:uppercase;white-space:nowrap;user-select:none;
   clip-path:polygon(7% 0,93% 0,100% 50%,93% 100%,7% 100%,0 50%);
-  background:linear-gradient(180deg,#f7e08a,#d4af37 55%,#8c7420);transition:opacity .14s ease;}
-.nav7 .pf--champ{opacity:0;}
-.nav7 .belt:hover .pf--day,.nav7 .belt:focus-visible .pf--day,.nav7 .belt.flipped .pf--day{opacity:0;}
-.nav7 .belt:hover .pf--champ,.nav7 .belt:focus-visible .pf--champ,.nav7 .belt.flipped .pf--champ{opacity:1;animation:owflick7 .26s linear both;}
-@keyframes owflick7{0%{opacity:0}22%{opacity:1}36%{opacity:.15}50%{opacity:1}64%{opacity:.45}78%,100%{opacity:1}}
+  background:linear-gradient(180deg,#f7e08a,#d4af37 55%,#8c7420);}
+.nav7 .pcore{display:grid;}
+.nav7 .pf{grid-area:1/1;display:flex;align-items:center;justify-content:center;gap:6px;padding:.32em .95em;white-space:nowrap;
+  transition:transform .26s cubic-bezier(.5,.05,.2,1);will-change:transform;}
+.nav7 .pf--champ{transform:translateY(104%);}
+.nav7 .belt:hover .pf--day,.nav7 .belt:focus-visible .pf--day,.nav7 .belt.flipped .pf--day{transform:translateY(-104%);}
+.nav7 .belt:hover .pf--champ,.nav7 .belt:focus-visible .pf--champ,.nav7 .belt.flipped .pf--champ{transform:translateY(0);}
+/* gold shine sweeps the plate window as the champ face lands */
+.nav7 .plate::after{content:"";position:absolute;top:0;bottom:0;left:-45%;width:34%;transform:skewX(-18deg);
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.62) 50%,transparent);opacity:0;pointer-events:none;}
+.nav7 .belt:hover .plate::after,.nav7 .belt:focus-visible .plate::after,.nav7 .belt.flipped .plate::after{animation:kshine7 .22s ease-out .18s both;}
+@keyframes kshine7{0%{left:-45%;opacity:1}100%{left:112%;opacity:1}}
 .nav7 .pdays{font-family:var(--mono7);font-weight:700;font-size:.94em;letter-spacing:.07em;font-variant-numeric:tabular-nums;
   text-shadow:0 1px 0 rgba(255,246,205,.55);}
 .nav7 .psub{font-family:var(--mono7);font-size:7.5px;font-weight:600;letter-spacing:.14em;color:rgba(36,28,4,.62);}
+/* thin laurel-leaf pair beside the champ name: LIVE strap only, unfurls
+   from center with a spring once the roll lands */
+.nav7 .lf{flex:0 0 auto;width:9px;height:13px;fill:none;stroke:#4a3a08;stroke-width:1.5;stroke-linecap:round;
+  transform:scale(0);transform-origin:center;transition:transform .3s cubic-bezier(.34,1.75,.45,1) .12s;will-change:transform;}
+.nav7 .belt--live:hover .lf,.nav7 .belt--live:focus-visible .lf,.nav7 .belt--live.flipped .lf{transform:scale(1);}
 .nav7 .belt .btag{flex:0 0 auto;font-family:var(--mono7);font-size:9px;letter-spacing:.12em;color:var(--dim);transition:color .09s;}
 .nav7 .belt:hover .btag{color:var(--goldb);}
-.nav7 .belt--live{background:linear-gradient(90deg,#7a0f16,var(--redb) 50%,#7a0f16);--wireacc:var(--redb);}
+.nav7 .belt--live{background:linear-gradient(90deg,#7a0f16,var(--redb) 50%,#7a0f16);}
 .nav7 .belt--live:hover{filter:brightness(1.16) saturate(1.28);}
 .nav7 .belt--live:hover .bin{background:linear-gradient(180deg,#2a2128,#170f12);}
 .nav7 .belt--live:hover .bwho,.nav7 .belt--live:hover .btag{color:var(--redb);}
-.nav7 .belt--live .pf{box-shadow:0 0 10px rgba(255,59,72,.45);}
+.nav7 .belt--live .plate{filter:drop-shadow(0 0 6px rgba(255,59,72,.45));}
 .nav7 .belt--live .klive{flex:0 0 auto;font-family:var(--mono7);font-size:8.5px;letter-spacing:.12em;color:var(--redb);}
 .nav7 .belt--live .klive::before{content:"";display:inline-block;width:6px;height:6px;border-radius:99px;
   background:var(--redb);box-shadow:0 0 6px var(--redb);margin-right:5px;vertical-align:1px;}
@@ -1469,9 +1485,8 @@ html.has-bottom-rail body{padding-bottom:76px;}
   color:#ff9aa1;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .12s ease;
   pointer-events:none;user-select:none;}
 .nav7 .belt:hover .bctx,.nav7 .belt:focus-visible .bctx,.nav7 .belt.flipped .bctx{opacity:.85;}
-.nav7 .belt--wm{background:linear-gradient(90deg,#7a1f56,var(--womens) 50%,#7a1f56);--wireacc:var(--womens);}
-.nav7 .belt--wm .plate{color:#2a0519;}
-.nav7 .belt--wm .pf{background:linear-gradient(180deg,#ffc3e4,var(--womens) 55%,#8c2a66);}
+.nav7 .belt--wm{background:linear-gradient(90deg,#7a1f56,var(--womens) 50%,#7a1f56);}
+.nav7 .belt--wm .plate{color:#2a0519;background:linear-gradient(180deg,#ffc3e4,var(--womens) 55%,#8c2a66);}
 .nav7 .belt--wm .pdays{text-shadow:0 1px 0 rgba(255,222,242,.55);}
 .nav7 .belt--wm .psub{color:rgba(42,5,25,.62);}
 .nav7 .belt--wm:hover .btag,.nav7 .belt--wm:hover .bwho{color:var(--womens);}
@@ -1623,14 +1638,25 @@ html.has-bottom-rail body{padding-bottom:76px;}
   .nav7 .brand7 .bword{display:none;}
   .nav7 .cta7hide{display:none;}
 }
-/* ---- reduced motion: freeze wires, sweeps and sparks; keep instant reveals ---- */
+/* ---- reduced motion: freeze crests, sweeps and sparks; keep instant reveals ---- */
 @media(prefers-reduced-motion:reduce){
   :is(.nav7,.hv3) .dk::after{display:none;}
   :is(.nav7,.hv3) .dk:hover,:is(.nav7,.hv3) .chip7:hover,:is(.nav7,.hv3) .rowlink:hover,:is(.nav7,.hv3) .plq:hover,
   .nav7 .belt:hover,:is(.nav7,.hv3) .tc:hover,:is(.nav7,.hv3) .chc:hover,.hv3 .readouts a:hover{transform:none;}
-  .nav7 .wire path,.nav7 .wlsweep,.nav7 .nv-t .cspark path,.nav7 .pf--champ,.nav7 .pf--day{animation:none !important;}
-  .nav7 .wire,.nav7 .wlshim{display:none !important;}
+  .nav7 .wlsweep,.nav7 .nv-t .cspark path,.nav7 .pf--champ,.nav7 .pf--day{animation:none !important;}
+  .nav7 .wlshim{display:none !important;}
   .nav7 .nv-t .cspark path{stroke-dashoffset:0;opacity:.35;}
+  /* plate roll: swap faces instantly, no roll, no shine */
+  .nav7 .pf{transition:none !important;}
+  .nav7 .plate::after{animation:none !important;opacity:0 !important;}
+  /* crests: no draw-on, no breathing pulse, no spring — fully drawn, still */
+  .nav7 .crest .cg path,.nav7 .crest .cg circle,.nav7 .crest .cg ellipse{animation:none !important;stroke-dashoffset:0 !important;transition:none !important;}
+  .nav7 .crest .pulse{animation:none !important;opacity:.05 !important;}
+  .nav7 .crest .cg{transition:none !important;}
+  .nav7 .belt:hover .crest .cg,.nav7 .belt:focus-visible .crest .cg,.nav7 .belt.flipped .crest .cg{transform:none;}
+  /* laurel pair + lineage footnote appear instantly, no unfurl */
+  .nav7 .lf{transition:none !important;}
+  .nav7 .bctx{transition:none !important;}
   .tk7{animation:none;}
   .ticker7 .lock::before{animation:none;}
 }

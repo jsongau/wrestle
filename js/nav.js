@@ -96,7 +96,10 @@
    Runs only when the page carries the .nav7 header. Handles:
    hover-intent + click tab opening, Esc / outside-click / focus-out
    close, viewport clamping, live reign-day counters from data-start,
-   SVG live-wire tracing on the belt rack, touch tap-to-reveal champs.
+   touch tap-to-reveal champs. The belt-rack crest draw-on (Crest
+   Craft) is pure CSS, keyed off the .open class set here: each
+   crest's stroke-dashoffset animation restarts on every panel open,
+   staggered 80ms per strap via the belts' inline --i custom property.
    The search pill uses [data-cmdk-open], handled by the palette above.
    =================================================================== */
 (function () {
@@ -125,7 +128,6 @@
     if (tab) tab.setAttribute('aria-expanded', 'true');
     openItem = item;
     clampPanel(item);
-    if (item.classList.contains('nv-t')) traceWires();
   }
   function closePanel(item) {
     item.classList.remove('open');
@@ -177,32 +179,7 @@
   });
   window.addEventListener('resize', function () {
     if (openItem) clampPanel(openItem);
-    clearTimeout(wireTm);
-    wireTm = setTimeout(traceWires, 120);
   });
-
-  /* ---- live wire: trace each strap's hex outline at its real size ---- */
-  function traceWires() {
-    var belts = Array.prototype.slice.call(root.querySelectorAll('a.belt'));
-    belts.forEach(function (b) {
-      var svg = b.querySelector('svg.wire');
-      if (!svg) return;
-      var w = b.offsetWidth, h = b.offsetHeight;
-      if (!w || !h) return;
-      var i = 1.5, c = 17; // inset + chevron run (matches the 16px clip corner)
-      var d = 'M' + i + ' ' + (h / 2) +
-              ' L' + c + ' ' + i +
-              ' L' + (w - c) + ' ' + i +
-              ' L' + (w - i) + ' ' + (h / 2) +
-              ' L' + (w - c) + ' ' + (h - i) +
-              ' L' + c + ' ' + (h - i) + ' Z';
-      Array.prototype.forEach.call(svg.querySelectorAll('path'), function (p) {
-        p.setAttribute('d', d);
-      });
-    });
-  }
-  var wireTm;
-  traceWires();
 
   /* ---- reign-day counters from data-start (UTC date math) ---- */
   function reignDays(iso) {
