@@ -1,3 +1,6 @@
+## 2026-07-26 (Main page v3 — 12-block build + nav7 header, home only)
+- Rebuilt index.html per master brief section 5: O-concept header (ticker, full-bleed bar, 7 bespoke mega panels, equal-strap belt rack with live reign-day counters + SVG live-wire champion reveals, AAA/Worlds Collide/El Grande Americano cells) + 12 content blocks with current real data and verified 2026 streaming homes. Home-only scope: CSS namespaced (.nav7/.hv3), self-gated JS, JetBrains Mono self-hosted, apply_shell.py excludes root index.html. Zero broken links, JSON-LD parses, clean console at 1366px.
+
 ## 2026-07-26 (Polish + performance sprint)
 - H7 Self-hosted fonts: added 7 Latin-subset woff2 (Anton 400, Oswald/Inter 400/600/700, 140KB total) under /fonts/; @font-face + metric-matched fallback faces (size-adjust/ascent-override computed from the real fonts vs Arial) to zero swap CLS. apply_shell.py now strips all Google Fonts preconnect+stylesheet links site-wide and preloads only Anton (the display/LCP font). Verified: 0 third-party font requests, all 7 served locally, Anton/Inter/Oswald all load.
 - Q3 Shipped /404.html: full shell + ⌘K search + 8 popular-route tiles; noindex,follow. Stamped by apply_shell (targets() now includes standalone 404.html).
