@@ -81,67 +81,122 @@
     <nav class="bar" aria-label="Primary">
       <a class="brand7" href="/" aria-label="Wrestle Lore, home"><span class="mark">WL<svg class="wlshim" viewBox="0 0 33 33" aria-hidden="true" focusable="false"><defs><linearGradient id="wlsg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><g class="wlsweep"><rect x="-2" y="-6" width="9" height="45" fill="url(#wlsg)" transform="skewX(-18)"/></g></svg></span><span class="bword">Wrestle Lore</span></a>
       <div class="tabs7">
-        <!-- ========== 1 / WRESTLERS: roster mosaic ========== -->
+        <!-- ========== 1 / SUPERSTARS: roster dossier (current stars left) ========== -->
         <div class="navitem nv-w">
-          <a class="tab" href="/wrestlers/" aria-haspopup="true" aria-expanded="false">Wrestlers</a>
-          <div class="mega7 mega7--roster" role="group" aria-label="Wrestlers menu">
-            <a class="dk dk--feat rare-gold" href="/wrestlers/the-undertaker/">
-              <span class="klbl">BOX TOPPER // LEGENDARY PULL</span>
-              <div>
-                <div class="featstat">25 &ndash; 2 AT WRESTLEMANIA</div>
-                <h3>The Undertaker</h3>
-                <span class="klbl">THE PHENOM &middot; 7&times; WORLD CHAMPION</span>
+          <a class="tab" href="/wrestlers/" aria-haspopup="true" aria-expanded="false">Superstars</a>
+          <div class="mega7 mega7--rdossier" role="group" aria-label="Superstars menu">
+            <!-- current stars active roster ledger (LEFT / primary column) -->
+            <div class="rd-current" role="group" aria-label="Current stars, active roster">
+              <span class="ldg-head">Current Stars // Active Roster</span>
+              <a class="ldg-row" href="/wrestlers/roman-reigns/">
+                <span class="ldg-x">R</span>
+                <span class="ldg-nm">Roman Reigns <em class="ldg-aka">Tribal Chief</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/cody-rhodes/">
+                <span class="ldg-x">C</span>
+                <span class="ldg-nm">Cody Rhodes <em class="ldg-aka">American Nightmare</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/gunther/">
+                <span class="ldg-x">G</span>
+                <span class="ldg-nm">Gunther <em class="ldg-aka">Ring General</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/seth-rollins/">
+                <span class="ldg-x">S</span>
+                <span class="ldg-nm">Seth Rollins <em class="ldg-aka">The Visionary</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/drew-mcintyre/">
+                <span class="ldg-x">D</span>
+                <span class="ldg-nm">Drew McIntyre <em class="ldg-aka">Scottish Warrior</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/jey-uso/">
+                <span class="ldg-x">J</span>
+                <span class="ldg-nm">Jey Uso <em class="ldg-aka">Main Event</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/solo-sikoa/">
+                <span class="ldg-x">S</span>
+                <span class="ldg-nm">Solo Sikoa <em class="ldg-aka">The Enforcer</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/jon-moxley/">
+                <span class="ldg-x">M</span>
+                <span class="ldg-nm">Jon Moxley <em class="ldg-aka">Death Rider</em></span>
+                <span class="ldg-tags"><span class="tg">AEW</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/kenny-omega/">
+                <span class="ldg-x">K</span>
+                <span class="ldg-nm">Kenny Omega <em class="ldg-aka">The Cleaner</em></span>
+                <span class="ldg-tags"><span class="tg">AEW</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/will-ospreay/">
+                <span class="ldg-x">W</span>
+                <span class="ldg-nm">Will Ospreay <em class="ldg-aka">Aerial Assassin</em></span>
+                <span class="ldg-tags"><span class="tg">AEW</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/kazuchika-okada/">
+                <span class="ldg-x">O</span>
+                <span class="ldg-nm">Kazuchika Okada <em class="ldg-aka">The Rainmaker</em></span>
+                <span class="ldg-tags"><span class="tg">AEW</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/nic-nemeth/">
+                <span class="ldg-x">N</span>
+                <span class="ldg-nm">Nic Nemeth <em class="ldg-aka">The Showoff</em></span>
+                <span class="ldg-tags"><span class="tg">TNA</span></span>
+              </a>
+            </div>
+            <!-- featured active headliner file (RIGHT) -->
+            <a class="rd-feat" href="/wrestlers/cm-punk/">
+              <span class="rd-tab">FILE // ACTIVE</span>
+              <span class="rd-mono" aria-hidden="true">CP</span>
+              <span class="rd-meta">ROSTER FILE // ACTIVE</span>
+              <h3 class="rd-name">CM Punk</h3>
+              <span class="rd-rule" aria-hidden="true"></span>
+              <span class="rd-role">The Best in the World // Undisputed WWE Champion</span>
+              <p class="rd-blurb">Reigning Undisputed WWE Champion and the roster's biggest active draw, filed at the top of the current card.</p>
+              <span class="rd-go">OPEN FILE &rarr;</span>
+            </a>
+            <!-- women's division + rising prospects, side by side -->
+            <div class="rd-sec">
+              <div class="rd-col rd-col--women" role="group" aria-label="Women's division">
+                <span class="rd-chd">Women's Division</span>
+                <a class="rd-mini" href="/wrestlers/rhea-ripley/"><span class="rd-mnm">Rhea Ripley</span><span class="rd-mtg">Champion</span></a>
+                <a class="rd-mini" href="/wrestlers/tiffany-stratton/"><span class="rd-mnm">Tiffany Stratton</span><span class="rd-mtg">Buff Barbie</span></a>
+                <a class="rd-mini" href="/wrestlers/jade-cargill/"><span class="rd-mnm">Jade Cargill</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/bianca-belair/"><span class="rd-mnm">Bianca Belair</span><span class="rd-mtg">The EST</span></a>
+                <a class="rd-mini" href="/wrestlers/iyo-sky/"><span class="rd-mnm">Iyo Sky</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/liv-morgan/"><span class="rd-mnm">Liv Morgan</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/becky-lynch/"><span class="rd-mnm">Becky Lynch</span><span class="rd-mtg">The Man</span></a>
+                <a class="rd-mini" href="/wrestlers/mercedes-mone/"><span class="rd-mnm">Mercedes Mone</span><span class="rd-mtg">AEW</span></a>
               </div>
-              <span class="go">PULL CARD &rarr;</span>
-            </a>
-            <a class="dk dk--stat" href="/wrestlers/">
-              <span class="klbl">DECK // FULL ROSTER</span>
-              <div class="big">107</div>
-              <span class="n">Profiles A&ndash;Z</span>
-              <span class="go">GO &rarr;</span>
-            </a>
-            <a class="dk mono7c" href="/wrestlers/roman-reigns/">
-              <span class="ini">R</span>
-              <span class="klbl">TRENDING // NOW</span>
-              <div class="nm">Roman Reigns</div>
-              <span class="ms">TRIBAL CHIEF &middot; WWE</span>
-            </a>
-            <a class="dk mono7c rare-gold" href="/wrestlers/aj-styles/">
-              <span class="ini">A</span>
-              <span class="klbl">GOLD EDGE // HOF '26</span>
-              <div class="nm">AJ Styles</div>
-              <span class="ms">PHENOMENAL &middot; TNA TO WWE</span>
-            </a>
-            <a class="dk mono7c rare-red" href="/wrestlers/cm-punk/">
-              <span class="ini">P</span>
-              <span class="klbl">RED EDGE // CHAMPION</span>
-              <div class="nm">CM Punk</div>
-              <span class="ms">HOLDS THE UNDISPUTED WWE</span>
-            </a>
-            <a class="dk mono7c" href="/wrestlers/stone-cold-steve-austin/">
-              <span class="ini">3:16</span>
-              <span class="klbl">MOST VIEWED</span>
-              <div class="nm">Stone Cold</div>
-              <span class="ms">AUSTIN 3:16 &middot; ATTITUDE ERA</span>
-            </a>
-            <a class="dk mono7c" href="/wrestlers/the-rock/">
-              <span class="ini">R</span>
-              <span class="klbl">CROSSOVER // ICON CARD</span>
-              <div class="nm">The Rock</div>
-              <span class="ms">GREAT ONE &middot; ATTITUDE ERA</span>
-            </a>
-            <a class="dk mono7c rare-gold" href="/wrestlers/ric-flair/">
-              <span class="ini">16</span>
-              <span class="klbl">GOLD EDGE // 16&times; CHAMP</span>
-              <div class="nm">Ric Flair</div>
-              <span class="ms">NATURE BOY &middot; NWA TO WWE</span>
-            </a>
-            <div class="chiprow" role="group" aria-label="Roster status rail">
-              <a class="chip7" href="/current/"><span class="dot" style="background:var(--red)"></span>Current Stars</a>
+              <div class="rd-col rd-col--rise" role="group" aria-label="Rising prospects">
+                <span class="rd-chd">Rising Prospects</span>
+                <a class="rd-mini" href="/wrestlers/bron-breakker/"><span class="rd-mnm">Bron Breakker</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/oba-femi/"><span class="rd-mnm">Oba Femi</span><span class="rd-mtg">NXT</span></a>
+                <a class="rd-mini" href="/wrestlers/trick-williams/"><span class="rd-mnm">Trick Williams</span><span class="rd-mtg">NXT</span></a>
+                <a class="rd-mini" href="/wrestlers/austin-theory/"><span class="rd-mnm">Austin Theory</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/penta/"><span class="rd-mnm">Penta</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/solo-sikoa/"><span class="rd-mnm">Solo Sikoa</span><span class="rd-mtg">WWE</span></a>
+              </div>
+            </div>
+            <!-- de-emphasized legends pointer -->
+            <div class="rd-legends" role="group" aria-label="Legends, retired">
+              <span class="rd-lglbl">Legends // Retired</span>
+              <a class="rd-lgk" href="/wrestlers/stone-cold-steve-austin/">Stone Cold <span class="rd-vw">VIEW &rarr;</span></a>
+              <a class="rd-lgk" href="/wrestlers/the-undertaker/">The Undertaker <span class="rd-vw">VIEW &rarr;</span></a>
+              <a class="rd-lgk" href="/wrestlers/ric-flair/">Ric Flair <span class="rd-vw">VIEW &rarr;</span></a>
+              <a class="rd-lgk" href="/legends/">Legends Index <span class="rd-vw">INDEX &rarr;</span></a>
+            </div>
+            <div class="chiprow" role="group" aria-label="Roster quick index">
+              <a class="chip7" href="/wrestlers/"><span class="dot" style="background:var(--gold)"></span>All 107 A&ndash;Z</a>
+              <a class="chip7" href="/current/"><span class="dot" style="background:var(--red)"></span>Current</a>
+              <a class="chip7" href="/women/" style="--acc:var(--womens)"><span class="dot" style="background:var(--womens)"></span>Women</a>
               <a class="chip7" href="/legends/"><span class="dot" style="background:var(--gold)"></span>Legends</a>
-              <a class="chip7" href="/women/" style="--acc:var(--womens)"><span class="dot" style="background:var(--womens)"></span>Women's Division</a>
-              <a class="chip7" href="/wrestlers/sting/">Sting</a>
-              <a class="chip7 chip7--more" href="/wrestlers/">All 107 A&ndash;Z &rarr;</a>
+              <a class="chip7 chip7--more" href="/promotions/">By promotion &rarr;</a>
             </div>
           </div>
         </div>
@@ -329,73 +384,51 @@
             </div>
           </div>
         </div>
-        <!-- ========== 5 / HALL OF FAME: archive dossier ========== -->
+        <!-- ========== 5 / HALL OF FAME: ring of honor ========== -->
         <div class="navitem nv-h">
           <a class="tab" href="/hall-of-fame/" aria-haspopup="true" aria-expanded="false">Hall of Fame</a>
-          <div class="mega7 mega7--dossier" role="group" aria-label="Hall of Fame menu">
-            <a class="dsr-feat" href="/hall-of-fame/2026/">
-              <span class="dsr-tab">FILE // 2026</span>
-              <span class="dsr-mono" aria-hidden="true">AJ</span>
-              <span class="dsr-meta">INDUCTEE FILE // CLASS OF 2026</span>
-              <h3 class="dsr-name">AJ Styles</h3>
-              <span class="dsr-rule" aria-hidden="true"></span>
-              <span class="dsr-role">The Phenomenal One // Headliner</span>
-              <p class="dsr-blurb">Filed first into the Class of 2026. Six X Division reigns in TNA, two IWGP Heavyweight runs leading Bullet Club, two WWE Championships. A retired headliner enters the record.</p>
-              <span class="dsr-go">OPEN FILE &rarr;</span>
-            </a>
-            <div class="dsr-ledger" role="group" aria-label="Multi-time inductees, inducted twice">
-              <span class="ldg-head">Cross-referenced // Inducted twice</span>
-              <a class="ldg-row" href="/wrestlers/ric-flair/">
-                <span class="ldg-x">2&times;</span>
-                <span class="ldg-nm">Ric Flair</span>
-                <span class="ldg-tags"><span class="tg">Solo</span><span class="tg">Four Horsemen</span></span>
+          <div class="mega7 mega7--hof2" role="group" aria-label="Hall of Fame menu">
+            <div class="hof2-grid">
+              <a class="hof2-spot" href="/hall-of-fame/2026/">
+                <span class="hof2-spot__medal" aria-hidden="true">
+                  <svg viewBox="0 0 120 120" focusable="false">
+                    <circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/>
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width=".5" opacity=".32"/>
+                    <g stroke="currentColor" stroke-width="1" opacity=".38">
+                      <line x1="60" y1="4" x2="60" y2="12"/><line x1="60" y1="108" x2="60" y2="116"/>
+                      <line x1="4" y1="60" x2="12" y2="60"/><line x1="108" y1="60" x2="116" y2="60"/>
+                    </g>
+                    <text class="hof2-mono" x="60" y="63">AJ</text>
+                  </svg>
+                </span>
+                <span class="hof2-eyebrow">CLASS OF 2026 // HEADLINER</span>
+                <span class="hof2-spot__name">AJ Styles</span>
+                <span class="hof2-spot__ctx">The Phenomenal One goes in first. A showcase of the legends who defined the ring and no longer compete in it.</span>
+                <span class="go hof2-go">VIEW CLASS &rarr;</span>
               </a>
-              <a class="ldg-row" href="/wrestlers/shawn-michaels/">
-                <span class="ldg-x">2&times;</span>
-                <span class="ldg-nm">Shawn Michaels</span>
-                <span class="ldg-tags"><span class="tg">Solo</span><span class="tg">D-Generation X</span></span>
-              </a>
-              <span class="ldg-row ldg-row--static" aria-label="Booker T, inducted twice">
-                <span class="ldg-x">2&times;</span>
-                <span class="ldg-nm">Booker T</span>
-                <span class="ldg-tags"><span class="tg">Solo</span><span class="tg">Harlem Heat</span></span>
-              </span>
-              <span class="ldg-row ldg-row--static" aria-label="Kevin Nash, inducted twice">
-                <span class="ldg-x">2&times;</span>
-                <span class="ldg-nm">Kevin Nash</span>
-                <span class="ldg-tags"><span class="tg">Solo</span><span class="tg">nWo</span></span>
-              </span>
-              <span class="ldg-row ldg-row--static" aria-label="Scott Hall, also known as Razor Ramon, inducted twice">
-                <span class="ldg-x">2&times;</span>
-                <span class="ldg-nm">Scott Hall <em class="ldg-aka">Razor Ramon</em></span>
-                <span class="ldg-tags"><span class="tg">Solo</span><span class="tg">nWo</span></span>
-              </span>
-              <span class="ldg-row ldg-row--static" aria-label="Hulk Hogan, inducted twice">
-                <span class="ldg-x">2&times;</span>
-                <span class="ldg-nm">Hulk Hogan</span>
-                <span class="ldg-tags"><span class="tg">Solo</span><span class="tg">nWo</span></span>
-              </span>
-            </div>
-            <div class="dsr-sec">
-              <div class="dsr-col" role="group" aria-label="Hall of Fame classes">
-                <span class="dsr-lbl">Classes</span>
-                <a class="dsr-line" href="/hall-of-fame/2026/">Class of 2026 <span class="dsr-vw">VIEW &rarr;</span></a>
-                <a class="dsr-line" href="/hall-of-fame/2025/">Class of 2025 <span class="dsr-vw">VIEW &rarr;</span></a>
-                <a class="dsr-line" href="/hall-of-fame/">All Classes <span class="dsr-vw">INDEX &rarr;</span></a>
+              <div class="hof2-side">
+                <section class="hof2-club" aria-label="Multi-time inductees">
+                  <div class="hof2-club__head">
+                    <span class="hof2-eyebrow">MULTI-TIME INDUCTEES</span>
+                    <span class="hof2-club__title">The Two-Time Club</span>
+                  </div>
+                  <hr class="hof2-hair">
+                  <div class="hof2-medals" role="list" aria-label="Two-time WWE Hall of Famers">
+                    <a class="hof2-chip" href="/wrestlers/ric-flair/" role="listitem"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">RF</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Ric Flair</span><span class="hof2-chip__note">SOLO &middot; 4HM</span></a><a class="hof2-chip" href="/wrestlers/shawn-michaels/" role="listitem"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">SM</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Shawn Michaels</span><span class="hof2-chip__note">SOLO &middot; DX</span></a><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">BT</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Booker T</span><span class="hof2-chip__note">SOLO &middot; HH</span></span><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">KN</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Kevin Nash</span><span class="hof2-chip__note">SOLO &middot; nWo</span></span><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">SH</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Scott Hall</span><span class="hof2-chip__note">SOLO &middot; nWo</span></span><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">HH</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Hulk Hogan</span><span class="hof2-chip__note">SOLO &middot; nWo</span></span>
+                  </div>
+                </section>
+                <div class="hof2-rail" role="group" aria-label="Hall of Fame classes">
+                  <a class="chip7" href="/hall-of-fame/2026/"><span class="dot" style="background:var(--hof)"></span>Class of 2026</a>
+                  <a class="chip7" href="/hall-of-fame/2025/"><span class="dot" style="background:#c9ccd2"></span>Class of 2025</a>
+                  <a class="chip7 chip7--more" href="/hall-of-fame/">All Classes &rarr;</a>
+                </div>
+                <div class="chiprow" role="group" aria-label="Legend profiles">
+                  <a class="chip7" href="/wrestlers/the-undertaker/"><span class="dot" style="background:#8b5cf6"></span>The Undertaker</a>
+                  <a class="chip7" href="/wrestlers/sting/"><span class="dot" style="background:#58c7f0"></span>Sting</a>
+                  <a class="chip7" href="/showcases/aj-styles/"><span class="dot" style="background:var(--hof)"></span>AJ Styles Showcase</a>
+                  <a class="chip7 chip7--more" href="/legends/">Legends Index &rarr;</a>
+                </div>
               </div>
-              <div class="dsr-col" role="group" aria-label="Legend files">
-                <span class="dsr-lbl">Legend Files</span>
-                <a class="dsr-line" href="/wrestlers/the-undertaker/">The Undertaker <span class="dsr-vw">FILE &rarr;</span></a>
-                <a class="dsr-line" href="/wrestlers/sting/">Sting <span class="dsr-vw">FILE &rarr;</span></a>
-                <a class="dsr-line" href="/showcases/aj-styles/">AJ Styles Showcase <span class="dsr-vw">TAPE &rarr;</span></a>
-                <a class="dsr-line" href="/legends/">Legends Index <span class="dsr-vw">INDEX &rarr;</span></a>
-              </div>
-            </div>
-            <div class="chiprow" role="group" aria-label="Hall of Fame quick index">
-              <a class="chip7" href="/hall-of-fame/2026/"><span class="dot" style="background:var(--hof)"></span>Class of 2026</a>
-              <a class="chip7" href="/hall-of-fame/2025/"><span class="dot" style="background:#c9ccd2"></span>Class of 2025</a>
-              <a class="chip7" href="/legends/"><span class="dot" style="background:var(--red)"></span>Legends Index</a>
-              <a class="chip7 chip7--more" href="/hall-of-fame/">All Classes &rarr;</a>
             </div>
           </div>
         </div>
