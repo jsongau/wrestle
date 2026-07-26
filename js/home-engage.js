@@ -1,9 +1,19 @@
-/* Wrestle Lore — HOME engagement layer ("home-explore").
-   Home-only. Injects: a sticky bottom "Keep exploring" rail of real harvested
-   links, a bottom-right "Surprise me" Discover floater, and stamps count-up
-   targets for the existing enhance.js observer. Re-presents anchors already on
-   the page (nav + main) and window.MAT_SEARCH_INDEX. No dependencies, no storage,
-   reduced-motion aware, hover-gated niceties. All injected nodes use the .he- prefix. */
+/* Wrestle Lore — HOME engagement layer, "Match Card & Control" (F2).
+   Home-only (body[data-home]). A BALANCED PAIR of corner floaters that replace
+   the old single full-width bottom rail:
+     - BOTTOM-LEFT  : a compact dismissible "poster" discovery card (duotone
+                      monogram, kicker, real entity title, star rating for a
+                      match, one-line reason, VIEW, Next to cycle, dismiss X;
+                      collapses to a small reopen tab).
+     - BOTTOM-RIGHT : a round broadcast control cluster (a primary gold
+                      "Surprise Me" disc + two satellite icon buttons: Search
+                      opens the existing #cmdk palette, and Random legend; an
+                      expand panel adds Did-you-know + Hall of Fame; dismiss to
+                      a small recall icon).
+   Every destination is a REAL harvested <a> href or a MAT_SEARCH_INDEX url.
+   Vanilla, no storage, reduced-motion aware, z-index below #cmdk and the sticky
+   header, never covers footer.site-footer. All nodes use the .f2- prefix and are
+   styled by the external /css/site.css HOME ENGAGE LAYER block. */
 (function () {
   'use strict';
 
@@ -13,294 +23,316 @@
   if (!isHome) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   var here = location.pathname;
   var norm = function (u) { return (u || '').replace(/index\.html$/, '').replace(/\/$/, ''); };
   var hereN = norm(here);
-
-  function rand(arr) { return arr.length ? arr[Math.floor(Math.random() * arr.length)] : null; }
-  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  var qa = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var txt = function (el) { return el ? el.textContent : ''; };
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   function cap(s, n) { s = clean(s); return s.length > n ? s.slice(0, n - 1).trim() + '…' : s; }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function mono(s) { s = clean(s).replace(/^the\s+/i, ''); var m = s.match(/[A-Za-z0-9]/); return m ? m[0].toUpperCase() : '✦'; }
 
-  /* label from an anchor: prefer a meaningful child, else its text */
   function labelOf(a) {
     var sel = ['.tile__name', '.bnm2', '.nm', '.enm', '.bnm', '.chn'];
-    for (var i = 0; i < sel.length; i++) { var el = a.querySelector(sel[i]); if (el && clean(el.textContent)) return cap(el.textContent, 42); }
-    return cap(a.textContent, 42);
+    for (var i = 0; i < sel.length; i++) { var el = a.querySelector(sel[i]); if (el && clean(el.textContent)) return cap(el.textContent, 44); }
+    return cap(a.textContent, 44);
   }
 
-  /* clean canonical titles keyed by normalized url (from the on-page search index) */
+  /* clean canonical titles keyed by normalized url (on-page search index) */
   var urlTitle = {};
   (window.MAT_SEARCH_INDEX || []).forEach(function (e) { if (e && e.u && e.t) urlTitle[norm(e.u)] = clean(e.t); });
 
-  /* ---- harvest real internal links from the whole document (nav + main) ---- */
-  var pools = { match: [], champ: [], hub: [] };
-  var seen = {};
-  function push(kind, a) {
-    var href = a.getAttribute('href');
-    if (!href || href.charAt(0) !== '/') return;
-    var n = norm(href);
-    if (n === hereN || n === '') return;
-    var key = kind + '|' + n;
-    if (seen[key]) return;
-    var t = urlTitle[n] ? cap(urlTitle[n], 42) : labelOf(a);
-    if (!t) return;
-    seen[key] = 1;
-    pools[kind].push({ t: t, u: href, kind: kind });
-  }
-  var HUB_RE = /^\/(rankings|moments|rivalries|factions|tag-teams|hall-of-fame|wrestlers|events|titles|promotions)\/?$/;
-  Array.prototype.forEach.call(document.querySelectorAll('a[href^="/"]'), function (a) {
-    var href = a.getAttribute('href');
-    if (/^\/matches\//.test(href)) { push('match', a); return; }
-    if (/^\/titles\/[a-z0-9-]+\//.test(href) || a.classList.contains('mono7c')) { push('champ', a); return; }
-    if (HUB_RE.test(href) || /^\/promotions\/(wwe|tna|njpw|wcw|ecw|nxt|aew)\//.test(href)) { push('hub', a); return; }
+  /* ============================ HARVEST (real links only) ============================ */
+  var matches = [], champs = [], hubs = [], legends = [], seen = {};
+
+  /* five-star match posters */
+  qa('.grid-spot a.tile[href^="/matches/"]').forEach(function (a) {
+    var href = a.getAttribute('href'), n = norm(href);
+    if (!href || n === hereN || seen['m|' + n]) return; seen['m|' + n] = 1;
+    var nm = clean(txt(a.querySelector('.tile__name'))) || urlTitle[n] || labelOf(a);
+    var ev = clean(txt(a.querySelector('.tile__kicker')));
+    var rt = clean(txt(a.querySelector('.tile__rating')));
+    var stars = rt ? Math.max(0, Math.min(5, Math.round(parseFloat(rt) || 0))) : 5;
+    matches.push({ u: href, title: cap(nm, 44), kick: 'Five-star match', tag: 'Match', kind: 'match',
+      reason: (rt ? 'Rated ' + rt + ' stars' : 'A five-star classic') + (ev ? ' at ' + ev : '') + '.', stars: stars });
   });
 
-  /* interleave the three pools into one deduped, shuffled chip list */
-  function buildChipSet(cap8) {
-    var m = shuffle(pools.match), c = shuffle(pools.champ), h = shuffle(pools.hub);
-    var out = [], i = 0, used = {};
-    while (out.length < cap8 && (i < m.length || i < c.length || i < h.length)) {
-      [m[i], c[i], h[i]].forEach(function (x) {
-        if (x && out.length < cap8 && !used[x.kind + '|' + norm(x.u)]) { used[x.kind + '|' + norm(x.u)] = 1; out.push(x); }
-      });
-      i++;
+  /* current champions from the live belt rack */
+  qa('a.belt[href^="/titles/"]').forEach(function (a) {
+    var href = a.getAttribute('href'), n = norm(href);
+    if (!href || n === hereN || seen['c|' + n]) return; seen['c|' + n] = 1;
+    var title = clean(txt(a.querySelector('.bnm2'))) || urlTitle[n] || labelOf(a);
+    var champ = clean(txt(a.querySelector('.pf--champ')));
+    var days = clean(txt(a.querySelector('.pdays')));
+    champs.push({ u: href, title: cap(title, 44), kick: 'Current champion', tag: 'Champion', kind: 'champ',
+      reason: (champ ? 'Held by ' + champ : 'On the record') + (days ? ', ' + days.toLowerCase() + ' of the reign' : '') + '.', stars: 0 });
+  });
+
+  /* hubs from real nav / page links */
+  var HUB_RE = /^\/(rankings|moments|rivalries|factions|tag-teams|hall-of-fame|wrestlers|events|titles|promotions)\/?$/;
+  var HUBW = { rankings: 'The current pecking order.', moments: 'Flashbulb moments on the record.', rivalries: 'Feuds that defined eras.', factions: 'Stables and their power plays.', 'tag-teams': 'The best of the tandems.', 'hall-of-fame': 'The immortals, enshrined.', wrestlers: 'Every profile on the record.', events: 'Cards worth the rewatch.', titles: 'Every belt and its lineage.', promotions: 'The companies behind it all.' };
+  qa('a[href^="/"]').forEach(function (a) {
+    var href = a.getAttribute('href'), n = norm(href);
+    if (!href || n === hereN || !HUB_RE.test(href) || seen['h|' + n]) return; seen['h|' + n] = 1;
+    var seg = (href.replace(/^\//, '').split('/')[0]) || '';
+    hubs.push({ u: href, title: cap(urlTitle[n] || labelOf(a), 44), kick: 'Explore hub', tag: 'Hub', kind: 'hub',
+      reason: HUBW[seg] || 'Browse the full section.', stars: 0 });
+  });
+
+  /* legends pool: real gold/HOF anchors on the page + index Hall of Fame kind */
+  qa('a.tile--gold[href^="/"]').forEach(function (a) {
+    var href = a.getAttribute('href'), n = norm(href);
+    if (!href || n === hereN || seen['l|' + n]) return; seen['l|' + n] = 1;
+    legends.push({ u: href, t: urlTitle[n] || labelOf(a) });
+  });
+  (window.MAT_SEARCH_INDEX || []).forEach(function (e) {
+    if (!e || !e.u || e.k !== 'Hall of Fame') return; var n = norm(e.u);
+    if (n === hereN || seen['l|' + n]) return; seen['l|' + n] = 1;
+    legends.push({ u: e.u, t: clean(e.t) });
+  });
+  var hofHref = (document.querySelector('a[href="/hall-of-fame/"]') || {}).getAttribute
+    ? document.querySelector('a[href="/hall-of-fame/"]').getAttribute('href') : '/hall-of-fame/';
+
+  /* interleave the three card pools so consecutive Next hits vary the kind */
+  function interleave() {
+    var m = shuffle(matches), c = shuffle(champs), h = shuffle(hubs), out = [], i = 0;
+    while (i < m.length || i < c.length || i < h.length) {
+      if (m[i]) out.push(m[i]); if (c[i]) out.push(c[i]); if (h[i]) out.push(h[i]); i++;
     }
     return out;
   }
 
-  var KICK = { match: 'Five-star', champ: 'Champion', hub: 'Hub' };
-
-  /* ---- search index for the "Surprise me" instant jump ---- */
+  /* ---- surprise / legend pickers with a small no-repeat ring buffer ---- */
   var idx = (window.MAT_SEARCH_INDEX || []).filter(function (e) { return e && e.u && norm(e.u) !== hereN; });
-  var lastShown = []; /* in-memory ring buffer, de-prioritise last 3 */
-  function surprise() {
+  function ringPick(arr, ring) {
+    if (!arr.length) return null;
     var pick = null, tries = 0;
-    if (!idx.length) return null;
-    do { pick = idx[Math.floor(Math.random() * idx.length)]; tries++; }
-    while (pick && lastShown.indexOf(norm(pick.u)) !== -1 && tries < 12);
-    if (pick) { lastShown.push(norm(pick.u)); if (lastShown.length > 3) lastShown.shift(); }
+    do { pick = arr[Math.floor(Math.random() * arr.length)]; tries++; }
+    while (pick && ring.indexOf(norm(pick.u)) !== -1 && tries < 12);
+    if (pick) { ring.push(norm(pick.u)); if (ring.length > 3) ring.shift(); }
     return pick;
   }
+  var surpRing = [], legRing = [];
+  function surprise() { return ringPick(idx, surpRing); }
+  function legendPick() { return legends.length ? ringPick(legends, legRing) : null; }
 
-  /* ---- harvest page-local "Did you know" facts, each with a real link ---- */
+  /* ---- did-you-know facts, each with a real link ---- */
   function harvestFacts() {
     var facts = [];
-    /* champion reign fact from the live belt plate */
     var live = document.querySelector('.belt--live');
     if (live) {
-      var name = clean((live.querySelector('.pf--champ') || {}).textContent);
-      var title = clean((live.querySelector('.bnm2') || {}).textContent);
-      var days = clean((live.querySelector('.pdays') || {}).textContent);
+      var name = clean(txt(live.querySelector('.pf--champ')));
+      var title = clean(txt(live.querySelector('.bnm2')));
+      var days = clean(txt(live.querySelector('.pdays')));
       var href = live.getAttribute('href');
-      if (name && title && href) {
-        facts.push({ p: 1, t: name + ' holds the ' + title + (days ? ', ' + days.toLowerCase() + ' of the reign' : '') + '.', u: href, lbl: 'See the lineage' });
-      }
+      if (name && title && href) facts.push({ p: 1, t: name + ' holds the ' + title + (days ? ', ' + days.toLowerCase() + ' of the reign' : '') + '.', u: href, lbl: 'See the lineage' });
     }
-    /* five-star match fact from the Five-Star Classics tiles */
-    Array.prototype.forEach.call(document.querySelectorAll('.grid-spot .tile'), function (t) {
-      var nm = clean((t.querySelector('.tile__name') || {}).textContent);
-      var ki = clean((t.querySelector('.tile__kicker') || {}).textContent);
+    qa('.grid-spot a.tile[href^="/matches/"]').forEach(function (t) {
+      var nm = clean(txt(t.querySelector('.tile__name')));
+      var ki = clean(txt(t.querySelector('.tile__kicker')));
       var href = t.getAttribute('href');
       if (nm && href) facts.push({ p: 2, t: nm + ' earned a perfect five stars at ' + (ki || 'a landmark card') + '.', u: href, lbl: 'View the breakdown' });
     });
-    /* a featured stat line (e.g. 25-2 at WrestleMania) with its anchor */
-    Array.prototype.forEach.call(document.querySelectorAll('.featstat'), function (f) {
-      var a = f.closest('a[href^="/"]'); var v = clean(f.textContent);
+    qa('.featstat').forEach(function (f) {
+      var a = f.closest('a[href^="/"]'), v = clean(f.textContent);
       if (a && v && /\d/.test(v) && !/^[★☆\s.0-9]+$/.test(v)) {
-        var nm = clean((a.querySelector('h3') || {}).textContent) || labelOf(a);
+        var nm = clean(txt(a.querySelector('h3'))) || labelOf(a);
         facts.push({ p: 3, t: (nm ? nm + ': ' : '') + v + '.', u: a.getAttribute('href'), lbl: 'Open the profile' });
       }
     });
     facts.sort(function (a, b) { return a.p - b.p; });
     return facts;
   }
-  var FACTS = harvestFacts();
-  var factI = 0;
+  var FACTS = harvestFacts(), factI = 0;
 
-  /* ============================ 1. BOTTOM RAIL ============================ */
-  var chipCount = window.matchMedia('(max-width:640px)').matches ? 6 : 8;
-  var rail = document.createElement('aside');
-  rail.className = 'he-rail';
-  rail.setAttribute('aria-label', 'Keep exploring');
-  rail.setAttribute('data-state', 'hidden');
-  rail.innerHTML =
-    '<div class="he-rail__in">' +
-      '<span class="he-rail__lbl">Keep exploring</span>' +
-      '<div class="he-rail__track" role="list"></div>' +
-      '<button class="he-rail__more" type="button">Show another set</button>' +
-      '<button class="he-rail__x" type="button" aria-label="Hide">Hide</button>' +
+  /* nothing to surface at all -> bail (keep self-contained + safe) */
+  var cardList = interleave();
+  if (!cardList.length && !idx.length) return;
+
+  /* ============================ SVG icons ============================ */
+  var SVG_SEARCH = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>';
+  var SVG_STAR = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 17l-5.6 3.1 1.3-6.3L2.9 9.5l6.4-.7z"></path></svg>';
+  var SVG_CHEV = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>';
+
+  /* ============================ BOTTOM-LEFT: poster card ============================ */
+  var card = document.createElement('aside');
+  card.className = 'f2-card';
+  card.setAttribute('role', 'region');
+  card.setAttribute('aria-label', 'Keep exploring: featured destination');
+  document.body.appendChild(card);
+
+  var tab = document.createElement('button');
+  tab.type = 'button';
+  tab.className = 'f2-tab';
+  tab.setAttribute('aria-label', 'Reopen the explore card');
+  tab.hidden = true;
+  tab.innerHTML = '<span class="f2-tab__i" aria-hidden="true">✦</span><span>Explore</span>';
+  document.body.appendChild(tab);
+
+  var cardIdx = 0;
+  function starStr(n) { var s = ''; for (var i = 0; i < 5; i++) s += i < n ? '★' : '☆'; return s; }
+  function renderCard() {
+    if (!cardList.length) return;
+    var c = cardList[cardIdx % cardList.length];
+    card.innerHTML =
+      '<button class="f2-card__x" type="button" aria-label="Dismiss the explore card">×</button>' +
+      '<a class="f2-card__link" href="' + esc(c.u) + '">' +
+        '<span class="f2-card__mono" aria-hidden="true">' + esc(mono(c.title)) + '</span>' +
+        '<span class="f2-card__kick">' + esc(c.kick) + '</span>' +
+        '<span class="f2-card__title">' + esc(c.title) + '</span>' +
+        (c.kind === 'match' ? '<span class="f2-card__stars" aria-hidden="true">' + starStr(c.stars) + '</span>' : '') +
+        '<span class="f2-card__reason">' + esc(c.reason) + '</span>' +
+        '<span class="f2-card__cta">VIEW -&gt;</span>' +
+      '</a>' +
+      '<div class="f2-card__foot">' +
+        '<span class="f2-card__tag" data-kind="' + esc(c.kind) + '">' + esc(c.tag) + '</span>' +
+        '<button class="f2-card__next" type="button" aria-label="Show another destination">Next</button>' +
+      '</div>';
+    card.querySelector('.f2-card__x').addEventListener('click', dismissCard);
+    card.querySelector('.f2-card__next').addEventListener('click', function () { cardIdx++; renderCard(); });
+  }
+  var cardDismissed = false;
+  function dismissCard() { cardDismissed = true; sync(); tab.focus({ preventScroll: true }); }
+  tab.addEventListener('click', function () { cardDismissed = false; renderCard(); sync(); var l = card.querySelector('.f2-card__link'); if (l) l.focus({ preventScroll: true }); });
+  renderCard();
+
+  /* ============================ BOTTOM-RIGHT: control cluster ============================ */
+  var ctrl = document.createElement('div');
+  ctrl.className = 'f2-ctrl';
+  ctrl.setAttribute('data-open', 'false');
+  ctrl.setAttribute('role', 'region');
+  ctrl.setAttribute('aria-label', 'Explore controls');
+  ctrl.innerHTML =
+    '<button class="f2-ctrl__x" type="button" aria-label="Hide the explore controls">×</button>' +
+    '<div class="f2-ctrl__panel" role="group" aria-label="Discover more" hidden>' +
+      '<div class="f2-dyk"><span class="f2-dyk__h">Did you know</span>' +
+        '<p class="f2-dyk__t"></p>' +
+        '<a class="f2-dyk__link" href="#"></a></div>' +
+      '<button class="f2-prow f2-prow--search" type="button" aria-label="Search everything, opens the command palette"><span class="f2-prow__h">Search everything</span><span class="f2-prow__s">Press Cmd K</span></button>' +
+      '<button class="f2-prow f2-prow--legend" type="button" aria-label="Jump to a random legend"><span class="f2-prow__h">Random legend</span><span class="f2-prow__s">Roll the dice</span></button>' +
+      '<a class="f2-ctrl__hof" href="' + esc(hofHref) + '"><span class="f2-ctrl__hofh">Hall of Fame</span><span class="f2-ctrl__hofs">The immortals</span></a>' +
+    '</div>' +
+    '<div class="f2-ctrl__cluster">' +
+      '<button class="f2-sat f2-sat--search" type="button" aria-label="Search everything, opens the command palette">' + SVG_SEARCH + '</button>' +
+      '<button class="f2-sat f2-sat--legend" type="button" aria-label="Jump to a random legend">' + SVG_STAR + '</button>' +
+      '<button class="f2-ctrl__more" type="button" aria-expanded="false" aria-label="Expand explore controls">' + SVG_CHEV + '</button>' +
+      '<button class="f2-disc" type="button" aria-label="Surprise me, jump to a random page"><span class="f2-disc__k">Surprise</span><span class="f2-disc__m">Me</span></button>' +
     '</div>';
-  var track = rail.querySelector('.he-rail__track');
+  document.body.appendChild(ctrl);
 
-  function renderChips() {
-    var set = buildChipSet(chipCount);
-    if (!set.length) return false;
-    track.innerHTML = set.map(function (c) {
-      return '<a class="he-chip" role="listitem" data-kind="' + c.kind + '" href="' + c.u + '">' +
-        '<span class="he-chip__k">' + KICK[c.kind] + '</span>' +
-        '<span class="he-chip__n">' + c.t + '</span></a>';
-    }).join('');
-    return true;
-  }
+  var recall = document.createElement('button');
+  recall.type = 'button';
+  recall.className = 'f2-recall';
+  recall.setAttribute('aria-label', 'Show the explore controls');
+  recall.hidden = true;
+  recall.innerHTML = '<span aria-hidden="true">✦</span>';
+  document.body.appendChild(recall);
 
-  var railBuilt = false, railDismissed = false, autoSwapped = false, autoTimer = null;
-  function initRail() {
-    if (railBuilt) return;
-    if (!renderChips()) return; /* nothing to show */
-    document.body.appendChild(rail);
-    railBuilt = true;
-    rail.querySelector('.he-rail__more').addEventListener('click', function () { renderChips(); clearTimeout(autoTimer); autoSwapped = true; });
-    rail.querySelector('.he-rail__x').addEventListener('click', dismissRail);
-  }
-  function showRail() {
-    if (!railBuilt || railDismissed) return;
-    rail.setAttribute('data-state', 'shown');
-    document.documentElement.classList.add('has-bottom-rail');
-    /* one-shot content swap if untouched ~25s */
-    if (!autoSwapped) autoTimer = setTimeout(function () { if (!autoSwapped && !railDismissed) { renderChips(); autoSwapped = true; } }, 25000);
-  }
-  function hideRail() {
-    rail.setAttribute('data-state', 'hidden');
-    document.documentElement.classList.remove('has-bottom-rail');
-  }
-  function dismissRail() {
-    railDismissed = true;
-    clearTimeout(autoTimer);
-    hideRail();
-    setTimeout(function () { if (rail.parentNode) rail.parentNode.removeChild(rail); }, 320);
+  var disc = ctrl.querySelector('.f2-disc');
+  var satSearch = ctrl.querySelector('.f2-sat--search');
+  var satLegend = ctrl.querySelector('.f2-sat--legend');
+  var more = ctrl.querySelector('.f2-ctrl__more');
+  var panel = ctrl.querySelector('.f2-ctrl__panel');
+  var dykT = ctrl.querySelector('.f2-dyk__t');
+  var dykLink = ctrl.querySelector('.f2-dyk__link');
+  var dyk = ctrl.querySelector('.f2-dyk');
+
+  function fillFact() {
+    if (!FACTS.length) { if (dyk) dyk.style.display = 'none'; return; }
+    var f = FACTS[factI % FACTS.length]; factI++;
+    dykT.textContent = f.t;
+    dykLink.textContent = f.lbl || 'Open';
+    dykLink.setAttribute('href', f.u);
   }
 
-  /* reveal after ~25% scroll depth, once; then detach */
-  var revealed = false;
+  var prowSearch = ctrl.querySelector('.f2-prow--search');
+  var prowLegend = ctrl.querySelector('.f2-prow--legend');
+
+  var ctrlOpen = false;
+  function openCtrl() {
+    if (ctrlOpen) return; ctrlOpen = true;
+    fillFact();
+    ctrl.setAttribute('data-open', 'true');
+    more.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+    document.documentElement.classList.add('f2-ctrl-open');
+  }
+  function closeCtrl(toFocus) {
+    if (!ctrlOpen) return; ctrlOpen = false;
+    ctrl.setAttribute('data-open', 'false');
+    more.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+    document.documentElement.classList.remove('f2-ctrl-open');
+    if (toFocus) more.focus({ preventScroll: true });
+  }
+  more.addEventListener('click', function () { ctrlOpen ? closeCtrl(true) : openCtrl(); });
+
+  /* desktop hover-reveal nicety (fine pointer only) */
+  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (fine) {
+    var leaveT = null;
+    ctrl.addEventListener('mouseenter', function () { clearTimeout(leaveT); openCtrl(); });
+    ctrl.addEventListener('mouseleave', function () { clearTimeout(leaveT); leaveT = setTimeout(function () { if (!ctrl.contains(document.activeElement)) closeCtrl(false); }, 320); });
+  }
+
+  function doLegend() { var p = legendPick(); location.href = p ? p.u : hofHref; }
+  function doSearch() {
+    var o = document.getElementById('cmdk');
+    if (o) {
+      o.classList.add('is-open');
+      o.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      var inp = o.querySelector('.cmdk__input');
+      if (inp) { inp.value = ''; try { inp.dispatchEvent(new Event('input')); } catch (e) {} setTimeout(function () { inp.focus(); }, 20); }
+    }
+    closeCtrl(false);
+  }
+  disc.addEventListener('click', function () { var p = surprise(); if (p) location.href = p.u; });
+  satLegend.addEventListener('click', doLegend);
+  satSearch.addEventListener('click', doSearch);
+  if (prowLegend) prowLegend.addEventListener('click', doLegend);
+  if (prowSearch) prowSearch.addEventListener('click', doSearch);
+
+  var ctrlDismissed = false;
+  ctrl.querySelector('.f2-ctrl__x').addEventListener('click', function () { ctrlDismissed = true; closeCtrl(false); sync(); recall.focus({ preventScroll: true }); });
+  recall.addEventListener('click', function () { ctrlDismissed = false; sync(); disc.focus({ preventScroll: true }); });
+
+  /* Esc closes the expanded cluster */
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && ctrlOpen) closeCtrl(true); });
+  /* outside click / scroll collapses the expanded cluster */
+  document.addEventListener('click', function (e) { if (ctrlOpen && !ctrl.contains(e.target)) closeCtrl(false); });
+  window.addEventListener('scroll', function () { if (ctrlOpen) closeCtrl(false); }, { passive: true });
+
+  /* ============================ VISIBILITY STATE ============================ */
+  var revealed = false, atFoot = false;
+  function sync() {
+    var show = revealed && !atFoot;
+    card.classList.toggle('is-live', show && !cardDismissed);
+    tab.hidden = !(show && cardDismissed);
+    ctrl.classList.toggle('is-live', show && !ctrlDismissed);
+    recall.hidden = !(show && ctrlDismissed);
+    if (!show || ctrlDismissed) closeCtrl(false);
+  }
+
+  /* reveal after ~25% scroll depth (once) */
   function onScrollReveal() {
-    var depth = window.scrollY / Math.max(1, (document.documentElement.scrollHeight - window.innerHeight));
-    if (!revealed && depth > 0.25) {
-      revealed = true;
-      initRail();
-      showRail();
+    var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    if (!revealed && (window.scrollY / max) > 0.25) {
+      revealed = true; sync();
       window.removeEventListener('scroll', onScrollReveal);
     }
   }
   window.addEventListener('scroll', onScrollReveal, { passive: true });
   onScrollReveal();
 
-  /* footer guard: never cover the footer */
+  /* footer guard: never cover footer.site-footer */
   var footer = document.querySelector('footer.site-footer');
   if (footer && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!railBuilt || railDismissed) return;
-        if (e.isIntersecting) hideRail();
-        else if (revealed) showRail();
-      });
+      es.forEach(function (e) { atFoot = e.isIntersecting; sync(); });
     }, { threshold: 0.01 }).observe(footer);
   }
-
-  /* ============================ 2. DISCOVER FLOATER ============================ */
-  var fab = document.createElement('div');
-  fab.className = 'he-fab';
-  fab.innerHTML =
-    '<div class="he-fab__core">' +
-      '<button class="he-fab__go" type="button" aria-label="Surprise me, jump to a random page">Surprise me</button>' +
-      '<button class="he-fab__toggle" type="button" aria-expanded="false" aria-label="Open Discover">' +
-        '<span class="he-fab__chev" aria-hidden="true">⌃</span></button>' +
-    '</div>' +
-    '<div class="he-pop" role="dialog" aria-label="Discover" aria-live="polite" hidden></div>';
-  document.body.appendChild(fab);
-  var goBtn = fab.querySelector('.he-fab__go');
-  var toggle = fab.querySelector('.he-fab__toggle');
-  var pop = fab.querySelector('.he-pop');
-
-  /* instant "Surprise me" jump */
-  goBtn.addEventListener('click', function () {
-    var p = surprise();
-    if (p) location.href = p.u;
-  });
-
-  /* Stumble: prefer matches, then champions, then hubs */
-  function stumblePick() {
-    var order = shuffle(pools.match).concat(shuffle(pools.champ), shuffle(pools.hub));
-    return order.length ? order[Math.floor(Math.random() * Math.min(order.length, 12))] : null;
-  }
-  var curStumble = null;
-
-  function buildPop() {
-    var rows = [];
-    var fact = FACTS.length ? FACTS[factI % FACTS.length] : null;
-    factI++;
-    if (fact) {
-      rows.push('<div class="he-pop__sec he-pop__fact"><span class="he-pop__h">Did you know</span>' +
-        '<p class="he-fact__t">' + fact.t + '</p>' +
-        '<a class="he-pop__link" href="' + fact.u + '">' + (fact.lbl || 'Open') + '</a></div>');
-    }
-    curStumble = stumblePick();
-    rows.push('<div class="he-pop__sec"><span class="he-pop__h">Stumble the roster</span>' +
-      '<p class="he-stumble__pv" data-stumble-pv>' + (curStumble ? KICK[curStumble.kind] + ': ' + curStumble.t : 'Explore the archive') + '</p>' +
-      '<div class="he-pop__acts">' +
-        '<a class="he-pop__link" data-stumble-go href="' + (curStumble ? curStumble.u : '/wrestlers/') + '">Go</a>' +
-        '<button class="he-pop__ghost" type="button" data-stumble-more>Show another</button>' +
-      '</div></div>');
-    rows.push('<a class="he-pop__row" href="/hall-of-fame/"><span class="he-pop__h">Hall of Fame</span><span class="he-pop__sub">The immortals</span></a>');
-    rows.push('<button class="he-pop__row" type="button" data-cmdk-open><span class="he-pop__h">Search everything</span><span class="he-pop__sub">Press Cmd K</span></button>');
-    pop.innerHTML = rows.join('');
-
-    var more = pop.querySelector('[data-stumble-more]');
-    if (more) more.addEventListener('click', function () {
-      curStumble = stumblePick();
-      var pv = pop.querySelector('[data-stumble-pv]'); var go = pop.querySelector('[data-stumble-go]');
-      if (pv) pv.textContent = curStumble ? KICK[curStumble.kind] + ': ' + curStumble.t : 'Explore the archive';
-      if (go) go.setAttribute('href', curStumble ? curStumble.u : '/wrestlers/');
-    });
-    pop.querySelectorAll('[data-cmdk-open]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var o = document.getElementById('cmdk');
-        if (o) {
-          o.classList.add('is-open');
-          o.setAttribute('aria-hidden', 'false');
-          var inp = o.querySelector('.cmdk__input');
-          if (inp) setTimeout(function () { inp.focus(); }, 20);
-        }
-        closePop(true);
-      });
-    });
-  }
-
-  var idleTimer = null;
-  function openPop() {
-    buildPop();
-    pop.hidden = false;
-    fab.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    var first = pop.querySelector('a,button');
-    if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 20);
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(function () { closePop(); }, 12000); /* auto-collapse ~12s idle */
-  }
-  function closePop(toGo) {
-    pop.hidden = true;
-    fab.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    clearTimeout(idleTimer);
-    if (!toGo) toggle.focus({ preventScroll: true });
-  }
-  toggle.addEventListener('click', function () { fab.classList.contains('is-open') ? closePop() : openPop(); });
-  document.addEventListener('click', function (e) { if (!fab.contains(e.target) && fab.classList.contains('is-open')) closePop(true); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && fab.classList.contains('is-open')) closePop(); });
-  window.addEventListener('scroll', function () { if (fab.classList.contains('is-open')) closePop(true); }, { passive: true });
-
-  /* one optional idle hint: a single gold-ring flare after ~20s collapsed */
-  if (!reduce) {
-    setTimeout(function () {
-      if (!fab.classList.contains('is-open')) {
-        fab.classList.add('he-fab--flare');
-        setTimeout(function () { fab.classList.remove('he-fab--flare'); }, 700);
-      }
-    }, 20000);
-  }
-
-  /* Count-up: the hero readout numbers are stamped with data-count directly in
-     index.html so the existing enhance.js observer (which collects [data-count] at
-     parse time, before this deferred script runs) animates them. Nothing to do here. */
 })();
+
