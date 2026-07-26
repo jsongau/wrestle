@@ -1,29 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Promotions — WWE, WCW, ECW, TNA &amp; NXT | Wrestle Lore</title>
-<meta name="description" content="The five promotions of the modern wrestling era: WWE (WWF), WCW, ECW, TNA/Impact and NXT. Explore each promotion's stars, defining matches and history on Wrestle Lore.">
-<link rel="canonical" href="https://matwrestling.com/promotions/">
-<link rel="alternate" hreflang="en" href="https://matwrestling.com/promotions/">
-<link rel="alternate" hreflang="zh-Hans" href="https://matwrestling.com/zh/">
-<link rel="alternate" hreflang="x-default" href="https://matwrestling.com/promotions/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Promotions — WWE, WCW, ECW, TNA &amp; NXT">
-<meta property="og:description" content="Explore the five promotions of the modern wrestling era on Wrestle Lore.">
-<meta property="og:url" content="https://matwrestling.com/promotions/">
-<meta name="theme-color" content="#0a0b0d">
-<link rel="stylesheet" href="/css/site.css">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
- {"@type":"ListItem","position":1,"name":"Home","item":"https://matwrestling.com/"},
- {"@type":"ListItem","position":2,"name":"Promotions","item":"https://matwrestling.com/promotions/"}]}
-</script>
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header" data-wl-shell><div class="wrap"><nav class="nav" aria-label="Primary">
+#!/usr/bin/env python3
+"""Phase 0 site-wide apply: swap every page's header+footer for the single-source Wrestle Lore
+shell (existing-pages-only nav, 404-safe), ensure the cmdk palette + scripts, rename MAT->Wrestle
+Lore in visible brand spots, unify canonical domain to matwrestling.com. Preserves <main>.
+Excludes /zh/ and /china/ (localized). Reports per-file what matched. Idempotent-ish (safe to re-run)."""
+import os, re, glob
+
+ROOT = "/root/wwe"
+EXCLUDE = ("/zh/", "/china/", "/content/", "/docs/", "/assets/")
+
+NAV = """<header class="site-header" data-wl-shell><div class="wrap"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><span class="brand__mark"><span>WL</span></span> Wrestle Lore</a>
   <button class="nav__toggle" aria-label="Toggle menu" aria-controls="primary-menu" aria-expanded="false">&#9776;</button>
   <ul class="nav__menu" id="primary-menu">
@@ -87,43 +72,89 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
       Search <kbd>&#8984;K</kbd></button></li>
   </ul>
-</nav></div></header>
-<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Search Wrestle Lore" aria-hidden="true" data-wl-shell>
+</nav></div></header>"""
+
+PALETTE = """<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Search Wrestle Lore" aria-hidden="true" data-wl-shell>
   <div class="cmdk__box"><div class="cmdk__head">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
     <input class="cmdk__input" type="text" placeholder="Search wrestlers, events, moments, matches…" aria-label="Search" autocomplete="off">
     <span class="cmdk__hint">Esc</span></div>
     <ul class="cmdk__results" role="listbox" aria-label="Search results"></ul>
     <div class="cmdk__foot"><span><kbd>&#8593;&#8595;</kbd> navigate</span><span><kbd>&#8629;</kbd> open</span><span><kbd>esc</kbd> close</span></div>
-  </div></div>
+  </div></div>"""
 
-<main id="main">
-<div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><ol>
-  <li><a href="/">Home</a></li><li>Promotions</li>
-</ol></nav></div>
-
-<section class="section--tight"><div class="wrap wrap--narrow stack">
-  <h1 style="font-family:var(--font-cond);text-transform:uppercase">Promotions</h1>
-  <p class="answer"><strong>Wrestle Lore covers the five promotions that defined modern professional wrestling (1997–present):</strong> WWE (formerly WWF), WCW, ECW, TNA/Impact and WWE NXT. Each hub collects that promotion's biggest stars, defining matches and history.</p>
-</div></div></section>
-
-<section class="section"><div class="wrap">
-  <div class="grid-3">
-    <a class="card" href="/promotions/wwe/" style="text-decoration:none;color:inherit"><div class="card__body stack"><span class="chip chip--wwe">WWE / WWF</span><h3 style="font-size:var(--fs-500)">World Wrestling Entertainment</h3><p class="muted">The industry leader — Austin, The Rock, Cena, Roman Reigns and the Attitude Era.</p></div></a>
-    <a class="card" href="/promotions/wcw/" style="text-decoration:none;color:inherit"><div class="card__body stack"><span class="chip chip--wcw">WCW</span><h3 style="font-size:var(--fs-500)">World Championship Wrestling</h3><p class="muted">The nWo, Sting, Goldberg and 83 weeks atop the Monday Night Wars.</p></div></a>
-    <a class="card" href="/promotions/ecw/" style="text-decoration:none;color:inherit"><div class="card__body stack"><span class="chip chip--ecw">ECW</span><h3 style="font-size:var(--fs-500)">Extreme Championship Wrestling</h3><p class="muted">The hardcore revolution that changed wrestling's edge forever.</p></div></a>
-    <a class="card" href="/promotions/tna/" style="text-decoration:none;color:inherit"><div class="card__body stack"><span class="chip chip--tna">TNA / Impact</span><h3 style="font-size:var(--fs-500)">Total Nonstop Action</h3><p class="muted">The X-Division revolution — AJ Styles, Samoa Joe, Christopher Daniels.</p></div></a>
-    <a class="card" href="/promotions/nxt/" style="text-decoration:none;color:inherit"><div class="card__body stack"><span class="chip chip--nxt">NXT</span><h3 style="font-size:var(--fs-500)">WWE NXT</h3><p class="muted">The Black-and-Gold golden age — Gargano, Ciampa, Cole and TakeOver classics.</p></div></a>
-  </div>
-</div></section>
-</main>
-
-<footer class="site-footer" data-wl-shell><div class="wrap">
+FOOTER = """<footer class="site-footer" data-wl-shell><div class="wrap">
   <p>&copy; 2026 Wrestle Lore. All rights reserved.</p>
   <nav><a href="/about/">About</a> · <a href="/methodology/">Methodology</a> · <a href="/membership/">Insider</a></nav>
-</div></footer>
-<script src="/js/main.js" defer></script>
-<script src="/js/search-index.js" defer></script>
-<script src="/js/nav.js" defer></script>
-</body>
-</html>
+</div></footer>"""
+
+SCRIPTS = '<script src="/js/search-index.js" defer></script>\n<script src="/js/nav.js" defer></script>\n'
+
+RENAMES = [
+  ("https://matdb.io", "https://matwrestling.com"),
+  ("MAT — Match · Athlete · Timeline", "Wrestle Lore"),
+  ("MAT Wrestling Database", "Wrestle Lore"),
+  ("MAT — Pro Wrestling Database", "Wrestle Lore — Pro Wrestling Database"),
+  ("MAT Wrestling", "Wrestle Lore"),
+  ("MAT Insider", "Wrestle Lore Insider"),
+  ("Join MAT", "Join Wrestle Lore"),
+  ("| MAT<", "| Wrestle Lore<"),
+  ("| MAT ", "| Wrestle Lore "),
+  ('"MAT"', '"Wrestle Lore"'),
+  (">MAT<", ">Wrestle Lore<"),
+  ("MAT (Match", "Wrestle Lore (Match"),
+  ("about MAT", "about Wrestle Lore"),
+  ("MAT is ", "Wrestle Lore is "),
+]
+
+def apply(html):
+    report = []
+    # header: site-header wrapper OR old site-nav
+    if re.search(r'<header class="site-header".*?</header>', html, re.DOTALL):
+        html = re.sub(r'<header class="site-header".*?</header>', NAV, html, count=1, flags=re.DOTALL); report.append("hdr")
+    elif re.search(r'<nav class="site-nav">.*?</nav>', html, re.DOTALL):
+        html = re.sub(r'<nav class="site-nav">.*?</nav>', NAV, html, count=1, flags=re.DOTALL); report.append("oldnav")
+    else:
+        report.append("NOHDR")
+    # palette: replace existing or inject after header
+    if re.search(r'<div class="cmdk"[^>]*id="cmdk".*?</div>\s*</div>', html, re.DOTALL):
+        html = re.sub(r'<div class="cmdk"[^>]*id="cmdk".*?</div>\s*</div>\s*</div>', PALETTE, html, count=1, flags=re.DOTALL)
+    elif '</header>' in html:
+        html = html.replace('</header>', '</header>\n' + PALETTE, 1); report.append("pal+")
+    # footer
+    if re.search(r'<footer[^>]*>.*?</footer>', html, re.DOTALL):
+        html = re.sub(r'<footer[^>]*>.*?</footer>', FOOTER, html, count=1, flags=re.DOTALL); report.append("ftr")
+    else:
+        report.append("NOFTR")
+    # scripts: ensure search-index + nav.js present before </body>
+    if '/js/nav.js' not in html:
+        i = html.rfind('</body>')
+        if i != -1:
+            html = html[:i] + SCRIPTS + html[i:]; report.append("js+")
+    # renames + domain
+    for a, b in RENAMES:
+        html = html.replace(a, b)
+    return html, report
+
+def targets():
+    out = []
+    for p in glob.glob(ROOT + "/**/index.html", recursive=True):
+        rel = p[len(ROOT):]
+        if any(x in rel for x in EXCLUDE):
+            continue
+        out.append(p)
+    return sorted(out)
+
+if __name__ == "__main__":
+    files = targets()
+    stats = {"NOHDR":0,"NOFTR":0,"oldnav":0,"hdr":0}
+    for p in files:
+        html = open(p).read()
+        new, rep = apply(html)
+        if new != html:
+            open(p, "w").write(new)
+        for k in stats:
+            if k in rep: stats[k]+=1
+        if "NOHDR" in rep or "NOFTR" in rep:
+            print("  WARN", p[len(ROOT):], rep)
+    print(f"\nApplied shell to {len(files)} pages. header-swapped: {stats['hdr']+stats['oldnav']} (old-nav: {stats['oldnav']}) | NOHDR: {stats['NOHDR']} | NOFTR: {stats['NOFTR']}")
