@@ -114,6 +114,33 @@ SCRIPTS = '<script src="/js/search-index.js" defer></script>\n<script src="/js/n
 # Self-hosted fonts: preload Anton (the display/LCP font); faces live in site.css.
 FONT_PRELOAD = '<link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
 
+# Favicon / PWA head links (Wrestle Lore championship-plate mark).
+FAVICONS = (
+    '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
+    '<link rel="icon" href="/favicon.ico" sizes="any">\n'
+    '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
+    '<link rel="manifest" href="/site.webmanifest">'
+)
+
+def fix_head(html):
+    """Ensure favicon links + theme-color sit right before the site.css <link>. Idempotent."""
+    changed = False
+    if 'href="/favicon.svg"' not in html:
+        m = re.search(r'<link[^>]+href="/css/site\.css"[^>]*>', html)
+        if m:
+            html = html[:m.start()] + FAVICONS + '\n' + html[m.start():]; changed = True
+    # normalise theme-color to the brand near-black (update existing or inject)
+    if re.search(r'<meta[^>]+name="theme-color"[^>]*>', html):
+        new = re.sub(r'<meta[^>]+name="theme-color"[^>]*>',
+                     '<meta name="theme-color" content="#0b0c10">', html, count=1)
+        if new != html: html = new; changed = True
+    else:
+        m = re.search(r'<link[^>]+href="/css/site\.css"[^>]*>', html)
+        if m:
+            html = html[:m.start()] + '<meta name="theme-color" content="#0b0c10">\n' + html[m.start():]
+            changed = True
+    return html, changed
+
 def fix_fonts(html):
     """Strip render-blocking Google Fonts (preconnect + stylesheet) and ensure the
     Anton preload sits right before the site.css link. Idempotent."""
@@ -177,6 +204,9 @@ def apply(html):
     # fonts: self-host (strip Google Fonts, preload Anton)
     html, fchg = fix_fonts(html)
     if fchg: report.append("font")
+    # head: favicon links + theme-color
+    html, hchg = fix_head(html)
+    if hchg: report.append("head")
     # renames + domain
     for a, b in RENAMES:
         html = html.replace(a, b)
