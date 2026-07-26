@@ -77,10 +77,10 @@
     var shown = false;
     var onScroll = function () {
       var depth = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
-      if (!shown && depth > 0.22) { shown = true; bar.classList.add('is-in'); window.removeEventListener('scroll', onScroll); }
+      if (!shown && depth > 0.22) { shown = true; bar.classList.add('is-in'); document.documentElement.classList.add('has-bottom-rail'); window.removeEventListener('scroll', onScroll); }
     };
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
-    bar.querySelector('.engage-bottom__x').addEventListener('click', function () { bar.classList.remove('is-in'); setTimeout(function () { bar.remove(); }, 300); });
+    bar.querySelector('.engage-bottom__x').addEventListener('click', function () { bar.classList.remove('is-in'); document.documentElement.classList.remove('has-bottom-rail'); setTimeout(function () { bar.remove(); }, 300); });
   }
 
   /* ---- FLOATER: Discover ---- */

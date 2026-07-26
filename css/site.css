@@ -1024,9 +1024,9 @@ table.record tr[data-result="L"] td:first-child{box-shadow:inset 3px 0 0 var(--c
    ENGAGEMENT LAYER — sticky left rail, bottom rail, discover floater
    ============================================================ */
 /* LEFT RAIL */
-.engage-left{position:fixed;left:max(12px,calc((100vw - var(--wrap))/2 - 172px));top:96px;width:172px;z-index:60;
+.engage-left{position:fixed;left:calc((100vw - var(--wrap))/2 - 196px);top:96px;width:172px;z-index:60;
   display:none;flex-direction:column;gap:.1em;padding-right:var(--sp-3);border-right:1px solid var(--c-line);}
-@media(min-width:1360px){.engage-left{display:flex;}}
+@media(min-width:1600px){.engage-left{display:flex;}}
 .engage-left__h{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--c-text-dim);margin:var(--sp-3) 0 .3em;}
 .engage-left__a{font-size:var(--fs-300);color:var(--c-text-muted);text-decoration:none;padding:.3em .5em;border-left:2px solid transparent;border-radius:0 var(--r-sm) var(--r-sm) 0;cursor:pointer;transition:all var(--dur) var(--ease);}
 .engage-left__a:hover{color:var(--c-text);background:var(--c-bg-elev-1);}
@@ -1081,3 +1081,6 @@ main h2{scroll-margin-top:84px;}
 .engage-chip{transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease);}
 .engage-chip:hover{transform:translateY(-2px);}
 @media(prefers-reduced-motion:reduce){.engage-chip:hover{transform:none;}.engage-left{transition:none;}}
+
+/* bottom rail must never cover content */
+html.has-bottom-rail body{padding-bottom:76px;}
