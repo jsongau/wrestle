@@ -694,3 +694,42 @@ table.record tr[data-result="L"] td:first-child{box-shadow:inset 3px 0 0 var(--c
 .persona .era{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.08em;color:var(--c-gold);font-size:var(--fs-300);}
 .persona h4{font-family:var(--font-display);text-transform:uppercase;font-size:var(--fs-600);line-height:.95;margin:.2em 0;}
 .persona p{color:var(--c-text-muted);font-size:var(--fs-300);}
+
+/* ---------- 23. EVENTS / PPVs ---------- */
+.event-hero{background:linear-gradient(160deg,rgba(212,175,55,.10),transparent 60%),var(--c-bg-elev-1);
+  border:1px solid var(--c-line);border-radius:var(--r-lg);padding:var(--sp-6);margin-block:var(--sp-5);}
+.event-hero__brand{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.08em;color:var(--c-gold);font-size:var(--fs-300);}
+.event-hero__meta{display:flex;flex-wrap:wrap;gap:var(--sp-4);color:var(--c-text-muted);font-family:var(--font-cond);
+  text-transform:uppercase;letter-spacing:.04em;font-size:var(--fs-400);margin-top:var(--sp-3);}
+.event-hero__meta b{color:var(--c-gold-bright);}
+
+.watch-panel{display:flex;flex-wrap:wrap;gap:var(--sp-4);background:var(--c-bg-elev-2);border:1px solid var(--c-line);
+  border-radius:var(--r-md);padding:var(--sp-4);margin-block:var(--sp-5);}
+.watch-item{flex:1;min-width:200px;}
+.watch-item h4{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--c-text-dim);font-size:var(--fs-300);margin:0 0 .3em;}
+.watch-item p{color:var(--c-text-muted);font-size:var(--fs-300);margin:.3em 0 0;}
+.watch-btn{display:inline-block;margin-top:.5em;padding:.5em 1.1em;border-radius:var(--r-pill);background:var(--c-gold);
+  color:#0a0b0d;font-weight:700;text-decoration:none;font-size:var(--fs-400);}
+.watch-btn:hover{background:var(--c-gold-bright);}
+.watch-btn--alt{background:var(--c-bg-elev-3);color:var(--c-text);border:1px solid var(--c-line-strong);}
+.watch-btn--alt:hover{border-color:var(--c-gold-dim);color:var(--c-gold-bright);}
+
+.match-card-list{list-style:none;margin:var(--sp-4) 0;padding:0;display:grid;gap:var(--sp-3);}
+.match-card-item{background:var(--c-bg-elev-1);border:1px solid var(--c-line);border-radius:var(--r-md);padding:var(--sp-4);}
+.match-card-item--main{border-color:var(--c-gold-dim);background:linear-gradient(160deg,rgba(212,175,55,.08),transparent 60%),var(--c-bg-elev-1);box-shadow:var(--shadow-gold);}
+.match-card-stip{display:block;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--c-gold);font-size:var(--fs-300);margin-bottom:.3em;}
+.match-card-result{font-size:var(--fs-500);}
+.match-card-result a{color:var(--c-text);text-decoration:none;border-bottom:1px solid var(--c-line-strong);}
+.match-card-result a:hover{color:var(--c-gold-bright);border-color:var(--c-gold-dim);}
+.match-card-note{color:var(--c-text-muted);margin:.4em 0 0;font-size:var(--fs-400);}
+.match-card-tag{display:inline-block;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.04em;
+  font-size:var(--fs-300);color:var(--c-gold-bright);background:var(--c-gold-tint);padding:.15em .6em;border-radius:var(--r-pill);margin-left:.5em;}
+
+.event-grid{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));margin:var(--sp-5) 0;}
+.event-card{background:var(--c-bg-elev-1);border:1px solid var(--c-line);border-radius:var(--r-lg);padding:var(--sp-4);
+  text-decoration:none;color:var(--c-text);display:block;transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease);}
+.event-card:hover{border-color:var(--c-gold-dim);transform:translateY(-2px);}
+.event-card__date{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;color:var(--c-gold);font-size:var(--fs-300);}
+.event-card__name{font-size:var(--fs-600);margin:.2em 0;font-family:var(--font-display);text-transform:uppercase;}
+.event-card__venue{color:var(--c-text-dim);font-size:var(--fs-400);}
+.event-card__main{color:var(--c-text-muted);font-size:var(--fs-400);margin-top:.5em;border-top:1px dashed var(--c-line);padding-top:.5em;}
