@@ -1,3 +1,19 @@
+/* ---------- 0. SELF-HOSTED FONTS (woff2, Latin subset) ----------
+   Anton (display) · Oswald (condensed UI) · Inter (body). Served from /fonts/,
+   no third-party origin. Fallback faces use metric overrides (computed from the
+   real fonts vs Arial) so the swap causes ~zero layout shift. */
+@font-face{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/anton-latin-400-normal.woff2") format("woff2");}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/oswald-latin-400-normal.woff2") format("woff2");}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:600;font-display:swap;src:url("/fonts/oswald-latin-600-normal.woff2") format("woff2");}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:700;font-display:swap;src:url("/fonts/oswald-latin-700-normal.woff2") format("woff2");}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/inter-latin-400-normal.woff2") format("woff2");}
+@font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url("/fonts/inter-latin-600-normal.woff2") format("woff2");}
+@font-face{font-family:"Inter";font-style:normal;font-weight:700;font-display:swap;src:url("/fonts/inter-latin-700-normal.woff2") format("woff2");}
+/* metric-matched fallbacks (Arial-based) to zero CLS during swap */
+@font-face{font-family:"Anton Fallback";src:local("Arial Narrow"),local("Arial");size-adjust:103.2%;ascent-override:114.0%;descent-override:31.9%;line-gap-override:0%;}
+@font-face{font-family:"Oswald Fallback";src:local("Arial Narrow"),local("Arial");size-adjust:90.7%;ascent-override:131.6%;descent-override:31.9%;line-gap-override:0%;}
+@font-face{font-family:"Inter Fallback";src:local("Arial");size-adjust:121.6%;ascent-override:79.7%;descent-override:19.8%;line-gap-override:0%;}
+
 /* =========================================================================
    MAT — The Ultimate Pro Wrestling Database
    site.css — single-file design system (tokens + base + components)
@@ -55,7 +71,7 @@
   --wrap:1200px; --wrap-narrow:760px;
 
   --font-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Noto Sans SC",sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  --font-cond:"Oswald","Bebas Neue","Arial Narrow",var(--font-sans);
+  --font-cond:"Oswald","Oswald Fallback","Bebas Neue","Arial Narrow",var(--font-sans);
   --font-mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
 }
 @media (prefers-reduced-motion:reduce){
@@ -378,9 +394,9 @@ table.data a{color:var(--c-gold-bright);text-decoration:none;} table.data a:hove
    Fonts: Anton (display) · Oswald (condensed UI) · Inter (body)
    ===================================================================== */
 :root{
-  --font-display:"Anton","Oswald","Arial Narrow",sans-serif;
+  --font-display:"Anton","Anton Fallback","Oswald","Arial Narrow",sans-serif;
   --font-cond:"Oswald","Bebas Neue","Arial Narrow",system-ui,sans-serif;
-  --font-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;
+  --font-sans:"Inter","Inter Fallback",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;
   --edge-light:inset 0 1px 0 rgba(255,255,255,.07);
   --glow-gold:0 0 0 1px var(--c-gold-dim),0 8px 30px rgba(212,175,55,.22);
   --glow-red:0 0 0 1px var(--c-red-dim),0 8px 30px rgba(225,29,42,.25);
@@ -1084,3 +1100,28 @@ main h2{scroll-margin-top:84px;}
 
 /* bottom rail must never cover content */
 html.has-bottom-rail body{padding-bottom:76px;}
+
+/* ---------- A11Y + POLISH BATCH (2026-07-26 perf/polish sprint) ---------- */
+/* Q8: solid loss badge white-on-red was 3.8:1; deepen red to reach AA (5.25:1) */
+.res-l{background:#c23a4a;}
+/* Q11: 16px form controls on small screens so iOS Safari does not auto-zoom the funnel field */
+@media (max-width:640px){
+  .input,input,select,textarea,.cmdk__input{font-size:16px;}
+}
+/* Q13: >=44px touch targets on coarse pointers (phones/tablets) */
+@media (pointer:coarse){
+  .subnav-page a,.rt-filters button,.rf-btn,.nav__search,.cmdk__row,.fbtn,
+  .site-footer nav a,.engage-chip{min-height:44px;}
+  .rf-btn,.rt-filters button,.fbtn{display:inline-flex;align-items:center;}
+}
+/* Q10: forced-colors (Windows high-contrast). Gradient-clipped headlines render as
+   transparent text there and vanish; restore a system color and drop the clip. */
+@media (forced-colors:active){
+  .hero-bb__title .accent,.ev-hero h1,.rec-stat .n,.stat-big .stat-num,
+  .hero h1 .accent,[class*="__title"] .accent{
+    -webkit-text-fill-color:CanvasText;color:CanvasText;
+    -webkit-background-clip:border-box;background-clip:border-box;background:none;filter:none;
+  }
+  :focus-visible{outline:2px solid Highlight;}
+  .btn,.rf-btn,.rt-filters button{border:1px solid ButtonText;}
+}

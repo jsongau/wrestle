@@ -111,6 +111,28 @@ FOOTER = """<footer class="site-footer" data-wl-shell><div class="wrap">
 
 SCRIPTS = '<script src="/js/search-index.js" defer></script>\n<script src="/js/nav.js" defer></script>\n'
 
+# Self-hosted fonts: preload Anton (the display/LCP font); faces live in site.css.
+FONT_PRELOAD = '<link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
+
+def fix_fonts(html):
+    """Strip render-blocking Google Fonts (preconnect + stylesheet) and ensure the
+    Anton preload sits right before the site.css link. Idempotent."""
+    changed = False
+    # remove google fonts preconnect + stylesheet links (any whitespace variants)
+    patterns = [
+        r'\s*<link[^>]*rel="preconnect"[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]*>',
+        r'\s*<link[^>]*fonts\.googleapis\.com/css2[^>]*>',
+    ]
+    for p in patterns:
+        new = re.sub(p, '', html)
+        if new != html: html = new; changed = True
+    # ensure single Anton preload before the site.css <link>
+    if FONT_PRELOAD not in html:
+        m = re.search(r'<link[^>]+href="/css/site\.css"[^>]*>', html)
+        if m:
+            html = html[:m.start()] + FONT_PRELOAD + '\n' + html[m.start():]; changed = True
+    return html, changed
+
 RENAMES = [
   ("https://matdb.io", "https://matwrestling.com"),
   ("MAT — Match · Athlete · Timeline", "Wrestle Lore"),
@@ -152,6 +174,9 @@ def apply(html):
         i = html.rfind('</body>')
         if i != -1:
             html = html[:i] + SCRIPTS + html[i:]; report.append("js+")
+    # fonts: self-host (strip Google Fonts, preload Anton)
+    html, fchg = fix_fonts(html)
+    if fchg: report.append("font")
     # renames + domain
     for a, b in RENAMES:
         html = html.replace(a, b)
@@ -164,6 +189,10 @@ def targets():
         if any(x in rel for x in EXCLUDE):
             continue
         out.append(p)
+    # standalone shells that aren't index.html
+    for extra in ("/404.html",):
+        if os.path.exists(ROOT + extra):
+            out.append(ROOT + extra)
     return sorted(out)
 
 if __name__ == "__main__":
