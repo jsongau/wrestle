@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 0 site-wide apply: swap every page's header+footer for the single-source Wrestle Lore
 shell (existing-pages-only nav, 404-safe), ensure the cmdk palette + scripts, rename MAT->Wrestle
-Lore in visible brand spots, unify canonical domain to matwrestling.com. Preserves <main>.
+Lore in visible brand spots, unify canonical domain to wrestlelore.com. Preserves <main>.
 Excludes /zh/ and /china/ (localized). Reports per-file what matched. Idempotent-ish (safe to re-run)."""
 import os, re, glob
 
@@ -134,7 +134,7 @@ def fix_fonts(html):
     return html, changed
 
 RENAMES = [
-  ("https://matdb.io", "https://matwrestling.com"),
+  ("https://matdb.io", "https://wrestlelore.com"),
   ("MAT — Match · Athlete · Timeline", "Wrestle Lore"),
   ("MAT Wrestling Database", "Wrestle Lore"),
   ("MAT — Pro Wrestling Database", "Wrestle Lore — Pro Wrestling Database"),

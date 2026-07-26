@@ -36,5 +36,5 @@ A crawlable, mobile-first static site ("MAT — Match · Athlete · Timeline"), 
 ## Stack / conventions (for future sessions)
 - Static HTML + one CSS file (`css/site.css`, design tokens) + one JS file (`js/main.js`). No framework, no build, no browser storage.
 - One live repo (this folder). Cloud is the authoritative git; device folder mirrors it. Preview iterations go to Downloads as `-v2/-v3`, never into the repo.
-- Base URL for canonical/OG: `https://matwrestling.com` (placeholder — swap for the real domain at deploy).
+- Base URL for canonical/OG: `https://wrestlelore.com` (placeholder — swap for the real domain at deploy).
 - Research datasets live in `/data/`; markdown mirror in `/content/`.

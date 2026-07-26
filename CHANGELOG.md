@@ -14,7 +14,7 @@
 - Data honesty preserved: reign/champion facts flagged VERIFY (Ripley interim title, IWGP 2026 reactivation, Bloodline/Judgment Day current status) phrased "as reported," not asserted.
 
 ## 2026-07-26 (Wrestle Lore revamp — multi-agent)
-- Renamed MAT -> Wrestle Lore across the site; unified canonical domain to matwrestling.com; sitemap 119 -> 198 URLs.
+- Renamed MAT -> Wrestle Lore across the site; unified canonical domain to wrestlelore.com; sitemap 119 -> 198 URLs.
 - Ran 30-agent design orchestration (3 workflows): 13 design/brief/tech-lead docs + 7 vision + 10 data docs in docs/design/wrestle-lore/. Master brief resolves 5 cross-spec conflicts; content manifest maps ~211 new pages.
 - Phase 0: single-source 7-tab shell (build/apply_shell.py) stamped across ~195 pages; killed 3 forked navs + dead /titles//search/ links.
 - Phase 1 (9-agent build): NJPW + AEW, Hall of Fame (AJ Styles headlines 2026 class), current/legends/women hubs, Media + Chris Van Vliet, AJ Styles showcase, 18 champion profiles. Full 7-tab nav lit up.
@@ -27,7 +27,7 @@
 ## 2026-07-26
 - Wrestler batches 8–10: upgraded 14 pages to gold-standard 5-feature template (fixed a `wl-strip-wrap` regression across 5 build scripts), then added 20 new profiles (Attitude/Golden Era legends + Kane/Owen Hart/British Bulldog/Edge/Razor Ramon upgrades). 89 wrestler profiles total, all gold-standard.
 - Launched **Events** content type: 5 PPV edition pages with real sourced 2026 results (Royal Rumble, Elimination Chamber, WrestleMania 42, Backlash, Night of Champions) + 5 brand hub pages + `/events/` index. Corrected an initial assumption mid-plan — WWE Premium Live Events stream on **ESPN** in the US from 2026 (new deal), not Netflix; Netflix carries the international live feed + US archive. Every event page's watch panel links both correctly. Added `Premium Live Events` column to the homepage's existing Matches mega-nav dropdown (no new top-level tab, per the site's nav rule). New CSS components: `event-hero`, `watch-panel`, `match-card-list`, `event-card`.
-- Flagged, not yet resolved: the site has two canonical domains in use — `matwrestling.com` (README + homepage/promotions/matches templates + sitemap.xml, 791 refs) vs `matdb.io` (all 89 wrestler pages, 400 refs). New Events pages use `matwrestling.com` to match the sitemap and majority of flagship templates. Needs a single reconciliation pass across the wrestler pages.
+- Flagged, not yet resolved: the site has two canonical domains in use — `wrestlelore.com` (README + homepage/promotions/matches templates + sitemap.xml, 791 refs) vs `matdb.io` (all 89 wrestler pages, 400 refs). New Events pages use `wrestlelore.com` to match the sitemap and majority of flagship templates. Needs a single reconciliation pass across the wrestler pages.
 
 ## 2026-07-25
 - Project kickoff. Wrote master brief (`PROJECT.md`): vision, IA/sitemap, SEO+GEO strategy, China market plan, membership funnel, tech stack.

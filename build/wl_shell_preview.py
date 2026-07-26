@@ -115,7 +115,7 @@ def strip_and_stamp(html, active=""):
     i = html.rfind('</body>')
     html = html[:i] + FOOTER + '\n' + html[i:]
     # rename brand + unify domain (preview-scope, visible brand spots)
-    html = html.replace('https://matdb.io', 'https://matwrestling.com')
+    html = html.replace('https://matdb.io', 'https://wrestlelore.com')
     html = html.replace('| MAT<', '| Wrestle Lore<').replace(' | MAT ', ' | Wrestle Lore ')
     html = re.sub(r'\bMAT\b(?=\s*(—|\||<|&))', 'Wrestle Lore', html)
     html = html.replace('MAT Wrestling Database', 'Wrestle Lore')

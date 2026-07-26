@@ -1,7 +1,7 @@
 # MAT BUILD MANIFEST — canonical slugs + shared markup (agents MUST follow exactly)
 
 All pages are static HTML at `/root/wwe/`. Link CSS as `/css/site.css` and JS as `/js/main.js`
-(already built — DO NOT recreate them). Base URL for canonical/OG tags: `https://matwrestling.com`.
+(already built — DO NOT recreate them). Base URL for canonical/OG tags: `https://wrestlelore.com`.
 
 ## Slug rule
 Lowercase; drop periods, apostrophes, quotes, parentheses; spaces → hyphens.

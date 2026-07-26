@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Batch 11 — Events/PPV content type launch.
 5 edition pages (2026 events, real sourced results) + 5 brand hub pages + /events/ index.
-Domain: matwrestling.com (README-canonical; matches homepage/promotions/matches templates).
+Domain: wrestlelore.com (README-canonical; matches homepage/promotions/matches templates).
 Watch links: ESPN (US live PLE home from 2026) + Netflix (international live / US archive).
 """
 import os, re
 
-DOMAIN = "https://matwrestling.com"
+DOMAIN = "https://wrestlelore.com"
 OUT = "/root/wwe"
 ESPN_URL = "https://www.espn.com/wwe/"
 NETFLIX_URL = "https://www.netflix.com/browse/genre/81921064"

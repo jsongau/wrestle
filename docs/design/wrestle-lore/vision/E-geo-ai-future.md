@@ -63,7 +63,7 @@ forces `text/plain`, that still works for ingestion.
 
 ## Pillar 2 — `llms.txt` and `llms-full.txt`, rebuilt
 
-The current `/llms.txt` is stale. It still names the site "MAT," points at `matwrestling.com`, and
+The current `/llms.txt` is stale. It still names the site "MAT," points at `wrestlelore.com`, and
 lists five sections. It needs to become a real map to the whole database in the format LLMs read.
 
 **Routes:**

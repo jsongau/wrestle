@@ -8,7 +8,7 @@ Rebranded MAT → **Wrestle Lore** and executed a multi-agent redesign + build. 
 - **7-tab mega-nav** (Wrestlers · Matches · Events · Promotions · Hall of Fame · Media · More + ⌘K),
   single-source, stamped site-wide via `build/apply_shell.py`. No loud Join CTA in the bar (conversion
   moved to in-content moments). Color encodes category, shape encodes axis (brief §0 D1–D5).
-- **Domain unified** to `matwrestling.com` (was split matdb.io / matwrestling). `MAT` → `Wrestle Lore`
+- **Domain unified** to `wrestlelore.com` (was split matdb.io / matwrestling). `MAT` → `Wrestle Lore`
   via word-boundary rename (safe vs "MATCH"/"format").
 - **New content**: NJPW + AEW promotions, Hall of Fame (hub + 2026/2025 classes; AJ Styles headlines
   2026), /current//legends//women/ hubs, Media + Chris Van Vliet, AJ Styles showcase, 18 champion profiles.

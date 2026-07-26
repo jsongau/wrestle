@@ -160,7 +160,7 @@ Reuse existing tokens only: `--c-gold`, `--c-gold-bright`, `--c-gold-tint`, `--s
 Keep the tiers and lifecycle explainer; fix trust and copy problems.
 
 - **Rename** all "MAT" to "Wrestle Lore" (title, meta, OG, JSON-LD `name`, body copy). Current page still
-  says "MAT Insider" and "matwrestling.com" canonical. `GAP` until renamed.
+  says "MAT Insider" and "wrestlelore.com" canonical. `GAP` until renamed.
 - **Replace fabricated stats.** The waitlist band currently shows "12,840 on the waitlist" and "38%
   waitlist-to-member" and "4 lifecycle emails" as if real. Replace social proof with **real catalog
   scale** the site can stand behind: "89 wrestler profiles. 30 matches rated in full. 15 rivalries

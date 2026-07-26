@@ -1,4 +1,4 @@
-# https://matwrestling.com/robots.txt
+# https://wrestlelore.com/robots.txt
 User-agent: *
 Allow: /
 Disallow: /*?sort=
@@ -26,4 +26,4 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://matwrestling.com/sitemap.xml
+Sitemap: https://wrestlelore.com/sitemap.xml

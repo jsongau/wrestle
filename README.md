@@ -52,7 +52,7 @@ All cited, deduped, and current through 2024–2026.
 - Chosen for maximum crawlability, zero build friction, instant deploy to Vercel/GitHub Pages, and durability. (Rejected Next.js/Astro: JS-rendered nav hurts crawlability and adds complexity a content site doesn't need.)
 - Content mirrored as Markdown in `/content/` for portability + AI retrieval.
 - Root-absolute asset paths (`/css/…`) — the site must be served over HTTP to preview correctly (double-clicking a page uses `file://` and won't load CSS). Self-contained `-v2` previews inline everything for double-click.
-- Base URL placeholder: `https://matwrestling.com` (swap for the real domain at deploy).
+- Base URL placeholder: `https://wrestlelore.com` (swap for the real domain at deploy).
 
 ---
 

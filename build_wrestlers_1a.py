@@ -267,27 +267,27 @@ def build_page(w):
 <script>document.documentElement.classList.add('js')</script>
 <title>{title_tag} | MAT</title>
 <meta name="description" content="{description}">
-<link rel="canonical" href="https://matwrestling.com/wrestlers/{slug}/">
-<link rel="alternate" hreflang="en" href="https://matwrestling.com/wrestlers/{slug}/">
-<link rel="alternate" hreflang="x-default" href="https://matwrestling.com/wrestlers/{slug}/">
+<link rel="canonical" href="https://wrestlelore.com/wrestlers/{slug}/">
+<link rel="alternate" hreflang="en" href="https://wrestlelore.com/wrestlers/{slug}/">
+<link rel="alternate" hreflang="x-default" href="https://wrestlelore.com/wrestlers/{slug}/">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="MAT — Pro Wrestling Database">
 <meta property="og:title" content="{title_tag}">
 <meta property="og:description" content="{description}">
-<meta property="og:url" content="https://matwrestling.com/wrestlers/{slug}/">
+<meta property="og:url" content="https://wrestlelore.com/wrestlers/{slug}/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0b0d">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"Person","@id":"https://matwrestling.com/wrestlers/{slug}/#person","name":"{name}","alternateName":[{alt_names_json}],"url":"https://matwrestling.com/wrestlers/{slug}/","jobTitle":"Professional Wrestler","sameAs":[{same_as_json}]}}
+{{"@context":"https://schema.org","@type":"Person","@id":"https://wrestlelore.com/wrestlers/{slug}/#person","name":"{name}","alternateName":[{alt_names_json}],"url":"https://wrestlelore.com/wrestlers/{slug}/","jobTitle":"Professional Wrestler","sameAs":[{same_as_json}]}}
 </script>
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
- {{"@type":"ListItem","position":1,"name":"Home","item":"https://matwrestling.com/"}},
- {{"@type":"ListItem","position":2,"name":"Wrestlers","item":"https://matwrestling.com/wrestlers/"}},
- {{"@type":"ListItem","position":3,"name":"{name}","item":"https://matwrestling.com/wrestlers/{slug}/"}}]}}
+ {{"@type":"ListItem","position":1,"name":"Home","item":"https://wrestlelore.com/"}},
+ {{"@type":"ListItem","position":2,"name":"Wrestlers","item":"https://wrestlelore.com/wrestlers/"}},
+ {{"@type":"ListItem","position":3,"name":"{name}","item":"https://wrestlelore.com/wrestlers/{slug}/"}}]}}
 </script>
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

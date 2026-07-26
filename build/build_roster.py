@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate /wrestlers/ index with ALL wrestler pages (was stale at 41). Cards from filesystem."""
 import glob, re, html as H
-DOMAIN="https://matwrestling.com"
+DOMAIN="https://wrestlelore.com"
 PROMOS=["wwe","wcw","ecw","tna","nxt","njpw","aew"]
 def name_of(p):
     h=open(p).read()

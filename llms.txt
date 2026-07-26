@@ -7,21 +7,21 @@
 > informed by Wrestling Observer and Cagematch consensus.
 
 ## Core databases
-- [Wrestler directory](https://matwrestling.com/wrestlers/): Every wrestler profile with career record, promotions, signature matches and relationships.
-- [Match archive](https://matwrestling.com/matches/): Star-rated matches with breakdowns, results, participants and historical context.
-- [Rivalries](https://matwrestling.com/rivalries/): The defining feuds of the modern era, match-by-match.
-- [Relationships](https://matwrestling.com/relationships/): The real-life web — families, marriages, factions and backstage ties.
-- [Rankings](https://matwrestling.com/rankings/): The five-star club and top-rated matches across all promotions.
+- [Wrestler directory](https://wrestlelore.com/wrestlers/): Every wrestler profile with career record, promotions, signature matches and relationships.
+- [Match archive](https://wrestlelore.com/matches/): Star-rated matches with breakdowns, results, participants and historical context.
+- [Rivalries](https://wrestlelore.com/rivalries/): The defining feuds of the modern era, match-by-match.
+- [Relationships](https://wrestlelore.com/relationships/): The real-life web — families, marriages, factions and backstage ties.
+- [Rankings](https://wrestlelore.com/rankings/): The five-star club and top-rated matches across all promotions.
 
 ## Key reference pages
-- [Methodology — how MAT rates matches](https://matwrestling.com/methodology/): The five-star rating methodology and data sources.
-- [About MAT](https://matwrestling.com/about/): Editorial standards, scope and mission.
-- [Membership](https://matwrestling.com/membership/): MAT Insider tiers and the membership funnel.
+- [Methodology — how MAT rates matches](https://wrestlelore.com/methodology/): The five-star rating methodology and data sources.
+- [About MAT](https://wrestlelore.com/about/): Editorial standards, scope and mission.
+- [Membership](https://wrestlelore.com/membership/): MAT Insider tiers and the membership funnel.
 
 ## China edition
-- [中文首页 (Simplified Chinese homepage)](https://matwrestling.com/zh/): The zh-Hans edition for Chinese wrestling fans.
-- [中文会员 (Chinese membership)](https://matwrestling.com/zh/membership/): Tiers, WeChat/Alipay payments, QR-first capture.
-- [MAT China Strategy](https://matwrestling.com/china/): Go-to-market plan — Bilibili/Douyin/Weibo/WeChat, WeChat funnel, ICP/PIPL, China-GEO.
+- [中文首页 (Simplified Chinese homepage)](https://wrestlelore.com/zh/): The zh-Hans edition for Chinese wrestling fans.
+- [中文会员 (Chinese membership)](https://wrestlelore.com/zh/membership/): Tiers, WeChat/Alipay payments, QR-first capture.
+- [MAT China Strategy](https://wrestlelore.com/china/): Go-to-market plan — Bilibili/Douyin/Weibo/WeChat, WeChat funnel, ICP/PIPL, China-GEO.
 
 ## Optional
-- [Promotions](https://matwrestling.com/promotions/wwe/): Promotion hubs (WWE, WCW, ECW, TNA, NXT).
+- [Promotions](https://wrestlelore.com/promotions/wwe/): Promotion hubs (WWE, WCW, ECW, TNA, NXT).

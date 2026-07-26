@@ -3,11 +3,11 @@
 4 moment pages + /moments/ index. Broadcast Bold chrome, anti-AI copy standard.
 Video: verified official WWE YouTube IDs embedded via existing facade; official-search
 fallback where no official upload is confirmed. No fabricated IDs.
-Domain: matwrestling.com (site canonical).
+Domain: wrestlelore.com (site canonical).
 """
 import os, re
 
-DOMAIN = "https://matwrestling.com"
+DOMAIN = "https://wrestlelore.com"
 OUT = "/root/wwe"
 
 def a(slug, name):

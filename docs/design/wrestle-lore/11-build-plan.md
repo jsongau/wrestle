@@ -20,7 +20,7 @@ pages; it is unifying 169 inconsistent existing pages without a runtime build. F
 | # | Finding | Evidence | Consequence for the plan |
 |---|---|---|---|
 | A1 | **Nav is forked into 3+ variants.** Home = 5-tab mega (`nav__menu`, `mega__link`, `data-cmdk-open`). Wrestler pages = a stale 4-link bar `Wrestlers/Events/Titles/Search` with **`/titles/` and `/search/` that 404**, footer "© 2025 MAT". Match/promotion/event/rivalry pages = a third 5–6 `nav__link` variant. | `index.html` head vs `wrestlers/roman-reigns/index.html` (nav emitted at `build_wrestlers_10a.py:449`) vs `matches/…`, `promotions/wwe/…`. | A single-source nav injector is the spine of the whole revamp (Phase 0). Nothing else is safe until every page shares one shell. |
-| A2 | **Two live canonical domains.** `matdb.io` on ~400 page references (wrestler pages), `matwrestling.com` on ~852 (everything else). | `grep` of `<link rel=canonical>` / OG URLs across `*.html`. | The rename is not just "MAT → Wrestle Lore" text. It must **collapse two domains to one** canonical host in canonicals, OG, hreflang, JSON-LD `@id`/`url`, sitemap, robots. |
+| A2 | **Two live canonical domains.** `matdb.io` on ~400 page references (wrestler pages), `wrestlelore.com` on ~852 (everything else). | `grep` of `<link rel=canonical>` / OG URLs across `*.html`. | The rename is not just "MAT → Wrestle Lore" text. It must **collapse two domains to one** canonical host in canonicals, OG, hreflang, JSON-LD `@id`/`url`, sitemap, robots. |
 | A3 | **No shared template layer.** Each of the 20 `build_wrestlers_*.py` (a/b pairs, batches 1–10, 40–92 KB each) hardcodes head + nav + footer as inline f-strings. `build_events_11.py`, `build_moments_12.py` do the same with different markup. | 20 files each contain a full `<header class="site-header">`. | Editing nav by hand across generators = 20+ edits and still leaves hand-authored pages untouched. We need injection *decoupled from generation*. |
 | A4 | **Existing pages mix hand-authored and generated.** Not every page can be re-emitted from a generator without losing hand edits, and several generators predate current content. | PROJECT note "hand-authored + Python-generated"; generator footers say 2025. | **Do not "just regenerate everything."** Retrofit existing pages in place; reserve generators for NEW pages and for pages we can prove are 100% generated. This is the single biggest trap. |
 | A5 | **Search index is the old flat schema** `MAT_SEARCH_INDEX=[{t,u,k}]`, 169 entries, hand-consistent with pages by luck, not by check. `js/search-index.js` is committed but shows 0 lines in `wc` (single long line). | `js/search-index.js` head; `js/nav.js` reads `window.MAT_SEARCH_INDEX`. | Need a generator that (a) emits the rich `WL_INDEX` schema, (b) is derived from the pages/data so it cannot drift, (c) **fails on any link 404**. Keep the `MAT_SEARCH_INDEX` shim one release. |
@@ -189,7 +189,7 @@ reviewed as a single diff, **not** hand edits.
 Ordered substitutions (specific, to avoid over-matching):
 1. **Domain first (A2):** pick the canonical host once in `wl_config.py` (e.g. `wrestlelore.com` —
    `VERIFY` the actual registered domain before ship). Rewrite `matdb.io` → host and
-   `matwrestling.com` → host in `<link rel=canonical>`, `<link rel=alternate hreflang>`, OG `url`/
+   `wrestlelore.com` → host in `<link rel=canonical>`, `<link rel=alternate hreflang>`, OG `url`/
    `og:image`, twitter, JSON-LD `@id`/`url`/`sameAs`, `sitemap.xml`, `robots.txt`, `llms.txt`.
 2. **Brand string:** `MAT — Pro Wrestling Database` / `MAT` brand lockup / footer "MAT Wrestling
    Database" → "Wrestle Lore". Be surgical: the token `MAT` also appears as the acronym in body copy and
@@ -327,7 +327,7 @@ The static, no-framework, one-CSS-file architecture is already CWV-friendly. Pro
 ## 9. Ten-line summary + first three build steps
 
 1. This is a **retrofit**, not greenfield: 169 pages carry 3 forked navs, a dead `/titles//search/` bar
-   on wrestler pages, two live domains (`matdb.io` + `matwrestling.com`), and 20 generators each
+   on wrestler pages, two live domains (`matdb.io` + `wrestlelore.com`), and 20 generators each
    hardcoding their own shell.
 2. Keystone architecture: a **marker-based shell stitcher** (`build/apply_shell.py` + `partials/`) gives
    single-source nav/footer/head as raw crawlable HTML with no runtime build, safe on hand-authored pages.
@@ -352,7 +352,7 @@ The static, no-framework, one-CSS-file architecture is already CWV-friendly. Pro
 1. **Build `partials/` + `build/apply_shell.py` + `build/wl_config.py`; run `--install` across all 169
    pages** to replace every forked nav/footer with marker regions fed by one 7-tab mega-nav source
    (fixes A1/A3, kills the dead `/titles//search/` bar). Commit before and after; diff.
-2. **Run `rename_to_wrestle_lore.py`: unify `matdb.io` + `matwrestling.com` to one canonical host and
+2. **Run `rename_to_wrestle_lore.py`: unify `matdb.io` + `wrestlelore.com` to one canonical host and
    `MAT` → Wrestle Lore** (brand, titles, OG, hreflang, JSON-LD, sitemap, robots, llms.txt), rename
    `MAT_SEARCH_INDEX` → `WL_INDEX` with a one-release shim; then grep-gate for residual `MAT`/old domains.
 3. **Append the brief §3 color tokens + `.theme-*`/`[data-promo]` scopes + badge/chip/rail/keepgoing/

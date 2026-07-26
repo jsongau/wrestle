@@ -1,6 +1,6 @@
 # Wrestling Glossary & Wrestling Dynasties — Reference Expansion
 
-Answer-first reference content for MAT (matwrestling.com), optimized for search and AI answer-engine citation.
+Answer-first reference content for MAT (wrestlelore.com), optimized for search and AI answer-engine citation.
 Every entry leads with a crisp, quotable definition and carries a URL **slug**. Facts synthesized from public
 records (Wikipedia, promotion sources, wrestling press); no text copied verbatim. Compiled 2026-07-25.
 
