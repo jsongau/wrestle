@@ -25,6 +25,20 @@
   function mono(t) { var w = t.replace(/[^A-Za-z ]/g, '').split(' ').filter(Boolean); return ((w[0] || t)[0] + (w[1] ? w[1][0] : (w[0] || 'x')[1] || '')).toUpperCase(); }
   function rand(arr) { return arr.length ? arr[Math.floor((Date.now() / 1000 % arr.length))] : null; }
 
+  /* ---- harvest a page-local "Did you know" fact ---- */
+  function harvestFact() {
+    var facts = [];
+    main.querySelectorAll('.stat-card dt').forEach(function (dt) {
+      var k = dt.textContent.trim(), v = (dt.nextElementSibling || {}).textContent || '';
+      if (/finisher/i.test(k) && v) facts.push(name + "'s finisher: " + v.trim() + '.');
+      if (/born/i.test(k) && v) facts.push(name + ' was born ' + v.trim() + '.');
+      if (/debut/i.test(k) && v) facts.push(name + ' debuted in ' + v.trim() + '.');
+    });
+    var tl = main.querySelector('.timeline li');
+    if (tl) facts.push(tl.textContent.trim().replace(/\s+/g, ' '));
+    return facts.length ? facts[Math.floor(Date.now() / 60000) % facts.length] : null;
+  }
+
   /* ---- LEFT RAIL: scroll-spy section nav + quick actions ---- */
   var heads = Array.prototype.slice.call(main.querySelectorAll('h2')).filter(function (h) { return h.offsetParent !== null; });
   if (heads.length > 2) {
@@ -42,9 +56,12 @@
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function (es) {
         es.forEach(function (e) { if (e.isIntersecting) { links.forEach(function (l) { l.classList.remove('is-active'); }); if (byId[e.target.id]) byId[e.target.id].classList.add('is-active'); } });
-      }, { rootMargin: '-20% 0px -70% 0px' });
+      }, { rootMargin: '-45% 0px -50% 0px' });
       heads.forEach(function (h) { obs.observe(h); });
     }
+    /* reveal rail only after scrolling past the hero (research: avoid top clutter) */
+    var reveal = function () { rail.classList.toggle('is-in', window.scrollY > (hero.offsetHeight || 300) * 0.6); };
+    window.addEventListener('scroll', reveal, { passive: true }); reveal();
   }
 
   /* ---- BOTTOM RAIL: "Keep going" related wrestlers ---- */
@@ -56,7 +73,13 @@
       pool.map(function (r) { return '<a class="engage-chip" href="' + r.u + '"><span class="engage-chip__m">' + mono(r.t) + '</span>' + r.t + '</a>'; }).join('') +
       '</div><button class="engage-bottom__x" aria-label="Dismiss">&#10005;</button></div>';
     document.body.appendChild(bar);
-    setTimeout(function () { bar.classList.add('is-in'); }, 600);
+    /* scroll-aware: slide in after 25% depth, not on load (research: earn the interruption) */
+    var shown = false;
+    var onScroll = function () {
+      var depth = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
+      if (!shown && depth > 0.22) { shown = true; bar.classList.add('is-in'); window.removeEventListener('scroll', onScroll); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
     bar.querySelector('.engage-bottom__x').addEventListener('click', function () { bar.classList.remove('is-in'); setTimeout(function () { bar.remove(); }, 300); });
   }
 
@@ -70,9 +93,12 @@
   var btn = fab.querySelector('.engage-fab__btn'), pop = fab.querySelector('.engage-fab__pop');
   function buildPop() {
     var relPick = rand(related), legend = idx.length ? idx[Math.floor(Math.random() * idx.length)] : null;
+    var stumble = (Math.random() < 0.5 && related.length) ? related[Math.floor(Math.random() * related.length)] : legend;
     var rows = [];
+    var fact = harvestFact();
+    if (fact) rows.push('<p class="engage-fab__fact"><span>Did you know</span>' + fact + '</p>');
+    if (stumble) rows.push('<a class="engage-fab__row engage-fab__row--hot" href="' + stumble.u + '"><b>Stumble</b><span>Jump to ' + stumble.t + '</span></a>');
     if (relPick) rows.push('<a class="engage-fab__row" href="' + relPick.u + '"><b>Rivals &amp; connections</b><span>' + relPick.t + '</span></a>');
-    if (legend) rows.push('<a class="engage-fab__row" href="' + legend.u + '"><b>Random legend</b><span>' + legend.t + '</span></a>');
     rows.push('<button class="engage-fab__row" data-cmdk-open><b>Search everything</b><span>Press &#8984;K</span></button>');
     rows.push('<a class="engage-fab__row" href="/hall-of-fame/"><b>Hall of Fame</b><span>The immortals</span></a>');
     pop.innerHTML = rows.join('');

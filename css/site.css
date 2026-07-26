@@ -1067,3 +1067,17 @@ table.record tr[data-result="L"] td:first-child{box-shadow:inset 3px 0 0 var(--c
 @media(max-width:640px){.engage-fab{right:12px;bottom:12px;}.engage-fab__pop{width:min(280px,88vw);}}
 /* keep bottom rail from hiding the fab */
 .engage-bottom.is-in ~ .engage-fab{bottom:88px;}
+
+/* engagement v2 polish (research-driven) */
+:root{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto;}}
+main h2{scroll-margin-top:84px;}
+.engage-left{opacity:0;transform:translateX(-8px);transition:opacity .25s var(--ease),transform .25s var(--ease);pointer-events:none;}
+.engage-left.is-in{opacity:1;transform:none;pointer-events:auto;}
+.engage-fab__fact{margin:0;padding:.8em 1em;background:linear-gradient(150deg,var(--c-gold-tint),transparent 70%);border-bottom:1px solid var(--c-gold-dim);color:var(--c-text-muted);font-size:var(--fs-300);line-height:1.5;}
+.engage-fab__fact span{display:block;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.12em;font-size:10px;color:var(--c-gold-bright);margin-bottom:.2em;}
+.engage-fab__row--hot b{color:var(--c-red-bright);}
+.engage-fab__row--hot:hover{background:var(--c-red-tint);}
+.engage-chip{transition:border-color var(--dur) var(--ease),transform var(--dur) var(--ease);}
+.engage-chip:hover{transform:translateY(-2px);}
+@media(prefers-reduced-motion:reduce){.engage-chip:hover{transform:none;}.engage-left{transition:none;}}
