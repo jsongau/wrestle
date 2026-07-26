@@ -247,9 +247,11 @@ def build_page(w):
   <div class="rec-stats" data-reveal>
 {rec_stats_html}  </div>
 
-  <div class="wl-strip" aria-label="Win/loss strip (recent landmark matches, left=oldest)">
+  <section class="wl-strip-wrap" aria-label="Win/loss sparkline">
+  <div class="wl-strip">
     {strip_items}
   </div>
+  </section>
 
   <div class="rt-filters" data-record-filter role="group" aria-label="Filter matches">
 {filter_btns}  </div>

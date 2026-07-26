@@ -138,7 +138,9 @@ def build_page(w):
     <p class="hero-desc">{desc}</p>
   </div>
 </header>
-<div class="wl-strip" title="Last 30 matches (oldest→newest)">{spark}</div>
+<section class="wl-strip-wrap" aria-label="Win/loss sparkline">
+  <div class="wl-strip">{spark}</div>
+</section>
 <main class="page-wrap">
 <div class="content-grid">
   <div class="bio-col">
