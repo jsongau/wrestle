@@ -164,8 +164,9 @@
 <div class="wrap">
   <p class="answer">Wrestle Lore's legends are the retired stars and all-time greats of pro wrestling. Thirty-five of them carry a full profile here, from WWF/WWE icons to WCW mainstays and the pioneers of the women's division. For wrestlers active in 2026, see <a href="/current/">current stars</a>. For the women in one place, see the <a href="/women/">women's division</a>, or open the <a href="/wrestlers/">full A-Z roster</a>.</p>
 
-  <div class="sec-h"><h2>Men's Legends</h2></div>
-  <div class="grid-cards">
+  <div class="facetbar" data-facet-target="main" data-facet-group="promo" role="group" aria-label="Filter by promotion"><span class="facetbar__label">Promotion</span><button class="fbtn is-active" data-facet="all" aria-pressed="true">All</button><button class="fbtn" data-facet="promo:wwe" aria-pressed="false">WWE</button><button class="fbtn" data-facet="promo:aew" aria-pressed="false">AEW</button><button class="fbtn" data-facet="promo:njpw" aria-pressed="false">NJPW</button><button class="fbtn" data-facet="promo:tna" aria-pressed="false">TNA</button><button class="fbtn" data-facet="promo:wcw" aria-pressed="false">WCW</button><span class="facet-count" data-facet-count></span></div>
+<div class="sec-h"><h2>Men's Legends</h2></div>
+  <div class="grid-cards" id="roster">
     <article class="card" data-status="legend" data-gender="men" data-promo="wwe">
       <span class="chip chip--wwe card__tag">WWE</span>
       <a class="card__media" href="/wrestlers/andre-the-giant/" aria-label="Andre the Giant"><span class="card__initials">ANDRE</span></a>
@@ -365,5 +366,6 @@
 <script src="/js/main.js"></script>
 <script src="/js/search-index.js" defer></script>
 <script src="/js/nav.js" defer></script>
+<script src="/js/facets.js" defer></script>
 </body>
 </html>
