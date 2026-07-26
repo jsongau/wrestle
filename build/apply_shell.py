@@ -186,6 +186,8 @@ def targets():
     out = []
     for p in glob.glob(ROOT + "/**/index.html", recursive=True):
         rel = p[len(ROOT):]
+        if rel == "/index.html":  # home page carries the custom nav7 header
+            continue
         if any(x in rel for x in EXCLUDE):
             continue
         out.append(p)
