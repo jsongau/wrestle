@@ -3,12 +3,17 @@
   <url>
     <loc>https://matwrestling.com/about/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/china/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/current/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/events/backlash-2026/</loc>
@@ -33,7 +38,7 @@
   <url>
     <loc>https://matwrestling.com/events/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/events/night-of-champions-2026/</loc>
@@ -66,9 +71,29 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/hall-of-fame/2025/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/hall-of-fame/2026/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/hall-of-fame/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/legends/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/matches/adam-cole-vs-gargano-takeover-xxv-2019/</loc>
@@ -138,7 +163,7 @@
   <url>
     <loc>https://matwrestling.com/matches/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/matches/lesnar-vs-angle-wm19-2003/</loc>
@@ -226,6 +251,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/media/chris-van-vliet/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/media/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/membership/growth-strategy/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -233,17 +268,17 @@
   <url>
     <loc>https://matwrestling.com/membership/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/methodology/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/moments/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/moments/kane-debut-badd-blood-1997/</loc>
@@ -266,6 +301,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/promotions/aew/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/promotions/ecw/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -273,7 +313,12 @@
   <url>
     <loc>https://matwrestling.com/promotions/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/promotions/njpw/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/promotions/nxt/</loc>
@@ -298,12 +343,12 @@
   <url>
     <loc>https://matwrestling.com/rankings/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/relationships/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/rivalries/attitude-era-invasion/</loc>
@@ -343,7 +388,7 @@
   <url>
     <loc>https://matwrestling.com/rivalries/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/rivalries/nwo-invasion/</loc>
@@ -386,6 +431,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/showcases/aj-styles/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/women/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/aj-styles/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -402,6 +457,11 @@
   </url>
   <url>
     <loc>https://matwrestling.com/wrestlers/asuka/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/austin-theory/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -462,6 +522,11 @@
   </url>
   <url>
     <loc>https://matwrestling.com/wrestlers/brock-lesnar/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/bron-breakker/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -531,6 +596,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/wrestlers/dominik-mysterio/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/drew-mcintyre/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -578,10 +648,20 @@
   <url>
     <loc>https://matwrestling.com/wrestlers/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/wrestlers/iyo-sky/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/jacob-fatu/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/jade-cargill/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -592,6 +672,11 @@
   </url>
   <url>
     <loc>https://matwrestling.com/wrestlers/jeff-hardy/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/jey-uso/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -607,6 +692,16 @@
   </url>
   <url>
     <loc>https://matwrestling.com/wrestlers/kane/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/kazuchika-okada/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/kenny-omega/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -666,6 +761,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/wrestlers/mjf/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/mr-perfect/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -676,7 +776,27 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/wrestlers/nic-nemeth/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/oba-femi/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/owen-hart/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/penta/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/r-truth/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
@@ -766,6 +886,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/wrestlers/solo-sikoa/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/sting/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -811,6 +936,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/wrestlers/tiffany-stratton/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/trick-williams/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/triple-h/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
@@ -831,14 +966,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://matwrestling.com/wrestlers/will-ospreay/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://matwrestling.com/wrestlers/yokozuna/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://matwrestling.com/wrestlers/yota-tsuji/</loc>
     <lastmod>2026-07-26</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/zh/</loc>
     <lastmod>2026-07-26</lastmod>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://matwrestling.com/zh/membership/</loc>

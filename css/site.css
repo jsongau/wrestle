@@ -906,3 +906,9 @@ table.record tr[data-result="L"] td:first-child{box-shadow:inset 3px 0 0 var(--c
   font-size:var(--fs-300);color:var(--c-text-dim);}
 .cmdk__foot kbd{font-family:var(--font-cond);background:var(--c-bg-elev-3);border:1px solid var(--c-line-strong);
   border-radius:var(--r-sm);padding:.1em .45em;margin-right:.3em;}
+
+/* Wrestle Lore — themed mega panels (Phase 1) */
+.mega.theme-hof h3{color:var(--c-hof-bright);}
+.mega.theme-hof .mega__link:hover{background:var(--c-hof-tint);}
+.mega.theme-media h3{color:var(--c-media-bright);}
+.mega.theme-media .mega__link:hover{background:var(--c-media-tint);}
