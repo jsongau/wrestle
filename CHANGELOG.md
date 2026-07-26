@@ -1,3 +1,9 @@
+## 2026-07-26 (Phase 2 — new content types: Titles, Factions, Tag Teams)
+- Built 30 new pages via a 4-agent build wave: Titles hub + 11 championship lineages (WWE/World/IC/US/Women's/Tag + WCW/ECW/IWGP/AEW/TNA), Factions hub + 8 stables (nWo, DX, Four Horsemen, Shield, Bloodline, Judgment Day, Bullet Club, Evolution), Tag Teams hub + 8 teams (Hardys, Dudleyz, E&C, New Day, Usos, Hart Foundation, Young Bucks, LOD).
+- All reuse existing CSS components (ev-hero/champ-panel/champ-row/grid-cards/faq-block/related-links); zero invented CSS. Every page: title ≤60 ending " | Wrestle Lore", meta 140-160, valid double-quoted JSON-LD (BreadcrumbList everywhere, ItemList on hubs, FAQPage on detail pages), correct canonical, no em-dashes. Cross-links only to existing pages (zero new 404s).
+- Wired the three hubs into the mega-nav "More" dropdown (new "Titles & Teams" column); re-stamped shell across 225 pages (fonts/nav/palette/footer). Regenerated sitemap.xml (198 -> 225 URLs) and js/search-index.js (177 -> 207 entries). Render-verified titles/factions/tag-team pages at 1366px.
+- Data honesty preserved: reign/champion facts flagged VERIFY (Ripley interim title, IWGP 2026 reactivation, Bloodline/Judgment Day current status) phrased "as reported," not asserted.
+
 ## 2026-07-26 (Wrestle Lore revamp — multi-agent)
 - Renamed MAT -> Wrestle Lore across the site; unified canonical domain to matwrestling.com; sitemap 119 -> 198 URLs.
 - Ran 30-agent design orchestration (3 workflows): 13 design/brief/tech-lead docs + 7 vision + 10 data docs in docs/design/wrestle-lore/. Master brief resolves 5 cross-spec conflicts; content manifest maps ~211 new pages.
