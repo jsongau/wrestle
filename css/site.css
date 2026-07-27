@@ -2656,3 +2656,10 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
   .wl-side__list{overflow:visible;}
   .wl-modal__close{top:6px;right:6px;z-index:5;}
 }
+
+/* ---------- NAV LOGO MARK (belt PNG + kept sheen) + stacked wordmark ---------- */
+.nav7 .mark--logo{width:auto;height:42px;background:none;box-shadow:none;border-radius:0;overflow:visible;}
+.nav7 .mark--logo img{width:auto;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 2px 8px rgba(212,175,55,.22));}
+.nav7 .mark--logo .wlshim{width:100%;height:100%;}
+.nav7 .bword--stack{display:flex;flex-direction:column;line-height:.86;letter-spacing:.03em;font-family:var(--anton);text-transform:uppercase;font-size:17px;}
+.nav7 .bword--stack b{font-weight:400;display:block;}
