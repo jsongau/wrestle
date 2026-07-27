@@ -739,10 +739,39 @@
       });
     })(bars[b]);
   }
+  /* Generic master-detail tabs: [data-wl-tabs] with [role=tab][aria-controls]
+     toggling [role=tabpanel] by id. Shows the selected panel, hides the rest,
+     and (re)mounts facades in the newly shown panel. */
+  function initTabs() {
+    var groups = document.querySelectorAll('[data-wl-tabs]');
+    for (var g = 0; g < groups.length; g++) (function (grp) {
+      var tabs = [].slice.call(grp.querySelectorAll('[role="tab"]'));
+      function select(tab) {
+        for (var i = 0; i < tabs.length; i++) {
+          var on = tabs[i] === tab;
+          tabs[i].setAttribute('aria-selected', on ? 'true' : 'false');
+          tabs[i].tabIndex = on ? 0 : -1;
+          var panel = document.getElementById(tabs[i].getAttribute('aria-controls'));
+          if (panel) panel.hidden = !on;
+        }
+        var active = document.getElementById(tab.getAttribute('aria-controls'));
+        if (active && window.WL && WL.mountFacades) { try { WL.mountFacades(active); } catch (e) {} }
+      }
+      grp.addEventListener('click', function (e) { var t = e.target.closest('[role="tab"]'); if (t) select(t); });
+      grp.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        var cur = tabs.indexOf(document.activeElement); if (cur < 0) return;
+        e.preventDefault();
+        var n = e.key === 'ArrowRight' ? (cur + 1) % tabs.length : (cur - 1 + tabs.length) % tabs.length;
+        tabs[n].focus(); select(tabs[n]);
+      });
+    })(groups[g]);
+  }
   function boot() {
     if (!window.WL) return;
     try { WL.init(); } catch (e) {}
     try { initFilters(); } catch (e) {}
+    try { initTabs(); } catch (e) {}
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);

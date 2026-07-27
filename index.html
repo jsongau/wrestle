@@ -787,16 +787,26 @@
 
   <!-- ============ THIS WEEK IN WRESTLING (spoiler-safe catch-up) ============ -->
   <style>
-  .thisweek .tw-tabs{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 var(--sp-5,1.25rem);}
-  .thisweek .tw-tab{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.05em;font-size:var(--fs-300,.85rem);font-weight:600;color:var(--c-text-muted,#a2a9b4);background:var(--c-bg-elev-1,#121418);border:1px solid var(--c-line,#2b3038);padding:.5em 1.15em;border-radius:var(--r-pill,999px);cursor:pointer;transition:color .18s,background .18s,border-color .18s;}
-  .thisweek .tw-tab:hover{color:var(--c-text,#e8eaed);border-color:var(--c-line-strong,#3a414c);}
-  .thisweek .tw-tab[aria-pressed="true"]{color:#0a0b0d;background:var(--c-gold-bright,#f2cc4b);border-color:var(--c-gold-bright,#f2cc4b);}
-  .thisweek .tw-dateline{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.08em;color:var(--c-gold-bright,#f2cc4b);text-transform:uppercase;white-space:nowrap;align-self:center;}
   .thisweek .tw-lede{color:var(--c-text-muted,#a2a9b4);max-width:70ch;margin:0 0 var(--sp-4,1rem);}
-  .thisweek .tw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:var(--sp-4,1rem);}
-  .thisweek .tw-grid .vcard[hidden]{display:none;}
+  .thisweek .tw-dateline{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.08em;color:var(--c-gold-bright,#f2cc4b);text-transform:uppercase;white-space:nowrap;align-self:center;}
+  .thisweek .tw-layout{display:grid;grid-template-columns:minmax(210px,270px) 1fr;gap:var(--sp-5,1.25rem);align-items:start;}
+  .thisweek .tw-list{display:flex;flex-direction:column;gap:.6rem;}
+  .thisweek .tw-item{text-align:left;display:flex;flex-direction:column;gap:.15rem;padding:.9rem 1.05rem;background:var(--c-bg-elev-1,#121418);border:1px solid var(--c-line,#2b3038);border-radius:var(--r-md,10px);cursor:pointer;transition:border-color .18s,background .18s;}
+  .thisweek .tw-item:hover{border-color:var(--c-line-strong,#3a414c);}
+  .thisweek .tw-item[aria-selected="true"]{border-color:var(--c-gold-bright,#f2cc4b);background:var(--c-bg-elev-2,#1a1d23);}
+  .thisweek .tw-item__name{font-family:var(--font-display,sans-serif);font-size:var(--fs-500,1.25rem);letter-spacing:.02em;color:var(--c-text,#e8eaed);text-transform:uppercase;line-height:1.1;}
+  .thisweek .tw-item__net{font-family:var(--font-mono,monospace);font-size:10px;letter-spacing:.05em;color:var(--c-text-dim,#6b727d);text-transform:uppercase;}
+  .thisweek .tw-item[aria-selected="true"] .tw-item__net{color:var(--c-gold-dim,#8c7420);}
+  .thisweek .tw-panel[hidden]{display:none;}
+  .thisweek .tw-panel__head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:var(--sp-3,.75rem);flex-wrap:wrap;}
+  .thisweek .tw-net{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.04em;color:var(--c-gold-bright,#f2cc4b);text-decoration:none;border:1px solid var(--c-line-strong,#3a414c);padding:.42em .85em;border-radius:var(--r-pill,999px);white-space:nowrap;transition:border-color .15s,background .15s;}
+  .thisweek .tw-net:hover{border-color:var(--c-gold-bright,#f2cc4b);background:var(--c-gold-tint,rgba(212,175,55,.12));}
+  .thisweek .tw-rail{display:flex;gap:var(--sp-4,1rem);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;list-style:none;margin:0;}
+  .thisweek .tw-rail>li{flex:0 0 clamp(220px,42%,270px);scroll-snap-align:start;}
+  .thisweek .tw-rail .vcard{height:100%;}
   .thisweek .yt__thumb{filter:blur(16px) brightness(.55);transform:scale(1.06);transition:filter .35s var(--ease,ease),transform .35s var(--ease,ease);}
   .thisweek .yt:hover .yt__thumb,.thisweek .yt:focus-within .yt__thumb{filter:none;transform:none;}
+  @media (max-width:760px){.thisweek .tw-layout{grid-template-columns:1fr;}.thisweek .tw-list{flex-direction:row;overflow-x:auto;}.thisweek .tw-item{flex:0 0 auto;}}
   @media (prefers-reduced-motion:reduce){.thisweek .yt__thumb{transition:none;}}
   </style>
   <section class="section thisweek" aria-label="This week in wrestling">
@@ -805,82 +815,57 @@
         <div><p class="eyebrow">The Week &middot; Catch Up</p><h2>This week in wrestling</h2><hr class="rule-gold"></div>
         <span class="tw-dateline">Week of Jul 20, 2026</span>
       </div>
-      <p class="tw-lede">Every show from this week in one place. The titles give nothing away and the thumbnails stay blurred until you hover, so you can catch up without getting spoiled. Filter by promotion, press play, and each clip opens with a link to where the full show streams.</p>
-      <div class="tw-tabs" data-wl-filters data-wl-grid="#tw-grid" role="group" aria-label="Filter by promotion">
-        <button class="tw-tab" type="button" data-f="all" data-group="promo" aria-pressed="true">All</button>
-        <button class="tw-tab" type="button" data-f="wwe" data-group="promo" aria-pressed="false">WWE</button>
-        <button class="tw-tab" type="button" data-f="aew" data-group="promo" aria-pressed="false">AEW</button>
-        <button class="tw-tab" type="button" data-f="tna" data-group="promo" aria-pressed="false">TNA</button>
-        <button class="tw-tab" type="button" data-f="nxt" data-group="promo" aria-pressed="false">NXT</button>
-      </div>
-      <div class="vgrid tw-grid" id="tw-grid">
+      <p class="tw-lede">Pick a promotion to see this week's shows. The titles give nothing away and the thumbnails stay blurred until you hover, so you can catch up without getting spoiled. Each clip opens in the player with a link to where the full show streams.</p>
+      <div class="tw-layout">
+        <div class="tw-list" data-wl-tabs role="tablist" aria-label="Choose a promotion">
+          <button class="tw-item" type="button" role="tab" id="tw-tab-wwe" aria-controls="tw-panel-wwe" aria-selected="true"><span class="tw-item__name">WWE</span><span class="tw-item__net">Raw &amp; SmackDown &middot; Netflix</span></button>
+          <button class="tw-item" type="button" role="tab" id="tw-tab-aew" aria-controls="tw-panel-aew" aria-selected="false" tabindex="-1"><span class="tw-item__name">AEW</span><span class="tw-item__net">Dynamite &amp; Collision &middot; HBO Max</span></button>
+          <button class="tw-item" type="button" role="tab" id="tw-tab-tna" aria-controls="tw-panel-tna" aria-selected="false" tabindex="-1"><span class="tw-item__name">TNA</span><span class="tw-item__net">iMPACT &middot; Prime Video</span></button>
+          <button class="tw-item" type="button" role="tab" id="tw-tab-nxt" aria-controls="tw-panel-nxt" aria-selected="false" tabindex="-1"><span class="tw-item__name">NXT</span><span class="tw-item__net">NXT &middot; Netflix</span></button>
+        </div>
+        <div class="tw-detail">
 
-        <article class="vcard" data-wl-item data-tags="wwe">
-          <div class="yt" data-yt-id="4e_UUsgGk7I" data-yt-title="WWE Raw, July 20, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix">
-            <a class="yt__link" href="https://www.youtube.com/watch?v=4e_UUsgGk7I">WWE Raw, July 20, 2026</a>
+          <div class="tw-panel" role="tabpanel" id="tw-panel-wwe" aria-labelledby="tw-tab-wwe">
+            <div class="tw-panel__head"><span class="telemetry"><b>THIS WEEK &middot; WWE</b></span><a class="tw-net" href="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix" target="_blank" rel="noopener">Watch WWE on Netflix &#8599;</a></div>
+            <ul class="tw-rail">
+              <li><article class="vcard"><div class="yt" data-yt-id="4e_UUsgGk7I" data-yt-title="WWE Raw, full show highlights, July 20, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=4e_UUsgGk7I">WWE Raw, July 20, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>MON &middot; JUL 20</b></span><h3 class="vcard__title">Raw &middot; Full show highlights</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="PUvTijJM7jY" data-yt-title="WWE Raw, Top 10 moments, July 20, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=PUvTijJM7jY">WWE Raw Top 10, July 20, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>MON &middot; JUL 20</b></span><h3 class="vcard__title">Raw &middot; Top 10 moments</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="RxI4yvWIuRU" data-yt-title="WWE SmackDown, full show highlights, July 24, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=RxI4yvWIuRU">WWE SmackDown, July 24, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>FRI &middot; JUL 24</b></span><h3 class="vcard__title">SmackDown &middot; Full show highlights</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="yIvKS9Aub3M" data-yt-title="WWE SmackDown, Top 10 moments, July 24, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=yIvKS9Aub3M">WWE SmackDown Top 10, July 24, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>FRI &middot; JUL 24</b></span><h3 class="vcard__title">SmackDown &middot; Top 10 moments</h3></div></article></li>
+            </ul>
           </div>
-          <div class="vcard__body">
-            <span class="telemetry"><b>MON &middot; JUL 20</b></span>
-            <h3 class="vcard__title">WWE Raw</h3>
-            <div class="vcard__meta"><span class="vcard__creator">WWE</span><span class="dot">&#8226;</span><span>Full show highlights</span></div>
-          </div>
-        </article>
 
-        <article class="vcard" data-wl-item data-tags="wwe nxt">
-          <div class="yt" data-yt-id="gt46FaNa18E" data-yt-title="WWE NXT, July 21, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix">
-            <a class="yt__link" href="https://www.youtube.com/watch?v=gt46FaNa18E">WWE NXT, July 21, 2026</a>
+          <div class="tw-panel" role="tabpanel" id="tw-panel-aew" aria-labelledby="tw-tab-aew" hidden>
+            <div class="tw-panel__head"><span class="telemetry"><b>THIS WEEK &middot; AEW</b></span><a class="tw-net" href="https://www.hbomax.com/aew" target="_blank" rel="noopener">Watch AEW on HBO Max &#8599;</a></div>
+            <ul class="tw-rail">
+              <li><article class="vcard"><div class="yt" data-yt-id="XFgrft96kQc" data-yt-title="AEW Dynamite, TNT Championship, July 22, 2026" data-yt-creator="All Elite Wrestling" data-yt-service="HBO Max" data-yt-service-url="https://www.hbomax.com/aew"><a class="yt__link" href="https://www.youtube.com/watch?v=XFgrft96kQc">AEW Dynamite, July 22, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>WED &middot; JUL 22</b></span><h3 class="vcard__title">Dynamite &middot; TNT Championship</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="lKanl86PGZ8" data-yt-title="AEW Dynamite, Women's Tag Title match, July 22, 2026" data-yt-creator="All Elite Wrestling" data-yt-service="HBO Max" data-yt-service-url="https://www.hbomax.com/aew"><a class="yt__link" href="https://www.youtube.com/watch?v=lKanl86PGZ8">AEW Dynamite tag title, July 22, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>WED &middot; JUL 22</b></span><h3 class="vcard__title">Dynamite &middot; Women's Tag Title</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="p5ryAl5rFvI" data-yt-title="AEW Dynamite, tag team main event, July 22, 2026" data-yt-creator="All Elite Wrestling" data-yt-service="HBO Max" data-yt-service-url="https://www.hbomax.com/aew"><a class="yt__link" href="https://www.youtube.com/watch?v=p5ryAl5rFvI">AEW Dynamite main event, July 22, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>WED &middot; JUL 22</b></span><h3 class="vcard__title">Dynamite &middot; Tag team main event</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="C0FSDMJAHf0" data-yt-title="AEW Collision, main event scene, July 25, 2026" data-yt-creator="All Elite Wrestling" data-yt-service="HBO Max" data-yt-service-url="https://www.hbomax.com/aew"><a class="yt__link" href="https://www.youtube.com/watch?v=C0FSDMJAHf0">AEW Collision, July 25, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>SAT &middot; JUL 25</b></span><h3 class="vcard__title">Collision &middot; Main event scene</h3></div></article></li>
+            </ul>
           </div>
-          <div class="vcard__body">
-            <span class="telemetry"><b>TUE &middot; JUL 21</b></span>
-            <h3 class="vcard__title">WWE NXT</h3>
-            <div class="vcard__meta"><span class="vcard__creator">WWE</span><span class="dot">&#8226;</span><span>Full show highlights</span></div>
-          </div>
-        </article>
 
-        <article class="vcard" data-wl-item data-tags="aew">
-          <div class="yt" data-yt-id="XFgrft96kQc" data-yt-title="AEW Dynamite, July 22, 2026" data-yt-creator="All Elite Wrestling" data-yt-service="HBO Max" data-yt-service-url="https://www.hbomax.com/aew">
-            <a class="yt__link" href="https://www.youtube.com/watch?v=XFgrft96kQc">AEW Dynamite, July 22, 2026</a>
+          <div class="tw-panel" role="tabpanel" id="tw-panel-tna" aria-labelledby="tw-tab-tna" hidden>
+            <div class="tw-panel__head"><span class="telemetry"><b>THIS WEEK &middot; TNA</b></span><a class="tw-net" href="https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ" target="_blank" rel="noopener">Watch TNA on Prime Video &#8599;</a></div>
+            <ul class="tw-rail">
+              <li><article class="vcard"><div class="yt" data-yt-id="am_jSHkhRXM" data-yt-title="TNA iMPACT, World Title main event, July 23, 2026" data-yt-creator="TNA Wrestling" data-yt-service="Prime Video" data-yt-service-url="https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ"><a class="yt__link" href="https://www.youtube.com/watch?v=am_jSHkhRXM">TNA iMPACT, July 23, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>THU &middot; JUL 23</b></span><h3 class="vcard__title">iMPACT &middot; World Title main event</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="ciYpd4ysD8s" data-yt-title="TNA iMPACT, July 23, 2026" data-yt-creator="TNA Wrestling" data-yt-service="Prime Video" data-yt-service-url="https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ"><a class="yt__link" href="https://www.youtube.com/watch?v=ciYpd4ysD8s">TNA iMPACT, July 23, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>THU &middot; JUL 23</b></span><h3 class="vcard__title">iMPACT &middot; Fallout</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="EbaTy6LvQ-4" data-yt-title="TNA iMPACT, TV Title tournament, July 23, 2026" data-yt-creator="TNA Wrestling" data-yt-service="Prime Video" data-yt-service-url="https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ"><a class="yt__link" href="https://www.youtube.com/watch?v=EbaTy6LvQ-4">TNA iMPACT tournament, July 23, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>THU &middot; JUL 23</b></span><h3 class="vcard__title">iMPACT &middot; TV Title tournament</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="MufGdGZQ7DA" data-yt-title="TNA iMPACT, X-Division Title, July 16, 2026" data-yt-creator="TNA Wrestling" data-yt-service="Prime Video" data-yt-service-url="https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ"><a class="yt__link" href="https://www.youtube.com/watch?v=MufGdGZQ7DA">TNA iMPACT X-Division, July 16, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>THU &middot; JUL 16</b></span><h3 class="vcard__title">iMPACT &middot; X-Division Title</h3></div></article></li>
+            </ul>
           </div>
-          <div class="vcard__body">
-            <span class="telemetry"><b>WED &middot; JUL 22</b></span>
-            <h3 class="vcard__title">AEW Dynamite</h3>
-            <div class="vcard__meta"><span class="vcard__creator">All Elite Wrestling</span><span class="dot">&#8226;</span><span>TNT Championship</span></div>
-          </div>
-        </article>
 
-        <article class="vcard" data-wl-item data-tags="tna">
-          <div class="yt" data-yt-id="am_jSHkhRXM" data-yt-title="TNA iMPACT, July 23, 2026" data-yt-creator="TNA Wrestling" data-yt-service="Prime Video" data-yt-service-url="https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ">
-            <a class="yt__link" href="https://www.youtube.com/watch?v=am_jSHkhRXM">TNA iMPACT, July 23, 2026</a>
+          <div class="tw-panel" role="tabpanel" id="tw-panel-nxt" aria-labelledby="tw-tab-nxt" hidden>
+            <div class="tw-panel__head"><span class="telemetry"><b>THIS WEEK &middot; NXT</b></span><a class="tw-net" href="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix" target="_blank" rel="noopener">Watch NXT on Netflix &#8599;</a></div>
+            <ul class="tw-rail">
+              <li><article class="vcard"><div class="yt" data-yt-id="gt46FaNa18E" data-yt-title="WWE NXT, full show highlights, July 21, 2026" data-yt-creator="WWE NXT" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=gt46FaNa18E">WWE NXT, July 21, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>TUE &middot; JUL 21</b></span><h3 class="vcard__title">NXT &middot; Full show highlights</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="cB_XQGhra-c" data-yt-title="WWE NXT, Title Street Fight, July 21, 2026" data-yt-creator="WWE NXT" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=cB_XQGhra-c">WWE NXT Street Fight, July 21, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>TUE &middot; JUL 21</b></span><h3 class="vcard__title">NXT &middot; Title Street Fight</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="nFUnfdu326Q" data-yt-title="WWE NXT, July 21, 2026" data-yt-creator="WWE NXT" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=nFUnfdu326Q">WWE NXT, July 21, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>TUE &middot; JUL 21</b></span><h3 class="vcard__title">NXT &middot; A new arrival</h3></div></article></li>
+              <li><article class="vcard"><div class="yt" data-yt-id="6BPO4g8oFFM" data-yt-title="WWE NXT, grudge match, July 21, 2026" data-yt-creator="WWE NXT" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"><a class="yt__link" href="https://www.youtube.com/watch?v=6BPO4g8oFFM">WWE NXT grudge match, July 21, 2026</a></div><div class="vcard__body"><span class="telemetry"><b>TUE &middot; JUL 21</b></span><h3 class="vcard__title">NXT &middot; Grudge match</h3></div></article></li>
+            </ul>
           </div>
-          <div class="vcard__body">
-            <span class="telemetry"><b>THU &middot; JUL 23</b></span>
-            <h3 class="vcard__title">TNA iMPACT</h3>
-            <div class="vcard__meta"><span class="vcard__creator">TNA Wrestling</span><span class="dot">&#8226;</span><span>Main event build</span></div>
-          </div>
-        </article>
 
-        <article class="vcard" data-wl-item data-tags="wwe">
-          <div class="yt" data-yt-id="RxI4yvWIuRU" data-yt-title="WWE SmackDown, July 24, 2026" data-yt-creator="WWE" data-yt-service="Netflix" data-yt-service-url="https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix">
-            <a class="yt__link" href="https://www.youtube.com/watch?v=RxI4yvWIuRU">WWE SmackDown, July 24, 2026</a>
-          </div>
-          <div class="vcard__body">
-            <span class="telemetry"><b>FRI &middot; JUL 24</b></span>
-            <h3 class="vcard__title">WWE SmackDown</h3>
-            <div class="vcard__meta"><span class="vcard__creator">WWE</span><span class="dot">&#8226;</span><span>Full show highlights</span></div>
-          </div>
-        </article>
-
-        <article class="vcard" data-wl-item data-tags="aew">
-          <div class="yt" data-yt-id="C0FSDMJAHf0" data-yt-title="AEW Collision, July 25, 2026" data-yt-creator="All Elite Wrestling" data-yt-service="HBO Max" data-yt-service-url="https://www.hbomax.com/aew">
-            <a class="yt__link" href="https://www.youtube.com/watch?v=C0FSDMJAHf0">AEW Collision, July 25, 2026</a>
-          </div>
-          <div class="vcard__body">
-            <span class="telemetry"><b>SAT &middot; JUL 25</b></span>
-            <h3 class="vcard__title">AEW Collision</h3>
-            <div class="vcard__meta"><span class="vcard__creator">All Elite Wrestling</span><span class="dot">&#8226;</span><span>Main event scene</span></div>
-          </div>
-        </article>
-
+        </div>
       </div>
     </div>
   </section>
