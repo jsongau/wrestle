@@ -224,7 +224,8 @@
       openModal(yt.getAttribute('data-yt-id'), yt.getAttribute('data-yt-title') || 'YouTube video player', {
         service: yt.getAttribute('data-yt-service'),
         serviceUrl: yt.getAttribute('data-yt-service-url'),
-        page: yt.getAttribute('data-yt-page')
+        page: yt.getAttribute('data-yt-page'),
+        promo: yt.getAttribute('data-yt-creator')
       });
     });
   }
@@ -248,13 +249,25 @@
           '<a class="wl-modal__gallery" href="/gallery/">Wrestle Lore <b>Viewing Gallery</b></a>' +
           '<span class="wl-modal__note">Clips embedded from official channels. Watch the full show on its home network.</span>' +
         '</div>' +
-        '<div class="wl-modal__frame"><div class="wl-velvet"><div class="wl-modal__stage"></div></div></div>' +
-        '<div class="wl-modal__bar"><span class="wl-modal__title"></span>' +
-        '<span class="wl-modal__links">' +
-        '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
-        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a>' +
-        '<button class="wl-modal__share" type="button"><svg class="wl-share-ico" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18 16.08a2.9 2.9 0 0 0-2.05.86l-6.9-4.02a3 3 0 0 0 0-1.84l6.83-3.98A3 3 0 1 0 15 5a3 3 0 0 0 .06.6L8.24 9.58a3 3 0 1 0 0 4.84l6.88 4.02A3 3 0 1 0 18 16.08z"/></svg><span>Share</span></button></span></div>' +
-        '<div class="wl-modal__more" aria-label="More videos"></div>' +
+        '<div class="wl-modal__body">' +
+          '<div class="wl-modal__main">' +
+            '<div class="wl-modal__frame"><div class="wl-velvet"><div class="wl-modal__stage"></div></div></div>' +
+            '<div class="wl-modal__bar"><a class="wl-modal__title"></a>' +
+            '<span class="wl-modal__links">' +
+            '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a>' +
+            '<button class="wl-modal__share" type="button"><svg class="wl-share-ico" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18 16.08a2.9 2.9 0 0 0-2.05.86l-6.9-4.02a3 3 0 0 0 0-1.84l6.83-3.98A3 3 0 1 0 15 5a3 3 0 0 0 .06.6L8.24 9.58a3 3 0 1 0 0 4.84l6.88 4.02A3 3 0 1 0 18 16.08z"/></svg><span>Share</span></button></span></div>' +
+          '</div>' +
+          '<aside class="wl-modal__side">' +
+            '<a class="wl-side__promo" target="_blank" rel="noopener" hidden>' +
+              '<span class="wl-side__promo-k">Stream the full show</span>' +
+              '<span class="wl-side__promo-net"></span>' +
+              '<span class="wl-side__promo-sub"></span>' +
+            '</a>' +
+            '<div class="wl-side__tabs" role="tablist" aria-label="Filter by promotion"></div>' +
+            '<span class="wl-side__head">Keep watching</span>' +
+            '<div class="wl-side__list" aria-label="More videos"></div>' +
+          '</aside>' +
+        '</div>' +
       '</div>';
     document.body.appendChild(ov);
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
@@ -262,73 +275,169 @@
     var shareBtn = ov.querySelector('.wl-modal__share');
     shareBtn.addEventListener('click', function () {
       var id = ov.__ytid; if (!id) return;
-      var url = ov.__ytpage ? (location.origin + ov.__ytpage) : (location.origin + location.pathname + '#watch=' + id);
+      /* clean page path only — never the title text (defensive strip) */
+      var page = (ov.__ytpage || '').trim().split(/\s/)[0];
+      var url = page ? (location.origin + page) : (location.origin + location.pathname + '#watch=' + id);
       var title = ov.__yttitle || 'Wrestle Lore';
       if (navigator.share) { navigator.share({ title: 'Wrestle Lore Viewing Gallery', text: title, url: url }).catch(function () {}); return; }
-      var restore = function () { var o = shareBtn.getAttribute('data-label') || 'Share'; shareBtn.textContent = 'Link copied'; setTimeout(function () { shareBtn.textContent = o; }, 1600); };
+      var restore = function () { shareBtn.querySelector('span').textContent = 'Link copied'; setTimeout(function () { shareBtn.querySelector('span').textContent = 'Share'; }, 1600); };
       if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(restore, function () { window.prompt('Copy this link', url); }); }
       else { window.prompt('Copy this link', url); }
     });
-    ov.querySelector('.wl-modal__more').addEventListener('click', function (e) {
-      var btn = e.target.closest('.wl-more-item'); if (!btn) return;
-      openModal(btn.getAttribute('data-vid'), btn.getAttribute('data-t') || 'Wrestle Lore', {
-        service: btn.getAttribute('data-svc'), serviceUrl: btn.getAttribute('data-svcurl'), page: btn.getAttribute('data-page')
-      });
+    /* promotion tabs filter the side rail */
+    ov.querySelector('.wl-modal__side').addEventListener('click', function (e) {
+      var tab = e.target.closest('.wl-side__tab');
+      if (tab) { ov.__filter = tab.getAttribute('data-f') || 'ALL'; renderSide(ov); return; }
+      var item = e.target.closest('.wl-side__item');
+      if (item) {
+        /* let the browser open the real page on modifier/middle click (crawlable + new tab) */
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+        e.preventDefault();
+        openModal(item.getAttribute('data-vid'), item.getAttribute('data-t') || 'Wrestle Lore', {
+          page: item.getAttribute('data-page'), service: item.getAttribute('data-svc'),
+          serviceUrl: item.getAttribute('data-svcurl'), promo: item.getAttribute('data-promo')
+        });
+      }
     });
     modal = ov;
     return ov;
   }
-  function populateMore(ov, currentId) {
-    var more = ov.querySelector('.wl-modal__more'); if (!more) return;
-    var all = [].slice.call(document.querySelectorAll('.yt[data-yt-id]'));
-    var seen = {}, list = [];
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i], vid = el.getAttribute('data-yt-id');
-      if (vid && vid !== currentId && !seen[vid]) { seen[vid] = 1; list.push(el); }
-    }
-    if (!list.length) { more.innerHTML = ''; more.hidden = true; return; }
-    more.hidden = false;
-    var html = '<span class="wl-more-head">More videos</span><div class="wl-more-row">';
-    for (var j = 0; j < Math.min(list.length, 12); j++) {
-      var e2 = list[j], v = e2.getAttribute('data-yt-id');
-      var t = (e2.getAttribute('data-yt-title') || '').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-      html += '<button class="wl-more-item" type="button" data-vid="' + v + '" data-t="' + t + '"'
-        + ' data-svc="' + (e2.getAttribute('data-yt-service') || '').replace(/"/g, '&quot;') + '"'
-        + ' data-svcurl="' + (e2.getAttribute('data-yt-service-url') || '') + '"'
-        + ' data-page="' + (e2.getAttribute('data-yt-page') || '') + '">'
-        + '<span class="wl-more-thumb" style="background-image:url(https://i.ytimg.com/vi/' + v + '/mqdefault.jpg)"></span>'
-        + '<span class="wl-more-t">' + t + '</span></button>';
-    }
-    more.innerHTML = html + '</div>';
+
+  function attr(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+  /* Homepage and gallery pages label promotions differently ("All Elite
+     Wrestling" vs "AEW"). Fold any variant to one canonical code so the
+     promotion tabs and autoplay-next work identically on every page. */
+  function promoCode(raw) {
+    var s = (raw || '').toUpperCase();
+    if (/\bNXT\b/.test(s)) return 'NXT';
+    if (/\bAEW\b/.test(s) || /ALL ELITE/.test(s)) return 'AEW';
+    if (/\bTNA\b/.test(s) || /IMPACT/.test(s)) return 'TNA';
+    if (/\bWWE\b/.test(s)) return 'WWE';
+    return (raw || '').trim();
   }
+
+  /* Gather every unique video on the page as {id,title,promo,code,page,service,serviceUrl}. */
+  function descriptorsFromDOM() {
+    var nodes = [].slice.call(document.querySelectorAll('.yt[data-yt-id]'));
+    var seen = {}, out = [];
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i], id = el.getAttribute('data-yt-id');
+      if (!id || seen[id]) continue; seen[id] = 1;
+      var raw = el.getAttribute('data-yt-creator') || '';
+      out.push({
+        id: id, title: el.getAttribute('data-yt-title') || 'Wrestle Lore',
+        promo: raw, code: promoCode(raw), page: el.getAttribute('data-yt-page') || '',
+        service: el.getAttribute('data-yt-service') || '', serviceUrl: el.getAttribute('data-yt-service-url') || ''
+      });
+    }
+    return out;
+  }
+
+  /* Build the right-column promotion tabs + vertical recommended list. */
+  function renderSide(ov) {
+    var all = ov.__all || [];
+    var order = ['WWE', 'AEW', 'TNA', 'NXT'];
+    var present = order.filter(function (p) { return all.some(function (d) { return d.code === p; }); });
+    /* append any non-standard codes present, preserving first-seen order */
+    all.forEach(function (d) { if (d.code && order.indexOf(d.code) === -1 && present.indexOf(d.code) === -1) present.push(d.code); });
+    var filter = ov.__filter || 'ALL';
+    if (filter !== 'ALL' && present.indexOf(filter) === -1) filter = ov.__filter = 'ALL';
+    var tabs = ov.querySelector('.wl-side__tabs');
+    var th = '<button class="wl-side__tab" type="button" role="tab" data-f="ALL" aria-selected="' + (filter === 'ALL') + '">All</button>';
+    present.forEach(function (p) { th += '<button class="wl-side__tab" type="button" role="tab" data-f="' + attr(p) + '" aria-selected="' + (filter === p) + '">' + attr(p) + '</button>'; });
+    tabs.innerHTML = th;
+    var filtered = all.filter(function (d) { return filter === 'ALL' || d.code === filter; });
+    ov.__filtered = filtered; /* drives autoplay-next (includes current for wrap) */
+    var list = ov.querySelector('.wl-side__list'), lh = '';
+    filtered.forEach(function (d) {
+      var cur = d.id === ov.__ytid ? ' is-current' : '';
+      var href = d.page || ('#watch=' + d.id);
+      lh += '<a class="wl-side__item' + cur + '" href="' + attr(href) + '" data-vid="' + attr(d.id) + '" data-t="' + attr(d.title) + '"'
+        + ' data-page="' + attr(d.page) + '" data-svc="' + attr(d.service) + '" data-svcurl="' + attr(d.serviceUrl) + '" data-promo="' + attr(d.promo) + '">'
+        + '<span class="wl-side__thumb" style="background-image:url(https://i.ytimg.com/vi/' + encodeURIComponent(d.id) + '/mqdefault.jpg)"></span>'
+        + '<span class="wl-side__meta">' + (d.code ? '<span class="wl-side__ptag">' + attr(d.code) + '</span>' : '')
+        + '<span class="wl-side__t">' + attr(d.title) + '</span></span></a>';
+    });
+    list.innerHTML = lh;
+  }
+
+  /* When a video ends, roll straight into the next one in the current filter. */
+  function playNext(ov) {
+    var list = ov.__filtered || [];
+    if (list.length < 2) return;
+    var i = -1;
+    for (var k = 0; k < list.length; k++) { if (list[k].id === ov.__ytid) { i = k; break; } }
+    var nx = list[(i + 1) % list.length];
+    if (nx) openModal(nx.id, nx.title, { page: nx.page, service: nx.service, serviceUrl: nx.serviceUrl, promo: nx.promo });
+  }
+
+  /* Attach the IFrame API so we can detect ENDED. Needs a valid origin, so we
+     only wire it on http(s); a file:// preview just plays without auto-advance. */
+  function attachModalPlayer(ov, iframe) {
+    if (location.protocol === 'file:') return;
+    ensureYT().then(function (YT) {
+      if (!YT || !YT.Player || !iframe.isConnected) return;
+      try {
+        ov.__player = new YT.Player(iframe, {
+          events: { onStateChange: function (e) { if (e.data === YT.PlayerState.ENDED) playNext(ov); } }
+        });
+      } catch (e) {}
+    });
+  }
+
   function openModal(id, title, opts) {
     if (!id) return;
     opts = opts || {};
     var ov = buildModal();
+    if (ov.__player && ov.__player.destroy) { try { ov.__player.destroy(); } catch (e) {} }
+    ov.__player = null;
     var stage = ov.querySelector('.wl-modal__stage');
     stage.innerHTML = '';
+    var isFile = location.protocol === 'file:';
+    var params = 'autoplay=1&rel=0&playsinline=1';
+    /* enablejsapi (+origin) only on the real site — invalid origin triggers 153 on file:// */
+    if (!isFile) params += '&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
     var iframe = document.createElement('iframe');
-    /* CLEAN params only — no enablejsapi/origin, so the player config is valid
-       from a file:// preview AND from production. */
-    iframe.src = NOCOOKIE + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1';
+    iframe.src = NOCOOKIE + encodeURIComponent(id) + '?' + params;
     iframe.title = title || 'YouTube video player';
     iframe.setAttribute('allow', IFRAME_ALLOW);
     iframe.setAttribute('allowfullscreen', '');
     iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     stage.appendChild(iframe);
-    ov.querySelector('.wl-modal__title').textContent = title || '';
+
+    /* resolve missing fields from the page's own data */
+    ov.__all = descriptorsFromDOM();
+    var self = null;
+    for (var i = 0; i < ov.__all.length; i++) { if (ov.__all[i].id === id) { self = ov.__all[i]; break; } }
+    var promo = (self && self.code) || promoCode(opts.promo) || '';
+    var page = opts.page || (self && self.page) || '';
+    var service = opts.service || (self && self.service) || '';
+    var serviceUrl = opts.serviceUrl || (self && self.serviceUrl) || '';
+    ov.__ytid = id; ov.__yttitle = title || ''; ov.__ytpage = page || null;
+
+    /* title links to the video's own page */
+    var tt = ov.querySelector('.wl-modal__title');
+    tt.textContent = title || '';
+    if (page) tt.setAttribute('href', page); else tt.removeAttribute('href');
     ov.querySelector('.wl-modal__yt').href = 'https://www.youtube.com/watch?v=' + id;
-    ov.__ytid = id; ov.__yttitle = title || ''; ov.__ytpage = opts.page || null;
-    try { populateMore(ov, id); } catch (e) {}
+
+    /* streaming promo card (goodwill: sends viewers to the official platform) */
+    var promoCard = ov.querySelector('.wl-side__promo');
+    if (service && serviceUrl) {
+      promoCard.href = serviceUrl;
+      promoCard.querySelector('.wl-side__promo-net').textContent = service;
+      promoCard.querySelector('.wl-side__promo-sub').textContent = (promo ? promo + ' — watch it all' : 'Watch the full show');
+      promoCard.hidden = false;
+    } else { promoCard.hidden = true; promoCard.removeAttribute('href'); }
+
+    if (!ov.__filter) ov.__filter = 'ALL';
+    renderSide(ov);
+    try { var cur = ov.querySelector('.wl-side__item.is-current'); if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest' }); } catch (e) {}
+
     try { history.replaceState(null, '', location.pathname + location.search + '#watch=' + id); } catch (e) {}
-    var svc = ov.querySelector('.wl-modal__svc');
-    if (opts.service && opts.serviceUrl) {
-      svc.href = opts.serviceUrl;
-      svc.textContent = 'Full show on ' + opts.service;
-      svc.hidden = false;
-    } else {
-      svc.hidden = true; svc.removeAttribute('href');
-    }
+    attachModalPlayer(ov, iframe);
+
     ov.__lastFocus = document.activeElement;
     ov.hidden = false;
     document.documentElement.style.overflow = 'hidden';
@@ -338,6 +447,7 @@
   }
   function closeModal() {
     if (!modal || modal.hidden) return;
+    if (modal.__player && modal.__player.destroy) { try { modal.__player.destroy(); } catch (e) {} modal.__player = null; }
     modal.querySelector('.wl-modal__stage').innerHTML = ''; /* stop playback */
     modal.hidden = true;
     document.documentElement.style.overflow = '';
