@@ -192,6 +192,10 @@
     var belt = p.closest ? p.closest('a.belt') : null;
     if (belt) belt.setAttribute('title', 'Day ' + days + ' of reign');
   });
+  /* intel rows elsewhere in the shell also tick from data-start */
+  Array.prototype.forEach.call(root.querySelectorAll('.ldg-days[data-start]'), function (el) {
+    el.textContent = 'DAY ' + reignDays(el.getAttribute('data-start'));
+  });
 
   /* ---- touch: first tap flips a strap to the champion, second follows the link ---- */
   if (window.matchMedia('(hover:none)').matches) {
