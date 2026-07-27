@@ -250,9 +250,9 @@
         '<div class="wl-modal__frame"><div class="wl-velvet"><div class="wl-modal__stage"></div></div></div>' +
         '<div class="wl-modal__bar"><span class="wl-modal__title"></span>' +
         '<span class="wl-modal__links">' +
-        '<button class="wl-modal__share" type="button">Share</button>' +
         '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
-        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a></span></div>' +
+        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a>' +
+        '<button class="wl-modal__share" type="button"><svg class="wl-share-ico" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18 16.08a2.9 2.9 0 0 0-2.05.86l-6.9-4.02a3 3 0 0 0 0-1.84l6.83-3.98A3 3 0 1 0 15 5a3 3 0 0 0 .06.6L8.24 9.58a3 3 0 1 0 0 4.84l6.88 4.02A3 3 0 1 0 18 16.08z"/></svg><span>Share</span></button></span></div>' +
       '</div>';
     document.body.appendChild(ov);
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
@@ -786,11 +786,13 @@
       });
     })(groups[g]);
   }
-  /* Shareable deep links: /page#watch=<id> auto-opens that video's modal. */
+  /* Shareable deep links: /page#watch=<id> (or ?watch=/?v=) auto-opens the modal. */
   function openFromHash() {
-    var m = (location.hash || '').match(/watch=([A-Za-z0-9_-]{6,})/);
+    var src = (location.hash || '') + ' ' + (location.search || '');
+    var m = src.match(/(?:watch|v)=([A-Za-z0-9_-]{6,})/);
     if (!m) return;
     var id = m[1];
+    if (modal && !modal.hidden && modal.__ytid === id) return; /* already showing it */
     var el = document.querySelector('.yt[data-yt-id="' + id + '"]');
     if (el) openModal(id, el.getAttribute('data-yt-title') || 'Wrestle Lore', { service: el.getAttribute('data-yt-service'), serviceUrl: el.getAttribute('data-yt-service-url') });
     else openModal(id, 'Wrestle Lore');
@@ -801,6 +803,8 @@
     try { initFilters(); } catch (e) {}
     try { initTabs(); } catch (e) {}
     try { openFromHash(); } catch (e) {}
+    window.addEventListener('hashchange', function () { try { openFromHash(); } catch (e) {} });
+    window.addEventListener('load', function () { try { openFromHash(); } catch (e) {} });
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);
