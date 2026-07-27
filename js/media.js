@@ -245,7 +245,7 @@
       '<div class="wl-modal__box">' +
         '<button class="wl-modal__close" type="button" aria-label="Close video">✕</button>' +
         '<div class="wl-modal__brand">' +
-          '<span class="wl-modal__mark">WL</span>' +
+          '<img class="wl-modal__logo" src="/assets/wrestle-lore-logo.png" alt="Wrestle Lore" width="72" height="48" decoding="async">' +
           '<a class="wl-modal__gallery" href="/gallery/">Wrestle Lore <b>Viewing Gallery</b></a>' +
           '<span class="wl-modal__note">Clips embedded from official channels. Watch the full show on its home network.</span>' +
         '</div>' +
