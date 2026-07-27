@@ -247,7 +247,7 @@
           '<span class="wl-modal__gallery">Wrestle Lore <b>Viewing Gallery</b></span>' +
           '<span class="wl-modal__note">Clips embedded from official channels. Watch the full show on its home network.</span>' +
         '</div>' +
-        '<div class="wl-modal__stage"></div>' +
+        '<div class="wl-modal__frame"><div class="wl-velvet"><div class="wl-modal__stage"></div></div></div>' +
         '<div class="wl-modal__bar"><span class="wl-modal__title"></span>' +
         '<span class="wl-modal__links">' +
         '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
