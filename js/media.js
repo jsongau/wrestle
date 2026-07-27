@@ -221,7 +221,10 @@
        scroll-autoplay still uses inline activate() for the muted preview. */
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      openModal(yt.getAttribute('data-yt-id'), yt.getAttribute('data-yt-title') || 'YouTube video player');
+      openModal(yt.getAttribute('data-yt-id'), yt.getAttribute('data-yt-title') || 'YouTube video player', {
+        service: yt.getAttribute('data-yt-service'),
+        serviceUrl: yt.getAttribute('data-yt-service-url')
+      });
     });
   }
 
@@ -241,7 +244,9 @@
         '<button class="wl-modal__close" type="button" aria-label="Close video">✕</button>' +
         '<div class="wl-modal__stage"></div>' +
         '<div class="wl-modal__bar"><span class="wl-modal__title"></span>' +
-        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>' +
+        '<span class="wl-modal__links">' +
+        '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
+        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube ↗</a></span></div>' +
       '</div>';
     document.body.appendChild(ov);
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
@@ -249,8 +254,9 @@
     modal = ov;
     return ov;
   }
-  function openModal(id, title) {
+  function openModal(id, title, opts) {
     if (!id) return;
+    opts = opts || {};
     var ov = buildModal();
     var stage = ov.querySelector('.wl-modal__stage');
     stage.innerHTML = '';
@@ -265,6 +271,14 @@
     stage.appendChild(iframe);
     ov.querySelector('.wl-modal__title').textContent = title || '';
     ov.querySelector('.wl-modal__yt').href = 'https://www.youtube.com/watch?v=' + id;
+    var svc = ov.querySelector('.wl-modal__svc');
+    if (opts.service && opts.serviceUrl) {
+      svc.href = opts.serviceUrl;
+      svc.textContent = 'Full show on ' + opts.service + ' ↗';
+      svc.hidden = false;
+    } else {
+      svc.hidden = true; svc.removeAttribute('href');
+    }
     ov.__lastFocus = document.activeElement;
     ov.hidden = false;
     document.documentElement.style.overflow = 'hidden';
