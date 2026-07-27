@@ -223,7 +223,8 @@
       e.preventDefault();
       openModal(yt.getAttribute('data-yt-id'), yt.getAttribute('data-yt-title') || 'YouTube video player', {
         service: yt.getAttribute('data-yt-service'),
-        serviceUrl: yt.getAttribute('data-yt-service-url')
+        serviceUrl: yt.getAttribute('data-yt-service-url'),
+        page: yt.getAttribute('data-yt-page')
       });
     });
   }
@@ -244,7 +245,7 @@
         '<button class="wl-modal__close" type="button" aria-label="Close video">✕</button>' +
         '<div class="wl-modal__brand">' +
           '<span class="wl-modal__mark">WL</span>' +
-          '<span class="wl-modal__gallery">Wrestle Lore <b>Viewing Gallery</b></span>' +
+          '<a class="wl-modal__gallery" href="/gallery/">Wrestle Lore <b>Viewing Gallery</b></a>' +
           '<span class="wl-modal__note">Clips embedded from official channels. Watch the full show on its home network.</span>' +
         '</div>' +
         '<div class="wl-modal__frame"><div class="wl-velvet"><div class="wl-modal__stage"></div></div></div>' +
@@ -253,6 +254,7 @@
         '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
         '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a>' +
         '<button class="wl-modal__share" type="button"><svg class="wl-share-ico" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18 16.08a2.9 2.9 0 0 0-2.05.86l-6.9-4.02a3 3 0 0 0 0-1.84l6.83-3.98A3 3 0 1 0 15 5a3 3 0 0 0 .06.6L8.24 9.58a3 3 0 1 0 0 4.84l6.88 4.02A3 3 0 1 0 18 16.08z"/></svg><span>Share</span></button></span></div>' +
+        '<div class="wl-modal__more" aria-label="More videos"></div>' +
       '</div>';
     document.body.appendChild(ov);
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
@@ -260,15 +262,44 @@
     var shareBtn = ov.querySelector('.wl-modal__share');
     shareBtn.addEventListener('click', function () {
       var id = ov.__ytid; if (!id) return;
-      var url = location.origin + location.pathname + '#watch=' + id;
+      var url = ov.__ytpage ? (location.origin + ov.__ytpage) : (location.origin + location.pathname + '#watch=' + id);
       var title = ov.__yttitle || 'Wrestle Lore';
       if (navigator.share) { navigator.share({ title: 'Wrestle Lore Viewing Gallery', text: title, url: url }).catch(function () {}); return; }
       var restore = function () { var o = shareBtn.getAttribute('data-label') || 'Share'; shareBtn.textContent = 'Link copied'; setTimeout(function () { shareBtn.textContent = o; }, 1600); };
       if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(restore, function () { window.prompt('Copy this link', url); }); }
       else { window.prompt('Copy this link', url); }
     });
+    ov.querySelector('.wl-modal__more').addEventListener('click', function (e) {
+      var btn = e.target.closest('.wl-more-item'); if (!btn) return;
+      openModal(btn.getAttribute('data-vid'), btn.getAttribute('data-t') || 'Wrestle Lore', {
+        service: btn.getAttribute('data-svc'), serviceUrl: btn.getAttribute('data-svcurl'), page: btn.getAttribute('data-page')
+      });
+    });
     modal = ov;
     return ov;
+  }
+  function populateMore(ov, currentId) {
+    var more = ov.querySelector('.wl-modal__more'); if (!more) return;
+    var all = [].slice.call(document.querySelectorAll('.yt[data-yt-id]'));
+    var seen = {}, list = [];
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i], vid = el.getAttribute('data-yt-id');
+      if (vid && vid !== currentId && !seen[vid]) { seen[vid] = 1; list.push(el); }
+    }
+    if (!list.length) { more.innerHTML = ''; more.hidden = true; return; }
+    more.hidden = false;
+    var html = '<span class="wl-more-head">More videos</span><div class="wl-more-row">';
+    for (var j = 0; j < Math.min(list.length, 12); j++) {
+      var e2 = list[j], v = e2.getAttribute('data-yt-id');
+      var t = (e2.getAttribute('data-yt-title') || '').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+      html += '<button class="wl-more-item" type="button" data-vid="' + v + '" data-t="' + t + '"'
+        + ' data-svc="' + (e2.getAttribute('data-yt-service') || '').replace(/"/g, '&quot;') + '"'
+        + ' data-svcurl="' + (e2.getAttribute('data-yt-service-url') || '') + '"'
+        + ' data-page="' + (e2.getAttribute('data-yt-page') || '') + '">'
+        + '<span class="wl-more-thumb" style="background-image:url(https://i.ytimg.com/vi/' + v + '/mqdefault.jpg)"></span>'
+        + '<span class="wl-more-t">' + t + '</span></button>';
+    }
+    more.innerHTML = html + '</div>';
   }
   function openModal(id, title, opts) {
     if (!id) return;
@@ -287,7 +318,8 @@
     stage.appendChild(iframe);
     ov.querySelector('.wl-modal__title').textContent = title || '';
     ov.querySelector('.wl-modal__yt').href = 'https://www.youtube.com/watch?v=' + id;
-    ov.__ytid = id; ov.__yttitle = title || '';
+    ov.__ytid = id; ov.__yttitle = title || ''; ov.__ytpage = opts.page || null;
+    try { populateMore(ov, id); } catch (e) {}
     try { history.replaceState(null, '', location.pathname + location.search + '#watch=' + id); } catch (e) {}
     var svc = ov.querySelector('.wl-modal__svc');
     if (opts.service && opts.serviceUrl) {
@@ -793,15 +825,42 @@
     if (!m) return;
     var id = m[1];
     if (modal && !modal.hidden && modal.__ytid === id) return; /* already showing it */
+    if (!(window.WL && window.WL.openModal)) return;
     var el = document.querySelector('.yt[data-yt-id="' + id + '"]');
-    if (el) openModal(id, el.getAttribute('data-yt-title') || 'Wrestle Lore', { service: el.getAttribute('data-yt-service'), serviceUrl: el.getAttribute('data-yt-service-url') });
-    else openModal(id, 'Wrestle Lore');
+    if (el) window.WL.openModal(id, el.getAttribute('data-yt-title') || 'Wrestle Lore', { service: el.getAttribute('data-yt-service'), serviceUrl: el.getAttribute('data-yt-service-url'), page: el.getAttribute('data-yt-page') });
+    else window.WL.openModal(id, 'Wrestle Lore');
+  }
+  /* Per-video page: auto-mount + autoplay (muted so it always starts). */
+  function mountPagePlayer() {
+    var el = document.querySelector('[data-yt-page-player][data-yt-id]'); if (!el) return;
+    var id = el.getAttribute('data-yt-id'); if (!id || el.querySelector('iframe')) return;
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&playsinline=1&mute=1';
+    iframe.title = document.title || 'Wrestle Lore video';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'); iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    el.appendChild(iframe);
+  }
+  /* Share button on the per-video page (data-share-url), copy-or-native-share. */
+  function initPageShare() {
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('.wl-modal__share[data-share-url]'); if (!b) return;
+      var v = b.getAttribute('data-share-url');
+      var url = /^https?:/i.test(v) ? v : (location.origin + v);
+      if (navigator.share) { navigator.share({ title: 'Wrestle Lore', url: url }).catch(function () {}); return; }
+      var s = b.querySelector('span') || b;
+      var done = function () { var o = s.textContent; s.textContent = 'Link copied'; setTimeout(function () { s.textContent = o; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link', url); }); }
+      else { window.prompt('Copy this link', url); }
+    });
   }
   function boot() {
     if (!window.WL) return;
     try { WL.init(); } catch (e) {}
     try { initFilters(); } catch (e) {}
     try { initTabs(); } catch (e) {}
+    try { mountPagePlayer(); } catch (e) {}
+    try { initPageShare(); } catch (e) {}
     try { openFromHash(); } catch (e) {}
     window.addEventListener('hashchange', function () { try { openFromHash(); } catch (e) {} });
     window.addEventListener('load', function () { try { openFromHash(); } catch (e) {} });
