@@ -2125,6 +2125,9 @@ html.has-bottom-rail body{padding-bottom:76px;}
 .nav7 .mega7--rdossier .rd-col--rise .rd-mini:hover .rd-mnm{color:#fff;}
 .nav7 .mega7--rdossier .rd-col--rise .rd-mini:hover .rd-mtg{border-color:#8a8f9c;color:#cfd3dc;}
 /* --- de-emphasized legends pointer (RIGHT column) --- */
+/* see-all rows in mini columns */
+.nav7 .mega7--rdossier .rd-mini--more .rd-mnm{color:#e8b923;font-weight:600;}
+.nav7 .mega7--rdossier .rd-mini--more{border-top:1px dashed rgba(232,185,35,.25);}
 /* legends section: rock hero + more-legends links */
 .nav7 .mega7--rdossier .rd-icons{grid-column:2;grid-row:3;display:flex;gap:9px;align-items:stretch;}
 .nav7 .mega7--rdossier .rd-icons .rd-feat--icon{flex:1.5;min-width:0;grid-column:auto;grid-row:auto;height:auto;}
