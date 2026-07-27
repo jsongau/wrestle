@@ -2524,3 +2524,13 @@ html.has-bottom-rail body{padding-bottom:76px;}
 .wl-modal__stage{position:relative;aspect-ratio:16/9;background:#000;border:0;border-radius:2px;overflow:hidden;
   box-shadow:inset 0 0 55px rgba(0,0,0,.9), 0 0 70px 6px rgba(242,204,75,.14), 0 0 0 1px rgba(0,0,0,.85);}
 .wl-modal__stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+/* ==== Viewing Gallery v2: red+gold close, share button, bolder theater ==== */
+.wl-modal__close{background:var(--c-red-bright,#ff3b48);border:2px solid var(--c-gold-bright,#f2cc4b);color:#fff;width:46px;height:46px;font-size:18px;line-height:1;box-shadow:0 6px 18px rgba(0,0,0,.55), 0 0 0 4px rgba(10,11,13,.45);}
+.wl-modal__close:hover{background:#ff5a64;color:#fff;transform:scale(1.07);}
+.wl-modal__share{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#0a0b0d;background:var(--c-gold-bright,#f2cc4b);border:0;padding:.5em 1.05em;border-radius:var(--r-pill,999px);cursor:pointer;font-weight:700;transition:filter .15s,transform .15s;}
+.wl-modal__share:hover{filter:brightness(1.08);transform:translateY(-1px);}
+/* bolder gilded frame */
+.wl-modal__frame{padding:18px;background:linear-gradient(135deg,#ffe89a 0%,#b8942a 16%,#f4cf5e 38%,#8a6c1a 60%,#f0c94e 82%,#9c7d1f 100%);box-shadow:0 2px 0 rgba(255,255,255,.5) inset, 0 -2px 0 rgba(0,0,0,.5) inset, 0 48px 130px rgba(0,0,0,.8), 0 0 120px rgba(242,204,75,.16);}
+/* wider, richer velvet curtains */
+.wl-modal::before,.wl-modal::after{width:clamp(48px,13vw,240px);background:repeating-linear-gradient(90deg, rgba(0,0,0,.6) 0 5px, rgba(0,0,0,0) 5px 20px, rgba(255,255,255,.06) 20px 22px), linear-gradient(90deg,#1e060c,#63151f 40%,#8a1f2e 60%,#360c15 100%);}

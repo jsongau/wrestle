@@ -250,12 +250,23 @@
         '<div class="wl-modal__frame"><div class="wl-velvet"><div class="wl-modal__stage"></div></div></div>' +
         '<div class="wl-modal__bar"><span class="wl-modal__title"></span>' +
         '<span class="wl-modal__links">' +
+        '<button class="wl-modal__share" type="button">Share</button>' +
         '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
         '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a></span></div>' +
       '</div>';
     document.body.appendChild(ov);
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
     ov.querySelector('.wl-modal__close').addEventListener('click', closeModal);
+    var shareBtn = ov.querySelector('.wl-modal__share');
+    shareBtn.addEventListener('click', function () {
+      var id = ov.__ytid; if (!id) return;
+      var url = location.origin + location.pathname + '#watch=' + id;
+      var title = ov.__yttitle || 'Wrestle Lore';
+      if (navigator.share) { navigator.share({ title: 'Wrestle Lore Viewing Gallery', text: title, url: url }).catch(function () {}); return; }
+      var restore = function () { var o = shareBtn.getAttribute('data-label') || 'Share'; shareBtn.textContent = 'Link copied'; setTimeout(function () { shareBtn.textContent = o; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(restore, function () { window.prompt('Copy this link', url); }); }
+      else { window.prompt('Copy this link', url); }
+    });
     modal = ov;
     return ov;
   }
@@ -276,6 +287,8 @@
     stage.appendChild(iframe);
     ov.querySelector('.wl-modal__title').textContent = title || '';
     ov.querySelector('.wl-modal__yt').href = 'https://www.youtube.com/watch?v=' + id;
+    ov.__ytid = id; ov.__yttitle = title || '';
+    try { history.replaceState(null, '', location.pathname + location.search + '#watch=' + id); } catch (e) {}
     var svc = ov.querySelector('.wl-modal__svc');
     if (opts.service && opts.serviceUrl) {
       svc.href = opts.serviceUrl;
@@ -296,6 +309,7 @@
     modal.querySelector('.wl-modal__stage').innerHTML = ''; /* stop playback */
     modal.hidden = true;
     document.documentElement.style.overflow = '';
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
     if (modalEsc) { document.removeEventListener('keydown', modalEsc); modalEsc = null; }
     try { if (modal.__lastFocus && modal.__lastFocus.focus) modal.__lastFocus.focus(); } catch (e) {}
   }
@@ -772,11 +786,21 @@
       });
     })(groups[g]);
   }
+  /* Shareable deep links: /page#watch=<id> auto-opens that video's modal. */
+  function openFromHash() {
+    var m = (location.hash || '').match(/watch=([A-Za-z0-9_-]{6,})/);
+    if (!m) return;
+    var id = m[1];
+    var el = document.querySelector('.yt[data-yt-id="' + id + '"]');
+    if (el) openModal(id, el.getAttribute('data-yt-title') || 'Wrestle Lore', { service: el.getAttribute('data-yt-service'), serviceUrl: el.getAttribute('data-yt-service-url') });
+    else openModal(id, 'Wrestle Lore');
+  }
   function boot() {
     if (!window.WL) return;
     try { WL.init(); } catch (e) {}
     try { initFilters(); } catch (e) {}
     try { initTabs(); } catch (e) {}
+    try { openFromHash(); } catch (e) {}
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);
