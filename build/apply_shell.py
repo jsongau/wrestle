@@ -28,6 +28,28 @@ FOOTER = _component("footer.html")
 
 SCRIPTS = '<script src="/js/search-index.js" defer></script>\n<script src="/js/nav.js" defer></script>\n'
 
+# Cache-busting version: short hash of the CSS + key JS so a deploy always serves fresh assets.
+import hashlib
+def _ver():
+    h = hashlib.md5()
+    for p in ("/css/site.css", "/js/nav.js", "/js/media.js", "/js/home-engage.js"):
+        try:
+            h.update(open(ROOT + p, "rb").read())
+        except OSError:
+            pass
+    return h.hexdigest()[:8]
+VER = _ver()
+
+def fix_version(html):
+    """Append ?v=<hash> to local css/js links so browsers/CDN re-fetch when they change."""
+    def bust(m):
+        path = m.group(2)
+        return m.group(1) + path + '?v=' + VER + m.group(4)
+    # href="/css/....css"(?v=...)?  and  src="/js/....js"(?v=...)?
+    html = re.sub(r'(href=")(/[^"?]+\.css)(\?v=[0-9a-f]+)?(")', bust, html)
+    html = re.sub(r'(src=")(/[^"?]+\.js)(\?v=[0-9a-f]+)?(")', bust, html)
+    return html
+
 # Self-hosted fonts: preload Anton (the display/LCP font); faces live in site.css.
 FONT_PRELOAD = '<link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
 
@@ -126,6 +148,8 @@ def apply(html):
     # head: favicon links + theme-color
     html, hchg = fix_head(html)
     if hchg: report.append("head")
+    # cache-bust css/js so new styles actually load after a deploy
+    html = fix_version(html)
     # renames + domain
     for a, b in RENAMES:
         html = html.replace(a, b)

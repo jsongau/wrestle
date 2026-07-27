@@ -2660,8 +2660,8 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
 }
 
 /* ---------- NAV LOGO MARK (same size as before) + masked click/idle gleam ---------- */
-.nav7 .mark--logo{position:relative;display:flex;align-items:center;width:auto;height:80px;background:none;box-shadow:none;border-radius:0;overflow:visible;}
-.nav7 .mark--logo img{width:auto;height:80px;object-fit:contain;display:block;filter:drop-shadow(0 3px 12px rgba(212,175,55,.34));}
+.nav7 .mark--logo{position:relative;display:flex;align-items:center;width:auto;height:96px;background:none;box-shadow:none;border-radius:0;overflow:visible;}
+.nav7 .mark--logo img{width:auto;height:96px;object-fit:contain;display:block;filter:drop-shadow(0 3px 13px rgba(212,175,55,.36));}
 /* the shine is MASKED to the belt shape so light gleams THROUGH the metal, never a box on top */
 .nav7 .mark--logo .sheen{position:absolute;inset:0;pointer-events:none;z-index:2;
   -webkit-mask:url("/assets/wrestle-lore-logo.png") center/contain no-repeat;
