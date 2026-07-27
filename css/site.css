@@ -2125,6 +2125,13 @@ html.has-bottom-rail body{padding-bottom:76px;}
 .nav7 .mega7--rdossier .rd-col--rise .rd-mini:hover .rd-mnm{color:#fff;}
 .nav7 .mega7--rdossier .rd-col--rise .rd-mini:hover .rd-mtg{border-color:#8a8f9c;color:#cfd3dc;}
 /* --- de-emphasized legends pointer (RIGHT column) --- */
+/* featured icon file (compact, replaces legends row) */
+.nav7 .mega7--rdossier .rd-feat--icon{grid-row:3;min-height:0;flex-direction:row;align-items:center;gap:14px;
+  padding:14px 96px 14px 16px;}
+.nav7 .mega7--rdossier .rd-feat--icon .rd-mono{font-size:92px;bottom:-24px;right:2px;}
+.nav7 .mega7--rdossier .rd-icobody{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.nav7 .mega7--rdossier .rd-name--sm{font-size:24px;line-height:.95;margin:0;}
+.nav7 .mega7--rdossier .rd-feat--icon .rd-go{position:absolute;right:16px;bottom:12px;}
 .nav7 .mega7--rdossier .rd-legends{grid-column:2;grid-row:3;display:flex;align-items:center;flex-wrap:wrap;gap:7px 12px;
   padding:8px 11px;border:1px dashed #2e2817;border-radius:6px;background:#100e08;}
 .nav7 .mega7--rdossier .rd-lglbl{font-family:var(--mono7);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;
