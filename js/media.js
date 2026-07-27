@@ -242,11 +242,16 @@
       '<div class="wl-modal__backdrop"></div>' +
       '<div class="wl-modal__box">' +
         '<button class="wl-modal__close" type="button" aria-label="Close video">✕</button>' +
+        '<div class="wl-modal__brand">' +
+          '<span class="wl-modal__mark">WL</span>' +
+          '<span class="wl-modal__gallery">Wrestle Lore <b>Viewing Gallery</b></span>' +
+          '<span class="wl-modal__note">Clips embedded from official channels. Watch the full show on its home network.</span>' +
+        '</div>' +
         '<div class="wl-modal__stage"></div>' +
         '<div class="wl-modal__bar"><span class="wl-modal__title"></span>' +
         '<span class="wl-modal__links">' +
         '<a class="wl-modal__svc" target="_blank" rel="noopener" hidden></a>' +
-        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube ↗</a></span></div>' +
+        '<a class="wl-modal__yt" target="_blank" rel="noopener">Watch on YouTube</a></span></div>' +
       '</div>';
     document.body.appendChild(ov);
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
@@ -274,7 +279,7 @@
     var svc = ov.querySelector('.wl-modal__svc');
     if (opts.service && opts.serviceUrl) {
       svc.href = opts.serviceUrl;
-      svc.textContent = 'Full show on ' + opts.service + ' ↗';
+      svc.textContent = 'Full show on ' + opts.service;
       svc.hidden = false;
     } else {
       svc.hidden = true; svc.removeAttribute('href');
