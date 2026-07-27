@@ -28,7 +28,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="/css/site.css?v=3c948169">
+<link rel="stylesheet" href="/css/site.css?v=80f08ae7">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://wrestlelore.com/#org","name":"Wrestle Lore, the Pro Wrestling Database","url":"https://wrestlelore.com/","logo":{"@type":"ImageObject","url":"https://wrestlelore.com/assets/logo-512.png","width":512,"height":512},"description":"A crawlable database of modern professional wrestling: 107 wrestler profiles, 30 five-star matches, 11 championship lineages, plus rivalries, factions and real-life relationships across WWE, WCW, ECW, TNA, NXT, NJPW and AEW, with AAA covered through its WWE partnership.","foundingDate":"2026","sameAs":["https://twitter.com/matwrestling","https://www.youtube.com/@matwrestling"]}
 </script>
@@ -788,7 +788,8 @@
   <style>
   .thisweek .tw-lede{color:var(--c-text-muted,#a2a9b4);max-width:70ch;margin:0 0 var(--sp-4,1rem);}
   .thisweek .tw-dateline{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.08em;color:var(--c-gold-bright,#f2cc4b);text-transform:uppercase;white-space:nowrap;align-self:center;}
-  .thisweek .tw-layout{display:grid;grid-template-columns:minmax(210px,270px) 1fr;gap:var(--sp-5,1.25rem);align-items:start;}
+  .thisweek .tw-layout{display:grid;grid-template-columns:minmax(210px,270px) 1fr;gap:var(--sp-5,1.25rem);align-items:start;min-width:0;}
+  .thisweek .tw-detail,.thisweek .tw-panel,.thisweek .tw-rail,.thisweek .tw-list{min-width:0;}
   .thisweek .tw-list{display:flex;flex-direction:column;gap:.6rem;}
   .thisweek .tw-item{text-align:left;display:flex;flex-direction:column;gap:.15rem;padding:.9rem 1.05rem;background:var(--c-bg-elev-1,#121418);border:1px solid var(--c-line,#2b3038);border-radius:var(--r-md,10px);cursor:pointer;transition:border-color .18s,background .18s;}
   .thisweek .tw-item:hover{border-color:var(--c-line-strong,#3a414c);}
@@ -800,10 +801,10 @@
   .thisweek .tw-panel__head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:var(--sp-3,.75rem);flex-wrap:wrap;}
   .thisweek .tw-net{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.04em;color:var(--c-gold-bright,#f2cc4b);text-decoration:none;border:1px solid var(--c-line-strong,#3a414c);padding:.42em .85em;border-radius:var(--r-pill,999px);white-space:nowrap;transition:border-color .15s,background .15s;}
   .thisweek .tw-net:hover{border-color:var(--c-gold-bright,#f2cc4b);background:var(--c-gold-tint,rgba(212,175,55,.12));}
-  .thisweek .tw-rail{display:flex;gap:var(--sp-4,1rem);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;list-style:none;margin:0;}
+  .thisweek .tw-rail{display:flex;gap:var(--sp-4,1rem);overflow-x:auto;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:.6rem;list-style:none;margin:0;scrollbar-width:thin;scrollbar-color:var(--golddim,#8c7420) transparent;background:linear-gradient(270deg,rgba(242,204,75,.16),transparent 30px) right center/30px 82% no-repeat;}
   .thisweek .tw-rail>li{flex:0 0 clamp(220px,42%,270px);scroll-snap-align:start;}
   .thisweek .tw-rail .vcard{height:100%;}
-  .thisweek .yt__thumb{filter:blur(16px) brightness(.55);transform:scale(1.06);transition:filter .35s var(--ease,ease),transform .35s var(--ease,ease);}
+  .thisweek .yt__thumb{filter:blur(16px) brightness(.55);transition:filter .35s var(--ease,ease);}
   .thisweek .yt:hover .yt__thumb,.thisweek .yt:focus-within .yt__thumb{filter:none;transform:none;}
   @media (max-width:760px){.thisweek .tw-layout{grid-template-columns:1fr;}.thisweek .tw-list{flex-direction:row;overflow-x:auto;}.thisweek .tw-item{flex:0 0 auto;}}
   @media (prefers-reduced-motion:reduce){.thisweek .yt__thumb{transition:none;}}
@@ -1362,11 +1363,11 @@
 </footer>
 
 <div class="grain" aria-hidden="true"></div>
-<script src="/js/main.js?v=3c948169" defer></script>
-<script src="/js/enhance.js?v=3c948169" defer></script>
-<script src="/js/search-index.js?v=3c948169" defer></script>
-<script src="/js/nav.js?v=3c948169" defer></script>
-<script src="/js/home-engage.js?v=3c948169" defer></script>
-<script src="/js/media.js?v=3c948169" defer></script>
+<script src="/js/main.js?v=80f08ae7" defer></script>
+<script src="/js/enhance.js?v=80f08ae7" defer></script>
+<script src="/js/search-index.js?v=80f08ae7" defer></script>
+<script src="/js/nav.js?v=80f08ae7" defer></script>
+<script src="/js/home-engage.js?v=80f08ae7" defer></script>
+<script src="/js/media.js?v=80f08ae7" defer></script>
 </body>
 </html>

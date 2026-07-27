@@ -622,12 +622,12 @@ body{font-family:var(--font-sans);}
 @media (prefers-reduced-motion:reduce){.marquee__track{animation:none;overflow-x:auto;}}
 
 /* ---- duotone poster tiles ---- */
-.grid-spot{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));}
+.grid-spot{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fill,minmax(min(158px,100%),1fr));}
 .tile{position:relative;isolation:isolate;display:block;background:var(--c-bg-elev-1);border:1px solid var(--c-line);
   border-radius:var(--r-lg);overflow:hidden;text-decoration:none;color:inherit;
   transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);}
 .tile:hover{transform:translateY(-4px);border-color:var(--c-line-strong);box-shadow:var(--shadow-2),0 0 0 1px var(--c-gold-dim);}
-.tile__media{position:relative;aspect-ratio:3/4;overflow:hidden;
+.tile__media{position:relative;aspect-ratio:4/5;overflow:hidden;
   background:linear-gradient(calc(var(--seed,220)*1deg),color-mix(in oklab,var(--c-red) 55%,#000) 0%,#0c0d10 58%),var(--c-bg-elev-2);}
 .tile--gold .tile__media{background:linear-gradient(calc(var(--seed,220)*1deg),color-mix(in oklab,var(--c-gold) 55%,#000) 0%,#0c0d10 58%),var(--c-bg-elev-2);}
 .tile__media::after{content:"";position:absolute;inset:0;opacity:.10;mix-blend-mode:overlay;
@@ -2553,7 +2553,8 @@ html.has-bottom-rail body{padding-bottom:76px;}
  * ==================================================================== */
 .thisweek .tw-lede{color:var(--c-text-muted,#a2a9b4);max-width:70ch;margin:0 0 var(--sp-4,1rem);}
 .thisweek .tw-dateline{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.08em;color:var(--c-gold-bright,#f2cc4b);text-transform:uppercase;white-space:nowrap;align-self:center;}
-.thisweek .tw-layout{display:grid;grid-template-columns:minmax(210px,270px) 1fr;gap:var(--sp-5,1.25rem);align-items:start;}
+.thisweek .tw-layout{display:grid;grid-template-columns:minmax(210px,270px) 1fr;gap:var(--sp-5,1.25rem);align-items:start;min-width:0;}
+.thisweek .tw-detail,.thisweek .tw-panel,.thisweek .tw-rail,.thisweek .tw-list{min-width:0;}
 .thisweek .tw-list{display:flex;flex-direction:column;gap:.6rem;}
 .thisweek .tw-item{text-align:left;display:flex;flex-direction:column;gap:.15rem;padding:.9rem 1.05rem;background:var(--c-bg-elev-1,#121418);border:1px solid var(--c-line,#2b3038);border-radius:var(--r-md,10px);cursor:pointer;transition:border-color .18s,background .18s;}
 .thisweek .tw-item:hover{border-color:var(--c-line-strong,#3a414c);}
@@ -2565,10 +2566,10 @@ html.has-bottom-rail body{padding-bottom:76px;}
 .thisweek .tw-panel__head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:var(--sp-3,.75rem);flex-wrap:wrap;}
 .thisweek .tw-net{font-family:var(--font-mono,monospace);font-size:11px;letter-spacing:.04em;color:var(--c-gold-bright,#f2cc4b);text-decoration:none;border:1px solid var(--c-line-strong,#3a414c);padding:.42em .85em;border-radius:var(--r-pill,999px);white-space:nowrap;transition:border-color .15s,background .15s;}
 .thisweek .tw-net:hover{border-color:var(--c-gold-bright,#f2cc4b);background:var(--c-gold-tint,rgba(212,175,55,.12));}
-.thisweek .tw-rail{display:flex;gap:var(--sp-4,1rem);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;list-style:none;margin:0;}
+.thisweek .tw-rail{display:flex;gap:var(--sp-4,1rem);overflow-x:auto;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:.6rem;list-style:none;margin:0;scrollbar-width:thin;scrollbar-color:var(--golddim,#8c7420) transparent;background:linear-gradient(270deg,rgba(242,204,75,.16),transparent 30px) right center/30px 82% no-repeat;}
 .thisweek .tw-rail>li{flex:0 0 clamp(220px,42%,270px);scroll-snap-align:start;}
 .thisweek .tw-rail .vcard{height:100%;}
-.thisweek .yt__thumb{filter:blur(16px) brightness(.55);transform:scale(1.06);transition:filter .35s var(--ease,ease),transform .35s var(--ease,ease);}
+.thisweek .yt__thumb{filter:blur(16px) brightness(.55);transition:filter .35s var(--ease,ease);}
 .thisweek .yt:hover .yt__thumb,.thisweek .yt:focus-within .yt__thumb{filter:none;transform:none;}
 @media (max-width:760px){.thisweek .tw-layout{grid-template-columns:1fr;}.thisweek .tw-list{flex-direction:row;overflow-x:auto;}.thisweek .tw-item{flex:0 0 auto;}}
 @media (prefers-reduced-motion:reduce){.thisweek .yt__thumb{transition:none;}}
@@ -2681,3 +2682,50 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
   background:linear-gradient(180deg,var(--goldb),var(--golddim));border-radius:2px;}
 .nav7 .bw-c .w{font-family:var(--anton);font-size:22px;line-height:.9;letter-spacing:.03em;}
 .nav7 .bw-c .l{font-family:var(--osw);font-weight:600;font-size:12px;letter-spacing:.62em;color:var(--goldb);margin-top:2px;}
+
+/* ===================================================================== *
+ * MOBILE FRONT-PAGE FIXES (2026-07-27)                                  *
+ * kill page h-scroll · stop This Week card jitter on tap ·              *
+ * visible scroll affordance on rails · shrink roster discovery tiles    *
+ * ===================================================================== */
+/* Never let page CONTENT scroll sideways. Scoped to #main (the content
+   wrapper) so the nav's dropdown panels — which live in the header, outside
+   #main — are untouched. clip (not hidden) keeps sticky working; the rails
+   inside still scroll internally. */
+#main{overflow-x:clip;}
+
+/* Sticky-hover guard: on touch, :hover latches after a tap and keeps
+   zooming/reflowing cards. Only allow hover motion on real pointers. */
+@media (hover:none){
+  .yt:hover .yt__thumb{transform:none;}
+  .tile:hover{transform:none;}
+  .vcard:hover{transform:none;}
+  .thisweek .yt:hover .yt__thumb{transform:none;}
+}
+
+/* Scroll affordance: thin gold scrollbar on the horizontal rails so it's
+   obvious they scroll (desktop/Android show it always; iOS on scroll). */
+.thisweek .tw-rail::-webkit-scrollbar{height:6px;}
+.thisweek .tw-rail::-webkit-scrollbar-thumb{background:var(--golddim,#8c7420);border-radius:99px;}
+.thisweek .tw-rail::-webkit-scrollbar-track{background:transparent;}
+@media (hover:hover){ .thisweek .tw-rail::-webkit-scrollbar-thumb:hover{background:var(--gold,#d4af37);} }
+@media (max-width:1024px){
+  .nav7 .tabs7{scrollbar-width:thin;scrollbar-color:var(--golddim,#8c7420) transparent;}
+  .nav7 .tabs7::-webkit-scrollbar{height:4px;}
+  .nav7 .tabs7::-webkit-scrollbar-thumb{background:var(--golddim,#8c7420);border-radius:99px;}
+}
+@media (max-width:760px){
+  .thisweek .tw-list{scrollbar-width:thin;scrollbar-color:var(--golddim,#8c7420) transparent;gap:.5rem;padding-bottom:.4rem;}
+  .thisweek .tw-list::-webkit-scrollbar{height:5px;}
+  .thisweek .tw-list::-webkit-scrollbar-thumb{background:var(--golddim,#8c7420);border-radius:99px;}
+}
+
+/* Roster discovery tiles: too tall/large on phones (1-up 3:4 posters).
+   Go 2-up with squarer media and a smaller watermark letter. */
+@media (max-width:560px){
+  .grid-spot{grid-template-columns:repeat(2,1fr);gap:var(--sp-3,.75rem);}
+  .tile__media{aspect-ratio:1/1;}
+  .tile__mono{font-size:4.6rem;}
+  .tile__body{padding:var(--sp-3,.75rem);}
+  .tile__name{font-size:var(--fs-400,1.05rem);}
+}
