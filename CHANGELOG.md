@@ -1,3 +1,8 @@
+## 2026-07-27 (Nav — full-bleed bar + "Masthead" wordmark)
+- Mega-nav is now full bleed: removed the `.wrap` (max-width 1200px) wrapper from `components/meganav.html` so the bar spans 100vw edge-to-edge; `.nav7 .bar` gets `width:100%` + `padding-inline:clamp(16px,3vw,34px)` for the gutter. Belt still overflows the 62px bar (unchanged).
+- New wordmark (Concept C, "Masthead"): belt logo → slim gold vertical divider → big Anton `WRESTLE` over a wide-tracked (.62em) gold Oswald `LORE` subline. Replaces the cramped `.bword--stack` (line-height .86). Real spacing between the two lines.
+- Directory tabs restyled airier: Oswald 400 (was 600), letter-spacing .11em (was .06em), 14px (was 13.5). Verified with Playwright at 1440/1280/1152 (all 7 tabs + pill + CTA fit) and 1024 (existing overflow-scroll pattern engages). No console errors.
+
 ## 2026-07-27 (Viewing Gallery v3 — YouTube-style theater modal)
 - Rebuilt the modal into a two-column layout: velvet-framed player on the left, a right rail with a streaming promo card + promotion tabs (All/WWE/AEW/TNA/NXT) + a scrollable "Keep watching" list. Fixes the top-clipping bug — box is now height-bounded (`max-height:100dvh - headroom`) with the 16/9 frame width-capped to available height, and the close button no longer gets clipped (box `overflow:visible`, extra headroom).
 - Modal title is now an `<a>` to the video's own page. Share button copies the clean canonical page URL only (defensive whitespace strip); the earlier bug appended the title text after the slug.

@@ -1297,9 +1297,10 @@ html.has-bottom-rail body{padding-bottom:76px;}
   color:var(--dim);letter-spacing:.08em;white-space:nowrap;}
 @media(min-width:1100px){.ticker7 .utc{display:flex;}}
 /* ---- full-bleed bar ---- */
-.nav7 .bar{display:flex;align-items:center;gap:4px;min-height:62px;}
-.nav7 .brand7{display:flex;align-items:center;gap:.5em;font-family:var(--anton);font-weight:400;font-size:22px;
-  letter-spacing:.02em;color:#fff;text-decoration:none;margin-right:14px;white-space:nowrap;user-select:none;}
+/* FULL BLEED: bar spans 100% (the .wrap wrapper was removed from the nav markup); edge padding only */
+.nav7 .bar{display:flex;align-items:center;gap:4px;min-height:62px;width:100%;padding-inline:clamp(16px,3vw,34px);}
+.nav7 .brand7{display:flex;align-items:center;gap:.85em;font-family:var(--anton);font-weight:400;font-size:22px;
+  letter-spacing:.02em;color:#fff;text-decoration:none;margin-right:16px;white-space:nowrap;user-select:none;}
 .nav7 .brand7:hover{color:#fff;}
 .nav7 .mark{position:relative;overflow:hidden;width:33px;height:33px;display:grid;place-content:center;border-radius:4px;
   color:#1a1400;font-family:var(--anton);font-size:15px;background:linear-gradient(180deg,#f7e08a,var(--gold) 55%,var(--golddim));
@@ -1309,11 +1310,12 @@ html.has-bottom-rail body{padding-bottom:76px;}
 @keyframes wlsweep7{0%{transform:translateX(-16px)}9%{transform:translateX(48px)}100%{transform:translateX(48px)}}
 .nav7 .tabs7{display:flex;align-items:center;gap:2px;}
 .nav7 .navitem{position:relative;}
+/* Concept C directory: airier Oswald 400, wider tracking, slightly larger */
 .nav7 .tab{display:inline-block;color:var(--mut);text-decoration:none;font-family:var(--osw);text-transform:uppercase;
-  letter-spacing:.06em;font-weight:600;font-size:13.5px;padding:.85em .7em;cursor:pointer;position:relative;
+  letter-spacing:.11em;font-weight:400;font-size:14px;padding:.85em .68em;cursor:pointer;position:relative;
   white-space:nowrap;user-select:none;}
 .nav7 .tab:hover{color:#fff;}
-.nav7 .tab::after{content:"";position:absolute;left:.7em;right:.7em;bottom:8px;height:2px;
+.nav7 .tab::after{content:"";position:absolute;left:.68em;right:.68em;bottom:8px;height:2px;
   background:var(--tabacc,var(--red));transform:scaleX(0);transform-origin:left;transition:transform .1s ease;}
 .nav7 .tab:hover::after{transform:scaleX(1);}
 .nav7 .navitem.open .tab{color:#fff;}
@@ -2671,5 +2673,11 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
   animation:wlgleam 6.5s cubic-bezier(.4,0,.2,1) infinite;}
 .nav7 .brand7:hover .mark--logo .sheen,.nav7 .brand7:active .mark--logo .sheen{animation:wlgleam 0.75s cubic-bezier(.4,0,.2,1);}
 @keyframes wlgleam{0%{background-position:190% 0}13%{background-position:-90% 0}100%{background-position:-90% 0}}
-.nav7 .bword--stack{display:flex;flex-direction:column;line-height:.86;letter-spacing:.03em;font-family:var(--anton);text-transform:uppercase;font-size:17px;}
-.nav7 .bword--stack b{font-weight:400;display:block;}
+/* Concept C — "Masthead" wordmark: big Anton WRESTLE + wide-tracked gold LORE subline, slim gold divider */
+.nav7 .bword{display:flex;flex-direction:column;text-transform:uppercase;color:#fff;}
+.nav7 .bword b{font-weight:400;display:block;}
+.nav7 .bw-c{position:relative;padding-left:16px;gap:2px;}
+.nav7 .bw-c::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:2px;
+  background:linear-gradient(180deg,var(--goldb),var(--golddim));border-radius:2px;}
+.nav7 .bw-c .w{font-family:var(--anton);font-size:22px;line-height:.9;letter-spacing:.03em;}
+.nav7 .bw-c .l{font-family:var(--osw);font-weight:600;font-size:12px;letter-spacing:.62em;color:var(--goldb);margin-top:2px;}
