@@ -1777,6 +1777,7 @@ html.has-bottom-rail body{padding-bottom:76px;}
   .nav7 .belt:hover,:is(.nav7,.hv3) .tc:hover,:is(.nav7,.hv3) .chc:hover,.hv3 .readouts a:hover{transform:none;}
   .nav7 .wlsweep,.nav7 .nv-t .cspark path,.nav7 .pf--champ,.nav7 .pf--day{animation:none !important;}
   .nav7 .wlshim{display:none !important;}
+  .nav7 .mark--logo .sheen{animation:none !important;display:none !important;}
   .nav7 .nv-t .cspark path{stroke-dashoffset:0;opacity:.35;}
   /* plate roll: swap faces instantly, no roll, no shine */
   .nav7 .pf{transition:none !important;}
@@ -2657,9 +2658,17 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
   .wl-modal__close{top:6px;right:6px;z-index:5;}
 }
 
-/* ---------- NAV LOGO MARK (belt PNG + kept sheen) + stacked wordmark ---------- */
-.nav7 .mark--logo{width:auto;height:42px;background:none;box-shadow:none;border-radius:0;overflow:visible;}
-.nav7 .mark--logo img{width:auto;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 2px 8px rgba(212,175,55,.22));}
-.nav7 .mark--logo .wlshim{width:100%;height:100%;}
+/* ---------- NAV LOGO MARK (same size as before) + masked click/idle gleam ---------- */
+.nav7 .mark--logo{position:relative;display:flex;align-items:center;width:auto;height:42px;background:none;box-shadow:none;border-radius:0;overflow:visible;}
+.nav7 .mark--logo img{width:auto;height:42px;object-fit:contain;display:block;filter:drop-shadow(0 2px 9px rgba(212,175,55,.28));}
+/* the shine is MASKED to the belt shape so light gleams THROUGH the metal, never a box on top */
+.nav7 .mark--logo .sheen{position:absolute;inset:0;pointer-events:none;z-index:2;
+  -webkit-mask:url("/assets/wrestle-lore-logo.png") center/contain no-repeat;
+  mask:url("/assets/wrestle-lore-logo.png") center/contain no-repeat;
+  background:linear-gradient(105deg,transparent 41%,rgba(255,255,255,.55) 48%,rgba(255,255,255,.95) 50%,rgba(255,246,210,.55) 52%,transparent 59%);
+  background-size:220% 100%;background-repeat:no-repeat;background-position:190% 0;mix-blend-mode:screen;
+  animation:wlgleam 6.5s cubic-bezier(.4,0,.2,1) infinite;}
+.nav7 .brand7:hover .mark--logo .sheen,.nav7 .brand7:active .mark--logo .sheen{animation:wlgleam 0.75s cubic-bezier(.4,0,.2,1);}
+@keyframes wlgleam{0%{background-position:190% 0}13%{background-position:-90% 0}100%{background-position:-90% 0}}
 .nav7 .bword--stack{display:flex;flex-direction:column;line-height:.86;letter-spacing:.03em;font-family:var(--anton);text-transform:uppercase;font-size:17px;}
 .nav7 .bword--stack b{font-weight:400;display:block;}
