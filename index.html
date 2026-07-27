@@ -737,7 +737,7 @@
 <div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Search Wrestle Lore" aria-hidden="true" data-wl-shell>
   <div class="cmdk__box"><div class="cmdk__head">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    <input class="cmdk__input" type="text" placeholder="Search wrestlers, events, moments, matches&hellip;" aria-label="Search" autocomplete="off">
+    <input class="cmdk__input" type="text" placeholder="Search wrestlers, events, moments, matches…" aria-label="Search" autocomplete="off">
     <span class="cmdk__hint">Esc</span></div>
     <ul class="cmdk__results" role="listbox" aria-label="Search results"></ul>
     <div class="cmdk__foot"><span><kbd>&#8593;&#8595;</kbd> navigate</span><span><kbd>&#8629;</kbd> open</span><span><kbd>esc</kbd> close</span></div>
@@ -1173,10 +1173,106 @@
 </main>
 
 <!-- ===================== FOOTER ===================== -->
-<footer class="site-footer" data-wl-shell><div class="wrap">
-  <p>&copy; 2026 Wrestle Lore. All rights reserved.</p>
-  <nav><a href="/about/">About</a> &middot; <a href="/methodology/">Methodology</a> &middot; <a href="/membership/">Insider</a></nav>
-</div></footer>
+<footer class="site-footer site-footer--fat" data-wl-shell>
+  <div class="wrap">
+
+    <!-- slim brand + Join Insider strip -->
+    <div class="ftr-strip">
+      <a class="ftr-brand" href="/" aria-label="Wrestle Lore, home">
+        <span class="ftr-mark" aria-hidden="true">WL</span>
+        <span class="ftr-brand__txt">
+          <span class="ftr-brand__word">Wrestle Lore</span>
+          <span class="ftr-brand__tag">The crawlable record of modern pro wrestling.</span>
+        </span>
+      </a>
+      <ul class="ftr-stats" aria-label="Catalog scale">
+        <li><b>107</b> Wrestlers</li>
+        <li><b>30</b> Five-star matches</li>
+        <li><b>225</b> Pages</li>
+        <li><b>7</b> Promotions</li>
+      </ul>
+      <a class="ftr-cta" href="/membership/">
+        <span class="ftr-cta__k">Wrestle Lore Insider</span>
+        <span class="ftr-cta__l">Join Insider <span aria-hidden="true">-&gt;</span></span>
+      </a>
+    </div>
+
+    <!-- dense directory grid -->
+    <nav class="ftr-dir" aria-label="Site directory">
+      <div class="ftr-col">
+        <h2 class="ftr-h">Superstars</h2>
+        <ul>
+          <li><a href="/wrestlers/">All Wrestlers <span class="ftr-ct">107</span></a></li>
+          <li><a href="/current/">Current Stars</a></li>
+          <li><a href="/legends/">Legends</a></li>
+          <li><a href="/women/">Women's Division</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Matches</h2>
+        <ul>
+          <li><a href="/matches/">Match Library</a></li>
+          <li><a href="/rankings/">Five-star Rankings</a></li>
+          <li><a href="/moments/">Defining Moments</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Events</h2>
+        <ul>
+          <li><a href="/events/">All Events</a></li>
+          <li><a href="/events/wrestlemania-42-2026/">WrestleMania 42</a></li>
+          <li><a href="/events/royal-rumble-2026/">Royal Rumble 2026</a></li>
+          <li><a href="/events/night-of-champions-2026/">Night of Champions</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Promotions</h2>
+        <ul>
+          <li><a href="/promotions/wwe/">WWE</a></li>
+          <li><a href="/promotions/wcw/">WCW</a></li>
+          <li><a href="/promotions/aew/">AEW</a></li>
+          <li><a href="/promotions/njpw/">NJPW</a></li>
+          <li><a href="/promotions/tna/">TNA</a></li>
+          <li><a href="/promotions/ecw/">ECW</a></li>
+          <li><a href="/promotions/nxt/">NXT</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Titles &amp; Teams</h2>
+        <ul>
+          <li><a href="/titles/">Championships</a></li>
+          <li><a href="/factions/">Factions</a></li>
+          <li><a href="/tag-teams/">Tag Teams</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">More</h2>
+        <ul>
+          <li><a href="/hall-of-fame/">Hall of Fame</a></li>
+          <li><a href="/media/">Media</a></li>
+          <li><a href="/rivalries/">Rivalries</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/methodology/">Methodology</a></li>
+          <li><a href="/membership/">Insider</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- provenance line -->
+    <p class="ftr-prov">WWE / WCW / ECW / TNA / NXT / NJPW / AEW &middot; 1997 to WrestleMania 42</p>
+
+    <!-- bottom legal bar -->
+    <div class="ftr-legal">
+      <p class="ftr-copy">&copy; 2026 Wrestle Lore</p>
+      <nav class="ftr-legal__nav" aria-label="Legal">
+        <a href="/about/">About</a>
+        <a href="/methodology/">Methodology</a>
+      </nav>
+      <span class="ftr-domain">wrestlelore.com</span>
+    </div>
+
+  </div>
+</footer>
 
 <div class="grain" aria-hidden="true"></div>
 <script src="/js/main.js" defer></script>
