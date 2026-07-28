@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0b0c10">
-<link rel="stylesheet" href="/css/site.css?v=fd26a47b">
+<link rel="stylesheet" href="/css/site.css?v=abe3bac3">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -813,24 +813,49 @@
 <footer class="site-footer site-footer--fat" data-wl-shell>
   <div class="wrap">
 
-    <!-- slim brand + Join Insider strip -->
+    <!-- top strip: brand + fun fact + Join Insider -->
     <div class="ftr-strip">
       <a class="ftr-brand" href="/" aria-label="Wrestle Lore, home">
-        <span class="ftr-mark" aria-hidden="true">WL</span>
+        <img class="ftr-logo" src="/assets/wrestle-lore-logo.png" alt="" width="141" height="96" decoding="async">
         <span class="ftr-brand__txt">
           <span class="ftr-brand__word">Wrestle Lore</span>
-          <span class="ftr-brand__tag">The crawlable record of modern pro wrestling.</span>
+          <span class="ftr-brand__tag">The pro wrestling history database.</span>
         </span>
       </a>
-      <ul class="ftr-stats" aria-label="Catalog scale">
-        <li><b>107</b> Wrestlers</li>
-        <li><b>30</b> Five-star matches</li>
-        <li><b>225</b> Pages</li>
-        <li><b>7</b> Promotions</li>
-      </ul>
+
+      <div class="ftr-fact" role="note" aria-label="Wrestling fact">
+        <svg class="ftr-fact__ico" viewBox="0 0 46 30" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="wlfg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fce9a0"/><stop offset=".4" stop-color="#f2cc4b"/>
+              <stop offset=".72" stop-color="#d4af37"/><stop offset="1" stop-color="#9c7418"/>
+            </linearGradient>
+          </defs>
+          <g stroke="#6f520f" stroke-width="1">
+            <rect x="2.5" y="9.5" width="7.5" height="11" rx="2.4" fill="url(#wlfg)"/>
+            <rect x="36" y="9.5" width="7.5" height="11" rx="2.4" fill="url(#wlfg)"/>
+            <path d="M15 4.5h16c2.2 0 4 1.8 4 4v13c0 2.2-1.8 4-4 4H15c-2.2 0-4-1.8-4-4v-13c0-2.2 1.8-4 4-4z" fill="url(#wlfg)"/>
+          </g>
+          <path d="M15.6 6.7h14.8c1.35 0 2.4 1.05 2.4 2.4v10.8c0 1.35-1.05 2.4-2.4 2.4H15.6c-1.35 0-2.4-1.05-2.4-2.4V9.1c0-1.35 1.05-2.4 2.4-2.4z" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="1"/>
+          <path d="M23 10.1l1.6 3.3 3.6.5-2.6 2.6.6 3.6L23 18.9l-3.2 1.7.6-3.6-2.6-2.6 3.6-.5z" fill="#3d2d08"/>
+          <circle cx="23" cy="4" r="1.7" fill="#e11d2a" stroke="#6f520f" stroke-width=".7"/>
+        </svg>
+        <p class="ftr-fact__txt">
+          <span class="ftr-fact__k">Did you know</span>
+          <span class="ftr-fact__body" data-wl-fact>At Vengeance 2001, Chris Jericho beat both The Rock and Steve Austin in one night to become the first Undisputed Champion.</span>
+        </p>
+        <button class="ftr-fact__shuffle" type="button" data-wl-fact-shuffle aria-label="Show another fact" title="Show another fact">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 5V2.5L8.5 6 12 9.5V7a5 5 0 0 1 5 5 5 5 0 0 1-.6 2.4l1.5 1.5A7 7 0 0 0 12 5zm0 14v2.5L15.5 18 12 14.5V17a5 5 0 0 1-5-5 5 5 0 0 1 .6-2.4L6.1 8.1A7 7 0 0 0 12 19z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+
       <a class="ftr-cta" href="/membership/">
+        <span class="ftr-cta__sheen" aria-hidden="true"></span>
         <span class="ftr-cta__k">Wrestle Lore Insider</span>
-        <span class="ftr-cta__l">Join Insider <span aria-hidden="true"></span></span>
+        <span class="ftr-cta__l">Join Insider</span>
+        <span class="ftr-cta__sub">Founding members join free</span>
       </a>
     </div>
 
@@ -839,10 +864,11 @@
       <div class="ftr-col">
         <h2 class="ftr-h">Superstars</h2>
         <ul>
-          <li><a href="/wrestlers/">All Wrestlers <span class="ftr-ct">107</span></a></li>
-          <li><a href="/current/">Current Stars</a></li>
+          <li><a href="/wrestlers/">All Wrestlers</a></li>
           <li><a href="/legends/">Legends</a></li>
           <li><a href="/women/">Women's Division</a></li>
+          <li><a href="/hall-of-fame/">Hall of Fame</a></li>
+          <li><a href="/archive/">The Archive</a></li>
         </ul>
       </div>
       <div class="ftr-col">
@@ -857,6 +883,7 @@
         <h2 class="ftr-h">Events</h2>
         <ul>
           <li><a href="/events/">All Events</a></li>
+          <li><a href="/events/tickets/">Tickets</a></li>
           <li><a href="/events/wrestlemania-42-2026/">WrestleMania 42</a></li>
           <li><a href="/events/royal-rumble-2026/">Royal Rumble 2026</a></li>
           <li><a href="/events/night-of-champions-2026/">Night of Champions</a></li>
@@ -868,10 +895,8 @@
           <li><a href="/promotions/wwe/">WWE</a></li>
           <li><a href="/promotions/wcw/">WCW</a></li>
           <li><a href="/promotions/aew/">AEW</a></li>
-          <li><a href="/promotions/njpw/">NJPW</a></li>
           <li><a href="/promotions/tna/">TNA</a></li>
-          <li><a href="/promotions/ecw/">ECW</a></li>
-          <li><a href="/promotions/nxt/">NXT</a></li>
+          <li><a class="ftr-more" href="/promotions/">View all promotions</a></li>
         </ul>
       </div>
       <div class="ftr-col">
@@ -880,15 +905,15 @@
           <li><a href="/titles/">Championships</a></li>
           <li><a href="/factions/">Factions</a></li>
           <li><a href="/tag-teams/">Tag Teams</a></li>
+          <li><a href="/rivalries/">Rivalries</a></li>
+          <li><a href="/relationships/">Relationships</a></li>
         </ul>
       </div>
       <div class="ftr-col">
         <h2 class="ftr-h">More</h2>
         <ul>
-          <li><a href="/hall-of-fame/">Hall of Fame</a></li>
           <li><a href="/media/">Media</a></li>
-          <li><a href="/archive/">The Archive</a>
-        <a href="/rivalries/">Rivalries</a></li>
+          <li><a href="/gallery/">Gallery</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/membership/">Insider</a></li>
@@ -897,7 +922,7 @@
     </nav>
 
     <!-- provenance line -->
-    <p class="ftr-prov">WWE / WCW / ECW / TNA / NXT / NJPW / AEW &middot; 1997 to WrestleMania 42</p>
+    <p class="ftr-prov">WWE / WCW / ECW / TNA / NXT / NJPW / AEW</p>
 
     <!-- bottom legal bar -->
     <div class="ftr-legal">
@@ -910,10 +935,32 @@
     </div>
 
   </div>
+
+  <script>
+  (function(){
+    var facts=[
+      "Stone Cold Steve Austin won the Royal Rumble three times, in 1997, 1998 and 2001. No one has won more.",
+      "At Vengeance 2001, Chris Jericho beat both The Rock and Steve Austin in one night to become the first Undisputed Champion.",
+      "Kurt Angle won a 1996 Olympic gold medal in freestyle wrestling with a broken neck.",
+      "The Undertaker won 21 straight WrestleMania matches before Brock Lesnar beat him in 2014.",
+      "The nWo was born at Bash at the Beach 1996, when Hulk Hogan turned on WCW.",
+      "In the 1997 Montreal Screwjob, Bret Hart lost a title he never agreed to drop.",
+      "ECW's Barely Legal in 1997 was the promotion's first pay-per-view.",
+      "Mankind fell off the top of the Hell in a Cell at King of the Ring 1998, then crashed through the roof.",
+      "AEW ran its first show, Double or Nothing, in Las Vegas in 2019."
+    ];
+    var el=document.querySelector('[data-wl-fact]');
+    if(!el){return;}
+    var i=Math.floor(Math.random()*facts.length);
+    el.textContent=facts[i];
+    var btn=document.querySelector('[data-wl-fact-shuffle]');
+    if(btn){btn.addEventListener('click',function(){i=(i+1+Math.floor(Math.random()*(facts.length-1)))%facts.length;el.textContent=facts[i];});}
+  })();
+  </script>
 </footer>
-<script src="/js/main.js?v=fd26a47b"></script>
-<script src="/js/search-index.js?v=fd26a47b" defer></script>
-<script src="/js/nav.js?v=fd26a47b" defer></script>
-<script src="/js/engage.js?v=fd26a47b" defer></script>
+<script src="/js/main.js?v=abe3bac3"></script>
+<script src="/js/search-index.js?v=abe3bac3" defer></script>
+<script src="/js/nav.js?v=abe3bac3" defer></script>
+<script src="/js/engage.js?v=abe3bac3" defer></script>
 </body>
 </html>
