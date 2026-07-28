@@ -2729,3 +2729,6 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
   .tile__body{padding:var(--sp-3,.75rem);}
   .tile__name{font-size:var(--fs-400,1.05rem);}
 }
+
+/* WL: titles menu spacing */
+.nav7 .mega7--rack{gap:16px;}

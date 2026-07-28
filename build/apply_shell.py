@@ -14,7 +14,7 @@ renames. Excludes /zh/ /china/ /content/ /docs/ /assets/. Idempotent — safe to
 re-run any number of times."""
 import os, re, glob
 
-ROOT = "/root/wwe"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COMPONENTS = os.path.join(ROOT, "components")
 EXCLUDE = ("/zh/", "/china/", "/content/", "/docs/", "/assets/")
 

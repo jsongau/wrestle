@@ -6,3 +6,8 @@ _git_locks_to_delete/
 _to_delete/
 # job-description source doc (kept locally, not part of the site)
 wwe membership growth.pdf
+.env.local
+.vercel/
+_cur_index_v4.html
+css/_cur_site_v4.css
+_freshidx.html
