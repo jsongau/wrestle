@@ -118,6 +118,17 @@ re-stamp → push. Two agents on one `main` WILL collide otherwise.
 - For nav work: confirm the belt overflows the 62px bar, tabs fit / degrade correctly, and
   the browser console has **zero errors**.
 - **Every preview/iteration Jay sees comes with proof** (screenshot, test output, or diff).
+- **Previews Jay OPENS must be self-contained + verified.** Any HTML handed to Jay to LOOK AT
+  must render fully styled from `file://` (his Downloads): inline `site.css` with `@font-face`
+  woff2 as base64, inline the logo/images as data URIs, inline the page JS. **Render it from
+  `file://` in headless Chromium and eyeball the screenshot BEFORE sending it** — never send an
+  HTML preview you have not watched render. NEVER send the raw deploy `index.html` (absolute
+  `/css` `/js` paths) as a viewable download; from Downloads it shows as unstyled blue-link text.
+- **Deploy HTML that only needs to land in the repo: assemble it ON-DEVICE.** `device_commit_files`
+  requires a `SendUserFile` first, which drops the file in Jay's Downloads — so to keep the raw
+  page out of Downloads, write the plain-text inputs (profile.css/js, a body fragment) to the repo
+  via the bridge, then splice them into the real shell IN PLACE with `python3` via `device_bash`.
+  Plain text (css/js/md) is fine to send; only HTML pages trigger the unstyled-preview failure.
 - Deliver preview iterations to Jay as **view-only files named `-v2/-v3/-v4`** (disposable
   copies for his Downloads). **Version-numbered files NEVER go into the repo** (anything
   committed deploys as a live public page). Work happens on the ONE live repo folder; no dated
@@ -143,6 +154,15 @@ re-stamp → push. Two agents on one `main` WILL collide otherwise.
   attributes. If you add a belt, set `data-start`.
 - **No invented facts.** Every wrestling claim (dates, results, reigns, roles) must be verified
   by web search. Zero 404 internal links — every link you add must resolve.
+- **Per-wrestler `.md` fact files are the source of truth — keep them updated when you scrape.**
+  Rich wrestlers get a sourced dossier in `data/{slug}.md` (e.g. `data/triple-h.md`) — or the
+  older split form `data/{slug}-records.md` / `data/{slug}-personas-media.md` (Austin, Undertaker).
+  **Whenever you research/scrape a wrestler, create or update that wrestler's `data/{slug}.md` in
+  the SAME change:** every claim carries a source URL, and disputed/estimated figures are flagged
+  `⚑` (e.g. no fake lifetime win %, real birthplace vs. kayfabe billed-from). Build the profile
+  page FROM the `.md`, not from memory — this keeps facts auditable and reusable across sessions.
+  Placeholder metrics (fan ratings, ★ match scores) must be labelled as such until wired to the
+  real rating layer.
 
 ---
 
