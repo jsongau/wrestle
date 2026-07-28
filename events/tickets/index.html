@@ -1,0 +1,2419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WWE Events &amp; Tickets: Where to Buy | Wrestle Lore</title>
+<meta name="description" content="Where to buy WWE tickets: SummerSlam and every Premium Live Event, the official seller by country, presale reminders, and official ringside via On Location.">
+<link rel="canonical" href="https://wrestlelore.com/events/tickets/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wrestle Lore">
+<meta property="og:title" content="WWE Events &amp; Tickets: Where to Buy | Wrestle Lore">
+<meta property="og:description" content="Where to buy WWE tickets: SummerSlam and every Premium Live Event, the official seller by country, presale reminders, and official ringside via On Location.">
+<meta property="og:url" content="https://wrestlelore.com/events/tickets/">
+<meta property="og:image" content="https://wrestlelore.com/assets/wrestle-lore-logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WWE Events &amp; Tickets: Where to Buy | Wrestle Lore">
+<meta name="twitter:description" content="Where to buy WWE tickets: SummerSlam and every Premium Live Event, the official seller by country, presale reminders, and official ringside via On Location.">
+
+<meta name="theme-color" content="#0b0c10">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+
+<style>
+
+/* ============================================================================
+   Wrestle Lore — kit.css  ·  shared design-system / token kit
+   The single stylesheet every section links. Sections USE this vocabulary;
+   they never redefine a token or invent a colour.
+
+   Palette      --c-bg #0a0b0d · --c-surface #121317 · --c-bone #f4f1ea
+                --c-gold #d4af37 (premium only) · --c-red #e11d2a · --c-muted #8a8a8a
+   Type         --ff-display Anton · --ff-ui Oswald · --ff-body Inter · --ff-mono JetBrains Mono
+   Contrast law bone ~15:1, gold ~9.4:1, muted floor ~5.5:1. RED is fill+white or
+                large text (>=24px) ONLY — never small red text on dark.
+   Aesthetic    editorial/luxury: hairlines not boxed drop-shadow cards, restraint,
+                generous whitespace. Gold indulged only on the On Location band.
+============================================================================ */
+
+
+
+/* --- reset (small, modern) ------------------------------------------------ */
+.tix *, .tix *::before, .tix *::after { box-sizing: border-box; }
+.tix * { margin: 0; }
+.tix { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.tix { min-height: 100vh; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+.tix img, .tix picture, .tix svg, .tix video, .tix canvas { display: block; max-width: 100%; height: auto; }
+.tix input, .tix button, .tix textarea, .tix select { font: inherit; color: inherit; letter-spacing: inherit; }
+.tix button { background: none; border: 0; cursor: pointer; }
+.tix a { color: inherit; text-decoration: none; }
+.tix ul[role='list'], .tix ol[role='list'] { list-style: none; padding: 0; }
+.tix h1, .tix h2, .tix h3, .tix h4 { font-weight: inherit; text-wrap: balance; }
+.tix p, .tix li { text-wrap: pretty; }
+.tix :target { scroll-margin-top: 5rem; }
+
+/* --- tokens ---------------------------------------------------------------- */
+.tix {
+  color-scheme: dark;
+
+  /* colours (the only palette; do not invent) */
+  --c-bg:      #0a0b0d;
+  --c-surface: #121317;
+  --c-bone:    #f4f1ea;
+  --c-gold:    #d4af37;
+  --c-red:     #e11d2a;
+  --c-muted:   #8a8a8a;
+  --c-ink:     var(--c-bg);   /* near-black label on bone fills */
+
+  /* bone at alpha — for hairlines, borders, quiet UI (same bone, not new hues) */
+  --bone-08: rgb(244 241 234 / .08);
+  --bone-12: rgb(244 241 234 / .12);   /* hairline divider */
+  --bone-20: rgb(244 241 234 / .20);
+  --bone-40: rgb(244 241 234 / .40);   /* ghost-button border */
+  --bone-70: rgb(244 241 234 / .70);   /* labels / eyebrow presence */
+
+  /* type families (web font -> graceful metric-matched fallbacks) */
+  --ff-display: 'Anton', 'Oswald', 'Arial Narrow', 'Helvetica Neue', system-ui, sans-serif;
+  --ff-ui:      'Oswald', 'Arial Narrow', 'Helvetica Neue', system-ui, sans-serif;
+  --ff-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --ff-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* type scale (clamp, mobile -> desktop) */
+  --fs-display:   clamp(2.75rem, 1.57rem + 5.24vw, 5.5rem);   /* Anton 44 -> 88 / .96 */
+  --fs-secnum:    clamp(3rem, 2rem + 5vw, 5.5rem);            /* oversized index mark   */
+  --fs-h2:        clamp(1.5rem, 1.35rem + 0.75vw, 1.75rem);   /* Anton ~26              */
+  --fs-h3:        clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --fs-answer:    clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);   /* answer-first lead      */
+  --fs-body:      1rem;                                       /* Inter 16 / 1.6         */
+  --fs-sm:        0.875rem;                                   /* meta / help 14         */
+  --fs-eyebrow:   0.75rem;                                    /* Oswald 12 upper +track */
+  --fs-countdown: clamp(1.75rem, 1.5rem + 1.1vw, 2.125rem);  /* JetBrains Mono 28 ->34 */
+
+  --lh-body: 1.6;
+  --track-eyebrow: 0.14em;
+
+  /* spacing (8px base) */
+  --sp-1: 0.5rem;  --sp-2: 1rem;   --sp-3: 1.5rem; --sp-4: 2rem;
+  --sp-5: 2.5rem;  --sp-6: 3rem;   --sp-8: 4rem;   --sp-10: 5rem;
+  --sp-12: 6rem;   --sp-14: 7rem;
+
+  /* layout */
+  --wrap: 1100px;
+  --gutter: clamp(1.25rem, 0.9rem + 1.5vw, 2rem);
+  --sec-y: clamp(4rem, 2.5rem + 6vw, 7rem);   /* section rhythm 64 -> 112 */
+  --measure: 66ch;                            /* readable line length     */
+
+  /* radius / motion / focus */
+  --r-sm: 3px;
+  --r-md: 6px;
+  --r-pill: 999px;
+  --t: 160ms ease;
+  --focus: 0 0 0 2px var(--c-bg), 0 0 0 4px var(--c-bone);  /* near-black spacer + bone ring */
+}
+
+/* --- base ------------------------------------------------------------------ */
+.tix {
+  background: var(--c-bg);
+  color: var(--c-bone);
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-synthesis: none;                 /* Anton is single-weight; never fake bold */
+}
+.tix ::selection { background: var(--c-bone); color: var(--c-bg); }
+
+.tix h1 { font-family: var(--ff-display); font-weight: 400; font-size: var(--fs-display); line-height: 0.96; letter-spacing: 0.01em; }
+.tix h2 { font-family: var(--ff-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1.05; letter-spacing: 0.01em; }
+.tix h3 { font-family: var(--ff-ui); font-weight: 600; font-size: var(--fs-h3); line-height: 1.2; letter-spacing: 0.01em; }
+
+/* unclassed prose links: bone underline (gold stays reserved) */
+.tix a:not([class]) {
+  color: var(--c-bone);
+  text-decoration: underline;
+  text-decoration-color: var(--bone-40);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--t);
+}
+.tix a:not([class]):hover { text-decoration-color: var(--c-bone); }
+
+/* --- layout ---------------------------------------------------------------- */
+.tix .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.tix .sec  { padding-block: var(--sec-y); }
+.tix .hairline { width: 100%; height: 1px; border: 0; background: var(--bone-12); }
+.tix .measure { max-width: var(--measure); }
+
+/* optional composition primitives (generic, safe to ignore) */
+.tix .flow > * + * { margin-top: var(--sp-3); }
+.tix .cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+.tix .btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+.tix .btn-row > .btn { flex: 1 1 auto; }   /* primary + ghost adjacent, matched width */
+
+/* --- editorial text -------------------------------------------------------- */
+.tix .sec__num {           /* oversized Anton index mark ("01"), quiet left-margin note */
+  display: block;
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: var(--fs-secnum);
+  line-height: 0.9;
+  color: var(--bone-20);
+  letter-spacing: 0.01em;
+}
+.tix .eyebrow {            /* Oswald, uppercase, tracked */
+  display: inline-block;
+  font-family: var(--ff-ui);
+  font-weight: 600;
+  font-size: var(--fs-eyebrow);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: var(--track-eyebrow);
+  color: var(--bone-70);
+}
+.tix .answer {             /* answer-first sentence: slightly larger, capped measure */
+  font-size: var(--fs-answer);
+  line-height: 1.5;
+  color: var(--c-bone);
+  max-width: var(--measure);
+}
+.tix .chip {               /* neutral meta chip: hairline border, no fill */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5ch;
+  font-family: var(--ff-ui);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--bone-70);
+  padding: 0.4em 0.75em;
+  border: 1px solid var(--bone-20);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tix .muted { color: var(--c-muted); }   /* meta text at the contrast floor; go no lighter */
+
+.tix .sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- buttons (three distinct jobs) ---------------------------------------- */
+.tix .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5ch;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  font-family: var(--ff-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--t), border-color var(--t), color var(--t),
+              filter var(--t), transform var(--t);
+}
+.tix .btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+.tix .btn[aria-disabled='true'] { opacity: 0.55; cursor: not-allowed; }  /* stays focusable/announced */
+.tix .btn--block { display: flex; width: 100%; }
+
+/* primary — SOLID bone fill, near-black label, wins the eye */
+.tix .btn--primary { background: var(--c-bone); color: var(--c-ink); border-color: var(--c-bone); }
+.tix .btn--primary:hover { filter: brightness(1.06); }               /* subtle */
+.tix .btn--primary:active { filter: brightness(0.97); transform: translateY(1px); }
+
+/* secondary — ghost: 1px bone-40% border, transparent, same size, adjacent */
+.tix .btn--ghost { background: transparent; color: var(--c-bone); border-color: var(--bone-40); }
+.tix .btn--ghost:hover { border-color: var(--c-bone); background: var(--bone-08); }
+.tix .btn--ghost:active { transform: translateY(1px); }
+
+/* tertiary — text link with the one gold underline */
+.tix .btn--text {
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--c-bone);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
+  text-decoration-color: var(--c-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.tix .btn--text:hover { text-underline-offset: 5px; text-decoration-color: var(--c-gold); }
+
+/* --- pills (status; differ by label + shape + colour, not colour alone) --- */
+.tix .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55ch;
+  padding: 0.4em 0.75em;
+  font-family: var(--ff-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-bone);
+  border: 1px solid var(--bone-20);
+  border-radius: var(--r-pill);
+}
+.tix .pill::before {                    /* status glyph */
+  content: '';
+  flex: 0 0 auto;
+  width: 0.5em; height: 0.5em;
+  border-radius: 50%;
+  background: currentColor;
+}
+/* on sale now — RED fill + WHITE label + WHITE dot (~4.76:1, passes AA) */
+.tix .pill--onsale { background: var(--c-red); color: #fff; border-color: var(--c-red); }
+.tix .pill--onsale::before { background: #fff; }
+/* presale — hollow ring dot (distinct shape), bone label */
+.tix .pill--presale { border-color: var(--bone-40); }
+.tix .pill--presale::before { background: transparent; box-shadow: inset 0 0 0 2px currentColor; }
+/* announced — dim filled dot, low emphasis */
+.tix .pill--announced { color: var(--bone-70); border-color: var(--bone-20); }
+.tix .pill--announced::before { background: var(--bone-40); }
+/* sold out — dash bar (reads "closed"), muted label */
+.tix .pill--soldout { color: var(--c-muted); border-color: var(--bone-20); }
+.tix .pill--soldout::before { width: 0.6em; height: 2px; border-radius: 1px; background: currentColor; }
+
+/* --- countdown / mono helpers (fixed-width, CLS-safe) --------------------- */
+.tix .mono { font-family: var(--ff-mono); font-variant-numeric: tabular-nums; }
+.tix .countdown {
+  font-family: var(--ff-mono);
+  font-size: var(--fs-countdown);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;   /* digits never reflow */
+}
+
+/* --- forms ----------------------------------------------------------------- */
+.tix .field { display: flex; flex-direction: column; gap: 0.5rem; }
+.tix .label {
+  font-family: var(--ff-ui);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bone-70);
+}
+.tix .input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 1rem;
+  font-family: var(--ff-body);
+  font-size: 1rem;                 /* 16px — never lower (blocks iOS zoom) */
+  line-height: 1.4;
+  color: var(--c-bone);
+  background: var(--c-surface);
+  border: 1px solid var(--bone-20);
+  border-radius: var(--r-sm);
+  appearance: none;
+  transition: border-color var(--t), background-color var(--t);
+}
+.tix textarea.input { min-height: 120px; padding: 0.75rem 1rem; line-height: 1.5; resize: vertical; }
+.tix .input::placeholder { color: var(--c-muted); }
+.tix .input:hover { border-color: var(--bone-40); }
+.tix .input:focus { border-color: var(--c-bone); }
+.tix .input:-webkit-autofill {         /* keep dark; suppress the yellow autofill wash */
+  -webkit-text-fill-color: var(--c-bone);
+  caret-color: var(--c-bone);
+  transition: background-color 9999s ease-in-out 0s;
+}
+.tix .help { font-size: var(--fs-sm); line-height: 1.5; color: var(--c-muted); }
+
+/* error: red BORDER only (allowed); message stays bone/strong (red small text fails AA) */
+.tix .field--error .input { border-color: var(--c-red); }
+.tix .help--error { color: var(--c-bone); font-weight: 600; }
+
+/* consent — unchecked box + line, explicit, never pre-ticked in markup */
+.tix .consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--bone-70);
+  cursor: pointer;
+}
+.tix .consent input[type='checkbox'] {
+  flex: 0 0 auto;
+  width: 20px; height: 20px;
+  margin-top: 0.1em;
+  display: grid;
+  place-content: center;
+  appearance: none;
+  background: var(--c-surface);
+  border: 1px solid var(--bone-40);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color var(--t), border-color var(--t);
+}
+.tix .consent input[type='checkbox']::before {
+  content: '';
+  width: 12px; height: 12px;
+  transform: scale(0);
+  background: var(--c-ink);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
+  transition: transform 120ms ease-in-out;
+}
+.tix .consent input[type='checkbox']:checked { background: var(--c-bone); border-color: var(--c-bone); }
+.tix .consent input[type='checkbox']:checked::before { transform: scale(1); }
+
+/* --- global focus ring (visible on dark / gold / bone) -------------------- */
+.tix :focus-visible { outline: none; box-shadow: var(--focus); }
+.tix .consent input[type='checkbox']:focus-visible { box-shadow: var(--focus); }
+
+/* --- reduced motion: neutralise all transitions/animations ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .tix { scroll-behavior: auto; }
+  .tix *, .tix *::before, .tix *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+.tix { scroll-behavior: smooth; }
+
+/* preview banner ---------------------------------------------------------- */
+.tix .banner {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--bone-12);
+}
+.tix .banner p {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding: 0.55rem var(--gutter);
+  font-family: var(--ff-ui);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.02em;
+  color: var(--bone-70);
+  text-align: center;
+}
+.tix .banner strong { color: var(--c-bone); font-weight: 600; }
+
+/* section header block ---------------------------------------------------- */
+.tix .sechead { margin-bottom: var(--sp-4); }
+.tix .sechead .sec__num { margin-bottom: var(--sp-2); }
+.tix .sechead .eyebrow { display: block; margin-bottom: var(--sp-1); }
+.tix .stack > * + * { margin-top: var(--sp-3); }
+
+/* comfortable standalone text-link tap target (>=44px) -------------------- */
+.tix .tap { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* hero -------------------------------------------------------------------- */
+.tix .hero { position: relative; overflow: hidden; }
+.tix .hero::before {                         /* arena light: spotlight pool + red uplight + faint beams + focusing vignette */
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(112deg, transparent 0 58px, rgb(244 241 234 / .022) 58px 59px),
+    radial-gradient(78% 60% at 50% -16%, rgb(244 241 234 / .17), rgb(244 241 234 / .05) 40%, transparent 68%),
+    radial-gradient(100% 60% at 50% 122%, rgb(225 29 42 / .17), transparent 60%),
+    radial-gradient(150% 130% at 50% 24%, transparent 50%, rgb(10 11 13 / .62)),
+    linear-gradient(180deg, var(--c-surface), var(--c-bg) 70%);
+}
+.tix .hero::after {                          /* film grain: fractal-noise data-URI, very low opacity */
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: .09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+.tix .hero > .wrap { position: relative; z-index: 1; }
+.tix .hero h1 { font-size: clamp(2.75rem, 1.1rem + 6.9vw, 5.75rem); line-height: 0.94; }
+.tix .hero__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1); margin-top: var(--sp-4); }
+.tix .hero__when {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.35rem 0.75rem;
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--bone-12);
+}
+.tix .hero__cta { margin-top: var(--sp-5); }
+.tix .hero__cta .btn-row { max-width: 34rem; }
+.tix .hero__anchor { margin-top: 0.7rem; color: var(--bone-70); }
+
+/* generic card (hairline, no drop-shadow) --------------------------------- */
+.tix .card {
+  display: flex; flex-direction: column; gap: var(--sp-1);
+  padding: var(--sp-3);
+  border: 1px solid var(--bone-12);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, rgb(244 241 234 / .02), rgb(18 19 23 / .5));
+  transition: border-color var(--t), transform var(--t), background-color var(--t);
+}
+.tix .card:hover { border-color: var(--bone-20); transform: translateY(-2px); }
+.tix .card h3 { margin-block: 0.15rem 0.1rem; }
+.tix .card .pill { align-self: flex-start; }
+.tix .card__cta { margin-top: auto; padding-top: var(--sp-1); }
+.tix .card .btn--text { align-self: flex-start; }
+
+/* rails / grids ----------------------------------------------------------- */
+.tix .rail-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+.tix .rail { display: grid; gap: var(--sp-2); grid-template-columns: 1fr; }
+@media (min-width: 680px) { .tix .rail { grid-template-columns: repeat(3, 1fr); } }
+
+/* find near your city ----------------------------------------------------- */
+.tix .find__form { max-width: 40rem; }
+.tix .find__row { display: grid; gap: var(--sp-2); }
+@media (min-width: 620px) { .tix .find__row { grid-template-columns: 2fr 1fr; align-items: end; } }
+.tix .find__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin-top: var(--sp-3); }
+.tix select.input {
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23f4f1ea' stroke-width='1.6'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+.tix .find__out { margin-top: var(--sp-4); min-height: 132px; }
+.tix .find__hint { color: var(--c-muted); font-size: var(--fs-sm); }
+
+/* skeleton loader (animation auto-killed by reduced-motion in kit) --------- */
+.tix .skel { border: 1px solid var(--bone-12); border-radius: var(--r-md); padding: var(--sp-3); display: grid; gap: var(--sp-2); }
+.tix .skel__bar { height: 12px; border-radius: var(--r-pill); background: linear-gradient(90deg, var(--bone-08), var(--bone-20), var(--bone-08)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+.tix .skel__bar.w-40 { width: 40%; }
+.tix .skel__bar.w-70 { width: 70%; }
+.tix .skel__bar.w-55 { width: 55%; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* how to attend — stacked market list, never a wide table ----------------- */
+.tix .attend__list { margin-top: var(--sp-2); }
+.tix .attend__row {
+  display: grid; gap: 0.35rem 1.25rem;
+  grid-template-columns: 1fr;
+  padding: var(--sp-3) 0;
+  border-top: 1px solid var(--bone-12);
+}
+.tix .attend__row:last-child { border-bottom: 1px solid var(--bone-12); }
+@media (min-width: 640px) { .tix .attend__row { grid-template-columns: 12rem 1fr; } }
+.tix .attend__mkt { font-family: var(--ff-ui); font-weight: 600; font-size: var(--fs-h3); letter-spacing: 0.01em; color: var(--c-bone); }
+.tix .attend__opts { display: flex; flex-direction: column; gap: var(--sp-2); }
+.tix .attend__opt { display: flex; flex-direction: column; gap: 0.15rem; }
+.tix .attend__opt-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.75rem; }
+.tix .attend__plat { font-family: var(--ff-ui); font-weight: 600; letter-spacing: 0.02em; }
+
+/* follow + notify — the page's visual anchor ------------------------------ */
+.tix .panel {
+  border: 1px solid var(--bone-20);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  padding: var(--sp-4);
+}
+@media (min-width: 640px) { .tix .panel { padding: var(--sp-5); } }
+.tix .chips { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+.tix .chip--follow { cursor: pointer; min-height: 44px; transition: background-color var(--t), border-color var(--t), color var(--t); }
+.tix .chip--follow::before {
+  content: ''; flex: 0 0 auto;
+  width: 0.62em; height: 0.62em; border-radius: 50%;
+  border: 1.5px solid currentColor; background: transparent;
+  transition: background-color var(--t), border-color var(--t);
+}
+.tix .chip--follow:hover { border-color: var(--bone-40); }
+.tix .chip--follow[aria-pressed='true'] { background: var(--c-bone); color: var(--c-ink); border-color: var(--c-bone); }
+.tix .chip--follow[aria-pressed='true']::before { background: var(--c-ink); border-color: var(--c-ink); }
+.tix .cap { max-width: 36rem; }
+.tix .cap__send { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: end; }
+.tix .cap__send .field { flex: 1 1 16rem; }
+.tix .optional > summary {
+  list-style: none; cursor: pointer;
+  font-family: var(--ff-ui); font-weight: 600; font-size: var(--fs-sm);
+  letter-spacing: 0.02em; text-transform: uppercase; color: var(--bone-70);
+  display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;
+}
+.tix .optional > summary::-webkit-details-marker { display: none; }
+.tix .optional > summary::after {
+  content: ''; width: 9px; height: 9px;
+  border-right: 2px solid var(--bone-70); border-bottom: 2px solid var(--bone-70);
+  transform: rotate(45deg); transition: transform var(--t);
+}
+.tix .optional[open] > summary::after { transform: rotate(-135deg); }
+.tix .optional__body { margin-top: var(--sp-3); display: grid; gap: var(--sp-3); }
+
+/* mocked success + notes -------------------------------------------------- */
+.tix .success {
+  border: 1px solid var(--bone-20);
+  border-left: 3px solid var(--c-bone);
+  border-radius: var(--r-sm);
+  background: var(--bone-08);
+  padding: var(--sp-2) var(--sp-3);
+}
+.tix .success p { margin: 0; }
+.tix .success p + p { margin-top: 0.4rem; }
+.tix .success strong { color: var(--c-bone); }
+.tix .mock-note { font-size: var(--fs-sm); color: var(--c-muted); }
+.tix .affiliate { font-size: var(--fs-sm); color: var(--c-muted); max-width: var(--measure); }
+
+/* on location — the single gold moment ------------------------------------ */
+.tix .gold { position: relative; overflow: hidden; }
+.tix .gold::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(85% 60% at 6% -12%, rgb(212 175 55 / .15), transparent 52%),
+    radial-gradient(70% 55% at 100% 0%, rgb(212 175 55 / .07), transparent 55%),
+    linear-gradient(180deg, rgb(212 175 55 / .05), transparent 42%);
+}
+.tix .gold > .wrap { position: relative; z-index: 1; }
+.tix .gold .eyebrow { color: var(--c-gold); }
+.tix .gold__rule { width: 120px; height: 2px; border: 0; margin: var(--sp-2) 0 var(--sp-3); background: linear-gradient(90deg, var(--c-gold), transparent); }
+.tix .gold__grid { display: grid; gap: var(--sp-4); }
+@media (min-width: 820px) { .tix .gold__grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; } }
+.tix .gold .card { border-color: rgb(212 175 55 / .42); background: linear-gradient(180deg, rgb(212 175 55 / .07), rgb(212 175 55 / .02)); }
+.tix .gold .card:hover { border-color: rgb(212 175 55 / .62); }
+.tix .gold__trust { color: var(--c-gold); font-size: var(--fs-sm); font-weight: 600; }
+.tix .gold .btn--primary { background: var(--c-gold); border-color: var(--c-gold); color: var(--c-ink); }
+.tix .gold .btn--primary:hover { filter: brightness(1.06); }
+
+/* road to wrestlemania — vertical stepper (default), horizontal on wide ---- */
+.tix .road__list { display: flex; flex-direction: column; gap: 0; margin-top: var(--sp-2); }
+.tix .step { position: relative; padding: 0 0 var(--sp-4) var(--sp-4); border-left: 1px solid var(--bone-20); }
+.tix .step:last-child { border-left-color: transparent; padding-bottom: 0; }
+.tix .step::before {
+  content: ''; position: absolute; left: -5px; top: 0.3em;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--c-bone); border: 2px solid var(--c-bg);
+}
+.tix .step__title { font-family: var(--ff-ui); font-weight: 600; font-size: var(--fs-h3); margin-bottom: 0.25rem; }
+.tix .step__meta { color: var(--c-muted); font-size: var(--fs-sm); margin-bottom: var(--sp-1); }
+.tix .step__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin-top: var(--sp-1); }
+.tix .here {
+  display: inline-flex; align-items: center; gap: 0.5ch;
+  font-family: var(--ff-ui); font-size: var(--fs-eyebrow); font-weight: 600;
+  letter-spacing: var(--track-eyebrow); text-transform: uppercase;
+  color: var(--c-ink); background: var(--c-bone);
+  padding: 0.35em 0.7em; border-radius: var(--r-pill);
+  margin: 0 0 var(--sp-4) var(--sp-4);
+}
+@media (min-width: 900px) {
+  .tix .road__list {
+    flex-direction: row; overflow-x: auto; gap: var(--sp-2);
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--sp-2);
+  }
+  .tix .step {
+    flex: 0 0 clamp(230px, 32%, 300px);
+    scroll-snap-align: start;
+    border-left: 0; border-top: 1px solid var(--bone-20);
+    padding: var(--sp-3) var(--sp-3) 0 0;
+  }
+  .tix .step:last-child { border-top-color: var(--bone-20); }
+  .tix .step::before { left: 0; top: -5px; }
+  .tix .here { margin: 0; align-self: center; }
+  .tix .road__list .here { flex: 0 0 auto; }
+}
+
+/* faq accordions ---------------------------------------------------------- */
+.tix .faq__list { margin-top: var(--sp-2); }
+.tix .faq details { border-top: 1px solid var(--bone-12); }
+.tix .faq details:last-of-type { border-bottom: 1px solid var(--bone-12); }
+.tix .faq summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2);
+  padding: var(--sp-3) 0; min-height: 44px; cursor: pointer; list-style: none;
+  font-family: var(--ff-ui); font-weight: 600; font-size: var(--fs-h3); color: var(--c-bone);
+}
+.tix .faq summary::-webkit-details-marker { display: none; }
+.tix .faq summary::after {
+  content: ''; flex: 0 0 auto; width: 12px; height: 12px;
+  border-right: 2px solid var(--bone-70); border-bottom: 2px solid var(--bone-70);
+  transform: rotate(45deg); transition: transform var(--t);
+}
+.tix .faq details[open] summary::after { transform: rotate(-135deg); }
+.tix .faq .answer { padding-bottom: var(--sp-3); }
+
+/* compliance / footer ----------------------------------------------------- */
+.tix .compliance { margin-top: var(--sp-8); padding-top: var(--sp-4); border-top: 1px solid var(--bone-12); }
+.tix .compliance p { color: var(--c-muted); font-size: var(--fs-sm); max-width: var(--measure); }
+.tix .compliance p + p { margin-top: var(--sp-2); }
+.tix .compliance strong { color: var(--bone-70); font-weight: 600; }
+
+/* ============================================================
+   v2 elevation — layered on the kit vocabulary
+   (no new colours; alpha values reuse the exact bone / red / gold channels)
+   ============================================================ */
+
+/* refined button motion — rest 0 · hover lift · active press (kit keeps :active) */
+.tix .btn--primary:hover, .tix .btn--ghost:hover { transform: translateY(-1px); }
+
+/* next on-sale strip — the ONE honest countdown, to a real dated deadline -- */
+.tix .onsale-strip {
+  border-top: 1px solid var(--bone-12);
+  border-bottom: 1px solid var(--bone-12);
+  background:
+    radial-gradient(130% 200% at 0% 50%, rgb(244 241 234 / .03), transparent 60%),
+    rgb(18 19 23 / .55);
+}
+.tix .onsale-strip__inner {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.25rem;
+  padding-block: var(--sp-3);
+}
+.tix .onsale-strip__eyebrow { flex: 0 0 auto; }
+.tix .onsale-strip__line {
+  flex: 1 1 16rem; margin: 0;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.55rem;
+  font-family: var(--ff-ui); font-weight: 500; font-size: var(--fs-answer);
+  line-height: 1.3; color: var(--c-bone);
+}
+.tix .onsale-strip__val {
+  font-family: var(--ff-mono); font-weight: 700;
+  letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: var(--c-bone);
+}
+.tix .onsale-strip__cta { flex: 0 0 auto; }
+@media (min-width: 680px) { .tix .onsale-strip__inner { align-items: center; } }
+
+/* how-to-attend wedge — platform names read as links, rows breathe -------- */
+.tix .attend__row { transition: background-color var(--t); }
+.tix .attend__row:hover { background: rgb(244 241 234 / .015); }
+.tix .attend__plat {
+  color: var(--c-bone);
+  text-decoration: underline; text-decoration-color: var(--bone-20);
+  text-decoration-thickness: 1px; text-underline-offset: 3px;
+  transition: text-decoration-color var(--t);
+}
+.tix .attend__plat:hover { text-decoration-color: var(--c-bone); }
+
+/* Follow-a-Superstar chip — clearer tactile press feedback --------------- */
+.tix .chip--follow { transition: background-color var(--t), border-color var(--t), color var(--t), transform var(--t); }
+.tix .chip--follow:active { transform: scale(0.97); }
+
+/* tasteful scroll reveal — ARMED by JS (.has-reveal on <html>) only when     */
+/* motion is allowed; JS-off and reduced-motion never hide content --------- */
+.tix .has-reveal .reveal {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 640ms ease, transform 640ms ease;
+}
+.tix .has-reveal .reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .tix .has-reveal .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+
+.tix .reveal{opacity:1!important;transform:none!important}
+
+
+/* shell: from the Find section down, a centered editorial column (left) +
+   sticky ticket rail (right). The hero and on-sale strip above stay
+   full-bleed. Mobile collapses to one column and uses the fixed .buybar. */
+.tix .shell   { width: 100%; }
+.tix .buyrail { display: none; }            /* desktop-only; mobile uses .buybar */
+
+@media (min-width: 1024px) {
+  .tix .shell {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: clamp(1.75rem, 1rem + 2vw, 3.5rem);
+    align-items: start;
+  }
+  .tix .shell__main { min-width: 0; }       /* let the column shrink; never overflow */
+
+  /* left-column sections give up their own centering wrap — the shell frames them */
+  .tix .shell__main > .sec > .wrap { max-width: none; margin-inline: 0; padding-inline: 0; }
+
+  /* the gold On Location band becomes one contained gold card (still the only gold) */
+  .tix .shell__main .gold {
+    margin-block: var(--sp-4);
+    padding: var(--sp-6) var(--sp-5);
+    border: 1px solid rgb(212 175 55 / .42);
+    border-radius: var(--r-md);
+  }
+  .tix .shell__main .gold__grid { grid-template-columns: 1fr; }   /* stack until wide enough */
+
+  /* the rail: one sticky, internally-scrollable panel */
+  .tix .buyrail {
+    display: block;
+    position: sticky;
+    top: 56px;                          /* clear the sticky preview banner */
+    align-self: start;
+    max-height: calc(100dvh - 72px);
+    overflow: auto;
+  }
+}
+@media (min-width: 1280px) {
+  .tix .shell__main .gold__grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+}
+
+/* rail card — a single refined surface card: hairline border, no heavy shadow */
+.tix .buyrail__card {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  padding: var(--sp-3);
+  background: var(--c-surface);
+  border: 1px solid var(--bone-12);
+  border-radius: var(--r-md);
+}
+.tix .buyrail__card .eyebrow { display: block; }
+.tix .buyrail__event { font-family: var(--ff-ui); font-weight: 600; font-size: var(--fs-h3); letter-spacing: 0.01em; color: var(--c-bone); }
+.tix .buyrail__meta  { font-size: var(--fs-sm); line-height: 1.45; color: var(--bone-70); }
+.tix .buyrail__pill  { align-self: flex-start; margin-top: 0.25rem; }
+.tix .buyrail__cta   { margin-top: var(--sp-2); }
+.tix .buyrail__prices, .tix .buyrail__aff { margin: 0; }
+.tix .buyrail__aff   { font-size: var(--fs-sm); color: var(--c-muted); }
+.tix .buyrail__card .hairline { margin-block: var(--sp-2); }
+.tix .buyrail__next  { font-family: var(--ff-ui); font-weight: 600; letter-spacing: 0.01em; color: var(--c-bone); }
+.tix .buyrail__cd {
+  margin-top: 0.15rem;
+  font-family: var(--ff-mono);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;    /* digits never reflow */
+  color: var(--c-bone);
+}
+.tix .buyrail__card .btn--text { align-self: flex-start; margin-top: 0.35rem; }
+.tix .buyrail__links { display: flex; flex-direction: column; gap: 0.1rem; margin-top: 0.15rem; }
+.tix .buyrail__links a {
+  display: inline-flex; align-items: center; min-height: 40px;
+  color: var(--c-bone);
+  text-decoration: underline; text-decoration-color: var(--bone-40);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--t);
+}
+.tix .buyrail__links a:hover { text-decoration-color: var(--c-bone); }
+
+/* mobile fixed action bar — shown < 1024, hidden on desktop */
+.tix .buybar { display: none; }
+@media (max-width: 1023.98px) {
+  .tix .buybar {
+    display: flex; gap: var(--sp-1); align-items: stretch;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: 0.55rem var(--sp-2);
+    padding-bottom: calc(0.55rem + env(safe-area-inset-bottom));
+    background: rgb(18 19 23 / .94);          /* surface @ 94% — opaque even without blur */
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--bone-12);
+  }
+  .tix .buybar .btn { min-height: 46px; padding: 0 0.85rem; font-size: 0.9375rem; letter-spacing: 0.02em; }
+  .tix .buybar__primary   { flex: 1 1 auto; }
+  .tix .buybar__secondary { flex: 0 0 auto; }
+  .tix { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }   /* clear the bar */
+}
+
+
+
+@media (min-width:1024px){
+  .tix .shell{ padding-top: clamp(1.75rem, 1rem + 2.5vw, 3.25rem); }
+  .tix .shell__main > .sec:first-child{ padding-top: 0; }
+  .tix .also-inflow{ display:none; }              /* trio now lives in the fixed bottom bar */
+  .tix{ padding-bottom: 72px; }              /* clear the bottom bar */
+  .tix .buyrail{ max-height: calc(100dvh - 140px); } /* keep rail bottom above the bar */
+}
+.tix .alsobar{ display:none; }
+@media (min-width:1024px){
+  .tix .alsobar{ display:block; position:fixed; left:0; right:0; bottom:0; z-index:55;
+    background: rgb(18 19 23 / .95); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top:1px solid var(--bone-12); }
+  .tix .alsobar__inner{ max-width:1200px; margin-inline:auto; padding:0.5rem var(--gutter);
+    display:flex; align-items:center; gap:clamp(1rem, 0.5rem + 1.5vw, 2rem); }
+  .tix .alsobar__label{ flex:0 0 auto; font-family:var(--ff-ui); font-weight:600; font-size:var(--fs-eyebrow);
+    text-transform:uppercase; letter-spacing:var(--track-eyebrow); color:var(--bone-70); }
+  .tix .alsobar__list{ display:flex; align-items:center; min-width:0; gap:clamp(1rem, 0.5rem + 1.5vw, 2rem);
+    overflow-x:auto; margin:0; padding:0; list-style:none; }
+  .tix .alsobar__evt{ display:flex; flex-direction:column; justify-content:center; line-height:1.2;
+    white-space:nowrap; min-height:44px; padding:0.15rem 0; }
+  .tix .alsobar__name{ font-family:var(--ff-ui); font-weight:600; font-size:0.9375rem; color:var(--c-bone);
+    text-decoration:underline; text-decoration-color:var(--bone-20); text-underline-offset:3px;
+    transition:text-decoration-color var(--t); }
+  .tix .alsobar__evt:hover .alsobar__name{ text-decoration-color:var(--c-bone); }
+  .tix .alsobar__meta{ font-size:0.78rem; color:var(--c-muted); }
+  .tix .alsobar__more{ flex:0 0 auto; margin-left:auto; white-space:nowrap; }
+}
+
+</style>
+
+<script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://wrestlelore.com/events/tickets/#breadcrumbs",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wrestlelore.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Events", "item": "https://wrestlelore.com/events/" },
+        { "@type": "ListItem", "position": 3, "name": "Tickets", "item": "https://wrestlelore.com/events/tickets/" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://wrestlelore.com/events/tickets/#upcoming",
+      "name": "Upcoming WWE Premium Live Events and specials",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 5,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SportsEvent",
+            "name": "SummerSlam 2026",
+            "startDate": "2026-08-01",
+            "endDate": "2026-08-02",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "U.S. Bank Stadium",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Minneapolis",
+                "addressRegion": "MN",
+                "addressCountry": "US"
+              }
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.ticketmaster.com/wwe-tickets/artist/807358",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SportsEvent",
+            "name": "Sunday Night's Main Event",
+            "startDate": "2026-09-06",
+            "endDate": "2026-09-06",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "State Farm Arena",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Atlanta",
+                "addressRegion": "GA",
+                "addressCountry": "US"
+              }
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.ticketmaster.com/wwe-tickets/artist/807358",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SportsEvent",
+            "name": "WWE x AAA/NXT Worlds Collide",
+            "startDate": "2026-09-26",
+            "endDate": "2026-09-26",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Allstate Arena",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Rosemont",
+                "addressRegion": "IL",
+                "addressCountry": "US"
+              }
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.ticketmaster.com/wwe-tickets/artist/807358",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SportsEvent",
+            "name": "Money in the Bank 2026",
+            "startDate": "2026-10-10",
+            "endDate": "2026-10-10",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Smoothie King Center",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "New Orleans",
+                "addressRegion": "LA",
+                "addressCountry": "US"
+              }
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.ticketmaster.com/wwe-tickets/artist/807358",
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SportsEvent",
+            "name": "Survivor Series: WarGames 2026",
+            "startDate": "2026-11-28",
+            "endDate": "2026-11-28",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Daikin Park",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Houston",
+                "addressRegion": "TX",
+                "addressCountry": "US"
+              }
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.ticketmaster.com/wwe-tickets/artist/807358",
+              "availability": "https://schema.org/PreOrder",
+              "validFrom": "2026-08-07"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://wrestlelore.com/events/tickets/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When and where is WWE's next Premium Live Event?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SummerSlam runs August 1 and 2, 2026 at U.S. Bank Stadium in Minneapolis. Tickets are on sale now through Ticketmaster."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do I buy WWE tickets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In the United States, Ticketmaster is WWE's primary seller and On Location handles premium seats and travel. The seller changes by country. Saudi Arabia sells through webook, Australia through Ticketek, Europe through the local Ticketmaster, and AEG venues through AXS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a WWE presale, and do I need a code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A presale opens a short window to buy before the public on-sale. WWE's free presale runs on email registration, so register before the window closes for the earliest shot. We tell you when and where to register. We don't hand out codes, and nobody should."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much do WWE tickets cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prices are set by the seller and move with demand, so we don't quote a number here. Open the live listing on Ticketmaster for the current range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is On Location?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On Location is WWE's official hospitality partner and shares WWE's parent company, TKO. Its WWE Priority Pass packages bundle official tickets, premium seats, pre-show hospitality, and Superstar meet-and-greets. Package contents vary by event."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is WrestleMania 43?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WrestleMania 43 is heading to Riyadh, Saudi Arabia in 2027, the first WrestleMania held outside North America. The venue, dates, and travel packages have not been announced yet. Leave your email and we'll tell you the day travel goes on sale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A show I want is sold out. What can I do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Leave your email and we'll tell you if verified resale drops or more seats release. For early access next time, Club WWE is WWE's official route. Here's how it works on WWE.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Wrestle Lore affiliated with WWE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Wrestle Lore is an independent fan guide, and we don't sell tickets. We link to official and authorized sellers including Ticketmaster, On Location, AXS, webook, and Ticketek. We're not affiliated with or endorsed by WWE or TKO."
+          }
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header nav7">
+  <div class="wrap">
+    <nav class="bar" aria-label="Primary">
+      <a class="brand7" href="/" aria-label="Wrestle Lore, home"><span class="mark mark--logo"><img src="/assets/wrestle-lore-logo.png" alt="" width="141" height="96" decoding="async"><span class="sheen" aria-hidden="true"></span></span><span class="bword bword--stack"><b>Wrestle</b><b>Lore</b></span></a>
+      <div class="tabs7">
+        <!-- ========== 1 / SUPERSTARS: roster dossier (current stars left) ========== -->
+        <div class="navitem nv-w">
+          <a class="tab" href="/wrestlers/" aria-haspopup="true" aria-expanded="false">Superstars</a>
+          <div class="mega7 mega7--rdossier" role="group" aria-label="Superstars menu">
+            <!-- current stars active roster ledger (LEFT / primary column) -->
+            <div class="rd-current" role="group" aria-label="Current stars, active roster">
+              <span class="ldg-head">Current Stars // Active Roster</span>
+              <a class="ldg-row" href="/wrestlers/roman-reigns/">
+                <span class="ldg-x">R</span>
+                <span class="ldg-nm">Roman Reigns <em class="ldg-aka">Tribal Chief</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/cody-rhodes/">
+                <span class="ldg-x">C</span>
+                <span class="ldg-nm">Cody Rhodes <em class="ldg-aka">American Nightmare</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/gunther/">
+                <span class="ldg-x">G</span>
+                <span class="ldg-nm">Gunther <em class="ldg-aka">Ring General</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/seth-rollins/">
+                <span class="ldg-x">S</span>
+                <span class="ldg-nm">Seth Rollins <em class="ldg-aka">The Visionary</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/drew-mcintyre/">
+                <span class="ldg-x">D</span>
+                <span class="ldg-nm">Drew McIntyre <em class="ldg-aka">Scottish Warrior</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/jey-uso/">
+                <span class="ldg-x">J</span>
+                <span class="ldg-nm">Jey Uso <em class="ldg-aka">Main Event</em></span>
+                <span class="ldg-tags"><span class="tg">WWE</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/jon-moxley/">
+                <span class="ldg-x">M</span>
+                <span class="ldg-nm">Jon Moxley <em class="ldg-aka">Death Rider</em></span>
+                <span class="ldg-tags"><span class="tg">AEW</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/kenny-omega/">
+                <span class="ldg-x">K</span>
+                <span class="ldg-nm">Kenny Omega <em class="ldg-aka">The Cleaner</em></span>
+                <span class="ldg-tags"><span class="tg">AEW</span></span>
+              </a>
+              <a class="ldg-row" href="/wrestlers/nic-nemeth/">
+                <span class="ldg-x">N</span>
+                <span class="ldg-nm">Nic Nemeth <em class="ldg-aka">The Showoff</em></span>
+                <span class="ldg-tags"><span class="tg">TNA</span></span>
+              </a>
+              <div class="ldg-intel" role="group" aria-label="Roster intel">
+                <a class="ldg-int" href="/titles/intercontinental-championship/">
+                  <span class="ldg-ik">LONGEST ACTIVE REIGN</span>
+                  <span class="ldg-iv">Penta &middot; <span class="ldg-days" data-start="2026-03-02">DAY 147</span></span>
+                </a>
+                <a class="ldg-int" href="/events/">
+                  <span class="ldg-ik">NEXT PARTNER SHOW</span>
+                  <span class="ldg-iv">Worlds Collide &middot; Sept 12 &middot; Las Vegas</span>
+                </a>
+              </div>
+            </div>
+            <!-- featured active headliner file (RIGHT) -->
+            <a class="rd-feat" href="/wrestlers/cm-punk/">
+              <span class="rd-tab">FILE // ACTIVE</span>
+              <span class="rd-mono" aria-hidden="true">CP</span>
+              <span class="rd-meta">ROSTER FILE // ACTIVE</span>
+              <h3 class="rd-name">CM Punk</h3>
+              <span class="rd-rule" aria-hidden="true"></span>
+              <span class="rd-role">The Best in the World // Undisputed WWE Champion</span>
+              <p class="rd-blurb">Reigning Undisputed WWE Champion and the roster's biggest active draw, filed at the top of the current card.</p>
+              <span class="rd-go">OPEN FILE</span>
+            </a>
+            <!-- women's division + rising prospects, side by side -->
+            <div class="rd-sec">
+              <div class="rd-col rd-col--women" role="group" aria-label="Women's division">
+                <span class="rd-chd">Women's Division</span>
+                <a class="rd-mini" href="/wrestlers/rhea-ripley/"><span class="rd-mnm">Rhea Ripley</span><span class="rd-mtg">Champion</span></a>
+                <a class="rd-mini" href="/wrestlers/tiffany-stratton/"><span class="rd-mnm">Tiffany Stratton</span><span class="rd-mtg">Buff Barbie</span></a>
+                <a class="rd-mini" href="/wrestlers/becky-lynch/"><span class="rd-mnm">Becky Lynch</span><span class="rd-mtg">The Man</span></a>
+                <a class="rd-mini rd-mini--more" href="/women/"><span class="rd-mnm">See all women</span><span class="rd-mtg">GO</span></a>
+                            </div>
+              <div class="rd-col rd-col--rise" role="group" aria-label="Rising prospects">
+                <span class="rd-chd">Rising Prospects</span>
+                <a class="rd-mini" href="/wrestlers/bron-breakker/"><span class="rd-mnm">Bron Breakker</span><span class="rd-mtg">WWE</span></a>
+                <a class="rd-mini" href="/wrestlers/oba-femi/"><span class="rd-mnm">Oba Femi</span><span class="rd-mtg">NXT</span></a>
+                <a class="rd-mini" href="/wrestlers/trick-williams/"><span class="rd-mnm">Trick Williams</span><span class="rd-mtg">NXT</span></a>
+                <a class="rd-mini rd-mini--more" href="/current/"><span class="rd-mnm">See all current</span><span class="rd-mtg">GO</span></a>
+                            </div>
+            </div>
+            <!-- legends section: featured icon left, more legends right -->
+            <div class="rd-icons" role="group" aria-label="Legends">
+              <a class="rd-feat rd-feat--icon" href="/wrestlers/the-rock/">
+                <span class="rd-tab">FILE // LEGENDS</span>
+                <span class="rd-mono" aria-hidden="true">R</span>
+                <span class="rd-icobody">
+                  <span class="rd-meta">FEATURED // THE GREAT ONE</span>
+                  <h3 class="rd-name rd-name--sm">The Rock</h3>
+                  <span class="rd-role">The People's Champion // From the ring to Hollywood</span>
+                </span>
+                <span class="rd-go">OPEN FILE</span>
+              </a>
+              <div class="rd-col rd-col--lgd" role="group" aria-label="More legends">
+                <span class="rd-chd">More Legends</span>
+                <a class="rd-mini" href="/wrestlers/stone-cold-steve-austin/"><span class="rd-mnm">Stone Cold</span><span class="rd-mtg">3:16</span></a>
+                <a class="rd-mini" href="/wrestlers/the-undertaker/"><span class="rd-mnm">The Undertaker</span><span class="rd-mtg">21-0</span></a>
+                <a class="rd-mini" href="/wrestlers/ric-flair/"><span class="rd-mnm">Ric Flair</span><span class="rd-mtg">16x</span></a>
+                <a class="rd-mini" href="/legends/"><span class="rd-mnm">All Legends</span><span class="rd-mtg">INDEX</span></a>
+                <a class="rd-mini rd-mini--more" href="/archive/"><span class="rd-mnm">The Archive</span><span class="rd-mtg">PAST</span></a>
+              </div>
+            </div>
+            <div class="chiprow" role="group" aria-label="Roster quick index">
+              <a class="chip7" href="/wrestlers/"><span class="dot" style="background:var(--gold)"></span>All 107 A&ndash;Z</a>
+              <a class="chip7" href="/current/"><span class="dot" style="background:var(--red)"></span>Current</a>
+              <a class="chip7" href="/women/" style="--acc:var(--womens)"><span class="dot" style="background:var(--womens)"></span>Women</a>
+              <a class="chip7" href="/legends/"><span class="dot" style="background:var(--gold)"></span>Legends</a>
+              <a class="chip7 chip7--more" href="/promotions/">By promotion</a>
+            </div>
+          </div>
+        </div>
+        <!-- ========== 2 / MATCHES: ladder + match desk rail ========== -->
+        <div class="navitem nv-m">
+          <a class="tab" href="/matches/" aria-haspopup="true" aria-expanded="false">Matches</a>
+          <div class="mega7 mega7--ladder" role="group" aria-label="Matches menu">
+            <div class="ladcol" role="group" aria-label="The five-star ladder">
+              <a class="dk lrow rare-gold" href="/matches/undertaker-vs-hbk-wm25/">
+                <span class="rank">01</span>
+                <span class="lbody"><span class="klbl">WRESTLEMANIA XXV &middot; HOUSTON &middot; '09</span><span class="lnm">Undertaker vs Michaels</span></span>
+                <span class="meter7" aria-hidden="true"><span class="off">&starf;&starf;&starf;&starf;&starf;</span><span class="on">&starf;&starf;&starf;&starf;&starf;</span></span>
+                <span class="ltag">5.0</span>
+              </a>
+              <a class="dk lrow" href="/matches/cm-punk-vs-cena-mitb-2011/">
+                <span class="rank">02</span>
+                <span class="lbody"><span class="klbl">MONEY IN THE BANK &middot; CHICAGO &middot; '11</span><span class="lnm">CM Punk vs John Cena</span></span>
+                <span class="meter7" aria-hidden="true"><span class="off">&starf;&starf;&starf;&starf;&starf;</span><span class="on">&starf;&starf;&starf;&starf;&starf;</span></span>
+                <span class="ltag">5.0</span>
+              </a>
+              <a class="dk lrow" href="/matches/styles-vs-daniels-vs-joe-unbreakable-2005/">
+                <span class="rank">03</span>
+                <span class="lbody"><span class="klbl">TNA UNBREAKABLE &middot; THREE-WAY &middot; '05</span><span class="lnm">Styles vs Daniels vs Joe</span></span>
+                <span class="meter7" aria-hidden="true"><span class="off">&starf;&starf;&starf;&starf;&starf;</span><span class="on">&starf;&starf;&starf;&starf;&starf;</span></span>
+                <span class="ltag">5.0</span>
+              </a>
+              <a class="dk lrow" href="/matches/gargano-vs-ciampa-takeover-new-orleans-2018/">
+                <span class="rank">04</span>
+                <span class="lbody"><span class="klbl">TAKEOVER: NEW ORLEANS &middot; UNSANCTIONED &middot; '18</span><span class="lnm">Gargano vs Ciampa</span></span>
+                <span class="meter7" aria-hidden="true"><span class="off">&starf;&starf;&starf;&starf;&starf;</span><span class="on">&starf;&starf;&starf;&starf;&starf;</span></span>
+                <span class="ltag">5.0</span>
+              </a>
+              <a class="dk lrow" href="/matches/angle-vs-benoit-royal-rumble-2003/">
+                <span class="rank">05</span>
+                <span class="lbody"><span class="klbl">ROYAL RUMBLE &middot; TECHNICAL CLINIC &middot; '03</span><span class="lnm">Angle vs Benoit</span></span>
+                <span class="meter7" aria-hidden="true"><span class="off">&starf;&starf;&starf;&starf;&starf;</span><span class="on">&starf;&starf;&starf;&starf;&starf;</span></span>
+                <span class="ltag">5.0</span>
+              </a>
+              <a class="dk lrow" href="/matches/rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997/">
+                <span class="rank">06</span>
+                <span class="lbody"><span class="klbl">HALLOWEEN HAVOC &middot; MASK VS TITLE &middot; '97</span><span class="lnm">Rey vs Eddie</span></span>
+                <span class="meter7" aria-hidden="true"><span class="off">&starf;&starf;&starf;&starf;&starf;</span><span class="on">&starf;&starf;&starf;&starf;&starf;</span></span>
+                <span class="ltag">5.0</span>
+              </a>
+            </div>
+            <div class="deskcol" role="group" aria-label="Match desk rail">
+              <a class="chc" href="/matches/" style="--acc:var(--redb)">
+                <span class="klbl">IDENT // DESK</span>
+                <span class="chn">MATCH DESK</span>
+                <span class="chs">FULL ARCHIVE</span>
+              </a>
+              <a class="dk dk--stat" href="/rankings/">
+                <span class="klbl">BOARD // RATED</span>
+                <div class="big">30</div>
+                <span class="n">Five-star ladder</span>
+                <span class="go">GO</span>
+              </a>
+              <a class="dk dk--stat" href="/moments/">
+                <span class="klbl">ISO CAM // CLIPS</span>
+                <div class="big big--word">MOMENTS</div>
+                <span class="n">The falls, the kickouts</span>
+                <span class="go">GO</span>
+              </a>
+              <a class="dk dk--stat" href="/rivalries/">
+                <span class="klbl">HEAT // INDEX</span>
+                <div class="big big--word">RIVALRIES</div>
+                <span class="n">Feuds with receipts</span>
+                <span class="go">GO</span>
+              </a>
+            </div>
+            <div class="chiprow" role="group" aria-label="Match indexes">
+              <a class="chip7" href="/matches/"><span class="dot" style="background:var(--red)"></span>All 30 Matches</a>
+              <a class="chip7" href="/events/">Cards of 2026</a>
+              <a class="chip7 chip7--more" href="/methodology/">How stars get counted</a>
+            </div>
+          </div>
+        </div>
+        <!-- ========== 3 / EVENTS: T-numbered season rail ========== -->
+        <div class="navitem nv-e">
+          <a class="tab" href="/events/" aria-haspopup="true" aria-expanded="false">Events</a>
+          <div class="mega7 mega7--timeline" role="group" aria-label="Events menu">
+            <div class="rail7" role="group" aria-label="2026 season timeline">
+              <a class="tc" href="/events/royal-rumble-2026/">
+                <span class="dt">T-01 // JANUARY</span>
+                <span class="enm">Royal Rumble 2026</span>
+                <span class="klbl">30-ENTRANT LOTTERY</span>
+                <span class="go">CARD</span>
+              </a>
+              <a class="tc" href="/events/elimination-chamber-2026/">
+                <span class="dt">T-02 // MARCH</span>
+                <span class="enm">Elimination Chamber</span>
+                <span class="klbl">SIX IN THE STRUCTURE</span>
+                <span class="go">CARD</span>
+              </a>
+              <a class="tc tc--main" href="/events/wrestlemania-42-2026/">
+                <span class="dt">T-03 // APRIL // HEADLINE</span>
+                <span class="enm">WrestleMania 42</span>
+                <span class="klbl">THE SHOWCASE CARD, INDEXED</span>
+                <span class="go">VIEW CARD</span>
+              </a>
+              <a class="tc" href="/events/backlash-2026/">
+                <span class="dt">T-04 // MAY</span>
+                <span class="enm">Backlash 2026</span>
+                <span class="klbl">POST-MANIA FALLOUT</span>
+                <span class="go">CARD</span>
+              </a>
+              <a class="tc" href="/events/night-of-champions-2026/">
+                <span class="dt">T-05 // JUNE</span>
+                <span class="enm">Night of Champions</span>
+                <span class="klbl">EVERY BELT ON THE LINE</span>
+                <span class="go">CARD</span>
+              </a>
+              <a class="tc tc--wc" href="/events/">
+                <span class="dt">T-06 // SEPTEMBER</span>
+                <span class="enm">Worlds Collide</span>
+                <span class="klbl">WWE x AAA &middot; LAS VEGAS &middot; SEPT 12</span>
+                <span class="wcbadge">PARTNER // AAA</span>
+                <span class="go">SLATE</span>
+              </a>
+            </div>
+            <div class="brandstrip" role="group" aria-label="Event series">
+              <a class="rowlink" href="/events/wrestlemania/">WrestleMania, every year <span class="tag2">SERIES</span></a>
+              <a class="rowlink" href="/events/royal-rumble/">Royal Rumble, every year <span class="tag2">SERIES</span></a>
+            </div>
+            <div class="chiprow" role="group" aria-label="Event indexes">
+              <a class="chip7" href="/moments/"><span class="dot" style="background:var(--ev)"></span>Moments Reel</a>
+              <a class="chip7" href="/rankings/">&starf;5.0 Rankings</a>
+              <a class="chip7" href="/matches/">All 30 Matches</a>
+              <a class="chip7 chip7--more" href="/events/">All Events</a>
+            </div>
+          </div>
+        </div>
+        <!-- ========== 4 / PROMOTIONS: eight brand cards ========== -->
+        <div class="navitem nv-p">
+          <a class="tab" href="/promotions/" aria-haspopup="true" aria-expanded="false">Promotions</a>
+          <div class="mega7 mega7--brands" role="group" aria-label="Promotions menu">
+            <a class="dk bcard" href="/promotions/wwe/" style="--pc:var(--wwe)">
+              <span class="klbl">EST. 1953 // GLOBAL FEED</span>
+              <div class="bnm">WWE</div>
+              <span class="bys">WWF TO THE GLOBAL GIANT &middot; PLE SLATE</span>
+            </a>
+            <a class="dk bcard" href="/promotions/wcw/" style="--pc:var(--wcw)">
+              <span class="klbl">1988 TO 2001 // ARCHIVE</span>
+              <div class="bnm">WCW</div>
+              <span class="bys">NITRO VS RAW &middot; 83 WEEKS</span>
+            </a>
+            <a class="dk bcard" href="/promotions/ecw/" style="--pc:var(--ecw)">
+              <span class="klbl">1992 TO 2001 // EXTREME</span>
+              <div class="bnm">ECW</div>
+              <span class="bys">THE LAND OF EXTREME</span>
+            </a>
+            <a class="dk bcard" href="/promotions/tna/" style="--pc:var(--tna)">
+              <span class="klbl">EST. 2002 // X DIVISION</span>
+              <div class="bnm">TNA</div>
+              <span class="bys">WHERE STYLES GOT MADE</span>
+            </a>
+            <a class="dk bcard" href="/promotions/nxt/" style="--pc:var(--nxt)">
+              <span class="klbl">EST. 2010 // BLACK &amp; GOLD</span>
+              <div class="bnm">NXT</div>
+              <span class="bys">TAKEOVER PEDIGREE</span>
+            </a>
+            <a class="dk bcard" href="/promotions/njpw/" style="--pc:var(--njpw)">
+              <span class="klbl">EST. 1972 // PURO</span>
+              <div class="bnm">NJPW</div>
+              <span class="bys">KING OF SPORTS</span>
+              <span class="stream">NJPW WORLD &middot; TRILLERTV</span>
+            </a>
+            <a class="dk bcard" href="/promotions/aew/" style="--pc:var(--aew)">
+              <span class="klbl">EST. 2019 // NEW FEED</span>
+              <div class="bnm">AEW</div>
+              <span class="bys">WHERE THE BEST WRESTLE</span>
+              <span class="stream">PPV ON HBO MAX</span>
+            </a>
+            <a class="dk bcard bcard--aaa" href="/promotions/" style="--pc:var(--aaa)">
+              <span class="klbl">EST. 1992 // MEXICO CITY</span>
+              <div class="bnm bnm--tri">AAA</div>
+              <span class="bys">LUCHA LIBRE &middot; WWE PARTNER SINCE AUG 2025</span>
+              <span class="stream">TRIPLEMANIA &middot; WORLDS COLLIDE</span>
+            </a>
+            <div class="chiprow" role="group" aria-label="Feed shortcuts">
+              <a class="chip7" href="/promotions/wcw/" style="--acc:var(--wcw)"><span class="dot" style="background:var(--wcw)"></span>Monday Night Wars</a>
+              <a class="chip7" href="/promotions/aew/" style="--acc:var(--aew)"><span class="dot" style="background:var(--aew)"></span>AEW<span class="plat">HBO Max</span></a>
+              <a class="chip7" href="/promotions/njpw/" style="--acc:var(--njpw)"><span class="dot" style="background:var(--njpw)"></span>NJPW<span class="plat">NJPW World</span></a>
+              <a class="chip7 chip7--more" href="/promotions/">All 7 Promotions</a>
+            </div>
+          </div>
+        </div>
+        <!-- ========== 5 / HALL OF FAME: ring of honor ========== -->
+        <div class="navitem nv-h">
+          <a class="tab" href="/hall-of-fame/" aria-haspopup="true" aria-expanded="false">Hall of Fame</a>
+          <div class="mega7 mega7--hof2" role="group" aria-label="Hall of Fame menu">
+            <div class="hof2-grid">
+              <a class="hof2-spot" href="/hall-of-fame/2026/">
+                <span class="hof2-spot__medal" aria-hidden="true">
+                  <svg viewBox="0 0 120 120" focusable="false">
+                    <circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/>
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width=".5" opacity=".32"/>
+                    <g stroke="currentColor" stroke-width="1" opacity=".38">
+                      <line x1="60" y1="4" x2="60" y2="12"/><line x1="60" y1="108" x2="60" y2="116"/>
+                      <line x1="4" y1="60" x2="12" y2="60"/><line x1="108" y1="60" x2="116" y2="60"/>
+                    </g>
+                    <text class="hof2-mono" x="60" y="63">AJ</text>
+                  </svg>
+                </span>
+                <span class="hof2-eyebrow">CLASS OF 2026 // HEADLINER</span>
+                <span class="hof2-spot__name">AJ Styles</span>
+                <span class="hof2-spot__ctx">The Phenomenal One goes in first. A showcase of the legends who defined the ring and no longer compete in it.</span>
+                <span class="go hof2-go">VIEW CLASS</span>
+              </a>
+              <div class="hof2-side">
+                <section class="hof2-club" aria-label="Multi-time inductees">
+                  <div class="hof2-club__head">
+                    <span class="hof2-eyebrow">MULTI-TIME INDUCTEES</span>
+                    <span class="hof2-club__title">The Two-Time Club</span>
+                  </div>
+                  <hr class="hof2-hair">
+                  <div class="hof2-medals" role="list" aria-label="Two-time WWE Hall of Famers">
+                    <a class="hof2-chip" href="/wrestlers/ric-flair/" role="listitem"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">RF</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Ric Flair</span><span class="hof2-chip__note">SOLO &middot; 4HM</span></a><a class="hof2-chip" href="/wrestlers/shawn-michaels/" role="listitem"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">SM</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Shawn Michaels</span><span class="hof2-chip__note">SOLO &middot; DX</span></a><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">BT</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Booker T</span><span class="hof2-chip__note">SOLO &middot; HH</span></span><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">KN</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Kevin Nash</span><span class="hof2-chip__note">SOLO &middot; nWo</span></span><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">SH</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Scott Hall</span><span class="hof2-chip__note">SOLO &middot; nWo</span></span><span class="hof2-chip hof2-chip--static" role="listitem" title="Profile page not built yet"><span class="hof2-medal" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="22" fill="#111318" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width=".55" opacity=".42"/><text class="hof2-init" x="24" y="21">HH</text><text class="hof2-2x" x="24" y="38">2&#215;</text></svg></span><span class="hof2-chip__nm">Hulk Hogan</span><span class="hof2-chip__note">SOLO &middot; nWo</span></span>
+                  </div>
+                </section>
+                <div class="hof2-rail" role="group" aria-label="Hall of Fame classes">
+                  <a class="chip7" href="/hall-of-fame/2026/"><span class="dot" style="background:var(--hof)"></span>Class of 2026</a>
+                  <a class="chip7" href="/hall-of-fame/2025/"><span class="dot" style="background:#c9ccd2"></span>Class of 2025</a>
+                  <a class="chip7 chip7--more" href="/hall-of-fame/">All Classes</a>
+                </div>
+                <div class="chiprow" role="group" aria-label="Legend profiles">
+                  <a class="chip7" href="/wrestlers/the-undertaker/"><span class="dot" style="background:#8b5cf6"></span>The Undertaker</a>
+                  <a class="chip7" href="/wrestlers/sting/"><span class="dot" style="background:#58c7f0"></span>Sting</a>
+                  <a class="chip7" href="/showcases/aj-styles/"><span class="dot" style="background:var(--hof)"></span>AJ Styles Showcase</a>
+                  <a class="chip7 chip7--more" href="/legends/">Legends Index</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ========== 6 / TITLES & TEAMS: belt rack with crest craft ========== -->
+        <div class="navitem nv-t">
+          <a class="tab" href="/titles/" aria-haspopup="true" aria-expanded="false">Titles &amp; Teams</a>
+          <div class="mega7 mega7--rack" role="group" aria-label="Titles and Teams menu">
+            <div class="rackwrap">
+              <div role="group" aria-label="Belt rack, residing champions">
+                <a class="belt belt--live" href="/titles/undisputed-wwe-championship/" style="--i:0;--cr:var(--redb)">
+                  <span class="bin">
+                    <svg class="crest" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                      <circle class="pulse" cx="16" cy="16" r="13"/>
+                      <g class="cg">
+                        <path pathLength="100" d="M10.5 27 C6 23.5 4.5 17.5 6.5 11"/>
+                        <path pathLength="100" d="M6.5 11 q3.2 .6 4.2 3.6"/>
+                        <path pathLength="100" d="M5.4 16.2 q3.2 .5 4.6 3.1"/>
+                        <path pathLength="100" d="M7 21.6 q3 .4 4.6 2.9"/>
+                        <path pathLength="100" d="M21.5 27 C26 23.5 27.5 17.5 25.5 11"/>
+                        <path pathLength="100" d="M25.5 11 q-3.2 .6 -4.2 3.6"/>
+                        <path pathLength="100" d="M26.6 16.2 q-3.2 .5 -4.6 3.1"/>
+                        <path pathLength="100" d="M25 21.6 q-3 .4 -4.6 2.9"/>
+                        <path pathLength="100" d="M16 9 L17.8 14.2 L23 16 L17.8 17.8 L16 23 L14.2 17.8 L9 16 L14.2 14.2 Z"/>
+                      </g>
+                    </svg>
+                    <span class="bnm2">Undisputed WWE Championship</span>
+                    <span class="klive">LIVE</span>
+                    <span class="bwho">CHAMP</span>
+                    <span class="plate" data-start="2026-07-06">
+                      <span class="pcore">
+                        <span class="pf pf--day"><span class="pdays">DAY 20</span><span class="psub">OF REIGN</span></span>
+                        <span class="pf pf--champ"><svg class="lf" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path d="M10 15 C4.5 12 3.5 6 6.5 1 M6.2 5.2 q-3 .9 -4 3.8 M7.2 9.4 q-3 .9 -3.6 4"/></svg>CM Punk<svg class="lf" viewBox="0 0 12 16" aria-hidden="true" focusable="false"><path d="M2 15 C7.5 12 8.5 6 5.5 1 M5.8 5.2 q3 .9 4 3.8 M4.8 9.4 q3 .9 3.6 4"/></svg></span>
+                      </span>
+                    </span>
+                    <span class="btag">LINEAGE</span>
+                    <span class="bctx">LINEAGE TO 1963 &middot; HELD SINCE JULY 6, 2026</span>
+                  </span>
+                </a>
+                <a class="belt" href="/titles/world-heavyweight-championship/" style="--i:1">
+                  <span class="bin">
+                    <svg class="crest" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                      <circle class="pulse" cx="16" cy="16" r="13"/>
+                      <g class="cg">
+                        <path pathLength="100" d="M10.5 27 C6 23.5 4.5 17.5 6.5 11"/>
+                        <path pathLength="100" d="M6.5 11 q3.2 .6 4.2 3.6"/>
+                        <path pathLength="100" d="M5.4 16.2 q3.2 .5 4.6 3.1"/>
+                        <path pathLength="100" d="M7 21.6 q3 .4 4.6 2.9"/>
+                        <path pathLength="100" d="M21.5 27 C26 23.5 27.5 17.5 25.5 11"/>
+                        <path pathLength="100" d="M25.5 11 q-3.2 .6 -4.2 3.6"/>
+                        <path pathLength="100" d="M26.6 16.2 q-3.2 .5 -4.6 3.1"/>
+                        <path pathLength="100" d="M25 21.6 q-3 .4 -4.6 2.9"/>
+                        <path pathLength="100" d="M16 8.5 L21 10.5 V16 C21 19.8 18.8 22.3 16 24 C13.2 22.3 11 19.8 11 16 V10.5 Z"/>
+                        <path pathLength="100" d="M16 11 V21"/>
+                      </g>
+                    </svg>
+                    <span class="bnm2">World Heavyweight Championship</span>
+                    <span class="bwho">CHAMP</span>
+                    <span class="plate" data-start="2026-04-19">
+                      <span class="pcore">
+                        <span class="pf pf--day"><span class="pdays">DAY 98</span><span class="psub">OF REIGN</span></span>
+                        <span class="pf pf--champ">Roman Reigns</span>
+                      </span>
+                    </span>
+                    <span class="btag">LINEAGE</span>
+                  </span>
+                </a>
+                <a class="belt" href="/titles/intercontinental-championship/" style="--i:2">
+                  <span class="bin">
+                    <svg class="crest" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                      <circle class="pulse" cx="16" cy="16" r="13"/>
+                      <g class="cg">
+                        <circle pathLength="100" cx="16" cy="16" r="12.5"/>
+                        <path pathLength="100" d="M12 6.5 L18 13.5 L14.4 15 L20.5 25.5"/>
+                        <path pathLength="100" d="M20 6.5 L14 13.5 L17.6 15 L11.5 25.5"/>
+                      </g>
+                    </svg>
+                    <span class="bnm2">Intercontinental Championship</span>
+                    <span class="bwho">CHAMP</span>
+                    <span class="plate" data-start="2026-03-02">
+                      <span class="pcore">
+                        <span class="pf pf--day"><span class="pdays">DAY 146</span><span class="psub">OF REIGN</span></span>
+                        <span class="pf pf--champ">Penta</span>
+                      </span>
+                    </span>
+                    <span class="btag">LINEAGE</span>
+                  </span>
+                </a>
+                <a class="belt" href="/titles/united-states-championship/" style="--i:3;--cr:#5aa9ff">
+                  <span class="bin">
+                    <svg class="crest" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                      <circle class="pulse" cx="16" cy="16" r="13"/>
+                      <g class="cg">
+                        <circle pathLength="100" cx="16" cy="16" r="11"/>
+                        <ellipse pathLength="100" cx="16" cy="16" rx="4.8" ry="11"/>
+                        <path pathLength="100" d="M5 16 H27"/>
+                        <path pathLength="100" d="M7.6 10.4 q8.4 4.4 16.8 0"/>
+                        <path pathLength="100" d="M7.6 21.6 q8.4 -4.4 16.8 0"/>
+                      </g>
+                    </svg>
+                    <span class="bnm2">United States Championship</span>
+                    <span class="bwho">CHAMP</span>
+                    <span class="plate" data-start="2026-04-19">
+                      <span class="pcore">
+                        <span class="pf pf--day"><span class="pdays">DAY 98</span><span class="psub">OF REIGN</span></span>
+                        <span class="pf pf--champ">Trick Williams</span>
+                      </span>
+                    </span>
+                    <span class="btag">LINEAGE</span>
+                  </span>
+                </a>
+                <a class="belt belt--wm" href="/titles/wwe-womens-championship/" style="--i:4;--cr:var(--womens)">
+                  <span class="bin">
+                    <svg class="crest" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                      <circle class="pulse" cx="16" cy="16" r="13"/>
+                      <g class="cg">
+                        <path pathLength="100" d="M8 21.5 V11.5 L12.6 16.4 L16 9 L19.4 16.4 L24 11.5 V21.5 Z"/>
+                        <path pathLength="100" d="M8 24.5 H24"/>
+                        <circle pathLength="100" cx="8" cy="9" r="1.4"/>
+                        <circle pathLength="100" cx="16" cy="6.2" r="1.4"/>
+                        <circle pathLength="100" cx="24" cy="9" r="1.4"/>
+                      </g>
+                    </svg>
+                    <span class="bnm2">Women's Championship</span>
+                    <span class="bwho">CHAMP</span>
+                    <span class="plate" data-start="2026-04-19">
+                      <span class="pcore">
+                        <span class="pf pf--day"><span class="pdays">DAY 98</span><span class="psub">OF REIGN</span></span>
+                        <span class="pf pf--champ">Rhea Ripley</span>
+                      </span>
+                    </span>
+                    <span class="btag">LINEAGE</span>
+                  </span>
+                </a>
+                <a class="belt" href="/titles/wwe-tag-team-championship/" style="--i:5">
+                  <span class="bin">
+                    <svg class="crest" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                      <circle class="pulse" cx="16" cy="16" r="13"/>
+                      <g class="cg">
+                        <circle pathLength="100" cx="11.5" cy="16" r="7"/>
+                        <circle pathLength="100" cx="20.5" cy="16" r="7"/>
+                      </g>
+                    </svg>
+                    <span class="bnm2">WWE Tag Team Championship</span>
+                    <span class="bwho">CHAMPS</span>
+                    <span class="plate" data-start="2026-03-20">
+                      <span class="pcore">
+                        <span class="pf pf--day"><span class="pdays">DAY 128</span><span class="psub">OF REIGN</span></span>
+                        <span class="pf pf--champ">Priest &amp; R-Truth</span>
+                      </span>
+                    </span>
+                    <span class="btag">LINEAGE</span>
+                  </span>
+                </a>
+              </div>
+              <div role="group" aria-label="Title and team counts">
+                <a class="dk dk--stat" href="/titles/" style="--acc:var(--goldb)">
+                  <svg class="cspark" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M1 12 V5 Q1 1 5 1 H12" pathLength="100"/></svg>
+                  <span class="klbl">BELTS // TRACKED</span>
+                  <div class="big">11</div>
+                  <span class="n">Title lineages</span>
+                  <span class="go">GO</span>
+                </a>
+                <a class="dk dk--stat" href="/factions/" style="--acc:var(--goldb)">
+                  <svg class="cspark" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M1 12 V5 Q1 1 5 1 H12" pathLength="100"/></svg>
+                  <span class="klbl">UNITS // STABLES</span>
+                  <div class="big">8</div>
+                  <span class="n">Factions</span>
+                  <span class="go">GO</span>
+                </a>
+                <a class="dk dk--stat" href="/tag-teams/" style="--acc:var(--goldb)">
+                  <svg class="cspark" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M1 12 V5 Q1 1 5 1 H12" pathLength="100"/></svg>
+                  <span class="klbl">TAG // DIVISION</span>
+                  <div class="big">8</div>
+                  <span class="n">Tag teams</span>
+                  <span class="go">GO</span>
+                </a>
+                <a class="dk feeds" href="/titles/" style="--acc:var(--goldb)">
+                  <svg class="cspark" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M1 12 V5 Q1 1 5 1 H12" pathLength="100"/></svg>
+                  <span class="klbl">WORLD FEEDS // ELSEWHERE</span>
+                  <span class="fl"><b>IWGP</b> YOTA TSUJI</span>
+                  <span class="fl"><b>AEW</b> KENNY OMEGA</span>
+                  <span class="fl"><b>TNA</b> NIC NEMETH</span>
+                  <span class="go">GO</span>
+                </a>
+              </div>
+            </div>
+            <div class="chiprow" role="group" aria-label="Faction cloud">
+              <a class="chip7" href="/factions/nwo/"><span class="dot" style="background:var(--red)"></span>nWo</a>
+              <a class="chip7" href="/factions/d-generation-x/"><span class="dot" style="background:var(--grn)"></span>DX</a>
+              <a class="chip7" href="/factions/the-shield/"><span class="dot" style="background:var(--ecw)"></span>The Shield</a>
+              <a class="chip7" href="/factions/the-bloodline/"><span class="dot" style="background:var(--tna)"></span>Bloodline</a>
+              <a class="chip7" href="/factions/judgment-day/"><span class="dot" style="background:var(--media)"></span>Judgment Day</a>
+              <a class="chip7" href="/factions/bullet-club/"><span class="dot" style="background:var(--njpw)"></span>Bullet Club</a>
+              <a class="chip7" href="/factions/evolution/"><span class="dot" style="background:var(--gold)"></span>Evolution</a>
+              <a class="chip7" href="/factions/four-horsemen/"><span class="dot" style="background:var(--wcw)"></span>Four Horsemen</a>
+            </div>
+            <div class="duorow" role="group" aria-label="Tag team duo tiles">
+              <a class="dk duo" href="/tag-teams/the-hardy-boyz/" style="--acc:var(--goldb)">
+                <span class="i1">M</span><span class="i2">J</span>
+                <span class="klbl">DUO // EXTREME</span>
+                <div class="nm">Hardy Boyz</div>
+              </a>
+              <a class="dk duo" href="/tag-teams/edge-and-christian/" style="--acc:var(--goldb)">
+                <span class="i1">E</span><span class="i2">C</span>
+                <span class="klbl">DUO // 7 SECONDS</span>
+                <div class="nm">Edge &amp; Christian</div>
+              </a>
+              <a class="dk duo" href="/tag-teams/the-usos/" style="--acc:var(--goldb)">
+                <span class="i1">J</span><span class="i2">J</span>
+                <span class="klbl">DUO // BLOODLINE</span>
+                <div class="nm">The Usos</div>
+              </a>
+              <a class="dk duo" href="/tag-teams/the-new-day/" style="--acc:var(--goldb)">
+                <span class="i1">N</span><span class="i2">D</span>
+                <span class="klbl">TRIO // POSITIVITY</span>
+                <div class="nm">The New Day</div>
+              </a>
+            </div>
+            <div class="chiprow" role="group" aria-label="More teams">
+              <a class="chip7" href="/tag-teams/the-dudley-boyz/">Dudley Boyz</a>
+              <a class="chip7" href="/tag-teams/the-hart-foundation/">Hart Foundation</a>
+              <a class="chip7" href="/tag-teams/the-young-bucks/">Young Bucks</a>
+              <a class="chip7" href="/tag-teams/legion-of-doom/">Legion of Doom</a>
+              <a class="chip7 chip7--more" href="/tag-teams/">All 8 Teams</a>
+            </div>
+          </div>
+        </div>
+        <!-- ========== 7 / MEDIA: purple studio press row ========== -->
+        <div class="navitem nv-d">
+          <a class="tab" href="/media/" aria-haspopup="true" aria-expanded="false">Media</a>
+          <div class="mega7 mega7--studio" role="group" aria-label="Media menu">
+            <a class="dk dk--feat rare-purp" href="/media/chris-van-vliet/">
+              <span class="klbl">PRESS ROW // FEATURED CREATOR</span>
+              <div class="studiohead">
+                <span class="pb" aria-hidden="true"></span>
+                <div>
+                  <h3>Chris Van Vliet</h3>
+                  <span class="klbl">SIT-DOWNS WITH THE LOCKER ROOM</span>
+                </div>
+              </div>
+              <span class="go">ROLL TAPE</span>
+            </a>
+            <a class="dk ptile rare-purp" href="/moments/">
+              <span class="pb" aria-hidden="true"></span>
+              <span class="pmeta">
+                <span class="klbl">ISO CAM</span>
+                <span class="nm">Moments</span>
+              </span>
+            </a>
+            <a class="dk ptile rare-purp" href="/rivalries/">
+              <span class="pb" aria-hidden="true"></span>
+              <span class="pmeta">
+                <span class="klbl">STORY // HEAT</span>
+                <span class="nm">Rivalries</span>
+              </span>
+            </a>
+            <a class="dk ptile rare-purp" href="/relationships/">
+              <span class="pb" aria-hidden="true"></span>
+              <span class="pmeta">
+                <span class="klbl">OFF SCRIPT</span>
+                <span class="nm">Relationships</span>
+              </span>
+            </a>
+            <a class="dk ptile rare-purp" href="/showcases/aj-styles/">
+              <span class="pb" aria-hidden="true"></span>
+              <span class="pmeta">
+                <span class="klbl">SHOWCASE // TAPE</span>
+                <span class="nm">AJ Styles File</span>
+              </span>
+            </a>
+            <a class="dk ptile rare-gold ptile--ega" href="/media/" style="grid-column:span 2">
+              <span class="pb" aria-hidden="true"></span>
+              <span class="pmeta">
+                <span class="klbl">LUCHA // 2M+ VIEWS</span>
+                <span class="nm">El Grande Americano</span>
+                <span class="klbl" style="margin-top:2px">MASK VS MASK &middot; NOCHE DE LOS GRANDES '26</span>
+              </span>
+            </a>
+            <a class="rowlink" href="/methodology/" style="grid-column:span 2">How the stars get counted <span class="tag2">METHOD</span></a>
+            <a class="rowlink" href="/about/" style="grid-column:1 / -1">About Wrestle Lore <span class="tag2">HOUSE</span></a>
+            <div class="chiprow" role="group" aria-label="Media indexes">
+              <a class="chip7" href="/media/"><span class="dot" style="background:var(--media)"></span>All Media</a>
+              <a class="chip7" href="/gallery/"><span class="dot" style="background:var(--gold)"></span>Viewing Gallery</a>
+              <a class="chip7" href="/membership/">Insider Membership</a>
+              <a class="chip7" href="/moments/">Moments Reel</a>
+              <a class="chip7 chip7--more" href="/media/interviews/">Interviews</a>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.tabs7 -->
+      <span class="spacer"></span>
+      <button class="pill" type="button" data-cmdk-open aria-label="Search Wrestle Lore (Command K)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <span class="ph">Search wrestlers, matches...</span>
+        <span class="kbd7">&#8984;K</span>
+      </button>
+      <a class="cta" href="/membership/">Join Insider</a>
+    </nav>
+  </div>
+</header>
+
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Search Wrestle Lore" aria-hidden="true" data-wl-shell>
+  <div class="cmdk__box"><div class="cmdk__head">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input class="cmdk__input" type="text" placeholder="Search wrestlers, events, moments, matches…" aria-label="Search" autocomplete="off">
+    <span class="cmdk__hint">Esc</span></div>
+    <ul class="cmdk__results" role="listbox" aria-label="Search results"></ul>
+    <div class="cmdk__foot"><span><kbd>&#8593;&#8595;</kbd> navigate</span><span><kbd>&#8629;</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+  </div></div>
+
+<div class="tix">
+
+<nav class="wrap" aria-label="Breadcrumb" style="padding-top:var(--sp-4)">
+  <ol style="display:flex;flex-wrap:wrap;gap:.55ch;list-style:none;margin:0;padding:0;font-family:var(--ff-ui);font-size:var(--fs-sm);letter-spacing:.02em;color:var(--c-muted)">
+    <li><a href="/">Home</a></li>
+    <li aria-hidden="true">/</li>
+    <li><a href="/events/">Events</a></li>
+    <li aria-hidden="true">/</li>
+    <li aria-current="page" class="muted">Tickets</li>
+  </ol>
+</nav>
+<main id="main">
+
+<!-- ============================================================
+     01 · HERO
+     ============================================================ -->
+<section class="sec hero" id="hero">
+  <div class="wrap">
+    <span class="eyebrow">The next Premium Live Event</span>
+    <h1>SummerSlam lands in Minneapolis, August 1 and 2</h1>
+
+    <p class="answer" style="margin-top:var(--sp-3)">WWE's next Premium Live Event is SummerSlam, a two-night show on August 1 and 2, 2026 at U.S. Bank Stadium in Minneapolis, on sale now through Ticketmaster.</p>
+
+    <div class="hero__meta">
+      <span class="chip">Aug 1 &amp; 2, 2026</span>
+      <span class="chip">U.S. Bank Stadium</span>
+      <span class="chip">Minneapolis, MN</span>
+      <span class="pill pill--onsale">On sale now</span>
+    </div>
+
+    <!-- on sale, no pending deadline: STATIC date, never a ticking clock -->
+    <div class="hero__when">
+      <span class="eyebrow">Show date</span>
+      <span class="countdown" aria-label="August 1 and 2, 2026">Aug 1 &amp; 2</span>
+      <span class="muted mono">2026 · two nights</span>
+    </div>
+
+    <div class="hero__cta">
+      <div class="btn-row">
+        <a class="btn btn--primary" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get SummerSlam tickets</a>
+        <a class="btn btn--ghost" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Watch SummerSlam prices</a>
+      </div>
+      <p class="help hero__anchor">Live prices on Ticketmaster</p>
+      <p style="margin-top:var(--sp-2)"><a class="btn btn--text" href="https://onlocationexp.com/wwe" target="_blank" rel="noopener nofollow sponsored">See official ringside and travel</a></p>
+      <p class="affiliate" style="margin-top:var(--sp-3)">Some links here are affiliate links. If you buy through them, we may earn a commission. It never changes the price you pay.</p>
+    </div>
+
+    <!-- upcoming rail: the next 3 events (in-flow on mobile; desktop shows the condensed .alsobar) -->
+    <div class="also-inflow" style="margin-top:var(--sp-6)">
+      <div class="rail-head">
+        <span class="eyebrow">Also on sale</span>
+        <a class="btn btn--text" href="#road">See the full road</a>
+      </div>
+      <div class="rail">
+        <article class="card">
+          <span class="pill pill--onsale">On sale now</span>
+          <h3>Sunday Night's Main Event</h3>
+          <p class="muted mono">Sep 6, 2026 · Atlanta, GA</p>
+          <div class="card__cta">
+            <a class="btn btn--text tap" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get tickets</a>
+            <p class="help">Live prices on Ticketmaster</p>
+          </div>
+        </article>
+        <article class="card">
+          <span class="pill pill--onsale">On sale now</span>
+          <h3>Worlds Collide</h3>
+          <p class="muted mono">Sep 26, 2026 · Rosemont, IL</p>
+          <div class="card__cta">
+            <a class="btn btn--text tap" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get tickets</a>
+            <p class="help">Live prices on Ticketmaster</p>
+          </div>
+        </article>
+        <article class="card">
+          <span class="pill pill--onsale">On sale now</span>
+          <h3>Money in the Bank</h3>
+          <p class="muted mono">Oct 10, 2026 · New Orleans, LA</p>
+          <div class="card__cta">
+            <a class="btn btn--text tap" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get tickets</a>
+            <p class="help">Live prices on Ticketmaster</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- slim "next on-sale" strip — the ONE honest countdown, to a real dated deadline.
+     No-JS / reduced-motion: static date. Live: Xd 0Xh 0Xm. Clamp at zero: "Presale is open". -->
+<aside class="onsale-strip" aria-label="Next WWE on-sale">
+  <div class="wrap onsale-strip__inner">
+    <span class="eyebrow onsale-strip__eyebrow">Next on-sale</span>
+    <p class="onsale-strip__line" id="ssStrip" data-deadline="2026-08-06T10:00:00">
+      <span id="ssLabel">Survivor Series presale opens</span>
+      <span class="mono onsale-strip__val" id="ssVal">August 6, 2026</span>
+    </p>
+    <a class="btn btn--text tap onsale-strip__cta" href="/membership/">Get the presale reminder</a>
+  </div>
+</aside>
+
+<!-- ============================================================
+     BUY-RAIL SHELL — from the Find section down: a centered editorial
+     column (left) + a sticky ticket rail (right) on desktop. The hero and
+     on-sale strip above stay full-bleed. On mobile this is one column and
+     the ticket action lives in the fixed bar at the foot of the page.
+     ============================================================ -->
+<div class="shell">
+<div class="shell__main">
+
+<!-- ============================================================
+     02 · FIND WWE NEAR YOUR CITY
+     ============================================================ -->
+<section class="sec" id="find">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="sec__num" aria-hidden="true">02</span>
+      <span class="eyebrow">No dead ends</span>
+      <h2>Find WWE near your city</h2>
+    </div>
+
+    <p class="answer">Tell us your city and we'll flag you when WWE books a date within driving distance, with presale and on-sale times before seats move.</p>
+
+    <div class="find__form flow">
+      <div class="field">
+        <label class="label" for="findCity">Your city or ZIP</label>
+        <input class="input" id="findCity" name="city" type="text" inputmode="text" autocomplete="address-level2" placeholder="e.g. Minneapolis or 55403">
+      </div>
+      <div class="find__actions">
+        <a class="btn btn--primary" href="/membership/">Get alerts for your city</a>
+      </div>
+      <p class="find__hint">We don't read your location. Add your city to a free Insider account and pick which events ping you.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<!-- ============================================================
+     03 · HOW TO ATTEND  (the signature wedge, stacked list)
+     ============================================================ -->
+<section class="sec" id="attend">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="sec__num" aria-hidden="true">03</span>
+      <span class="eyebrow">The wedge</span>
+      <h2>How to attend, by market</h2>
+    </div>
+    <p class="answer">WWE sells tickets through a different platform in every part of the world. Here is who to buy from, starting where most fans are.</p>
+
+    <div class="attend__list reveal">
+      <div class="attend__row">
+        <div class="attend__mkt">In the US?</div>
+        <div class="attend__opts">
+          <div class="attend__opt">
+            <div class="attend__opt-line"><a class="attend__plat" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Ticketmaster</a></div>
+            <p class="help">WWE's primary seller for United States events. Open the live listing for seats and current prices.</p>
+          </div>
+          <div class="attend__opt">
+            <div class="attend__opt-line"><a class="attend__plat" href="https://onlocationexp.com/wwe" target="_blank" rel="noopener nofollow sponsored">On Location</a></div>
+            <p class="help">Official premium seats, hospitality, and travel. Sold everywhere WWE runs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="attend__row">
+        <div class="attend__mkt">Saudi Arabia</div>
+        <div class="attend__opts">
+          <div class="attend__opt">
+            <div class="attend__opt-line"><a class="attend__plat" href="https://webook.com" target="_blank" rel="noopener nofollow">webook.com</a></div>
+            <p class="help">Riyadh Season's official platform. Saudi WWE shows sell here, not on Ticketmaster.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="attend__row">
+        <div class="attend__mkt">Australia</div>
+        <div class="attend__opts">
+          <div class="attend__opt">
+            <div class="attend__opt-line"><a class="attend__plat" href="https://www.ticketek.com.au" target="_blank" rel="noopener nofollow">Ticketek</a></div>
+            <p class="help">The primary seller for WWE tour dates across Australia.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="attend__row">
+        <div class="attend__mkt">Europe</div>
+        <div class="attend__opts">
+          <div class="attend__opt">
+            <div class="attend__opt-line"><a class="attend__plat" href="https://www.ticketmaster.com" target="_blank" rel="noopener nofollow">Local Ticketmaster</a></div>
+            <p class="help">Buy through the Ticketmaster site for the host country, not the US one.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="attend__row">
+        <div class="attend__mkt">AEG venues</div>
+        <div class="attend__opts">
+          <div class="attend__opt">
+            <div class="attend__opt-line"><a class="attend__plat" href="https://www.axs.com" target="_blank" rel="noopener nofollow">AXS</a></div>
+            <p class="help">Some arenas are AEG buildings and sell through AXS instead of Ticketmaster. Check the venue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<!-- ============================================================
+     04 · FOLLOW + NOTIFY  (the one primary capture, the anchor)
+     ============================================================ -->
+<section class="sec" id="follow">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="sec__num" aria-hidden="true">04</span>
+      <span class="eyebrow">Follow the WWE you love</span>
+      <h2>Never miss a presale or on-sale</h2>
+    </div>
+
+    <div class="panel flow reveal">
+      <div>
+        <p class="label" style="margin-bottom:var(--sp-2)">Follow your Superstars</p>
+        <div class="chips" role="group" aria-label="Follow Superstars">
+          <button type="button" class="chip chip--follow" aria-pressed="false" data-name="Cody Rhodes">Cody Rhodes</button>
+          <button type="button" class="chip chip--follow" aria-pressed="false" data-name="Roman Reigns">Roman Reigns</button>
+          <button type="button" class="chip chip--follow" aria-pressed="false" data-name="Rhea Ripley">Rhea Ripley</button>
+          <button type="button" class="chip chip--follow" aria-pressed="false" data-name="CM Punk">CM Punk</button>
+          <button type="button" class="chip chip--follow" aria-pressed="false" data-name="Liv Morgan">Liv Morgan</button>
+          <button type="button" class="chip chip--follow" aria-pressed="false" data-name="Gunther">Gunther</button>
+        </div>
+        <p class="help" style="margin-top:var(--sp-2)">Tap the Superstars you follow, then turn on alerts to hear when they're booked near you.</p>
+      </div>
+
+      <hr class="hairline">
+
+      <div class="cap flow">
+        <p class="help" id="followPromise">Presale and on-sale reminders for the WWE you follow. One email when a date lands near you, another when presale and public on-sale open.</p>
+        <div class="cap__send">
+          <a class="btn btn--primary" href="/membership/">Get presale reminders</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<!-- ============================================================
+     05 · ON LOCATION  (the single gold moment) + WM43 pre-capture
+     ============================================================ -->
+<section class="sec gold" id="onlocation">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="sec__num" aria-hidden="true">05</span>
+      <span class="eyebrow">Official hospitality</span>
+      <h2>Want ringside? Go through the official partner</h2>
+      <hr class="gold__rule" aria-hidden="true">
+    </div>
+
+    <div class="gold__grid reveal">
+      <div class="flow">
+        <p class="answer">On Location is WWE's official hospitality partner, and it shares WWE's parent company, TKO. Its WWE packages, called WWE Priority Pass, bundle official tickets, front-row and club seats, pre-show hospitality, and Superstar meet-and-greets. Package contents and prices vary by event.</p>
+        <div class="btn-row" style="max-width:32rem">
+          <a class="btn btn--primary" href="https://onlocationexp.com/wwe" target="_blank" rel="noopener nofollow sponsored">See On Location packages</a>
+        </div>
+        <p class="gold__trust">On Location is the official seller. We're a fan guide that links to it, not a reseller.</p>
+      </div>
+
+      <!-- WrestleMania 43 pre-capture -->
+      <article class="card flow">
+        <span class="pill pill--announced">Announced</span>
+        <h3>WrestleMania 43 is heading to Riyadh</h3>
+        <p>In 2027, WrestleMania runs outside North America for the first time. Travel packages are not on sale yet. We'll tell you the day they are.</p>
+        <p><a class="btn btn--primary btn--block" href="/membership/">Get WrestleMania 43 travel alerts</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<!-- ============================================================
+     06 · ROAD TO WRESTLEMANIA  (vertical stepper -> horizontal on wide)
+     ============================================================ -->
+<section class="sec" id="road">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="sec__num" aria-hidden="true">06</span>
+      <span class="eyebrow">The season spine</span>
+      <h2>Road to WrestleMania</h2>
+    </div>
+    <p class="answer">Every WWE Premium Live Event from here to WrestleMania, in order. Follow the Road and we'll email you before each one goes on sale.</p>
+
+    <!-- Follow the Road capture (top) -->
+    <p style="margin-top:var(--sp-4)"><a class="btn btn--primary" href="/membership/">Follow the Road</a></p>
+
+    <ol class="road__list reveal" role="list" style="margin-top:var(--sp-5)">
+      <li class="step">
+        <p class="step__title">SummerSlam</p>
+        <p class="step__meta mono">Aug 1 &amp; 2, 2026 · Minneapolis, MN</p>
+        <div class="step__row">
+          <span class="pill pill--onsale">On sale now</span>
+          <a class="btn btn--text tap" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get tickets</a>
+        </div>
+      </li>
+
+      <li class="here" aria-label="You are here"><span aria-hidden="true">You are here</span></li>
+
+      <li class="step">
+        <p class="step__title">Money in the Bank</p>
+        <p class="step__meta mono">Oct 10, 2026 · New Orleans, LA</p>
+        <div class="step__row">
+          <span class="pill pill--onsale">On sale now</span>
+          <a class="btn btn--text tap" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get tickets</a>
+        </div>
+      </li>
+
+      <li class="step">
+        <p class="step__title">Survivor Series: WarGames</p>
+        <p class="step__meta mono">Nov 28, 2026 · Houston, TX</p>
+        <div class="step__row">
+          <span class="pill pill--presale">Presale Aug 6</span>
+          <a class="btn btn--text tap" href="/membership/">Get the presale reminder</a>
+        </div>
+      </li>
+
+      <li class="step">
+        <p class="step__title">Crown Jewel</p>
+        <p class="step__meta mono">Late 2026 · Location TBA</p>
+        <div class="step__row">
+          <span class="pill pill--announced">Announced</span>
+          <a class="btn btn--text tap" href="/membership/">Notify me</a>
+        </div>
+      </li>
+
+      <li class="step">
+        <p class="step__title">WrestleMania 43</p>
+        <p class="step__meta mono">2027 · Riyadh, Saudi Arabia</p>
+        <div class="step__row">
+          <span class="pill pill--announced">Announced</span>
+          <a class="btn btn--text tap" href="/membership/">Notify me about travel</a>
+        </div>
+      </li>
+    </ol>
+    <p class="affiliate" style="margin-top:var(--sp-4)">Some links here are affiliate links. If you buy through them, we may earn a commission. It never changes the price you pay.</p>
+  </div>
+</section>
+
+<hr class="hairline">
+
+<!-- ============================================================
+     07 · FAQ + FOOTER
+     ============================================================ -->
+<section class="sec faq" id="faq">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <span class="sec__num" aria-hidden="true">07</span>
+      <span class="eyebrow">Answer first</span>
+      <h2>Questions, answered</h2>
+    </div>
+
+    <div class="faq__list reveal">
+      <details>
+        <summary>When and where is WWE's next Premium Live Event?</summary>
+        <p class="answer">SummerSlam runs August 1 and 2, 2026 at U.S. Bank Stadium in Minneapolis. Tickets are on sale now through Ticketmaster.</p>
+      </details>
+      <details>
+        <summary>Where do I buy WWE tickets?</summary>
+        <p class="answer">In the United States, Ticketmaster is WWE's primary seller and On Location handles premium seats and travel. The seller changes by country. Saudi Arabia sells through webook, Australia through Ticketek, Europe through the local Ticketmaster, and AEG venues through AXS.</p>
+      </details>
+      <details>
+        <summary>What is a WWE presale, and do I need a code?</summary>
+        <p class="answer">A presale opens a short window to buy before the public on-sale. WWE's free presale runs on email registration, so register before the window closes for the earliest shot. We tell you when and where to register. We don't hand out codes, and nobody should.</p>
+      </details>
+      <details>
+        <summary>How much do WWE tickets cost?</summary>
+        <p class="answer">Prices are set by the seller and move with demand, so we don't quote a number here. Open the live listing on Ticketmaster for the current range.</p>
+      </details>
+      <details>
+        <summary>What is On Location?</summary>
+        <p class="answer">On Location is WWE's official hospitality partner and shares WWE's parent company, TKO. Its WWE Priority Pass packages bundle official tickets, premium seats, pre-show hospitality, and Superstar meet-and-greets. Package contents vary by event.</p>
+      </details>
+      <details>
+        <summary>Where is WrestleMania 43?</summary>
+        <p class="answer">WrestleMania 43 is heading to Riyadh, Saudi Arabia in 2027, the first WrestleMania held outside North America. The venue, dates, and travel packages have not been announced yet. Leave your email and we'll tell you the day travel goes on sale.</p>
+      </details>
+      <details>
+        <summary>A show I want is sold out. What can I do?</summary>
+        <p class="answer">Leave your email and we'll tell you if verified resale drops or more seats release. For early access next time, Club WWE is WWE's official route. Here's how it works on <a href="https://www.wwe.com" target="_blank" rel="noopener nofollow">WWE.com</a>.</p>
+      </details>
+      <details>
+        <summary>Is Wrestle Lore affiliated with WWE?</summary>
+        <p class="answer">No. Wrestle Lore is an independent fan guide, and we don't sell tickets. We link to official and authorized sellers including Ticketmaster, On Location, AXS, webook, and Ticketek. We're not affiliated with or endorsed by WWE or TKO.</p>
+      </details>
+    </div>
+
+    <!-- compliance strip -->
+    <div class="compliance">
+      <p><strong>Affiliate disclosure.</strong> Some links here are affiliate links. If you buy through them, we may earn a commission. It never changes the price you pay.</p>
+      <p>Wrestle Lore is a fan guide. We don't sell tickets. We link to official and authorized sellers, including Ticketmaster, On Location, AXS, webook, and Ticketek. We're not affiliated with or endorsed by WWE or TKO.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.shell__main -->
+
+<!-- persistent ticket rail — a single refined card that follows the fan down
+     the page. Every action here also exists inline on the page; the rail is a
+     calm convenience, not a second, louder ask. -->
+<aside class="buyrail" aria-label="Ticket actions">
+  <div class="buyrail__card">
+    <p class="eyebrow">Your next event</p>
+    <p class="buyrail__event">SummerSlam</p>
+    <p class="buyrail__meta mono">Sat–Sun · Aug 1–2, 2026 · Minneapolis, MN</p>
+    <span class="pill pill--onsale buyrail__pill">On sale now</span>
+
+    <a class="btn btn--primary btn--block buyrail__cta" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get SummerSlam tickets</a>
+    <p class="help buyrail__prices">Live prices on Ticketmaster.</p>
+    <p class="buyrail__aff">Affiliate link. We may earn a commission; your price is the same.</p>
+
+    <hr class="hairline">
+
+    <p class="eyebrow">Next on-sale</p>
+    <p class="buyrail__next">Survivor Series presale · Aug 6</p>
+    <p class="buyrail__cd" id="railCdVal" data-deadline="2026-08-06T10:00:00" aria-label="Survivor Series presale opens August 6, 2026">August 6, 2026</p>
+    <a class="btn btn--text tap" href="/membership/">Remind me</a>
+
+    <hr class="hairline">
+
+    <p class="eyebrow">Quick links</p>
+    <ul class="buyrail__links" role="list">
+      <li><a href="#find">Find WWE near you</a></li>
+      <li><a href="#onlocation">Official ringside · On Location</a></li>
+    </ul>
+  </div>
+</aside>
+
+</div><!-- /.shell -->
+
+</main>
+
+<!-- mobile-only fixed ticket action bar (desktop uses the sticky rail).
+     Both actions also appear inline on the page; this is a convenience. -->
+<div class="buybar" role="region" aria-label="Ticket actions">
+  <a class="btn btn--primary buybar__primary" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored">Get SummerSlam tickets</a>
+  <a class="btn btn--ghost buybar__secondary" href="/membership/">Notify me</a>
+</div>
+
+<!-- ============================================================
+     Scoped IIFE. No browser storage of any kind; state lives in memory only.
+     Every network action is mocked. Renders fine with JS off.
+     ============================================================ -->
+<!-- condensed, locked "Also on sale" bottom bar (desktop only; mobile keeps the in-flow cards + .buybar) -->
+<aside class="alsobar" aria-label="Also on sale">
+  <div class="alsobar__inner">
+    <span class="alsobar__label">Also on sale</span>
+    <ul class="alsobar__list" role="list">
+      <li><a class="alsobar__evt" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored"><span class="alsobar__name">Sunday Night's Main Event</span><span class="alsobar__meta">Sep 6 · Atlanta, GA</span></a></li>
+      <li><a class="alsobar__evt" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored"><span class="alsobar__name">Worlds Collide</span><span class="alsobar__meta">Sep 26 · Rosemont, IL</span></a></li>
+      <li><a class="alsobar__evt" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener nofollow sponsored"><span class="alsobar__name">Money in the Bank</span><span class="alsobar__meta">Oct 10 · New Orleans, LA</span></a></li>
+    </ul>
+    <a class="btn btn--text alsobar__more" href="#road">See the full road</a>
+  </div>
+</aside>
+
+</div><!-- /.tix -->
+
+<footer class="site-footer site-footer--fat" data-wl-shell>
+  <div class="wrap">
+
+    <!-- slim brand + Join Insider strip -->
+    <div class="ftr-strip">
+      <a class="ftr-brand" href="/" aria-label="Wrestle Lore, home">
+        <span class="ftr-mark" aria-hidden="true">WL</span>
+        <span class="ftr-brand__txt">
+          <span class="ftr-brand__word">Wrestle Lore</span>
+          <span class="ftr-brand__tag">The crawlable record of modern pro wrestling.</span>
+        </span>
+      </a>
+      <ul class="ftr-stats" aria-label="Catalog scale">
+        <li><b>107</b> Wrestlers</li>
+        <li><b>30</b> Five-star matches</li>
+        <li><b>225</b> Pages</li>
+        <li><b>7</b> Promotions</li>
+      </ul>
+      <a class="ftr-cta" href="/membership/">
+        <span class="ftr-cta__k">Wrestle Lore Insider</span>
+        <span class="ftr-cta__l">Join Insider <span aria-hidden="true"></span></span>
+      </a>
+    </div>
+
+    <!-- dense directory grid -->
+    <nav class="ftr-dir" aria-label="Site directory">
+      <div class="ftr-col">
+        <h2 class="ftr-h">Superstars</h2>
+        <ul>
+          <li><a href="/wrestlers/">All Wrestlers <span class="ftr-ct">107</span></a></li>
+          <li><a href="/current/">Current Stars</a></li>
+          <li><a href="/legends/">Legends</a></li>
+          <li><a href="/women/">Women's Division</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Matches</h2>
+        <ul>
+          <li><a href="/matches/">Match Library</a></li>
+          <li><a href="/rankings/">Five-star Rankings</a></li>
+          <li><a href="/moments/">Defining Moments</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Events</h2>
+        <ul>
+          <li><a href="/events/">All Events</a></li>
+          <li><a href="/events/wrestlemania-42-2026/">WrestleMania 42</a></li>
+          <li><a href="/events/royal-rumble-2026/">Royal Rumble 2026</a></li>
+          <li><a href="/events/night-of-champions-2026/">Night of Champions</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Promotions</h2>
+        <ul>
+          <li><a href="/promotions/wwe/">WWE</a></li>
+          <li><a href="/promotions/wcw/">WCW</a></li>
+          <li><a href="/promotions/aew/">AEW</a></li>
+          <li><a href="/promotions/njpw/">NJPW</a></li>
+          <li><a href="/promotions/tna/">TNA</a></li>
+          <li><a href="/promotions/ecw/">ECW</a></li>
+          <li><a href="/promotions/nxt/">NXT</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">Titles &amp; Teams</h2>
+        <ul>
+          <li><a href="/titles/">Championships</a></li>
+          <li><a href="/factions/">Factions</a></li>
+          <li><a href="/tag-teams/">Tag Teams</a></li>
+        </ul>
+      </div>
+      <div class="ftr-col">
+        <h2 class="ftr-h">More</h2>
+        <ul>
+          <li><a href="/hall-of-fame/">Hall of Fame</a></li>
+          <li><a href="/media/">Media</a></li>
+          <li><a href="/archive/">The Archive</a>
+        <a href="/rivalries/">Rivalries</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/methodology/">Methodology</a></li>
+          <li><a href="/membership/">Insider</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- provenance line -->
+    <p class="ftr-prov">WWE / WCW / ECW / TNA / NXT / NJPW / AEW &middot; 1997 to WrestleMania 42</p>
+
+    <!-- bottom legal bar -->
+    <div class="ftr-legal">
+      <p class="ftr-copy">&copy; 2026 Wrestle Lore</p>
+      <nav class="ftr-legal__nav" aria-label="Legal">
+        <a href="/about/">About</a>
+        <a href="/methodology/">Methodology</a>
+      </nav>
+      <span class="ftr-domain">wrestlelore.com</span>
+    </div>
+
+  </div>
+</footer>
+
+<script src="/js/search-index.js" defer></script>
+<script src="/js/nav.js" defer></script>
+<script>
+/* Follow-a-Superstar chips: visual + ARIA toggle only. No storage, no network. */
+(function () {
+  var chips = document.querySelectorAll('.chip--follow');
+  Array.prototype.forEach.call(chips, function (btn) {
+    btn.setAttribute('aria-label', 'Follow ' + (btn.getAttribute('data-name') || btn.textContent.trim()));
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', on ? 'false' : 'true');
+      var name = btn.getAttribute('data-name') || btn.textContent.trim();
+      btn.setAttribute('aria-label', (on ? 'Follow ' : 'Following ') + name);
+    });
+  });
+})();
+
+/* One honest countdown: Survivor Series presale (a real, dated deadline). Strip. */
+(function () {
+  var strip = document.getElementById('ssStrip');
+  if (!strip) { return; }
+  var labelEl = document.getElementById('ssLabel');
+  var valEl = document.getElementById('ssVal');
+  var target = new Date(strip.getAttribute('data-deadline'));
+  if (isNaN(target.getTime())) { return; }
+  var reduce = !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { return; }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var last = null;
+  function tick() {
+    var ms = target.getTime() - Date.now();
+    if (ms <= 0) {
+      if (labelEl) { labelEl.textContent = 'Presale is open'; }
+      if (valEl) { valEl.textContent = ''; }
+      strip.setAttribute('aria-label', 'Survivor Series presale is open');
+      return true;
+    }
+    var totalMin = Math.floor(ms / 60000);
+    var d = Math.floor(totalMin / 1440);
+    var h = Math.floor((totalMin % 1440) / 60);
+    var mm = totalMin % 60;
+    var str = d + 'd ' + pad(h) + 'h ' + pad(mm) + 'm';
+    if (str !== last) {
+      last = str;
+      if (labelEl) { labelEl.textContent = 'Survivor Series presale opens in'; }
+      if (valEl) { valEl.textContent = str; }
+    }
+    return false;
+  }
+  if (!tick()) {
+    var iv = window.setInterval(function () { if (tick()) { window.clearInterval(iv); } }, 15000);
+  }
+})();
+
+/* Same dated deadline, mirrored in the sticky buy-rail. */
+(function () {
+  var el = document.getElementById('railCdVal');
+  if (!el) { return; }
+  var target = new Date(el.getAttribute('data-deadline'));
+  if (isNaN(target.getTime())) { return; }
+  var reduce = !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { return; }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  var last = null;
+  function tick() {
+    var ms = target.getTime() - Date.now();
+    if (ms <= 0) {
+      el.textContent = 'Presale is open';
+      el.setAttribute('aria-label', 'Survivor Series presale is open');
+      return true;
+    }
+    var totalMin = Math.floor(ms / 60000);
+    var d = Math.floor(totalMin / 1440);
+    var h = Math.floor((totalMin % 1440) / 60);
+    var mm = totalMin % 60;
+    var str = d + 'd ' + pad(h) + 'h ' + pad(mm) + 'm';
+    if (str !== last) {
+      last = str;
+      el.textContent = str;
+      el.setAttribute('aria-label', 'Survivor Series presale opens in ' + d + ' days ' + h + ' hours ' + mm + ' minutes');
+    }
+    return false;
+  }
+  if (!tick()) {
+    var iv = window.setInterval(function () { if (tick()) { window.clearInterval(iv); } }, 15000);
+  }
+})();
+</script>
+<style id="wl-live-fix">
+html,body{overflow-x:clip;}
+.buybar,.alsobar{transition:transform .28s ease;will-change:transform;}
+html.wl-atbottom .buybar,html.wl-atbottom .alsobar{transform:translateY(115%);pointer-events:none;}
+@media (prefers-reduced-motion:reduce){.buybar,.alsobar{transition:none;}}
+</style>
+<script>(function(){var f=document.querySelector('footer.site-footer');if(!f||!('IntersectionObserver'in window))return;new IntersectionObserver(function(es){es.forEach(function(e){document.documentElement.classList.toggle('wl-atbottom',e.isIntersecting);});},{rootMargin:'0px 0px -12px 0px'}).observe(f);})();</script>
+</body>
+</html>
