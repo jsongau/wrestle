@@ -14,6 +14,126 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0b0c10">
 <link rel="stylesheet" href="/css/site.css?v=9e775b77">
+<style>
+/* ===== 404 interactive shuffle (nWo black & white) — page-scoped ===== */
+:root{
+  --w:#f4f6f8; --w-silver:#cfd4db; --w-dim:#8b929c;
+  --w-line:rgba(206,214,224,.16); --w-line-2:rgba(214,222,232,.34);
+  --w-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+#main *{box-sizing:border-box;}
+.nf-hero{padding:58px 0 30px;}
+.nf-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.24fr);gap:46px;align-items:start;}
+@media(max-width:940px){.nf-grid{grid-template-columns:1fr;gap:30px;}}
+#main .eyebrow{font-family:var(--w-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--w-silver);margin:0 0 20px;display:flex;align-items:center;gap:10px;}
+#main .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--w);box-shadow:0 0 0 3px rgba(244,246,248,.16);}
+.nf-h1{font-family:var(--font-display);font-weight:400;line-height:.92;margin:0;letter-spacing:.008em;
+  font-size:clamp(42px,6.4vw,84px);text-transform:uppercase;
+  background:linear-gradient(176deg,#ffffff 0%,#e4e8ec 46%,#9aa1ab 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 1px 0 rgba(0,0,0,.4);filter:drop-shadow(0 8px 26px rgba(0,0,0,.55));}
+.nf-lede{max-width:46ch;color:var(--c-text-muted);font-size:clamp(15px,1.5vw,17px);margin:24px 0 0;}
+.nf-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;}
+#main .rf-btn{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.09em;font-size:13.5px;color:var(--c-text);
+  background:var(--c-bg-elev-2);border:1px solid var(--w-line-2);border-radius:9px;padding:13px 20px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;transition:border-color .16s,background .16s,transform .12s,color .16s;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);}
+#main .rf-btn:hover{border-color:var(--w);color:#fff;transform:translateY(-1px);background:var(--c-bg-elev-3);}
+#main .rf-btn.is-primary{background:linear-gradient(180deg,#ffffff,#dfe4ea);color:#0b0c10;border-color:#fff;font-weight:600;}
+#main .rf-btn.is-primary:hover{color:#000;box-shadow:0 10px 28px rgba(240,244,248,.22);}
+.nf-quick{margin-top:34px;border-top:1px solid var(--w-line);padding-top:18px;display:none;}
+@media(min-width:941px){.nf-quick{display:block;}}
+.nf-quick h3{font-family:var(--w-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--w-dim);margin:0 0 12px;}
+.nf-quick a{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--w-line);
+  font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;font-size:14px;color:var(--c-text-muted);transition:color .15s,padding .15s;text-decoration:none;}
+.nf-quick a:last-child{border-bottom:0;}
+.nf-quick a:hover{color:#fff;padding-left:6px;}
+.nf-quick a span{font-family:var(--w-mono);font-size:10px;color:var(--w-dim);letter-spacing:.05em;}
+.nf-cardcol{position:relative;}
+.nf-card{position:relative;border:1px solid var(--w-line-2);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,#15171b,#0b0c0f);box-shadow:0 26px 74px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08),0 0 0 1px rgba(0,0,0,.4);}
+.nf-card::before{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;z-index:5;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 22%);}
+.nf-inner.is-dealing{animation:nfDeal .42s cubic-bezier(.2,.8,.2,1);}
+@keyframes nfDeal{0%{opacity:0;transform:translateY(10px) scale(.99);}100%{opacity:1;transform:none;}}
+.nf-brk{position:absolute;width:18px;height:18px;border:2px solid var(--w-silver);opacity:.6;z-index:6;pointer-events:none;}
+.nf-brk.tl{top:11px;left:11px;border-right:0;border-bottom:0;}
+.nf-brk.tr{top:11px;right:11px;border-left:0;border-bottom:0;}
+.nf-brk.bl{bottom:11px;left:11px;border-right:0;border-top:0;}
+.nf-brk.br{bottom:11px;right:11px;border-left:0;border-top:0;}
+.nf-poster{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden;border-bottom:1px solid var(--w-line-2);}
+.nf-poster img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:0;filter:grayscale(1) contrast(1.06) brightness(.92);opacity:.95;transition:transform .6s;}
+.nf-poster:hover img{transform:scale(1.035);}
+.nf-poster.is-revealing img{animation:nfReveal 2.3s cubic-bezier(.4,0,.2,1) both;}
+@keyframes nfReveal{
+  0%{filter:grayscale(0) saturate(1.14) contrast(1) brightness(1.03);}
+  32%{filter:grayscale(0) saturate(1.14) contrast(1.02) brightness(1.03);}
+  52%{filter:grayscale(.5) saturate(.55) contrast(1.36) brightness(1.09);}
+  66%{filter:grayscale(1) contrast(1.58) brightness(.8);}
+  80%{filter:grayscale(1) contrast(1.14) brightness(.96);}
+  100%{filter:grayscale(1) contrast(1.06) brightness(.92);}
+}
+.nf-grade{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:overlay;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 3px);}
+.nf-poster.is-revealing .nf-grade{animation:nfGrade 2.3s ease both;}
+@keyframes nfGrade{0%,38%{opacity:0;}54%{opacity:.9;}70%{opacity:.45;}100%{opacity:0;}}
+.nf-sweep{position:absolute;top:-10%;bottom:-10%;width:40%;left:-55%;z-index:2;pointer-events:none;opacity:0;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-14deg);}
+.nf-poster.is-revealing .nf-sweep{animation:nfSweep 2.3s ease both;}
+@keyframes nfSweep{0%,40%{opacity:0;left:-55%;}55%{opacity:1;}86%{opacity:0;left:120%;}100%{opacity:0;left:120%;}}
+.nf-tag{position:absolute;top:12px;right:15px;z-index:2;pointer-events:none;opacity:0;line-height:1;
+  font-family:var(--font-display);font-style:italic;font-size:38px;letter-spacing:-.03em;color:#fff;
+  text-shadow:0 3px 12px rgba(0,0,0,.65),0 0 2px rgba(255,255,255,.5);transform:rotate(-8deg) scale(1.3);}
+.nf-tag b{color:var(--w-silver);font-weight:400;}
+.nf-poster.is-revealing .nf-tag{animation:nfTag 2.3s ease both;}
+@keyframes nfTag{0%,44%{opacity:0;transform:rotate(-8deg) scale(1.4);}58%{opacity:.6;transform:rotate(-8deg) scale(1);}78%{opacity:0;transform:rotate(-8deg) scale(1);}100%{opacity:0;}}
+.nf-play{position:absolute;inset:0;margin:auto;width:74px;height:74px;border-radius:50%;z-index:2;border:2px solid var(--w);
+  background:rgba(10,11,13,.42);backdrop-filter:blur(2px);cursor:pointer;display:grid;place-items:center;transition:transform .16s,box-shadow .16s,background .16s;}
+.nf-play:hover{transform:scale(1.08);box-shadow:0 0 0 1px rgba(255,255,255,.4),0 12px 32px rgba(0,0,0,.5);background:rgba(244,246,248,.16);}
+.nf-play svg{width:28px;height:28px;fill:var(--w);margin-left:4px;}
+.nf-tape{position:absolute;left:14px;bottom:13px;z-index:3;font-family:var(--w-mono);font-size:10px;letter-spacing:.16em;color:var(--w);
+  background:rgba(10,11,13,.6);border:1px solid var(--w-line-2);padding:4px 9px;border-radius:5px;text-transform:uppercase;}
+.nf-poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 30%,transparent 62%,rgba(6,7,9,.82));z-index:0;}
+.nf-poster iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4;}
+.nf-info{padding:22px 26px 24px;min-height:262px;display:flex;flex-direction:column;gap:12px;}
+.nf-kicker{font-family:var(--w-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--w-dim);margin:0;}
+.nf-kicker b{color:var(--w-silver);font-weight:500;}
+.nf-vs{font-family:var(--font-display);text-transform:uppercase;line-height:1.02;letter-spacing:.012em;color:var(--w);
+  font-size:clamp(23px,2.5vw,32px);margin:0;min-height:1.98em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
+.nf-vs .x{color:var(--w-dim);font-size:.56em;margin:0 .2em;vertical-align:2px;letter-spacing:.08em;}
+.nf-stars{display:flex;align-items:center;gap:11px;}
+.nf-star{color:#39404b;font-size:19px;letter-spacing:2px;position:relative;}
+.nf-star b{color:var(--w);position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;width:0;transition:width .7s cubic-bezier(.2,.8,.2,1);text-shadow:0 0 10px rgba(244,246,248,.35);}
+.nf-rate{font-family:var(--w-mono);font-size:11px;color:var(--c-text-muted);letter-spacing:.06em;}
+.nf-meta{display:flex;flex-wrap:wrap;gap:7px;min-height:26px;}
+.nf-chip{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.06em;font-size:11px;color:var(--c-text-muted);
+  border:1px solid var(--w-line-2);border-radius:999px;padding:4px 11px;background:rgba(255,255,255,.02);}
+.nf-chip.promo{color:#0b0c10;background:var(--w);border-color:var(--w);font-weight:700;}
+.nf-hook{color:var(--c-text-muted);font-size:14px;margin:0;line-height:1.45;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;min-height:3.1em;}
+.nf-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:4px;}
+.nf-shuffle-row{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:20px;}
+.nf-shuffle{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.11em;font-size:15px;font-weight:600;color:#0b0c10;
+  background:linear-gradient(180deg,#ffffff,#d9dee4);border:1px solid #fff;border-radius:11px;padding:14px 26px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:12px;box-shadow:0 12px 32px rgba(238,242,246,.16);transition:transform .12s,box-shadow .16s,filter .16s;}
+.nf-shuffle:hover{transform:translateY(-2px);box-shadow:0 16px 42px rgba(238,242,246,.26);filter:brightness(1.03);}
+.nf-shuffle:active{transform:translateY(0) scale(.98);}
+.nf-shuffle svg{width:18px;height:18px;fill:none;stroke:#0b0c10;stroke-width:2.2;}
+.nf-shuffle.is-spin svg{animation:nfSpin .5s ease;}
+@keyframes nfSpin{to{transform:rotate(360deg);}}
+.nf-key{font-family:var(--w-mono);font-size:10px;background:rgba(11,12,16,.14);border:1px solid rgba(11,12,16,.28);border-radius:4px;padding:2px 6px;letter-spacing:.05em;}
+.nf-sound{background:transparent;border:1px solid var(--w-line-2);border-radius:9px;width:44px;height:44px;color:var(--w-dim);cursor:pointer;display:grid;place-items:center;transition:color .16s,border-color .16s;}
+.nf-sound:hover{color:var(--w);border-color:var(--w-silver);}
+.nf-sound svg{width:18px;height:18px;fill:currentColor;}
+.nf-routes{padding:50px 0 76px;}
+#main .sec-h{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.14em;font-size:13px;color:var(--w-dim);border-left:3px solid var(--w-silver);padding-left:12px;margin:0 0 20px;}
+#main .event-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:900px){#main .event-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){#main .event-grid{grid-template-columns:1fr;}}
+#main .ev-tile{border:1px solid var(--w-line);border-radius:12px;padding:20px 18px;background:var(--c-bg-elev-1);text-decoration:none;transition:border-color .18s,transform .14s,background .18s;display:block;}
+#main .ev-tile:hover{border-color:var(--w-line-2);transform:translateY(-2px);background:var(--c-bg-elev-2);}
+#main .ev-tile__name{font-family:var(--font-display);text-transform:uppercase;font-size:21px;font-weight:400;margin:0 0 4px;color:var(--c-text);letter-spacing:.01em;}
+#main .ev-tile:hover .ev-tile__name{color:#fff;}
+#main .ev-tile__sub{color:var(--c-text-dim);font-size:13px;margin:0;}
+@media(prefers-reduced-motion:reduce){.nf-inner,.nf-poster img,.nf-grade,.nf-sweep,.nf-tag,.nf-shuffle svg{animation:none !important;}.nf-star b{width:auto !important;transition:none !important;}}
+</style>
 </head>
 <body>
 <header class="site-header nav7">
@@ -688,21 +808,58 @@
     <div class="cmdk__foot"><span><kbd>&#8593;&#8595;</kbd> navigate</span><span><kbd>&#8629;</kbd> open</span><span><kbd>esc</kbd> close</span></div>
   </div></div>
 <main id="main">
-  <section class="ev-hero">
-    <div class="wrap">
-      <p class="eyebrow">Error 404</p>
-      <h1>This match got thrown out</h1>
-      <p class="ev-lede" style="max-width:60ch;">The page you were after does not exist, or it moved. No count-out, no disqualification. Search the whole database below, or take one of the fast routes back into the action.</p>
-      <p style="margin-top:1.4rem;">
-        <button class="rf-btn" type="button" data-cmdk-open>Search Wrestle Lore &#8984;K</button>
-        <a class="rf-btn" href="/" style="margin-left:.6rem;">Back to home</a>
-      </p>
+  <section class="nf-hero wrap">
+    <div class="nf-grid">
+      <div class="nf-lead">
+        <p class="eyebrow">Error 404 // Wrestle Lore</p>
+        <h1 class="nf-h1" id="nfHead">No page here. The love of it never taps.</h1>
+        <p class="nf-lede">The page you were after slipped out of the ring. No count-out, no disqualification. Search the whole database, or let us deal you an all-time classic while you find your way back.</p>
+        <p class="nf-cta">
+          <button class="rf-btn is-primary" type="button" data-cmdk-open>Search Wrestle Lore &#8984;K</button>
+          <a class="rf-btn" href="/">Back to home</a>
+        </p>
+        <div class="nf-quick">
+          <h3>Fast routes back in</h3>
+          <a href="/wrestlers/">Wrestlers <span>107 profiles</span></a>
+          <a href="/rankings/">Five-Star Matches <span>highest rated</span></a>
+          <a href="/events/">Events &amp; PLEs <span>results</span></a>
+          <a href="/factions/">Factions &amp; Stables <span>nWo, DX</span></a>
+        </div>
+      </div>
+      <div class="nf-cardcol">
+        <article class="nf-card" aria-live="polite">
+          <div class="nf-inner" id="nfInner">
+            <span class="nf-brk tl"></span><span class="nf-brk tr"></span><span class="nf-brk bl"></span><span class="nf-brk br"></span>
+            <div class="nf-poster" id="nfPoster"></div>
+            <div class="nf-info">
+              <p class="nf-kicker">Random five-star match <b id="nfCount"></b></p>
+              <h2 class="nf-vs" id="nfVs"></h2>
+              <div class="nf-stars"><span class="nf-star" id="nfStars">&#9733;&#9733;&#9733;&#9733;&#9733;<b id="nfStarsFill">&#9733;&#9733;&#9733;&#9733;&#9733;</b></span><span class="nf-rate" id="nfRate"></span></div>
+              <div class="nf-meta" id="nfMeta"></div>
+              <p class="nf-hook" id="nfHook"></p>
+              <div class="nf-actions">
+                <button class="rf-btn is-primary nf-watch" id="nfWatch" type="button">Watch the match</button>
+                <a class="rf-btn nf-open" id="nfOpen" href="#">Open the dossier</a>
+              </div>
+            </div>
+          </div>
+        </article>
+        <div class="nf-shuffle-row">
+          <button class="nf-shuffle" id="nfShuffle" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+            Shuffle the card <span class="nf-key">S</span>
+          </button>
+          <button class="nf-sound" id="nfSound" type="button" aria-label="Toggle bell sound" title="Bell on shuffle">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="wrap" style="padding-block:2.4rem;">
+  <section class="nf-routes wrap">
     <h2 class="sec-h">Popular routes</h2>
     <div class="event-grid">
-      <a class="ev-tile" href="/wrestlers/"><h3 class="ev-tile__name">Wrestlers</h3><p class="ev-tile__sub">All 107 profiles, A&ndash;Z</p></a>
+      <a class="ev-tile" href="/wrestlers/"><h3 class="ev-tile__name">Wrestlers</h3><p class="ev-tile__sub">All 107 profiles, A to Z</p></a>
       <a class="ev-tile" href="/rankings/"><h3 class="ev-tile__name">Five-Star Matches</h3><p class="ev-tile__sub">The highest-rated bouts</p></a>
       <a class="ev-tile" href="/titles/"><h3 class="ev-tile__name">Title Lineages</h3><p class="ev-tile__sub">Every championship, reign by reign</p></a>
       <a class="ev-tile" href="/factions/"><h3 class="ev-tile__name">Factions &amp; Stables</h3><p class="ev-tile__sub">nWo, DX, The Shield and more</p></a>
@@ -863,5 +1020,85 @@
 </footer>
 <script src="/js/search-index.js?v=9e775b77" defer></script>
 <script src="/js/nav.js?v=9e775b77" defer></script>
+<script>
+(function(){
+var MATCHES = [{"slug": "undertaker-vs-hbk-wm25", "rating": 5.0, "rate": "4.75", "event": "WrestleMania XXV", "year": "2009", "stip": "Singles", "promo": "WWE", "hook": "The Undertaker won, extending his WrestleMania streak to 17-0, in a match regularly voted the greatest in WrestleMania history.", "vid": "Gd54flkPtL4", "names": ["The Undertaker", "Shawn Michaels"]}, {"slug": "cm-punk-vs-cena-mitb-2011", "rating": 5.0, "rate": "4.75", "event": "WWE Money in the Bank 2011", "year": "2011", "stip": "Singles", "promo": "WWE", "hook": "CM Punk won the WWE Championship in his hometown of Chicago and, with his contract expiring, left the company holding the title.", "vid": "QZb3dfX3cQA", "names": ["CM Punk", "John Cena"]}, {"slug": "samoa-joe-vs-cm-punk-roh-2004", "rating": 5.0, "rate": "5.0", "event": "ROH World Title Classic (\"Joe vs Punk II\")", "year": "2004", "stip": "Singles", "promo": "ROH", "hook": "The match went the full 60-minute time limit to a draw, so Samoa Joe retained the ROH World Championship, and in doing so, \"Joe vs Punk II\" legitimized the American.", "vid": "d3NJyWauUE0", "names": ["Samoa Joe", "CM Punk"]}, {"slug": "styles-vs-daniels-vs-joe-unbreakable-2005", "rating": 5.0, "rate": "5.0", "event": "TNA Unbreakable", "year": "2005", "stip": "Triple Threat", "promo": "TNA", "hook": "AJ Styles won the TNA X-Division Championship in a Triple Threat against Christopher Daniels and Samoa Joe that became TNA's first ever five-star match, the bout that.", "vid": "mTm3IQBzKmI", "names": ["AJ Styles", "Christopher Daniels · Samoa Joe"]}, {"slug": "rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997", "rating": 5.0, "rate": "4.75", "event": "WCW Halloween Havoc", "year": "1997", "stip": "Title vs Mask", "promo": "WCW", "hook": "Rey Mysterio Jr won the WCW Cruiserweight Championship and kept his mask in a Title vs Mask match widely regarded as the greatest cruiserweight bout in American.", "vid": "sqRYKCH8dUc", "names": ["Rey Mysterio Jr", "Eddie Guerrero"]}, {"slug": "bret-hart-vs-austin-wm13", "rating": 5.0, "rate": "4.5", "event": "WWF WrestleMania 13", "year": "1997", "stip": "No-DQ Submission (ref Ken Shamrock)", "promo": "WWF", "hook": "Bret Hart won when Austin passed out in the Sharpshooter, yet Austin left as the hero.", "vid": "DYELJpHHwCQ", "names": ["Bret \"Hitman\" Hart", "\"Stone Cold\" Steve Austin"]}, {"slug": "hbk-vs-angle-wm21-2005", "rating": 5.0, "rate": "4.75", "event": "WrestleMania 21", "year": "2005", "stip": "Singles (dream match)", "promo": "WWE", "hook": "Kurt Angle won when Shawn Michaels submitted to the ankle lock, ending a long-awaited dream match that lived up to every ounce of anticipation.", "vid": "zSC0we1MxkY", "names": ["Kurt Angle", "Shawn Michaels"]}, {"slug": "gargano-vs-ciampa-takeover-new-orleans-2018", "rating": 5.0, "rate": "4.75", "event": "NXT TakeOver: New Orleans", "year": "2018", "stip": "Unsanctioned Match", "promo": "NXT", "hook": "Tommaso Ciampa won the Unsanctioned Match, defeating his betrayed former partner Johnny Gargano in the explosive blow-off to the best-told feud in NXT history.", "vid": "PKUMW0beZ0Y", "names": ["Tommaso Ciampa", "Johnny Gargano"]}, {"slug": "adam-cole-vs-gargano-takeover-xxv-2019", "rating": 5.0, "rate": "5.0", "event": "NXT TakeOver: XXV", "year": "2019", "stip": "Best 2-out-of-3 Falls", "promo": "NXT", "hook": "Adam Cole won the NXT Championship two falls to one, outlasting Johnny Gargano in a near-40-minute epic that many consider the greatest NXT match ever.", "vid": "ub4RPi8XFkw", "names": ["Adam Cole", "Johnny Gargano"]}, {"slug": "almas-vs-gargano-takeover-philadelphia-2018", "rating": 5.0, "rate": "5.0", "event": "NXT TakeOver: Philadelphia", "year": "2018", "stip": "Singles", "promo": "NXT", "hook": "Andrade Almas retained the NXT Championship, surviving a career-making challenge from Johnny Gargano in a bout that earned the first WWE-banner five-star Meltzer.", "vid": "b8C5JzzkIU8", "names": ["Andrade \"Cien\" Almas", "Johnny Gargano"]}, {"slug": "hbk-vs-undertaker-badd-blood-1997", "rating": 4.5, "rate": "4.75", "event": "In Your House 18: Badd Blood", "year": "1997", "stip": "Hell in a Cell (the first ever)", "promo": "WWF", "hook": "Shawn Michaels won after Kane made his debut, tore the cell door from its hinges, Tombstoned The Undertaker and let HBK steal the pin.", "vid": "BvZ2KQuCTds", "names": ["Shawn Michaels", "The Undertaker"]}, {"slug": "nwo-formation-bash-at-the-beach-1996", "rating": 4.5, "rate": "4.5", "event": "WCW Bash at the Beach", "year": "1996", "stip": "Six-man tag (the third-man reveal)", "promo": "WCW", "hook": "The Outsiders' side won when Hulk Hogan emerged as the mystery third man, betrayed the WCW roster and leg-dropped Randy Savage, birthing the New World Order.", "vid": "B638ROb-iYk", "names": ["Hulk Hogan", "Sting"]}, {"slug": "tlc-2-wrestlemania-x-seven-2001", "rating": 4.5, "rate": "4.25", "event": "WrestleMania X-Seven", "year": "2001", "stip": "Tables, Ladders & Chairs", "promo": "WWF", "hook": "Edge & Christian won the WWF Tag Team Championship, outlasting the Hardy Boyz and the Dudley Boyz in the ladder-match arms race that redefined tag wrestling.", "vid": "Y4JoVecKu9I", "names": ["Edge & Christian", "Hardy Boyz & Dudley Boyz"]}, {"slug": "rock-vs-austin-wm-x-seven-2001", "rating": 4.5, "rate": "4.5", "event": "WrestleMania X-Seven", "year": "2001", "stip": "No-Disqualification", "promo": "WWF", "hook": "Steve Austin won the WWF Championship, then aligned with Vince McMahon in a shocking heel turn.", "vid": "UicJBCAIgto", "names": ["Stone Cold Steve Austin", "The Rock"]}, {"slug": "undertaker-vs-angle-no-way-out-2006", "rating": 4.5, "rate": "4.75", "event": "WWE No Way Out 2006", "year": "2006", "stip": "Singles", "promo": "WWE", "hook": "Kurt Angle retained the World Heavyweight Championship in what is frequently cited as one of the very best non-WrestleMania Undertaker matches.", "vid": "t_9c9Px7Eac", "names": ["Kurt Angle", "The Undertaker"]}, {"slug": "undertaker-vs-hbk-wm26-2010", "rating": 4.5, "rate": "4.5", "event": "WrestleMania XXVI", "year": "2010", "stip": "No Disqualification", "promo": "WWE", "hook": "The Undertaker won, extending the Streak to 18-0 and forcing Shawn Michaels into retirement.", "vid": "ljb34LNhGQw", "names": ["The Undertaker", "Shawn Michaels"]}, {"slug": "undertaker-vs-triple-h-wm28-2012", "rating": 4.5, "rate": "4.75", "event": "WrestleMania XXVIII", "year": "2012", "stip": "Hell in a Cell", "promo": "WWE", "hook": "The Undertaker won inside Hell in a Cell, extending the Streak to 20-0, in the match billed and remembered as the \"End of an Era.\" It served as the final chapter of.", "vid": "FOoSvAeFPP4", "names": ["The Undertaker", "Triple H"]}, {"slug": "bryan-vs-cena-summerslam-2013", "rating": 4.5, "rate": "4.5", "event": "WWE SummerSlam 2013", "year": "2013", "stip": "Singles", "promo": "WWE", "hook": "Daniel Bryan pinned John Cena cleanly to win the WWE Championship, only for the night to be turned on its head.", "vid": "2oR_1WBmkHM", "names": ["Daniel Bryan", "John Cena"]}, {"slug": "daniel-bryan-wm30-2014", "rating": 4.5, "rate": "4.5", "event": "WWE WrestleMania XXX", "year": "2014", "stip": "Singles opener + Triple Threat for the WWE World Heavyweight Championship", "promo": "WWE", "hook": "Daniel Bryan won twice in one night, first beating Triple H, then submitting Batista to capture the WWE World Heavyweight Championship, completing the most satisfying.", "vid": "UHjLdrKKmXs", "names": ["Daniel Bryan", "Triple H · Batista · Randy Orton"]}, {"slug": "sami-zayn-vs-neville-takeover-revolution-2014", "rating": 4.5, "rate": "4.5", "event": "NXT TakeOver: R Evolution", "year": "2014", "stip": "Singles", "promo": "NXT", "hook": "Sami Zayn won the NXT Championship, his first title in WWE, beating champion Adrian Neville in the emotional main event of TakeOver: R Evolution.", "vid": "abZV6hJf6zc", "names": ["Sami Zayn", "Adrian Neville"]}, {"slug": "bayley-vs-sasha-banks-takeover-brooklyn-2015", "rating": 4.5, "rate": "4.0", "event": "NXT TakeOver: Brooklyn", "year": "2015", "stip": "Singles", "promo": "NXT", "hook": "Bayley won the NXT Women's Championship, dethroning Sasha Banks in the match most credited with proving women's wrestling could steal the show on WWE's grandest stages.", "vid": "-qA9E1CHe_M", "names": ["Bayley", "Sasha Banks"]}, {"slug": "goldberg-vs-hogan-nitro-1998", "rating": 4.0, "rate": "3", "event": "WCW Monday Nitro", "year": "1998", "stip": "Singles", "promo": "WCW", "hook": "Goldberg won the WCW World Heavyweight Championship, spearing and Jackhammering Hollywood Hulk Hogan to keep his undefeated streak alive.", "vid": "hT05KuubRoU", "names": ["Bill Goldberg", "Hollywood Hulk Hogan"]}, {"slug": "lesnar-vs-angle-wm19-2003", "rating": 4.0, "rate": "4.25", "event": "WrestleMania XIX", "year": "2003", "stip": "Singles", "promo": "WWE", "hook": "Brock Lesnar won the WWE Championship in a superb amateur-based main event that is remembered as much for its near-tragedy as its quality.", "vid": "f0qpWB2MD8I", "names": ["Brock Lesnar", "Kurt Angle"]}, {"slug": "rollins-cash-in-wm31-2015", "rating": 4.0, "rate": "4.25", "event": "WWE WrestleMania 31", "year": "2015", "stip": "Singles for the WWE World Heavyweight Championship Triple Threat via MITB cash-in", "promo": "WWE", "hook": "Seth Rollins won the WWE World Heavyweight Championship by cashing in Money in the Bank mid-main-event, converting Brock Lesnar vs Roman Reigns into a Triple Threat.", "vid": "vON3XVcGOW8", "names": ["Seth Rollins", "Brock Lesnar · Roman Reigns"]}, {"slug": "rousey-charlotte-becky-wm35-2019", "rating": 4.0, "rate": "3.75", "event": "WWE WrestleMania 35", "year": "2019", "stip": "Winner Take All Triple Threat", "promo": "WWE", "hook": "Becky Lynch won both the Raw and SmackDown Women's Championships, pinning Ronda Rousey in a Winner Take All Triple Threat that became the first women's match ever to.", "vid": "B828y_pJIWk", "names": ["Becky Lynch", "Charlotte Flair · Ronda Rousey"]}, {"slug": "sasha-banks-vs-bianca-belair-wm37-2021", "rating": 4.0, "rate": "4.0", "event": "WWE WrestleMania 37, Night 1", "year": "2021", "stip": "Singles", "promo": "WWE", "hook": "Bianca Belair won the SmackDown Women's Championship, her first world title, pinning Sasha Banks in a match that main-evented Night 1 of WrestleMania 37: the first.", "vid": "jIqkxwNjXnU", "names": ["Bianca Belair", "Sasha Banks"]}, {"slug": "rock-vs-triple-h-judgment-day-2000", "rating": 4.5, "rate": "4.5", "event": "Judgment Day 2000", "year": "2000", "stip": "60-Minute Iron Man", "promo": "WWF", "hook": "Sixty minutes, twelve falls, Triple H edged The Rock 6-5 to reclaim the WWF Title, sealed when a returning Undertaker stormed the ring and got Rock disqualified for.", "vid": "_VLhPF1Jx1c", "names": ["Triple H", "The Rock"]}, {"slug": "rock-vs-austin-wm19-2003", "rating": 4.0, "rate": "4.0", "event": "WrestleMania XIX", "year": "2003", "stip": "Singles", "promo": "WWE", "hook": "Their third and final WrestleMania meeting, and the only one The Rock won, hitting three Rock Bottoms to beat Austin in what turned out to be Stone Cold’s last match.", "vid": "yWugBmcUBlo", "names": ["The Rock", "Stone Cold Steve Austin"]}, {"slug": "rock-vs-hogan-wm-x8-2002", "rating": 4.0, "rate": "4.25", "event": "WrestleMania X8", "year": "2002", "stip": "Icon vs Icon", "promo": "WWE", "hook": "Icon vs Icon, two generations collide as a red-hot Toronto crowd hijacks the match for Hogan.", "vid": "eJ9zibElS5w", "names": ["The Rock", "Hollywood Hulk Hogan"]}, {"slug": "rock-vs-mankind-royal-rumble-1999", "rating": 3.75, "rate": "3.75", "event": "Royal Rumble 1999", "year": "1999", "stip": "‘I Quit’", "promo": "WWF", "hook": "The brutal ‘I Quit’ match immortalised in Beyond the Mat, eleven unprotected chair shots, and a Rock win sealed by a pre-recorded tape of Mankind saying ‘I quit.’.", "vid": "jBFQ81l7iK0", "names": ["The Rock", "Mankind"]}];
+var HEADLINES = [
+  "No page here. The love of it never taps.",
+  "You went off the map. We never stopped watching.",
+  "Wrong turn. The wrestling is still on.",
+  "This page tapped out. The love of it never will.",
+  "Off the card, but right where the classics live.",
+  "You missed the spot. We saved you a front-row seat."
+];
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+var lastIdx=-1, soundOn=true, audioCtx=null;
+function pick(){var i;do{i=Math.floor(Math.random()*MATCHES.length);}while(MATCHES.length>1&&i===lastIdx);lastIdx=i;return i;}
+function fillPct(r){return Math.max(0,Math.min(100,(r/5)*100));}
+function el(id){return document.getElementById(id);}
+function render(i,animate){
+  var m=MATCHES[i], inner=el('nfInner');
+  el('nfCount').textContent="// "+(i+1)+" of "+MATCHES.length;
+  var a=m.names[0]||"", b=m.names[1]||"";
+  el('nfVs').innerHTML=esc(a)+(b?' <span class="x">vs</span> '+esc(b):"");
+  var fill=el('nfStarsFill'); fill.style.width="0";
+  el('nfRate').textContent=m.rating+" of 5";
+  var chips=[];
+  if(m.promo) chips.push('<span class="nf-chip promo">'+esc(m.promo)+'</span>');
+  if(m.event) chips.push('<span class="nf-chip">'+esc(m.event)+'</span>');
+  if(m.year) chips.push('<span class="nf-chip">'+esc(m.year)+'</span>');
+  if(m.stip) chips.push('<span class="nf-chip">'+esc(m.stip)+'</span>');
+  el('nfMeta').innerHTML=chips.join('');
+  el('nfHook').textContent=m.hook||"";
+  var poster=el('nfPoster');
+  poster.classList.remove('is-revealing');
+  poster.innerHTML='<img class="nf-thumb" src="https://i.ytimg.com/vi/'+m.vid+'/hqdefault.jpg" alt="">'+
+    '<div class="nf-grade"></div><div class="nf-sweep"></div>'+
+    '<div class="nf-tag">n<b>W</b>o</div>'+
+    '<div class="nf-tape">Full match // '+esc(m.promo||'WWE')+'</div>'+
+    '<button class="nf-play" id="nfPlay" aria-label="Play the match"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>';
+  el('nfPlay').addEventListener('click',function(){play(m.vid);});
+  el('nfWatch').onclick=function(){play(m.vid);};
+  el('nfOpen').setAttribute('href','/matches/'+m.slug+'/');
+  if(animate){inner.classList.remove('is-dealing');void inner.offsetWidth;inner.classList.add('is-dealing');}
+  var thumb=poster.querySelector('.nf-thumb');
+  function startReveal(){void poster.offsetWidth;poster.classList.add('is-revealing');}
+  if(thumb.complete&&thumb.naturalWidth){startReveal();}else{thumb.addEventListener('load',startReveal);thumb.addEventListener('error',startReveal);}
+  requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=fillPct(m.rating)+"%";});});
+}
+function play(id){
+  el('nfPoster').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1&modestbranding=1" title="Match video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+}
+function ding(){
+  if(!soundOn) return;
+  try{
+    audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+    var t=audioCtx.currentTime;
+    [1568,2093].forEach(function(f,k){
+      var o=audioCtx.createOscillator(),g=audioCtx.createGain();
+      o.type='sine';o.frequency.value=f;o.connect(g);g.connect(audioCtx.destination);
+      var s=t+k*0.006;g.gain.setValueAtTime(0.0001,s);g.gain.exponentialRampToValueAtTime(0.15,s+0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001,s+0.9);o.start(s);o.stop(s+0.95);
+    });
+  }catch(e){}
+}
+function shuffle(){
+  var btn=el('nfShuffle');
+  btn.classList.remove('is-spin');void btn.offsetWidth;btn.classList.add('is-spin');
+  render(pick(),true); ding();
+}
+if(el('nfShuffle')){
+  el('nfShuffle').addEventListener('click',shuffle);
+  el('nfSound').addEventListener('click',function(){soundOn=!soundOn;this.style.color=soundOn?'':'#e11d2a';this.querySelector('svg').style.opacity=soundOn?'1':'.4';});
+  document.addEventListener('keydown',function(e){
+    if(e.target&&/INPUT|TEXTAREA/.test(e.target.tagName))return;
+    if(el('cmdk')&&el('cmdk').getAttribute('aria-hidden')==='false')return;
+    if(e.key==='s'||e.key==='S'){e.preventDefault();shuffle();}
+  });
+  el('nfHead').textContent=HEADLINES[Math.floor(Math.random()*HEADLINES.length)];
+  render(pick(),false);
+}
+})();
+</script>
 </body>
 </html>
