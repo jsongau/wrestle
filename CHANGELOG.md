@@ -1,10 +1,9 @@
-## 2026-07-29 — home: Gorilla Position hero (slide 1)
-
-- Slide 1 rebuilt as the Gorilla Position: live Ken Burns match screen (official cover art, distinct film-strip frames), Watch the Match opens the Viewing Gallery modal, Full breakdown links to the match page.
-- Ring-bell toggle: hand-drawn gold bell SVG below the card (top right while open) with synthesized ding sound (3 to open, 1 to go home), vibrate-on-hover, RING ME / GO HOME labels.
-- Expanded desk: Lore Feed collapses, 7 Shawn Michaels classics in a scrolling picker, sealed-result reveal, 5-star ballot with Join Insider prompt, Meltzer + Cagematch chips.
-- Compact hero shuffles the featured match on carousel return + an 8s timer; cursor-chasing spotlight removed on slide 1.
-- Jericho WM19 and Rockers MSG 1989 breakdown links point at /matches/ until their pages ship.
+## 2026-07-29 (Lore Feed — newsroom generator + site-wide 7-day ticker)
+- **New generator `build/build_lorefeed.py`**: one `DISPATCHES` list (35 dated, sourced dispatches across WWE/NXT/AEW/TNA/NJPW/TKO) emits, all in sync: the `/lore-feed/` editorial hub (lead + river + "Browse by Week" index), one SEO/GEO page per Monday-week at `/lore-feed/<YYYY-MM-DD>/` (7 weeks, each with recap prose + CollectionPage/ItemList/BreadcrumbList JSON-LD), and the site-wide rolling 7-day ticker in `components/meganav.html` (cap 8, newest first, crawlable HTML — stamps to every page). Replaces the old thin relative-time wire.
+- **Editorial discipline**: every dispatch carries a visible Official (promotion-confirmed) vs Report (trade press) stamp; obituaries get an "In Memoriam" treatment; `_lead_score` picks the week's biggest story, not merely the newest. All marquee items spot-verified against reputable sources 2026-07-29.
+- **Lead-alignment fix**: lead card copy is wrapped in `.lf-lead__copy` so the 2-column grid renders as copy | art instead of scattering headline/dek/footer/art across columns.
+- **Week switcher**: new `.lf-weekbar` (Newer/Older + a chip per week, current in gold, horizontally scrollable, all real links) on the hub and every weekly page; sticky on weekly pages.
+- **Also**: `.lf-*` styles appended to `css/site.css` (idempotent LOREFEED block, source `build/lorefeed.css`); feed JS source `build/lorefeed.js` inlined into pages; `sitemap.xml` +8 weekly URLs. Build gate: 280 pages stamped, 0 NOHDR / 0 NOFTR. A daily 6 AM PT scheduled task will append fresh news for approval once this ships.
 
 ## 2026-07-29 (Explore card — curated marquee rotation)
 - **`js/home-engage.js`**: Replaced the auto-harvested Explore (`.f2-explore`) rotation with a hand-picked marquee set, killing scraped junk (Angle vs Benoit, three Gargano matches, the mangled "Board // Rated 30" hub title). Now rotates: Triple H, The Rock, The Undertaker, Stone Cold profiles; Undertaker vs Michaels (WM25), Rock vs Austin (WM X-Seven), Bret Hart vs Austin (WM13), Undertaker vs Triple H (WM28) matches; plus one live **Watch** card.
