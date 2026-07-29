@@ -23,5 +23,23 @@
 - [中文会员 (Chinese membership)](https://wrestlelore.com/zh/membership/): Tiers, WeChat/Alipay payments, QR-first capture.
 - [MAT China Strategy](https://wrestlelore.com/china/): Go-to-market plan — Bilibili/Douyin/Weibo/WeChat, WeChat funnel, ICP/PIPL, China-GEO.
 
+## Events — complete wrestling event history (all promotions)
+- [Events hub](https://wrestlelore.com/events/): The complete guide to professional wrestling events across every major promotion — WWE, AEW, WCW, ECW, TNA, NJPW, ROH, AAA, NWA, and the global indie scene — from 1948 to the present.
+- [WrestleMania history](https://wrestlelore.com/events/wrestlemania/): Every WrestleMania from WM 1 (1985, MSG) through WM 41 (2025). Main events, attendance, venues, notable matches.
+- [Royal Rumble history](https://wrestlelore.com/events/royal-rumble/): Every Royal Rumble from 1988 to present. Winners, entry numbers, women's Rumble (2018–present).
+- [SummerSlam history](https://wrestlelore.com/events/summerslam/): WWE's annual August supercard, 1988–present.
+- [Survivor Series history](https://wrestlelore.com/events/survivor-series/): The elimination-rules PPV series, 1987–present, including the WarGames revival (2022).
+- [WCW events hub](https://wrestlelore.com/events/wcw/): All WCW pay-per-view events 1983–2001. WCW ceased operations March 26, 2001.
+- [WCW Starrcade history](https://wrestlelore.com/events/wcw/starrcade/): Starrcade 1983–2000 — the original "Granddaddy of Them All," NWA/WCW's flagship event.
+- [ECW pay-per-view history](https://wrestlelore.com/events/ecw/): All 21 official ECW PPVs, April 1997 (Barely Legal) through January 2001 (Guilty as Charged).
+- [AEW events hub](https://wrestlelore.com/events/aew/): All Elite Wrestling events 2019–present. Big Four: Double or Nothing, All Out, Revolution, Full Gear. Includes All In Wembley (2023) and Forbidden Door (AEW×NJPW).
+- [AEW Double or Nothing history](https://wrestlelore.com/events/aew/double-or-nothing/): AEW's flagship PPV — the first AEW event (May 25, 2019, Las Vegas). Every edition 2019–present.
+- [NJPW events hub](https://wrestlelore.com/events/njpw/): New Japan Pro-Wrestling events — Wrestle Kingdom, G1 Climax, Dominion, Best of Super Jr.
+- [NJPW Wrestle Kingdom history](https://wrestlelore.com/events/njpw/wrestle-kingdom/): Annual January 4 Tokyo Dome event. Wrestle Kingdom 6 (2012) through WK 20 (2026).
+- [TNA/Impact events hub](https://wrestlelore.com/events/tna/): TNA/Impact Wrestling PPVs 2002–present. Bound for Glory (flagship), Slammiversary, Lockdown.
+- [ROH events hub](https://wrestlelore.com/events/roh/): Ring of Honor events 2002–present. Final Battle, G1 Supercard, Best in the World.
+- [AAA events hub](https://wrestlelore.com/events/aaa/): Lucha Libre AAA Worldwide events — TripleManía (1993–present), Verano de Escándalo, Guerra de Titanes.
+- [NWA events hub](https://wrestlelore.com/events/nwa/): National Wrestling Alliance events — history 1948–present, NWA Powerrr, NWA Anniversary shows.
+
 ## Optional
 - [Promotions](https://wrestlelore.com/promotions/wwe/): Promotion hubs (WWE, WCW, ECW, TNA, NXT).

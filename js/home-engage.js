@@ -118,34 +118,7 @@
   function surprise() { return ringPick(idx, surpRing); }
   function legendPick() { return legends.length ? ringPick(legends, legRing) : null; }
 
-  /* ---- did-you-know facts, each with a real link ---- */
-  function harvestFacts() {
-    var facts = [];
-    var live = document.querySelector('.belt--live');
-    if (live) {
-      var name = clean(txt(live.querySelector('.pf--champ')));
-      var title = clean(txt(live.querySelector('.bnm2')));
-      var days = clean(txt(live.querySelector('.pdays')));
-      var href = live.getAttribute('href');
-      if (name && title && href) facts.push({ p: 1, t: name + ' holds the ' + title + (days ? ', ' + days.toLowerCase() + ' of the reign' : '') + '.', u: href, lbl: 'See the lineage' });
-    }
-    qa('.grid-spot a.tile[href^="/matches/"]').forEach(function (t) {
-      var nm = clean(txt(t.querySelector('.tile__name')));
-      var ki = clean(txt(t.querySelector('.tile__kicker')));
-      var href = t.getAttribute('href');
-      if (nm && href) facts.push({ p: 2, t: nm + ' earned a perfect five stars at ' + (ki || 'a landmark card') + '.', u: href, lbl: 'View the breakdown' });
-    });
-    qa('.featstat').forEach(function (f) {
-      var a = f.closest('a[href^="/"]'), v = clean(f.textContent);
-      if (a && v && /\d/.test(v) && !/^[★☆\s.0-9]+$/.test(v)) {
-        var nm = clean(txt(a.querySelector('h3'))) || labelOf(a);
-        facts.push({ p: 3, t: (nm ? nm + ': ' : '') + v + '.', u: a.getAttribute('href'), lbl: 'Open the profile' });
-      }
-    });
-    facts.sort(function (a, b) { return a.p - b.p; });
-    return facts;
-  }
-  var FACTS = harvestFacts(), factI = 0;
+  /* Surprise Me uses a curated fact - no auto-generation */
 
   /* nothing to surface at all -> bail (keep self-contained + safe) */
   var cardList = interleave();
@@ -197,112 +170,35 @@
   tab.addEventListener('click', function () { cardDismissed = false; renderCard(); sync(); var l = card.querySelector('.f2-card__link'); if (l) l.focus({ preventScroll: true }); });
   renderCard();
 
-  /* ============================ BOTTOM-RIGHT: control cluster ============================ */
+  /* ==================== BOTTOM-RIGHT: Surprise Me (approved v3_2, verbatim) ==================== */
+  var SPARK_WG = '<svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"></path></g><circle class="wg-core" cx="12" cy="12" r="1.9"></circle></svg>';
   var ctrl = document.createElement('div');
-  ctrl.className = 'f2-ctrl';
-  ctrl.setAttribute('data-open', 'false');
+  ctrl.className = 'sm-ctrl';
   ctrl.setAttribute('role', 'region');
-  ctrl.setAttribute('aria-label', 'Explore controls');
+  ctrl.setAttribute('aria-label', 'Surprise me');
   ctrl.innerHTML =
-    '<button class="f2-ctrl__x" type="button" aria-label="Hide the explore controls">×</button>' +
-    '<div class="f2-ctrl__panel" role="group" aria-label="Discover more" hidden>' +
-      '<div class="f2-dyk"><span class="f2-dyk__h">Did you know</span>' +
-        '<p class="f2-dyk__t"></p>' +
-        '<a class="f2-dyk__link" href="#"></a></div>' +
-      '<button class="f2-prow f2-prow--search" type="button" aria-label="Search everything, opens the command palette"><span class="f2-prow__h">Search everything</span><span class="f2-prow__s">Press Cmd K</span></button>' +
-      '<button class="f2-prow f2-prow--legend" type="button" aria-label="Jump to a random legend"><span class="f2-prow__h">Random legend</span><span class="f2-prow__s">Roll the dice</span></button>' +
-      '<a class="f2-ctrl__hof" href="' + esc(hofHref) + '"><span class="f2-ctrl__hofh">Hall of Fame</span><span class="f2-ctrl__hofs">The immortals</span></a>' +
+    '<div class="sm-panel" role="group" aria-label="Explore more">' +
+      '<div class="sm-dyk"><span class="sm-dyk__h">Did you know</span>' +
+        '<p class="sm-dyk__t">The Undertaker went 21-0 at WrestleMania before Brock Lesnar ended the streak in 2014.</p></div>' +
+      '<button class="sm-row sm-row--search" type="button"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><span class="sm-row__t">Search everything</span><span class="sm-row__s">&#8984;K</span></button>' +
+      '<button class="sm-row sm-row--legend" type="button"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.6.7-4.9 4.5 1.4 6.6L12 17.8 5.9 21l1.4-6.6L2.4 9.4l6.6-.7z"></path></svg></span><span class="sm-row__t">Random legend</span><span class="sm-row__s">Roll the dice</span></button>' +
+      '<a class="sm-row sm-row--hof" href="' + esc(hofHref) + '"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0z"></path><path d="M7 6H4a3 3 0 0 0 3 3M17 6h3a3 3 0 0 1-3 3M9 19h6M10 15v4M14 15v4"></path></svg></span><span class="sm-row__t">Hall of Fame</span><span class="sm-row__s">The immortals</span></a>' +
     '</div>' +
-    '<div class="f2-ctrl__cluster">' +
-      '<button class="f2-sat f2-sat--search" type="button" aria-label="Search everything, opens the command palette">' + SVG_SEARCH + '</button>' +
-      '<button class="f2-sat f2-sat--legend" type="button" aria-label="Jump to a random legend">' + SVG_STAR + '</button>' +
-      '<button class="f2-ctrl__more" type="button" aria-expanded="false" aria-label="Expand explore controls">' + SVG_CHEV + '</button>' +
-      '<button class="f2-disc" type="button" aria-label="Surprise me, jump to a random page">' + SPARK_S + '<span class="f2-disc__lbl">Surprise me</span></button>' +
-    '</div>';
+    '<button class="sm-btn" type="button" aria-label="Surprise me, jump to a random page">' + SPARK_WG + '<span class="sm-btn__lbl">Surprise me</span></button>';
   document.body.appendChild(ctrl);
-
-  var recall = document.createElement('button');
-  recall.type = 'button';
-  recall.className = 'f2-recall';
-  recall.setAttribute('aria-label', 'Show the explore controls');
-  recall.hidden = true;
-  recall.innerHTML = '<span aria-hidden="true">✦</span>';
-  document.body.appendChild(recall);
-
-  var disc = ctrl.querySelector('.f2-disc');
-  var satSearch = ctrl.querySelector('.f2-sat--search');
-  var satLegend = ctrl.querySelector('.f2-sat--legend');
-  var more = ctrl.querySelector('.f2-ctrl__more');
-  var panel = ctrl.querySelector('.f2-ctrl__panel');
-  var dykT = ctrl.querySelector('.f2-dyk__t');
-  var dykLink = ctrl.querySelector('.f2-dyk__link');
-  var dyk = ctrl.querySelector('.f2-dyk');
-
-  function fillFact() {
-    if (!FACTS.length) { if (dyk) dyk.style.display = 'none'; return; }
-    var f = FACTS[factI % FACTS.length]; factI++;
-    dykT.textContent = f.t;
-    dykLink.textContent = f.lbl || 'Open';
-    dykLink.setAttribute('href', f.u);
-  }
-
-  var prowSearch = ctrl.querySelector('.f2-prow--search');
-  var prowLegend = ctrl.querySelector('.f2-prow--legend');
-
-  var ctrlOpen = false;
-  function openCtrl() {
-    if (ctrlOpen) return; ctrlOpen = true;
-    fillFact();
-    ctrl.setAttribute('data-open', 'true');
-    more.setAttribute('aria-expanded', 'true');
-    panel.hidden = false;
-    document.documentElement.classList.add('f2-ctrl-open');
-  }
-  function closeCtrl(toFocus) {
-    if (!ctrlOpen) return; ctrlOpen = false;
-    ctrl.setAttribute('data-open', 'false');
-    more.setAttribute('aria-expanded', 'false');
-    panel.hidden = true;
-    document.documentElement.classList.remove('f2-ctrl-open');
-    if (toFocus) more.focus({ preventScroll: true });
-  }
-  more.addEventListener('click', function () { ctrlOpen ? closeCtrl(true) : openCtrl(); });
-
-  /* desktop hover-reveal nicety (fine pointer only) */
-  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  if (fine) {
-    var leaveT = null;
-    ctrl.addEventListener('mouseenter', function () { clearTimeout(leaveT); openCtrl(); });
-    ctrl.addEventListener('mouseleave', function () { clearTimeout(leaveT); leaveT = setTimeout(function () { if (!ctrl.contains(document.activeElement)) closeCtrl(false); }, 320); });
-  }
 
   function doLegend() { var p = legendPick(); location.href = p ? p.u : hofHref; }
   function doSearch() {
     var o = document.getElementById('cmdk');
     if (o) {
-      o.classList.add('is-open');
-      o.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      o.classList.add('is-open'); o.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
       var inp = o.querySelector('.cmdk__input');
       if (inp) { inp.value = ''; try { inp.dispatchEvent(new Event('input')); } catch (e) {} setTimeout(function () { inp.focus(); }, 20); }
     }
-    closeCtrl(false);
   }
-  disc.addEventListener('click', function () { var p = surprise(); if (p) location.href = p.u; });
-  satLegend.addEventListener('click', doLegend);
-  satSearch.addEventListener('click', doSearch);
-  if (prowLegend) prowLegend.addEventListener('click', doLegend);
-  if (prowSearch) prowSearch.addEventListener('click', doSearch);
-
-  var ctrlDismissed = false;
-  ctrl.querySelector('.f2-ctrl__x').addEventListener('click', function () { ctrlDismissed = true; closeCtrl(false); sync(); recall.focus({ preventScroll: true }); });
-  recall.addEventListener('click', function () { ctrlDismissed = false; sync(); disc.focus({ preventScroll: true }); });
-
-  /* Esc closes the expanded cluster */
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && ctrlOpen) closeCtrl(true); });
-  /* outside click / scroll collapses the expanded cluster */
-  document.addEventListener('click', function (e) { if (ctrlOpen && !ctrl.contains(e.target)) closeCtrl(false); });
-  window.addEventListener('scroll', function () { if (ctrlOpen) closeCtrl(false); }, { passive: true });
+  ctrl.querySelector('.sm-btn').addEventListener('click', function () { var p = surprise(); if (p) location.href = p.u; });
+  ctrl.querySelector('.sm-row--search').addEventListener('click', doSearch);
+  ctrl.querySelector('.sm-row--legend').addEventListener('click', doLegend);
 
   /* ============================ VISIBILITY STATE ============================ */
   var revealed = false, atFoot = false;
@@ -310,9 +206,7 @@
     var show = revealed && !atFoot;
     card.classList.toggle('is-live', show && !cardDismissed);
     tab.hidden = !(show && cardDismissed);
-    ctrl.classList.toggle('is-live', show && !ctrlDismissed);
-    recall.hidden = !(show && ctrlDismissed);
-    if (!show || ctrlDismissed) closeCtrl(false);
+    ctrl.classList.toggle('is-live', show);
   }
 
   /* reveal after ~25% scroll depth (once) */

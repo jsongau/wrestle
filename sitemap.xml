@@ -4,19 +4,46 @@
   <url><loc>https://wrestlelore.com/about/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/archive/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/current/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://wrestlelore.com/events/</loc><changefreq>weekly</changefreq></url>
+  <!-- Events hub (high priority — multi-promotion authority page) -->
+  <url><loc>https://wrestlelore.com/events/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <!-- WWE flagship series -->
+  <url><loc>https://wrestlelore.com/events/wrestlemania/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/royal-rumble/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/summerslam/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/survivor-series/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/elimination-chamber/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wrestlelore.com/events/backlash/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wrestlelore.com/events/night-of-champions/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- WCW series -->
+  <url><loc>https://wrestlelore.com/events/wcw/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/wcw/starrcade/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/wcw/halloween-havoc/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- ECW -->
+  <url><loc>https://wrestlelore.com/events/ecw/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- AEW series -->
+  <url><loc>https://wrestlelore.com/events/aew/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/aew/double-or-nothing/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/aew/all-out/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- NJPW series -->
+  <url><loc>https://wrestlelore.com/events/njpw/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wrestlelore.com/events/njpw/wrestle-kingdom/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- TNA series -->
+  <url><loc>https://wrestlelore.com/events/tna/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://wrestlelore.com/events/tna/bound-for-glory/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- ROH -->
+  <url><loc>https://wrestlelore.com/events/roh/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- AAA -->
+  <url><loc>https://wrestlelore.com/events/aaa/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- NWA -->
+  <url><loc>https://wrestlelore.com/events/nwa/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Individual recent events (weekly) -->
   <url><loc>https://wrestlelore.com/events/backlash-2026/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://wrestlelore.com/events/backlash/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/events/elimination-chamber-2026/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://wrestlelore.com/events/elimination-chamber/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/events/night-of-champions-2026/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://wrestlelore.com/events/night-of-champions/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/events/royal-rumble-2026/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://wrestlelore.com/events/royal-rumble/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/events/tickets/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/events/tour/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/events/wrestlemania-42-2026/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://wrestlelore.com/events/wrestlemania/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/factions/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/factions/bullet-club/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://wrestlelore.com/factions/d-generation-x/</loc><changefreq>weekly</changefreq></url>

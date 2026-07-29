@@ -1,3 +1,14 @@
+## 2026-07-29 (Events hub — Phase 2 complete)
+- **`events/index.html` rebuilt as multi-promotion hub**: Replaced the old WWE-only events page with a comprehensive, filterable hub covering WWE, AEW, WCW, ECW, TNA, NJPW, ROH, AAA, NWA, and Indies.
+  - Title/meta: `Professional Wrestling Events — Complete History | Wrestle Lore`
+  - JSON-LD @graph: BreadcrumbList + CollectionPage + FAQPage (8 GEO-targeted Q&A pairs)
+  - Scoped `evhub-*` CSS block: promotion filter pills (11 options), featured flagship event cards (16 cards, `data-promo`), sub-series row grids (9 promotion sections, `data-promo-section`), promotion directory (9 cards), FAQ accordion
+  - Filter JS injected: pill toggle + card/section hide/show (`evhub-hidden` class), keyboard-accessible (Enter/Space)
+  - Promotion color coding: WWE red, AEW gold, WCW dark red, ECW silver, TNA orange, NJPW red, ROH dark red, AAA green, NWA blue, Indies purple
+- **`sitemap.xml` updated**: Added 20 event series URLs with priority (hub at 0.9, flagship series at 0.8, supporting series at 0.7); updated existing `wrestlemania/` and `royal-rumble/` to `monthly` changefreq.
+- **`llms.txt` updated**: Added full Events section (16 descriptive links covering all promotions and series pages) for AI crawler / LLM reference.
+- **Phase 3 next**: Build individual event series pages in priority order: `events/wrestlemania/`, `events/royal-rumble/`, `events/summerslam/`, `events/survivor-series/`, `events/wcw/`, `events/wcw/starrcade/`, `events/aew/`, `events/aew/double-or-nothing/`, `events/njpw/`, `events/njpw/wrestle-kingdom/`, `events/ecw/`, `events/tna/`, `events/roh/`, `events/aaa/`.
+
 ## 2026-07-29 (Events data build — Phase 1 complete)
 - **Established `data/events/` content database**: Scraped, sourced, and wrote 10 comprehensive `.md` dossiers covering every major promotion and event in professional wrestling history, plus a master build brief. All files committed to `/data/events/`.
   - `wwe-wrestlemania.md` — WM 1 (1985) through WM 41 (2025), every edition with date, venue, attendance, main event(s), notable matches

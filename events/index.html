@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WWE Premium Live Events: Results &amp; Where to Watch | Wrestle Lore</title>
-<meta name="description" content="WWE Premium Live Events on Wrestle Lore. Full results, main events, and where to watch every recent pay-per-view, from Royal Rumble to WrestleMania to Night of Champions.">
+<title>Professional Wrestling Events — Complete History | Wrestle Lore</title>
+<meta name="description" content="The complete guide to professional wrestling events: WWE, AEW, WCW, ECW, TNA, NJPW, ROH, AAA, NWA. Every major PPV and event series from 1948 to the present.">
 <link rel="canonical" href="https://wrestlelore.com/events/">
 <link rel="preload" href="/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -13,14 +13,173 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0b0c10">
 <link rel="stylesheet" href="/css/site.css?v=3a652f7e">
+<style>
+/* === EVENTS HUB scoped styles === */
+.ev-hero--hub .ev-lede{max-width:80ch;}
+.evhub-filter{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin:var(--sp-5) 0 var(--sp-4);padding-bottom:var(--sp-4);border-bottom:1px solid var(--c-line);}
+.evhub-pill{font-family:var(--font-cond);font-size:var(--fs-300);text-transform:uppercase;letter-spacing:.06em;padding:.42em 1.2em;border-radius:99px;border:1px solid var(--c-line);background:var(--c-bg-elev-1);color:var(--c-text-muted);cursor:pointer;transition:background .12s,border-color .12s,color .12s;}
+.evhub-pill:hover,.evhub-pill--active{background:var(--c-bg-elev-2);color:var(--c-text);}
+.evhub-pill--wwe.evhub-pill--active{border-color:#e31837;color:#e31837;}
+.evhub-pill--aew.evhub-pill--active{border-color:var(--c-gold);color:var(--c-gold);}
+.evhub-pill--wcw.evhub-pill--active{border-color:#cc2233;color:#dd3344;}
+.evhub-pill--ecw.evhub-pill--active{border-color:#909098;color:#c0c0c4;}
+.evhub-pill--tna.evhub-pill--active{border-color:#f97316;color:#f97316;}
+.evhub-pill--njpw.evhub-pill--active{border-color:#e31837;color:#e31837;}
+.evhub-pill--roh.evhub-pill--active{border-color:#8b2323;color:#c04444;}
+.evhub-pill--aaa.evhub-pill--active{border-color:#16a34a;color:#22c55e;}
+.evhub-pill--nwa.evhub-pill--active{border-color:#1d4ed8;color:#60a5fa;}
+.evhub-pill--indie.evhub-pill--active{border-color:#7c3aed;color:#a78bfa;}
+
+/* Badge chips */
+.evhub-badge--wwe{background:rgba(227,24,55,.15);color:#e31837;border:1px solid rgba(227,24,55,.3);}
+.evhub-badge--aew{background:rgba(212,175,55,.12);color:var(--c-gold);border:1px solid rgba(212,175,55,.25);}
+.evhub-badge--wcw{background:rgba(204,34,51,.15);color:#dd3344;border:1px solid rgba(204,34,51,.3);}
+.evhub-badge--ecw{background:rgba(160,160,168,.1);color:#c0c0c4;border:1px solid rgba(160,160,168,.2);}
+.evhub-badge--tna{background:rgba(249,115,22,.12);color:#f97316;border:1px solid rgba(249,115,22,.25);}
+.evhub-badge--njpw{background:rgba(227,24,55,.1);color:#e04455;border:1px solid rgba(227,24,55,.25);}
+.evhub-badge--roh{background:rgba(139,35,35,.18);color:#c04444;border:1px solid rgba(139,35,35,.3);}
+.evhub-badge--aaa{background:rgba(22,163,74,.12);color:#22c55e;border:1px solid rgba(22,163,74,.25);}
+.evhub-badge--nwa{background:rgba(29,78,216,.12);color:#60a5fa;border:1px solid rgba(29,78,216,.25);}
+.evhub-badge--indie{background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.25);}
+
+/* Featured card grid */
+.evhub-featured{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));margin-bottom:var(--sp-6);}
+.evhub-card{position:relative;display:flex;flex-direction:column;gap:.45em;padding:var(--sp-4);border-radius:var(--r-lg);border:1px solid var(--c-line);text-decoration:none;color:var(--c-text);transition:transform .14s,border-color .14s;}
+.evhub-card:hover{transform:translateY(-3px);border-color:var(--c-gold-dim);}
+.evhub-card__badge{font-family:var(--font-cond);font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:.2em .7em;border-radius:99px;display:inline-block;width:fit-content;}
+.evhub-card__name{font-family:var(--font-display);text-transform:uppercase;font-size:var(--fs-600);line-height:.95;margin:.1em 0;}
+.evhub-card__years{font-family:var(--font-cond);font-size:var(--fs-300);color:var(--c-gold);letter-spacing:.04em;}
+.evhub-card__desc{font-size:var(--fs-400);color:var(--c-text-muted);line-height:var(--lh-body);flex:1;}
+.evhub-card__cta{font-family:var(--font-cond);font-size:var(--fs-300);color:var(--c-gold-bright);text-transform:uppercase;letter-spacing:.06em;margin-top:auto;}
+.evhub-card--wwe{background:linear-gradient(150deg,rgba(227,24,55,.08),var(--c-bg-elev-1) 55%);}
+.evhub-card--aew{background:linear-gradient(150deg,rgba(212,175,55,.07),var(--c-bg-elev-1) 55%);}
+.evhub-card--wcw{background:linear-gradient(150deg,rgba(204,34,51,.08),var(--c-bg-elev-1) 55%);}
+.evhub-card--ecw{background:linear-gradient(150deg,rgba(160,160,168,.06),var(--c-bg-elev-1) 55%);}
+.evhub-card--tna{background:linear-gradient(150deg,rgba(249,115,22,.08),var(--c-bg-elev-1) 55%);}
+.evhub-card--njpw{background:linear-gradient(150deg,rgba(227,24,55,.07),var(--c-bg-elev-1) 55%);}
+.evhub-card--roh{background:linear-gradient(150deg,rgba(139,35,35,.1),var(--c-bg-elev-1) 55%);}
+.evhub-card--aaa{background:linear-gradient(150deg,rgba(22,163,74,.08),var(--c-bg-elev-1) 55%);}
+.evhub-card--nwa{background:linear-gradient(150deg,rgba(29,78,216,.08),var(--c-bg-elev-1) 55%);}
+.evhub-card--indie{background:linear-gradient(150deg,rgba(124,58,237,.08),var(--c-bg-elev-1) 55%);}
+
+/* Row lists inside section grids */
+.evhub-section{margin-bottom:var(--sp-6);}
+.evhub-subgrid{display:grid;gap:var(--sp-2);grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));}
+.evhub-row{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;align-items:center;gap:.28em var(--sp-3);padding:var(--sp-3) var(--sp-4);background:var(--c-bg-elev-1);border:1px solid var(--c-line);border-radius:var(--r-md);text-decoration:none;color:var(--c-text);transition:border-color .12s,transform .12s;}
+.evhub-row:hover{border-color:var(--c-gold-dim);transform:translateX(3px);}
+.evhub-row__promo{grid-row:1/3;font-family:var(--font-cond);font-size:9px;text-transform:uppercase;letter-spacing:.08em;padding:.25em .6em;border-radius:4px;align-self:center;}
+.evhub-row__name{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.04em;font-size:var(--fs-400);font-weight:600;}
+.evhub-row__years{font-family:var(--font-cond);font-size:var(--fs-200);color:var(--c-gold);letter-spacing:.04em;white-space:nowrap;}
+.evhub-row__note{grid-column:2;font-size:var(--fs-300);color:var(--c-text-muted);}
+
+/* Promotion cards */
+.evhub-promos{display:grid;gap:var(--sp-3);grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));margin-bottom:var(--sp-6);}
+.evhub-promo{display:flex;flex-direction:column;gap:.3em;padding:var(--sp-4);border:1px solid var(--c-line);border-radius:var(--r-lg);background:var(--c-bg-elev-1);text-decoration:none;color:var(--c-text);transition:border-color .14s,transform .14s;}
+.evhub-promo:hover{transform:translateY(-2px);border-color:var(--c-gold-dim);}
+.evhub-promo__initials{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(1.8rem,4vw,2.4rem);line-height:1;font-weight:400;}
+.evhub-promo__name{font-size:var(--fs-400);color:var(--c-text-muted);}
+.evhub-promo__meta{font-family:var(--font-cond);font-size:var(--fs-300);color:var(--c-text-dim);text-transform:uppercase;letter-spacing:.04em;}
+.evhub-promo__cta{font-family:var(--font-cond);font-size:var(--fs-300);color:var(--c-gold-bright);text-transform:uppercase;letter-spacing:.06em;margin-top:auto;padding-top:.5em;}
+.evhub-promo--wwe .evhub-promo__initials{color:#e31837;}
+.evhub-promo--aew .evhub-promo__initials{color:var(--c-gold);}
+.evhub-promo--wcw .evhub-promo__initials{color:#dd3344;}
+.evhub-promo--ecw .evhub-promo__initials{color:#c0c0c4;}
+.evhub-promo--tna .evhub-promo__initials{color:#f97316;}
+.evhub-promo--njpw .evhub-promo__initials{color:#e04455;}
+.evhub-promo--roh .evhub-promo__initials{color:#c04444;}
+.evhub-promo--aaa .evhub-promo__initials{color:#22c55e;}
+.evhub-promo--nwa .evhub-promo__initials{color:#60a5fa;}
+
+/* FAQ accordion */
+.evhub-faq{margin:var(--sp-6) 0;}
+.faq-block{display:flex;flex-direction:column;gap:var(--sp-2);}
+.faq-item{border:1px solid var(--c-line);border-radius:var(--r-md);background:var(--c-bg-elev-1);overflow:hidden;transition:border-color .12s;}
+.faq-item[open]{border-color:var(--c-gold-dim);}
+.faq-q{padding:var(--sp-3) var(--sp-4);font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.04em;font-size:var(--fs-500);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);}
+.faq-q::-webkit-details-marker,.faq-q::marker{display:none;}
+.faq-q::after{content:"+";font-size:1.4em;color:var(--c-gold);transition:transform .15s;flex:0 0 auto;line-height:1;}
+.faq-item[open] .faq-q::after{content:"−";}
+.faq-a{padding:0 var(--sp-4) var(--sp-4);color:var(--c-text-muted);font-size:var(--fs-400);line-height:var(--lh-body);}
+.faq-a p{margin:.5em 0 0;}
+
+/* Related quick-links */
+.evhub-related{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:var(--sp-4) 0 var(--sp-8);}
+.evhub-rel{font-family:var(--font-cond);font-size:var(--fs-400);text-transform:uppercase;letter-spacing:.06em;color:var(--c-gold);text-decoration:none;padding:.4em 1em;border:1px solid var(--c-gold-dim);border-radius:99px;transition:background .12s,color .12s;}
+.evhub-rel:hover{background:rgba(212,175,55,.12);border-color:var(--c-gold);}
+
+/* Hidden class for filter JS */
+.evhub-hidden{display:none!important;}
+
+@media(max-width:640px){
+  .evhub-featured{grid-template-columns:1fr;}
+  .evhub-row{grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;}
+  .evhub-row__years,.evhub-row__note{grid-column:2;}
+  .evhub-promos{grid-template-columns:repeat(2,1fr);}
+}
+</style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@graph":[
-    {"@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://wrestlelore.com/"},
-      {"@type":"ListItem","position":2,"name":"Events","item":"https://wrestlelore.com/events/"}
-    ]}
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://wrestlelore.com/"},
+        {"@type":"ListItem","position":2,"name":"Events","item":"https://wrestlelore.com/events/"}
+      ]
+    },
+    {
+      "@type":"CollectionPage",
+      "name":"Professional Wrestling Events — Complete History",
+      "description":"The complete guide to professional wrestling events across every major promotion — from WrestleMania 1 in 1985 to the present, covering WWE, WCW, ECW, AEW, NJPW, TNA, ROH, AAA, NWA, and the indie scene.",
+      "url":"https://wrestlelore.com/events/",
+      "publisher":{"@type":"Organization","name":"Wrestle Lore","url":"https://wrestlelore.com"}
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"When was the first WrestleMania?",
+          "acceptedAnswer":{"@type":"Answer","text":"The first WrestleMania was held on March 31, 1985, at Madison Square Garden in New York City. It drew 19,121 fans in attendance with approximately 1 million pay-per-view buys. The main event was Hulk Hogan and Mr. T defeating Roddy Piper and Paul Orndorff."}
+        },
+        {
+          "@type":"Question",
+          "name":"What was the first AEW pay-per-view event?",
+          "acceptedAnswer":{"@type":"Answer","text":"The first AEW pay-per-view event was AEW Double or Nothing, held May 25, 2019, at the MGM Grand Garden Arena in Las Vegas, Nevada. Chris Jericho defeated Kenny Omega in the main event to win the first AEW World Championship."}
+        },
+        {
+          "@type":"Question",
+          "name":"Which promotion invented WarGames?",
+          "acceptedAnswer":{"@type":"Answer","text":"WarGames was invented by Jim Crockett Promotions under the National Wrestling Alliance (NWA) banner. The first WarGames match took place on July 4, 1987, at the Great American Bash in Atlanta, Georgia — The Four Horsemen vs. Dusty Rhodes, The Road Warriors, Nikita Koloff, and Paul Ellering. The concept was created by Dusty Rhodes."}
+        },
+        {
+          "@type":"Question",
+          "name":"What happened to WCW?",
+          "acceptedAnswer":{"@type":"Answer","text":"WCW ceased operations on March 26, 2001. WWE purchased WCW's tape library and IP from AOL Time Warner. The final WCW pay-per-view was Greed (March 18, 2001). The final WCW Monday Nitro aired March 26, 2001, simulcast with WWF Raw."}
+        },
+        {
+          "@type":"Question",
+          "name":"How many ECW pay-per-view events were there?",
+          "acceptedAnswer":{"@type":"Answer","text":"Extreme Championship Wrestling produced 21 official pay-per-view events from April 13, 1997 (Barely Legal, the first ECW PPV) through January 7, 2001 (Guilty as Charged 2001, the final ECW PPV before bankruptcy)."}
+        },
+        {
+          "@type":"Question",
+          "name":"What is the biggest event in lucha libre?",
+          "acceptedAnswer":{"@type":"Answer","text":"AAA TripleManía is the biggest annual event in lucha libre. First held March 4, 1993, in Mexico City, it is considered the WrestleMania of Mexican professional wrestling, organized by Lucha Libre AAA Worldwide. CMLL's Aniversario (September) is the other major lucha libre supercard."}
+        },
+        {
+          "@type":"Question",
+          "name":"Who won the most Royal Rumble matches?",
+          "acceptedAnswer":{"@type":"Answer","text":"Steve Austin has won the most Royal Rumble matches with three victories (1997, 1998, 2001). John Cena and Triple H have each won two Royal Rumble matches."}
+        },
+        {
+          "@type":"Question",
+          "name":"What is the biggest wrestling event by attendance?",
+          "acceptedAnswer":{"@type":"Answer","text":"WrestleMania 32 (2016) at AT&T Stadium in Arlington, Texas, is officially reported at 101,763 in attendance, making it the highest-attended professional wrestling event in history by reported figure. Outside WWE, AEW All In at Wembley Stadium (2023) drew 81,035, the largest outdoor wrestling event in UK history."}
+        }
+      ]
+    }
   ]
 }
 </script>
@@ -693,51 +852,623 @@
     <div class="cmdk__foot"><span><kbd>&#8593;&#8595;</kbd> navigate</span><span><kbd>&#8629;</kbd> open</span><span><kbd>esc</kbd> close</span></div>
   </div></div>
 <main id="main">
-<section class="ev-hero">
+<section class="ev-hero ev-hero--hub">
   <div class="wrap ev-hero__inner">
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Events</li></ol></nav>
-
-    <span class="ev-hero__brand">Premium Live Events</span>
-    <h1>WWE <span class="accent">Events</span></h1>
-    <p class="ev-lede">Full results, main events, and where to watch, starting with the most recent shows.</p>
+    <span class="ev-hero__brand">All Promotions &middot; 1948 to Present</span>
+    <h1>Professional Wrestling <span class="accent">Events</span></h1>
+    <p class="ev-lede">The complete guide to professional wrestling events across every major promotion — from <a href="/events/wrestlemania/">WrestleMania 1 in 1985</a> to the present, covering <a href="/promotions/wwe/">WWE</a>, <a href="/promotions/wcw/">WCW</a>, <a href="/promotions/ecw/">ECW</a>, <a href="/promotions/aew/">AEW</a>, <a href="/promotions/njpw/">NJPW</a>, <a href="/promotions/tna/">TNA</a>, ROH, AAA, NWA, and the global indie scene. Every flagship event series, every era, fully documented for the historical record.</p>
   </div>
 </section>
 
 <div class="wrap">
-  <section class="watch2" aria-label="Where to watch">
-  <div class="watch2__card watch2__card--espn">
-    <p class="watch2__region">Watch in the US</p>
-    <p class="watch2__plat">ESPN</p>
-    <p>Every WWE Premium Live Event streams live on ESPN, and only on ESPN, starting with the 2026 calendar.</p>
-    <a class="watch2__btn" href="https://www.espn.com/wwe/" target="_blank" rel="noopener">Watch on ESPN</a>
-  </div>
-  <div class="watch2__card watch2__card--nflx">
-    <p class="watch2__region">Watch internationally</p>
-    <p class="watch2__plat">Netflix</p>
-    <p>Outside the US, Premium Live Events stream live on Netflix, alongside Raw, SmackDown, NXT and the event archive.</p>
-    <a class="watch2__btn watch2__btn--ghost" href="https://www.netflix.com/browse/genre/81921064" target="_blank" rel="noopener">Watch on Netflix</a>
-  </div>
-</section>
 
+  <!-- PROMOTION FILTER TABS -->
+  <nav class="evhub-filter" aria-label="Filter events by promotion">
+    <button class="evhub-pill evhub-pill--active" data-filter="all" aria-pressed="true" type="button">All</button>
+    <button class="evhub-pill evhub-pill--wwe" data-filter="wwe" aria-pressed="false" type="button">WWE</button>
+    <button class="evhub-pill evhub-pill--aew" data-filter="aew" aria-pressed="false" type="button">AEW</button>
+    <button class="evhub-pill evhub-pill--wcw" data-filter="wcw" aria-pressed="false" type="button">WCW</button>
+    <button class="evhub-pill evhub-pill--ecw" data-filter="ecw" aria-pressed="false" type="button">ECW</button>
+    <button class="evhub-pill evhub-pill--tna" data-filter="tna" aria-pressed="false" type="button">TNA / Impact</button>
+    <button class="evhub-pill evhub-pill--njpw" data-filter="njpw" aria-pressed="false" type="button">NJPW</button>
+    <button class="evhub-pill evhub-pill--roh" data-filter="roh" aria-pressed="false" type="button">ROH</button>
+    <button class="evhub-pill evhub-pill--aaa" data-filter="aaa" aria-pressed="false" type="button">AAA</button>
+    <button class="evhub-pill evhub-pill--nwa" data-filter="nwa" aria-pressed="false" type="button">NWA</button>
+    <button class="evhub-pill evhub-pill--indie" data-filter="indie" aria-pressed="false" type="button">Indies</button>
+  </nav>
 
-  <div class="sec-h"><h2>Most Recent Events</h2></div>
-  <div class="event-grid">
-<a class="ev-tile" href="/events/night-of-champions-2026/"><span class="ev-tile__date">June 27, 2026 &middot; Riyadh, Saudi Arabia</span><h3 class="ev-tile__name">Night of Champions 2026</h3><p class="ev-tile__sub">Sami Zayn def. Cody Rhodes &amp; Gunther</p></a>
-<a class="ev-tile" href="/events/backlash-2026/"><span class="ev-tile__date">May 9, 2026 &middot; Tampa, Florida</span><h3 class="ev-tile__name">Backlash 2026</h3><p class="ev-tile__sub">Roman Reigns def. Jacob Fatu</p></a>
-<a class="ev-tile" href="/events/wrestlemania-42-2026/"><span class="ev-tile__date">April 18–19, 2026 &middot; Las Vegas, Nevada</span><h3 class="ev-tile__name">WrestleMania 42</h3><p class="ev-tile__sub">Cody Rhodes def. Randy Orton</p></a>
-<a class="ev-tile" href="/events/elimination-chamber-2026/"><span class="ev-tile__date">February 28, 2026 &middot; Chicago, Illinois</span><h3 class="ev-tile__name">Elimination Chamber 2026</h3><p class="ev-tile__sub">Randy Orton def. LA Knight, Cody Rhodes, Je'Von Evans, Trick Williams, Logan Paul</p></a>
-<a class="ev-tile" href="/events/royal-rumble-2026/"><span class="ev-tile__date">January 31, 2026 &middot; Riyadh, Saudi Arabia</span><h3 class="ev-tile__name">Royal Rumble 2026</h3><p class="ev-tile__sub">Roman Reigns wins</p></a>
+  <!-- FLAGSHIP EVENTS GRID -->
+  <div class="sec-h"><h2>Flagship Events</h2></div>
+  <div class="evhub-featured" id="evhub-featured">
+
+    <a class="evhub-card evhub-card--wwe" href="/events/wrestlemania/" data-promo="wwe" aria-label="WrestleMania complete history">
+      <span class="evhub-card__badge evhub-badge--wwe">WWE</span>
+      <h3 class="evhub-card__name">WrestleMania</h3>
+      <span class="evhub-card__years">1985 &ndash; Present</span>
+      <p class="evhub-card__desc">The Showcase of the Immortals. WWE's annual spring flagship since 1985. 41 editions across four decades, from MSG to the NFL's biggest stadiums. The most commercially successful event in wrestling history.</p>
+      <span class="evhub-card__cta">Explore series &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--wwe" href="/events/royal-rumble/" data-promo="wwe" aria-label="Royal Rumble complete history">
+      <span class="evhub-card__badge evhub-badge--wwe">WWE</span>
+      <h3 class="evhub-card__name">Royal Rumble</h3>
+      <span class="evhub-card__years">1988 &ndash; Present</span>
+      <p class="evhub-card__desc">30 superstars enter one at a time. One earns a WrestleMania world title shot. The winner-take-all January tradition since 1988. Steve Austin holds the record with three victories (1997, 1998, 2001).</p>
+      <span class="evhub-card__cta">Explore series &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--wwe" href="/events/summerslam/" data-promo="wwe" aria-label="SummerSlam complete history">
+      <span class="evhub-card__badge evhub-badge--wwe">WWE</span>
+      <h3 class="evhub-card__name">SummerSlam</h3>
+      <span class="evhub-card__years">1988 &ndash; Present</span>
+      <p class="evhub-card__desc">WWE's second-biggest annual event. The Biggest Party of the Summer, held each August since 1988. High-profile WrestleMania rematches and summer blockbuster matches define its legacy.</p>
+      <span class="evhub-card__cta">Explore series &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--wwe" href="/events/survivor-series/" data-promo="wwe" aria-label="Survivor Series complete history">
+      <span class="evhub-card__badge evhub-badge--wwe">WWE</span>
+      <h3 class="evhub-card__name">Survivor Series</h3>
+      <span class="evhub-card__years">1987 &ndash; Present</span>
+      <p class="evhub-card__desc">Traditional elimination tag team warfare since 1987. Site of the Montreal Screwjob (1997) and decades of brand-vs-brand warfare. WarGames was added to the event beginning in 2022.</p>
+      <span class="evhub-card__cta">Explore series &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--aew" href="/events/aew/" data-promo="aew" aria-label="AEW Double or Nothing">
+      <span class="evhub-card__badge evhub-badge--aew">AEW</span>
+      <h3 class="evhub-card__name">AEW Double or Nothing</h3>
+      <span class="evhub-card__years">2019 &ndash; Present</span>
+      <p class="evhub-card__desc">The inaugural AEW pay-per-view event (May 25, 2019, Las Vegas). The launch of All Elite Wrestling as a genuine WWE alternative. Chris Jericho defeated Kenny Omega in the first-ever AEW main event.</p>
+      <span class="evhub-card__cta">Explore AEW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--aew" href="/events/aew/" data-promo="aew" aria-label="AEW All In Wembley">
+      <span class="evhub-card__badge evhub-badge--aew">AEW</span>
+      <h3 class="evhub-card__name">AEW All In</h3>
+      <span class="evhub-card__years">2023 &ndash; Present</span>
+      <p class="evhub-card__desc">AEW's international supercard at Wembley Stadium (Aug 27, 2023 — 81,035 fans). The largest outdoor wrestling event in UK history. Established AEW as a global brand capable of selling out stadium shows.</p>
+      <span class="evhub-card__cta">Explore AEW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--wcw" href="/events/wcw/" data-promo="wcw" aria-label="WCW Starrcade history">
+      <span class="evhub-card__badge evhub-badge--wcw">WCW</span>
+      <h3 class="evhub-card__name">WCW Starrcade</h3>
+      <span class="evhub-card__years">1983 &ndash; 2000</span>
+      <p class="evhub-card__desc">The granddaddy of wrestling supercards — predating WrestleMania by two years. WCW's annual flagship from 1983–2000. NWA and WCW's most prestigious night, featuring Ric Flair and Sting throughout the era.</p>
+      <span class="evhub-card__cta">Explore WCW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--wcw" href="/events/wcw/" data-promo="wcw" aria-label="WCW Bash at the Beach 1996 — nWo formation">
+      <span class="evhub-card__badge evhub-badge--wcw">WCW</span>
+      <h3 class="evhub-card__name">Bash at the Beach 1996</h3>
+      <span class="evhub-card__years">July 7, 1996</span>
+      <p class="evhub-card__desc">The night Hulk Hogan turned heel and the New World Order (nWo) was born. Considered one of the most consequential moments in wrestling history — it shifted the Monday Night Wars decisively toward WCW.</p>
+      <span class="evhub-card__cta">Explore WCW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--ecw" href="/events/ecw/" data-promo="ecw" aria-label="ECW Barely Legal — first ECW PPV">
+      <span class="evhub-card__badge evhub-badge--ecw">ECW</span>
+      <h3 class="evhub-card__name">ECW Barely Legal</h3>
+      <span class="evhub-card__years">April 13, 1997</span>
+      <p class="evhub-card__desc">The first-ever ECW pay-per-view event. The Taz vs. Sabu match and Funk vs. Raven for the ECW title headlined the show. The hardcore alternative was legitimized in one night — ECW ran 21 PPVs through 2001.</p>
+      <span class="evhub-card__cta">Explore ECW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--tna" href="/events/tna/" data-promo="tna" aria-label="TNA Bound for Glory">
+      <span class="evhub-card__badge evhub-badge--tna">TNA</span>
+      <h3 class="evhub-card__name">TNA Bound for Glory</h3>
+      <span class="evhub-card__years">2005 &ndash; Present</span>
+      <p class="evhub-card__desc">TNA/Impact's WrestleMania. 21+ editions from 2005 through 2026. AJ Styles' 2009 win is considered the defining moment of TNA's original roster era — the homegrown champion crowned at the biggest show.</p>
+      <span class="evhub-card__cta">Explore TNA &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--njpw" href="/events/njpw/" data-promo="njpw" aria-label="NJPW Wrestle Kingdom">
+      <span class="evhub-card__badge evhub-badge--njpw">NJPW</span>
+      <h3 class="evhub-card__name">NJPW Wrestle Kingdom</h3>
+      <span class="evhub-card__years">2007 &ndash; Present</span>
+      <p class="evhub-card__desc">NJPW's annual January 4 Tokyo Dome supercard — "1.4" in wrestling shorthand. Home to Okada vs. Omega and the modern strong style era. Wrestle Kingdom 20 (2026) marks a major milestone for the promotion.</p>
+      <span class="evhub-card__cta">Explore NJPW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--njpw" href="/events/njpw/" data-promo="njpw" aria-label="NJPW G1 Climax tournament">
+      <span class="evhub-card__badge evhub-badge--njpw">NJPW</span>
+      <h3 class="evhub-card__name">NJPW G1 Climax</h3>
+      <span class="evhub-card__years">1991 &ndash; Present</span>
+      <p class="evhub-card__desc">The world's most prestigious wrestling tournament. Round-robin across 20 wrestlers over three weeks, producing the highest concentration of 5-star matches in any annual event. Kenny Omega was the first non-Japanese winner (2016).</p>
+      <span class="evhub-card__cta">Explore NJPW &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--roh" href="/events/roh/" data-promo="roh" aria-label="ROH Final Battle">
+      <span class="evhub-card__badge evhub-badge--roh">ROH</span>
+      <h3 class="evhub-card__name">ROH Final Battle</h3>
+      <span class="evhub-card__years">2003 &ndash; Present</span>
+      <p class="evhub-card__desc">Ring of Honor's annual year-end flagship — the most critically acclaimed indie promotion of the 2000s. ROH launched <a href="/wrestlers/cm-punk/">CM Punk</a>, <a href="/wrestlers/daniel-bryan/">Daniel Bryan</a>, and <a href="/wrestlers/seth-rollins/">Seth Rollins</a>. Now under AEW/HonorClub ownership.</p>
+      <span class="evhub-card__cta">Explore ROH &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--aaa" href="/events/aaa/" data-promo="aaa" aria-label="AAA TripleManía">
+      <span class="evhub-card__badge evhub-badge--aaa">AAA</span>
+      <h3 class="evhub-card__name">AAA TripleMan&iacute;a</h3>
+      <span class="evhub-card__years">1993 &ndash; Present</span>
+      <p class="evhub-card__desc">The WrestleMania of Mexican lucha libre. 32+ editions since 1993. Known for the mask vs. mask (apuesta) tradition — losing your mask in lucha libre is one of the highest-stakes moments in the genre. AEW co-promoted beginning 2019.</p>
+      <span class="evhub-card__cta">Explore AAA &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--nwa" href="/events/nwa/" data-promo="nwa" aria-label="NWA history and events">
+      <span class="evhub-card__badge evhub-badge--nwa">NWA</span>
+      <h3 class="evhub-card__name">NWA Starrcade</h3>
+      <span class="evhub-card__years">1948 &ndash; Present</span>
+      <p class="evhub-card__desc">The National Wrestling Alliance was the dominant North American wrestling body from 1948 through the 1980s. Every major promotion traces to the NWA. The NWA World Heavyweight Championship is the oldest world title lineage in wrestling, running since 1948.</p>
+      <span class="evhub-card__cta">NWA history &rarr;</span>
+    </a>
+
+    <a class="evhub-card evhub-card--indie" href="/events/njpw/" data-promo="indie" aria-label="PWG Battle of Los Angeles">
+      <span class="evhub-card__badge evhub-badge--indie">PWG</span>
+      <h3 class="evhub-card__name">Battle of Los Angeles</h3>
+      <span class="evhub-card__years">2005 &ndash; Present</span>
+      <p class="evhub-card__desc">The most prestigious independent wrestling tournament in North America. PWG's BOLA alumni include <a href="/wrestlers/seth-rollins/">Seth Rollins</a>, <a href="/wrestlers/kevin-owens/">Kevin Owens</a>, <a href="/wrestlers/sami-zayn/">Sami Zayn</a>, Kenny Omega, Adam Cole, and Jay White.</p>
+      <span class="evhub-card__cta">Learn more &rarr;</span>
+    </a>
+
+  </div><!-- /#evhub-featured -->
+
+  <!-- WWE SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="wwe">
+    <div class="sec-h"><h2>WWE Event Series</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/elimination-chamber/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">Elimination Chamber</span>
+        <span class="evhub-row__years">2010 &ndash; Present</span>
+        <span class="evhub-row__note">Six superstars. One inescapable steel structure. February title-match gauntlet en route to WrestleMania.</span>
+      </a>
+      <a class="evhub-row" href="/events/money-in-the-bank/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">Money in the Bank</span>
+        <span class="evhub-row__years">2010 &ndash; Present</span>
+        <span class="evhub-row__note">Briefcase ladder match &middot; guaranteed championship shot, cashable any time, anywhere.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">Hell in a Cell</span>
+        <span class="evhub-row__years">1997 &ndash; 2022</span>
+        <span class="evhub-row__note">Undertaker–Mankind 1998 (KOTR/HiaC) is the most replayed moment in WWE history. Annual PPV 2009–2022.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">King of the Ring</span>
+        <span class="evhug-row__years">1993 &ndash; Present (intermittent)</span>
+        <span class="evhub-row__note">Single-elimination tournament crowning a "King." Stone Cold 1996, Triple H 1997, Brock Lesnar 2002 are the defining reigns.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">In Your House</span>
+        <span class="evhub-row__years">1995 &ndash; 1999</span>
+        <span class="evhub-row__note">27 mid-card PPVs across the New Generation and early Attitude eras. The original "B-show" PPV format.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">TLC: Tables, Ladders &amp; Chairs</span>
+        <span class="evhub-row__years">2009 &ndash; 2021</span>
+        <span class="evhub-row__note">December multi-stipulation PPV inspired by the Hardy Boyz / E&amp;C / Dudley Boyz TLC matches of the early 2000s.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">Extreme Rules</span>
+        <span class="evhub-row__years">2009 &ndash; Present</span>
+        <span class="evhub-row__note">The annual "no rules" PPV — chairs, tables, ladders, and street fight matches across the card.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">Saturday Night's Main Event</span>
+        <span class="evhub-row__years">1985 &ndash; 2024</span>
+        <span class="evhub-row__note">NBC prime-time specials of the Golden Era (1985–1992); revived on Peacock (2006, 2024). Stone Cold vs. McMahon were cornerstones of the original run.</span>
+      </a>
+      <a class="evhub-row" href="/events/wwe/" data-promo="wwe">
+        <span class="evhub-row__promo evhub-badge--wwe">WWE</span>
+        <span class="evhub-row__name">Crown Jewel / Clash at the Castle</span>
+        <span class="evhub-row__years">2018 &ndash; Present</span>
+        <span class="evhub-row__note">WWE's international Premium Live Event expansion: Saudi Arabia (Crown Jewel), UK (Clash at the Castle), France (Backlash 2023), Puerto Rico (Backlash 2024).</span>
+      </a>
+    </div>
+  </div><!-- /wwe section -->
+
+  <!-- WCW SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="wcw">
+    <div class="sec-h"><h2>WCW Event Series</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/wcw/" data-promo="wcw">
+        <span class="evhub-row__promo evhub-badge--wcw">WCW</span>
+        <span class="evhub-row__name">Great American Bash</span>
+        <span class="evhub-row__years">1985 &ndash; 2000</span>
+        <span class="evhub-row__note">WCW's summer showpiece &mdash; originally a NWA stadium tour across the South before becoming an annual PPV.</span>
+      </a>
+      <a class="evhub-row" href="/events/wcw/" data-promo="wcw">
+        <span class="evhub-row__promo evhub-badge--wcw">WCW</span>
+        <span class="evhub-row__name">Halloween Havoc</span>
+        <span class="evhub-row__years">1989 &ndash; 2000</span>
+        <span class="evhub-row__note">Rey Mysterio vs. Eddie Guerrero (1997) &#9733;&#9733;&#9733;&#9733;&#189; &mdash; the match that defined WCW's cruiserweight division at its peak.</span>
+      </a>
+      <a class="evhub-row" href="/events/wcw/" data-promo="wcw">
+        <span class="evhub-row__promo evhub-badge--wcw">WCW</span>
+        <span class="evhub-row__name">SuperBrawl</span>
+        <span class="evhub-row__years">1991 &ndash; 2001</span>
+        <span class="evhub-row__note">WCW's February flagship &mdash; Ric Flair and Sting programs defined the era.</span>
+      </a>
+      <a class="evhub-row" href="/events/wcw/" data-promo="wcw">
+        <span class="evhub-row__promo evhub-badge--wcw">WCW</span>
+        <span class="evhub-row__name">Clash of Champions</span>
+        <span class="evhub-row__years">1988 &ndash; 1997</span>
+        <span class="evhub-row__note">35 free TV specials. The inaugural Clash (1988) featured Flair vs. Sting in one of NWA's most iconic matches.</span>
+      </a>
+      <a class="evhub-row" href="/events/wcw/" data-promo="wcw">
+        <span class="evhub-row__promo evhub-badge--wcw">WCW</span>
+        <span class="evhub-row__name">Fall Brawl (WarGames)</span>
+        <span class="evhub-row__years">1992 &ndash; 1999</span>
+        <span class="evhub-row__note">WCW's annual WarGames match &mdash; origin of the double-ring cage format invented by Dusty Rhodes (NWA, 1987).</span>
+      </a>
+      <a class="evhub-row" href="/events/wcw/" data-promo="wcw">
+        <span class="evhub-row__promo evhub-badge--wcw">WCW</span>
+        <span class="evhub-row__name">WCW Monday Nitro</span>
+        <span class="evhub-row__years">1995 &ndash; 2001</span>
+        <span class="evhub-row__note">The first serious Monday Night Wars opponent to WWF Raw. Launched Sept 4, 1995 &mdash; Lex Luger's surprise debut set the tone.</span>
+      </a>
+    </div>
+  </div><!-- /wcw section -->
+
+  <!-- AEW SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="aew">
+    <div class="sec-h"><h2>AEW Event Series</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/aew/" data-promo="aew">
+        <span class="evhub-row__promo evhub-badge--aew">AEW</span>
+        <span class="evhub-row__name">AEW Revolution</span>
+        <span class="evhub-row__years">2020 &ndash; Present</span>
+        <span class="evhub-row__note">AEW's late-winter / spring supercard &mdash; part of the AEW Big Four annual PPV cycle.</span>
+      </a>
+      <a class="evhub-row" href="/events/aew/" data-promo="aew">
+        <span class="evhub-row__promo evhub-badge--aew">AEW</span>
+        <span class="evhub-row__name">AEW All Out</span>
+        <span class="evhub-row__years">2019 &ndash; Present</span>
+        <span class="evhub-row__note">Late-summer supercard &mdash; part of the Big Four. CM Punk's 2021 return happened at All Out.</span>
+      </a>
+      <a class="evhub-row" href="/events/aew/" data-promo="aew">
+        <span class="evhub-row__promo evhub-badge--aew">AEW</span>
+        <span class="evhub-row__name">AEW Full Gear</span>
+        <span class="evhub-row__years">2019 &ndash; Present</span>
+        <span class="evhub-row__note">Fall supercard &mdash; part of the Big Four. Major title changes and blow-off matches each year.</span>
+      </a>
+      <a class="evhub-row" href="/events/aew/" data-promo="aew">
+        <span class="evhub-row__promo evhub-badge--aew">AEW</span>
+        <span class="evhub-row__name">Forbidden Door (AEW &times; NJPW)</span>
+        <span class="evhub-row__years">2022 &ndash; Present</span>
+        <span class="evhub-row__note">Annual AEW/NJPW co-promotion supercard &mdash; the definitive inter-promotional event of the modern era.</span>
+      </a>
+      <a class="evhub-row" href="/events/aew/" data-promo="aew">
+        <span class="evhub-row__promo evhub-badge--aew">AEW</span>
+        <span class="evhub-row__name">WrestleDream</span>
+        <span class="evhub-row__years">2023 &ndash; Present</span>
+        <span class="evhub-row__note">AEW's October supercard &mdash; held in Seattle, WA. Named as tribute to the dream-match appeal of AEW's roster.</span>
+      </a>
+      <a class="evhub-row" href="/events/aew/" data-promo="aew">
+        <span class="evhub-row__promo evhub-badge--aew">AEW</span>
+        <span class="evhub-row__name">AEW Dynamite (weekly)</span>
+        <span class="evhub-row__years">2019 &ndash; Present</span>
+        <span class="evhub-row__note">Premiered Oct 2, 2019 on TNT. Launched the Wednesday Night Wars vs. NXT. Now airs on TBS.</span>
+      </a>
+    </div>
+  </div><!-- /aew section -->
+
+  <!-- TNA SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="tna">
+    <div class="sec-h"><h2>TNA / Impact Event Series</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/tna/" data-promo="tna">
+        <span class="evhub-row__promo evhub-badge--tna">TNA</span>
+        <span class="evhub-row__name">TNA Slammiversary</span>
+        <span class="evhub-row__years">2005 &ndash; Present</span>
+        <span class="evhub-row__note">TNA's June anniversary show &mdash; the 2021 edition featured over 60 surprise signings and returns, the most star-studded show in years.</span>
+      </a>
+      <a class="evhub-row" href="/events/tna/" data-promo="tna">
+        <span class="evhub-row__promo evhub-badge--tna">TNA</span>
+        <span class="evhub-row__name">TNA Lockdown</span>
+        <span class="evhub-row__years">2005 &ndash; 2014</span>
+        <span class="evhub-row__note">Every match inside a steel cage &mdash; the Lethal Lockdown WarGames-style match as the headliner. TNA's most unique annual concept.</span>
+      </a>
+      <a class="evhub-row" href="/events/tna/" data-promo="tna">
+        <span class="evhub-row__promo evhub-badge--tna">TNA</span>
+        <span class="evhub-row__name">TNA Impact! (weekly)</span>
+        <span class="evhub-row__years">2004 &ndash; Present</span>
+        <span class="evhub-row__note">Premiered June 4, 2004 on Spike TV. The longest-running alternative wrestling TV show in North America. Now on AXS TV.</span>
+      </a>
+      <a class="evhub-row" href="/events/tna/" data-promo="tna">
+        <span class="evhub-row__promo evhub-badge--tna">TNA</span>
+        <span class="evhub-row__name">Impact! Rebellion</span>
+        <span class="evhub-row__years">2020 &ndash; Present</span>
+        <span class="evhub-row__note">The 2021 edition featured Kenny Omega (AEW World Champ) vs. Rich Swann (Impact Champ) — both titles on the line in a historic crossover match.</span>
+      </a>
+    </div>
+  </div><!-- /tna section -->
+
+  <!-- NJPW SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="njpw">
+    <div class="sec-h"><h2>NJPW Event Series</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/njpw/" data-promo="njpw">
+        <span class="evhub-row__promo evhub-badge--njpw">NJPW</span>
+        <span class="evhub-row__name">NJPW Dominion</span>
+        <span class="evhub-row__years">2009 &ndash; Present</span>
+        <span class="evhub-row__note">Annual June Osaka-jo Hall supercard &mdash; Okada vs. Omega (Dominion 2018) rated &#9733;&#9733;&#9733;&#9733;&#9733;&#9733;&#9733; by Dave Meltzer &#9876;</span>
+      </a>
+      <a class="evhub-row" href="/events/njpw/" data-promo="njpw">
+        <span class="evhub-row__promo evhub-badge--njpw">NJPW</span>
+        <span class="evhub-row__name">Best of the Super Juniors</span>
+        <span class="evhub-row__years">1988 &ndash; Present</span>
+        <span class="evhub-row__note">Junior heavyweight round-robin tournament each May. Hiromu Takahashi, Will Ospreay, El Desperado, and Jushin Liger are modern greats of the tournament.</span>
+      </a>
+      <a class="evhub-row" href="/events/njpw/" data-promo="njpw">
+        <span class="evhub-row__promo evhub-badge--njpw">NJPW</span>
+        <span class="evhub-row__name">King of Pro-Wrestling</span>
+        <span class="evhub-row__years">2012 &ndash; Present</span>
+        <span class="evhub-row__note">NJPW's major October supercard at Ryogoku Kokugikan in Tokyo. Title defenses and stipulation matches.</span>
+      </a>
+      <a class="evhub-row" href="/events/njpw/" data-promo="njpw">
+        <span class="evhub-row__promo evhub-badge--njpw">NJPW</span>
+        <span class="evhub-row__name">Wrestle Dynasty (AEW &times; NJPW)</span>
+        <span class="evhub-row__years">2025 &ndash; Present</span>
+        <span class="evhub-row__note">New AEW/NJPW co-promotion supercard held January 5 in the Tokyo Dome &mdash; the day after Wrestle Kingdom.</span>
+      </a>
+    </div>
+  </div><!-- /njpw section -->
+
+  <!-- ROH SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="roh">
+    <div class="sec-h"><h2>ROH Event Series</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/roh/" data-promo="roh">
+        <span class="evhub-row__promo evhub-badge--roh">ROH</span>
+        <span class="evhub-row__name">ROH G1 Supercard</span>
+        <span class="evhub-row__years">April 6, 2019</span>
+        <span class="evhub-row__note">Madison Square Garden &mdash; co-promoted with NJPW &mdash; the largest ROH event in history, setting a precedent for the Forbidden Door concept.</span>
+      </a>
+      <a class="evhub-row" href="/events/roh/" data-promo="roh">
+        <span class="evhub-row__promo evhub-badge--roh">ROH</span>
+        <span class="evhub-row__name">ROH Supercard of Honor</span>
+        <span class="evhub-row__years">WM Weekend &mdash; Annual</span>
+        <span class="evhub-row__note">WrestleMania weekend tradition. Eddie Kingston won the ROH World Championship at the 2022 edition under AEW's new ownership era.</span>
+      </a>
+      <a class="evhub-row" href="/events/roh/" data-promo="roh">
+        <span class="evhub-row__promo evhub-badge--roh">ROH</span>
+        <span class="evhub-row__name">ROH Best in the World</span>
+        <span class="evhub-row__years">2012 &ndash; Present</span>
+        <span class="evhub-row__note">ROH's summer flagship &mdash; now under AEW/Tony Khan ownership. Streaming on HonorClub.</span>
+      </a>
+      <a class="evhub-row" href="/events/roh/" data-promo="roh">
+        <span class="evhub-row__promo evhub-badge--roh">ROH</span>
+        <span class="evhub-row__name">ROH Death Before Dishonor</span>
+        <span class="evhub-row__years">2004 &ndash; Present</span>
+        <span class="evhub-row__note">The quintessential ROH summer event &mdash; CM Punk's 2004 debut match era, then revival under AEW.</span>
+      </a>
+    </div>
+  </div><!-- /roh section -->
+
+  <!-- AAA SUB-SERIES -->
+  <div class="evhub-section" data-promo-section="aaa">
+    <div class="sec-h"><h2>AAA &amp; Lucha Libre Events</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/aaa/" data-promo="aaa">
+        <span class="evhub-row__promo evhub-badge--aaa">AAA</span>
+        <span class="evhub-row__name">Verano de Esc&aacute;ndalo</span>
+        <span class="evhub-row__years">Annual &mdash; June</span>
+        <span class="evhub-row__note">AAA's summer PPV &mdash; mask/hair apuesta (bet) tradition. Long-running fixture since the early 1990s.</span>
+      </a>
+      <a class="evhub-row" href="/events/aaa/" data-promo="aaa">
+        <span class="evhub-row__promo evhub-badge--aaa">AAA</span>
+        <span class="evhub-row__name">Guerra de Titanes</span>
+        <span class="evhub-row__years">Annual &mdash; December</span>
+        <span class="evhub-row__note">AAA's year-end event &mdash; comparable to Starrcade or Survivor Series in its promotional positioning.</span>
+      </a>
+    </div>
+  </div><!-- /aaa section -->
+
+  <!-- NWA -->
+  <div class="evhub-section" data-promo-section="nwa">
+    <div class="sec-h"><h2>NWA History &amp; Events</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/nwa/" data-promo="nwa">
+        <span class="evhub-row__promo evhub-badge--nwa">NWA</span>
+        <span class="evhub-row__name">NWA World Championship History</span>
+        <span class="evhub-row__years">1948 &ndash; Present</span>
+        <span class="evhub-row__note">The oldest continuous world title lineage in wrestling. Lou Thesz (3,750+ days), Ric Flair (16 reigns), and the 2017 Billy Corgan revival under NWA Powerrr.</span>
+      </a>
+      <a class="evhub-row" href="/events/nwa/" data-promo="nwa">
+        <span class="evhub-row__promo evhub-badge--nwa">NWA</span>
+        <span class="evhub-row__name">NWA Powerrr</span>
+        <span class="evhub-row__years">2019 &ndash; Present</span>
+        <span class="evhub-row__note">NWA's revived weekly studio wrestling show under Billy Corgan's ownership. Throwback to the territorial era's TV format.</span>
+      </a>
+      <a class="evhub-row" href="/events/nwa/" data-promo="nwa">
+        <span class="evhub-row__promo evhub-badge--nwa">NWA</span>
+        <span class="evhub-row__name">NWA 74th / 75th Anniversary</span>
+        <span class="evhub-row__years">2022 &ndash; 2023</span>
+        <span class="evhub-row__note">Two-night anniversary specials celebrating the NWA's revival era under Corgan. The NWA's largest standalone events of the modern period.</span>
+      </a>
+    </div>
+  </div><!-- /nwa section -->
+
+  <!-- INDIE/INTERNATIONAL -->
+  <div class="evhub-section" data-promo-section="indie">
+    <div class="sec-h"><h2>Independent &amp; International Promotions</h2></div>
+    <div class="evhub-subgrid">
+      <a class="evhub-row" href="/events/njpw/" data-promo="indie">
+        <span class="evhub-row__promo evhub-badge--indie">STARDOM</span>
+        <span class="evhub-row__name">STARDOM Cinderella Tournament</span>
+        <span class="evhub-row__years">Japan &mdash; Annual May</span>
+        <span class="evhub-row__note">Japan's premier women's wrestling event. <a href="/wrestlers/io-shirai/">Io Shirai</a>, Kairi Sane, and Mercedes Mon&eacute; (Sasha Banks) have all competed in Stardom.</span>
+      </a>
+      <a class="evhub-row" href="/events/njpw/" data-promo="indie">
+        <span class="evhub-row__promo evhub-badge--indie">PWG</span>
+        <span class="evhub-row__name">PWG DDT4 Tag Tournament</span>
+        <span class="evhub-row__years">Annual &mdash; April</span>
+        <span class="evhub-row__note">PWG's annual four-team tag team tournament. Reseda, CA's indie scene in its purest form &mdash; ~300 capacity, near-perfect in-ring product.</span>
+      </a>
+      <a class="evhub-row" href="/events/njpw/" data-promo="indie">
+        <span class="evhub-row__promo evhub-badge--indie">GCW</span>
+        <span class="evhub-row__name">GCW The Collective</span>
+        <span class="evhub-row__years">WM Weekend &mdash; Annual</span>
+        <span class="evhub-row__note">Multi-day WrestleMania weekend indie festival hosted by GCW. Extreme and deathmatch style &mdash; Jon Moxley and Nick Gage as the marquee names.</span>
+      </a>
+      <a class="evhub-row" href="/events/njpw/" data-promo="indie">
+        <span class="evhub-row__promo evhub-badge--indie">PROGRESS</span>
+        <span class="evhub-row__name">PROGRESS Chapter Events</span>
+        <span class="evhub-row__years">UK &mdash; 2012 &ndash; Present</span>
+        <span class="evhub-row__note">London's premier indie promotion. The proving ground for Gunther, Pete Dunne (Butch), Tyler Bate, and the WWE NXT UK pipeline.</span>
+      </a>
+    </div>
+  </div><!-- /indie section -->
+
+  <!-- PROMOTION DIRECTORY -->
+  <div class="sec-h"><h2>Promotion Directory</h2></div>
+  <div class="evhub-promos">
+    <a class="evhub-promo evhub-promo--wwe" href="/promotions/wwe/">
+      <span class="evhub-promo__initials">WWE</span>
+      <span class="evhub-promo__name">World Wrestling Entertainment</span>
+      <span class="evhub-promo__meta">1952 &ndash; Present &middot; 200+ PPV events</span>
+      <span class="evhub-promo__cta">All WWE events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--aew" href="/promotions/aew/">
+      <span class="evhub-promo__initials">AEW</span>
+      <span class="evhub-promo__name">All Elite Wrestling</span>
+      <span class="evhub-promo__meta">2019 &ndash; Present &middot; 40+ PPV events</span>
+      <span class="evhub-promo__cta">All AEW events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--wcw" href="/promotions/wcw/">
+      <span class="evhub-promo__initials">WCW</span>
+      <span class="evhub-promo__name">World Championship Wrestling</span>
+      <span class="evhub-promo__meta">1988 &ndash; 2001 &middot; 160+ PPV events</span>
+      <span class="evhub-promo__cta">All WCW events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--ecw" href="/promotions/ecw/">
+      <span class="evhub-promo__initials">ECW</span>
+      <span class="evhub-promo__name">Extreme Championship Wrestling</span>
+      <span class="evhub-promo__meta">1992 &ndash; 2001 &middot; 21 PPV events</span>
+      <span class="evhub-promo__cta">All ECW events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--tna" href="/promotions/tna/">
+      <span class="evhub-promo__initials">TNA</span>
+      <span class="evhub-promo__name">TNA / Impact Wrestling</span>
+      <span class="evhub-promo__meta">2002 &ndash; Present &middot; 200+ PPV events</span>
+      <span class="evhub-promo__cta">All TNA events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--njpw" href="/promotions/njpw/">
+      <span class="evhub-promo__initials">NJPW</span>
+      <span class="evhub-promo__name">New Japan Pro-Wrestling</span>
+      <span class="evhub-promo__meta">1972 &ndash; Present &middot; 50+ major events</span>
+      <span class="evhub-promo__cta">All NJPW events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--roh" href="/promotions/roh/">
+      <span class="evhub-promo__initials">ROH</span>
+      <span class="evhub-promo__name">Ring of Honor</span>
+      <span class="evhub-promo__meta">2002 &ndash; Present &middot; Now on HonorClub</span>
+      <span class="evhub-promo__cta">All ROH events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--aaa" href="/promotions/aaa/">
+      <span class="evhub-promo__initials">AAA</span>
+      <span class="evhub-promo__name">Lucha Libre AAA Worldwide</span>
+      <span class="evhub-promo__meta">1992 &ndash; Present &middot; TripleMan&iacute;a I&ndash;XXXII+</span>
+      <span class="evhub-promo__cta">All AAA events &rarr;</span>
+    </a>
+    <a class="evhub-promo evhub-promo--nwa" href="/promotions/nwa/">
+      <span class="evhub-promo__initials">NWA</span>
+      <span class="evhub-promo__name">National Wrestling Alliance</span>
+      <span class="evhub-promo__meta">1948 &ndash; Present &middot; Origin of all major titles</span>
+      <span class="evhub-promo__cta">NWA history &rarr;</span>
+    </a>
   </div>
 
-  <div class="sec-h"><h2>Event Brands</h2></div>
-  <div class="event-grid">
-<a class="ev-tile ev-tile--red" href="/events/wrestlemania/"><h3 class="ev-tile__name">WrestleMania</h3><p class="ev-tile__sub">The Showcase of the Immortals</p></a>
-<a class="ev-tile ev-tile--red" href="/events/royal-rumble/"><h3 class="ev-tile__name">Royal Rumble</h3><p class="ev-tile__sub">30 Superstars. One Winner. A Ticket to WrestleMania.</p></a>
-<a class="ev-tile ev-tile--red" href="/events/elimination-chamber/"><h3 class="ev-tile__name">Elimination Chamber</h3><p class="ev-tile__sub">Six Enter. One Survives.</p></a>
-<a class="ev-tile ev-tile--red" href="/events/backlash/"><h3 class="ev-tile__name">Backlash</h3><p class="ev-tile__sub">The Post-Mania Blow-Off</p></a>
-<a class="ev-tile ev-tile--red" href="/events/night-of-champions/"><h3 class="ev-tile__name">Night of Champions</h3><p class="ev-tile__sub">Every Title Match on One Card</p></a>
-  </div>
-</div>
+  <!-- GEO/AIO FAQ BLOCK -->
+  <section class="evhub-faq" aria-labelledby="evfaq-head">
+    <div class="sec-h"><h2 id="evfaq-head">Frequently Asked Questions</h2></div>
+    <div class="faq-block">
+
+      <details class="faq-item" open>
+        <summary class="faq-q">When was the first WrestleMania?</summary>
+        <div class="faq-a">
+          <p>The first WrestleMania was held on March 31, 1985, at Madison Square Garden in New York City. It drew 19,121 fans in attendance, with approximately 1 million pay-per-view buys. The main event was Hulk Hogan and Mr. T defeating Roddy Piper and Paul Orndorff. WrestleMania established the annual spring supercard format that all major promotions would eventually emulate. <a href="/events/wrestlemania/">Full WrestleMania history &rarr;</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">What was the first AEW pay-per-view event?</summary>
+        <div class="faq-a">
+          <p>The first AEW pay-per-view event was AEW Double or Nothing, held May 25, 2019, at the MGM Grand Garden Arena in Las Vegas, Nevada. Chris Jericho defeated Kenny Omega in the main event to win the first-ever AEW World Championship. The show launched All Elite Wrestling as a formal promotion and is considered the beginning of the modern alternative wrestling era.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Which promotion invented WarGames?</summary>
+        <div class="faq-a">
+          <p>WarGames was invented by Jim Crockett Promotions under the National Wrestling Alliance (NWA) banner. The first WarGames match took place on July 4, 1987, at the Great American Bash in Atlanta, Georgia &mdash; The Four Horsemen vs. Dusty Rhodes, The Road Warriors, Nikita Koloff, and Paul Ellering. The concept (two rings, one cage, teams entering one at a time) was created by Dusty Rhodes. WCW continued WarGames through 1998 at Fall Brawl. WWE revived it in NXT (2017) and on the main roster at Survivor Series (2022).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">What happened to WCW? When did WCW go out of business?</summary>
+        <div class="faq-a">
+          <p>WCW (World Championship Wrestling) ceased operations on March 26, 2001. The final WCW Monday Nitro aired that date on TNT, simulcast with WWF Raw in a historic dual broadcast. WWE (then WWF) purchased WCW's tape library, intellectual property, and contracted talent from AOL Time Warner. The final WCW pay-per-view event was Greed (March 18, 2001). WCW's decline accelerated from 2000 onward due to creative issues, guaranteed contracts for aging talent, and parent company Time Warner's decision to remove wrestling from TNT and TBS.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">How many ECW pay-per-view events were there?</summary>
+        <div class="faq-a">
+          <p>Extreme Championship Wrestling produced 21 official pay-per-view events from April 13, 1997 (Barely Legal &mdash; the first ECW PPV) through January 7, 2001 (Guilty as Charged 2001, the final ECW PPV before the promotion declared bankruptcy). WWE later produced two reunion shows: ECW One Night Stand 2005 (June 12, 2005) and ECW One Night Stand 2006 (June 11, 2006), followed by the WWE ECW brand that ran from 2006&ndash;2010.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">What is the biggest event in lucha libre?</summary>
+        <div class="faq-a">
+          <p>AAA TripleMan&iacute;a is the biggest annual event in lucha libre. First held on March 4, 1993, in Mexico City, it is the WrestleMania of Mexican professional wrestling. Organized by Lucha Libre AAA Worldwide (AAA), TripleMan&iacute;a is known for the mask vs. mask (apuesta) tradition &mdash; when a wrestler loses their mask, it is considered one of the most significant career moments in lucha libre. CMLL's Aniversario (September) is the other major lucha libre supercard, representing the world's oldest continuously operating wrestling promotion (founded 1933).</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">Who won the most Royal Rumble matches?</summary>
+        <div class="faq-a">
+          <p>Steve Austin has won the most Royal Rumble matches with three victories (1997, 1998, 2001). John Cena and Triple H have each won two Royal Rumble matches. Shawn Michaels won the 1996 Rumble from the #1 entry position, the only competitor to ever win the match from that spot. The first women's Royal Rumble was held in 2018, won by Asuka.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">What is the biggest professional wrestling event by attendance?</summary>
+        <div class="faq-a">
+          <p>WrestleMania 32 (2016), held at AT&amp;T Stadium in Arlington, Texas, is officially reported at 101,763 in attendance &#9876; (some estimates suggest a portion were complimentary tickets), making it the highest-attended professional wrestling event in history by reported figure. WrestleMania 3 (1987) at the Pontiac Silverdome is reported at 93,173 &#9876;. Outside WWE, AEW All In at Wembley Stadium (2023) drew 81,035, the largest outdoor wrestling event in UK history.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">What is NJPW's G1 Climax?</summary>
+        <div class="faq-a">
+          <p>The G1 Climax is NJPW's annual summer tournament, held since 1991. Twenty wrestlers are split into two blocks and compete in round-robin matches over approximately three weeks. The block winners meet in a final, with the winner earning an IWGP World Heavyweight Championship match at Wrestle Kingdom (January 4, Tokyo Dome). The G1 Climax produces the highest concentration of highly-rated matches of any annual wrestling event &mdash; including Kazuchika Okada vs. Kenny Omega (G1 2017, &#9733;&#9733;&#9733;&#9733;&#9733;&#9733; by Dave Meltzer &#9876;, the first-ever 6-star rating).</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- EXPLORE MORE -->
+  <div class="sec-h"><h2>Explore More</h2></div>
+  <nav class="evhub-related" aria-label="Related sections">
+    <a class="evhub-rel" href="/wrestlers/">Superstar Profiles &rarr;</a>
+    <a class="evhub-rel" href="/titles/">Championship History &rarr;</a>
+    <a class="evhub-rel" href="/promotions/">Promotion Index &rarr;</a>
+    <a class="evhub-rel" href="/matches/">Match Library &rarr;</a>
+    <a class="evhub-rel" href="/events/tickets/">Get Tickets &rarr;</a>
+    <a class="evhub-rel" href="/events/tour/">2026 Tour Map &rarr;</a>
+  </nav>
+
+</div><!-- /.wrap -->
 </main>
 <footer class="site-footer site-footer--fat" data-wl-shell>
   <div class="wrap">
@@ -890,5 +1621,35 @@
 <script src="/js/main.js?v=3a652f7e"></script>
 <script src="/js/search-index.js?v=3a652f7e" defer></script>
 <script src="/js/nav.js?v=3a652f7e" defer></script>
+<script>
+/* evhub promotion filter — pills + card grid + sub-sections */
+(function(){
+  var pills    = document.querySelectorAll('.evhub-pill');
+  var cards    = document.querySelectorAll('#evhub-featured .evhub-card');
+  var sections = document.querySelectorAll('.evhub-section');
+  function applyFilter(f){
+    pills.forEach(function(p){
+      var active = p.dataset.filter === f;
+      p.classList.toggle('evhub-pill--active', active);
+      p.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    cards.forEach(function(c){
+      c.classList.toggle('evhub-hidden', f !== 'all' && c.dataset.promo !== f);
+    });
+    sections.forEach(function(s){
+      s.classList.toggle('evhub-hidden', f !== 'all' && s.dataset.promoSection !== f);
+    });
+  }
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){ applyFilter(p.dataset.filter); });
+  });
+  /* keyboard: Enter/Space also triggers */
+  pills.forEach(function(p){
+    p.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); applyFilter(p.dataset.filter); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
