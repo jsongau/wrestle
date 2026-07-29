@@ -28,7 +28,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="/css/site.css?v=dafc4a8c">
+<link rel="stylesheet" href="/css/site.css?v=f4b8872e">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://wrestlelore.com/#org","name":"Wrestle Lore, the Pro Wrestling Database","url":"https://wrestlelore.com/","logo":{"@type":"ImageObject","url":"https://wrestlelore.com/assets/logo-512.png","width":512,"height":512},"description":"A crawlable database of modern professional wrestling: 107 wrestler profiles, 30 five-star matches, 11 championship lineages, plus rivalries, factions and real-life relationships across WWE, WCW, ECW, TNA, NXT, NJPW and AEW, with AAA covered through its WWE partnership.","foundingDate":"2026","sameAs":["https://twitter.com/matwrestling","https://www.youtube.com/@matwrestling"]}
 </script>
@@ -222,33 +222,9 @@
   @media (max-width:760px){.pv3 .s3-arc{display:none;}}
   
 
-/* ---------- RING TICKER : The Board (still, one rotating headline) ---------- */
-.rt{background:#0a0b0d;border-bottom:1px solid var(--c-line);display:flex;align-items:center;height:40px;overflow:hidden;user-select:none;}
-.rt-tag{flex:0 0 auto;display:flex;align-items:center;gap:.55em;padding:0 16px;height:100%;font-family:var(--font-mono);
-  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-text-muted);border-right:1px solid var(--c-line);white-space:nowrap;}
-.rt-live{width:6px;height:6px;border-radius:99px;background:var(--c-red-bright);box-shadow:0 0 7px var(--c-red-bright);animation:rt-pulse 2.2s infinite;}
-.rt-stage{position:relative;flex:1;min-width:0;height:100%;}
-.rt-item{position:absolute;inset:0;display:flex;align-items:center;gap:.75em;padding:0 22px;opacity:0;
-  transition:opacity .6s ease;pointer-events:none;white-space:nowrap;text-decoration:none;}
-.rt-item.is-on{opacity:1;pointer-events:auto;}
-.rt-sq{width:7px;height:7px;border-radius:1px;flex:0 0 auto;}
-.rt-name{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--c-text);flex:0 0 auto;}
-.rt-item:hover .rt-name{color:var(--c-gold-bright);}
-.rt-txt{font-family:var(--font-sans);font-size:13px;color:var(--c-text-muted);overflow:hidden;text-overflow:ellipsis;}
-.rt-t{font-family:var(--font-mono);font-size:11px;color:var(--c-text-dim);margin-left:auto;flex:0 0 auto;padding-left:1em;letter-spacing:.03em;text-transform:uppercase;}
-.rt-dots{flex:0 0 auto;display:flex;align-items:center;gap:5px;padding:0 15px;height:100%;border-left:1px solid var(--c-line);}
-.rt-dot{width:5px;height:5px;border-radius:99px;background:var(--c-line-strong);transition:background .3s;}
-.rt-dot.is-on{background:var(--c-gold);}
-.rt-more{flex:0 0 auto;display:flex;align-items:center;height:100%;padding:0 16px;border-left:1px solid var(--c-line);
-  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-gold);text-decoration:none;white-space:nowrap;}
-.rt-more:hover{color:var(--c-gold-bright);}
-@keyframes rt-pulse{0%{box-shadow:0 0 0 0 rgba(255,59,72,.5)}70%{box-shadow:0 0 0 6px rgba(255,59,72,0)}100%{box-shadow:0 0 0 0 rgba(255,59,72,0)}}
-@media(max-width:680px){.rt-dots{display:none;}}
-@media(max-width:520px){.rt-more{display:none;}}
 
 
 /* ===== Home Ring Feed: Board ticker sits above the nav, rail beside the hero ===== */
-.ticker7.rt{border-bottom:1px solid var(--c-line,#2b3038);}
 .hrl-grid{display:grid;grid-template-columns:320px minmax(0,1fr);gap:clamp(1.1rem,2vw,2rem);align-items:stretch;}
 .hrl-railwrap{position:relative;min-width:0;}
 .hrl-hero{min-width:0;}
@@ -283,18 +259,14 @@
 <body data-home>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Ring ticker (Board / luxury C) -->
-<!-- RING-TICKER:START -->
-<div class="ticker7 rt" aria-label="Live wrestling headlines">
-  <div class="rt-tag"><span class="rt-live has-glyph"><svg class="wglyph wglyph--live" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle class="wg-r wg-r1" cx="12" cy="12" r="4"/><circle class="wg-r wg-r2" cx="12" cy="12" r="4"/><circle class="wg-core" cx="12" cy="12" r="3.1"/></svg></span>LIVE</div>
+<!-- ===================== HEADER / NAV7 FULL-BLEED BAR ===================== -->
+<header class="site-header nav7">
+    <div class="ticker7 rt" aria-label="Live wrestling headlines">
+  <div class="rt-tag"><span class="rt-live"><svg class="rt-live-mk" width="16" height="16" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9.5" fill="none" stroke="#21e06a" stroke-width="0.9" opacity=".25"/><circle cx="16" cy="16" r="4.4" fill="#21e06a"><animate attributeName="r" values="4.2;5.2;4.2" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.6;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="16" cy="16" r="2.1" fill="#8dffb9"/><g><animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="2.6s" repeatCount="indefinite"/><circle cx="16" cy="6.5" r="2.4" fill="#8dffb9"/><circle cx="16" cy="6.5" r="1.5" fill="none" stroke="#21e06a" stroke-width="1" opacity=".5"/></g><g><animateTransform attributeName="transform" type="rotate" from="180 16 16" to="540 16 16" dur="2.6s" repeatCount="indefinite"/><circle cx="16" cy="8" r="1.2" fill="#21e06a" opacity=".6"/></g></svg></span>LIVE</div>
   <div class="rt-stage"><a class="rt-item is-on" href="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-aew)"></span><span class="rt-name">Jon Moxley</span><span class="rt-txt">The Death Riders took a hit at Redemption as Will Ospreay walked out on the group.</span><span class="rt-t rf-time" datetime="2026-07-27T02:30:00Z">Jul 27</span></a><a class="rt-item" href="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-aew)"></span><span class="rt-name">Kenny Omega</span><span class="rt-txt">Retained the AEW World Championship against Kevin Knight at Redemption, then turned on All In opponent Will Ospreay.</span><span class="rt-t rf-time" datetime="2026-07-27T03:10:00Z">Jul 27</span></a><a class="rt-item" href="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-aew)"></span><span class="rt-name">Willow Nightingale</span><span class="rt-txt">Captured the AEW Women&#x27;s World Championship at Redemption.</span><span class="rt-t rf-time" datetime="2026-07-27T01:50:00Z">Jul 27</span></a><a class="rt-item" href="https://www.wwe.com/shows/smackdown/2026-07-24" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-wwe)"></span><span class="rt-name">Cody Rhodes</span><span class="rt-txt">Came face to face with CM Punk on SmackDown as the SummerSlam card takes shape.</span><span class="rt-t rf-time" datetime="2026-07-25T02:00:00Z">Jul 25</span></a><a class="rt-item" href="https://www.wwe.com/shows/smackdown/2026-07-24" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-wwe)"></span><span class="rt-name">Gunther</span><span class="rt-txt">The contract signing with Nick Aldis erupted on SmackDown, and the Ring General left him laid out.</span><span class="rt-t rf-time" datetime="2026-07-25T02:20:00Z">Jul 25</span></a><a class="rt-item" href="https://www.wwe.com/shows/raw/2026-07-13/roman-reigns-and-seth-rollins" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-wwe)"></span><span class="rt-name">Roman Reigns</span><span class="rt-txt">The World Heavyweight Title clash with Seth Rollins is official for SummerSlam, two nights at US Bank Stadium in Minneapolis.</span><span class="rt-t rf-time" datetime="2026-07-13T02:30:00Z">Jul 13</span></a></div>
   <div class="rt-dots" aria-hidden="true"><span class="rt-dot is-on"></span><span class="rt-dot"></span><span class="rt-dot"></span><span class="rt-dot"></span><span class="rt-dot"></span><span class="rt-dot"></span></div>
   <a class="rt-more" href="/lore-feed/">Lore Feed</a>
 </div>
-<!-- RING-TICKER:END -->
-
-<!-- ===================== HEADER / NAV7 FULL-BLEED BAR ===================== -->
-<header class="site-header nav7">
     <nav class="bar" aria-label="Primary">
       <a class="brand7" href="/" aria-label="Wrestle Lore, home"><span class="mark mark--logo"><img src="/assets/wrestle-lore-logo.png" alt="" width="141" height="96" decoding="async"><span class="sheen" aria-hidden="true"></span></span><span class="bword bw-c"><b class="w">Wrestle</b><b class="l">Lore</b></span></a>
       <div class="tabs7">
@@ -1711,12 +1683,12 @@
 </footer>
 
 <div class="grain" aria-hidden="true"></div>
-<script src="/js/main.js?v=dafc4a8c" defer></script>
-<script src="/js/enhance.js?v=dafc4a8c" defer></script>
-<script src="/js/search-index.js?v=dafc4a8c" defer></script>
-<script src="/js/nav.js?v=dafc4a8c" defer></script>
-<script src="/js/home-engage.js?v=dafc4a8c" defer></script>
-<script src="/js/media.js?v=dafc4a8c" defer></script>
+<script src="/js/main.js?v=f4b8872e" defer></script>
+<script src="/js/enhance.js?v=f4b8872e" defer></script>
+<script src="/js/search-index.js?v=f4b8872e" defer></script>
+<script src="/js/nav.js?v=f4b8872e" defer></script>
+<script src="/js/home-engage.js?v=f4b8872e" defer></script>
+<script src="/js/media.js?v=f4b8872e" defer></script>
 <script id="home-ringfeed-js">
 /* Hero spotlight slider — full-column crossfade, progressive enhancement, no deps */
 (function(){
@@ -1846,13 +1818,6 @@
     if(s<60){t.textContent='now';return;}
     for(var i=0;i<U.length;i++){if(s>=U[i][0]){t.textContent=Math.floor(s/U[i][0])+U[i][1]+' ago';return;}}
   }catch(e){}});
-  var items=[].slice.call(document.querySelectorAll('.rt-item')),
-      dots=[].slice.call(document.querySelectorAll('.rt-dot'));
-  if(items.length>1){var k=0;setInterval(function(){
-    items[k].classList.remove('is-on'); if(dots[k])dots[k].classList.remove('is-on');
-    k=(k+1)%items.length;
-    items[k].classList.add('is-on'); if(dots[k])dots[k].classList.add('is-on');
-  },5000);}
 })();
 
 

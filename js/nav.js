@@ -216,3 +216,19 @@
     });
   }
 })();
+
+/* Ring ticker — rotate the live Lore Feed headlines (universal; ticker is stamped into the nav) */
+(function(){
+  function initRingTicker(){
+    var items=[].slice.call(document.querySelectorAll('.rt-item')),
+        dots=[].slice.call(document.querySelectorAll('.rt-dot'));
+    if(items.length<2) return;
+    var k=0;
+    setInterval(function(){
+      items[k].classList.remove('is-on'); if(dots[k])dots[k].classList.remove('is-on');
+      k=(k+1)%items.length;
+      items[k].classList.add('is-on'); if(dots[k])dots[k].classList.add('is-on');
+    },5000);
+  }
+  if(document.readyState!=='loading')initRingTicker();else document.addEventListener('DOMContentLoaded',initRingTicker);
+})();

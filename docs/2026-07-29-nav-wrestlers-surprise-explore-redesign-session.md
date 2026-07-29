@@ -31,3 +31,18 @@
 
 ### Trap: never show raw counts in the UI
 Do NOT display raw database/inventory counts in user-facing labels, subtext, badges, or pills (e.g. "Any of 108", "30 matches", "12 items"). They look cheap, they *undersell* small inventories (30 reads as thin), and they date the content the instant data changes. Use qualitative language or nothing. Fixed 2026-07-29: removed "Any of 108"/"Any of 30" from the Lore Wrestler/Lore Match rows. Codified as the `no-raw-counts` skill.
+
+
+## Round 3 (same day) — Lore Feed ticker made universal (single-source)
+The live-headline ticker (`.ticker7.rt`: LIVE tag, promotion-colored items, pager dots, Lore Feed link) was **home-only** — markup, `.rt-*` CSS, and rotation JS all lived in `index.html`, which is exactly why it never appeared on other pages. Made it universal and single-source:
+- **Markup** moved into `components/meganav.html` inside the stamped `<header>`, so `build/apply_shell.py` stamps it on every page (idempotent). It now sits inside the sticky header = sticky on top of the nav, every page.
+- **CSS** (`.rt`, `.rt-*`, `@keyframes rt-pulse`) lifted from index.html inline `<style>` into `css/site.css`.
+- **Rotation JS** moved from index.html inline script into `js/nav.js` (loads `defer` everywhere), DOMContentLoaded-guarded.
+- Removed the home-only markup + rotator from `index.html`; removed the wrong `lore-ticker` widget I built by mistake.
+- Verified: ticker present + rotating (Moxley->Omega) on home, wrestler, title, event; 0 h-overflow @320/360/390; one ticker per page.
+- Minor follow-up: `.rf-time` relative-time updater is still home-only, so non-home pages show the absolute date ("Jul 27") instead of "2d ago".
+**Trap:** I asked the user which placement to use instead of just looking at the live main page, where the `.ticker7` widget already existed. Look at the running page before asking.
+
+
+### LIVE mark → green "Orbit Signal" (chosen from 3 designs)
+Replaced the red pulsing `.rt-live` dot with a custom green animated SVG. Offered 3 options (A Sonar Ping, B Broadcast EQ, C Orbit Signal); user chose **C**. It's a self-contained SMIL SVG: breathing core + bright center + two particles orbiting a faint ring, green (#21e06a / #8dffb9) with a drop-shadow glow. `.rt-live` restyled in site.css to a 16px flex container; removed the now-duplicated inline `.rt-*` CSS from index.html (it was shadowing the green styles). Verified green + animating (pixel mean-diff 6.2 across frames) in the universal ticker; 0 overflow.

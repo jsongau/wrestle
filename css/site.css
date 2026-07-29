@@ -3032,3 +3032,26 @@ a.cal3-cell--live::before{content:"";position:absolute;inset:0 0 auto 0;height:3
 
 /* home floaters own the corners: hide the site back-to-top on home */
 body[data-home] .wl-totop{display:none!important;}
+
+/* ===== Ring ticker (Lore Feed live strip) — universal, stamped into the nav on every page ===== */
+.rt{background:#0a0b0d;border-bottom:1px solid var(--c-line);display:flex;align-items:center;height:40px;overflow:hidden;user-select:none;}
+.rt-tag{flex:0 0 auto;display:flex;align-items:center;gap:.55em;padding:0 16px;height:100%;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-text-muted);border-right:1px solid var(--c-line);white-space:nowrap;}
+.rt-live{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex:0 0 auto;}
+.rt-live-mk{display:block;filter:drop-shadow(0 0 3px rgba(33,224,106,.85));}
+.rt-stage{position:relative;flex:1;min-width:0;height:100%;}
+.rt-item{position:absolute;inset:0;display:flex;align-items:center;gap:.75em;padding:0 22px;opacity:0;transition:opacity .6s ease;pointer-events:none;white-space:nowrap;text-decoration:none;}
+.rt-item.is-on{opacity:1;pointer-events:auto;}
+.rt-sq{width:7px;height:7px;border-radius:1px;flex:0 0 auto;}
+.rt-name{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--c-text);flex:0 0 auto;}
+.rt-item:hover .rt-name{color:var(--c-gold-bright);}
+.rt-txt{font-family:var(--font-sans);font-size:13px;color:var(--c-text-muted);overflow:hidden;text-overflow:ellipsis;}
+.rt-t{font-family:var(--font-mono);font-size:11px;color:var(--c-text-dim);margin-left:auto;flex:0 0 auto;padding-left:1em;letter-spacing:.03em;text-transform:uppercase;}
+.rt-dots{flex:0 0 auto;display:flex;align-items:center;gap:5px;padding:0 15px;height:100%;border-left:1px solid var(--c-line);}
+.rt-dot{width:5px;height:5px;border-radius:99px;background:var(--c-line-strong);transition:background .3s;}
+.rt-dot.is-on{background:var(--c-gold);}
+.rt-more{flex:0 0 auto;display:flex;align-items:center;height:100%;padding:0 16px;border-left:1px solid var(--c-line);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-gold);text-decoration:none;white-space:nowrap;}
+.rt-more:hover{color:var(--c-gold-bright);}
+.ticker7.rt{border-bottom:1px solid var(--c-line,#2b3038);}
+@keyframes rt-pulse{0%{box-shadow:0 0 0 0 rgba(255,59,72,.5)}70%{box-shadow:0 0 0 6px rgba(255,59,72,0)}100%{box-shadow:0 0 0 0 rgba(255,59,72,0)}}
+@media(max-width:680px){.rt-dots{display:none;}}
+@media(max-width:520px){.rt-more{display:none;}}
