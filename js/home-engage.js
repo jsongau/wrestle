@@ -158,6 +158,10 @@
   }
   var cardDismissed = false;
   renderCard();
+  var stubEl = card.querySelector('.f2-stub');
+  function freshCard() { if (cardList.length) { cardIdx++; renderCard(); } }
+  card.addEventListener('mouseenter', freshCard);
+  if (stubEl) stubEl.addEventListener('focus', freshCard);
 
   /* ==================== BOTTOM-RIGHT: Surprise Me (approved v3_2, verbatim) ==================== */
   var SPARK_WG = '<svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"></path></g><circle class="wg-core" cx="12" cy="12" r="1.9"></circle></svg>';
@@ -165,6 +169,28 @@
   var mats = idx.filter(function (e) { return e.u.indexOf('/matches/') === 0; });
   function doWrestler() { var p = ringPick(wres, surpRing); if (p) location.href = p.u; }
   function doMatch() { var p = ringPick(mats, surpRing); if (p) location.href = p.u; }
+  var FACTS = [
+    'The Undertaker went 21-0 at WrestleMania before Brock Lesnar ended the streak in 2014.',
+    '"Stone Cold" Steve Austin\'s "Austin 3:16" promo at the 1996 King of the Ring lit the fuse on the Attitude Era.',
+    'The Montreal Screwjob at Survivor Series 1997 saw Bret Hart lose the WWF title in a finish he never agreed to.',
+    'Mick Foley was thrown off the top of Hell in a Cell at the 1998 King of the Ring, then crashed through it.',
+    'Hulk Hogan body-slammed the 500-pound Andre the Giant at WrestleMania III in 1987.',
+    'WWE recognizes Ric Flair as a 16-time world champion.',
+    'The nWo was born in 1996 when Hulk Hogan turned heel to join Scott Hall and Kevin Nash.',
+    'Kurt Angle won Olympic freestyle wrestling gold in 1996 with a broken freakin\' neck.',
+    'Chris Jericho became the first Undisputed WWF Champion in 2001, unifying the WWF and WCW titles.',
+    'The Rock is a third-generation star, grandson of Peter Maivia and son of Rocky Johnson.',
+    'The first WrestleMania was held at Madison Square Garden in 1985.',
+    'Trish Stratus and Lita made history in 2004 as the first women to main-event Monday Night Raw.',
+    'Shawn Michaels and Razor Ramon stole WrestleMania X in 1994 with a ladder match for the ages.',
+    'Rey Mysterio has spent most of his Hall of Fame career behind a mask, sacred ground in lucha libre.'
+  ];
+  var lastFact = -1;
+  function pickFact() {
+    if (FACTS.length < 2) return FACTS[0];
+    var i; do { i = Math.floor(Math.random() * FACTS.length); } while (i === lastFact);
+    lastFact = i; return FACTS[i];
+  }
   var ctrl = document.createElement('div');
   ctrl.className = 'sm-ctrl';
   ctrl.setAttribute('role', 'region');
@@ -172,9 +198,9 @@
   ctrl.innerHTML =
     '<div class="sm-panel" role="group" aria-label="Explore more">' +
       '<div class="sm-dyk"><span class="sm-dyk__h">Did you know</span>' +
-        '<p class="sm-dyk__t">The Undertaker went 21-0 at WrestleMania before Brock Lesnar ended the streak in 2014.</p></div>' +
-      '<button class="sm-row sm-row--wrestler" type="button"><span class="sm-row__i"><svg class="ico-mask" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-3.7 0-6.2 2.3-6.2 6.4 0 4.3 2.6 8.6 6.2 8.6s6.2-4.3 6.2-8.6C18.2 5.3 15.7 3 12 3Z"></path><path d="M6.4 8.6c1.8-1 9.4-1 11.2 0"></path><circle class="eye" cx="9.2" cy="11" r="1.15" stroke="none"></circle><circle class="eye" cx="14.8" cy="11" r="1.15" stroke="none"></circle><path d="M9.4 15.2c1.4.9 3.8.9 5.2 0"></path></svg></span><span class="sm-row__t">Lore Wrestler</span><span class="sm-row__s">Any of ' + wres.length + '</span></button>' +
-      '<button class="sm-row sm-row--match" type="button"><span class="sm-row__i"><svg class="ico-ring" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 8.5 7 5.5h10l2.5 3v9.5a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1Z"></path><path class="rope" d="M4.5 11h15M4.5 14h15" opacity=".5"></path><circle class="post" cx="4.7" cy="8.5" r="1.1" fill="currentColor" stroke="none"></circle><circle class="post" cx="19.3" cy="8.5" r="1.1" fill="currentColor" stroke="none"></circle></svg></span><span class="sm-row__t">Lore Match</span><span class="sm-row__s">Any of ' + mats.length + '</span></button>' +
+        '<p class="sm-dyk__t">' + esc(pickFact()) + '</p></div>' +
+      '<button class="sm-row sm-row--wrestler" type="button"><span class="sm-row__i"><svg class="ico-mask" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-3.7 0-6.2 2.3-6.2 6.4 0 4.3 2.6 8.6 6.2 8.6s6.2-4.3 6.2-8.6C18.2 5.3 15.7 3 12 3Z"></path><path d="M6.4 8.6c1.8-1 9.4-1 11.2 0"></path><circle class="eye" cx="9.2" cy="11" r="1.15" stroke="none"></circle><circle class="eye" cx="14.8" cy="11" r="1.15" stroke="none"></circle><path d="M9.4 15.2c1.4.9 3.8.9 5.2 0"></path></svg></span><span class="sm-row__t">Lore Wrestler</span></button>' +
+      '<button class="sm-row sm-row--match" type="button"><span class="sm-row__i"><svg class="ico-ring" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 8.5 7 5.5h10l2.5 3v9.5a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1Z"></path><path class="rope" d="M4.5 11h15M4.5 14h15" opacity=".5"></path><circle class="post" cx="4.7" cy="8.5" r="1.1" fill="currentColor" stroke="none"></circle><circle class="post" cx="19.3" cy="8.5" r="1.1" fill="currentColor" stroke="none"></circle></svg></span><span class="sm-row__t">Lore Match</span></button>' +
       '<button class="sm-row sm-row--search" type="button"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><span class="sm-row__t">Search everything</span><span class="sm-row__s">&#8984;K</span></button>' +
     '</div>' +
     '<button class="sm-btn" type="button" aria-label="Surprise me, jump to a random page">' + SPARK_WG + '<span class="sm-btn__lbl">Surprise me</span></button>';
@@ -193,6 +219,10 @@
   ctrl.querySelector('.sm-row--search').addEventListener('click', doSearch);
   ctrl.querySelector('.sm-row--wrestler').addEventListener('click', doWrestler);
   ctrl.querySelector('.sm-row--match').addEventListener('click', doMatch);
+  var dykT = ctrl.querySelector('.sm-dyk__t');
+  function freshFact() { if (dykT) dykT.textContent = pickFact(); }
+  ctrl.addEventListener('mouseenter', freshFact);
+  ctrl.addEventListener('focusin', freshFact);
 
   /* ============================ VISIBILITY STATE ============================ */
   var revealed = false, atFoot = false;

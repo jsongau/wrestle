@@ -2922,9 +2922,9 @@ html{overflow-x:clip;}
 .f2-stub::before{top:-6px;}
 .f2-stub::after{bottom:-6px;}
 .f2-stub__v{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--font-cond);font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--c-text);}
-.f2-stub__gleam{position:absolute;inset:0;border-radius:0 8px 8px 0;overflow:hidden;pointer-events:none;}
-.f2-stub__gleam::after{content:"";position:absolute;top:-40%;left:-30%;width:40%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,232,150,.28),transparent);transform:skewX(-18deg);animation:f2sweep 3.4s ease-in-out infinite;}
-@keyframes f2sweep{0%{left:-40%;}55%,100%{left:130%;}}
+.f2-stub__gleam{position:absolute;left:-1px;top:0;bottom:0;width:12px;overflow:hidden;pointer-events:none;}
+.f2-stub__gleam::after{content:"";position:absolute;left:-4px;width:9px;height:42%;top:-42%;background:linear-gradient(180deg,transparent,rgba(242,204,75,.9),transparent);filter:blur(2.5px);animation:f2edge 3.8s ease-in-out infinite;}
+@keyframes f2edge{0%{top:-42%;}62%,100%{top:118%;}}
 .f2-stub:hover{transform:translateX(3px);box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 0 1px var(--c-gold-dim);}
 .f2-stub:focus-visible{outline:2px solid var(--c-gold);outline-offset:3px;}
 .f2-explore:hover .f2-stub,.f2-explore:focus-within .f2-stub{opacity:0;transform:translateX(-14px);pointer-events:none;}
@@ -3029,3 +3029,6 @@ a.cal3-cell--live::before{content:"";position:absolute;inset:0 0 auto 0;height:3
 .wlsm__lbl small{font-family:var(--font-mono,monospace);font-size:9px;letter-spacing:.12em;color:#7fd6a0;text-transform:uppercase}
 .wlsm__arrow{margin-left:auto;color:var(--c-text-dim,#6b727d);font-size:15px}
 .wlsm__div{height:1px;background:var(--c-line,#2b3038);border:0;margin:6px 4px}
+
+/* home floaters own the corners: hide the site back-to-top on home */
+body[data-home] .wl-totop{display:none!important;}

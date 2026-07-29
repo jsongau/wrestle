@@ -20,3 +20,14 @@
 - Deploy this slice (see deploy block); rankings page nav lags until the rankings session commits its own restamp.
 - SEO/GEO: decide whether "Lore Wrestler / Lore Match" become real hub landing pages.
 - Backend: `data/events.json` single source for the ticket floater + Events banner + tickets page (kills frozen hardcoded dates).
+
+
+## Round 2 (same day) — hover freshness + polish
+- **Rotating facts:** replaced the single hardcoded Undertaker fact with a pool of **14 hand-curated** "Did you know" facts (`FACTS[]` in home-engage.js) that rotate with no immediate repeat on each `mouseenter`/`focusin` of the Surprise Me floater. Still curated, never auto-generated (per `preserve-approved-work`). User complaint that triggered it: "surprise me fact can't be the brock lesnar one each time."
+- **Explore new-on-hover:** the Explore card advances to a fresh match/champion/hub on each hover/focus (`freshCard` on `.f2-explore` mouseenter + stub `focus`, not `focusin`, to avoid firing on the inner View/Next buttons).
+- **Gleam refined:** dropped the diagonal white sheen (`@keyframes f2sweep`); replaced with a soft gold light that glides down the gold left edge (`.f2-stub__gleam` → `@keyframes f2edge`) — ticket-foil feel. User: "the glowing sheen on the explore looks ugly."
+- **Back-to-top hidden on home:** `body[data-home] .wl-totop{display:none}` — the shared `media.js` back-to-top (`WL.backToTop`) collided with the Surprise Me floater bottom-right; it stays available on long content pages.
+
+
+### Trap: never show raw counts in the UI
+Do NOT display raw database/inventory counts in user-facing labels, subtext, badges, or pills (e.g. "Any of 108", "30 matches", "12 items"). They look cheap, they *undersell* small inventories (30 reads as thin), and they date the content the instant data changes. Use qualitative language or nothing. Fixed 2026-07-29: removed "Any of 108"/"Any of 30" from the Lore Wrestler/Lore Match rows. Codified as the `no-raw-counts` skill.
