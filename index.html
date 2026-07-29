@@ -28,7 +28,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="/css/site.css?v=cf552857">
+<link rel="stylesheet" href="/css/site.css?v=4e02a01c">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://wrestlelore.com/#org","name":"Wrestle Lore, the Pro Wrestling Database","url":"https://wrestlelore.com/","logo":{"@type":"ImageObject","url":"https://wrestlelore.com/assets/logo-512.png","width":512,"height":512},"description":"A crawlable database of modern professional wrestling: 107 wrestler profiles, 30 five-star matches, 11 championship lineages, plus rivalries, factions and real-life relationships across WWE, WCW, ECW, TNA, NXT, NJPW and AEW, with AAA covered through its WWE partnership.","foundingDate":"2026","sameAs":["https://twitter.com/matwrestling","https://www.youtube.com/@matwrestling"]}
 </script>
@@ -52,7 +52,7 @@
   .hspot__copy{min-width:0;}
   .hspot__poster{width:100%;height:clamp(280px,74vw,340px);}
   .hspot__ui{display:none;}
-  .js .hspot__viewport{position:relative;display:block;min-height:clamp(360px,64vw,460px);}
+  .js .hspot__viewport{position:relative;display:block;min-height:clamp(320px,46vw,400px);}
   .js .hspot__slide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .5s var(--ease,cubic-bezier(.4,0,.2,1)),visibility 0s linear .5s;}
   .js .hspot__slide.is-active{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .5s var(--ease,cubic-bezier(.4,0,.2,1));}
   .js .hspot__slide>.herogrid{width:100%;}
@@ -245,6 +245,244 @@
 .hrl-keep button{width:100%;background:var(--red,#e11d2a);color:#fff;border:0;padding:.68em;border-radius:6px;font-family:var(--font-cond,var(--oswald,sans-serif));text-transform:uppercase;letter-spacing:.05em;font-weight:600;font-size:13px;cursor:pointer;}
 .hrl-keep button:hover{background:var(--redb,#ff3b48);}
 @media(max-width:1000px){.hrl-grid{grid-template-columns:1fr;}.hrl-railwrap{position:static;order:2;margin-top:1.4rem;height:520px;}.hrl-hero{order:1;}}
+
+
+/* ===== GORILLA POSITION (slide 1) ===== */
+/* ===================== MATCH DESK V2 — slide 1 of the home hero ===================== */
+
+/* ---- Lore Feed collapse: the desk borrows the whole hero row ---- */
+.hrl-grid{transition:grid-template-columns .55s var(--ease,cubic-bezier(.4,0,.2,1)),gap .55s var(--ease,cubic-bezier(.4,0,.2,1));}
+.hrl-grid.is-desk{grid-template-columns:0px minmax(0,1fr);gap:0;}
+.hrl-railwrap{transition:opacity .35s ease,transform .55s ease,visibility 0s linear .55s;}
+.hrl-grid.is-desk .hrl-railwrap{opacity:0;transform:translateX(-26px);pointer-events:none;visibility:hidden;overflow:hidden;}
+@media(max-width:1000px){.hrl-grid.is-desk .hrl-railwrap{display:none;}}
+
+/* ---- carousel behavior while the desk is open ---- */
+.hspot.is-desk .hspot__ui{display:none!important;}
+.hspot.is-desk .hspot__viewport{height:auto!important;min-height:0!important;}
+.hspot.is-desk .hspot__slide{display:none;}
+.hspot.is-desk .hspot__slide.is-active{display:flex;position:static;opacity:1;visibility:visible;pointer-events:auto;}
+
+/* ---- herogrid proportions: copy column narrows into the picker rail ---- */
+.hv3 .herogrid{transition:grid-template-columns .55s var(--ease,cubic-bezier(.4,0,.2,1));}
+@media(min-width:980px){.hv3 .herogrid.is-desk{grid-template-columns:minmax(292px,336px) 1.62fr;align-items:stretch;}}
+
+/* ---- intro column: crossfade between headline and picker ---- */
+.mdx-intro{display:block;}
+.herogrid.is-desk .mdx-intro{display:none;}
+.mdx-picker{display:none;}
+.herogrid.is-desk .mdx-picker{display:flex;flex-direction:column;gap:8px;height:100%;animation:mdxUp .45s var(--ease,ease) both;}
+
+/* ---- normal-mode CTA row ---- */
+.mdx-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;}
+.mdx-watch{display:inline-flex;align-items:center;gap:.55em;font-family:var(--font-cond,var(--oswald,sans-serif));text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:.95rem;color:#fff;cursor:pointer;border:0;border-radius:999px;padding:.72em 1.35em;text-decoration:none;background:linear-gradient(180deg,var(--c-red-bright,#ff3b48),var(--c-red,#e11d2a));box-shadow:0 6px 18px rgba(225,29,42,.3);}
+.mdx-watch svg{width:15px;height:15px;fill:currentColor;flex:none;}
+.mdx-watch:hover{filter:brightness(1.09);}
+.mdx-safe{display:flex;align-items:center;gap:.45em;margin-top:12px;font-family:var(--font-mono,monospace);font-size:10.5px;color:var(--mut,#8b93a3);}
+.mdx-safe svg{width:12px;height:12px;flex:none;}
+
+/* ---- the desk trigger: a sealed drawer under the CTAs ---- */
+.mdx-open{position:relative;display:none;align-items:center;gap:12px;width:100%;max-width:520px;margin-top:18px;padding:13px 16px;text-align:left;cursor:pointer;background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(212,175,55,.02));border:1px solid var(--golddim,#8c7420);border-radius:9px;color:var(--tx,#e8eaed);transition:border-color .2s,background .2s,transform .2s;overflow:hidden;}
+.mdx-open:hover{border-color:var(--goldb,#f2cc4b);transform:translateY(-1px);}
+.mdx-open::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transform:translate3d(-60%,0,0);mix-blend-mode:screen;background:linear-gradient(115deg,transparent 42%,rgba(247,224,138,.5) 50%,transparent 58%);}
+@media(prefers-reduced-motion:no-preference){.mdx-open:hover::after{animation:mdxSheen .7s cubic-bezier(.2,.7,.2,1);}}
+@keyframes mdxSheen{0%{opacity:0;transform:translate3d(-60%,0,0);}30%{opacity:.7;}100%{opacity:0;transform:translate3d(60%,0,0);}}
+.mdx-open__k{flex:none;font-family:var(--font-mono,monospace);font-size:9.5px;letter-spacing:.14em;color:var(--goldb,#f2cc4b);border:1px solid var(--golddim,#8c7420);border-radius:4px;padding:4px 7px;}
+.mdx-open__t{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.05em;font-size:.92rem;line-height:1.25;}
+.mdx-open__t b{color:var(--goldb,#f2cc4b);font-weight:700;}
+.mdx-open__pip{flex:none;margin-left:auto;width:9px;height:9px;border-radius:50%;background:var(--goldb,#f2cc4b);box-shadow:0 0 0 3px rgba(212,175,55,.14),0 0 10px 2px rgba(242,204,75,.5);}
+@media(prefers-reduced-motion:no-preference){.mdx-open__pip{animation:mdxPip 2.6s ease-in-out infinite;}}
+@keyframes mdxPip{0%,100%{opacity:.55;}50%{opacity:1;}}
+
+/* ---- picker rail ---- */
+.mdx-picker__head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:2px;}
+.mdx-picker__ttl{position:relative;font-family:var(--font-mono,monospace);font-size:9.5px;letter-spacing:.16em;color:var(--goldb,#f2cc4b);text-transform:uppercase;padding-bottom:7px;}
+.mdx-picker__ttl::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:linear-gradient(90deg,var(--goldb,#f2cc4b),transparent);transform-origin:left;transform:scaleX(0);}
+.herogrid.is-desk .mdx-picker__ttl::after{transform:scaleX(1);transition:transform .8s .15s var(--ease,ease);}
+.mdx-close{flex:none;display:inline-flex;align-items:center;gap:.45em;font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.07em;font-size:10.5px;font-weight:700;color:var(--mut,#8b93a3);background:var(--e1,#121418);border:1px solid var(--line2,#3a414c);border-radius:999px;padding:.5em .95em;cursor:pointer;transition:color .2s,border-color .2s;}
+.mdx-close:hover{color:var(--goldb,#f2cc4b);border-color:var(--golddim,#8c7420);}
+.mdx-picks{display:flex;flex-direction:column;gap:7px;flex:1 1 0;min-height:0;max-height:clamp(340px,33vw,440px);overflow-y:auto;padding-right:6px;scroll-snap-type:y proximity;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--golddim,#8c7420) transparent;-webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 34px),transparent);mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 34px),transparent);}
+.mdx-picks::-webkit-scrollbar{width:5px;}
+.mdx-picks::-webkit-scrollbar-thumb{background:var(--golddim,#8c7420);border-radius:99px;}
+.mdx-picks::-webkit-scrollbar-track{background:transparent;}
+.mdx-pick{scroll-snap-align:start;flex:none;}
+.mdx-pick{position:relative;display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 13px;cursor:pointer;background:var(--e1,#121418);border:1px solid var(--line,#2b3038);border-radius:9px;color:var(--tx,#e8eaed);transition:border-color .2s,background .2s,box-shadow .25s;overflow:hidden;}
+.mdx-pick::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--goldb,#f2cc4b),var(--golddim,#8c7420));transform:scaleY(0);transform-origin:top;transition:transform .28s var(--ease,ease);}
+.mdx-pick:hover{border-color:var(--line2,#3a414c);}
+.mdx-pick:hover::before{transform:scaleY(1);}
+.mdx-pick.is-on{border-color:var(--goldb,#f2cc4b);background:var(--e2,#1a1d23);box-shadow:0 0 0 1px rgba(242,204,75,.18),0 10px 26px -18px rgba(242,204,75,.55);}
+.mdx-pick.is-on::before{transform:scaleY(1);}
+.mdx-pick::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transform:translate3d(-55%,0,0);mix-blend-mode:screen;background:linear-gradient(115deg,transparent 44%,rgba(247,224,138,.34) 50%,transparent 56%);}
+@media(prefers-reduced-motion:no-preference){.mdx-pick.is-on::after{animation:mdxSheen .8s cubic-bezier(.2,.7,.2,1);}}
+.mdx-pick__no{flex:none;font-family:var(--anton,sans-serif);font-size:1.05rem;color:var(--golddim,#8c7420);width:1.6em;}
+.mdx-pick.is-on .mdx-pick__no{color:var(--goldb,#f2cc4b);}
+.mdx-pick__body{min-width:0;display:flex;flex-direction:column;gap:2px;}
+.mdx-pick__nm{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.03em;font-weight:600;font-size:.92rem;line-height:1.15;}
+.mdx-pick__meta{font-family:var(--font-mono,monospace);font-size:9.5px;letter-spacing:.05em;color:var(--mut,#8b93a3);text-transform:uppercase;}
+.mdx-pick__sc{flex:none;margin-left:auto;font-family:var(--font-cond,sans-serif);font-weight:700;font-size:.95rem;color:var(--goldb,#f2cc4b);border:1px solid var(--golddim,#8c7420);border-radius:6px;padding:.18em .5em;}
+.mdx-picker__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:4px;}
+.mdx-picker__foot a{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;font-weight:700;color:var(--goldb,#f2cc4b);text-decoration:none;}
+.mdx-picker__foot a:hover{color:var(--gold,#d4af37);}
+.mdx-picker__foot .mdx-foot-dim{color:var(--mut,#8b93a3);}
+
+/* ---- the bell belt: featured superstar + ring bell, centered above the screen ---- */
+.mdx-stage{min-width:0;display:flex;flex-direction:column;}
+.mdx-stage{position:relative;}
+.mdx-feat{display:flex;justify-content:center;margin-bottom:9px;}
+.mdx-belt{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px;}
+/* desk mode: the bell moves to the top right, sharing the header row with the feat label */
+.herogrid.is-desk .mdx-feat{min-height:44px;align-items:center;margin-bottom:8px;}
+.herogrid.is-desk .mdx-belt{position:absolute;top:-4px;right:0;margin-top:0;gap:9px;z-index:6;}
+.herogrid.is-desk .mdx-bell{width:50px;height:44px;}
+/* Jay: no cursor-chasing glow on slide 1 */
+.slfx--1 .s1-spot{display:none!important;}
+.herogrid:has(> .slfx--1) .hspot__poster::after{display:none!important;}
+.mdx-belt__feat{font-family:var(--font-mono,monospace);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut,#8b93a3);white-space:nowrap;}
+.mdx-belt__feat b{color:var(--goldb,#f2cc4b);font-weight:700;}
+.mdx-bell{position:relative;flex:none;width:64px;height:56px;padding:0;background:none;border:0;cursor:pointer;}
+.mdx-bell svg{display:block;width:100%;height:100%;overflow:visible;}
+.mdx-bell:focus-visible{outline:2px solid var(--goldb,#f2cc4b);outline-offset:4px;border-radius:10px;}
+.mdx-belt__ring{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.08em;font-weight:700;font-size:12px;color:var(--goldb,#f2cc4b);white-space:nowrap;}
+.mdx-belt__ring--close{color:var(--mut,#8b93a3);}
+.mdx-belt__ring[hidden]{display:none!important;}
+/* the come-hither jiggle on RING ME */
+@media(prefers-reduced-motion:no-preference){
+  .mdx-belt__ring--open{display:inline-block;transform-origin:left center;animation:mdxJiggle 2.6s ease-in-out infinite;}
+  @keyframes mdxJiggle{0%,58%,100%{transform:rotate(0) translateX(0);}64%{transform:rotate(-5deg) translateX(-1px);}70%{transform:rotate(4deg) translateX(2px);}76%{transform:rotate(-3deg) translateX(-1px);}82%{transform:rotate(2deg) translateX(1px);}88%{transform:rotate(0) translateX(0);}}
+}
+/* bell states: idle sparkle, hover arm, rung clang + sound waves */
+.mdx-bell .bell-glow{opacity:0;transition:opacity .3s;}
+.mdx-bell .bell-waves{opacity:0;}
+.mdx-bell .bell-body{transform-origin:52px 20px;}
+.mdx-bell .bell-hammer{transform-origin:96px 82px;transition:transform .25s var(--ease,ease);}
+.mdx-bell .bell-spark{opacity:0;}
+@media(prefers-reduced-motion:no-preference){
+  .mdx-bell .bell-spark{animation:mdxSpark 3.4s ease-in-out infinite;}
+  @keyframes mdxSpark{0%,72%,100%{opacity:0;transform:scale(.6);transform-origin:37.5px 36px;}80%{opacity:1;transform:scale(1.15);}88%{opacity:0;transform:scale(.7);}}
+  /* about to ring: a tight vibrating buzz, hammer twitching at the ready */
+  .mdx-bell:hover .bell-body{animation:mdxVibrate .13s linear infinite;}
+  @keyframes mdxVibrate{0%{transform:rotate(-1.8deg) translateX(-.5px);}25%{transform:rotate(1.2deg) translateX(.4px);}50%{transform:rotate(-1.4deg) translateX(-.3px);}75%{transform:rotate(1.8deg) translateX(.5px);}100%{transform:rotate(-1.8deg) translateX(-.5px);}}
+  .mdx-bell:hover .bell-hammer{animation:mdxHammerTwitch .28s ease-in-out infinite alternate;}
+  @keyframes mdxHammerTwitch{from{transform:rotate(-12deg) translate(-2px,-2px);}to{transform:rotate(-21deg) translate(-4px,-5px);}}
+}
+.mdx-bell:hover .bell-glow{opacity:.85;}
+.mdx-bell:hover .bell-hammer{transform:rotate(-16deg) translate(-2px,-3px);}
+.mdx-bell.is-rung .bell-glow{opacity:1;}
+.mdx-bell.is-rung .bell-hammer{transform:rotate(-30deg) translate(-5px,-6px);}
+.mdx-bell.is-rung .bell-waves{opacity:1;}
+@media(prefers-reduced-motion:no-preference){
+  .mdx-bell.is-ringing .bell-body{animation:mdxClang .65s cubic-bezier(.36,.07,.19,.97);}
+  @keyframes mdxClang{0%{transform:rotate(0);}12%{transform:rotate(-7deg);}28%{transform:rotate(6deg);}44%{transform:rotate(-4.5deg);}60%{transform:rotate(3deg);}76%{transform:rotate(-1.6deg);}100%{transform:rotate(0);}}
+  .mdx-bell.is-ringing .bell-hammer{animation:mdxStrike .3s ease-out;}
+  @keyframes mdxStrike{0%{transform:rotate(-16deg) translate(-2px,-3px);}45%{transform:rotate(14deg) translate(4px,2px);}100%{transform:rotate(-30deg) translate(-5px,-6px);}}
+  .mdx-bell.is-rung .bell-waves path{stroke-dasharray:60;animation:mdxWaves 1.7s ease-out infinite;}
+  @keyframes mdxWaves{0%{stroke-dashoffset:60;opacity:0;}25%{opacity:.9;}70%{stroke-dashoffset:0;opacity:.35;}100%{stroke-dashoffset:0;opacity:0;}}
+}
+
+/* ---- the screen ---- */
+.mdx-screen{position:relative;display:block;width:100%;overflow:hidden;border:1px solid var(--line2,#3a414c);border-radius:10px;background:#0a0b0d;height:clamp(280px,24vw,350px);cursor:pointer;isolation:isolate;text-align:left;color:var(--tx,#e8eaed);}
+@media(max-width:979px){.mdx-screen{height:clamp(280px,74vw,340px);}}
+.herogrid.is-desk .mdx-screen{height:auto;min-height:clamp(400px,37vw,500px);cursor:auto;}
+.mdx-bg{position:absolute;inset:0;background-size:cover;background-position:center 18%;transform:scale(1.06);opacity:1;transition:opacity .6s var(--ease,ease);}
+.mdx-bg--b{opacity:0;}
+@media(prefers-reduced-motion:no-preference){.mdx-bg.is-live{animation:mdxKen 9s var(--ease,cubic-bezier(.4,0,.2,1)) forwards;}}
+@keyframes mdxKen{from{transform:scale(1.05) translate3d(0,0,0);}to{transform:scale(1.14) translate3d(0,-1.6%,0);}}
+/* the desk is a broadcast screen, not a trading card: kill the 3D tilt while open */
+.herogrid.is-desk .hspot__poster,.herogrid.is-desk .hspot__poster:hover{transform:none!important;transition:none;}
+.mdx-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,7,9,.94) 0%,rgba(6,7,9,.6) 40%,rgba(6,7,9,.16) 74%,rgba(6,7,9,.5) 100%),linear-gradient(0deg,rgba(6,7,9,.97) 0%,rgba(6,7,9,.2) 52%,rgba(6,7,9,.4) 100%);}
+.mdx-frameglow{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(242,204,75,.12),inset 0 0 64px -30px rgba(242,204,75,.35);border-radius:inherit;}
+.mdx-klbl{position:absolute;top:12px;left:14px;z-index:4;background:rgba(0,0,0,.55);padding:5px 9px;border-radius:5px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);max-width:calc(100% - 128px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mdx-klbl{max-width:calc(100% - 28px);}
+
+/* center play badge, appears on hover of the compact screen */
+.mdx-playbadge{position:absolute;z-index:4;top:50%;left:62%;transform:translate(-50%,-50%) scale(.92);display:grid;place-content:center;width:64px;height:64px;border-radius:50%;border:1px solid rgba(242,204,75,.55);background:rgba(8,9,12,.62);color:#fff;cursor:pointer;opacity:0;transition:opacity .25s,transform .25s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.mdx-playbadge svg{width:22px;height:22px;fill:var(--goldb,#f2cc4b);margin-left:3px;}
+.mdx-screen:hover .mdx-playbadge,.mdx-screen:focus-visible .mdx-playbadge,.mdx-playbadge:focus-visible{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.herogrid.is-desk .mdx-playbadge{top:38%;left:70%;}
+
+/* screen info block */
+.mdx-info{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;flex-direction:column;gap:7px;padding:clamp(14px,1.8vw,22px);max-width:min(640px,97%);}
+.herogrid.is-desk .mdx-info{position:relative;height:100%;justify-content:flex-end;padding-top:62px;}
+.mdx-badges{display:flex;flex-wrap:wrap;align-items:center;gap:.45em;}
+.mdx-b-rank{font-family:var(--font-cond,sans-serif);font-weight:700;font-size:1rem;color:#150f00;background:linear-gradient(180deg,#f7e08a,var(--gold,#d4af37));padding:.05em .45em;border-radius:5px;line-height:1.2;}
+.mdx-b-tag{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:700;color:var(--goldb,#f2cc4b);border:1px solid var(--golddim,#8c7420);padding:.32em .6em;border-radius:999px;}
+.mdx-b-era{font-family:var(--font-mono,monospace);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut,#aeb2ba);}
+.mdx-title{font-family:var(--anton,sans-serif);font-weight:400;text-transform:uppercase;line-height:.95;font-size:clamp(1.45rem,.9rem+2vw,2.35rem);margin:0;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.6);}
+.mdx-event{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.05em;color:#d3d7de;font-size:.85rem;margin:0;}
+.mdx-hook{display:none;color:#c3c7cf;font-size:.86rem;line-height:1.5;max-width:56ch;margin:0;}
+.mdx-ratingrow{display:none;align-items:center;gap:.6em;flex-wrap:wrap;}
+.mdx-stars-static{color:var(--goldb,#f2cc4b);letter-spacing:.06em;font-size:1rem;}
+.mdx-score{font-family:var(--font-cond,sans-serif);font-weight:700;font-size:1.15rem;color:#fff;}
+.mdx-srcchip{font-family:var(--font-mono,monospace);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut,#aeb2ba);border:1px solid var(--line,#2b3038);border-radius:999px;padding:.4em .8em;background:rgba(10,11,14,.6);}
+.mdx-srcchip[hidden]{display:none;}
+.mdx-actions{display:none;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:2px;}
+.mdx-break{font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.05em;font-weight:700;font-size:.9rem;color:var(--goldb,#f2cc4b);text-decoration:none;}
+.mdx-break:hover{color:var(--gold,#d4af37);}
+.herogrid.is-desk .mdx-hook{display:block;}
+.herogrid.is-desk .mdx-ratingrow{display:flex;}
+.herogrid.is-desk .mdx-actions{display:flex;}
+
+/* staggered luxury entrance when the desk opens or the match switches */
+@keyframes mdxUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@media(prefers-reduced-motion:no-preference){
+  .herogrid.is-desk .mdx-info.is-in>*{animation:mdxUp .45s var(--ease,ease) both;}
+  .herogrid.is-desk .mdx-info.is-in>*:nth-child(2){animation-delay:.05s;}
+  .herogrid.is-desk .mdx-info.is-in>*:nth-child(3){animation-delay:.1s;}
+  .herogrid.is-desk .mdx-info.is-in>*:nth-child(4){animation-delay:.15s;}
+  .herogrid.is-desk .mdx-info.is-in>*:nth-child(5){animation-delay:.2s;}
+  .herogrid.is-desk .mdx-info.is-in>*:nth-child(6){animation-delay:.25s;}
+  .herogrid.is-desk .mdx-info.is-in>*:nth-child(7){animation-delay:.3s;}
+}
+
+/* ---- the record ledger: sealed result + your ballot, one gilded strip ---- */
+.mdx-ledger{display:none;margin-top:4px;border:1px solid var(--golddim,#8c7420);border-radius:11px;background:linear-gradient(180deg,rgba(212,175,55,.08),rgba(10,11,14,.78));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);overflow:hidden;box-shadow:0 14px 34px -22px rgba(0,0,0,.8),inset 0 1px 0 rgba(247,224,138,.14);}
+.herogrid.is-desk .mdx-ledger{display:grid;grid-template-columns:1.35fr 1fr;}
+.mdx-cell{position:relative;min-width:0;display:flex;flex-direction:column;gap:6px;padding:12px 15px;overflow:hidden;}
+.mdx-cell--seal{border-right:1px solid rgba(212,175,55,.28);}
+.mdx-cell__head{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.mdx-cell__k{display:inline-flex;align-items:center;gap:.5em;font-family:var(--font-mono,monospace);font-size:9px;letter-spacing:.16em;color:var(--goldb,#f2cc4b);text-transform:uppercase;}
+.mdx-cell__k svg{width:12px;height:12px;flex:none;}
+.mdx-cell__hint{font-family:var(--font-mono,monospace);font-size:9px;letter-spacing:.1em;color:var(--mut,#8b93a3);text-transform:uppercase;}
+.mdx-spoiler__win{font-family:var(--anton,sans-serif);text-transform:uppercase;font-weight:400;letter-spacing:.02em;font-size:1.25rem;line-height:1.05;color:#fff;filter:blur(8px);transition:filter .5s var(--ease,ease);user-select:none;}
+.mdx-spoiler__res{font-family:var(--font-mono,monospace);font-size:9.5px;color:var(--mut,#aeb2ba);filter:blur(6px);transition:filter .5s var(--ease,ease);user-select:none;}
+.mdx-cell--seal.is-open .mdx-spoiler__win,.mdx-cell--seal.is-open .mdx-spoiler__res{filter:blur(0);user-select:text;}
+.mdx-cell--seal.is-open .mdx-spoiler__win{color:var(--goldb,#f2cc4b);text-shadow:0 0 22px rgba(242,204,75,.35);}
+.mdx-cell--seal::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transform:translate3d(-60%,0,0);mix-blend-mode:screen;background:linear-gradient(115deg,transparent 40%,rgba(247,224,138,.65) 50%,transparent 60%);}
+@media(prefers-reduced-motion:no-preference){.mdx-cell--seal.is-open::after{animation:mdxSheen .75s cubic-bezier(.2,.7,.2,1);}}
+.mdx-reveal{flex:none;display:inline-flex;align-items:center;gap:.5em;font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:10.5px;color:#150f00;background:linear-gradient(180deg,#f7e08a,var(--gold,#d4af37));border:0;border-radius:999px;padding:.6em 1.05em;cursor:pointer;box-shadow:0 5px 14px rgba(212,175,55,.25);transition:filter .2s;}
+.mdx-reveal:hover{filter:brightness(1.08);}
+.mdx-reveal svg{width:13px;height:13px;flex:none;}
+.mdx-cell--seal.is-open .mdx-reveal{color:var(--mut,#8b93a3);background:var(--e1,#121418);border:1px solid var(--line2,#3a414c);box-shadow:none;pointer-events:none;}
+.mdx-ballotrow{display:flex;align-items:center;gap:12px;min-height:2rem;}
+.mdx-stars{display:flex;gap:3px;}
+.mdx-star{background:none;border:0;padding:2px;cursor:pointer;color:var(--line2,#3a414c);font-size:1.5rem;line-height:1;transition:color .15s,transform .15s;}
+.mdx-star.is-hot,.mdx-star.is-set{color:var(--goldb,#f2cc4b);text-shadow:0 0 10px rgba(242,204,75,.55);}
+.mdx-star:hover{transform:scale(1.18);}
+.mdx-star:focus-visible{outline:2px solid var(--goldb,#f2cc4b);outline-offset:2px;border-radius:4px;}
+@media(prefers-reduced-motion:no-preference){.mdx-star.is-pop{animation:mdxPop .4s var(--ease,ease);}}
+@keyframes mdxPop{0%{transform:scale(1);}45%{transform:scale(1.45);}100%{transform:scale(1);}}
+.mdx-rate__val{font-family:var(--font-cond,sans-serif);font-weight:700;font-size:1.1rem;color:var(--goldb,#f2cc4b);min-width:2.4em;margin-left:auto;}
+@media(max-width:700px){.herogrid.is-desk .mdx-ledger{grid-template-columns:1fr;}.mdx-cell--seal{border-right:0;border-bottom:1px solid rgba(212,175,55,.28);}}
+
+/* ---- insider prompt after a ballot is cast ---- */
+.mdx-insider{display:none;position:relative;margin-top:10px;padding:14px 16px;border:1px solid var(--golddim,#8c7420);border-radius:10px;background:linear-gradient(180deg,rgba(212,175,55,.1),rgba(212,175,55,.03));overflow:hidden;}
+.mdx-insider.is-on{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:mdxUp .4s var(--ease,ease) both;}
+.mdx-insider__txt{min-width:0;flex:1 1 260px;margin:0;font-size:.86rem;line-height:1.5;color:#c3c7cf;}
+.mdx-insider__txt b{color:var(--goldb,#f2cc4b);}
+.mdx-insider__cta{flex:none;display:inline-flex;align-items:center;font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:.9rem;color:#150f00;background:linear-gradient(180deg,#f7e08a,var(--gold,#d4af37));border-radius:999px;padding:.6em 1.25em;text-decoration:none;box-shadow:0 6px 18px rgba(212,175,55,.3);}
+.mdx-insider__cta:hover{filter:brightness(1.07);}
+.mdx-insider__no{flex:none;background:none;border:0;cursor:pointer;font-family:var(--font-cond,sans-serif);text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;color:var(--mut,#8b93a3);}
+.mdx-insider__no:hover{color:#fff;}
+
+/* mobile polish */
+@media(max-width:760px){
+  .mdx-playbadge{opacity:1;transform:translate(-50%,-50%) scale(1);width:54px;height:54px;}
+  .herogrid.is-desk .mdx-info{padding:14px;}
+  .mdx-open{max-width:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  .hrl-grid,.hv3 .herogrid,.mdx-bg,.mdx-open::after,.mdx-pick::after,.mdx-spoiler::after{transition:none;animation:none!important;}
+}
 
 </style>
 </head>
@@ -962,10 +1200,10 @@
 
                   <div class="mdx-intro">
                     <h1 class="hv3-h1">The ultimate<br><span class="g">wrestling fan site.</span></h1>
-                    <p class="lede">Everything in professional wrestling, in one place. Catch up on every major promotion, browse wrestler profiles, championship lineages, legendary rivalries, factions, tag teams, and iconic matches across WWE, AEW, NJPW, TNA, WCW, ECW, NXT, and more.</p>
+                    <p class="lede">Everything in professional wrestling, in one place: wrestler profiles, title lineages, rivalries and the classic matches, rated and watchable.</p>
                     <div class="herocta mdx-cta">
-                      <a class="mdx-watch" href="https://wrestlelore.com/matches/undertaker-vs-hbk-wm25/" data-mdx-watch><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch the match</a>
-                      <a class="btn-ghost" href="https://wrestlelore.com/matches/undertaker-vs-hbk-wm25/" data-mdx-break>Full breakdown</a>
+                      <a class="mdx-watch" href="/matches/undertaker-vs-hbk-wm25/" data-mdx-watch><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch the match</a>
+                      <a class="btn-ghost" href="/matches/undertaker-vs-hbk-wm25/" data-mdx-break>Full breakdown</a>
                     </div>
                     <button class="mdx-open" type="button" data-mdx-open aria-expanded="false">
                       <span class="mdx-open__k">GORILLA POSITION</span>
@@ -982,8 +1220,8 @@
                     </div>
                     <div class="mdx-picks" data-mdx-picks></div>
                     <div class="mdx-picker__foot">
-                      <a href="https://wrestlelore.com/matches/">The full match archive</a>
-                      <a class="mdx-foot-dim" href="https://wrestlelore.com/methodology/">How stars get counted</a>
+                      <a href="/matches/">The full match archive</a>
+                      <a class="mdx-foot-dim" href="/methodology/">How stars get counted</a>
                     </div>
                   </div>
 
@@ -1041,12 +1279,12 @@
                       </div>
                     </div>
                     <div class="mdx-actions">
-                      <a class="mdx-watch" href="https://wrestlelore.com/matches/undertaker-vs-hbk-wm25/" data-mdx-watch2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch the match</a>
-                      <a class="mdx-break" href="https://wrestlelore.com/matches/undertaker-vs-hbk-wm25/" data-mdx-break2>Full breakdown</a>
+                      <a class="mdx-watch" href="/matches/undertaker-vs-hbk-wm25/" data-mdx-watch2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch the match</a>
+                      <a class="mdx-break" href="/matches/undertaker-vs-hbk-wm25/" data-mdx-break2>Full breakdown</a>
                     </div>
                     <div class="mdx-insider" data-mdx-insider>
                       <p class="mdx-insider__txt" data-mdx-insider-txt><b>Ballot noted.</b> Insider ballots go on the record, count toward the Wrestle Lore rating, and unlock the full vault.</p>
-                      <a class="mdx-insider__cta" href="https://wrestlelore.com/membership/">Join Insider</a>
+                      <a class="mdx-insider__cta" href="/membership/">Join Insider</a>
                       <button class="mdx-insider__no" type="button" data-mdx-insider-no>Keep browsing</button>
                     </div>
                   </div>
@@ -1143,11 +1381,11 @@
                   <p class="lede">For over a decade, Cricket has teamed with WWE to bring fans in-person Superstar meet and greets, exclusive content, and sweepstakes. The latest stop brought Penta to Los Angeles. Check Cricket for the next appearance.</p>
                   <div class="herocta">
                     <a class="cta cta--cricket" href="https://sponsorships.cricketwireless.com/wwe/" target="_blank" rel="noopener">See Cricket &times; WWE events</a>
-                    <a class="btn-ghost" href="https://wrestlelore.com/wrestlers/">Browse wrestlers</a>
+                    <a class="btn-ghost" href="/wrestlers/">Browse wrestlers</a>
                   </div>
                 </div>
                 <a class="dk hspot__poster hspot__poster--img" href="https://sponsorships.cricketwireless.com/wwe/" target="_blank" rel="noopener" aria-label="Cricket and WWE Superstar meet and greets, featuring Penta. Opens the Cricket sponsorships page in a new tab.">
-                  <img class="hspot__img" src="https://wrestlelore.com/assets/penta.jpg" alt="Cricket and WWE meet and greet poster featuring WWE Superstar Penta" width="768" height="768" decoding="async">
+                  <img class="hspot__img" src="/assets/penta.jpg" alt="Cricket and WWE meet and greet poster featuring WWE Superstar Penta" width="768" height="768" decoding="async">
                   <span class="klbl hspot__tag">LIVE EVENTS &middot; CRICKET &times; WWE</span>
                   <span class="go hspot__go">See Cricket &times; WWE events</span>
                 </a>
@@ -1162,11 +1400,11 @@
                   <h1 class="hv3-h1">Every great feud,<br>start to<br><span class="g">finish.</span></h1>
                   <p class="lede">The full story behind wrestling's fiercest rivalries. Every heel turn, every promo, every payoff, in one place for members.</p>
                   <div class="herocta">
-                    <a class="cta" href="https://wrestlelore.com/rivalries/">Browse the rivalries vault</a>
-                    <a class="btn-ghost" href="https://wrestlelore.com/membership/">See membership plans</a>
+                    <a class="cta" href="/rivalries/">Browse the rivalries vault</a>
+                    <a class="btn-ghost" href="/membership/">See membership plans</a>
                   </div>
                 </div>
-                <a class="dk dk--feat hspot__poster pv3" href="https://wrestlelore.com/rivalries/eddie-guerrero-vs-brock-lesnar/">
+                <a class="dk dk--feat hspot__poster pv3" href="/rivalries/eddie-guerrero-vs-brock-lesnar/">
                   <span class="s3-glow s3-glow--red"></span>
                   <span class="s3-glow s3-glow--gold"></span>
                   <span class="s3-flash"></span>
@@ -1291,12 +1529,12 @@
   <!-- ============ BLOCK 3: WRESTLER DISCOVERY ============ -->
   <section class="section"><div class="wrap">
     <div class="section-head" data-reveal>
-      <div><p class="eyebrow">The Roster</p><h2>Pick a lane, pull a card</h2><hr class="rule-gold"></div>
-      <a class="link-more" href="/wrestlers/">All 107 wrestlers</a>
+      <div><p class="eyebrow">The Wrestlers</p><h2>Pick a lane, pull a card</h2><hr class="rule-gold"></div>
+      <a class="link-more" href="/wrestlers/">Every wrestler, A to Z</a>
     </div>
     <div class="lanegrid" data-reveal>
       <a class="dk bcard" href="/current/" style="--pc:var(--red)">
-        <span class="klbl">LANE // ACTIVE ROSTER</span>
+        <span class="klbl">LANE // ACTIVE</span>
         <div class="bnm">Current Stars</div>
         <span class="bys">THE CHAMPIONS AND CONTENDERS OF 2026</span>
         <span class="go">OPEN LANE</span>
@@ -1315,12 +1553,12 @@
       </a>
       <a class="dk bcard" href="/wrestlers/" style="--pc:var(--ecw)">
         <span class="klbl">LANE // EVERYONE</span>
-        <div class="bnm">Full Roster</div>
+        <div class="bnm">All Wrestlers</div>
         <span class="bys">EVERY PROFILE, A TO Z</span>
         <span class="go">OPEN LANE</span>
       </a>
     </div>
-    <div class="chiprow filterrow" data-reveal aria-label="Roster filters, each opens a hub">
+    <div class="chiprow filterrow" data-reveal aria-label="Wrestler filters, each opens a hub">
       <a class="chip7" href="/current/"><span class="dot" style="background:var(--red)"></span>Current</a>
       <a class="chip7" href="/legends/"><span class="dot" style="background:var(--gold)"></span>Legends</a>
       <a class="chip7" href="/women/" style="--acc:var(--womens)"><span class="dot" style="background:var(--womens)"></span>Women</a>
@@ -1331,21 +1569,12 @@
       <a class="chip7" href="/promotions/nxt/">NXT</a>
       <a class="chip7" href="/promotions/njpw/">NJPW</a>
       <a class="chip7" href="/promotions/aew/">AEW</a>
-      <a class="chip7 chip7--more" href="/wrestlers/">All 107</a>
+      <a class="chip7 chip7--more" href="/wrestlers/">All A-Z</a>
     </div>
-    <div class="grid-spot" data-reveal>
-      <a class="tile" href="/wrestlers/stone-cold-steve-austin/" style="--seed:20"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">A</span></div><div class="tile__body"><p class="tile__kicker">The Texas Rattlesnake</p><h3 class="tile__name">Stone Cold Steve Austin</h3></div></a>
-      <a class="tile" href="/wrestlers/the-rock/" style="--seed:300"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">R</span></div><div class="tile__body"><p class="tile__kicker">The Great One</p><h3 class="tile__name">The Rock</h3></div></a>
-      <a class="tile tile--gold" href="/wrestlers/the-undertaker/" style="--seed:260"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--gold tile__badge">HOF</span><span class="tile__mono" aria-hidden="true">U</span></div><div class="tile__body"><p class="tile__kicker">The Phenom</p><h3 class="tile__name">The Undertaker</h3></div></a>
-      <a class="tile tile--gold" href="/wrestlers/ric-flair/" style="--seed:120"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--gold tile__badge">2&times; HOF</span><span class="tile__mono" aria-hidden="true">16</span></div><div class="tile__body"><p class="tile__kicker">The Nature Boy</p><h3 class="tile__name">Ric Flair</h3></div></a>
-      <a class="tile" href="/wrestlers/roman-reigns/" style="--seed:340"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">R</span></div><div class="tile__body"><p class="tile__kicker">The Tribal Chief</p><h3 class="tile__name">Roman Reigns</h3></div></a>
-      <a class="tile" href="/wrestlers/cm-punk/" style="--seed:40"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">P</span></div><div class="tile__body"><p class="tile__kicker">The Best in the World</p><h3 class="tile__name">CM Punk</h3></div></a>
-      <a class="tile" href="/wrestlers/aj-styles/" style="--seed:200"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--tna tile__badge">TNA</span><span class="tile__mono" aria-hidden="true">A</span></div><div class="tile__body"><p class="tile__kicker">The Phenomenal One</p><h3 class="tile__name">AJ Styles</h3></div></a>
-      <a class="tile" href="/wrestlers/sting/" style="--seed:150"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wcw tile__badge">WCW</span><span class="tile__mono" aria-hidden="true">S</span></div><div class="tile__body"><p class="tile__kicker">The Icon</p><h3 class="tile__name">Sting</h3></div></a>
-      <a class="tile" href="/wrestlers/rey-mysterio/" style="--seed:90"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wcw tile__badge">WCW</span><span class="tile__mono" aria-hidden="true">619</span></div><div class="tile__body"><p class="tile__kicker">The Master of the 619</p><h3 class="tile__name">Rey Mysterio</h3></div></a>
-      <a class="tile" href="/wrestlers/rhea-ripley/" style="--seed:280"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--womens tile__badge">WOMEN</span><span class="tile__mono" aria-hidden="true">R</span></div><div class="tile__body"><p class="tile__kicker">Mami</p><h3 class="tile__name">Rhea Ripley</h3></div></a>
-      <a class="tile" href="/wrestlers/becky-lynch/" style="--seed:60"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--womens tile__badge">WOMEN</span><span class="tile__mono" aria-hidden="true">B</span></div><div class="tile__body"><p class="tile__kicker">The Man</p><h3 class="tile__name">Becky Lynch</h3></div></a>
-      <a class="tile" href="/wrestlers/kazuchika-okada/" style="--seed:230"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--njpw tile__badge">NJPW</span><span class="tile__mono" aria-hidden="true">O</span></div><div class="tile__body"><p class="tile__kicker">The Rainmaker</p><h3 class="tile__name">Kazuchika Okada</h3></div></a>
+    <div class="wdeal" id="wdeal" data-reveal aria-label="Wrestler card deck"></div>
+    <div class="wdeal-bar" data-reveal>
+      <button class="chip7 wdeal-shuffle" type="button" id="wdealShuffle"><span class="dot" style="background:var(--gold)"></span>Shuffle the deck</button>
+      <a class="chip7 chip7--more" href="/wrestlers/">Every wrestler</a>
     </div>
   </div></section>
 
@@ -1465,185 +1694,475 @@
     </div>
   </div></section>
 
-  <!-- ============ BLOCK 6: HALL OF FAME RAIL ============ -->
-  <section class="section hv3-alt"><div class="wrap">
-    <div class="section-head" data-reveal>
-      <div><p class="eyebrow" style="color:var(--c-hof-bright)">Hall of Fame</p><h2>The plaque wall</h2><hr class="rule-gold"></div>
-      <a class="link-more" href="/hall-of-fame/">All classes</a>
-    </div>
-    <div class="plaqrow" data-reveal>
-      <a class="plq plq--big" href="/hall-of-fame/2026/">
-        <span class="scr"></span>
-        <span class="klbl">CLASS OF 2026 // HEADLINER</span>
-        <div class="eng">AJ Styles goes in first</div>
-        <span class="sub">THE PHENOMENAL ONE &middot; FULL CLASS LIST</span>
-        <span class="go">VIEW CLASS</span>
-      </a>
-      <a class="plq" href="/wrestlers/ric-flair/" style="--pa:#5aa9ff">
-        <span class="scr"></span>
-        <span class="klbl">RECORD // 2&times; INDUCTEE</span>
-        <div class="eng">Ric Flair</div>
-        <span class="sub">2008 SOLO &middot; 2012 FOUR HORSEMEN</span>
-      </a>
-      <a class="plq" href="/hall-of-fame/2025/" style="--pa:#c9ccd2">
-        <span class="scr"></span>
-        <span class="klbl">CLASS OF 2025 // PLATINUM</span>
-        <div class="eng">Last year's class</div>
-        <span class="sub">FULL INDUCTEE LIST</span>
-      </a>
-    </div>
-    <div class="chiprow" style="margin-top:10px" data-reveal>
-      <a class="chip7" href="/hall-of-fame/2026/"><span class="dot" style="background:var(--hof)"></span>Class of 2026</a>
-      <a class="chip7" href="/hall-of-fame/2025/"><span class="dot" style="background:#c9ccd2"></span>Class of 2025</a>
-      <a class="chip7" href="/legends/"><span class="dot" style="background:var(--red)"></span>Legends Index</a>
-      <a class="chip7 chip7--more" href="/hall-of-fame/">All Classes</a>
-    </div>
-  </div></section>
-
-  <!-- ============ BLOCK 7: AJ STYLES CROSSOVER JOURNEY ============ -->
+  <!-- ============ BLOCK 7: AJ STYLES, HALL OF FAME SPOTLIGHT ============ -->
   <section class="section"><div class="wrap">
     <div class="section-head" data-reveal>
-      <div><p class="eyebrow">The Crossover File</p><h2>AJ Styles: three promotions, one career</h2><hr class="rule-gold"></div>
-      <a class="link-more" href="/showcases/aj-styles/">Full showcase</a>
+      <div><p class="eyebrow" style="color:var(--c-hof-bright)">Hall of Fame</p><h2>The Phenomenal One goes in</h2><hr class="rule-gold"></div>
+      <a class="link-more" href="/hall-of-fame/2026/">The full class</a>
     </div>
-    <div class="jgrid" data-reveal>
-      <a class="dk dk--stat" href="/promotions/tna/" style="--acc:var(--tna)">
-        <span class="klbl">LEG 1 // 2002 TO 2013</span>
-        <div class="big big--word">TNA</div>
-        <span class="n">Six X Division reigns and the Unbreakable three-way</span>
-        <span class="go">HUB</span>
-      </a>
-      <a class="dk dk--stat" href="/promotions/njpw/" style="--acc:var(--njpw)">
-        <span class="klbl">LEG 2 // 2014 TO 2015</span>
-        <div class="big big--word">NJPW</div>
-        <span class="n">Two IWGP Heavyweight reigns leading Bullet Club</span>
-        <span class="go">HUB</span>
-      </a>
-      <a class="dk dk--stat" href="/promotions/wwe/" style="--acc:var(--wwe)">
-        <span class="klbl">LEG 3 // 2016 TO NOW</span>
-        <div class="big big--word">WWE</div>
-        <span class="n">Two WWE Championship reigns, Class of 2026 headliner</span>
-        <span class="go">HUB</span>
-      </a>
-    </div>
-    <div class="brandstrip" style="margin-top:10px" data-reveal>
-      <a class="rowlink" href="/showcases/aj-styles/">The AJ Styles showcase, leg by leg <span class="tag2">FILE</span></a>
-      <a class="rowlink" href="/wrestlers/aj-styles/">AJ Styles, full profile and record <span class="tag2">PROFILE</span></a>
+    <div class="ajx" data-reveal id="ajx">
+      <div class="ajx-spot">
+        <div class="ajx-medal"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width=".5" opacity=".32"/><g stroke="currentColor" stroke-width="1" opacity=".38"><line x1="60" y1="4" x2="60" y2="12"/><line x1="60" y1="108" x2="60" y2="116"/><line x1="4" y1="60" x2="12" y2="60"/><line x1="108" y1="60" x2="116" y2="60"/></g><text class="ajx-mono" x="60" y="68">AJ</text></svg></div>
+        <span class="ajx-kl">CLASS OF 2026 // HEADLINER // FIRST IN</span>
+        <h3 class="ajx-name">AJ Styles</h3>
+        <span class="ajx-sub">Inducted April 17, 2026 at Dolby Live, Las Vegas</span>
+        <div class="ajx-clockrow" aria-label="Time in the Hall of Fame, counting live">
+          <div class="ajx-cell"><b data-aj="d">0</b><span>DAYS</span></div>
+          <div class="ajx-cell"><b data-aj="h">00</b><span>HRS</span></div>
+          <div class="ajx-cell"><b data-aj="m">00</b><span>MIN</span></div>
+          <div class="ajx-cell"><b data-aj="s">00</b><span>SEC</span></div>
+        </div>
+        <span class="ajx-note">IN THE HALL AND COUNTING</span>
+        <div class="ajx-ctarow">
+          <a class="ajx-open" href="/hall-of-fame/2026/">VIEW THE CLASS</a>
+          <a class="ajx-alt" href="/showcases/aj-styles/">THE FULL SHOWCASE</a>
+        </div>
+      </div>
+      <div class="ajx-legs">
+        <a class="ajx-leg" href="/promotions/tna/" style="--lc:var(--tna)" data-yt="mTm3IQBzKmI" data-start="180" data-tape="Styles vs Daniels vs Joe, TNA Unbreakable 2005" data-page="/matches/styles-vs-daniels-vs-joe-unbreakable-2005/">
+          <span class="ajx-leg__body">
+            <span class="ajx-leg__kl">LEG 1 // 2002 TO 2013</span>
+            <span class="ajx-leg__nm">TNA</span>
+            <span class="ajx-leg__s">Six X Division reigns and the Unbreakable three-way</span>
+          </span>
+          <span class="ajx-leg__tv"><span class="art" style="background-image:url(https://i.ytimg.com/vi/mTm3IQBzKmI/hqdefault.jpg)"></span><button class="ajx-play" type="button" aria-label="Play the Unbreakable three-way"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span class="lbl">ROLL TAPE</span></button><span class="ajx-leg__hint">HOVER FOR PREVIEW</span></span>
+        </a>
+        <a class="ajx-leg" href="/promotions/njpw/" style="--lc:var(--njpw)" data-yt="3uEZc4dngEk" data-tape="Nakamura vs AJ Styles, Wrestle Kingdom 10" data-service="NJPW World" data-service-url="https://njpwworld.com/">
+          <span class="ajx-leg__body">
+            <span class="ajx-leg__kl">LEG 2 // 2014 TO 2015</span>
+            <span class="ajx-leg__nm">NJPW</span>
+            <span class="ajx-leg__s">Two IWGP Heavyweight reigns leading Bullet Club</span>
+          </span>
+          <span class="ajx-leg__tv"><span class="art" style="background-image:url(https://i.ytimg.com/vi/3uEZc4dngEk/hqdefault.jpg)"></span><button class="ajx-play" type="button" aria-label="Play the Wrestle Kingdom 10 tape"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span class="lbl">ROLL TAPE</span></button><span class="ajx-leg__hint">HOVER FOR PREVIEW</span></span>
+        </a>
+        <a class="ajx-leg" href="/promotions/wwe/" style="--lc:var(--wwe)" data-yt="ENWsDCPg-PE" data-tape="John Cena vs AJ Styles, SummerSlam 2016" data-service="Peacock" data-service-url="https://www.peacocktv.com/sports/wwe">
+          <span class="ajx-leg__body">
+            <span class="ajx-leg__kl">LEG 3 // 2016 TO 2026</span>
+            <span class="ajx-leg__nm">WWE</span>
+            <span class="ajx-leg__s">Two WWE Championship reigns, then the Hall</span>
+          </span>
+          <span class="ajx-leg__tv"><span class="art" style="background-image:url(https://i.ytimg.com/vi/ENWsDCPg-PE/hqdefault.jpg)"></span><button class="ajx-play" type="button" aria-label="Play Cena vs Styles, SummerSlam 2016"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span class="lbl">ROLL TAPE</span></button><span class="ajx-leg__hint">HOVER FOR PREVIEW</span></span>
+        </a>
+      </div>
     </div>
   </div></section>
 
-  <!-- ============ BLOCK 8: MEDIA STRIP ============ -->
+  <!-- ============ BLOCK 8: MOMENTS REEL ============ -->
   <section class="section hv3-alt hv3-media"><div class="wrap">
     <div class="section-head" data-reveal>
-      <div><p class="eyebrow" style="color:var(--c-media-bright)">Press Row</p><h2>The tape room</h2><hr class="rule-gold"></div>
-      <a class="link-more" href="/media/">All media</a>
+      <div><p class="eyebrow" style="color:var(--c-media-bright)">The Iso Cam</p><h2>The moments reel</h2><hr class="rule-gold"></div>
+      <a class="link-more" href="/moments/">Every moment</a>
     </div>
-    <div class="mediagrid" data-reveal>
-      <a class="dk dk--feat rare-purp" href="/media/chris-van-vliet/">
-        <span class="klbl">PRESS ROW // FEATURED CREATOR</span>
-        <div class="studiohead">
-          <span class="pb" aria-hidden="true"></span>
-          <div>
-            <h3>Chris Van Vliet</h3>
-            <span class="klbl">SIT-DOWNS WITH THE LOCKER ROOM</span>
-          </div>
-        </div>
-        <span class="go">ROLL TAPE</span>
-      </a>
-      <a class="dk ptile rare-gold ptile--ega" href="/media/">
-        <span class="pb" aria-hidden="true"></span>
-        <span class="pmeta">
-          <span class="klbl">LUCHA // 2M+ YOUTUBE VIEWS</span>
-          <span class="nm">El Grande Americano</span>
-          <span class="klbl" style="margin-top:2px">MASK VS MASK &middot; NOCHE DE LOS GRANDES &middot; MAY 30 2026</span>
-        </span>
-      </a>
-      <a class="dk ptile rare-purp" href="/moments/">
-        <span class="pb" aria-hidden="true"></span>
-        <span class="pmeta">
-          <span class="klbl">ISO CAM</span>
-          <span class="nm">Moments reel</span>
-        </span>
-      </a>
-      <a class="rowlink" href="/media/" style="grid-column:span 2">Every creator, every tape <span class="tag2">ALL MEDIA</span></a>
+    <div class="tpx" data-reveal id="tpx">
+      <div class="tpx-reel" role="group" aria-label="Moments reel film strip, rolls on its own, hover to hold it">
+        <div class="tpx-track"></div>
+        <span class="tpx-hold" aria-hidden="true">HOLD // FRAME</span>
+      </div>
+      <div class="tpx-side">
+        <span class="tpx-lab">ALSO IN THE TAPE ROOM</span>
+        <a class="tpx-mini" href="/media/chris-van-vliet/">
+          <span class="mkl">PRESS ROW // FEATURED CREATOR</span>
+          <span class="mnm">Chris Van Vliet</span>
+          <span class="ms">SIT-DOWNS WITH THE LOCKER ROOM</span>
+        </a>
+        <a class="tpx-mini tpx-mini--gold" href="/media/">
+          <span class="mkl">LUCHA // NOCHE DE LOS GRANDES</span>
+          <span class="mnm">El Grande Americano</span>
+          <span class="ms">MASK VS MASK // MAY 30 2026</span>
+        </a>
+      </div>
     </div>
   </div></section>
 
-  <!-- ============ BLOCK 9: TRENDING RAILS ============ -->
+  <!-- ============ BLOCK 9: FIVE-STAR CLASSICS ============ -->
   <section class="section"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">Five-Star Classics</p><h2>The matches that defined an era</h2><hr class="rule-gold"></div>
-      <a class="link-more" href="/rankings/">All rankings</a>
+      <a class="link-more" href="/rankings/">The full ladder</a>
     </div>
-    <div class="grid-spot" data-reveal>
-      <a class="tile tile--gold" href="/matches/undertaker-vs-hbk-wm25/" style="--seed:277"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">U</span><span class="tile__rating">5.0</span></div><div class="tile__body"><p class="tile__kicker">WrestleMania XXV &middot; 2009</p><h3 class="tile__name">Undertaker vs Michaels</h3></div></a>
-      <a class="tile" href="/matches/cm-punk-vs-cena-mitb-2011/" style="--seed:40"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">P</span><span class="tile__rating">5.0</span></div><div class="tile__body"><p class="tile__kicker">Money in the Bank &middot; 2011</p><h3 class="tile__name">CM Punk vs Cena</h3></div></a>
-      <a class="tile" href="/matches/styles-vs-daniels-vs-joe-unbreakable-2005/" style="--seed:120"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--tna tile__badge">TNA</span><span class="tile__mono" aria-hidden="true">X</span><span class="tile__rating">5.0</span></div><div class="tile__body"><p class="tile__kicker">TNA Unbreakable &middot; 2005</p><h3 class="tile__name">Styles vs Daniels vs Joe</h3></div></a>
-      <a class="tile" href="/matches/gargano-vs-ciampa-takeover-new-orleans-2018/" style="--seed:200"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--nxt tile__badge">NXT</span><span class="tile__mono" aria-hidden="true">C</span><span class="tile__rating">5.0</span></div><div class="tile__body"><p class="tile__kicker">TakeOver: New Orleans &middot; 2018</p><h3 class="tile__name">Gargano vs Ciampa</h3></div></a>
-      <a class="tile" href="/matches/angle-vs-benoit-royal-rumble-2003/" style="--seed:330"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wwe tile__badge">WWE</span><span class="tile__mono" aria-hidden="true">A</span><span class="tile__rating">5.0</span></div><div class="tile__body"><p class="tile__kicker">Royal Rumble &middot; 2003</p><h3 class="tile__name">Angle vs Benoit</h3></div></a>
-      <a class="tile" href="/matches/rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997/" style="--seed:90"><span class="tile__spot" aria-hidden="true"></span><div class="tile__media"><span class="chip chip--wcw tile__badge">WCW</span><span class="tile__mono" aria-hidden="true">R</span><span class="tile__rating">5.0</span></div><div class="tile__body"><p class="tile__kicker">Halloween Havoc &middot; 1997</p><h3 class="tile__name">Rey vs Eddie</h3></div></a>
+    <div class="clx" data-reveal id="clx">
+      <div class="clx-main is-on" aria-live="polite"></div>
+      <div class="clx-rail" role="tablist" aria-label="Five-star classics"></div>
     </div>
-    <div class="split2" style="margin-top:var(--sp-6)">
-      <div data-reveal>
-        <p class="eyebrow" style="margin-bottom:var(--sp-3)">Greatest Rivalries</p>
-        <div class="stackcol">
-          <a class="dk dk--stat rare-red" href="/rivalries/rock-vs-austin/">
-            <span class="klbl">HEADLINE HEAT // ATTITUDE ERA</span>
-            <div class="big big--word">ROCK VS AUSTIN</div>
-            <span class="n">Three WrestleMania main events</span>
-            <span class="go">FEUD</span>
-          </a>
-          <a class="dk dk--stat rare-red" href="/rivalries/bret-vs-hbk-montreal/">
-            <span class="klbl">REAL HEAT // SURVIVOR SERIES 1997</span>
-            <div class="big big--word">BRET VS SHAWN</div>
-            <span class="n">The Screwjob that changed the business</span>
-            <span class="go">FEUD</span>
-          </a>
-          <a class="dk dk--stat rare-red" href="/rivalries/eddie-vs-rey/">
-            <span class="klbl">MASK VS TITLE // WCW TO WWE</span>
-            <div class="big big--word">EDDIE VS REY</div>
-            <span class="n">From Halloween Havoc to the custody feud</span>
-            <span class="go">FEUD</span>
-          </a>
-          <a class="chip7 chip7--more" href="/rivalries/">All rivalries</a>
-        </div>
-      </div>
-      <div data-reveal>
-        <p class="eyebrow" style="margin-bottom:var(--sp-3)">Moments</p>
-        <div class="stackcol">
-          <a class="dk dk--stat" href="/moments/mankind-hell-in-a-cell-fall-1998/">
-            <span class="klbl">JUNE 1998 // KING OF THE RING</span>
-            <div class="big big--word">MANKIND OFF THE CELL</div>
-            <span class="n">Sixteen feet through the announce table</span>
-            <span class="go">CLIP</span>
-          </a>
-          <a class="dk dk--stat" href="/moments/kane-debut-badd-blood-1997/">
-            <span class="klbl">OCTOBER 1997 // BADD BLOOD</span>
-            <div class="big big--word">KANE TEARS OFF THE DOOR</div>
-            <span class="n">The first Hell in a Cell gets interrupted</span>
-            <span class="go">CLIP</span>
-          </a>
-          <a class="chip7 chip7--more" href="/moments/">All moments</a>
-        </div>
-      </div>
+    <div class="rivrow" data-reveal>
+      <a class="dk dk--stat rare-red" href="/rivalries/rock-vs-austin/">
+        <span class="klbl">HEADLINE HEAT // ATTITUDE ERA</span>
+        <div class="big big--word">ROCK VS AUSTIN</div>
+        <span class="n">Three WrestleMania main events</span>
+        <span class="go">FEUD</span>
+      </a>
+      <a class="dk dk--stat rare-red" href="/rivalries/bret-vs-hbk-montreal/">
+        <span class="klbl">REAL HEAT // SURVIVOR SERIES 1997</span>
+        <div class="big big--word">BRET VS SHAWN</div>
+        <span class="n">The Screwjob that changed the business</span>
+        <span class="go">FEUD</span>
+      </a>
+      <a class="dk dk--stat rare-red" href="/rivalries/eddie-vs-rey/">
+        <span class="klbl">MASK VS TITLE // WCW TO WWE</span>
+        <div class="big big--word">EDDIE VS REY</div>
+        <span class="n">From Halloween Havoc to the custody feud</span>
+        <span class="go">FEUD</span>
+      </a>
     </div>
   </div></section>
 
-  <!-- ============ BLOCK 10: INSIDER BAND ============ -->
+<style id="home-lower">
+/* ============ HOME LOWER: ROSTER FILES + PRODUCTION TRUCK ============ */
+
+/* ---------- A. ROSTER FILES (rfx) ---------- */
+.rfx{display:grid;grid-template-columns:250px minmax(0,1fr);gap:18px;align-items:start}
+.rfx-tabs{display:grid;gap:8px}
+.rfx-tab{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;text-align:left;
+  background:linear-gradient(180deg,#14161d,#0f1116);border:1px solid rgba(255,255,255,.07);border-left:2px solid rgba(212,175,55,.25);
+  border-radius:11px;padding:12px 14px;cursor:pointer;color:#f4f5f7;font:inherit;
+  transition:border-color .18s,background .18s,transform .18s}
+.rfx-tab:hover{border-left-color:#f2cc4b;transform:translateX(3px)}
+.rfx-tab.is-on{border-color:rgba(212,175,55,.45);border-left-color:#f2cc4b;background:linear-gradient(160deg,rgba(212,175,55,.14),#12141a 58%)}
+.rfx-tab__mono{display:grid;place-items:center;width:44px;height:44px;border-radius:9px;
+  background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(212,175,55,.04));border:1px solid rgba(212,175,55,.32);
+  color:#f2cc4b;font-family:'Anton',sans-serif;font-size:17px}
+.rfx-tab__nm{display:block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.02em;font-size:15px;line-height:1.1}
+.rfx-tab__era{display:block;margin-top:3px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;color:#8a8f98;text-transform:uppercase}
+.rfx-tab.is-on .rfx-tab__era{color:#d4af37}
+.rfx-tab__pull{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.1em;color:#d4af37;opacity:0;transition:opacity .18s}
+.rfx-tab:hover .rfx-tab__pull,.rfx-tab.is-on .rfx-tab__pull{opacity:.9}
+
+.rfx-file{position:relative;min-height:380px;background:linear-gradient(180deg,#15171e,#0f1116);
+  border:1px solid rgba(255,255,255,.08);border-top:2px solid rgba(212,175,55,.4);border-radius:14px;
+  padding:26px 28px 24px;overflow:hidden}
+.rfx-file::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 85% 0%,rgba(212,175,55,.07),transparent 55%)}
+.rfx-file.is-pulling .rfx-sheet{animation:rfxPull .5s cubic-bezier(.16,1,.3,1)}
+@keyframes rfxPull{0%{opacity:0;transform:translateY(16px) rotate(.4deg)}100%{opacity:1;transform:none}}
+.rfx-sheet{position:relative}
+.rfx-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.rfx-kl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#d4af37}
+.rfx-name{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(30px,4.6vw,46px);line-height:.95;margin:6px 0 4px;color:#f4f5f7}
+.rfx-aka{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;color:rgba(244,245,247,.72)}
+.rfx-stamp{flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:#e5484d;border:2px solid rgba(229,72,77,.75);border-radius:6px;padding:7px 11px;transform:rotate(4deg);
+  background:rgba(229,72,77,.06);user-select:none}
+.rfx-file.is-pulling .rfx-stamp{animation:rfxStamp .55s cubic-bezier(.34,1.56,.64,1) .18s backwards}
+@keyframes rfxStamp{0%{opacity:0;transform:rotate(10deg) scale(1.9)}60%{opacity:1;transform:rotate(3deg) scale(.96)}100%{transform:rotate(4deg) scale(1)}}
+.rfx-hair{border:0;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.5),rgba(255,255,255,.06));margin:16px 0}
+.rfx-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rfx-stat{background:#12141a;border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:14px 15px;min-width:0}
+.rfx-stat__k{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#8a8f98}
+.rfx-stat__v{display:block;font-family:'Anton',sans-serif;font-size:32px;line-height:1;color:#f2cc4b;margin:7px 0 4px;font-variant-numeric:tabular-nums}
+.rfx-stat__s{display:block;font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:rgba(244,245,247,.62)}
+.rfx-blurb{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6;color:rgba(244,245,247,.66);max-width:70ch;margin:16px 0 0}
+.rfx-alias{display:flex;align-items:center;gap:10px;margin-top:16px;overflow:hidden;white-space:nowrap;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a8f98}
+.rfx-alias b{color:#d4af37;font-weight:400;flex:none}
+.rfx-alias-roll{position:relative;display:inline-block;min-width:0;color:rgba(244,245,247,.78)}
+.rfx-alias-roll span{display:inline-block;animation:rfxAlias .42s ease}
+@keyframes rfxAlias{0%{opacity:0;transform:translateY(7px)}100%{opacity:1;transform:none}}
+.rfx-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
+.rfx-open{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#0d0e12;background:linear-gradient(180deg,#f2cc4b,#d4af37);border-radius:9px;padding:11px 18px;
+  text-decoration:none;transition:transform .16s,box-shadow .16s}
+.rfx-open:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.25)}
+.rfx-note{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#8a8f98}
+@media(max-width:900px){
+  .rfx{grid-template-columns:minmax(0,1fr)}
+  .rfx-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rfx-tab__pull{display:none}
+  .rfx-stats{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+  .rfx-file{padding:20px 18px}
+}
+
+/* ---------- B. PRODUCTION TRUCK (ptk) ---------- */
+.ptk{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.ptk-program{position:relative;border-radius:16px;background:#0a0b0e;border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 18px 44px rgba(0,0,0,.5),inset 0 0 0 1px rgba(0,0,0,.6);overflow:hidden;display:flex;flex-direction:column;min-height:360px}
+.ptk-topbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg,#101218,#0b0c10)}
+.ptk-tally{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
+  color:#ff5a5f;text-transform:uppercase}
+.ptk-tally i{width:8px;height:8px;border-radius:50%;background:#e5484d;box-shadow:0 0 10px rgba(229,72,77,.9);animation:ptkBlink 1.4s steps(1) infinite}
+@keyframes ptkBlink{0%,68%{opacity:1}69%,100%{opacity:.35}}
+.ptk-pgml{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8f98;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ptk-pgml b{color:#f2cc4b;font-weight:400}
+.ptk-clock{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:#3a3d45;font-variant-numeric:tabular-nums}
+.ptk-screen{position:relative;flex:1;display:grid;place-items:center;padding:26px 24px;min-height:250px}
+.ptk-screen::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;opacity:.5;
+  background:repeating-linear-gradient(180deg,transparent 0 2px,rgba(0,0,0,.24) 2px 3px)}
+.ptk-screen::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:4;
+  background:radial-gradient(105% 90% at 50% 45%,transparent 58%,rgba(0,0,0,.5))}
+.ptk-vig{position:relative;z-index:2;width:100%;text-align:center}
+.ptk.is-cutting .ptk-screen .ptk-vig{animation:ptkCut .34s steps(3)}
+.ptk.is-cutting .ptk-screen::before{animation:ptkNoise .34s steps(4)}
+@keyframes ptkCut{0%{transform:translateX(-5px);filter:brightness(2.2) contrast(1.6)}55%{transform:translateX(4px)}100%{transform:none;filter:none}}
+@keyframes ptkNoise{0%{opacity:1}100%{opacity:.5}}
+.ptk-botbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg,#0b0c10,#101218)}
+.ptk-take{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:#0d0e12;background:linear-gradient(180deg,#ff6b70,#e5484d);border-radius:8px;padding:10px 16px;
+  text-decoration:none;transition:transform .16s,box-shadow .16s}
+.ptk-take:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(229,72,77,.3)}
+.ptk-sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#8a8f98;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.ptk-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:stretch}
+.ptk-cam{position:relative;display:flex;flex-direction:column;gap:7px;justify-content:center;text-align:left;cursor:pointer;font:inherit;color:#f4f5f7;
+  background:linear-gradient(180deg,#101218,#0b0d12);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;
+  transition:border-color .18s,transform .18s,background .18s;min-height:74px;overflow:hidden}
+.ptk-cam::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.2) 3px 4px)}
+.ptk-cam:hover{border-color:rgba(242,204,75,.5);transform:translateY(-2px)}
+.ptk-cam.is-on{border-color:rgba(229,72,77,.75);background:linear-gradient(160deg,rgba(229,72,77,.12),#0b0d12 60%)}
+.ptk-cam.is-on::after{content:"";position:absolute;top:9px;right:9px;width:7px;height:7px;border-radius:50%;
+  background:#e5484d;box-shadow:0 0 9px rgba(229,72,77,.9);animation:ptkBlink 1.4s steps(1) infinite}
+.ptk-cam__id{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8f98}
+.ptk-cam.is-on .ptk-cam__id{color:#ff8589}
+.ptk-cam__nm{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:14.5px;line-height:1.05}
+.ptk-cam__s{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#565b66}
+
+/* vignette internals */
+.ptk-kl{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#d4af37;margin-bottom:12px}
+.ptk-big{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(30px,4.4vw,52px);line-height:.95;color:#f4f5f7}
+.ptk-big .g{color:#f2cc4b}
+.ptk-flip{display:inline-block;animation:ptkFlip .5s cubic-bezier(.16,1,.3,1)}
+@keyframes ptkFlip{0%{opacity:0;transform:translateY(14px) scaleY(.6)}100%{opacity:1;transform:none}}
+.ptk-under{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8f98}
+.ptk-under b{color:#f2cc4b;font-weight:400}
+.ptk-stars{display:inline-block;position:relative;font-size:34px;line-height:1;letter-spacing:6px;color:rgba(244,245,247,.14);margin:8px 0 2px}
+.ptk-stars .on{position:absolute;inset:0;color:#f2cc4b;overflow:hidden;white-space:nowrap;width:0;animation:ptkFill 1.4s cubic-bezier(.22,1,.36,1) .2s forwards;text-shadow:0 0 22px rgba(242,204,75,.45)}
+@keyframes ptkFill{to{width:var(--fill,100%)}}
+.ptk-count{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ptk-cell{min-width:74px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:10px 8px 8px}
+.ptk-cell b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:34px;line-height:1;color:#f2cc4b;font-variant-numeric:tabular-nums}
+.ptk-cell span{display:block;margin-top:5px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8f98}
+.ptk-eq{display:flex;align-items:flex-end;justify-content:center;gap:10px;height:120px;margin:4px 0 2px}
+.ptk-bar{position:relative;width:34px;border-radius:6px 6px 2px 2px;background:var(--bc,#d4af37);opacity:.9;
+  animation:ptkEq 1.7s ease-in-out infinite alternate;transform-origin:bottom;box-shadow:0 0 18px color-mix(in srgb,var(--bc,#d4af37) 40%,transparent)}
+@keyframes ptkEq{0%{transform:scaleY(.45)}100%{transform:scaleY(1)}}
+.ptk-bar i{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-style:normal;font-size:8px;letter-spacing:.06em;color:#8a8f98;text-transform:uppercase}
+.ptk-medal{width:104px;height:104px;margin:0 auto 10px;color:#f2cc4b;position:relative}
+.ptk-medal svg{width:100%;height:100%}
+.ptk-medal::after{content:"";position:absolute;inset:-8px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 72%,rgba(242,204,75,.35) 82%,transparent 92%);animation:ptkSheen 3.2s linear infinite}
+@keyframes ptkSheen{to{transform:rotate(360deg)}}
+.ptk-mono{font-family:'Anton',sans-serif;font-size:26px;fill:#f2cc4b;text-anchor:middle}
+.ptk-reigns{display:grid;gap:8px;max-width:420px;margin:0 auto;text-align:left}
+.ptk-reign{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);border-left:2px solid #d4af37;border-radius:9px;padding:9px 12px}
+.ptk-reign__t{font-family:'Oswald',sans-serif;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:rgba(244,245,247,.85);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ptk-reign__t em{display:block;font-style:normal;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#8a8f98;margin-top:2px}
+.ptk-reign__d{font-family:'Anton',sans-serif;font-size:20px;color:#f2cc4b;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ptk-rec{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#ff5a5f;text-transform:uppercase;margin-bottom:12px}
+.ptk-rec i{width:9px;height:9px;border-radius:50%;background:#e5484d;box-shadow:0 0 10px rgba(229,72,77,.9);animation:ptkBlink 1.1s steps(1) infinite}
+.ptk-wire{font-family:'Oswald',sans-serif;font-size:clamp(17px,2.4vw,24px);text-transform:uppercase;letter-spacing:.02em;line-height:1.25;color:rgba(244,245,247,.92);max-width:34ch;margin:0 auto}
+.ptk-wire b{color:#f2cc4b;font-weight:600}
+@media(max-width:940px){
+  .ptk{grid-template-columns:minmax(0,1fr)}
+  .ptk-bank{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .ptk-program{min-height:320px}
+}
+
+/* ---------- C. WRESTLER DECK (wdeal) ---------- */
+.wdeal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.wdeal .tile{min-width:0}
+.wdeal-in{animation:wdealIn .55s cubic-bezier(.16,1,.3,1) backwards}
+@keyframes wdealIn{0%{opacity:0;transform:translateY(18px) rotate(1.2deg) scale(.96)}100%{opacity:1;transform:none}}
+.wdeal-bar{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.wdeal-shuffle{cursor:pointer;font:inherit}
+.wdeal-shuffle:active{transform:scale(.97)}
+@media(max-width:1000px){.wdeal{grid-template-columns:repeat(3,minmax(0,1fr))}.wdeal .tile:nth-child(n+4){display:none}}
+@media(max-width:560px){.wdeal{grid-template-columns:repeat(2,minmax(0,1fr))}.wdeal .tile:nth-child(n+3){display:none}}
+
+/* ---------- D. AJ HOF SPOTLIGHT (ajx) ---------- */
+.ajx{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:18px;align-items:stretch}
+.ajx-spot{position:relative;background:linear-gradient(165deg,#1a1710,#0f1116 62%);border:1px solid rgba(212,175,55,.3);border-radius:16px;
+  padding:26px 26px 22px;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.ajx-spot::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 80% at 20% 0%,rgba(242,204,75,.12),transparent 55%)}
+.ajx-medal{width:96px;height:96px;color:#f2cc4b;position:relative;flex:none}
+.ajx-medal svg{width:100%;height:100%}
+.ajx-medal::after{content:"";position:absolute;inset:-7px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 74%,rgba(242,204,75,.35) 84%,transparent 94%);animation:ajxSheen 3.4s linear infinite}
+@keyframes ajxSheen{to{transform:rotate(360deg)}}
+.ajx-mono{font-family:'Anton',sans-serif;font-size:24px;fill:#f2cc4b;text-anchor:middle}
+.ajx-kl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#d4af37}
+.ajx-name{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(34px,4vw,48px);line-height:.95;color:#f4f5f7;margin:0}
+.ajx-sub{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;color:rgba(244,245,247,.75)}
+.ajx-clockrow{display:flex;gap:9px;margin-top:6px;flex-wrap:wrap}
+.ajx-cell{min-width:64px;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.28);border-radius:10px;padding:9px 8px 7px;text-align:center}
+.ajx-cell b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:27px;line-height:1;color:#f2cc4b;font-variant-numeric:tabular-nums}
+.ajx-cell span{display:block;margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#8a8f98}
+.ajx-note{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8a8f98}
+.ajx-ctarow{display:flex;gap:10px;margin-top:auto;padding-top:12px;flex-wrap:wrap}
+.ajx-open{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#0d0e12;background:linear-gradient(180deg,#f2cc4b,#d4af37);border-radius:9px;padding:11px 16px;
+  text-decoration:none;transition:transform .16s,box-shadow .16s}
+.ajx-open:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.25)}
+.ajx-alt{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#f2cc4b;border:1px solid rgba(212,175,55,.4);border-radius:9px;padding:11px 16px;text-decoration:none;transition:border-color .16s,transform .16s}
+.ajx-alt:hover{border-color:#f2cc4b;transform:translateY(-2px)}
+.ajx-legs{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:12px}
+.ajx-leg{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 220px;border-radius:14px;overflow:hidden;text-decoration:none;color:#f4f5f7;
+  background:linear-gradient(180deg,#12141a,#0e1015);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--lc,#d4af37);
+  min-height:104px;transition:border-color .18s,transform .18s}
+.ajx-leg:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--lc,#d4af37) 60%,rgba(255,255,255,.08))}
+.ajx-leg__body{padding:14px 16px;display:flex;flex-direction:column;gap:5px;justify-content:center;min-width:0}
+.ajx-leg__kl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--lc,#d4af37)}
+.ajx-leg__nm{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:26px;line-height:1;color:#f4f5f7}
+.ajx-leg__s{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:rgba(244,245,247,.62);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ajx-leg__tv{position:relative;background:#000;overflow:hidden}
+.ajx-leg__tv::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.4;
+  background:repeating-linear-gradient(180deg,transparent 0 2px,rgba(0,0,0,.25) 2px 3px)}
+.ajx-leg__tv .art{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.85;transition:opacity .3s}
+.ajx-leg__tv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ajx-leg__hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:3;white-space:nowrap;
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#f2cc4b;
+  background:rgba(10,11,14,.78);border:1px solid rgba(212,175,55,.35);border-radius:6px;padding:4px 8px;transition:opacity .25s}
+.ajx-leg.is-live .ajx-leg__hint,.ajx-leg.is-live .art{opacity:0}
+.ajx-leg__mono{position:absolute;inset:0;display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:44px;color:color-mix(in srgb,var(--lc,#d4af37) 75%,#fff)}
+/* the roll-tape play button: gold ring, rotating sheen, pulse on hover */
+.ajx-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;width:56px;height:56px;border-radius:50%;
+  display:grid;place-items:center;cursor:pointer;padding:0;color:#f2cc4b;
+  background:radial-gradient(120% 120% at 30% 25%,rgba(28,30,38,.92),rgba(10,11,14,.94));
+  border:2px solid rgba(212,175,55,.75);box-shadow:0 6px 22px rgba(0,0,0,.6),0 0 0 0 rgba(242,204,75,.0);
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1),border-color .2s,box-shadow .3s}
+.ajx-play::before{content:"";position:absolute;inset:-2px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 68%,rgba(242,204,75,.6) 80%,transparent 92%);
+  animation:ajxSheen 2.8s linear infinite}
+.ajx-play::after{content:"";position:absolute;inset:-2px;border-radius:50%;pointer-events:none;
+  border:2px solid color-mix(in srgb,var(--lc,#f2cc4b) 70%,#fff);opacity:0}
+.ajx-play svg{width:19px;height:19px;fill:currentColor;margin-left:3px;filter:drop-shadow(0 0 6px rgba(242,204,75,.55))}
+.ajx-play .lbl{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);white-space:nowrap;
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#f2cc4b;
+  background:rgba(10,11,14,.82);border:1px solid rgba(212,175,55,.4);border-radius:6px;padding:3px 8px;
+  opacity:0;translate:0 -3px;transition:opacity .2s,translate .2s;pointer-events:none}
+.ajx-leg:hover .ajx-play{transform:translate(-50%,-50%) scale(1.14);border-color:#f2cc4b;
+  box-shadow:0 8px 26px rgba(0,0,0,.65),0 0 26px 4px color-mix(in srgb,var(--lc,#f2cc4b) 34%,transparent)}
+.ajx-leg:hover .ajx-play::after{animation:ajxPulse 1.5s ease-out infinite}
+.ajx-leg:hover .ajx-play .lbl{opacity:1;translate:0 0}
+.ajx-play:active{transform:translate(-50%,-50%) scale(.96)}
+@keyframes ajxPulse{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.75);opacity:0}}
+.ajx-leg.is-live .ajx-play{opacity:.92}
+@media(max-width:940px){
+  .ajx{grid-template-columns:minmax(0,1fr)}
+  .ajx-leg{grid-template-columns:minmax(0,1fr) 150px;min-height:92px}
+}
+
+/* ---------- E. MOMENTS REEL FILM STRIP (tpx) ---------- */
+.tpx{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.tpx-reel{position:relative;background:#0a0b0e;border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:14px 0;overflow:hidden}
+.tpx-reel::before,.tpx-reel::after{content:"";position:absolute;top:0;bottom:0;width:56px;z-index:5;pointer-events:none}
+.tpx-reel::before{left:0;background:linear-gradient(90deg,#0a0b0e,transparent)}
+.tpx-reel::after{right:0;background:linear-gradient(270deg,#0a0b0e,transparent)}
+.tpx-track{display:flex;gap:12px;width:max-content;padding:0 6px;animation:tpxRoll 48s linear infinite;will-change:transform}
+.tpx-reel:hover .tpx-track{animation-play-state:paused}
+@keyframes tpxRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tpx-track{animation:none}}
+.tpx-hold{position:absolute;right:12px;top:10px;z-index:6;opacity:0;transition:opacity .2s;
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.14em;color:#ff8589;text-transform:uppercase;
+  background:rgba(10,11,14,.8);border:1px solid rgba(229,72,77,.4);border-radius:6px;padding:4px 8px}
+.tpx-reel:hover .tpx-hold{opacity:1}
+.tpx-cell{position:relative;padding:15px 0}
+.tpx-cell::before,.tpx-cell::after{content:"";position:absolute;left:2px;right:2px;height:9px;border-radius:2px;
+  background:repeating-linear-gradient(90deg,#1a1d24 0 14px,transparent 14px 26px)}
+.tpx-cell::before{top:1px}
+.tpx-cell::after{bottom:1px}
+.tpx-frame{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;width:236px;min-height:170px;border-radius:8px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);background:#101218;cursor:pointer;font:inherit;color:#f4f5f7;text-align:left;text-decoration:none;padding:11px 12px;
+  transition:transform .18s,border-color .18s}
+.tpx-frame:hover{transform:translateY(-3px);border-color:rgba(160,90,240,.65)}
+.tpx-frame .fart{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.6;transition:transform 6s ease,opacity .3s}
+.tpx-frame:hover .fart{transform:scale(1.09);opacity:.75}
+.tpx-frame::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,7,10,.1) 30%,rgba(6,7,10,.92));z-index:1}
+.tpx-frame>*{position:relative;z-index:2}
+.tpx-frame .fmono{position:absolute;inset:0;display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:44px;color:rgba(160,90,240,.7);z-index:0}
+.tpx-frame .fkl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:#b18cff}
+.tpx-frame .fnm{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:17px;line-height:1.02;color:#f4f5f7}
+.tpx-frame .fs{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#8a8f98}
+.tpx-frame .fplay{position:absolute;top:9px;right:9px;display:inline-flex;align-items:center;gap:5px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:#ff8589;text-transform:uppercase;
+  background:rgba(10,11,14,.72);border:1px solid rgba(229,72,77,.4);border-radius:6px;padding:4px 7px}
+.tpx-frame .fplay i{width:6px;height:6px;border-radius:50%;background:#e5484d;box-shadow:0 0 8px rgba(229,72,77,.9);animation:ptkBlink 1.2s steps(1) infinite}
+.tpx-side{display:grid;grid-template-rows:auto minmax(0,1fr) minmax(0,1fr);gap:12px}
+.tpx-lab{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#8a8f98;padding:2px 2px 0}
+.tpx-mini{position:relative;display:flex;flex-direction:column;justify-content:center;gap:5px;border-radius:12px;padding:14px 16px;text-decoration:none;color:#f4f5f7;
+  background:linear-gradient(180deg,#12141a,#0e1015);border:1px solid rgba(255,255,255,.08);border-left:2px solid rgba(160,90,240,.55);
+  transition:transform .18s,border-color .18s}
+.tpx-mini:hover{transform:translateY(-2px);border-color:rgba(160,90,240,.6)}
+.tpx-mini--gold{border-left-color:rgba(212,175,55,.6)}
+.tpx-mini--gold:hover{border-color:rgba(212,175,55,.55)}
+.tpx-mini .mkl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:#b18cff}
+.tpx-mini--gold .mkl{color:#d4af37}
+.tpx-mini .mnm{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.02em;font-size:16px;line-height:1.1}
+.tpx-mini .ms{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#8a8f98}
+@media(max-width:940px){
+  .tpx{grid-template-columns:minmax(0,1fr)}
+  .tpx-frame{width:200px;min-height:150px}
+  .tpx-side{grid-template-rows:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .tpx-lab{grid-column:1/-1}
+}
+
+/* ---------- F. FIVE-STAR CLASSICS SPOTLIGHT (clx) ---------- */
+.clx{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.clx-main{position:relative;border-radius:16px;overflow:hidden;min-height:400px;background:#0a0b0e;border:1px solid rgba(255,255,255,.09);
+  display:flex;flex-direction:column;justify-content:flex-end}
+.clx-bg{position:absolute;inset:0;background-size:cover;background-position:center 22%;transform:scale(1.05)}
+.clx-main.is-on .clx-bg{animation:clxZoom 9s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes clxZoom{from{transform:scale(1.05)}to{transform:scale(1.13)}}
+.clx-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,7,10,.18) 26%,rgba(6,7,10,.94) 78%)}
+.clx-content{position:relative;z-index:2;padding:22px 24px 20px;display:grid;gap:9px;justify-items:start}
+.clx-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.clx-rank{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:#0d0e12;background:linear-gradient(180deg,#f2cc4b,#d4af37);border-radius:6px;padding:4px 8px}
+.clx-era{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:#c9ccd2;border:1px solid rgba(255,255,255,.22);border-radius:6px;padding:4px 8px}
+.clx-title{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(26px,3.4vw,42px);line-height:.96;color:#f4f5f7;margin:0}
+.clx-meta{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#c9b26a}
+.clx-hook{font-family:'Inter',system-ui,sans-serif;font-size:13.5px;line-height:1.5;color:rgba(244,245,247,.78);max-width:56ch;margin:0}
+.clx-stars{position:relative;font-size:22px;line-height:1;letter-spacing:4px;color:rgba(244,245,247,.16)}
+.clx-stars .on{position:absolute;inset:0;color:#f2cc4b;overflow:hidden;white-space:nowrap;text-shadow:0 0 16px rgba(242,204,75,.4)}
+.clx-ctas{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
+.clx-watch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#0d0e12;background:linear-gradient(180deg,#f2cc4b,#d4af37);border:0;border-radius:9px;padding:11px 16px;
+  transition:transform .16s,box-shadow .16s}
+.clx-watch svg{width:12px;height:12px;fill:#0d0e12}
+.clx-watch:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.28)}
+.clx-break{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:#f4f5f7;border:1px solid rgba(255,255,255,.3);border-radius:9px;padding:11px 16px;text-decoration:none;transition:border-color .16s,transform .16s}
+.clx-break:hover{border-color:#f2cc4b;color:#f2cc4b;transform:translateY(-2px)}
+.clx-rail{display:grid;grid-auto-rows:minmax(0,1fr);gap:8px}
+.clx-card{position:relative;display:grid;grid-template-columns:86px minmax(0,1fr);gap:11px;align-items:center;text-align:left;cursor:pointer;font:inherit;color:#f4f5f7;
+  background:linear-gradient(180deg,#12141a,#0e1015);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:7px 12px 7px 7px;overflow:hidden;
+  transition:border-color .18s,transform .18s,background .18s}
+.clx-card:hover{transform:translateX(3px);border-color:rgba(242,204,75,.45)}
+.clx-card.is-on{border-color:rgba(242,204,75,.65);background:linear-gradient(160deg,rgba(212,175,55,.13),#0e1015 60%)}
+.clx-card__th{position:relative;height:52px;border-radius:7px;overflow:hidden;background:#191c23}
+.clx-card__th .a{position:absolute;inset:0;background-size:cover;background-position:center}
+.clx-card__th .m{position:absolute;inset:0;display:grid;place-items:center;font-family:'Anton',sans-serif;font-size:22px;color:#c9b26a}
+.clx-card__kl{display:block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#8a8f98}
+.clx-card.is-on .clx-card__kl{color:#d4af37}
+.clx-card__nm{display:block;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.02em;font-size:13.5px;line-height:1.12;margin-top:2px}
+.clx-card__r{position:absolute;top:8px;right:9px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.06em;color:#f2cc4b}
+.rivrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:var(--sp-6)}
+@media(max-width:940px){
+  .clx{grid-template-columns:minmax(0,1fr)}
+  .clx-rail{grid-template-rows:none;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .clx-main{min-height:330px}
+  .rivrow{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+
+  <!-- ============ BLOCK 10: THE ROSTER FILES ============ -->
   <section class="section hv3-alt"><div class="wrap">
     <div class="section-head" data-reveal>
-      <div><p class="eyebrow">The Roster Files</p><h2>Pull a file from the cabinet</h2><hr class="rule-gold"></div>
-      <a class="link-more" href="https://wrestlelore.com/wrestlers/">All 107 files</a>
+      <div><p class="eyebrow">The Wrestler Files</p><h2>Pull a file from the cabinet</h2><hr class="rule-gold"></div>
+      <a class="link-more" href="/wrestlers/">Open the cabinet</a>
     </div>
     <div class="rfx" data-reveal id="rfx">
-      <div class="rfx-tabs" role="tablist" aria-label="Roster files"></div>
+      <div class="rfx-tabs" role="tablist" aria-label="Wrestler files"></div>
       <div class="rfx-file" aria-live="polite">
         <div class="rfx-sheet"></div>
       </div>
     </div>
   </div></section>
 
-  <!-- ============ BLOCK 11: ANSWER-FIRST + FAQ ============ -->
+  <!-- ============ BLOCK 11: THE PRODUCTION TRUCK ============ -->
   <section class="section"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">The Production Truck</p><h2>Seven feeds. Call the shot.</h2><hr class="rule-gold"></div>
@@ -1657,7 +2176,7 @@
         </div>
         <div class="ptk-screen"><div class="ptk-vig"></div></div>
         <div class="ptk-botbar">
-          <a class="ptk-take" href="https://wrestlelore.com/wrestlers/">TAKE THIS FEED</a>
+          <a class="ptk-take" href="/wrestlers/">TAKE THIS FEED</a>
           <span class="ptk-sub"></span>
         </div>
       </div>
@@ -1665,8 +2184,394 @@
     </div>
   </div></section>
 
-  <!-- ============ BLOCK 12: KEEP GOING ============ -->
-  
+<script id="home-lower-js">
+/* ============ HOME LOWER: roster files + production truck ============ */
+(function(){
+  'use strict';
+
+  /* ---------- A. ROSTER FILES ---------- */
+  var FILES=[
+    {slug:'the-rock',mono:'R',name:'The Rock',aka:'The People’s Champion',era:'ATTITUDE // HOLLYWOOD',stamp:'FILE // LEGEND',
+     stats:[{v:10,s:'World reigns',k:'8 WWE + 2 WCW'},{v:11,s:'Mania matches',k:'RECORD 6 AND 5'},{v:5,s:'Tag reigns',k:'PLUS 2 IC'}],
+     extra:'ROYAL RUMBLE 2000 WINNER',
+     blurb:'Third-generation star out of the Anoa’i line. Eight WWF and WWE Championships, two WCW World Championships, a record run of WrestleMania main events, then the biggest crossover to Hollywood the business has ever produced.',
+     aliases:['ROCKY MAIVIA','THE BRAHMA BULL','THE GREAT ONE','THE FINAL BOSS']},
+    {slug:'stone-cold-steve-austin',mono:'316',name:'Stone Cold Steve Austin',aka:'The Texas Rattlesnake',era:'ATTITUDE // 3:16',stamp:'FILE // LEGEND',
+     stats:[{v:6,s:'WWF title reigns',k:'TOP OF THE CARD'},{v:3,s:'Royal Rumbles',k:'MOST ALL TIME'},{v:8,s:'Mania matches',k:'RECORD 6 AND 2'}],
+     extra:'AUSTIN 3:16 SAID IT AT KING OF THE RING 1996',
+     blurb:'The engine of the Attitude Era. Six WWF Championships, three Royal Rumble wins and a nightly war with the boss that turned Monday nights into the hottest show on television.',
+     aliases:['THE RINGMASTER','STUNNING STEVE','THE RATTLESNAKE','THE BIONIC REDNECK']},
+    {slug:'the-undertaker',mono:'21',name:'The Undertaker',aka:'The Phenom',era:'1990 TO 2020 // THE DEADMAN',stamp:'FILE // LEGEND',
+     stats:[{v:21,s:'Streak wins',k:'21 AND 1 AT MANIA'},{v:7,s:'World reigns',k:'WWF AND WWE'},{v:30,s:'Years in the yard',k:'SURVIVOR SERIES 1990'}],
+     extra:'THE STREAK STOOD FOR 23 YEARS',
+     blurb:'Thirty years under the hat, from Survivor Series 1990 to the Boneyard. The Streak ran twenty one straight at WrestleMania and remains the measuring stick every big-match wrestler is held against.',
+     aliases:['THE AMERICAN BADASS','BIG EVIL','THE DEADMAN','THE LORD OF DARKNESS']},
+    {slug:'triple-h',mono:'HHH',name:'Triple H',aka:'The Game',era:'ATTITUDE // THE GAME',stamp:'FILE // EXECUTIVE',
+     stats:[{v:14,s:'World reigns',k:'NINE WWE + FIVE WHC'},{v:7,s:'Mania main events',k:'TOP OF THE CARD'},{v:2,s:'Royal Rumbles',k:'2002 AND 2016'}],
+     extra:'NOW WWE CHIEF CONTENT OFFICER',
+     blurb:'Co-founded DX, ran Evolution, and main-evented seven WrestleManias on the way to fourteen world championships. Then the move upstairs: the architect of NXT now runs WWE creative from the office with the biggest desk.',
+     aliases:['HUNTER HEARST HELMSLEY','THE CEREBRAL ASSASSIN','THE KING OF KINGS']}
+  ];
+
+  var rfx=document.getElementById('rfx');
+  if(rfx){
+    var tabs=rfx.querySelector('.rfx-tabs'),file=rfx.querySelector('.rfx-file'),sheet=rfx.querySelector('.rfx-sheet');
+    var cur=0,aliasTimer=null,countRaf=null;
+    FILES.forEach(function(f,i){
+      var b=document.createElement('button');
+      b.type='button';b.className='rfx-tab'+(i===0?' is-on':'');b.setAttribute('role','tab');
+      b.innerHTML='<span class="rfx-tab__mono">'+f.mono+'</span><span><span class="rfx-tab__nm">'+f.name+'</span><span class="rfx-tab__era">'+f.era+'</span></span><span class="rfx-tab__pull">PULL</span>';
+      b.addEventListener('click',function(){if(cur!==i){cur=i;render();}});
+      tabs.appendChild(b);
+    });
+    function days(iso){return Math.max(1,Math.floor((Date.now()-new Date(iso+'T00:00:00Z').getTime())/864e5));}
+    function render(){
+      var f=FILES[cur];
+      [].forEach.call(tabs.children,function(t,i){t.classList.toggle('is-on',i===cur);t.setAttribute('aria-selected',i===cur?'true':'false');});
+      var statHtml=f.stats.map(function(s){
+        var v=s.live?days(s.live):s.v;
+        return '<div class="rfx-stat"><span class="rfx-stat__k">'+s.k+'</span><span class="rfx-stat__v" data-n="'+v+'">0</span><span class="rfx-stat__s">'+s.s+'</span></div>';
+      }).join('');
+      sheet.innerHTML=
+        '<div class="rfx-head"><div><span class="rfx-kl">'+f.era+'</span>'+
+        '<h3 class="rfx-name">'+f.name+'</h3><span class="rfx-aka">'+f.aka+'</span></div>'+
+        '<span class="rfx-stamp">'+f.stamp+'</span></div>'+
+        '<hr class="rfx-hair"><div class="rfx-stats">'+statHtml+'</div>'+
+        '<p class="rfx-blurb">'+f.blurb+'</p>'+
+        '<div class="rfx-alias"><b>ALSO ANSWERED TO</b><span class="rfx-alias-roll"><span>'+f.aliases[0]+'</span></span></div>'+
+        '<div class="rfx-foot"><a class="rfx-open" href="/wrestlers/'+f.slug+'/">OPEN THE FULL FILE</a>'+
+        '<span class="rfx-note">'+f.extra+'</span></div>';
+      file.classList.remove('is-pulling');void file.offsetWidth;file.classList.add('is-pulling');
+      countUp();aliasRoll(f);
+    }
+    function countUp(){
+      if(countRaf)cancelAnimationFrame(countRaf);
+      var els=[].slice.call(sheet.querySelectorAll('.rfx-stat__v')),t0=null;
+      function step(ts){
+        if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/900),e=1-Math.pow(1-p,3);
+        els.forEach(function(el){el.textContent=Math.round(e*parseInt(el.getAttribute('data-n'),10));});
+        if(p<1)countRaf=requestAnimationFrame(step);
+      }
+      countRaf=requestAnimationFrame(step);
+    }
+    function aliasRoll(f){
+      if(aliasTimer)clearInterval(aliasTimer);
+      var k=0;
+      aliasTimer=setInterval(function(){
+        var roll=sheet.querySelector('.rfx-alias-roll');
+        if(!roll){clearInterval(aliasTimer);return;}
+        k=(k+1)%f.aliases.length;
+        roll.innerHTML='<span>'+f.aliases[k]+'</span>';
+      },2600);
+    }
+    render();
+  }
+
+  /* ---------- B. PRODUCTION TRUCK ---------- */
+  var FEEDS=[
+    {id:'wrestlers',cam:'CAM 1',name:'Wrestlers',s:'THE FILES',href:'/wrestlers/',sub:'EVERY PROFILE ON RECORD // CURRENT, LEGENDS, WOMEN'},
+    {id:'matches',cam:'CAM 2',name:'Matches',s:'THE LADDER',href:'/matches/',sub:'THE FIVE STAR LADDER, RATED AND WATCHABLE'},
+    {id:'events',cam:'CAM 3',name:'Events',s:'2026 SEASON',href:'/events/',sub:'SUMMERSLAM // US BANK STADIUM // MINNEAPOLIS'},
+    {id:'promotions',cam:'CAM 4',name:'Promotions',s:'THE FEEDS',href:'/promotions/',sub:'EVERY TERRITORY PLUS AAA THROUGH THE WWE PARTNERSHIP'},
+    {id:'hof',cam:'CAM 5',name:'Hall of Fame',s:'CLASS OF 26',href:'/hall-of-fame/',sub:'AJ STYLES HEADLINES THE CLASS OF 2026'},
+    {id:'titles',cam:'CAM 6',name:'Titles &amp; Teams',s:'THE GOLD',href:'/titles/',sub:'REIGN CLOCKS RUN LIVE // EVERY LINEAGE TRACKED'},
+    {id:'media',cam:'CAM 7',name:'Media',s:'THE WIRE',href:'/media/',sub:'PRESS ROW, THE LORE FEED AND THE ISO CAM'}
+  ];
+  var ROSTER=['ROMAN REIGNS','CODY RHODES','RHEA RIPLEY','CM PUNK','GUNTHER','THE ROCK','STONE COLD','THE UNDERTAKER'];
+  var CLASSICS=[['UNDERTAKER VS MICHAELS','WRESTLEMANIA XXV // 2009',5],['PUNK VS CENA','MONEY IN THE BANK // 2011',5],['GARGANO VS CIAMPA','TAKEOVER NEW ORLEANS // 2018',5],['REY VS EDDIE','HALLOWEEN HAVOC // 1997',5]];
+  var WIRE=['<b>Kenny Omega</b> retains the AEW World Championship at Redemption','<b>Cody Rhodes</b> and CM Punk come face to face on SmackDown','<b>Gunther</b> leaves Nick Aldis laid out at the contract signing','<b>Willow Nightingale</b> captures the AEW Women’s World Championship'];
+  var REIGNS=[['Undisputed WWE Championship','CM PUNK','2026-07-06'],['World Heavyweight Championship','ROMAN REIGNS','2026-04-19'],['Intercontinental Championship','PENTA','2026-03-02']];
+
+  var ptk=document.getElementById('ptk');
+  if(ptk){
+    var bank=ptk.querySelector('.ptk-bank'),vig=ptk.querySelector('.ptk-vig'),
+        pgmname=ptk.querySelector('.ptk-pgmname'),take=ptk.querySelector('.ptk-take'),
+        sub=ptk.querySelector('.ptk-sub'),clock=ptk.querySelector('.ptk-clock');
+    var on=0,cycle=null,inner=null,hold=false;
+    FEEDS.forEach(function(fd,i){
+      var b=document.createElement('button');
+      b.type='button';b.className='ptk-cam'+(i===0?' is-on':'');b.setAttribute('role','tab');
+      b.innerHTML='<span class="ptk-cam__id">'+fd.cam+'</span><span class="ptk-cam__nm">'+fd.name+'</span><span class="ptk-cam__s">'+fd.s+'</span>';
+      b.addEventListener('click',function(){take2(i,true);});
+      bank.appendChild(b);
+    });
+    function dd(iso){return Math.max(1,Math.floor((Date.now()-new Date(iso+'T00:00:00Z').getTime())/864e5));}
+    function pad(n){return (n<10?'0':'')+n;}
+    var V={
+      wrestlers:function(){
+        vig.innerHTML='<span class="ptk-kl">THE WRESTLER ROLL</span><div class="ptk-big"><span class="ptk-flip">'+ROSTER[0]+'</span></div><div class="ptk-under">EVERY WRESTLER ON RECORD // <b>CURRENT, LEGENDS, WOMEN</b></div>';
+        var k=0,big=vig.querySelector('.ptk-big');
+        inner=setInterval(function(){k=(k+1)%ROSTER.length;big.innerHTML='<span class="ptk-flip">'+ROSTER[k]+'</span>';},1500);
+      },
+      matches:function(){
+        function show(k){
+          var c=CLASSICS[k];
+          vig.innerHTML='<span class="ptk-kl">'+c[1]+'</span><div class="ptk-big ptk-flip">'+c[0]+'</div>'+
+          '<div class="ptk-stars">&starf;&starf;&starf;&starf;&starf;<span class="on" style="--fill:'+(c[2]*20)+'%">&starf;&starf;&starf;&starf;&starf;</span></div>'+
+          '<div class="ptk-under"><b>'+c[2].toFixed(1)+'</b> ON THE LADDER // RATED AND WATCHABLE</div>';
+        }
+        show(0);var k=0;
+        inner=setInterval(function(){k=(k+1)%CLASSICS.length;show(k);},3400);
+      },
+      events:function(){
+        vig.innerHTML='<span class="ptk-kl">NEXT STOP // SUMMERSLAM // AUG 1 AND 2</span><div class="ptk-count">'+
+          '<div class="ptk-cell"><b data-u="d">0</b><span>DAYS</span></div><div class="ptk-cell"><b data-u="h">0</b><span>HRS</span></div>'+
+          '<div class="ptk-cell"><b data-u="m">0</b><span>MIN</span></div><div class="ptk-cell"><b data-u="s">0</b><span>SEC</span></div></div>'+
+          '<div class="ptk-under">US BANK STADIUM // MINNEAPOLIS // TWO NIGHTS</div>';
+        var T=new Date('2026-08-01T23:00:00Z').getTime();
+        function tick(){
+          var ms=Math.max(0,T-Date.now()),d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+          var q=function(u){var el=vig.querySelector('[data-u="'+u+'"]');return el;};
+          if(!q('d'))return;
+          q('d').textContent=pad(d);q('h').textContent=pad(h);q('m').textContent=pad(m);q('s').textContent=pad(s);
+        }
+        tick();inner=setInterval(tick,1000);
+      },
+      promotions:function(){
+        var B=[['WWE','#c8102e',1.7],['WCW','#e8b50c',2.1],['ECW','#b8b8bc',1.4],['TNA','#2f7de1',1.9],['NXT','#c9a227',1.6],['NJPW','#7f4fd0',2.2],['AEW','#c9a86a','1.8'],['AAA','#0aa574',2.0]];
+        vig.innerHTML='<span class="ptk-kl">EVERY TERRITORY ON THE BOARD</span><div class="ptk-eq">'+
+          B.map(function(x,i){return '<div class="ptk-bar" style="--bc:'+x[1]+';height:'+(58+((i*29)%52))+'px;animation-duration:'+x[2]+'s"><i>'+x[0]+'</i></div>';}).join('')+
+          '</div><div class="ptk-under" style="margin-top:26px">EVERY TERRITORY // <b>AAA THROUGH THE WWE PARTNERSHIP</b></div>';
+      },
+      hof:function(){
+        vig.innerHTML='<span class="ptk-kl">CLASS OF 2026 // FIRST IN</span>'+
+          '<div class="ptk-medal"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><circle cx="60" cy="60" r="45" fill="none" stroke="currentColor" stroke-width=".5" opacity=".32"/><g stroke="currentColor" stroke-width="1" opacity=".38"><line x1="60" y1="4" x2="60" y2="12"/><line x1="60" y1="108" x2="60" y2="116"/><line x1="4" y1="60" x2="12" y2="60"/><line x1="108" y1="60" x2="116" y2="60"/></g><text class="ptk-mono" x="60" y="69">AJ</text></svg></div>'+
+          '<div class="ptk-big" style="font-size:clamp(26px,3.4vw,38px)">AJ STYLES</div>'+
+          '<div class="ptk-under">THE PHENOMENAL ONE GOES IN FIRST // <b>CLASS OF 2026</b></div>';
+      },
+      titles:function(){
+        vig.innerHTML='<span class="ptk-kl">THE REIGN CLOCKS // RUNNING LIVE</span><div class="ptk-reigns">'+
+          REIGNS.map(function(r){return '<div class="ptk-reign"><span class="ptk-reign__t">'+r[1]+'<em>'+r[0]+'</em></span><span class="ptk-reign__d">DAY '+dd(r[2])+'</span></div>';}).join('')+
+          '</div>';
+      },
+      media:function(){
+        function show(k){
+          vig.innerHTML='<span class="ptk-rec"><i></i>REC // THE WIRE</span><p class="ptk-wire ptk-flip">'+WIRE[k]+'</p>'+
+            '<div class="ptk-under" style="margin-top:14px">PRESS ROW // ISO CAM // LORE FEED</div>';
+        }
+        show(0);var k=0;
+        inner=setInterval(function(){k=(k+1)%WIRE.length;show(k);},3200);
+      }
+    };
+    function take2(i,user){
+      if(inner){clearInterval(inner);inner=null;}
+      on=i;var fd=FEEDS[i];
+      [].forEach.call(bank.children,function(c,j){c.classList.toggle('is-on',j===i);c.setAttribute('aria-selected',j===i?'true':'false');});
+      pgmname.textContent=fd.name.replace('&amp;','&');take.setAttribute('href',fd.href);sub.textContent=fd.sub;
+      ptk.classList.remove('is-cutting');void ptk.offsetWidth;ptk.classList.add('is-cutting');
+      V[fd.id]();
+      if(user){hold=true;clearTimeout(take2._h);take2._h=setTimeout(function(){hold=false;},22000);}
+    }
+    setInterval(function(){
+      if(hold||ptk.matches(':hover'))return;
+      var r=ptk.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight)return;
+      take2((on+1)%FEEDS.length,false);
+    },6500);
+    setInterval(function(){
+      var d=new Date();
+      clock.textContent=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+    },1000);
+    take2(0,false);
+  }
+})();
+
+/* ---------- C. WRESTLER DECK ---------- */
+(function(){
+  var DECK=[
+    ['stone-cold-steve-austin','The Texas Rattlesnake','Stone Cold Steve Austin','wwe','WWE','A',20],
+    ['the-rock','The Great One','The Rock','wwe','WWE','R',300],
+    ['the-undertaker','The Phenom','The Undertaker','gold','HOF','U',260],
+    ['ric-flair','The Nature Boy','Ric Flair','gold','2&times; HOF','16',120],
+    ['roman-reigns','The Tribal Chief','Roman Reigns','wwe','WWE','R',340],
+    ['cm-punk','The Best in the World','CM Punk','wwe','WWE','P',40],
+    ['aj-styles','The Phenomenal One','AJ Styles','tna','TNA','A',200],
+    ['sting','The Icon','Sting','wcw','WCW','S',150],
+    ['rey-mysterio','The Master of the 619','Rey Mysterio','wcw','WCW','619',90],
+    ['rhea-ripley','Mami','Rhea Ripley','womens','WOMEN','R',280],
+    ['becky-lynch','The Man','Becky Lynch','womens','WOMEN','B',60],
+    ['kazuchika-okada','The Rainmaker','Kazuchika Okada','njpw','NJPW','O',230]
+  ];
+  var wrap=document.getElementById('wdeal');
+  if(wrap){
+    var order=DECK.map(function(_,i){return i;}),head=0,SHOW=6;
+    function tile(d,delay){
+      var gold=d[3]==='gold'?' tile--gold':'';
+      return '<a class="tile'+gold+' wdeal-in" style="--seed:'+d[6]+';animation-delay:'+delay+'ms" href="/wrestlers/'+d[0]+'/">'+
+        '<span class="tile__spot" aria-hidden="true"></span><div class="tile__media">'+
+        '<span class="chip chip--'+d[3]+' tile__badge">'+d[4]+'</span>'+
+        '<span class="tile__mono" aria-hidden="true">'+d[5]+'</span></div>'+
+        '<div class="tile__body"><p class="tile__kicker">'+d[1]+'</p><h3 class="tile__name">'+d[2]+'</h3></div></a>';
+    }
+    function deal(){
+      var html='';
+      for(var i=0;i<SHOW;i++)html+=tile(DECK[order[(head+i)%order.length]],i*70);
+      wrap.innerHTML=html;
+    }
+    function shuffle(){
+      for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=order[i];order[i]=order[j];order[j]=t;}
+      head=0;deal();
+    }
+    var btn=document.getElementById('wdealShuffle');
+    if(btn)btn.addEventListener('click',shuffle);
+    setInterval(function(){
+      var r=wrap.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight)return;
+      head=(head+1)%order.length;deal();
+    },4200);
+    shuffle();
+  }
+})();
+
+/* ---------- D. AJ HOF SPOTLIGHT ---------- */
+(function(){
+  var ajx=document.getElementById('ajx');
+  if(!ajx)return;
+  var T=new Date('2026-04-17T00:00:00Z').getTime();
+  function pad(n){return (n<10?'0':'')+n;}
+  function tick(){
+    var ms=Math.max(0,Date.now()-T),d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
+    var q=function(u){return ajx.querySelector('[data-aj="'+u+'"]');};
+    if(!q('d'))return;
+    q('d').textContent=d;q('h').textContent=pad(h);q('m').textContent=pad(m);q('s').textContent=pad(s);
+  }
+  tick();setInterval(tick,1000);
+  [].forEach.call(ajx.querySelectorAll('.ajx-leg'),function(leg){
+    var tv=leg.querySelector('.ajx-leg__tv');if(!tv)return;
+    var yt=leg.getAttribute('data-yt'),frame=null,t=null;
+    leg.addEventListener('mouseenter',function(){
+      if(!yt)return;
+      clearTimeout(t);
+      t=setTimeout(function(){
+        if(frame)return;
+        frame=document.createElement('iframe');
+        frame.src='https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&mute=1&controls=0&rel=0&playsinline=1'+(leg.getAttribute('data-start')?'&start='+leg.getAttribute('data-start'):'');
+        frame.allow='autoplay; encrypted-media; picture-in-picture';
+        frame.setAttribute('title','AJ Styles tape');
+        tv.appendChild(frame);
+        leg.classList.add('is-live');
+      },220);
+    });
+    leg.addEventListener('mouseleave',function(){
+      clearTimeout(t);
+      if(frame){frame.remove();frame=null;}
+      leg.classList.remove('is-live');
+    });
+    var play=leg.querySelector('.ajx-play');
+    if(play)play.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      if(window.WL&&window.WL.openModal){
+        window.WL.openModal(yt,leg.getAttribute('data-tape')||'AJ Styles',{
+          service:leg.getAttribute('data-service')||'',
+          serviceUrl:leg.getAttribute('data-service-url')||'',
+          page:leg.getAttribute('href')
+        });
+      }
+    });
+  });
+})();
+
+/* ---------- E. MOMENTS REEL: rolling film strip ---------- */
+(function(){
+  var MOMENTS=[
+    {yt:'9hMp65SzyTU',kl:'JUNE 1998 // KING OF THE RING',nm:'Mankind off the Cell',s:'SIXTEEN FEET THROUGH THE TABLE',page:'/moments/mankind-hell-in-a-cell-fall-1998/',title:'Mankind off the Cell, King of the Ring 1998'},
+    {yt:'4cEgYyvblDc',kl:'OCTOBER 1997 // BADD BLOOD',nm:'Kane tears off the door',s:'THE FIRST CELL, INTERRUPTED',page:'/moments/kane-debut-badd-blood-1997/',title:'Kane tears off the Cell door, Badd Blood 1997'},
+    {yt:'vON3XVcGOW8',kl:'MARCH 2015 // WRESTLEMANIA 31',nm:'The heist of the century',s:'ROLLINS CASHES IN MID-MAIN EVENT',page:'/matches/rollins-cash-in-wm31-2015/',title:'Seth Rollins cashes in, WrestleMania 31'},
+    {yt:null,mono:'3:16',kl:'AUGUST 1997 // SUMMERSLAM',nm:'Austin breaks his neck',s:'AND FINISHES THE MATCH ANYWAY',page:'/moments/steve-austin-broken-neck-1997/'},
+    {yt:'B638ROb-iYk',kl:'JULY 1996 // BASH AT THE BEACH',nm:'The nWo is born',s:'HOGAN DROPS THE THIRD LEG',page:'/matches/nwo-formation-bash-at-the-beach-1996/',title:'The nWo formation, Bash at the Beach 1996'},
+    {yt:'UHjLdrKKmXs',kl:'APRIL 2014 // WRESTLEMANIA XXX',nm:'The YES! Movement wins',s:'BRYAN OPENS AND CLOSES THE SHOW',page:'/matches/daniel-bryan-wm30-2014/',title:'Daniel Bryan at WrestleMania XXX'},
+    {yt:null,mono:'HHH',kl:'MAY 2001 // RAW',nm:'The Game tears his quad',s:'AND STILL TAKES THE WALLS',page:'/moments/triple-h-tears-his-quad-2001/'},
+    {yt:'Y4JoVecKu9I',kl:'APRIL 2001 // WRESTLEMANIA X-SEVEN',nm:'TLC II',s:'SIX MEN, THREE TEAMS, ONE HANGING',page:'/matches/tlc-2-wrestlemania-x-seven-2001/',title:'TLC II, WrestleMania X-Seven'}
+  ];
+  var tpx=document.getElementById('tpx');
+  if(!tpx)return;
+  var track=tpx.querySelector('.tpx-track');
+  if(track){
+    function cell(m){
+      var art=m.yt?'<span class="fart" style="background-image:url(https://i.ytimg.com/vi/'+m.yt+'/hqdefault.jpg)"></span><span class="fplay"><i></i>PLAY</span>'
+                  :'<span class="fmono">'+m.mono+'</span>';
+      var inner=art+'<span class="fkl">'+m.kl+'</span><span class="fnm">'+m.nm+'</span><span class="fs">'+m.s+'</span>';
+      var open=m.yt?'<button class="tpx-frame" type="button" data-yt="'+m.yt+'" data-title="'+m.title+'" data-page="'+m.page+'">'
+                   :'<a class="tpx-frame" href="'+m.page+'">';
+      return '<div class="tpx-cell">'+open+inner+(m.yt?'</button>':'</a>')+'</div>';
+    }
+    var strip=MOMENTS.map(cell).join('');
+    track.innerHTML=strip+strip; /* doubled for the seamless loop */
+  }
+  tpx.addEventListener('click',function(e){
+    var f=e.target.closest('.tpx-frame[data-yt]');
+    if(!f)return;
+    e.preventDefault();
+    if(window.WL&&window.WL.openModal){
+      window.WL.openModal(f.getAttribute('data-yt'),f.getAttribute('data-title')||'Wrestle Lore',{page:f.getAttribute('data-page')||'/moments/'});
+    }else{
+      window.location.href=f.getAttribute('data-page')||'/moments/';
+    }
+  });
+})();
+
+/* ---------- F. FIVE-STAR CLASSICS SPOTLIGHT ---------- */
+(function(){
+  var CLX=[
+    {slug:'undertaker-vs-hbk-wm25',yt:'Gd54flkPtL4',promo:'wwe',promoName:'WWE',era:'RUTHLESS AGGRESSION',
+     name:'Undertaker vs Michaels',meta:'WRESTLEMANIA XXV // 2009 // RELIANT STADIUM',
+     hook:'Two legends in their forties stage the most dramatic false-finish war WrestleMania has ever seen.'},
+    {slug:'cm-punk-vs-cena-mitb-2011',yt:'QZb3dfX3cQA',promo:'wwe',promoName:'WWE',era:'REALITY ERA',
+     name:'CM Punk vs John Cena',meta:'MONEY IN THE BANK // 2011 // ALLSTATE ARENA, CHICAGO',
+     hook:'Hometown Chicago, a ticking contract, and the loudest crowd of the decade.'},
+    {slug:'styles-vs-daniels-vs-joe-unbreakable-2005',yt:'mTm3IQBzKmI',promo:'tna',promoName:'TNA',era:'X DIVISION',
+     name:'Styles vs Daniels vs Joe',meta:'TNA UNBREAKABLE // 2005 // THREE-WAY',
+     hook:'Three men raise the X Division ceiling in a single night.'},
+    {slug:'gargano-vs-ciampa-takeover-new-orleans-2018',yt:'PKUMW0beZ0Y',promo:'nxt',promoName:'NXT',era:'BLACK & GOLD',
+     name:'Gargano vs Ciampa',meta:'TAKEOVER: NEW ORLEANS // 2018 // UNSANCTIONED',
+     hook:'Unsanctioned, personal, and the best match NXT ever put to tape.'},
+    {slug:'rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997',yt:'sqRYKCH8dUc',promo:'wcw',promoName:'WCW',era:'MONDAY NIGHT WARS',
+     name:'Rey vs Eddie',meta:'HALLOWEEN HAVOC // 1997 // MASK VS TITLE',
+     hook:'Mask against title, and the finest eleven minutes of lucha libre WCW ever aired.'}
+  ];
+  var clx=document.getElementById('clx');
+  if(!clx)return;
+  var main=clx.querySelector('.clx-main'),rail=clx.querySelector('.clx-rail');
+  var on=0,hold=false,holdT=null;
+  CLX.forEach(function(c,i){
+    var b=document.createElement('button');
+    b.type='button';b.className='clx-card'+(i===0?' is-on':'');
+    var th=c.yt?'<span class="a" style="background-image:url(https://i.ytimg.com/vi/'+c.yt+'/hqdefault.jpg)"></span>'
+             :'<span class="m">'+c.name.charAt(0)+'</span>';
+    b.innerHTML='<span class="clx-card__th">'+th+'</span><span><span class="clx-card__kl">'+c.meta.split('//')[0].trim()+' // '+c.meta.split('//')[1].trim()+'</span>'+
+      '<span class="clx-card__nm">'+c.name+'</span></span><span class="clx-card__r">&starf; 5.0</span>';
+    b.addEventListener('click',function(){show(i);hold=true;clearTimeout(holdT);holdT=setTimeout(function(){hold=false;},20000);});
+    rail.appendChild(b);
+  });
+  function show(i){
+    on=i;var c=CLX[i];
+    [].forEach.call(rail.children,function(el,j){el.classList.toggle('is-on',j===i);});
+    var bg=c.yt?'style="background-image:url(https://i.ytimg.com/vi/'+c.yt+'/hqdefault.jpg)"':'style="background:linear-gradient(160deg,#1c1408,#0a0b0e)"';
+    main.innerHTML='<div class="clx-bg" '+bg+'></div><div class="clx-scrim"></div>'+
+      '<div class="clx-content">'+
+      '<div class="clx-badges"><span class="clx-rank">&starf; 5.0 // FIVE-STAR CLUB</span><span class="chip chip--'+c.promo+'">'+c.promoName+'</span><span class="clx-era">'+c.era+'</span></div>'+
+      '<h3 class="clx-title">'+c.name+'</h3>'+
+      '<span class="clx-meta">'+c.meta+'</span>'+
+      '<div class="clx-stars">&starf;&starf;&starf;&starf;&starf;<span class="on">&starf;&starf;&starf;&starf;&starf;</span></div>'+
+      '<p class="clx-hook">'+c.hook+'</p>'+
+      '<div class="clx-ctas">'+
+      (c.yt?'<button class="clx-watch" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>WATCH THE MATCH</button>':'')+
+      '<a class="clx-break" href="/matches/'+c.slug+'/">FULL BREAKDOWN</a></div></div>';
+    main.classList.remove('is-on');void main.offsetWidth;main.classList.add('is-on');
+    var w=main.querySelector('.clx-watch');
+    if(w)w.addEventListener('click',function(){
+      if(window.WL&&window.WL.openModal)window.WL.openModal(c.yt,c.name+', '+c.meta.toLowerCase(),{page:'/matches/'+c.slug+'/'});
+    });
+  }
+  setInterval(function(){
+    if(hold||clx.matches(':hover'))return;
+    var r=clx.getBoundingClientRect();
+    if(r.bottom<0||r.top>innerHeight)return;
+    show((on+1)%CLX.length);
+  },7000);
+  show(0);
+})();
+</script>
 
 </main>
 
@@ -1821,13 +2726,12 @@
 </footer>
 
 <div class="grain" aria-hidden="true"></div>
-<script src="/js/main.js?v=cf552857" defer></script>
-<script src="/js/enhance.js?v=cf552857" defer></script>
-<script src="/js/search-index.js?v=cf552857" defer></script>
-<script src="/js/nav.js?v=cf552857" defer></script>
-<script src="/js/home-engage.js?v=cf552857" defer></script>
-<script src="/js/home-modules.js?v=cf552857" defer></script>
-<script src="/js/media.js?v=cf552857" defer></script>
+<script src="/js/main.js?v=4e02a01c" defer></script>
+<script src="/js/enhance.js?v=4e02a01c" defer></script>
+<script src="/js/search-index.js?v=4e02a01c" defer></script>
+<script src="/js/nav.js?v=4e02a01c" defer></script>
+<script src="/js/home-engage.js?v=4e02a01c" defer></script>
+<script src="/js/media.js?v=4e02a01c" defer></script>
 <script id="home-ringfeed-js">
 /* Hero spotlight slider — full-column crossfade, progressive enhancement, no deps */
 (function(){
@@ -1978,6 +2882,396 @@
     t.addEventListener('click', function(e){ e.preventDefault(); pick(t); });
     t.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(t); } });
   });
+})();
+
+</script>
+<script id="gorilla-js">
+/* ===================== MATCH DESK V2 — controller ===================== */
+(function () {
+  'use strict';
+  var grid = document.querySelector('[data-mdx]');
+  if (!grid) return;
+  var $ = function (sel) { return grid.querySelector(sel); };
+
+  var HOME = '';
+  var MATCHES = [
+    {
+      id: 'Gd54flkPtL4', slug: 'undertaker-vs-hbk-wm25',
+      title: 'The Undertaker vs Shawn Michaels',
+      short: 'Undertaker vs Michaels',
+      event: 'WrestleMania XXV · 2009 · Reliant Stadium, Houston',
+      meta: 'WrestleMania XXV · 2009',
+      rate: '5.0', stars: 5, tag: 'Five-Star Club', chip: 'WWE', chipCls: 'chip chip--wwe', era: 'Ruthless Aggression',
+      klbl: 'GOLD EDGE // MATCH OF RECORD',
+      srcM: 'Meltzer ★★★★¾ (4.75)', srcC: 'Cagematch ~9.6 / 10',
+      hook: 'Two legends in their forties staged the most dramatic false-finish war WrestleMania has ever seen, and it is regularly voted the greatest Mania match of all time.',
+      winner: 'The Undertaker', result: 'Undertaker def. Michaels (17–0)',
+      frame: 1, art: ['maxresdefault', 'sd3', 'hqdefault']
+    },
+    {
+      id: '0MS9CY_Gn7E', slug: 'hbk-vs-razor-ramon-wrestlemania-x',
+      title: 'Shawn Michaels vs Razor Ramon',
+      short: 'Michaels vs Razor Ramon',
+      event: 'WrestleMania X · 1994 · Madison Square Garden',
+      meta: 'WrestleMania X · 1994',
+      rate: '5.0', stars: 5, tag: 'Five-Star Club', chip: 'WWF', chipCls: 'chip chip--wwe', era: 'New Generation',
+      klbl: 'CUE 02 // THE LADDER BLUEPRINT',
+      srcM: 'Meltzer ★★★★★ (5.0)', srcC: '',
+      hook: 'The ladder match that invented the genre. Two Intercontinental Titles hung above the ring, and every ladder spot of the next thirty years traces back to this night.',
+      winner: 'Razor Ramon', result: 'Razor Ramon def. Michaels (unified the Intercontinental Title)',
+      frame: 2, art: ['maxresdefault', 'sd1', 'hqdefault']
+    },
+    {
+      id: 'BvZ2KQuCTds', slug: 'hbk-vs-undertaker-badd-blood-1997',
+      title: 'Shawn Michaels vs The Undertaker',
+      short: 'Michaels vs Undertaker',
+      event: 'In Your House 18: Badd Blood · 1997 · Kiel Center',
+      meta: 'Badd Blood · 1997',
+      rate: '4.5', stars: 4.5, tag: 'Near Miss', chip: 'WWF', chipCls: 'chip chip--wwe', era: 'Attitude Era',
+      klbl: 'CUE 03 // THE FIRST CELL',
+      srcM: 'Meltzer ★★★★¾ (4.75)', srcC: 'Cagematch ~9.0 / 10',
+      hook: 'The first Hell in a Cell. Sixteen feet of steel, a bloodied Showstopper, and a mid-match debut that rewired the main event scene for a decade.',
+      winner: 'Shawn Michaels', result: 'Michaels def. Undertaker (Kane debut)',
+      frame: 3
+    },
+    {
+      id: 'ljb34LNhGQw', slug: 'undertaker-vs-hbk-wm26-2010',
+      title: 'The Undertaker vs Shawn Michaels (Streak vs Career)',
+      short: 'Streak vs Career',
+      event: 'WrestleMania XXVI · 2010 · University of Phoenix Stadium',
+      meta: 'WrestleMania XXVI · 2010',
+      rate: '4.5', stars: 4.5, tag: 'Near Miss', chip: 'WWE', chipCls: 'chip chip--wwe', era: 'PG Era',
+      klbl: 'CUE 04 // STREAK VS CAREER',
+      srcM: 'Meltzer ★★★★½ (4.5)', srcC: 'Cagematch ~9.4 / 10',
+      hook: 'No belt on the line. If the Streak survives, the Showstopper retires. A sequel with stakes the original never had.',
+      winner: 'The Undertaker', result: 'Undertaker def. Michaels (18–0); HBK retired',
+      frame: 1, art: ['maxresdefault', 'sd2', 'hqdefault']
+    },
+    {
+      id: 'RnTd_Gznjd8', slug: 'hbk-vs-jericho-wm19-2003',
+      title: 'Shawn Michaels vs Chris Jericho',
+      short: 'Michaels vs Jericho',
+      event: 'WrestleMania XIX · 2003 · Safeco Field, Seattle',
+      meta: 'WrestleMania XIX · 2003',
+      rate: '4.5', stars: 4.5, tag: 'Near Miss', chip: 'WWE', chipCls: 'chip chip--wwe', era: 'Ruthless Aggression',
+      klbl: 'CUE 05 // IDOL VS UNDERSTUDY',
+      srcM: 'Meltzer ★★★★¼ (4.25)', srcC: '',
+      hook: 'Jericho grew up studying the Showstopper, then met him at Safeco Field to prove the understudy had passed the original. Twenty two minutes of one-upmanship between mentor and mirror.',
+      winner: 'Shawn Michaels', result: 'Michaels def. Jericho (bridging roll-up at 22:34)',
+      frame: 2, page: '/matches/'
+    },
+    {
+      id: 'jphS4xGOBFQ', slug: 'triple-h-vs-hbk-summerslam-2002',
+      title: 'Triple H vs Shawn Michaels',
+      short: 'Triple H vs Michaels',
+      event: 'SummerSlam 2002 · 2002 · Nassau Coliseum',
+      meta: 'SummerSlam 2002',
+      rate: '4.0', stars: 4, tag: 'Rated Classic', chip: 'WWE', chipCls: 'chip chip--wwe', era: 'Ruthless Aggression',
+      klbl: 'CUE 06 // THE DX CIVIL WAR',
+      srcM: 'Meltzer ★★★★¼ (4.25)', srcC: '',
+      hook: 'Michaels had not wrestled in over four years and a broken back was supposed to have ended him. His best friend turned on him, and they settled it in an unsanctioned street fight of ladders, chairs, and history.',
+      winner: 'Shawn Michaels', result: 'Michaels def. Triple H',
+      frame: 3, art: ['maxresdefault', 'sd1', 'hqdefault']
+    },
+    {
+      id: 'NTpGZUO3gFE', slug: 'rockers-vs-brain-busters-msg-1989',
+      title: 'The Rockers vs The Brain Busters',
+      short: 'The Rockers vs the Busters',
+      event: 'WWE on MSG · Jan 23, 1989 · Madison Square Garden',
+      meta: 'MSG · 1989',
+      rate: '4.5', stars: 4.5, tag: 'Vault Classic', chip: 'WWF', chipCls: 'chip chip--wwe', era: 'Golden Era',
+      klbl: 'CUE 07 // THE ROCKERS FILE',
+      srcM: 'Tape classic · MSG, Jan 23 1989', srcC: '',
+      hook: 'Before the Showstopper there were the Rockers. Michaels and Jannetty against Anderson and Blanchard, four of the sharpest tag wrestlers alive trading holds at full speed in the Garden.',
+      winner: 'The Brain Busters', result: 'Anderson & Blanchard def. The Rockers (Anderson tripped Jannetty from the floor)',
+      frame: 1, art: ['sd3', 'hq3', 'hqdefault'], page: '/matches/'
+    }
+  ];
+
+  /* distinct art from the /matches/ page: film-strip frames instead of the default thumb,
+     with an optional per-match override (m.art = ordered list of frame names) */
+  function art(m) {
+    var base = 'https://i.ytimg.com/vi/' + m.id + '/';
+    var names = m.art || ['sd' + m.frame, 'hq' + m.frame, 'hqdefault'];
+    return names.map(function (n) { return 'url(' + base + n + '.jpg)'; }).join(',');
+  }
+  function pageUrl(m) { return m.page || (HOME + '/matches/' + m.slug + '/'); }
+  function starsRow(n) {
+    var full = Math.floor(n), half = n % 1 >= 0.5;
+    var s = '';
+    for (var i = 0; i < full; i++) s += '★';
+    if (half) s += '½';
+    return s;
+  }
+
+  var el = {
+    hspot: document.querySelector('.hspot[data-hspot]'),
+    hgrid: document.querySelector('.hrl-grid'),
+    playBtn: document.querySelector('.hspot__play'),
+    picks: $('[data-mdx-picks]'),
+    screen: $('[data-mdx-screen]'),
+    bgA: $('[data-mdx-bg-a]'), bgB: $('[data-mdx-bg-b]'),
+    klbl: $('[data-mdx-klbl]'),
+    info: $('[data-mdx-info]'),
+    rank: $('[data-mdx-rank]'), tag: $('[data-mdx-tag]'), chip: $('[data-mdx-chip]'), era: $('[data-mdx-era]'),
+    title: $('[data-mdx-title]'), event: $('[data-mdx-event]'), hook: $('[data-mdx-hook]'),
+    starsrow: $('[data-mdx-starsrow]'), score: $('[data-mdx-score]'), srcM: $('[data-mdx-src-m]'), srcC: $('[data-mdx-src-c]'),
+    watch1: $('[data-mdx-watch]'), watch2: $('[data-mdx-watch2]'),
+    break1: $('[data-mdx-break]'), break2: $('[data-mdx-break2]'),
+    play: $('[data-mdx-play]'),
+    open1: $('[data-mdx-open]'), close: $('[data-mdx-close]'),
+    bell: $('[data-mdx-bell]'), ringOpen: $('[data-mdx-ring-open]'), ringClose: $('[data-mdx-ring-close]'),
+    spoiler: $('[data-mdx-spoiler]'), winner: $('[data-mdx-winner]'), result: $('[data-mdx-result]'), reveal: $('[data-mdx-reveal]'),
+    stars: $('[data-mdx-stars]'), rateval: $('[data-mdx-rateval]'),
+    insider: $('[data-mdx-insider]'), insiderTxt: $('[data-mdx-insider-txt]'), insiderNo: $('[data-mdx-insider-no]')
+  };
+
+  var cur = 0, deskOpen = false, frontIsA = false;
+  var revealed = {}, ballots = {}, wasPlaying = false;
+
+  /* ---------- build the picker rail ---------- */
+  MATCHES.forEach(function (m, k) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'mdx-pick' + (k === cur ? ' is-on' : '');
+    b.setAttribute('data-k', k);
+    b.setAttribute('aria-pressed', k === cur ? 'true' : 'false');
+    b.innerHTML =
+      '<span class="mdx-pick__no">0' + (k + 1) + '</span>' +
+      '<span class="mdx-pick__body"><span class="mdx-pick__nm"></span><span class="mdx-pick__meta"></span></span>' +
+      '<span class="mdx-pick__sc">' + m.rate + '</span>';
+    b.querySelector('.mdx-pick__nm').textContent = m.title;
+    b.querySelector('.mdx-pick__meta').textContent = m.meta;
+    b.addEventListener('click', function () { select(k); });
+    el.picks.appendChild(b);
+  });
+
+  /* ---------- render the screen for match k ---------- */
+  function render(k, animate) {
+    var m = MATCHES[k];
+    cur = k;
+
+    /* crossfade the two art layers */
+    var front = frontIsA ? el.bgA : el.bgB;
+    var back = frontIsA ? el.bgB : el.bgA;
+    back.style.backgroundImage = art(m);
+    back.classList.add('is-live');
+    back.style.opacity = '1';
+    front.style.opacity = '0';
+    front.classList.remove('is-live');
+    frontIsA = !frontIsA;
+
+    el.klbl.textContent = m.klbl;
+    el.rank.innerHTML = (m.stars === 5 ? '5★' : '4½★');
+    el.tag.textContent = m.tag;
+    el.chip.textContent = m.chip;
+    el.era.textContent = m.era;
+    el.title.textContent = m.title;
+    el.event.textContent = m.event;
+    el.hook.textContent = m.hook;
+    el.starsrow.textContent = starsRow(m.stars);
+    el.score.textContent = m.rate;
+    el.srcM.textContent = m.srcM;
+    el.srcC.textContent = m.srcC || '';
+    el.srcC.hidden = !m.srcC;
+    el.winner.textContent = m.winner;
+    el.result.textContent = m.result;
+    [el.watch1, el.watch2, el.break1, el.break2].forEach(function (a) { if (a) a.href = pageUrl(m); });
+    el.screen.setAttribute('aria-label', 'Featured match: ' + m.title + ', ' + m.event);
+
+    /* sealed state per match */
+    var open = !!revealed[m.slug];
+    el.spoiler.classList.toggle('is-open', open);
+    el.reveal.setAttribute('aria-expanded', open ? 'true' : 'false');
+    el.reveal.lastChild.textContent = open ? 'On the record' : 'Reveal winner';
+
+    /* ballot per match */
+    paintStars(ballots[m.slug] || 0, false);
+    el.rateval.textContent = ballots[m.slug] ? ballots[m.slug] + '.0' : '';
+    el.insider.classList.remove('is-on');
+
+    /* picker state */
+    [].slice.call(el.picks.children).forEach(function (p, i) {
+      p.classList.toggle('is-on', i === k);
+      p.setAttribute('aria-pressed', i === k ? 'true' : 'false');
+    });
+
+    if (animate) {
+      el.info.classList.remove('is-in');
+      void el.info.offsetHeight;
+      el.info.classList.add('is-in');
+    }
+    var onPick = el.picks.children[k];
+    if (deskOpen && onPick && onPick.scrollIntoView) { try { onPick.scrollIntoView({ block: 'nearest' }); } catch (err) {} }
+  }
+
+  /* ---------- compact-mode shuffle: the featured match rotates until the bell rings ----------
+     Two triggers: (1) every time the carousel cycles back to slide 1, deal the next match;
+     (2) while slide 1 stays on screen (carousel paused or wrapped), rotate on a timer. */
+  var slide1 = grid.closest('.hspot__slide');
+  var hovered = false;
+  grid.addEventListener('mouseenter', function () { hovered = true; });
+  grid.addEventListener('mouseleave', function () { hovered = false; });
+  function shuffleNext() { render((cur + 1) % MATCHES.length, false); }
+  if (slide1 && typeof MutationObserver !== 'undefined') {
+    var wasActive = slide1.classList.contains('is-active');
+    new MutationObserver(function () {
+      var isActive = slide1.classList.contains('is-active');
+      if (isActive && !wasActive && !deskOpen) shuffleNext();
+      wasActive = isActive;
+    }).observe(slide1, { attributes: true, attributeFilter: ['class'] });
+  }
+  setInterval(function () {
+    if (deskOpen || hovered || document.hidden) return;
+    if (slide1 && !slide1.classList.contains('is-active')) return;
+    shuffleNext();
+  }, 8000);
+
+  function select(k) { if (k !== cur) render(k, true); }
+
+  /* ---------- the modal theater ---------- */
+  function playCurrent(e) {
+    if (e) e.preventDefault();
+    var m = MATCHES[cur];
+    if (window.WL && window.WL.openModal) {
+      window.WL.openModal(m.id, m.title + ', ' + m.meta, {
+        service: 'Peacock',
+        serviceUrl: 'https://www.peacocktv.com/sports/wwe',
+        page: pageUrl(m)
+      });
+    } else {
+      window.open('https://www.youtube.com/watch?v=' + m.id, '_blank', 'noopener');
+    }
+  }
+  [el.watch1, el.watch2, el.play].forEach(function (b) { if (b) b.addEventListener('click', playCurrent); });
+  el.screen.addEventListener('click', function (e) {
+    if (deskOpen) return; /* in desk mode the inner controls own the clicks */
+    if (e.target.closest('a,button')) return;
+    playCurrent(e);
+  });
+
+  /* ---------- desk open and close ---------- */
+  function pauseCarousel() {
+    if (!el.playBtn) return;
+    wasPlaying = el.playBtn.getAttribute('data-playing') === 'true';
+    if (wasPlaying) el.playBtn.click();
+  }
+  function resumeCarousel() {
+    if (el.playBtn && wasPlaying && el.playBtn.getAttribute('data-playing') === 'false') el.playBtn.click();
+  }
+  function openDesk() {
+    if (deskOpen) return;
+    deskOpen = true;
+    pauseCarousel();
+    grid.classList.add('is-desk');
+    if (el.hgrid) el.hgrid.classList.add('is-desk');
+    if (el.hspot) el.hspot.classList.add('is-desk');
+    el.open1.setAttribute('aria-expanded', 'true');
+    syncBell();
+    render(cur, true);
+    el.close.focus({ preventScroll: true });
+  }
+  function closeDesk() {
+    if (!deskOpen) return;
+    deskOpen = false;
+    grid.classList.remove('is-desk');
+    if (el.hgrid) el.hgrid.classList.remove('is-desk');
+    if (el.hspot) el.hspot.classList.remove('is-desk');
+    el.open1.setAttribute('aria-expanded', 'false');
+    syncBell();
+    render(0, false);
+    resumeCarousel();
+    el.open1.focus({ preventScroll: true });
+    try { window.dispatchEvent(new Event('resize')); } catch (err) {}
+  }
+  /* ---------- the bell's voice: a synthesized ring bell, no audio files ---------- */
+  var actx = null;
+  function strike(t, vol) {
+    /* inharmonic partials approximating a struck steel ring bell */
+    var partials = [[1046, 1], [1735, .55], [2310, .38], [2940, .22], [640, .3]];
+    partials.forEach(function (p) {
+      var o = actx.createOscillator(), g = actx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(p[0] * (1 + (Math.sin(p[0]) * .002)), t);
+      g.gain.setValueAtTime(.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol * p[1], t + .006);
+      g.gain.exponentialRampToValueAtTime(.0001, t + 1.15);
+      o.connect(g); g.connect(actx.destination);
+      o.start(t); o.stop(t + 1.25);
+    });
+  }
+  function bellSound(times) {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === 'suspended') actx.resume();
+      for (var i = 0; i < times; i++) strike(actx.currentTime + .02 + i * .24, .085);
+    } catch (e) {}
+  }
+  function clang(times) {
+    bellSound(times || 1);
+    el.bell.classList.remove('is-ringing');
+    void el.bell.getBoundingClientRect();
+    el.bell.classList.add('is-ringing');
+    setTimeout(function () { el.bell.classList.remove('is-ringing'); }, 700);
+  }
+  function syncBell() {
+    el.bell.classList.toggle('is-rung', deskOpen);
+    el.bell.setAttribute('aria-expanded', deskOpen ? 'true' : 'false');
+    el.bell.setAttribute('aria-label', deskOpen ? 'Ring the bell: go home and close the Gorilla Position' : 'Ring the bell: open the Gorilla Position');
+    el.ringOpen.hidden = deskOpen;
+    el.ringClose.hidden = !deskOpen;
+  }
+  el.open1.addEventListener('click', function () { if (!deskOpen) { clang(3); openDesk(); } });
+  el.bell.addEventListener('click', function () { if (deskOpen) { clang(1); closeDesk(); } else { clang(3); openDesk(); } });
+  el.close.addEventListener('click', closeDesk);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape' || !deskOpen) return;
+    var theater = document.querySelector('.wl-modal');
+    if (theater && !theater.hidden) return; /* the theater owns Esc first */
+    closeDesk();
+  });
+
+  /* ---------- sealed result ---------- */
+  el.reveal.addEventListener('click', function () {
+    var m = MATCHES[cur];
+    revealed[m.slug] = true;
+    el.spoiler.classList.add('is-open');
+    el.reveal.setAttribute('aria-expanded', 'true');
+    el.reveal.lastChild.textContent = 'On the record';
+  });
+
+  /* ---------- your ballot ---------- */
+  var starBtns = [].slice.call(el.stars.querySelectorAll('.mdx-star'));
+  function paintStars(n, hot) {
+    starBtns.forEach(function (s, i) {
+      s.classList.toggle(hot ? 'is-hot' : 'is-set', i < n);
+      if (!hot) s.classList.remove('is-hot');
+    });
+  }
+  el.stars.addEventListener('mouseover', function (e) {
+    var b = e.target.closest('.mdx-star');
+    if (b) paintStars(+b.getAttribute('data-v'), true);
+  });
+  el.stars.addEventListener('mouseleave', function () {
+    starBtns.forEach(function (s) { s.classList.remove('is-hot'); });
+    paintStars(ballots[MATCHES[cur].slug] || 0, false);
+  });
+  starBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = +b.getAttribute('data-v');
+      var m = MATCHES[cur];
+      ballots[m.slug] = v;
+      paintStars(v, false);
+      b.classList.remove('is-pop'); void b.offsetHeight; b.classList.add('is-pop');
+      el.rateval.textContent = v + '.0';
+      el.insiderTxt.innerHTML = '<b>' + starsRow(v) + ' filed for ' + m.short + '.</b> Insider ballots go on the record, count toward the Wrestle Lore rating, and unlock the full vault.';
+      el.insider.classList.add('is-on');
+    });
+  });
+  el.insiderNo.addEventListener('click', function () { el.insider.classList.remove('is-on'); });
+
+  /* ---------- boot ---------- */
+  render(0, false);
 })();
 
 </script>

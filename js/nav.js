@@ -22,8 +22,7 @@
     document.body.style.overflow = '';
     active = -1;
   }
-  function score(item, q) {
-    var t = item.t.toLowerCase();
+  function scoreText(t, q) {
     if (t === q) return 100;
     if (t.indexOf(q) === 0) return 80;
     if (t.indexOf(q) > -1) return 50;
@@ -31,6 +30,19 @@
     var parts = t.split(/\s+/);
     for (var i = 0; i < parts.length; i++) if (parts[i].indexOf(q) === 0) return 40;
     return -1;
+  }
+  function score(item, q) {
+    var s = scoreText(item.t.toLowerCase(), q);
+    item._aka = '';
+    // aliases ("a": from each profile's alternateName) rank just under a title hit,
+    // so "hhh" surfaces Triple H and "brahma bull" surfaces The Rock
+    if (item.a) {
+      for (var i = 0; i < item.a.length; i++) {
+        var as = scoreText(item.a[i].toLowerCase(), q);
+        if (as > -1 && as - 2 > s) { s = as - 2; item._aka = item.a[i]; }
+      }
+    }
+    return s;
   }
   function render(q) {
     q = (q || '').trim().toLowerCase();
@@ -53,7 +65,8 @@
     list.innerHTML = items.map(function (it, i) {
       return '<li class="cmdk__row' + (i === active ? ' is-active' : '') + '" role="option" data-url="' +
         it.u + '"><span class="cmdk__kind cmdk__kind--' + it.k.toLowerCase() + '">' + it.k +
-        '</span><span class="cmdk__title">' + esc(it.t) + '</span></li>';
+        '</span><span class="cmdk__title">' + esc(it.t) +
+        (it._aka ? ' <span style="opacity:.55;font-size:.85em">&middot; ' + esc(it._aka) + '</span>' : '') + '</span></li>';
     }).join('');
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) {

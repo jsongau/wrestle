@@ -1,3 +1,14 @@
+## 2026-07-29 — home: interactive lower half, shorter hero, alias search
+
+- Hero slide 1 tightened: one-line lede, GORILLA POSITION banner pill hidden (the bell is the only trigger), featured card starts at the top, viewport and screen heights reduced; Lore Feed folds to match and scrolls internally.
+- New: Wrestler Deck (Block 3 tiles now one auto-dealing row of 6 from a pool of 12 + Shuffle the Deck; "Roster" wording and all 107 counts removed).
+- New: AJ Styles Hall of Fame spotlight replaces the crossover strip AND the plaque wall (removed): shimmering medal, live in-the-Hall clock since April 17 2026, three promotion legs with hover video previews and gold ROLL TAPE ring buttons opening the modal theater (TNA Unbreakable mTm3IQBzKmI, NJPW official WK10 PV 3uEZc4dngEk, WWE official Cena vs Styles ENWsDCPg-PE).
+- New: Moments Reel replaces the tape room: continuous rolling film strip (8 moments, sprocket holes scroll, hover holds the frame with a HOLD // FRAME tally), 5 play in the modal; Chris Van Vliet demoted to a side tile.
+- New: Five-Star Classics spotlight on the matches-hero pattern: Ken Burns art, star meter, spoiler-safe hooks, WATCH THE MATCH modal + FULL BREAKDOWN, thumbnail rail, auto-rotate; Angle vs Benoit dropped (no tape); rivalries kept as a 3-up row, moments mini-column removed as redundant.
+- New: The Wrestler Files (dossier cabinet: Rock, Austin, Undertaker, Triple H with count-up stats, stamp animation, alias roll) and The Production Truck (7 nav-hub feeds on a monitor wall: wrestler roll, star meter, live SummerSlam countdown, brand equalizer, HOF medal, live reign clocks, the wire; auto-cycles, cut glitch).
+- Removed: Insider band, answer paragraph, FAQ section (+ FAQPage JSON-LD from head), Keep Going rowlinks.
+- Search: js/search-index.js wrestler entries carry "a" aliases from profile JSON-LD alternateName (12 profiles); js/nav.js palette matches aliases just under title rank and shows the matched alias ("hhh" surfaces Triple H, "brahma bull" surfaces The Rock).
+
 ## 2026-07-29 (Media — featured-match hero on /media/)
 - **/media/ now leads with a featured-match hero**: kept the "Media & Creators" H1 and identity in a left column and added a large playable panel on the right featuring the El Grande Americano vs. "Original" El Grande Americano Mask vs Mask match (AAA Noche de los Grandes, May 30 2026; official WWE upload, 2M+ views). Clicking the panel opens the existing theater modal via the shared .yt facade engine (WL.mountFacades). Page-local <style> + one facade only, no shared CSS/JS/shell changes.
 
