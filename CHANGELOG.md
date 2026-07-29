@@ -1,3 +1,8 @@
+## 2026-07-29 (Explore card — curated marquee rotation)
+- **`js/home-engage.js`**: Replaced the auto-harvested Explore (`.f2-explore`) rotation with a hand-picked marquee set, killing scraped junk (Angle vs Benoit, three Gargano matches, the mangled "Board // Rated 30" hub title). Now rotates: Triple H, The Rock, The Undertaker, Stone Cold profiles; Undertaker vs Michaels (WM25), Rock vs Austin (WM X-Seven), Bret Hart vs Austin (WM13), Undertaker vs Triple H (WM28) matches; plus one live **Watch** card.
+- **Watch card opens the theater modal**: the Watch entry reuses a real, build-maintained `.yt[data-yt-id]` video facade already on the page and clicks it, so it opens the shared media.js theater player (embedded YouTube) on the homepage and never goes stale. Falls back to `window.WL.openModal`, then to the video page.
+- Every curated href verified to resolve on disk (8/8 pages exist); no invented facts in the copy. `renderCard` now swaps the CTA label to "Watch" and wires the modal for `kind:'watch'`.
+
 ## 2026-07-29 (Restructure: /matches/ becomes the hub, /rankings/ becomes a rankings directory)
 - **/matches/ is now the matches hub**: the rich video/rankings page (36 matches, random spotlight hero, 32 official embeds, spoiler-safe cards) ported verbatim from /matches/viewing-gallery/, plus a text search (matches wrestler/event/promotion/slug, so "hbk"/"taker" work) and hub SEO (rated + watchable title/meta/keywords/OG; CollectionPage + WebSite + BreadcrumbList + ItemList + FAQ). Replaces the old hand-authored index.
 - **/matches/viewing-gallery/ deleted**, 301 to /matches/ via new vercel.json.

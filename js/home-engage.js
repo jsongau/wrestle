@@ -120,8 +120,37 @@
 
   /* Surprise Me uses a curated fact - no auto-generation */
 
-  /* nothing to surface at all -> bail (keep self-contained + safe) */
-  var cardList = interleave();
+  /* ---- Explore card: a hand-picked marquee rotation (curated, not auto-harvested) ----
+     Every href is a real page; no Benoit/Gargano, no scraped hub titles. One live "Watch"
+     entry reuses a real, build-maintained video facade already on the page, so it opens the
+     shared theater modal (media.js) and never goes stale. */
+  function buildCuratedCards() {
+    var picks = [
+      { kind: 'profile', u: '/wrestlers/triple-h/',                        kick: 'Superstar',     title: 'Triple H',                reason: 'The Game. The Cerebral Assassin.' },
+      { kind: 'match',   u: '/matches/undertaker-vs-hbk-wm25/',            kick: 'Classic match', title: 'Undertaker vs Michaels',  reason: 'WrestleMania XXV. Many call it the greatest ever.' },
+      { kind: 'profile', u: '/wrestlers/the-rock/',                        kick: 'Superstar',     title: 'The Rock',                reason: 'The most electrifying man in sports entertainment.' },
+      { kind: 'match',   u: '/matches/rock-vs-austin-wm-x-seven-2001/',    kick: 'Classic match', title: 'Rock vs Austin',          reason: 'No Disqualification. WrestleMania X-Seven, 2001.' },
+      { kind: 'profile', u: '/wrestlers/the-undertaker/',                  kick: 'Superstar',     title: 'The Undertaker',          reason: 'The Deadman. 21-0 at WrestleMania before the fall.' },
+      { kind: 'match',   u: '/matches/bret-hart-vs-austin-wm13/',          kick: 'Classic match', title: 'Bret Hart vs Austin',     reason: 'WrestleMania 13. The double turn.' },
+      { kind: 'profile', u: '/wrestlers/stone-cold-steve-austin/',         kick: 'Superstar',     title: 'Stone Cold Steve Austin', reason: 'Austin 3:16. The face of the Attitude Era.' },
+      { kind: 'match',   u: '/matches/undertaker-vs-triple-h-wm28-2012/',  kick: 'Classic match', title: 'Undertaker vs Triple H',  reason: 'Hell in a Cell. The End of an Era.' }
+    ];
+    var yt = document.querySelector('.yt[data-yt-id]');
+    if (yt) {
+      picks.splice(2, 0, {
+        kind: 'watch',
+        u: yt.getAttribute('data-yt-page') || '/gallery/',
+        kick: 'Watch',
+        title: cap(yt.getAttribute('data-yt-title') || 'This week in wrestling', 40),
+        reason: 'Play the video right here, no new tab.',
+        video: yt.getAttribute('data-yt-id'),
+        vtitle: yt.getAttribute('data-yt-title') || 'Wrestle Lore',
+        ytEl: yt
+      });
+    }
+    return picks;
+  }
+  var cardList = buildCuratedCards();
   if (!cardList.length && !idx.length) return;
 
   /* ============================ SVG icons ============================ */
@@ -134,8 +163,8 @@
   var card = document.createElement('div');
   card.className = 'f2-explore';
   card.setAttribute('role', 'region');
-  card.setAttribute('aria-label', 'Explore: featured match');
-  card.innerHTML = '<div class="f2-stub" tabindex="0" role="button" aria-label="Explore a featured match"><span class="f2-stub__gleam"></span><span class="f2-stub__v">Explore</span></div><aside class="f2-card"></aside>';
+  card.setAttribute('aria-label', 'Explore: featured picks');
+  card.innerHTML = '<div class="f2-stub" tabindex="0" role="button" aria-label="Explore featured picks"><span class="f2-stub__gleam"></span><span class="f2-stub__v">Explore</span></div><aside class="f2-card"></aside>';
   document.body.appendChild(card);
   var vault = card.querySelector('.f2-card');
 
@@ -144,6 +173,7 @@
   function renderCard() {
     if (!cardList.length) return;
     var c = cardList[cardIdx % cardList.length];
+    var ctaLabel = c.kind === 'watch' ? 'Watch' : 'View';
     vault.innerHTML =
       '<a class="f2-card__link" href="' + esc(c.u) + '">' +
         '<span class="f2-card__kick"><span>' + esc(c.kick) + '</span></span>' +
@@ -151,10 +181,21 @@
         '<span class="f2-card__reason">' + esc(c.reason) + '</span>' +
       '</a>' +
       '<div class="f2-card__foot">' +
-        '<a class="f2-card__cta" href="' + esc(c.u) + '">View</a>' +
-        '<button class="f2-card__next" type="button" aria-label="Show another match">Next</button>' +
+        '<a class="f2-card__cta" href="' + esc(c.u) + '">' + ctaLabel + '</a>' +
+        '<button class="f2-card__next" type="button" aria-label="Show another">Next</button>' +
       '</div>';
     vault.querySelector('.f2-card__next').addEventListener('click', function () { cardIdx++; renderCard(); });
+    if (c.kind === 'watch' && c.video) {
+      var play = function (e) {
+        if (e) e.preventDefault();
+        var lnk = c.ytEl && c.ytEl.querySelector('.yt__link');
+        if (lnk) { lnk.click(); return; }                       // reuse the page's real facade -> theater modal
+        if (window.WL && window.WL.openModal) { window.WL.openModal(c.video, c.vtitle || c.title, { page: c.u }); return; }
+        location.href = c.u;                                     // last-ditch fallback
+      };
+      vault.querySelector('.f2-card__cta').addEventListener('click', play);
+      vault.querySelector('.f2-card__link').addEventListener('click', play);
+    }
   }
   var cardDismissed = false;
   renderCard();

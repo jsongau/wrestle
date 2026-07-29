@@ -28,7 +28,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="/css/site.css?v=20e5252c">
+<link rel="stylesheet" href="/css/site.css?v=9f110f26">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://wrestlelore.com/#org","name":"Wrestle Lore, the Pro Wrestling Database","url":"https://wrestlelore.com/","logo":{"@type":"ImageObject","url":"https://wrestlelore.com/assets/logo-512.png","width":512,"height":512},"description":"A crawlable database of modern professional wrestling: 107 wrestler profiles, 30 five-star matches, 11 championship lineages, plus rivalries, factions and real-life relationships across WWE, WCW, ECW, TNA, NXT, NJPW and AEW, with AAA covered through its WWE partnership.","foundingDate":"2026","sameAs":["https://twitter.com/matwrestling","https://www.youtube.com/@matwrestling"]}
 </script>
@@ -1683,12 +1683,12 @@
 </footer>
 
 <div class="grain" aria-hidden="true"></div>
-<script src="/js/main.js?v=20e5252c" defer></script>
-<script src="/js/enhance.js?v=20e5252c" defer></script>
-<script src="/js/search-index.js?v=20e5252c" defer></script>
-<script src="/js/nav.js?v=20e5252c" defer></script>
-<script src="/js/home-engage.js?v=20e5252c" defer></script>
-<script src="/js/media.js?v=20e5252c" defer></script>
+<script src="/js/main.js?v=9f110f26" defer></script>
+<script src="/js/enhance.js?v=9f110f26" defer></script>
+<script src="/js/search-index.js?v=9f110f26" defer></script>
+<script src="/js/nav.js?v=9f110f26" defer></script>
+<script src="/js/home-engage.js?v=9f110f26" defer></script>
+<script src="/js/media.js?v=9f110f26" defer></script>
 <script id="home-ringfeed-js">
 /* Hero spotlight slider — full-column crossfade, progressive enhancement, no deps */
 (function(){
@@ -1859,19 +1859,21 @@
   function tick(){var t=target-Date.now();if(t<0)t=0;var D=Math.floor(t/864e5),H=Math.floor(t/36e5)%24,M=Math.floor(t/6e4)%60,Sx=Math.floor(t/1e3)%60;
     if(d){d.textContent=p(D);h.textContent=p(H);m.textContent=p(M);s.textContent=p(Sx);}if(tab)tab.textContent=D+'d '+H+'h';}
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches; tick(); setInterval(tick, rm?60000:1000);
-  var hovering=false,pastHero=false,dismissed=false,pinned=false;
-  function apply(){var open=!dismissed&&(hovering||pastHero||pinned);w.setAttribute('data-open',open?'true':'false');}
-  w.addEventListener('mouseenter',function(){hovering=true;dismissed=false;apply();});
-  w.addEventListener('mouseleave',function(){hovering=false;dismissed=false;apply();});
-  w.querySelector('.wev-a-tab').addEventListener('click',function(e){e.stopPropagation();pinned=true;apply();});
+  var hovering=false,pastHero=false,dismissed=false,pinned=false,atFoot=false;
+  function apply(){var open=!dismissed&&!atFoot&&(hovering||pastHero||pinned);w.setAttribute('data-open',open?'true':'false');}
+  w.addEventListener('mouseenter',function(){hovering=true;apply();});
+  w.addEventListener('mouseleave',function(){hovering=false;apply();});
+  w.querySelector('.wev-a-tab').addEventListener('click',function(e){e.stopPropagation();dismissed=false;pinned=true;apply();});
   w.querySelector('.wev-a-close').addEventListener('click',function(e){e.stopPropagation();pinned=false;dismissed=true;apply();});
   var scheduled=false;
   function frame(){scheduled=false;var line=120;
     if(header){var hb=header.getBoundingClientRect().bottom;line=hb;if(innerWidth>900){w.style.top=Math.max(12,hb+14)+'px';}else{w.style.top='';}}
-    if(hero){var np=hero.getBoundingClientRect().bottom < line+4;if(np!==pastHero){pastHero=np;if(!np){pinned=false;}dismissed=false;}}
+    if(hero){var np=hero.getBoundingClientRect().bottom < line+4;if(np!==pastHero){pastHero=np;if(!np){pinned=false;}}}
     apply();}
   function onScroll(){if(!scheduled){scheduled=true;requestAnimationFrame(frame);}}
   addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);frame();
+  var wfoot=document.querySelector('footer.site-footer');
+  if(wfoot&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){atFoot=e.isIntersecting;apply();});},{threshold:0.01}).observe(wfoot);}
 })();
 
 </script>
