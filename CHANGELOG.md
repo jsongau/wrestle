@@ -1,3 +1,6 @@
+## 2026-07-29 (Membership — Ringside annual carries into signup)
+- **Signup card Ringside row is now live-wired**: choosing Annual + a contribution on the pricing slider and clicking a Ringside CTA now shows the real annual price (e.g. $650 a year) in the signup tier picker instead of the static $24.99/mo, plus the faction line ("you gift Insider to N fans to lead your own faction"). Reverts to $24.99/mo when Monthly is selected. syncRingside() reads the billing toggle + slider; wired to both on change.
+
 ## 2026-07-29 (Lore Feed — newsroom generator + site-wide 7-day ticker)
 ## 2026-07-29 (homepage lower redesign)
 - Hero: added the Gorilla Position dossier module (mdx) — featured-match file with sealed-result ballot, star ratings, "watch the match" + full breakdown; animated ring-the-bell; plus a "where to watch" streaming rail (Netflix / HBO Max / AMC+ / Prime).

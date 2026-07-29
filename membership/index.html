@@ -5218,7 +5218,7 @@ main#main .in.is-glow{border-color:var(--goldD);animation:emailglow 1.5s ease-ou
             <span class="t7-card">
               <span class="t7-dot" aria-hidden="true"></span>
               <span class="t7-main"><span class="t7-name">Ringside</span><span class="t7-desc">Support the site and shape how it grows</span></span>
-              <span class="t7-price"><span class="t7-p num">$24.99</span><span class="t7-ps">a month</span></span>
+              <span class="t7-price"><span class="t7-p num" id="t7-ring-p">$24.99</span><span class="t7-ps" id="t7-ring-ps">a month</span></span>
             </span>
           </label>
         </fieldset>
@@ -5344,7 +5344,37 @@ main#main .in.is-glow{border-color:var(--goldD);animation:emailglow 1.5s ease-ou
     insider:{btn:"Claim my founder spot",note:"Join today and the $9.99 rating desk is yours free, for life."},
     ringside:{btn:"Reserve my Ringside spot",note:"No charge today. Checkout opens at launch, and your patron spot is held now."}
   };
+  function ringMoney(n){return "$"+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");}
+  function syncRingside(){
+    var prEl=document.querySelector('input[name="pr6-per"]:checked');
+    var annual=prEl?prEl.value==="y":false;
+    var rng=document.getElementById("pr6-give-range");
+    var amt=rng?(parseInt(rng.value,10)||150):150;
+    var pEl=document.getElementById("t7-ring-p"), psEl=document.getElementById("t7-ring-ps");
+    if(annual){
+      if(pEl)pEl.textContent=ringMoney(amt);
+      if(psEl)psEl.textContent="a year";
+      var gifts=Math.floor((amt-150)/100);
+      if(gifts>=3)COPY.ringside.note=ringMoney(amt)+" a year, and you gift Insider to "+gifts+" fans to lead your own faction. No charge today.";
+      else if(gifts>=1)COPY.ringside.note=ringMoney(amt)+" a year, and you gift Insider to "+gifts+" fan"+(gifts>1?"s":"")+". No charge today.";
+      else COPY.ringside.note=ringMoney(amt)+" a year, the founder patron rate. No charge today.";
+    }else{
+      if(pEl)pEl.textContent="$24.99";
+      if(psEl)psEl.textContent="a month";
+      COPY.ringside.note="No charge today. Checkout opens at launch, and your patron spot is held now.";
+    }
+  }
+  function wireRingsideSync(){
+    var prs=document.querySelectorAll('input[name="pr6-per"]');
+    var rng=document.getElementById("pr6-give-range");
+    var onc=function(){syncRingside();var cur=document.querySelector('.t7 input[name="tier"]:checked');if(cur&&cur.value==="ringside")paint();};
+    prs.forEach(function(r){r.addEventListener("change",onc);});
+    if(rng)rng.addEventListener("input",onc);
+  }
+  if(document.readyState!=="loading")wireRingsideSync();
+  else document.addEventListener("DOMContentLoaded",wireRingsideSync);
   function paint(){
+    syncRingside();
     var t="insider";
     radios.forEach(function(r){if(r.checked)t=r.value;});
     var c=COPY[t]||COPY.insider;
