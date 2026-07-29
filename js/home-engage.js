@@ -55,8 +55,8 @@
     var ev = clean(txt(a.querySelector('.tile__kicker')));
     var rt = clean(txt(a.querySelector('.tile__rating')));
     var stars = rt ? Math.max(0, Math.min(5, Math.round(parseFloat(rt) || 0))) : 5;
-    matches.push({ u: href, title: cap(nm, 44), kick: 'Five-star match', tag: 'Match', kind: 'match',
-      reason: (rt ? 'Rated ' + rt + ' stars' : 'A five-star classic') + (ev ? ' at ' + ev : '') + '.', stars: stars });
+    matches.push({ u: href, title: cap(nm, 44), kick: 'Explore', tag: 'Match', kind: 'match',
+      reason: (ev ? ev : 'A classic on the record') + '.', stars: stars });
   });
 
   /* current champions from the live belt rack */
@@ -131,47 +131,40 @@
   var SPARK_S = '<svg class="f2-spark" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C12.6 8 16 11.4 22 12 16 12.6 12.6 16 12 22 11.4 16 8 12.6 2 12 8 11.4 11.4 8 12 2Z"></path></svg>';
 
   /* ============================ BOTTOM-LEFT: poster card ============================ */
-  var card = document.createElement('aside');
-  card.className = 'f2-card';
+  var card = document.createElement('div');
+  card.className = 'f2-explore';
   card.setAttribute('role', 'region');
-  card.setAttribute('aria-label', 'Keep exploring: featured destination');
+  card.setAttribute('aria-label', 'Explore: featured match');
+  card.innerHTML = '<div class="f2-stub" tabindex="0" role="button" aria-label="Explore a featured match"><span class="f2-stub__gleam"></span><span class="f2-stub__v">Explore</span></div><aside class="f2-card"></aside>';
   document.body.appendChild(card);
-
-  var tab = document.createElement('button');
-  tab.type = 'button';
-  tab.className = 'f2-tab';
-  tab.setAttribute('aria-label', 'Reopen the explore card');
-  tab.hidden = true;
-  tab.innerHTML = '<span class="f2-tab__i" aria-hidden="true">✦</span><span>Explore</span>';
-  document.body.appendChild(tab);
+  var vault = card.querySelector('.f2-card');
 
   var cardIdx = 0;
   function starStr(n) { var s = ''; for (var i = 0; i < 5; i++) s += i < n ? '★' : '☆'; return s; }
   function renderCard() {
     if (!cardList.length) return;
     var c = cardList[cardIdx % cardList.length];
-    card.innerHTML =
-      '<button class="f2-card__x" type="button" aria-label="Dismiss the explore card">×</button>' +
+    vault.innerHTML =
       '<a class="f2-card__link" href="' + esc(c.u) + '">' +
-        '<span class="f2-card__kick">' + SPARK_S + '<span>' + esc(c.kick) + '</span></span>' +
+        '<span class="f2-card__kick"><span>' + esc(c.kick) + '</span></span>' +
         '<span class="f2-card__title">' + esc(c.title) + '</span>' +
-        (c.kind === 'match' ? '<span class="f2-card__stars" aria-hidden="true">' + starStr(c.stars) + '</span>' : '') +
         '<span class="f2-card__reason">' + esc(c.reason) + '</span>' +
       '</a>' +
       '<div class="f2-card__foot">' +
         '<a class="f2-card__cta" href="' + esc(c.u) + '">View</a>' +
-        '<button class="f2-card__next" type="button" aria-label="Show another destination">Next</button>' +
+        '<button class="f2-card__next" type="button" aria-label="Show another match">Next</button>' +
       '</div>';
-    card.querySelector('.f2-card__x').addEventListener('click', dismissCard);
-    card.querySelector('.f2-card__next').addEventListener('click', function () { cardIdx++; renderCard(); });
+    vault.querySelector('.f2-card__next').addEventListener('click', function () { cardIdx++; renderCard(); });
   }
   var cardDismissed = false;
-  function dismissCard() { cardDismissed = true; sync(); tab.focus({ preventScroll: true }); }
-  tab.addEventListener('click', function () { cardDismissed = false; renderCard(); sync(); var l = card.querySelector('.f2-card__link'); if (l) l.focus({ preventScroll: true }); });
   renderCard();
 
   /* ==================== BOTTOM-RIGHT: Surprise Me (approved v3_2, verbatim) ==================== */
   var SPARK_WG = '<svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"></path></g><circle class="wg-core" cx="12" cy="12" r="1.9"></circle></svg>';
+  var wres = idx.filter(function (e) { return e.u.indexOf('/wrestlers/') === 0; });
+  var mats = idx.filter(function (e) { return e.u.indexOf('/matches/') === 0; });
+  function doWrestler() { var p = ringPick(wres, surpRing); if (p) location.href = p.u; }
+  function doMatch() { var p = ringPick(mats, surpRing); if (p) location.href = p.u; }
   var ctrl = document.createElement('div');
   ctrl.className = 'sm-ctrl';
   ctrl.setAttribute('role', 'region');
@@ -180,9 +173,9 @@
     '<div class="sm-panel" role="group" aria-label="Explore more">' +
       '<div class="sm-dyk"><span class="sm-dyk__h">Did you know</span>' +
         '<p class="sm-dyk__t">The Undertaker went 21-0 at WrestleMania before Brock Lesnar ended the streak in 2014.</p></div>' +
+      '<button class="sm-row sm-row--wrestler" type="button"><span class="sm-row__i"><svg class="ico-mask" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c-3.7 0-6.2 2.3-6.2 6.4 0 4.3 2.6 8.6 6.2 8.6s6.2-4.3 6.2-8.6C18.2 5.3 15.7 3 12 3Z"></path><path d="M6.4 8.6c1.8-1 9.4-1 11.2 0"></path><circle class="eye" cx="9.2" cy="11" r="1.15" stroke="none"></circle><circle class="eye" cx="14.8" cy="11" r="1.15" stroke="none"></circle><path d="M9.4 15.2c1.4.9 3.8.9 5.2 0"></path></svg></span><span class="sm-row__t">Lore Wrestler</span><span class="sm-row__s">Any of ' + wres.length + '</span></button>' +
+      '<button class="sm-row sm-row--match" type="button"><span class="sm-row__i"><svg class="ico-ring" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 8.5 7 5.5h10l2.5 3v9.5a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1Z"></path><path class="rope" d="M4.5 11h15M4.5 14h15" opacity=".5"></path><circle class="post" cx="4.7" cy="8.5" r="1.1" fill="currentColor" stroke="none"></circle><circle class="post" cx="19.3" cy="8.5" r="1.1" fill="currentColor" stroke="none"></circle></svg></span><span class="sm-row__t">Lore Match</span><span class="sm-row__s">Any of ' + mats.length + '</span></button>' +
       '<button class="sm-row sm-row--search" type="button"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><span class="sm-row__t">Search everything</span><span class="sm-row__s">&#8984;K</span></button>' +
-      '<button class="sm-row sm-row--legend" type="button"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.2 6.6.7-4.9 4.5 1.4 6.6L12 17.8 5.9 21l1.4-6.6L2.4 9.4l6.6-.7z"></path></svg></span><span class="sm-row__t">Random legend</span><span class="sm-row__s">Roll the dice</span></button>' +
-      '<a class="sm-row sm-row--hof" href="' + esc(hofHref) + '"><span class="sm-row__i"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0z"></path><path d="M7 6H4a3 3 0 0 0 3 3M17 6h3a3 3 0 0 1-3 3M9 19h6M10 15v4M14 15v4"></path></svg></span><span class="sm-row__t">Hall of Fame</span><span class="sm-row__s">The immortals</span></a>' +
     '</div>' +
     '<button class="sm-btn" type="button" aria-label="Surprise me, jump to a random page">' + SPARK_WG + '<span class="sm-btn__lbl">Surprise me</span></button>';
   document.body.appendChild(ctrl);
@@ -198,14 +191,14 @@
   }
   ctrl.querySelector('.sm-btn').addEventListener('click', function () { var p = surprise(); if (p) location.href = p.u; });
   ctrl.querySelector('.sm-row--search').addEventListener('click', doSearch);
-  ctrl.querySelector('.sm-row--legend').addEventListener('click', doLegend);
+  ctrl.querySelector('.sm-row--wrestler').addEventListener('click', doWrestler);
+  ctrl.querySelector('.sm-row--match').addEventListener('click', doMatch);
 
   /* ============================ VISIBILITY STATE ============================ */
   var revealed = false, atFoot = false;
   function sync() {
     var show = revealed && !atFoot;
-    card.classList.toggle('is-live', show && !cardDismissed);
-    tab.hidden = !(show && cardDismissed);
+    card.classList.toggle('is-live', show);
     ctrl.classList.toggle('is-live', show);
   }
 

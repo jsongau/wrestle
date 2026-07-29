@@ -2913,3 +2913,39 @@ html{overflow-x:clip;}
 .sm-btn:hover .wglyph--sale .wg-spin{animation-duration:3.4s;}
 .sm-btn__lbl{line-height:1;}
 @media (max-width:560px){.sm-ctrl{right:12px;bottom:12px;}.sm-panel{width:min(252px,calc(100vw - 24px));}}
+
+/* ===== Explore ticket-stub floater — collapsed teaser that expands on hover (Design A) ===== */
+.f2-explore{position:fixed;left:20px;bottom:20px;z-index:90;opacity:0;transform:translateY(18px);pointer-events:none;visibility:hidden;transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.f2-explore.is-live{opacity:1;transform:none;pointer-events:auto;visibility:visible;}
+.f2-stub{position:relative;display:flex;align-items:center;justify-content:center;height:132px;padding:0 13px;cursor:pointer;border:0;border-left:3px solid var(--c-gold);border-radius:0 8px 8px 0;background:linear-gradient(180deg,var(--c-bg-elev-2),#0c0d11);box-shadow:0 14px 34px rgba(0,0,0,.55);transition:transform .3s cubic-bezier(.19,1,.22,1),box-shadow .3s,opacity .18s;}
+.f2-stub::before,.f2-stub::after{content:"";position:absolute;left:-6px;width:11px;height:11px;border-radius:50%;background:var(--c-bg);border:1px solid var(--c-gold-dim);}
+.f2-stub::before{top:-6px;}
+.f2-stub::after{bottom:-6px;}
+.f2-stub__v{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--font-cond);font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--c-text);}
+.f2-stub__gleam{position:absolute;inset:0;border-radius:0 8px 8px 0;overflow:hidden;pointer-events:none;}
+.f2-stub__gleam::after{content:"";position:absolute;top:-40%;left:-30%;width:40%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,232,150,.28),transparent);transform:skewX(-18deg);animation:f2sweep 3.4s ease-in-out infinite;}
+@keyframes f2sweep{0%{left:-40%;}55%,100%{left:130%;}}
+.f2-stub:hover{transform:translateX(3px);box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 0 1px var(--c-gold-dim);}
+.f2-stub:focus-visible{outline:2px solid var(--c-gold);outline-offset:3px;}
+.f2-explore:hover .f2-stub,.f2-explore:focus-within .f2-stub{opacity:0;transform:translateX(-14px);pointer-events:none;}
+.f2-explore .f2-card{position:absolute;left:0;bottom:0;transform:translateX(-12px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,transform .3s cubic-bezier(.19,1,.22,1),visibility .2s;}
+.f2-explore:hover .f2-card,.f2-explore:focus-within .f2-card{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
+@media (prefers-reduced-motion:reduce){.f2-stub__gleam::after{animation:none;}.f2-explore,.f2-explore .f2-card,.f2-stub{transition:none;}}
+@media (max-width:560px){
+  .f2-explore{left:10px;bottom:10px;}
+  .f2-stub{display:none;}
+  .f2-explore .f2-card{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
+}
+/* Surprise Me row icons — Lore Wrestler (mask) + Lore Match (ring): animate on hover */
+.ico-mask,.ico-ring{display:block;transition:transform .25s cubic-bezier(.19,1,.22,1);}
+.ico-mask .eye{fill:currentColor;transform-box:fill-box;transform-origin:center;}
+.ico-ring .rope{transform-box:fill-box;transform-origin:center;}
+.sm-row:hover .sm-row__i{color:var(--c-gold-bright);}
+.sm-row--wrestler:hover .ico-mask{animation:sm-maskbob .8s ease-in-out;}
+.sm-row--wrestler:hover .ico-mask .eye{animation:sm-blink 1s ease-in-out;}
+.sm-row--match:hover .ico-ring{animation:sm-ringpulse .7s ease-in-out;}
+.sm-row--match:hover .ico-ring .rope{animation:sm-ropebounce .7s ease-in-out;}
+@keyframes sm-maskbob{0%,100%{transform:translateY(0) rotate(0);}30%{transform:translateY(-1.5px) rotate(-5deg);}70%{transform:translateY(-1.5px) rotate(5deg);}}
+@keyframes sm-blink{0%,40%,60%,100%{transform:scaleY(1);}48%,52%{transform:scaleY(.15);}}
+@keyframes sm-ringpulse{0%,100%{transform:scale(1);}45%{transform:scale(1.13);}}
+@keyframes sm-ropebounce{0%,100%{transform:translateY(0);}50%{transform:translateY(1.2px);}}
