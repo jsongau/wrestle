@@ -3,21 +3,59 @@
 Emits, from the WEEKS data:
   /media/w/<slug>/index.html   -> one crawlable page per video (autoplay player + VideoObject schema)
   /gallery/<YYYY-MM-DD>/        -> one week's master-detail gallery (cards LINK to the video pages)
-  /gallery/                     -> archive hub with a month calendar
+  /gallery/                     -> archive hub: full weekly TV schedule calendar + SEO copy + FAQ
 Also: patches the homepage This-Week widget facades to link to the video pages,
 and injects all new URLs into sitemap.xml. Run then `python3 build/apply_shell.py`.
 To add a week: append a dict to WEEKS and re-run. Pages carry universal-shell stubs.
+ROOT overridable: WL_ROOT=/path/to/repo python3 build/build_gallery.py
+Networks verified 2026-07-28 — see data/research-weekly-schedule.md (do not "fix" back):
+  Raw=Netflix · SmackDown=USA/Peacock · NXT=The CW · AEW=TBS/TNT+HBO Max · TNA=AMC/AMC+.
 """
-import os, re, calendar, datetime
+import os, re, calendar, datetime, json
 
-ROOT = "/root/wwe"
+ROOT = os.environ.get("WL_ROOT", "/root/wwe")
 BASE = "https://wrestlelore.com"
+
+# ---- streaming homes, PER SHOW (US, verified 2026-07-28) ----
 NETFLIX = "https://www.netflix.com/tudum/articles/how-to-watch-wwe-on-netflix"
+PEACOCK = "https://www.peacocktv.com/sports/wwe"
+CWAPP   = "https://www.cwtv.com/shows/wwe-nxt/"
 HBOMAX  = "https://www.hbomax.com/aew"
-AMC     = "https://www.primevideo.com/detail/0JUDFWRZQVXA7XUGHXAN08F1NQ"
-NET = {"WWE":("Netflix",NETFLIX),"NXT":("Netflix",NETFLIX),"AEW":("HBO Max",HBOMAX),"TNA":("AMC+ (Prime Video)",AMC)}
-SHOWS = {"WWE":"Raw & SmackDown","AEW":"Dynamite & Collision","TNA":"iMPACT","NXT":"NXT"}
-ORDER = ["WWE","AEW","TNA","NXT"]
+AMCPLUS = "https://www.amcplus.com"
+SHOWNET = {  # show -> (streaming label, url)
+  "Raw": ("Netflix", NETFLIX), "SmackDown": ("Peacock", PEACOCK), "NXT": ("The CW", CWAPP),
+  "Dynamite": ("HBO Max", HBOMAX), "Collision": ("HBO Max", HBOMAX), "iMPACT": ("AMC+", AMCPLUS),
+}
+def shownet(label):
+    return SHOWNET.get(label.split("·")[0].strip(), ("Netflix", NETFLIX))
+
+SHOWS  = {"WWE": "Raw & SmackDown", "AEW": "Dynamite & Collision", "TNA": "iMPACT", "NXT": "NXT"}
+TABNET = {"WWE": "Raw · Netflix — SmackDown · USA/Peacock", "AEW": "TBS/TNT · HBO Max",
+          "TNA": "iMPACT · AMC & AMC+", "NXT": "NXT · The CW"}
+WATCHLINKS = {
+  "WWE": ('<a class="tw-net" href="%s" target="_blank" rel="noopener">Raw on Netflix</a>'
+          '<a class="tw-net" href="%s" target="_blank" rel="noopener">SmackDown on Peacock</a>' % (NETFLIX, PEACOCK)),
+  "AEW": '<a class="tw-net" href="%s" target="_blank" rel="noopener">AEW on TBS/TNT · stream on HBO Max</a>' % HBOMAX,
+  "TNA": '<a class="tw-net" href="%s" target="_blank" rel="noopener">iMPACT on AMC · stream on AMC+</a>' % AMCPLUS,
+  "NXT": '<a class="tw-net" href="%s" target="_blank" rel="noopener">NXT live on The CW</a>' % CWAPP,
+}
+ORDER = ["WWE", "AEW", "TNA", "NXT"]
+
+# ---- the recurring weekly TV grid (Mon=0..Sun=6) + dated specials ----
+SCHEDULE = {
+  0: [("WWE", "Raw", "Netflix")],
+  1: [("WWE", "NXT", "The CW")],
+  2: [("AEW", "Dynamite", "TBS · HBO Max")],
+  3: [("TNA", "iMPACT", "AMC · AMC+")],
+  4: [("WWE", "SmackDown", "USA · Peacock")],
+  5: [("AEW", "Collision", "TNT · HBO Max")],
+  6: [],
+}
+SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL dates
+  datetime.date(2026, 7, 18): ("WWE", "Saturday Night's Main Event", "MSG · NBC · Peacock"),
+  datetime.date(2026, 7, 26): ("AEW", "Redemption", "Montreal · HBO Max · PPV"),
+}
+CHIPCLS = {"Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
   {"week":"2026-07-20","label":"Week of July 20, 2026","start":datetime.date(2026,7,20),"promos":{
@@ -61,7 +99,7 @@ for wk in WEEKS:
                           "slug":slug(promo,date,label),"url":page_url(promo,date,label)}
 
 def facade_card(promo, yid, date, label):
-    net, url = NET[promo]
+    net, url = shownet(label)
     ttl = vtitle(promo, label, date)
     href = page_url(promo, date, label)
     return ('<li><article class="vcard"><div class="yt" data-yt-id="%s" data-yt-title="%s" data-yt-creator="%s" data-yt-service="%s" data-yt-service-url="%s" data-yt-page="%s">'
@@ -72,17 +110,16 @@ def facade_card(promo, yid, date, label):
 def week_widget(wk):
     tabs, panels = [], []
     for i, promo in enumerate(ORDER):
-        net, url = NET[promo]
         sel = "true" if i==0 else "false"; ti = "" if i==0 else ' tabindex="-1"'
-        tabs.append('<button class="tw-item" type="button" role="tab" id="tw-tab-%s" aria-controls="tw-panel-%s" aria-selected="%s"%s><span class="tw-item__name">%s</span><span class="tw-item__net">%s · %s</span></button>'
-                    % (promo.lower(),promo.lower(),sel,ti,promo,SHOWS[promo],net))
+        tabs.append('<button class="tw-item" type="button" role="tab" id="tw-tab-%s" aria-controls="tw-panel-%s" aria-selected="%s"%s><span class="tw-item__name">%s</span><span class="tw-item__net">%s</span></button>'
+                    % (promo.lower(),promo.lower(),sel,ti,promo,esc(TABNET[promo])))
         hidden = "" if i==0 else " hidden"
         cards = "\n              ".join(facade_card(promo,y,d,l) for (y,d,l) in wk["promos"][promo])
         panels.append('<div class="tw-panel" role="tabpanel" id="tw-panel-%s" aria-labelledby="tw-tab-%s"%s>'
           '<div class="tw-panel__head"><span class="telemetry"><b>%s · %s</b></span>'
-          '<a class="tw-net" href="%s" target="_blank" rel="noopener">Watch %s on %s</a></div>'
+          '<span class="tw-nets">%s</span></div>'
           '<ul class="tw-rail">\n              %s\n            </ul></div>'
-          % (promo.lower(),promo.lower(),hidden,wk["label"].upper(),promo,url,promo,net,cards))
+          % (promo.lower(),promo.lower(),hidden,wk["label"].upper(),promo,WATCHLINKS[promo],cards))
     return '<div class="tw-layout"><div class="tw-list" data-wl-tabs role="tablist" aria-label="Choose a promotion">%s</div><div class="tw-detail">%s</div></div>' % ("".join(tabs),"".join(panels))
 
 def week_page(wk, older, newer):
@@ -102,11 +139,10 @@ def week_page(wk, older, newer):
 def vtitle_week(wk): return "%s — Viewing Gallery | Wrestle Lore" % wk["label"]
 
 def video_page(promo, yid, date, label, wk):
-    net, url = NET[promo]
+    net, url = shownet(label)
     title = vtitle(promo, label, date)
     desc = "Catch up on %s from %s. Watch the highlight in the Wrestle Lore viewing gallery, with a link to stream the full show on %s." % (title, pretty(date), net)
     canonical = "%s%s" % (BASE, page_url(promo,date,label))
-    # related: other videos same week (exclude self), up to 8
     rel = []
     for p in ORDER:
         for (y,d,l) in wk["promos"].get(p,[]):
@@ -141,17 +177,76 @@ def video_page(promo, yid, date, label, wk):
          esc(title+"."), pretty(date), net, esc(wk["label"]), wk["week"], rel_html))
     return shell("%s | Wrestle Lore Viewing Gallery" % title, desc, canonical, main, extra_head=jsonld)
 
+# ---- THE SCHEDULE CALENDAR (cal3) ----
+def cal_chip(co, name, note, special=False):
+    if special:
+        return ('<span class="cal3-chip cal3-chip--sp"><b class="cal3-co">%s</b><span class="cal3-nm">%s</span><small>%s</small></span>'
+                % (esc(co), esc(name), esc(note)))
+    cls = CHIPCLS.get(name, "wwe")
+    return ('<span class="cal3-chip cal3-chip--%s"><b class="cal3-co">%s</b><span class="cal3-nm">%s</span><small>%s</small></span>'
+            % (cls, esc(co), esc(name), esc(note)))
+
 def calendar_html(weeks):
     wbm = {}
     for wk in weeks:
         for i in range(7): wbm[wk["start"]+datetime.timedelta(days=i)] = wk["week"]
-    heads = "".join('<span class="cal-h">%s</span>' % d for d in ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
+    first = weeks[0]["start"]
+    mo_name = first.strftime("%B"); mo_year = first.strftime("%Y")
+    heads = "".join('<span class="cal3-h">%s</span>' % d for d in ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"])
     cells = []
-    for d in calendar.Calendar(firstweekday=0).itermonthdates(2026,7):
-        if d.month != 7: cells.append('<span class="cal-x"></span>'); continue
+    for d in calendar.Calendar(firstweekday=0).itermonthdates(first.year, first.month):
+        if d.month != first.month:
+            cells.append('<span class="cal3-cell cal3-cell--empty" aria-hidden="true"></span>'); continue
+        chips = "".join(cal_chip("WWE" if co=="WWE" else co, show, note) for (co, show, note) in SCHEDULE[d.weekday()])
+        if d in SPECIALS:
+            sco, sname, snote = SPECIALS[d]
+            chips += cal_chip(sco, sname, snote, special=True)
+        head = ('<span class="cal3-d"><b>%d</b><small>%s</small></span>' % (d.day, d.strftime("%a")))
         w = wbm.get(d)
-        cells.append('<a class="cal-d cal-d--on" href="/gallery/%s/">%d</a>' % (w,d.day) if w else '<span class="cal-d">%d</span>' % d.day)
-    return '<div class="cal"><div class="cal-grid cal-grid--head">%s</div><div class="cal-grid">%s</div><p class="cal-key">Gold dates have a viewing gallery. Pick a week to catch up.</p></div>' % (heads,"".join(cells))
+        if w:
+            cells.append('<a class="cal3-cell cal3-cell--live" href="/gallery/%s/" aria-label="%s %d: open the catch-up gallery">%s%s'
+                         '<span class="cal3-tag">▸ CATCH UP</span></a>' % (w, mo_name, d.day, head, chips))
+        else:
+            cells.append('<div class="cal3-cell">%s%s</div>' % (head, chips))
+    nclips = sum(len(v) for wk in weeks for v in wk["promos"].values())
+    return ('<div class="cal3" role="region" aria-label="%s %s wrestling TV schedule">'
+      '<div class="cal3__top"><span class="cal3__mo">%s <b>%s</b></span>'
+      '<span class="cal3__hint">Gold nights link to a spoiler-safe catch-up gallery</span></div>'
+      '<div class="cal3-head">%s</div><div class="cal3-grid">%s</div>'
+      '<div class="cal3__foot"><span>Weekly TV grid recurs every week · specials sit on their real dates</span>'
+      '<span><b>%d weeks</b> ready to catch up · %d clips</span></div></div>'
+      % (mo_name, mo_year, mo_name, mo_year, heads, "".join(cells), len(weeks), nclips))
+
+LEGEND = ('<div class="lg3row" role="list" aria-label="Calendar key">'
+  '<span class="lg3" role="listitem"><i class="lg3__d" style="background:var(--c-wwe,#c8102e)"></i>WWE · Raw / SmackDown</span>'
+  '<span class="lg3" role="listitem"><i class="lg3__d" style="background:var(--c-nxt,#f5c518)"></i>WWE NXT</span>'
+  '<span class="lg3" role="listitem"><i class="lg3__d" style="background:var(--c-aew,#c8a24a)"></i>AEW · Dynamite / Collision</span>'
+  '<span class="lg3" role="listitem"><i class="lg3__d" style="background:var(--c-tna,#1e73be)"></i>TNA · iMPACT</span>'
+  '<span class="lg3" role="listitem"><i class="lg3__d lg3__d--sp"></i>Premium Live Event</span>'
+  '<span class="lg3 lg3--gold" role="listitem"><i class="lg3__d lg3__d--gold"></i>Catch-up gallery available</span></div>')
+
+FAQS = [
+  ("What wrestling airs each week?",
+   "Every week: WWE Raw on Monday (Netflix), WWE NXT on Tuesday (The CW), AEW Dynamite on Wednesday (TBS, streaming on HBO Max), TNA iMPACT on Thursday (AMC and AMC+), WWE SmackDown on Friday (USA Network, streaming on Peacock) and AEW Collision on Saturday (TNT, streaming on HBO Max). Premium Live Events land on top of the weekly grid."),
+  ("Where can I stream WWE, AEW, TNA and NXT?",
+   "WWE Raw streams on Netflix. SmackDown airs on USA Network and streams on Peacock. NXT airs on The CW. AEW Dynamite and Collision air on TBS and TNT and stream on HBO Max. TNA iMPACT airs on AMC and streams on AMC+. Every clip in the gallery links out to the show's official home."),
+  ("Is the Viewing Gallery spoiler-safe?",
+   "Yes. Clip titles give nothing away and thumbnails stay blurred until you hover, so you can pick a week and press play without results jumping out at you."),
+]
+
+def hub_jsonld(weeks):
+    items = [{"@type":"ListItem","position":i+1,"name":wk["label"],
+              "url":"%s/gallery/%s/" % (BASE, wk["week"])} for i, wk in enumerate(weeks)]
+    coll = {"@context":"https://schema.org","@type":"CollectionPage",
+      "name":"Wrestle Lore Viewing Gallery","url":"%s/gallery/" % BASE,
+      "description":"The weekly wrestling TV calendar and spoiler-safe catch-up galleries for WWE, AEW, TNA and NXT.",
+      "mainEntity":{"@type":"ItemList","itemListElement":items}}
+    faq = {"@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQS]}
+    crumbs = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"%s/" % BASE},
+      {"@type":"ListItem","position":2,"name":"Viewing Gallery","item":"%s/gallery/" % BASE}]}
+    return "".join('<script type="application/ld+json">%s</script>\n' % json.dumps(x, ensure_ascii=False) for x in (coll, faq, crumbs))
 
 def hub_page(weeks):
     cards = []
@@ -159,14 +254,19 @@ def hub_page(weeks):
         badge = '<span class="gwk-badge">Latest</span>' if i==0 else ""
         n = sum(len(v) for v in wk["promos"].values())
         cards.append('<a class="gwk" href="/gallery/%s/">%s<span class="gwk-date">%s</span><span class="gwk-meta">WWE · AEW · TNA · NXT — %d clips</span></a>' % (wk["week"],badge,wk["label"],n))
+    faq_html = "".join('<div class="gfaq__item"><h3>%s</h3><p>%s</p></div>' % (esc(q), esc(a)) for q, a in FAQS)
     main = ('<section class="section" aria-label="Viewing Gallery archive">\n<div class="wrap">\n'
       '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Viewing Gallery</li></ol></nav>\n'
-      '<div class="section-head"><div><p class="eyebrow">The Archive</p><h2>Viewing Gallery</h2><hr class="rule-gold"></div></div>\n'
-      '<p class="tw-lede">Every week we round up WWE, AEW, TNA and NXT into one spoiler-safe gallery, then archive it here. New shows land through the week, so last week fills out while the new week begins. Pick a week on the calendar or from the list below.</p>\n'
-      '%s\n<div class="gwk-list">%s</div>\n</div>\n</section>' % (calendar_html(weeks),"".join(cards)))
-    return shell("Viewing Gallery — Weekly Wrestling Catch-Up Archive | Wrestle Lore",
-                 "Browse the Wrestle Lore Viewing Gallery: weekly WWE, AEW, TNA and NXT highlights, spoiler-safe, with a calendar to jump to any week.",
-                 "%s/gallery/" % BASE, main)
+      '<div class="section-head"><div><p class="eyebrow">The Archive · Updated Weekly</p><h2>This Week in Wrestling</h2><hr class="rule-gold"></div></div>\n'
+      '<p class="tw-lede">Six shows a week, four promotions, one place to catch up. <b>WWE Raw</b> opens Monday on Netflix, <b>NXT</b> runs Tuesday on The CW, <b>AEW Dynamite</b> hits Wednesday, <b>TNA iMPACT</b> lands Thursday on AMC, <b>SmackDown</b> closes the work week Friday on USA, and <b>AEW Collision</b> rounds out Saturday. The calendar maps every night so you can see what aired and where to stream it, then jump into a spoiler-safe highlight gallery for any week that has gone gold.</p>\n'
+      '%s\n%s\n'
+      '<p class="sub-h telemetry" style="margin-top:var(--sp-6)"><b>JUMP INTO A WEEK</b></p>\n'
+      '<div class="gwk-list">%s</div>\n'
+      '<div class="gfaq"><h2>Catch up, spoiler-safe</h2>%s</div>\n'
+      '</div>\n</section>' % (LEGEND, calendar_html(weeks), "".join(cards), faq_html))
+    return shell("Wrestling Viewing Gallery — Weekly WWE, AEW, TNA & NXT Recaps | Wrestle Lore",
+                 "The weekly wrestling TV calendar and spoiler-safe catch-up galleries: WWE, AEW, TNA and NXT — what airs each night, where to stream it, and every week's highlights.",
+                 "%s/gallery/" % BASE, main, extra_head=hub_jsonld(weeks))
 
 def shell(title, desc, canonical, main, extra_head=""):
     return ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n'
@@ -209,4 +309,4 @@ if __name__ == "__main__":
         write("/gallery/%s/index.html" % wk["week"], week_page(wk, older, newer))
     write("/gallery/index.html", hub_page(WEEKS))
     patch_homepage(); update_sitemap()
-    print("done: %d video pages + %d week pages + hub" % (nv, len(WEEKS)))
+    print("done: %d video pages + %d week pages + hub (ROOT=%s)" % (nv, len(WEEKS), ROOT))

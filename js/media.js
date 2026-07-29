@@ -233,7 +233,89 @@
   /* ------------------------------------------------------------------ *
    * MODAL / LIGHTBOX PLAYER  (primary click-to-play; clean embed)      *
    * ------------------------------------------------------------------ */
-  var modal = null, modalEsc = null;
+  var modal = null, modalEsc = null, modalReturnUrl = '';
+  /* Canonical shareable URL for a clip: its real /media/w/<slug>/ page when we
+     have one — never the title text, and sanitized against stray whitespace,
+     %20, ?, or # that used to produce a 404. Falls back to a clean #watch=
+     deep link on the page the modal was opened from. */
+  function cleanPagePath(raw) {
+    var p = (raw || '').trim();
+    if (!p) return '';
+    p = p.split(/[\s?#]/)[0].split('%20')[0];
+    return /^\/[A-Za-z0-9\-\/]+\/$/.test(p) ? p : '';
+  }
+  function clipShareUrl(ov) {
+    var path = cleanPagePath(ov.__ytpage);
+    if (path) return location.origin + path;
+    return location.origin + (modalReturnUrl || (location.pathname + location.search)) + '#watch=' + (ov.__ytid || '');
+  }
+  /* ---- SHARE MENU (SMS-first) — one menu serves the modal + per-video pages ---- */
+  var wlsmEl = null, wlsmCtx = null;
+  function wlsmGo(href) { var a = document.createElement('a'); a.href = href; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  function wlsmFlash(msg) {
+    var b = wlsmCtx && wlsmCtx.btn, s = b ? b.querySelector('span:last-child') : null;
+    if (!s) return; var o = s.textContent; s.textContent = msg;
+    setTimeout(function () { s.textContent = o; }, 1800);
+  }
+  function wlsmCopy(msg) {
+    var url = wlsmCtx.url;
+    var done = function () { wlsmFlash(msg || 'Link copied'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link', url); });
+    else window.prompt('Copy this link', url);
+  }
+  function wlsmPick(k) {
+    if (!wlsmCtx) return;
+    var url = wlsmCtx.url, title = wlsmCtx.title || 'Wrestle Lore';
+    if (k === 'sms') wlsmGo('sms:?&body=' + encodeURIComponent(title + ' ' + url));
+    else if (k === 'x') window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank', 'noopener,width=620,height=560');
+    else if (k === 'rd') window.open('https://www.reddit.com/submit?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title), '_blank', 'noopener,width=620,height=640');
+    else if (k === 'wa') window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(title + ' ' + url), '_blank', 'noopener,width=620,height=560');
+    else if (k === 'fb') window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'noopener,width=620,height=560');
+    else if (k === 'em') wlsmGo('mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(title + '\n\n' + url));
+    else if (k === 'ig') wlsmCopy('Copied for IG');
+    else if (k === 'copy') wlsmCopy('Link copied');
+    else if (k === 'native' && navigator.share) navigator.share({ title: 'Wrestle Lore Viewing Gallery', text: title, url: url }).catch(function () {});
+    wlsmClose();
+  }
+  function wlsmBuild() {
+    if (wlsmEl) return wlsmEl;
+    var m = document.createElement('div');
+    m.className = 'wlsm'; m.hidden = true;
+    m.setAttribute('role', 'menu'); m.setAttribute('aria-label', 'Share this clip');
+    m.innerHTML =
+      '<p class="wlsm__h">Share this clip</p>' +
+      '<button class="wlsm__row wlsm__row--main" type="button" data-share="sms" role="menuitem"><span class="wlsm__ic wlsm__ic--sms" aria-hidden="true">&#9993;</span><span class="wlsm__lbl"><b>Text a friend</b><small>SMS &middot; fastest share</small></span><span class="wlsm__arrow" aria-hidden="true">&rarr;</span></button>' +
+      '<button class="wlsm__row" type="button" data-share="x" role="menuitem"><span class="wlsm__ic wlsm__ic--x" aria-hidden="true">&#120143;</span>Post to X</button>' +
+      '<button class="wlsm__row" type="button" data-share="rd" role="menuitem"><span class="wlsm__ic wlsm__ic--rd" aria-hidden="true">r</span>Post to Reddit</button>' +
+      '<button class="wlsm__row" type="button" data-share="ig" role="menuitem"><span class="wlsm__ic wlsm__ic--ig" aria-hidden="true">&#9670;</span>Instagram<small class="wlsm__hint">copies link</small></button>' +
+      '<button class="wlsm__row" type="button" data-share="wa" role="menuitem"><span class="wlsm__ic wlsm__ic--wa" aria-hidden="true">w</span>Send on WhatsApp</button>' +
+      '<button class="wlsm__row" type="button" data-share="fb" role="menuitem"><span class="wlsm__ic wlsm__ic--fb" aria-hidden="true">f</span>Share to Facebook</button>' +
+      '<button class="wlsm__row" type="button" data-share="em" role="menuitem"><span class="wlsm__ic wlsm__ic--em" aria-hidden="true">@</span>Email a friend</button>' +
+      '<button class="wlsm__row" type="button" data-share="copy" role="menuitem"><span class="wlsm__ic wlsm__ic--cp" aria-hidden="true">&#10697;</span>Copy link</button>' +
+      (navigator.share ? '<hr class="wlsm__div"><button class="wlsm__row" type="button" data-share="native" role="menuitem"><span class="wlsm__ic wlsm__ic--more" aria-hidden="true">&#8599;</span>More apps&hellip;</button>' : '');
+    document.body.appendChild(m);
+    m.addEventListener('click', function (e) {
+      var r = e.target.closest('[data-share]');
+      if (r) wlsmPick(r.getAttribute('data-share'));
+    });
+    document.addEventListener('click', function (e) {
+      if (!m.hidden && !e.target.closest('.wlsm') && !e.target.closest('.wl-modal__share')) wlsmClose();
+    }, true);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') wlsmClose(); });
+    wlsmEl = m;
+    return m;
+  }
+  function wlsmOpen(btn, url, title) {
+    var m = wlsmBuild();
+    if (!m.hidden && wlsmCtx && wlsmCtx.btn === btn) { wlsmClose(); return; }
+    wlsmCtx = { url: url, title: title, btn: btn };
+    m.hidden = false;
+    var b = btn.getBoundingClientRect(), mw = m.offsetWidth, mh = m.offsetHeight;
+    var left = Math.min(b.right - mw, window.innerWidth - mw - 10); if (left < 10) left = 10;
+    var top = b.top - mh - 10; if (top < 10) top = Math.min(b.bottom + 10, window.innerHeight - mh - 10);
+    m.style.left = left + 'px'; m.style.top = top + 'px';
+  }
+  function wlsmClose() { if (wlsmEl && !wlsmEl.hidden) wlsmEl.hidden = true; }
   function buildModal() {
     if (modal) return modal;
     var ov = document.createElement('div');
@@ -273,16 +355,10 @@
     ov.querySelector('.wl-modal__backdrop').addEventListener('click', closeModal);
     ov.querySelector('.wl-modal__close').addEventListener('click', closeModal);
     var shareBtn = ov.querySelector('.wl-modal__share');
-    shareBtn.addEventListener('click', function () {
-      var id = ov.__ytid; if (!id) return;
-      /* clean page path only — never the title text (defensive strip) */
-      var page = (ov.__ytpage || '').trim().split(/\s/)[0];
-      var url = page ? (location.origin + page) : (location.origin + location.pathname + '#watch=' + id);
-      var title = ov.__yttitle || 'Wrestle Lore';
-      if (navigator.share) { navigator.share({ title: 'Wrestle Lore Viewing Gallery', text: title, url: url }).catch(function () {}); return; }
-      var restore = function () { shareBtn.querySelector('span').textContent = 'Link copied'; setTimeout(function () { shareBtn.querySelector('span').textContent = 'Share'; }, 1600); };
-      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(restore, function () { window.prompt('Copy this link', url); }); }
-      else { window.prompt('Copy this link', url); }
+    shareBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!ov.__ytid) return;
+      wlsmOpen(shareBtn, clipShareUrl(ov), ov.__yttitle || 'Wrestle Lore');
     });
     /* promotion tabs filter the side rail */
     ov.querySelector('.wl-modal__side').addEventListener('click', function (e) {
@@ -390,6 +466,9 @@
     if (!id) return;
     opts = opts || {};
     var ov = buildModal();
+    /* remember where we opened from, so Close + Share resolve to real URLs
+       (only on a fresh open — keep it across autoplay-next). */
+    if (ov.hidden) modalReturnUrl = location.pathname + location.search;
     if (ov.__player && ov.__player.destroy) { try { ov.__player.destroy(); } catch (e) {} }
     ov.__player = null;
     var stage = ov.querySelector('.wl-modal__stage');
@@ -435,7 +514,12 @@
     renderSide(ov);
     try { var cur = ov.querySelector('.wl-side__item.is-current'); if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest' }); } catch (e) {}
 
-    try { history.replaceState(null, '', location.pathname + location.search + '#watch=' + id); } catch (e) {}
+    /* Put the clip's REAL page URL in the address bar when we have one, so the
+       URL bar itself is shareable and a reload lands on the standalone page. */
+    try {
+      var _clean = cleanPagePath(page);
+      history.replaceState(null, '', _clean || ((modalReturnUrl || (location.pathname + location.search)) + '#watch=' + id));
+    } catch (e) {}
     attachModalPlayer(ov, iframe);
 
     ov.__lastFocus = document.activeElement;
@@ -451,7 +535,7 @@
     modal.querySelector('.wl-modal__stage').innerHTML = ''; /* stop playback */
     modal.hidden = true;
     document.documentElement.style.overflow = '';
-    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    try { history.replaceState(null, '', modalReturnUrl || (location.pathname + location.search)); } catch (e) {}
     if (modalEsc) { document.removeEventListener('keydown', modalEsc); modalEsc = null; }
     try { if (modal.__lastFocus && modal.__lastFocus.focus) modal.__lastFocus.focus(); } catch (e) {}
   }
@@ -808,7 +892,6 @@
    * 7. BACK-TO-TOP                                                      *
    * ------------------------------------------------------------------ */
   function backToTop() {
-    var _r = document.querySelector('.wl-totop'); if (_r) _r.remove(); return;
     var btn = document.querySelector('.wl-totop');
     if (!btn) {
       btn = document.createElement('button');
@@ -952,17 +1035,15 @@
     iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     el.appendChild(iframe);
   }
-  /* Share button on the per-video page (data-share-url), copy-or-native-share. */
+  /* Share button on the per-video page (data-share-url) — opens the share menu. */
   function initPageShare() {
     document.addEventListener('click', function (e) {
       var b = e.target.closest('.wl-modal__share[data-share-url]'); if (!b) return;
-      var v = b.getAttribute('data-share-url');
-      var url = /^https?:/i.test(v) ? v : (location.origin + v);
-      if (navigator.share) { navigator.share({ title: 'Wrestle Lore', url: url }).catch(function () {}); return; }
-      var s = b.querySelector('span') || b;
-      var done = function () { var o = s.textContent; s.textContent = 'Link copied'; setTimeout(function () { s.textContent = o; }, 1600); };
-      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link', url); }); }
-      else { window.prompt('Copy this link', url); }
+      e.stopPropagation();
+      var v = b.getAttribute('data-share-url') || '';
+      var clean = cleanPagePath(v);
+      var url = /^https?:/i.test(v) ? v : (location.origin + (clean || location.pathname));
+      wlsmOpen(b, url, document.title || 'Wrestle Lore');
     });
   }
   function boot() {
