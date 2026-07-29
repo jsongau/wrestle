@@ -1,4 +1,9 @@
 ## 2026-07-29 (Lore Feed — newsroom generator + site-wide 7-day ticker)
+## 2026-07-29 (membership Insiders page)
+- Shipped the Insiders membership page: founder meter (spots claimed / 500), community scorecard, faction gifting, selectable tiers (Fan / Insider founder-rate / Ringside), Google + email capture.
+- Routing: /join now redirects to /membership/; SMS share; native share sheet only on touch devices.
+- Re-stamped the current universal shell (nav7 + fat footer) onto the page so it matches live; page body built on the pre–lore-feed shell in the source bundle.
+
 - **New generator `build/build_lorefeed.py`**: one `DISPATCHES` list (35 dated, sourced dispatches across WWE/NXT/AEW/TNA/NJPW/TKO) emits, all in sync: the `/lore-feed/` editorial hub (lead + river + "Browse by Week" index), one SEO/GEO page per Monday-week at `/lore-feed/<YYYY-MM-DD>/` (7 weeks, each with recap prose + CollectionPage/ItemList/BreadcrumbList JSON-LD), and the site-wide rolling 7-day ticker in `components/meganav.html` (cap 8, newest first, crawlable HTML — stamps to every page). Replaces the old thin relative-time wire.
 - **Editorial discipline**: every dispatch carries a visible Official (promotion-confirmed) vs Report (trade press) stamp; obituaries get an "In Memoriam" treatment; `_lead_score` picks the week's biggest story, not merely the newest. All marquee items spot-verified against reputable sources 2026-07-29.
 - **Lead-alignment fix**: lead card copy is wrapped in `.lf-lead__copy` so the 2-column grid renders as copy | art instead of scattering headline/dek/footer/art across columns.

@@ -1,6 +1,24 @@
 {
   "redirects": [
-    { "source": "/matches/viewing-gallery", "destination": "/matches/", "permanent": true },
-    { "source": "/matches/viewing-gallery/", "destination": "/matches/", "permanent": true }
+    {
+      "source": "/matches/viewing-gallery",
+      "destination": "/matches/",
+      "permanent": true
+    },
+    {
+      "source": "/matches/viewing-gallery/",
+      "destination": "/matches/",
+      "permanent": true
+    },
+    {
+      "source": "/join",
+      "destination": "/membership/",
+      "permanent": false
+    },
+    {
+      "source": "/join/",
+      "destination": "/membership/",
+      "permanent": false
+    }
   ]
 }
