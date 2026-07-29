@@ -155,6 +155,7 @@
   var SVG_SEARCH = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>';
   var SVG_STAR = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 17l-5.6 3.1 1.3-6.3L2.9 9.5l6.4-.7z"></path></svg>';
   var SVG_CHEV = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg>';
+  var SPARK_S = '<svg class="f2-spark" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C12.6 8 16 11.4 22 12 16 12.6 12.6 16 12 22 11.4 16 8 12.6 2 12 8 11.4 11.4 8 12 2Z"></path></svg>';
 
   /* ============================ BOTTOM-LEFT: poster card ============================ */
   var card = document.createElement('aside');
@@ -179,15 +180,13 @@
     card.innerHTML =
       '<button class="f2-card__x" type="button" aria-label="Dismiss the explore card">×</button>' +
       '<a class="f2-card__link" href="' + esc(c.u) + '">' +
-        '<span class="f2-card__mono" aria-hidden="true">' + esc(mono(c.title)) + '</span>' +
-        '<span class="f2-card__kick">' + esc(c.kick) + '</span>' +
+        '<span class="f2-card__kick">' + SPARK_S + '<span>' + esc(c.kick) + '</span></span>' +
         '<span class="f2-card__title">' + esc(c.title) + '</span>' +
         (c.kind === 'match' ? '<span class="f2-card__stars" aria-hidden="true">' + starStr(c.stars) + '</span>' : '') +
         '<span class="f2-card__reason">' + esc(c.reason) + '</span>' +
-        '<span class="f2-card__cta">VIEW -&gt;</span>' +
       '</a>' +
       '<div class="f2-card__foot">' +
-        '<span class="f2-card__tag" data-kind="' + esc(c.kind) + '">' + esc(c.tag) + '</span>' +
+        '<a class="f2-card__cta" href="' + esc(c.u) + '">View</a>' +
         '<button class="f2-card__next" type="button" aria-label="Show another destination">Next</button>' +
       '</div>';
     card.querySelector('.f2-card__x').addEventListener('click', dismissCard);
@@ -218,7 +217,7 @@
       '<button class="f2-sat f2-sat--search" type="button" aria-label="Search everything, opens the command palette">' + SVG_SEARCH + '</button>' +
       '<button class="f2-sat f2-sat--legend" type="button" aria-label="Jump to a random legend">' + SVG_STAR + '</button>' +
       '<button class="f2-ctrl__more" type="button" aria-expanded="false" aria-label="Expand explore controls">' + SVG_CHEV + '</button>' +
-      '<button class="f2-disc" type="button" aria-label="Surprise me, jump to a random page"><span class="f2-disc__k">Surprise</span><span class="f2-disc__m">Me</span></button>' +
+      '<button class="f2-disc" type="button" aria-label="Surprise me, jump to a random page">' + SPARK_S + '<span class="f2-disc__lbl">Surprise me</span></button>' +
     '</div>';
   document.body.appendChild(ctrl);
 

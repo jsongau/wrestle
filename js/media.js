@@ -808,6 +808,7 @@
    * 7. BACK-TO-TOP                                                      *
    * ------------------------------------------------------------------ */
   function backToTop() {
+    var _r = document.querySelector('.wl-totop'); if (_r) _r.remove(); return;
     var btn = document.querySelector('.wl-totop');
     if (!btn) {
       btn = document.createElement('button');

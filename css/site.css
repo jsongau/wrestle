@@ -2777,3 +2777,30 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
 .nav7 .mega7--timeline .evlive:hover .wglyph--sale{filter:drop-shadow(0 0 6px #ff3b48) drop-shadow(0 0 15px rgba(255,59,72,.82));}
 .nav7 .mega7--timeline .evlive:hover .wglyph--sale .wg-spin{animation-duration:3.4s;}
 .nav7 .mega7--timeline .evlive:hover .wglyph--sale .wg-spark{animation-duration:1.4s;fill:#ff6b74;}
+
+/* ============================================================= *
+   WL wave2 - Vault Ticket explore card + gold Surprise Me button
+   (overrides HOME ENGAGE LAYER visuals; positioning/visibility inherited)
+ * ============================================================= */
+.f2-spark{transform-box:fill-box;transform-origin:center;vertical-align:-2px;}
+.f2-card{background:radial-gradient(130% 130% at 100% 0,var(--c-gold-tint),transparent 55%),linear-gradient(180deg,var(--c-bg-elev-2),#0c0d11)!important;border-radius:5px!important;-webkit-mask:radial-gradient(9px at 0 46%,transparent 96%,#000 0) left/100% 100% no-repeat;mask:radial-gradient(9px at 0 46%,transparent 96%,#000 0);}
+.f2-card__mono{display:none!important;}
+.f2-card__link{padding:15px 17px 11px!important;}
+.f2-card__kick{display:inline-flex!important;align-items:center;gap:.45em;color:var(--c-gold)!important;font-size:10px!important;}
+.f2-card__title{font-family:var(--font-display)!important;font-weight:400!important;font-size:29px!important;line-height:.9!important;max-width:100%!important;color:#fff!important;margin-top:.18em;}
+.f2-card__link:hover .f2-card__title{color:#fff!important;}
+.f2-card__stars{color:var(--c-gold)!important;font-family:inherit!important;font-size:15px!important;letter-spacing:2px!important;filter:drop-shadow(0 0 4px rgba(242,204,75,.5));margin-top:.35em!important;}
+.f2-card__reason{max-width:100%!important;font-family:var(--font-mono)!important;font-size:10.5px!important;line-height:1.4!important;color:var(--c-text-muted)!important;margin-top:.5em!important;}
+.f2-card__foot{border-top:0!important;padding:.1em 17px 13px!important;gap:8px!important;}
+.f2-card__tag{display:none!important;}
+.f2-card__cta{margin:0!important;flex:1;text-align:center;background:var(--c-red,#e11d2a)!important;color:#fff!important;text-decoration:none;padding:.6em!important;border-radius:6px!important;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;font-size:12px!important;}
+.f2-card__cta:hover{background:var(--c-red-bright,#ff3b48)!important;}
+.f2-card__next{flex:none;border-radius:6px!important;padding:.5em .85em!important;}
+.f2-disc{width:auto!important;height:auto!important;display:inline-flex!important;align-items:center;gap:.5em;place-content:normal!important;border-radius:6px!important;background:var(--c-gold)!important;color:#181200!important;box-shadow:0 12px 30px rgba(0,0,0,.5)!important;padding:.66em 1.15em!important;font-size:12.5px!important;font-weight:700!important;letter-spacing:.05em!important;}
+.f2-disc:hover{transform:translateY(-2px)!important;background:var(--c-gold-bright)!important;box-shadow:0 14px 32px rgba(0,0,0,.5)!important;}
+.f2-disc:hover .f2-spark{animation:wg-rot 3s linear infinite;}
+.f2-disc__lbl{line-height:1;}
+.f2-ctrl__cluster .f2-sat{display:none!important;}
+.f2-prow{display:flex!important;}
+@media(hover:hover) and (pointer:fine){.f2-ctrl__more{display:none!important;}}
+.f2-ctrl__panel{border-radius:10px!important;}
