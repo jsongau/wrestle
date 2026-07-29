@@ -1,4 +1,11 @@
 ## 2026-07-29 (Lore Feed — newsroom generator + site-wide 7-day ticker)
+## 2026-07-29 (homepage lower redesign)
+- Hero: added the Gorilla Position dossier module (mdx) — featured-match file with sealed-result ballot, star ratings, "watch the match" + full breakdown; animated ring-the-bell; plus a "where to watch" streaming rail (Netflix / HBO Max / AMC+ / Prime).
+- New section "Pull a file from the cabinet" (rfx): interactive roster-file selector (The Rock / Austin / Undertaker / CM Punk) replacing the old "Keep the receipts" block.
+- New section "Seven feeds. Call the shot." (ptk): production-truck broadcast switcher routing to Wrestlers / Events / Hall of Fame / Titles & Teams / Media / Promotions.
+- Removed the homepage FAQ block (and its FAQPage JSON-LD) and the "Five doors deeper" section, per direction.
+- Ported from the self-contained home-lower-v1 draft into externalized css/site.css + js/home-modules.js; shell re-stamped; cache-bust bumped site-wide.
+
 ## 2026-07-29 (membership Insiders page)
 - Shipped the Insiders membership page: founder meter (spots claimed / 500), community scorecard, faction gifting, selectable tiers (Fan / Insider founder-rate / Ringside), Google + email capture.
 - Routing: /join now redirects to /membership/; SMS share; native share sheet only on touch devices.
