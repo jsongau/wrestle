@@ -177,7 +177,7 @@ html.js .wl-dossier .reveal.in{opacity:1;transform:none;transition:opacity .7s e
   background:linear-gradient(180deg,#fff 58%,#d9dbe0 100%);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:#fff;
   filter:drop-shadow(0 4px 44px rgba(0,0,0,.65)) drop-shadow(0 0 60px rgba(212,175,55,.12))}
-.wl-dossier .hero h1 .the{display:block;font-size:.22em;letter-spacing:.42em;color:var(--gold);-webkit-text-stroke:0;margin-bottom:10px}
+.wl-dossier .hero h1 .the{display:block;font-size:.22em;line-height:1.2;letter-spacing:.42em;color:var(--gold);-webkit-text-stroke:0;margin-bottom:10px}
 .wl-dossier .hero-tag{font-family:var(--osw);font-weight:500;font-size:clamp(15px,2vw,20px);letter-spacing:.05em;
   color:var(--ink);margin:14px 0 0;text-transform:uppercase}
 .wl-dossier .hero-tag em{color:var(--gold);font-style:normal}
@@ -189,7 +189,7 @@ html.js .wl-dossier .reveal.in{opacity:1;transform:none;transition:opacity .7s e
 .wl-dossier .hstat{min-width:74px}
 .wl-dossier .hstat b{font-family:var(--anton);font-size:42px;line-height:1;color:#fff;display:inline-flex;align-items:baseline;gap:2px}
 .wl-dossier .hstat b .x{color:var(--gold);font-size:.5em;transform:translateY(-.08em)}
-.wl-dossier .hstat span{font-family:var(--osw);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+.wl-dossier .hstat > span{font-family:var(--osw);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);display:block;margin-top:6px}
 .wl-dossier .hero-cta-row{display:flex;align-items:center;gap:18px;margin-top:34px;flex-wrap:wrap}
 .wl-dossier .discover{display:inline-flex;align-items:center;gap:11px;padding:13px 22px;border-radius:999px;
