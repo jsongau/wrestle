@@ -19,12 +19,75 @@
   "@graph":[
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"https://wrestlelore.com/"},
-      {"@type":"ListItem","position":2,"name":"Events","item":"https://wrestlelore.com/events/"}
+      {"@type":"ListItem","position":2,"name":"Events","item":"https://wrestlelore.com/events/"},
+      {"@type":"ListItem","position":3,"name":"WrestleMania","item":"https://wrestlelore.com/events/wrestlemania/"}
     ]},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When did WrestleMania start?","acceptedAnswer":{"@type":"Answer","text":"WrestleMania began on March 31, 1985 at Madison Square Garden in New York City, headlined by Hulk Hogan and Mr. T against Roddy Piper and Paul Orndorff."}},{"@type":"Question","name":"Why is WrestleMania two nights now?","acceptedAnswer":{"@type":"Answer","text":"WWE expanded WrestleMania to a two-night format starting with WrestleMania 35 (2019) to accommodate a growing roster and card length, splitting championship matches and marquee bouts across Saturday and Sunday."}},{"@type":"Question","name":"What is the most famous WrestleMania moment?","acceptedAnswer":{"@type":"Answer","text":"Hulk Hogan bodyslamming Andre the Giant at WrestleMania III (1987) before 93,000+ fans in the Pontiac Silverdome is widely considered wrestling's most iconic single image."}}]}
+    {"@type":"EventSeries","name":"WrestleMania","alternateName":"The Showcase of the Immortals","url":"https://wrestlelore.com/events/wrestlemania/","description":"WWE's flagship annual professional wrestling supercard, held every spring since March 31, 1985. Now a two-night stadium event.","startDate":"1985-03-31","eventAttendanceMode":"https://schema.org/MixedEventAttendanceMode","organizer":{"@type":"Organization","name":"WWE","url":"https://www.wwe.com/"},"location":{"@type":"Country","name":"United States"}},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"When did WrestleMania start?","acceptedAnswer":{"@type":"Answer","text":"WrestleMania began on March 31, 1985 at Madison Square Garden in New York City, headlined by Hulk Hogan and Mr. T defeating Roddy Piper and Paul Orndorff."}},
+      {"@type":"Question","name":"Where is WrestleMania held?","acceptedAnswer":{"@type":"Answer","text":"WrestleMania rotates among major North American stadiums and arenas. Recent hosts include SoFi Stadium in Los Angeles (2023), Lincoln Financial Field in Philadelphia (2024), and Allegiant Stadium in Las Vegas (2025 and 2026)."}},
+      {"@type":"Question","name":"Why is WrestleMania two nights now?","acceptedAnswer":{"@type":"Answer","text":"WWE first split WrestleMania across two nights at WrestleMania 36 (2020) during the pandemic and made the two-night format permanent from WrestleMania 37 (2021) onward to fit a larger roster and longer card."}},
+      {"@type":"Question","name":"What is The Undertaker's WrestleMania Streak?","acceptedAnswer":{"@type":"Answer","text":"The Undertaker won his first 21 WrestleMania matches from 1991 to 2013, a run known as The Streak. Brock Lesnar ended it at WrestleMania XXX (2014), making the final record 21-1."}},
+      {"@type":"Question","name":"Which WrestleMania is considered the best?","acceptedAnswer":{"@type":"Answer","text":"WrestleMania X-Seven (2001) at the Houston Astrodome is widely regarded as the greatest WrestleMania card. The Undertaker versus Shawn Michaels at WrestleMania XXV (2009) is the most critically acclaimed single match, earning a rare five-star rating."}},
+      {"@type":"Question","name":"What is the most famous WrestleMania moment?","acceptedAnswer":{"@type":"Answer","text":"Hulk Hogan bodyslamming Andre the Giant at WrestleMania III (1987) in the Pontiac Silverdome is widely considered wrestling's most iconic single image."}},
+      {"@type":"Question","name":"Who won the most recent WrestleMania?","acceptedAnswer":{"@type":"Answer","text":"At WrestleMania 42 (April 18-19, 2026, Allegiant Stadium, Las Vegas), Cody Rhodes defeated Randy Orton to retain the Undisputed WWE Championship on Night 1, and Roman Reigns defeated CM Punk to win the World Heavyweight Championship on Night 2."}}
+    ]}
   ]
 }
 </script>
+<style>
+/* WrestleMania page-scoped styles */
+.wm-note{font:500 .82rem/1.5 'Inter',system-ui,sans-serif;color:#9aa0aa;margin:.4rem 0 1rem}
+.wm-note b{color:#f2cc4b;font-weight:600}
+.wm-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(212,175,55,.22);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+.wm-table{width:100%;min-width:780px;border-collapse:collapse;font-family:'Inter',system-ui,sans-serif}
+.wm-table thead th{background:#14161c;color:#f2cc4b;font:700 .7rem/1.2 'Oswald',sans-serif;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:.72rem .9rem;border-bottom:2px solid rgba(212,175,55,.35);white-space:nowrap}
+.wm-table tbody td{padding:.72rem .9rem;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top;font-size:.86rem;line-height:1.45;color:#d7dae0}
+.wm-table tbody tr:nth-child(odd){background:rgba(255,255,255,.018)}
+.wm-table tbody tr:hover{background:rgba(212,175,55,.06)}
+.wm-ed{font-family:'Anton',sans-serif;color:#fff;white-space:nowrap;font-size:1rem;letter-spacing:.01em}
+.wm-ed b{display:block;font:600 .68rem/1 'JetBrains Mono',monospace;color:#d4af37;margin-top:.22rem}
+.wm-date,.wm-att{font-family:'JetBrains Mono',monospace;font-size:.76rem;white-space:nowrap;color:#c3c7cf}
+.wm-venue span{display:block;font-size:.75rem;color:#9aa0aa;margin-top:.15rem}
+.wm-table a{color:#f2cc4b;text-decoration:none;border-bottom:1px solid rgba(242,204,75,.22)}
+.wm-table a:hover{border-bottom-color:#f2cc4b}
+.wm-flag{color:#e11d2a;font-weight:700;cursor:help}
+.wm-recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1.1rem}
+.wm-rec{border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:1rem 1.1rem;background:rgba(255,255,255,.02)}
+.wm-rec h3{font:700 .7rem/1.2 'Oswald',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#9aa0aa;margin:0 0 .45rem}
+.wm-rec p{margin:0;font:400 .95rem/1.45 'Inter',system-ui,sans-serif;color:#e8eaee}
+.wm-rec p b{color:#f2cc4b;font-weight:600}
+.wm-stars{color:#f2cc4b;letter-spacing:.08em;white-space:nowrap}
+.wm-related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem}
+.wm-related a{display:inline-block;padding:.42rem .85rem;border:1px solid rgba(212,175,55,.28);border-radius:999px;font:600 .82rem/1 'Oswald',sans-serif;color:#e8eaee;text-decoration:none;background:rgba(255,255,255,.02);transition:border-color .15s,background .15s,color .15s}
+.wm-related a:hover{border-color:#f2cc4b;color:#fff;background:rgba(212,175,55,.1)}
+@media(max-width:640px){.wm-table{font-size:.8rem}}
+
+/* --- shared event-hub intro modules (ported from Royal Rumble) --- */
+.rr-standfirst{max-width:42ch;margin:var(--sp-4) 0 0;font-family:var(--font-cond);font-weight:500;font-size:var(--fs-600);line-height:1.32;color:var(--c-text)}
+.rr-standfirst b{color:var(--c-gold-bright);font-weight:600}
+.rr-statband{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3);margin-top:var(--sp-6)}
+.rr-stat{padding:var(--sp-4);border:1px solid var(--c-line-strong);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(212,175,55,.01))}
+.rr-stat__k{display:block;font-family:var(--ft-mono);font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--c-gold);margin-bottom:.55em}
+.rr-stat__v{display:block;font-family:var(--font-display);font-weight:400;font-size:2.4rem;line-height:.9;text-transform:uppercase;color:#fff}
+.rr-stat__v--sm{font-size:1.5rem;line-height:1}
+.rr-stat__s{display:block;margin-top:.55em;font-size:.76rem;line-height:1.35;color:var(--c-text-muted)}
+.rr-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);margin:var(--sp-4) 0 var(--sp-4)}
+.rr-step{padding:var(--sp-4);border:1px solid var(--c-line);border-radius:var(--r-lg);background:rgba(255,255,255,.02)}
+.rr-step__n{display:grid;place-content:center;width:34px;height:34px;border-radius:999px;background:linear-gradient(180deg,var(--c-gold-bright),var(--c-gold-dim));color:#161007;font-family:var(--font-display);font-size:1.05rem;margin-bottom:.7rem}
+.rr-step h3{margin:0 0 .3rem;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.03em;font-size:.92rem;font-weight:700;color:#fff}
+.rr-step p{margin:0;font-size:.82rem;line-height:1.4;color:var(--c-text-muted)}
+.rr-facts{display:grid;gap:.55rem;margin:var(--sp-4) 0 0}
+.rr-fact{display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:var(--sp-4);align-items:baseline;padding:.72rem .95rem;border:1px solid var(--c-line);border-radius:var(--r-md);background:rgba(255,255,255,.02)}
+.rr-fact__k{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.03em;font-weight:700;font-size:.8rem;color:var(--c-gold-bright)}
+.rr-fact__v{font-size:.9rem;line-height:1.45;color:var(--c-text)}
+.rr-fact__v a{color:#f2cc4b;text-decoration:none;border-bottom:1px solid rgba(242,204,75,.22)}
+.rr-fact__v a:hover{border-bottom-color:#f2cc4b}
+.rr-sec-p{max-width:64ch;color:var(--c-text-muted);font-size:var(--fs-500);line-height:var(--lh-body);margin:0}
+.rr-sec-p b{color:var(--c-gold-bright);font-weight:600}
+@media(max-width:760px){.rr-statband{grid-template-columns:repeat(2,1fr)}.rr-steps{grid-template-columns:1fr}}
+@media(max-width:620px){.rr-fact{grid-template-columns:1fr;gap:.15rem}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -706,24 +769,147 @@
 
     <span class="ev-hero__brand">The Showcase of the Immortals</span>
     <h1>WrestleMania</h1>
+    <p class="rr-standfirst">WWE&rsquo;s flagship show and the biggest night in wrestling &mdash; the two-night spring spectacle careers are built to reach.</p>
+    <div class="rr-statband">
+      <div class="rr-stat"><span class="rr-stat__k">First Held</span><span class="rr-stat__v">1985</span><span class="rr-stat__s">Mar 31 &middot; Madison Square Garden</span></div>
+      <div class="rr-stat"><span class="rr-stat__k">Editions</span><span class="rr-stat__v">42</span><span class="rr-stat__s">Through 2026</span></div>
+      <div class="rr-stat"><span class="rr-stat__k">Format</span><span class="rr-stat__v rr-stat__v--sm">2 Nights</span><span class="rr-stat__s">Stadium era since 2020</span></div>
+      <div class="rr-stat"><span class="rr-stat__k">Promotion</span><span class="rr-stat__v rr-stat__v--sm">WWE</span><span class="rr-stat__s">Its flagship event</span></div>
+    </div>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="ev-lede" style="margin-top:var(--sp-5)">
-    <p>WrestleMania is WWE's flagship event, "The Showcase of the Immortals," held every spring since March 31, 1985 at Madison Square Garden. It has grown from a single-arena gamble into a two-night stadium spectacle drawing over 70,000 fans, and it remains the event around which the entire wrestling calendar is built.</p><p>Landmark editions include WrestleMania III (1987, Pontiac Silverdome, the Hogan/Andre bodyslam), WrestleMania X-Seven (2001, widely called the best-ever card), and the modern two-night stadium era running from WrestleMania 35 onward.</p><p>Careers are defined by WrestleMania moments. <a href="/wrestlers/the-undertaker/">The Undertaker</a>'s undefeated Streak ran 21–0 before ending at WrestleMania 30, and dozens of championship reigns have been made or broken on this stage.</p>
+  <div class="sec-h"><h2>From one arena to two nights</h2></div>
+  <p class="rr-sec-p">WrestleMania grew from a one-night gamble into the biggest annual event in wrestling. The arc in three beats:</p>
+  <div class="rr-steps">
+    <div class="rr-step"><span class="rr-step__n">1</span><h3>1985 &middot; The gamble</h3><p>WWE chairman Vince McMahon reportedly bet the company on the first WrestleMania, staged at Madison Square Garden.</p></div>
+    <div class="rr-step"><span class="rr-step__n">2</span><h3>The flagship</h3><p>It became WWE&rsquo;s marquee annual show &mdash; the night the entire storyline year is built to reach.</p></div>
+    <div class="rr-step"><span class="rr-step__n">3</span><h3>2020 &rarr; now</h3><p>Two nights since WrestleMania 36, drawing 100,000-plus across stadiums like AT&amp;T, SoFi and Allegiant.</p></div>
+  </div>
+
+  <div class="sec-h"><h2>Landmark editions</h2></div>
+  <div class="rr-facts">
+    <div class="rr-fact"><span class="rr-fact__k">WrestleMania III &middot; 1987</span><span class="rr-fact__v"><a href="/wrestlers/hulk-hogan/">Hulk Hogan</a> bodyslammed <a href="/wrestlers/andre-the-giant/">Andr&eacute; the Giant</a> before a crowd WWE announced at 93,173.</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">X-Seven &middot; 2001</span><span class="rr-fact__v">Widely rated the greatest single card in company history.</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">WrestleMania XXX &middot; 2014</span><span class="rr-fact__v"><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a> ended <a href="/wrestlers/the-undertaker/">The Undertaker</a>&rsquo;s 21-match undefeated Streak.</span></div>
+  </div>
+
+  <div class="sec-h"><h2>Moments that defined careers</h2></div>
+  <div class="rr-facts">
+    <div class="rr-fact"><span class="rr-fact__k">The Streak</span><span class="rr-fact__v"><a href="/wrestlers/the-undertaker/">The Undertaker</a> went 21&ndash;0 at WrestleMania from 1991 to 2013.</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">First women&rsquo;s main event</span><span class="rr-fact__v"><a href="/wrestlers/becky-lynch/">Becky Lynch</a> headlined WrestleMania 35 in 2019 &mdash; the first woman to main-event the show.</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">Finished the story</span><span class="rr-fact__v"><a href="/wrestlers/cody-rhodes/">Cody Rhodes</a> beat <a href="/wrestlers/roman-reigns/">Roman Reigns</a> at WrestleMania XL in 2024, ending the longest world-title reign of the modern era.</span></div>
+  </div>
+
+  <p class="rr-sec-p" style="margin-top:var(--sp-4)">This page catalogues every WrestleMania from 1985 to 2026.</p>
+
+  <div class="sec-h"><h2>Why WrestleMania matters</h2></div>
+  <div class="ev-lede">
+    <p>WrestleMania is the anchor of the professional-wrestling calendar. WWE builds its entire storyline year toward it: the <a href="/events/royal-rumble/">Royal Rumble</a> in January exists to crown a number-one contender for the WrestleMania main event, and championships are routinely held, delayed or switched to maximise their WrestleMania payoff. It is also WWE's single largest commercial engine, driving subscription sign-ups, ticket and merchandise revenue, and host-city tourism.</p>
+    <p>For the performers, a WrestleMania moment is the closest thing wrestling has to a permanent record. Debuts, retirements, title coronations and career-defining upsets are staged here by design. That is why the event's history doubles as a history of the industry's biggest stars — and why nearly every profile on Wrestle Lore connects back to a WrestleMania match.</p>
+  </div>
+
+  <div class="sec-h"><h2>Every WrestleMania, 1985–2026</h2></div>
+  <p class="wm-note">Attendance figures marked <span class="wm-flag" title="Disputed or promoter-announced figure">⚑</span> are promoter-announced or disputed; independent estimates differ. Two-night combined totals are marked <b>2N</b>. Scroll the table sideways on mobile.</p>
+  <div class="wm-tablewrap">
+    <table class="wm-table">
+      <caption style="caption-side:top;text-align:left;padding:.6rem .9rem;font:600 .72rem/1.3 'Oswald',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#9aa0aa">Every WrestleMania, 1985–2026</caption>
+      <thead><tr><th scope="col">WrestleMania</th><th scope="col">Date</th><th scope="col">Venue / City</th><th scope="col">Attendance</th><th scope="col">Main event &amp; result</th></tr></thead>
+      <tbody>
+      <tr><td><span class="wm-ed">I<b>1985</b></span></td><td class="wm-date">Mar 31, 1985</td><td class="wm-venue">Madison Square Garden<span>New York, NY</span></td><td class="wm-att">~19,000</td><td><a href="/wrestlers/hulk-hogan/">Hulk Hogan</a> &amp; Mr. T def. <a href="/wrestlers/roddy-piper/">Roddy Piper</a> &amp; Paul Orndorff</td></tr>
+      <tr><td><span class="wm-ed">2<b>1986</b></span></td><td class="wm-date">Apr 7, 1986</td><td class="wm-venue">Three arenas<span>New York · Chicago · LA</span></td><td class="wm-att">~40,000 <span class="wm-flag" title="Combined across three venues; disputed">⚑</span></td><td>Hulk Hogan def. King Kong Bundy (steel cage, WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">III<b>1987</b></span></td><td class="wm-date">Mar 29, 1987</td><td class="wm-venue">Pontiac Silverdome<span>Pontiac, MI</span></td><td class="wm-att">93,173 <span class="wm-flag" title="WWE-announced; independent estimates ~78,000">⚑</span></td><td>Hulk Hogan def. <a href="/wrestlers/andre-the-giant/">André the Giant</a></td></tr>
+      <tr><td><span class="wm-ed">IV<b>1988</b></span></td><td class="wm-date">Mar 27, 1988</td><td class="wm-venue">Trump Plaza<span>Atlantic City, NJ</span></td><td class="wm-att">~18,000</td><td><a href="/wrestlers/randy-savage/">Randy Savage</a> def. <a href="/wrestlers/ted-dibiase/">Ted DiBiase</a> (tournament final, vacant WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">V<b>1989</b></span></td><td class="wm-date">Apr 2, 1989</td><td class="wm-venue">Trump Plaza<span>Atlantic City, NJ</span></td><td class="wm-att">~18,500</td><td>Hulk Hogan def. Randy Savage (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">VI<b>1990</b></span></td><td class="wm-date">Apr 1, 1990</td><td class="wm-venue">SkyDome<span>Toronto, ON</span></td><td class="wm-att">67,678</td><td>The Ultimate Warrior def. Hulk Hogan (title vs title)</td></tr>
+      <tr><td><span class="wm-ed">VII<b>1991</b></span></td><td class="wm-date">Mar 24, 1991</td><td class="wm-venue">LA Memorial Sports Arena<span>Los Angeles, CA</span></td><td class="wm-att">~16,000 <span class="wm-flag" title="Relocated from LA Coliseum; figure disputed">⚑</span></td><td>Hulk Hogan def. Sgt. Slaughter (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">VIII<b>1992</b></span></td><td class="wm-date">Apr 5, 1992</td><td class="wm-venue">Hoosier Dome<span>Indianapolis, IN</span></td><td class="wm-att">62,167</td><td><a href="/wrestlers/ric-flair/">Ric Flair</a> def. Randy Savage (WWF Title)<br>Hulk Hogan def. <a href="/wrestlers/sycho-sid/">Sid Justice</a></td></tr>
+      <tr><td><span class="wm-ed">IX<b>1993</b></span></td><td class="wm-date">Apr 4, 1993</td><td class="wm-venue">Caesars Palace<span>Las Vegas, NV</span></td><td class="wm-att">~16,000</td><td>Hulk Hogan def. <a href="/wrestlers/yokozuna/">Yokozuna</a> (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">X<b>1994</b></span></td><td class="wm-date">Mar 20, 1994</td><td class="wm-venue">Madison Square Garden<span>New York, NY</span></td><td class="wm-att">~18,000</td><td><a href="/wrestlers/bret-hart/">Bret Hart</a> def. Yokozuna (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">XI<b>1995</b></span></td><td class="wm-date">Apr 2, 1995</td><td class="wm-venue">Hartford Civic Center<span>Hartford, CT</span></td><td class="wm-att">~16,000</td><td><a href="/wrestlers/diesel/">Diesel</a> def. Shawn Michaels (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">XII<b>1996</b></span></td><td class="wm-date">Mar 31, 1996</td><td class="wm-venue">Arrowhead Pond<span>Anaheim, CA</span></td><td class="wm-att">~18,000</td><td><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a> def. Bret Hart (60-min Iron Man, WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">13<b>1997</b></span></td><td class="wm-date">Mar 23, 1997</td><td class="wm-venue">Rosemont Horizon<span>Rosemont, IL</span></td><td class="wm-att">~18,700</td><td><a href="/wrestlers/the-undertaker/">The Undertaker</a> def. Sycho Sid (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">XIV<b>1998</b></span></td><td class="wm-date">Mar 29, 1998</td><td class="wm-venue">FleetCenter<span>Boston, MA</span></td><td class="wm-att">~19,000</td><td><a href="/wrestlers/stone-cold-steve-austin/">Steve Austin</a> def. Shawn Michaels (WWF Title; Mike Tyson enforcer)</td></tr>
+      <tr><td><span class="wm-ed">XV<b>1999</b></span></td><td class="wm-date">Mar 28, 1999</td><td class="wm-venue">First Union Center<span>Philadelphia, PA</span></td><td class="wm-att">~20,300</td><td>Steve Austin def. <a href="/wrestlers/the-rock/">The Rock</a> (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">2000</span></td><td class="wm-date">Apr 2, 2000</td><td class="wm-venue">Arrowhead Pond<span>Anaheim, CA</span></td><td class="wm-att">~18,000</td><td><a href="/wrestlers/triple-h/">Triple H</a> def. The Rock, <a href="/wrestlers/big-show/">Big Show</a> &amp; <a href="/wrestlers/mick-foley/">Mick Foley</a> (Fatal 4-Way, WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">X-Seven<b>2001</b></span></td><td class="wm-date">Apr 1, 2001</td><td class="wm-venue">Reliant Astrodome<span>Houston, TX</span></td><td class="wm-att">67,925</td><td>Steve Austin def. The Rock (WWF Title)</td></tr>
+      <tr><td><span class="wm-ed">X8<b>2002</b></span></td><td class="wm-date">Mar 17, 2002</td><td class="wm-venue">SkyDome<span>Toronto, ON</span></td><td class="wm-att">68,237</td><td>Triple H def. <a href="/wrestlers/chris-jericho/">Chris Jericho</a> (Undisputed Title)</td></tr>
+      <tr><td><span class="wm-ed">XIX<b>2003</b></span></td><td class="wm-date">Mar 30, 2003</td><td class="wm-venue">Safeco Field<span>Seattle, WA</span></td><td class="wm-att">54,097</td><td><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a> def. <a href="/wrestlers/kurt-angle/">Kurt Angle</a> (WWE Title)<br>Triple H def. <a href="/wrestlers/booker-t/">Booker T</a> (World Title)</td></tr>
+      <tr><td><span class="wm-ed">XX<b>2004</b></span></td><td class="wm-date">Mar 14, 2004</td><td class="wm-venue">Madison Square Garden<span>New York, NY</span></td><td class="wm-att">~20,000</td><td><a href="/wrestlers/chris-benoit/">Chris Benoit</a> def. Triple H &amp; Shawn Michaels (World Title)<br><a href="/wrestlers/eddie-guerrero/">Eddie Guerrero</a> def. Kurt Angle (WWE Title)</td></tr>
+      <tr><td><span class="wm-ed">21<b>2005</b></span></td><td class="wm-date">Apr 3, 2005</td><td class="wm-venue">Staples Center<span>Los Angeles, CA</span></td><td class="wm-att">~20,000</td><td><a href="/wrestlers/john-cena/">John Cena</a> def. JBL (WWE Title)<br><a href="/wrestlers/batista/">Batista</a> def. Triple H (World Title)</td></tr>
+      <tr><td><span class="wm-ed">22<b>2006</b></span></td><td class="wm-date">Apr 2, 2006</td><td class="wm-venue">Allstate Arena<span>Rosemont, IL</span></td><td class="wm-att">~17,000</td><td>John Cena def. Triple H (WWE Title)<br><a href="/wrestlers/rey-mysterio/">Rey Mysterio</a> def. Kurt Angle &amp; <a href="/wrestlers/randy-orton/">Randy Orton</a> (World Title)</td></tr>
+      <tr><td><span class="wm-ed">23<b>2007</b></span></td><td class="wm-date">Apr 1, 2007</td><td class="wm-venue">Ford Field<span>Detroit, MI</span></td><td class="wm-att">80,103</td><td>John Cena def. Shawn Michaels (WWE Title)<br>Batista def. The Undertaker (World Title)</td></tr>
+      <tr><td><span class="wm-ed">XXIV<b>2008</b></span></td><td class="wm-date">Mar 30, 2008</td><td class="wm-venue">Citrus Bowl<span>Orlando, FL</span></td><td class="wm-att">74,635</td><td>Randy Orton def. John Cena &amp; Triple H (WWE Title)<br><a href="/wrestlers/edge/">Edge</a> def. The Undertaker (World Title)</td></tr>
+      <tr><td><span class="wm-ed">XXV<b>2009</b></span></td><td class="wm-date">Apr 5, 2009</td><td class="wm-venue">Reliant Stadium<span>Houston, TX</span></td><td class="wm-att">72,744</td><td>Triple H def. Randy Orton (WWE Title)<br>The Undertaker def. Shawn Michaels <span class="wm-stars">★★★★★</span></td></tr>
+      <tr><td><span class="wm-ed">XXVI<b>2010</b></span></td><td class="wm-date">Mar 28, 2010</td><td class="wm-venue">University of Phoenix Stadium<span>Glendale, AZ</span></td><td class="wm-att">72,219</td><td>John Cena def. Batista (WWE Title)<br>The Undertaker def. Shawn Michaels (streak vs career)</td></tr>
+      <tr><td><span class="wm-ed">XXVII<b>2011</b></span></td><td class="wm-date">Apr 3, 2011</td><td class="wm-venue">Georgia Dome<span>Atlanta, GA</span></td><td class="wm-att">71,617</td><td>The Miz def. John Cena (WWE Title; The Rock guest host)<br>The Undertaker def. Triple H</td></tr>
+      <tr><td><span class="wm-ed">XXVIII<b>2012</b></span></td><td class="wm-date">Apr 1, 2012</td><td class="wm-venue">Sun Life Stadium<span>Miami Gardens, FL</span></td><td class="wm-att">78,363</td><td>The Rock def. John Cena<br>The Undertaker def. Triple H (Hell in a Cell, "End of an Era")</td></tr>
+      <tr><td><span class="wm-ed">29<b>2013</b></span></td><td class="wm-date">Apr 7, 2013</td><td class="wm-venue">MetLife Stadium<span>East Rutherford, NJ</span></td><td class="wm-att">80,676</td><td>John Cena def. The Rock (WWE Title)<br>The Undertaker def. <a href="/wrestlers/cm-punk/">CM Punk</a></td></tr>
+      <tr><td><span class="wm-ed">XXX<b>2014</b></span></td><td class="wm-date">Apr 6, 2014</td><td class="wm-venue">Mercedes-Benz Superdome<span>New Orleans, LA</span></td><td class="wm-att">75,167</td><td><a href="/wrestlers/daniel-bryan/">Daniel Bryan</a> def. Randy Orton &amp; Batista (World Title)<br>Brock Lesnar def. The Undertaker — <b>Streak ends 21–1</b></td></tr>
+      <tr><td><span class="wm-ed">31<b>2015</b></span></td><td class="wm-date">Mar 29, 2015</td><td class="wm-venue">Levi's Stadium<span>Santa Clara, CA</span></td><td class="wm-att">76,976</td><td><a href="/wrestlers/seth-rollins/">Seth Rollins</a> def. <a href="/wrestlers/roman-reigns/">Roman Reigns</a> &amp; Brock Lesnar (MITB cash-in, WWE Title)</td></tr>
+      <tr><td><span class="wm-ed">32<b>2016</b></span></td><td class="wm-date">Apr 3, 2016</td><td class="wm-venue">AT&amp;T Stadium<span>Arlington, TX</span></td><td class="wm-att">101,763 <span class="wm-flag" title="WWE-announced; independent estimates ~80,000">⚑</span></td><td>Triple H def. Roman Reigns (WWE Title)</td></tr>
+      <tr><td><span class="wm-ed">33<b>2017</b></span></td><td class="wm-date">Apr 2, 2017</td><td class="wm-venue">Camping World Stadium<span>Orlando, FL</span></td><td class="wm-att">75,245</td><td>Brock Lesnar def. <a href="/wrestlers/goldberg/">Goldberg</a> (Universal Title)<br>Roman Reigns def. The Undertaker</td></tr>
+      <tr><td><span class="wm-ed">34<b>2018</b></span></td><td class="wm-date">Apr 8, 2018</td><td class="wm-venue">Mercedes-Benz Superdome<span>New Orleans, LA</span></td><td class="wm-att">78,133</td><td><a href="/wrestlers/aj-styles/">AJ Styles</a> def. <a href="/wrestlers/shinsuke-nakamura/">Shinsuke Nakamura</a> (WWE Title)<br>Brock Lesnar def. Roman Reigns (Universal Title)</td></tr>
+      <tr><td><span class="wm-ed">35<b>2019</b></span></td><td class="wm-date">Apr 7, 2019</td><td class="wm-venue">MetLife Stadium<span>East Rutherford, NJ</span></td><td class="wm-att">82,265</td><td><a href="/wrestlers/becky-lynch/">Becky Lynch</a> def. Ronda Rousey &amp; <a href="/wrestlers/charlotte-flair/">Charlotte Flair</a> — first women's WM main event</td></tr>
+      <tr><td><span class="wm-ed">36<b>2020</b></span></td><td class="wm-date">Apr 4–5, 2020</td><td class="wm-venue">WWE Performance Center<span>Orlando, FL (no fans)</span></td><td class="wm-att">No fans <b>2N</b></td><td><a href="/wrestlers/drew-mcintyre/">Drew McIntyre</a> def. Brock Lesnar (WWE Title)<br>Braun Strowman def. Goldberg (Universal Title)</td></tr>
+      <tr><td><span class="wm-ed">37<b>2021</b></span></td><td class="wm-date">Apr 10–11, 2021</td><td class="wm-venue">Raymond James Stadium<span>Tampa, FL</span></td><td class="wm-att">~51,000 <b>2N</b></td><td>Roman Reigns def. Edge &amp; Daniel Bryan (Universal Title)<br><a href="/wrestlers/bobby-lashley/">Bobby Lashley</a> def. The Miz (WWE Title)</td></tr>
+      <tr><td><span class="wm-ed">38<b>2022</b></span></td><td class="wm-date">Apr 2–3, 2022</td><td class="wm-venue">AT&amp;T Stadium<span>Arlington, TX</span></td><td class="wm-att">156,352 <b>2N</b></td><td>Roman Reigns def. Brock Lesnar (title unification)<br>Steve Austin def. <a href="/wrestlers/kevin-owens/">Kevin Owens</a></td></tr>
+      <tr><td><span class="wm-ed">39<b>2023</b></span></td><td class="wm-date">Apr 1–2, 2023</td><td class="wm-venue">SoFi Stadium<span>Inglewood, CA</span></td><td class="wm-att">163,596 <b>2N</b></td><td>Roman Reigns def. Cody Rhodes (Undisputed Title)</td></tr>
+      <tr><td><span class="wm-ed">XL<b>2024</b></span></td><td class="wm-date">Apr 6–7, 2024</td><td class="wm-venue">Lincoln Financial Field<span>Philadelphia, PA</span></td><td class="wm-att">145,898 <b>2N</b></td><td>Cody Rhodes def. Roman Reigns — "Finish the Story" <span class="wm-stars">★★★★½</span></td></tr>
+      <tr><td><span class="wm-ed">41<b>2025</b></span></td><td class="wm-date">Apr 19–20, 2025</td><td class="wm-venue">Allegiant Stadium<span>Las Vegas, NV</span></td><td class="wm-att">118,641 <b>2N</b></td><td>Seth Rollins def. Roman Reigns &amp; CM Punk (N1)<br>John Cena def. Cody Rhodes — record 17th world title (N2)</td></tr>
+      <tr><td><span class="wm-ed">42<b>2026</b></span></td><td class="wm-date">Apr 18–19, 2026</td><td class="wm-venue">Allegiant Stadium<span>Las Vegas, NV</span></td><td class="wm-att">106,073 <b>2N</b></td><td>Cody Rhodes def. Randy Orton (N1)<br>Roman Reigns def. CM Punk — World Heavyweight Title (N2)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-h"><h2>Records &amp; superlatives</h2></div>
+  <div class="wm-recs">
+    <div class="wm-rec"><h3>The Streak</h3><p><b>The Undertaker, 21–0</b> at WrestleMania (1991–2013) before Brock Lesnar ended it at WrestleMania XXX (2014). Final record 21–1.</p></div>
+    <div class="wm-rec"><h3>Record attendance</h3><p>WWE announced <b>101,763 ⚑</b> for WrestleMania 32 (2016, AT&amp;T Stadium); independent estimates put it near 80,000. Two-night totals have since topped 160,000.</p></div>
+    <div class="wm-rec"><h3>Most appearances</h3><p><b>The Undertaker</b> (25+), followed by Triple H, Shawn Michaels and John Cena.</p></div>
+    <div class="wm-rec"><h3>Highest-rated match</h3><p><b>The Undertaker def. Shawn Michaels</b>, WrestleMania XXV (2009) — a rare five-star classic (Wrestling Observer).</p></div>
+    <div class="wm-rec"><h3>First women's main event</h3><p><b>Becky Lynch</b> beat Ronda Rousey &amp; Charlotte Flair to close WrestleMania 35 (2019) — the first women's match to headline.</p></div>
+    <div class="wm-rec"><h3>Two-night era</h3><p>Began at <b>WrestleMania 36</b> (2020, empty arena) and has been the permanent format ever since.</p></div>
+    <div class="wm-rec"><h3>Shortest main-card match</h3><p><b>~6 seconds</b> — The Rock pinned Erick Rowan at WrestleMania 32 (2016).</p></div>
   </div>
 
   <div class="sec-h"><h2>Editions on Wrestle Lore</h2></div>
   <div class="event-grid">
-<a class="ev-tile" href="/events/wrestlemania-42-2026/"><span class="ev-tile__date">April 18–19, 2026</span><h3 class="ev-tile__name">WrestleMania 42</h3><p class="ev-tile__sub">Cody Rhodes over Randy Orton (N1); Roman Reigns over CM Punk (N2)</p></a>
+<a class="ev-tile" href="/events/wrestlemania-42-2026/"><span class="ev-tile__date">April 18–19, 2026</span><h3 class="ev-tile__name">WrestleMania 42</h3><p class="ev-tile__sub">Cody Rhodes def. Randy Orton (N1); Roman Reigns def. CM Punk (N2)</p></a>
+  </div>
+
+  <div class="sec-h"><h2>Related superstars</h2></div>
+  <div class="wm-related">
+    <a href="/wrestlers/the-undertaker/">The Undertaker</a>
+    <a href="/wrestlers/hulk-hogan/">Hulk Hogan</a>
+    <a href="/wrestlers/stone-cold-steve-austin/">Stone Cold Steve Austin</a>
+    <a href="/wrestlers/the-rock/">The Rock</a>
+    <a href="/wrestlers/triple-h/">Triple H</a>
+    <a href="/wrestlers/shawn-michaels/">Shawn Michaels</a>
+    <a href="/wrestlers/john-cena/">John Cena</a>
+    <a href="/wrestlers/roman-reigns/">Roman Reigns</a>
+    <a href="/wrestlers/cody-rhodes/">Cody Rhodes</a>
+    <a href="/wrestlers/bret-hart/">Bret Hart</a>
+    <a href="/wrestlers/randy-savage/">Randy Savage</a>
+    <a href="/wrestlers/ric-flair/">Ric Flair</a>
+    <a href="/wrestlers/brock-lesnar/">Brock Lesnar</a>
+    <a href="/wrestlers/seth-rollins/">Seth Rollins</a>
+    <a href="/wrestlers/cm-punk/">CM Punk</a>
+    <a href="/wrestlers/becky-lynch/">Becky Lynch</a>
+    <a href="/wrestlers/daniel-bryan/">Daniel Bryan</a>
+    <a href="/wrestlers/edge/">Edge</a>
   </div>
 
   <div class="sec-h"><h2>FAQ</h2></div>
 <div class="faq faq-block">
-<details><summary>When did WrestleMania start?</summary><div class="faq__body">WrestleMania began on March 31, 1985 at Madison Square Garden in New York City, headlined by Hulk Hogan and Mr. T against Roddy Piper and Paul Orndorff.</div></details>
-<details><summary>Why is WrestleMania two nights now?</summary><div class="faq__body">WWE expanded WrestleMania to a two-night format starting with WrestleMania 35 (2019) to accommodate a growing roster and card length, splitting championship matches and marquee bouts across Saturday and Sunday.</div></details>
-<details><summary>What is the most famous WrestleMania moment?</summary><div class="faq__body">Hulk Hogan bodyslamming Andre the Giant at WrestleMania III (1987) before 93,000+ fans in the Pontiac Silverdome is widely considered wrestling's most iconic single image.</div></details>
+<details><summary>When did WrestleMania start?</summary><div class="faq__body">WrestleMania began on March 31, 1985 at Madison Square Garden in New York City, headlined by Hulk Hogan and Mr. T defeating Roddy Piper and Paul Orndorff.</div></details>
+<details><summary>Where is WrestleMania held?</summary><div class="faq__body">WrestleMania rotates among major North American stadiums and arenas. Recent hosts include SoFi Stadium in Los Angeles (2023), Lincoln Financial Field in Philadelphia (2024), and Allegiant Stadium in Las Vegas (2025 and 2026).</div></details>
+<details><summary>Why is WrestleMania two nights now?</summary><div class="faq__body">WWE first split WrestleMania across two nights at WrestleMania 36 (2020) during the pandemic and made the two-night format permanent from WrestleMania 37 (2021) onward to fit a larger roster and longer card.</div></details>
+<details><summary>What is The Undertaker's WrestleMania Streak?</summary><div class="faq__body">The Undertaker won his first 21 WrestleMania matches from 1991 to 2013, a run known as The Streak. Brock Lesnar ended it at WrestleMania XXX (2014), making the final record 21–1.</div></details>
+<details><summary>Which WrestleMania is considered the best?</summary><div class="faq__body">WrestleMania X-Seven (2001) at the Houston Astrodome is widely regarded as the greatest WrestleMania card. The Undertaker versus Shawn Michaels at WrestleMania XXV (2009) is the most critically acclaimed single match, earning a rare five-star rating.</div></details>
+<details><summary>What is the most famous WrestleMania moment?</summary><div class="faq__body">Hulk Hogan bodyslamming André the Giant at WrestleMania III (1987) in the Pontiac Silverdome is widely considered wrestling's most iconic single image.</div></details>
+<details><summary>Who won the most recent WrestleMania?</summary><div class="faq__body">At WrestleMania 42 (April 18–19, 2026, Allegiant Stadium, Las Vegas), Cody Rhodes defeated Randy Orton to retain the Undisputed WWE Championship on Night 1, and Roman Reigns defeated CM Punk to win the World Heavyweight Championship on Night 2.</div></details>
 </div>
 
 </div>

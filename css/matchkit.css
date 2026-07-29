@@ -1,0 +1,53 @@
+/* ===== WINNER SPOILER REVEAL (match pages) — scoped .wl-sp* / .wl-spoiler* =====
+   One secret per page: who won. Any reveal control unlocks every winner-bearing
+   element at once (root gets .wl-revealed). All winner text stays in the DOM for
+   SEO + GEO; the blur/cover is CSS that only engages when .js is present. */
+
+/* ---- the VS result card (the card itself is the reveal control) ---- */
+.wl-spoiler{display:block;}
+.wl-sp__card{position:relative;}
+.js:not(.wl-revealed) .wl-sp__card{cursor:pointer;
+  transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease);}
+.js:not(.wl-revealed) .wl-sp__card:hover{border-color:var(--c-gold);box-shadow:var(--shadow-gold);}
+
+.js .wl-sp__verdict{opacity:0;transform:translateY(3px);visibility:hidden;
+  transition:opacity .4s var(--ease),transform .4s var(--ease);}
+.wl-revealed .wl-sp__verdict{opacity:1;transform:none;visibility:visible;}
+
+/* the "tap to reveal winner" pill sits on the card, in place of the verdict */
+.wl-sp__reveal{display:none;grid-column:1/-1;justify-self:center;align-items:center;gap:.5em;
+  margin-top:var(--sp-2);border:1px solid var(--c-gold-dim);border-radius:var(--r-pill);
+  background:var(--c-gold-tint);color:var(--c-gold-bright);font-family:var(--font-cond);
+  text-transform:uppercase;letter-spacing:.08em;font-size:var(--fs-400);padding:.55em 1.2em;cursor:pointer;
+  transition:background var(--dur) var(--ease),color var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+.js .wl-sp__reveal{display:inline-flex;}
+.wl-revealed .wl-sp__reveal{display:none;}
+.wl-sp__reveal:hover{background:var(--c-gold-dim);color:#0a0b0d;border-color:var(--c-gold);}
+.wl-sp__reveal:focus-visible{outline:2px solid var(--c-focus);outline-offset:2px;}
+.wl-sp__reveal-ic{color:var(--c-red-bright);}
+
+/* ---- inline hidden value (the Result row) ---- */
+.js .wl-sp__hide{filter:blur(7px);user-select:none;transition:filter .45s var(--ease);}
+.wl-revealed .wl-sp__hide{filter:none;user-select:auto;}
+
+/* ---- block spoiler (the match-result paragraph) ---- */
+.wl-spoiler-block{position:relative;border-radius:var(--r-md);}
+.js .wl-spoiler-block .answer{filter:blur(9px);user-select:none;transition:filter .5s var(--ease);}
+.wl-revealed .wl-spoiler-block .answer{filter:none;user-select:auto;}
+.wl-spoiler-block__cover{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;
+  justify-content:center;gap:.55em;width:100%;border:1px dashed var(--c-gold-dim);border-radius:var(--r-md);
+  cursor:pointer;color:var(--c-text);text-align:center;
+  background:radial-gradient(130% 100% at 50% 0,rgba(225,29,42,.12),transparent 62%),rgba(10,11,13,.34);
+  transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+.js .wl-spoiler-block__cover{display:flex;}
+.wl-revealed .wl-spoiler-block__cover{display:none;}
+.wl-spoiler-block__cover:hover{border-color:var(--c-gold);background:radial-gradient(130% 100% at 50% 0,rgba(225,29,42,.18),transparent 60%),rgba(10,11,13,.28);}
+.wl-spoiler-block__cover:focus-visible{outline:2px solid var(--c-focus);outline-offset:2px;}
+.wl-spoiler-block__badge{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:#fff;background:var(--c-red);padding:.35em .75em;border-radius:var(--r-sm);}
+.wl-spoiler-block__cue{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;
+  font-size:var(--fs-500);color:var(--c-gold-bright);}
+
+@media (prefers-reduced-motion:reduce){
+  .js .wl-sp__verdict{transition:none;}
+}

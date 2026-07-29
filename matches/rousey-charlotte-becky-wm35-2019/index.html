@@ -23,6 +23,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="/css/site.css?v=9f110f26">
+<link rel="stylesheet" href="/css/matchkit.css?v=711c61f4">
 <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
 <script type="application/ld+json">
@@ -766,19 +767,12 @@
   <div class="grid-2" style="align-items:start;gap:var(--sp-6)">
     <div class="stack">
       <div class="hero__card">
-        <div class="embed">
-          <button class="facade" type="button"
-            onclick="window.open('https://www.youtube.com/results?search_query=WWE+Becky+Lynch+vs+Ronda+Rousey+vs+Charlotte+Flair+WrestleMania+35+full+match','_blank','noopener');return false;"
-            aria-label="Watch Rousey vs Charlotte vs Becky at WrestleMania 35">
-            <span class="facade__ph">WM35</span><span class="facade__btn" aria-hidden="true">▶</span>
-            <span class="facade__label">Watch on WWE / YouTube — official upload</span>
-          </button>
-        </div>
+        <div class="yt" data-yt-id="B828y_pJIWk" data-yt-title="Ronda Rousey vs Charlotte Flair vs Becky Lynch, WWE WrestleMania 35" data-yt-creator="WWE" data-yt-service="Peacock" data-yt-service-url="https://www.peacocktv.com/"><a class="yt__link" href="https://www.youtube.com/watch?v=B828y_pJIWk">Play: Ronda Rousey vs Charlotte Flair vs Becky Lynch (official WWE upload)</a></div>
       </div>
-      <p class="form-note">▶ Opens the official WWE match search. Verified embed IDs (YouTube &amp; Bilibili for China) drop straight into this player.</p>
+      <p class="form-note">▶ Plays right here in our player — official upload, verified.</p>
 
       <h2>The Story</h2>
-      <p class="answer"><strong>Becky Lynch won both the Raw and SmackDown Women's Championships, pinning Ronda Rousey</strong> in a Winner Take All Triple Threat that became the first women's match ever to main-event WrestleMania — the symbolic summit of the women's revolution that began in NXT.</p>
+      <div class="wl-spoiler-block"><p class="answer"><strong>Becky Lynch won both the Raw and SmackDown Women's Championships, pinning Ronda Rousey</strong> in a Winner Take All Triple Threat that became the first women's match ever to main-event WrestleMania — the symbolic summit of the women's revolution that began in NXT.</p><button class="wl-spoiler-block__cover" type="button" aria-expanded="false" aria-label="Reveal the result"><span class="wl-spoiler-block__badge">Spoiler alert</span><span class="wl-spoiler-block__cue">Tap to reveal the result</span></button></div>
       <p>The build married three distinct forces: the crossover superstar in Rousey, the company's chosen ace in Charlotte Flair, and "The Man," Becky Lynch, riding one of the hottest fan-driven pushes in years. Lynch's rise had turned organic frustration into box-office heat, and by WrestleMania she was the audience's undeniable choice to stand tallest.</p>
       <p>The match itself was hard-hitting and dramatic, if not spotless — its controversial pinfall finish, with Rousey's shoulders arguably up, sparked endless debate. But no argument could diminish the significance of women closing the biggest show of the year. It was the culmination of everything the division had built since Charlotte and <a href="/matches/bayley-vs-sasha-banks-takeover-brooklyn-2015/">the NXT women's revolution</a> forced the main roster to catch up.</p>
     </div>
@@ -792,10 +786,13 @@
         </div>
       </div>
 
-      <div class="tale">
-        <div><div class="tale__name"><a href="/wrestlers/becky-lynch/">Becky Lynch</a></div><span class="chip chip--win">Winner</span></div>
+      <div class="wl-spoiler" data-winner="left">
+      <div class="tale wl-sp__card">
+        <div><div class="tale__name"><a href="/wrestlers/becky-lynch/">Becky Lynch</a></div><span class="chip chip--win wl-sp__verdict">Winner</span></div>
         <div class="vs">VS</div>
-        <div><div class="tale__name"><a href="/wrestlers/charlotte-flair/">Charlotte Flair</a> · Ronda Rousey</div><span class="chip chip--loss">Defeated</span></div>
+        <div><div class="tale__name"><a href="/wrestlers/charlotte-flair/">Charlotte Flair</a> · Ronda Rousey</div><span class="chip chip--loss wl-sp__verdict">Defeated</span></div>
+              <button class="wl-sp__reveal" type="button" aria-expanded="false" aria-label="Tap to reveal winner"><span class="wl-sp__reveal-ic" aria-hidden="true">◆</span> Tap to reveal winner</button>
+      </div>
       </div>
 
       <div class="table-wrap"><table class="data"><caption>The tale of the tape</caption>
@@ -804,7 +801,7 @@
           <tr><th>Date</th><td>April 7, 2019</td></tr>
           <tr><th>Venue</th><td>MetLife Stadium, East Rutherford</td></tr>
           <tr><th>Stipulation</th><td>Winner Take All Triple Threat — Raw &amp; SmackDown Women's Championships</td></tr>
-          <tr><th>Result</th><td>Becky Lynch won both titles (pinned Rousey)</td></tr>
+          <tr><th>Result</th><td><span class="wl-sp__hide">Becky Lynch won both titles (pinned Rousey)</span></td></tr>
           <tr><th>Meltzer</th><td>★★★★ (~3.75–4)</td></tr>
           <tr><th>Cagematch</th><td>~7.5 / 10</td></tr>
         </tbody>
@@ -827,7 +824,7 @@
 <section class="section"><div class="wrap wrap--narrow">
   <h2>FAQ</h2>
   <div class="faq">
-    <details open><summary>Who won Rousey vs Charlotte vs Becky at WrestleMania 35?</summary><div class="faq__body">Becky Lynch won, pinning Ronda Rousey to capture both the Raw and SmackDown Women's Championships in a Winner Take All Triple Threat.</div></details>
+    <details><summary>Who won Rousey vs Charlotte vs Becky at WrestleMania 35?</summary><div class="faq__body">Becky Lynch won, pinning Ronda Rousey to capture both the Raw and SmackDown Women's Championships in a Winner Take All Triple Threat.</div></details>
     <details><summary>Why was this match historic?</summary><div class="faq__body">It was the first women's match ever to main-event WrestleMania — the symbolic summit of the women's revolution that began in NXT — with women closing the biggest show of the year.</div></details>
     <details><summary>What star rating did the main event get?</summary><div class="faq__body">Dave Meltzer rated it roughly 3.75 to 4 stars; Cagematch sits near 7.5/10. The controversial pinfall finish drew debate. Wrestle Lore rates it 4.0 stars for its historic weight and strong action.</div></details>
   </div>
@@ -995,5 +992,7 @@
 <script src="/js/main.js?v=9f110f26" defer></script>
 <script src="/js/search-index.js?v=9f110f26" defer></script>
 <script src="/js/nav.js?v=9f110f26" defer></script>
+<script src="/js/media.js?v=711c61f4" defer></script>
+<script src="/js/matchkit.js?v=711c61f4" defer></script>
 </body>
 </html>
