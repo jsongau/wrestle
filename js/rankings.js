@@ -28,18 +28,53 @@
     }
   });
 
-  /* ---- hero spotlight: side rail changes the main stage ---- */
+  /* ---- hero spotlight: random per-load subset + side rail ----
+     Every eligible match (any with an official video) ships as a slide; we reveal a
+     random KEEP of them each load, so a refresh surfaces a different spotlight.
+     No match is "better" than another, so the draw is uniform. */
   (function () {
     var hero = document.querySelector('.rank-hero');
     if (!hero) return;
-    var slides = [].slice.call(hero.querySelectorAll('.rhero__slide'));
-    var rails = [].slice.call(hero.querySelectorAll('.rrail'));
-    if (slides.length < 2) return;
+    var stage = hero.querySelector('.rhero__stage');
+    var railList = hero.querySelector('.rhero__rail');
+    var allSlides = [].slice.call(hero.querySelectorAll('.rhero__slide'));
+    var allRails = [].slice.call(hero.querySelectorAll('.rrail'));
+    if (!allSlides.length) return;
+    var KEEP = parseInt(hero.getAttribute('data-hero-show'), 10) || 6;
+
+    // Fisher-Yates over the paired indices, keep the first KEEP.
+    var ord = allSlides.map(function (_, n) { return n; });
+    for (var z = ord.length - 1; z > 0; z--) { var r = Math.floor(Math.random() * (z + 1)); var t = ord[z]; ord[z] = ord[r]; ord[r] = t; }
+    var keep = ord.slice(0, Math.min(KEEP, allSlides.length));
+    var chosen = {};
+    keep.forEach(function (n) { chosen[n] = true; });
+
+    // hide the rest; reveal + reorder the chosen into the shuffled order
+    allSlides.forEach(function (sl, n) { if (!chosen[n]) sl.style.display = 'none'; });
+    allRails.forEach(function (b, n) { if (!chosen[n] && b.parentNode) b.parentNode.style.display = 'none'; });
+    var slides = keep.map(function (n) { return allSlides[n]; });
+    var rails = keep.map(function (n) { return allRails[n]; });
+    slides.forEach(function (sl) { sl.style.display = ''; stage.appendChild(sl); });
+    rails.forEach(function (b) { if (b.parentNode) { b.parentNode.style.display = ''; railList.appendChild(b.parentNode); } });
+
+    allSlides.forEach(function (sl) { sl.classList.remove('is-active'); });
+    allRails.forEach(function (b) { b.classList.remove('is-on'); b.setAttribute('aria-current', 'false'); });
+    slides[0].classList.add('is-active');
+    if (rails[0]) { rails[0].classList.add('is-on'); rails[0].setAttribute('aria-current', 'true'); }
+
+    // hero "Watch" reuses the shared theater modal by triggering the matching grid facade
+    hero.addEventListener('click', function (e) {
+      var w = e.target.closest('.rhero__watch'); if (!w) return;
+      var id = w.getAttribute('data-yt');
+      var f = document.querySelector('.yt[data-yt-id="' + id + '"] .yt__link');
+      if (f) f.click();
+    });
+
+    if (slides.length < 2) return;  // single slide: nothing to rotate
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
     var DUR = 6000, timer = null, paused = false, i = 0;
-    for (var k = 0; k < slides.length; k++) if (slides[k].classList.contains('is-active')) i = k;
 
-    function show(n) {
+    function go(n) {
       n = (n + slides.length) % slides.length;
       slides[i].classList.remove('is-active');
       if (rails[i]) { rails[i].classList.remove('is-on'); rails[i].setAttribute('aria-current', 'false'); }
@@ -47,10 +82,10 @@
       slides[i].classList.add('is-active');
       if (rails[i]) { rails[i].classList.add('is-on'); rails[i].setAttribute('aria-current', 'true'); }
     }
-    function play() { if (reduce || paused) return; stop(); timer = setInterval(function () { show(i + 1); }, DUR); }
+    function play() { if (reduce || paused) return; stop(); timer = setInterval(function () { go(i + 1); }, DUR); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
-    rails.forEach(function (r, n) { r.addEventListener('click', function () { show(n); play(); }); });
+    rails.forEach(function (r, n) { r.addEventListener('click', function () { go(n); play(); }); });
 
     var pb = hero.querySelector('.rhero__pause');
     if (pb) pb.addEventListener('click', function () {
@@ -62,14 +97,6 @@
     hero.addEventListener('mouseleave', function () { if (!paused) play(); });
     hero.addEventListener('focusin', stop);
     hero.addEventListener('focusout', function () { if (!paused) play(); });
-
-    // hero "Watch" reuses the shared theater modal by triggering the matching grid facade
-    hero.addEventListener('click', function (e) {
-      var w = e.target.closest('.rhero__watch'); if (!w) return;
-      var id = w.getAttribute('data-yt');
-      var f = document.querySelector('.yt[data-yt-id="' + id + '"] .yt__link');
-      if (f) f.click();
-    });
 
     play();
   })();
@@ -83,13 +110,13 @@
     var pager = root.querySelector('.rex-pager');
     var empty = root.querySelector('.rex-empty');
     var cards = [].slice.call(grid.querySelectorAll('.rank-card')).map(function (el, i) {
-      return { el: el, i: i,
+      return { el: el, i: i, rand: Math.random(),
         rating: parseFloat(el.getAttribute('data-rating')) || 0,
-        year: parseInt(el.getAttribute('data-year'), 10) || 0,
+        year: parseInt(el.getAttribute('data-yr'), 10) || 0,
         name: (el.getAttribute('data-name') || '').toLowerCase(),
         promo: el.getAttribute('data-promo') || '' };
     });
-    var state = { rate: 'ALL', promo: 'ALL', sort: 'rating', page: 1, per: 9 };
+    var state = { rate: 'ALL', promo: 'ALL', sort: 'shuffle', page: 1, per: 9 };
 
     function okRate(c) {
       if (state.rate === 'ALL') return true;
@@ -101,6 +128,7 @@
     function okPromo(c) { return state.promo === 'ALL' || c.promo === state.promo; }
     function sortFn(a, b) {
       switch (state.sort) {
+        case 'shuffle': return a.rand - b.rand;
         case 'year-desc': return b.year - a.year || a.i - b.i;
         case 'year-asc': return a.year - b.year || a.i - b.i;
         case 'name': return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
@@ -139,7 +167,7 @@
         var g = seg.parentNode;
         [].forEach.call(g.querySelectorAll('button'), function (b) { b.classList.toggle('is-on', b === seg); });
         if (g.getAttribute('data-ctl') === 'rate') state.rate = seg.getAttribute('data-rate');
-        if (g.getAttribute('data-ctl') === 'sort') state.sort = seg.getAttribute('data-sort');
+        if (g.getAttribute('data-ctl') === 'sort') { state.sort = seg.getAttribute('data-sort'); if (state.sort === 'shuffle') cards.forEach(function (c) { c.rand = Math.random(); }); }
         state.page = 1; apply(); return;
       }
       var chip = e.target.closest('.rfil');

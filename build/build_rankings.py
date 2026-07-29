@@ -7,7 +7,7 @@ loads media.js + rankings.js. Writes to OUT_ROOT. Run apply_shell.py after for c
 import os, re, json, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC_PAGE = os.path.join(ROOT, "rankings", "index.html")
+SRC_PAGE = os.path.join(ROOT, "matches", "viewing-gallery", "index.html")
 DATA     = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "matches.json")
 OUT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE     = "https://wrestlelore.com"
@@ -29,6 +29,27 @@ def rate_class(r):
 def stars_row(rating):
     return ('<span class="rating" style="--rating:%s"><span class="rating__stars" aria-hidden="true">'
             '&starf;&starf;&starf;&starf;&starf;</span></span>' % rating)
+
+def rating_badge(r):
+    """Gold-pill label for the hero rank chip: 5, 4½, 4, 3½ (+ star)."""
+    whole = int(r)
+    half = "&frac12;" if (r - whole) == 0.5 else ""
+    return "%d%s&#9733;" % (whole, half)
+
+TIER_LABEL = {"five-star": "Five-Star Club", "near-miss": "Near Miss", "classic": "Rated Classic"}
+def tier_label(m):
+    return TIER_LABEL.get(m.get("tier"), "Rated Match")
+
+def channels_phrase(data):
+    """Human list of the official channels actually embedded, for disclosure copy."""
+    disp = {"Ring of Honor Wrestling": "Ring of Honor"}
+    order = ["WWE", "WWE Vault", "WWE NXT", "TNA Wrestling", "Ring of Honor Wrestling"]
+    used = [c for c in order if any(m["video"]["id"] and m["video"]["channel"] == c for m in data)]
+    used += [c for c in sorted(set(m["video"]["channel"] for m in data if m["video"]["id"])) if c not in order]
+    names = [disp.get(c, c) for c in used]
+    if len(names) > 1:
+        return ", ".join(names[:-1]) + " and " + names[-1]
+    return names[0] if names else ""
 
 def yt_facade(m):
     v = m["video"]; slug = m["slug"]
@@ -96,7 +117,7 @@ def card(m, variant=""):
         foot_right = ""
     rr = rate_class(m["rating"])
     return (
-      '<article class="rank-card %s %s" data-promo="%s" data-rating="%s" data-year="%s" data-name="%s">'
+      '<article class="rank-card %s %s" data-promo="%s" data-rating="%s" data-yr="%s" data-name="%s">'
         % (five, sm, esc(m.get("promotion") or ""), m["rating"], m.get("year") or 0, esc(m["title"])) +
       '<span class="rank-rate %s">%s<small>&starf;</small></span>' % (rr, ("%.1f" % m["rating"]).rstrip("0").rstrip(".") if m["rating"] % 1 else "%.0f" % m["rating"]) +
       '<div class="rank-card__media">%s</div>' % media +
@@ -117,7 +138,10 @@ def grid(matches, variant="", cls="rank-grid"):
     return '<div class="%s">%s</div>' % (cls, "\n".join(card(m, variant) for m in matches))
 
 # ---------------- rotating hero spotlight ----------------
-def hero_slide(m, idx, total):
+def hero_slide(m, idx, hidden=False):
+    # Hero pool is video-only; every slide has an official embed. Non-first slides
+    # ship display:none so the browser fetches only the visible thumbnail(s) until
+    # the per-load shuffle (rankings.js) reveals its random pick.
     v = m["video"]
     if v["id"]:
         bg = "background-image:url(https://i.ytimg.com/vi/%s/hqdefault.jpg)" % v["id"]
@@ -129,11 +153,12 @@ def hero_slide(m, idx, total):
     ev = " · ".join([x for x in [m.get("event"), str(m.get("year") or ""), (m.get("venue") or "").split(",")[0]] if x])
     era = ('<span class="rank-era">%s</span>' % esc(re.sub(r"\s*/.*", "", m["era"]))) if m.get("era") else ""
     eye = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>'
+    hide = ' style="display:none"' if hidden else ""
     return (
-      '<li class="rhero__slide%s" role="group" aria-roledescription="slide" aria-label="%d of %d: %s">'
+      '<li class="rhero__slide%s" role="group" aria-roledescription="slide" aria-label="%s" data-slug="%s"%s>'
       '<div class="rhero__bg" style="%s"></div><div class="rhero__scrim"></div>'
       '<div class="rhero__content">'
-        '<div class="rhero__badges"><span class="rhero__rank">5&#9733;</span><span class="rhero__tag">Five-Star Club</span>'
+        '<div class="rhero__badges"><span class="rhero__rank">%s</span><span class="rhero__tag">%s</span>'
         '<span class="%s">%s</span>%s</div>'
         '<h2 class="rhero__title"><a href="/matches/%s/">%s</a></h2>'
         '<p class="rhero__meta">%s</p>'
@@ -142,20 +167,22 @@ def hero_slide(m, idx, total):
         '<div class="rhero__cta">%s<a class="rhero__break" href="/matches/%s/">Full breakdown</a>'
         '<span class="rhero__safe">%sWinner hidden until you reveal it</span></div>'
       '</div></li>'
-      % (" is-active" if idx == 0 else "", idx + 1, total, esc(m["title"]), bg,
+      % (" is-active" if not hidden else "", esc(m["title"]), m["slug"], hide, bg,
+         rating_badge(m["rating"]), tier_label(m),
          cls, esc(m.get("promotion") or ""), era,
          m["slug"], esc(m["title"]), esc(ev),
          stars_row(m["rating"]), m["rating"], esc(m.get("meltzer") or ""),
          esc(m.get("hook") or ""), watch, m["slug"], eye))
 
-def rail_item(m, idx):
+def rail_item(m, idx, hidden=False):
     ev = " · ".join([x for x in [m.get("event"), str(m.get("year") or "")] if x])
+    hide = ' style="display:none"' if hidden else ""
     return (
-      '<li><button class="rrail%s" type="button" data-i="%d" aria-label="Show %s">'
+      '<li%s><button class="rrail%s" type="button" data-i="%d" aria-label="Show %s">'
       '<span class="rrail__no">&#9733;</span>'
       '<span class="rrail__body"><span class="rrail__nm">%s</span><span class="rrail__meta">%s</span></span>'
       '<span class="rrail__sc">%.1f</span></button></li>'
-      % (" is-on" if idx == 0 else "", idx, esc(m["title"]), esc(m["title"]), esc(ev), m["rating"]))
+      % (hide, " is-on" if (idx == 0 and not hidden) else "", idx, esc(m["title"]), esc(m["title"]), esc(ev), m["rating"]))
 
 def rate_card():
     return (
@@ -164,21 +191,25 @@ def rate_card():
       '<p>A five-star score that weighs Dave Meltzer&rsquo;s Wrestling Observer stars, the Cagematch community score, and how much the match still matters.</p>'
       '<span class="go">Read the method</span></a>')
 
+HERO_SHOW = 6  # how many of the eligible matches the shuffle reveals per load
+
 def build_hero(data):
-    spot = [m for m in data if m["tier"] == "five-star"][:6]
-    n = len(spot)
-    slides = "\n".join(hero_slide(m, i, n) for i, m in enumerate(spot))
-    rail = "".join(rail_item(m, i) for i, m in enumerate(spot))
+    # Any match with an official video is eligible (not just five-star), minus no_hero (Benoit).
+    # All eligible matches ship as slides; rankings.js reveals a random HERO_SHOW each load,
+    # so a refresh surfaces a different spotlight. Non-first slides ship hidden (no thumb fetch).
+    pool = [m for m in data if m["video"]["id"] and not m.get("no_hero")]
+    slides = "\n".join(hero_slide(m, i, hidden=(i != 0)) for i, m in enumerate(pool))
+    rail = "".join(rail_item(m, i, hidden=(i != 0)) for i, m in enumerate(pool))
     return (
-      '<section class="rank-hero" aria-label="Five-star match spotlight">'
+      '<section class="rank-hero" aria-label="Featured match spotlight" data-hero-show="%d">'
       '<div class="rhero__main"><ul class="rhero__stage" aria-live="polite">%s</ul></div>'
       '<aside class="rhero__side">'
-        '<div class="rhero__railhead"><span class="rhero__railttl">Five-star spotlight</span>'
+        '<div class="rhero__railhead"><span class="rhero__railttl">Match spotlight</span>'
         '<button class="rhero__pause" type="button" aria-label="Pause the rotation">&#10074;&#10074;</button></div>'
         '<ol class="rhero__rail">%s</ol>'
         '%s'
       '</aside>'
-      '</section>' % (slides, rail, rate_card()))
+      '</section>' % (HERO_SHOW, slides, rail, rate_card()))
 
 def build_stats(data):
     five = sum(1 for m in data if m["tier"] == "five-star")
@@ -202,7 +233,8 @@ def build_explorer(data):
         '<button type="button" data-rate="4.5">4&frac12;&#9733;</button>'
         '<button type="button" data-rate="4">4&#9733;</button></div>')
     sort_seg = ('<div class="rex-seg" data-ctl="sort" role="group" aria-label="Sort matches">'
-        '<button class="is-on" type="button" data-sort="rating">Rating</button>'
+        '<button class="is-on" type="button" data-sort="shuffle">Shuffle</button>'
+        '<button type="button" data-sort="rating">Rating</button>'
         '<button type="button" data-sort="year-desc">Newest</button>'
         '<button type="button" data-sort="year-asc">Oldest</button>'
         '<button type="button" data-sort="name">A&ndash;Z</button></div>')
@@ -229,10 +261,10 @@ def build_body(data):
     n_vid = sum(1 for m in data if m["video"]["id"])
     n5 = numword(len(five))
 
-    disclose = ('<p class="rank-disclose">%d of these matches play right here in a spoiler-safe theater, embedded from <strong>official channels only</strong> (WWE and TNA Wrestling) through YouTube&rsquo;s privacy-enhanced player. Wrestle Lore hosts no footage. Each clip opens on <a href="https://www.youtube.com/@WWE" target="_blank" rel="noopener">YouTube</a> in a new tab, and the rights stay with the promotions.</p>' % n_vid)
+    disclose = ('<p class="rank-disclose">%d of these matches play right here in a spoiler-safe theater, embedded from <strong>official channels only</strong> (%s) through YouTube&rsquo;s privacy-enhanced player. Wrestle Lore hosts no footage. Each clip opens on <a href="https://www.youtube.com/@WWE" target="_blank" rel="noopener">YouTube</a> in a new tab, and the rights stay with the promotions.</p>' % (n_vid, channels_phrase(data)))
     hero = (
       '<div class="wrap">'
-      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li>Rankings</li></ol></nav>'
+      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/matches/">Matches</a></li><li>Viewing Gallery</li></ol></nav>'
       '</div>'
       '<section class="section--tight"><div class="wrap">'
       '<span class="eyebrow">The Five-Star Club &middot; The Hub</span>'
@@ -251,7 +283,7 @@ def build_body(data):
     explorer = (
       '<section class="section"><div class="wrap">'
       '<div class="section-head"><h2>Every rated match</h2><a class="btn btn--ghost" href="/matches/">All matches</a></div>'
-      '<p class="muted" style="margin-top:calc(var(--sp-3)*-1)">Filter by star rating or promotion, sort by date or name, and page through the catalog. The star score is the rating. Nothing here is ranked best to worst: a five-star match is a five-star match, whether it lands on page one or page three. Reveal the winner on any card, or reveal the whole board at once.</p>'
+      '<p class="muted" style="margin-top:calc(var(--sp-3)*-1)">Filter by star rating or promotion, sort by date or name, or hit Shuffle. The star score is the rating. Nothing here is ranked best to worst, so the order is shuffled on every visit: a five-star match is a five-star match whether it lands first or last. Reveal the winner on any card, or reveal the whole board at once.</p>'
       + build_explorer(data) +
       '</div></section>'
     )
@@ -272,6 +304,7 @@ def build_body(data):
       '<details><summary>Are the ratings ever updated?</summary><div class="faq__body">Yes. Wrestle Lore ratings reflect critical consensus as of mid-2026 and can change as historians re-evaluate matches. Insiders can also add their own ratings on each match page.</div></details>'
       '</div></div></section>'
     )
+    faq = faq.replace("(WWE or TNA Wrestling)", "(%s)" % channels_phrase(data))
 
     related = (
       '<section class="section--tight"><div class="wrap"><div class="section-head"><h2>Related</h2></div>'
@@ -307,6 +340,7 @@ def build_schema(data):
       ']}</script>')
     faq = faq.replace("Twelve matches make the club",
                       numword(sum(1 for m in data if m["tier"] == "five-star")) + " matches make the club")
+    faq = faq.replace("(WWE or TNA Wrestling)", "(%s)" % channels_phrase(data))
     return itemlist + "\n" + faq
 
 # ---------------- swap into page ----------------

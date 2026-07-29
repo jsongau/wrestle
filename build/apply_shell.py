@@ -31,10 +31,15 @@ SCRIPTS = '<script src="/js/search-index.js" defer></script>\n<script src="/js/n
 # Cache-busting version: short hash of the CSS + key JS so a deploy always serves fresh assets.
 import hashlib
 def _ver():
+    # Hash EVERY versioned asset (all CSS + JS), keyed by repo-relative path and sorted
+    # for determinism, so any change to any asset (e.g. rankings.js) bumps the token.
+    # Previously only 4 files were hashed, so edits to other JS shipped under a stale ?v=.
     h = hashlib.md5()
-    for p in ("/css/site.css", "/js/nav.js", "/js/media.js", "/js/home-engage.js"):
+    paths = glob.glob(ROOT + "/css/**/*.css", recursive=True) + glob.glob(ROOT + "/js/**/*.js", recursive=True)
+    for p in sorted(paths, key=lambda x: os.path.relpath(x, ROOT)):
         try:
-            h.update(open(ROOT + p, "rb").read())
+            h.update(os.path.relpath(p, ROOT).encode("utf-8"))
+            h.update(open(p, "rb").read())
         except OSError:
             pass
     return h.hexdigest()[:8]

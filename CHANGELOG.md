@@ -1,3 +1,9 @@
+## 2026-07-29 (Rankings — every-match video + randomized hero)
+- **Video coverage 21 to 32 of 36 matches**: added 11 official YouTube embeds (WWE / WWE Vault / WWE NXT), each oEmbed-verified (rights-holder channel + title match). Remaining 4 have no official upload (2 Benoit, Sting/Hogan Starrcade '97, Funk/Sabu ECW) and stay poster cards, no fan re-uploads.
+- **Hero rebuilt as a random any-video spotlight**: `build_hero` pool = every match with a video and not `no_hero` (was five-star only); `rankings.js` shuffles and reveals a random 6 per load, so a refresh changes the spotlight. Per-slide badges reflect the real rating (5 / 4.5 / 4 star), not a hardcoded 5-star.
+- **Cache-bust fix**: `apply_shell.py::_ver()` now hashes ALL css+js (was 4 files), so `rankings.js` and future JS edits never ship under a stale `?v=`.
+- Benoit kept in the grid, excluded from hero (`no_hero`). Files: data/matches.json, build/build_rankings.py, build/apply_shell.py, js/rankings.js, css/site.css. See docs/2026-07-29-rankings-videos-random-hero.md.
+
 ## 2026-07-29 (Events hub — Phase 2 complete)
 - **`events/index.html` rebuilt as multi-promotion hub**: Replaced the old WWE-only events page with a comprehensive, filterable hub covering WWE, AEW, WCW, ECW, TNA, NJPW, ROH, AAA, NWA, and Indies.
   - Title/meta: `Professional Wrestling Events — Complete History | Wrestle Lore`
