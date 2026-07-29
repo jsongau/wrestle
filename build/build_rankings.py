@@ -7,10 +7,14 @@ loads media.js + rankings.js. Writes to OUT_ROOT. Run apply_shell.py after for c
 import os, re, json, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC_PAGE = os.path.join(ROOT, "matches", "viewing-gallery", "index.html")
+SRC_PAGE = os.path.join(ROOT, "matches", "index.html")
 DATA     = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "matches.json")
 OUT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE     = "https://wrestlelore.com"
+# Canonical path of THIS page, derived from the output location so schema/breadcrumbs
+# follow automatically when the page is later moved to /matches/.
+PAGE_PATH = "/" + os.path.relpath(os.path.dirname(SRC_PAGE), ROOT).replace(os.sep, "/") + "/"
+PAGE_URL  = BASE + PAGE_PATH
 
 def esc(s): return html.escape(s or "", quote=True)
 
@@ -116,9 +120,14 @@ def card(m, variant=""):
     else:
         foot_right = ""
     rr = rate_class(m["rating"])
+    # searchable haystack: title + every wrestler + event + promotion + stipulation + era + year
+    search_txt = " ".join([m["title"], m["slug"].replace("-", " ")]
+        + [p.get("name", "") for p in m.get("participants", [])]
+        + [m.get("event") or "", m.get("promotion") or "", m.get("stipulation") or "",
+           re.sub(r"\s*/.*", "", m.get("era") or ""), str(m.get("year") or "")]).lower()
     return (
-      '<article class="rank-card %s %s" data-promo="%s" data-rating="%s" data-yr="%s" data-name="%s">'
-        % (five, sm, esc(m.get("promotion") or ""), m["rating"], m.get("year") or 0, esc(m["title"])) +
+      '<article class="rank-card %s %s" data-promo="%s" data-rating="%s" data-yr="%s" data-name="%s" data-search="%s">'
+        % (five, sm, esc(m.get("promotion") or ""), m["rating"], m.get("year") or 0, esc(m["title"]), esc(search_txt)) +
       '<span class="rank-rate %s">%s<small>&starf;</small></span>' % (rr, ("%.1f" % m["rating"]).rstrip("0").rstrip(".") if m["rating"] % 1 else "%.0f" % m["rating"]) +
       '<div class="rank-card__media">%s</div>' % media +
       '<div class="rank-card__body">' +
@@ -244,9 +253,13 @@ def build_explorer(data):
         '<span class="rex-spacer"></span><span class="rex-count"></span></div>'
         '<div class="rex-promos"><span class="rex-lbl">Promotion</span>%s</div>' % (rating_seg, sort_seg, promo_chips))
     cards_html = "\n".join(card(m) for m in data)
-    return ('<div class="rank-explorer">%s<div class="rex-grid">%s</div>'
-            '<p class="rex-empty" hidden>No matches for this filter.</p>'
-            '<nav class="rex-pager" aria-label="Match pages"></nav></div>' % (controls, cards_html))
+    search_bar = ('<div class="rex-search-wrap">'
+        '<svg class="rex-search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>'
+        '<input class="rex-search" type="search" placeholder="Search matches, wrestlers, events…" aria-label="Search matches, wrestlers and events" autocomplete="off" spellcheck="false">'
+        '<button class="rex-search-x" type="button" aria-label="Clear search" hidden>&times;</button></div>')
+    return ('<div class="rank-explorer">%s%s<div class="rex-grid">%s</div>'
+            '<p class="rex-empty" hidden>No matches found. Try another wrestler, event, or promotion.</p>'
+            '<nav class="rex-pager" aria-label="Match pages"></nav></div>' % (search_bar, controls, cards_html))
 
 # ---------------- assemble body ----------------
 def numword(n):
@@ -264,11 +277,11 @@ def build_body(data):
     disclose = ('<p class="rank-disclose">%d of these matches play right here in a spoiler-safe theater, embedded from <strong>official channels only</strong> (%s) through YouTube&rsquo;s privacy-enhanced player. Wrestle Lore hosts no footage. Each clip opens on <a href="https://www.youtube.com/@WWE" target="_blank" rel="noopener">YouTube</a> in a new tab, and the rights stay with the promotions.</p>' % (n_vid, channels_phrase(data)))
     hero = (
       '<div class="wrap">'
-      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/matches/">Matches</a></li><li>Viewing Gallery</li></ol></nav>'
+      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li>Matches</li></ol></nav>'
       '</div>'
       '<section class="section--tight"><div class="wrap">'
-      '<span class="eyebrow">The Five-Star Club &middot; The Hub</span>'
-      '<h1 style="font-family:var(--font-cond);text-transform:uppercase">The Wrestle Lore Five-Star Club</h1>'
+      '<span class="eyebrow">The Match Archive</span>'
+      '<h1 style="font-family:var(--font-cond);text-transform:uppercase">Every Great Wrestling Match, Rated and Watchable</h1>'
       + build_hero(data)
       + '<p class="answer" style="margin-top:var(--sp-5)"><strong>The highest-rated pro wrestling matches of the modern era, in one place.</strong> ' + n5 + ' earn a perfect five stars. Alongside them sit the 4&frac12;&#9733; near misses and the rest of the rated archive. Every match links to its full breakdown, and <strong>every winner stays hidden until you reveal it</strong>, so you can browse without spoiling the matches you have not seen yet. '
       'The catalog spans <a href="/matches/undertaker-vs-hbk-wm25/">WWE, WCW, ECW, TNA, ROH and NXT</a>, scored against Meltzer and Cagematch consensus.</p>'
@@ -326,8 +339,8 @@ def build_schema(data):
         items.append('{"@type":"ListItem","position":%d,"url":"%s/matches/%s/","name":%s}'
                      % (m["rank"], BASE, m["slug"], json.dumps(m["title"])))
     itemlist = ('<script type="application/ld+json">'
-      '{"@context":"https://schema.org","@type":"ItemList","name":"The Wrestle Lore Five-Star Club",'
-      '"description":"A catalog of the highest-rated pro wrestling matches of the modern era, scored by stars rather than ranked.",'
+      '{"@context":"https://schema.org","@type":"ItemList","name":"Wrestling Match Archive, Rated and Watchable",'
+      '"description":"Every star-rated pro wrestling match in the Wrestle Lore database, across WWE, WCW, ECW, TNA, ROH and NXT, with official full-match video where it exists.",'
       '"numberOfItems":%d,"itemListOrder":"https://schema.org/ItemListUnordered","itemListElement":[%s]}</script>'
       % (len(data), ",".join(items)))
     faq = ('<script type="application/ld+json">'
@@ -341,7 +354,22 @@ def build_schema(data):
     faq = faq.replace("Twelve matches make the club",
                       numword(sum(1 for m in data if m["tier"] == "five-star")) + " matches make the club")
     faq = faq.replace("(WWE or TNA Wrestling)", "(%s)" % channels_phrase(data))
-    return itemlist + "\n" + faq
+    website = ('<script type="application/ld+json">'
+      '{"@context":"https://schema.org","@type":"WebSite","name":"Wrestle Lore","url":"%s/"}</script>' % BASE)
+    collection = ('<script type="application/ld+json">'
+      '{"@context":"https://schema.org","@type":"CollectionPage","name":%s,"url":"%s","description":%s,'
+      '"isPartOf":{"@type":"WebSite","name":"Wrestle Lore","url":"%s/"},'
+      '"about":{"@type":"Thing","name":"Professional wrestling matches"},'
+      '"mainEntity":{"@type":"ItemList","name":"Wrestling Match Archive","numberOfItems":%d}}</script>'
+      % (json.dumps("Every Great Wrestling Match, Rated and Watchable"), PAGE_URL,
+         json.dumps("The complete archive of the greatest pro wrestling matches ever, star-rated and mostly watchable right here as official full-match embeds, across WWE, WCW, ECW, TNA, ROH and NXT."),
+         BASE, len(data)))
+    breadcrumb = ('<script type="application/ld+json">'
+      '{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
+      '{"@type":"ListItem","position":1,"name":"Home","item":"%s/"},'
+      '{"@type":"ListItem","position":2,"name":"Matches","item":"%s"}]}</script>'
+      % (BASE, PAGE_URL))
+    return website + "\n" + collection + "\n" + breadcrumb + "\n" + itemlist + "\n" + faq
 
 # ---------------- swap into page ----------------
 def main():
@@ -351,8 +379,12 @@ def main():
     body = build_body(data)
     page = re.sub(r"<main id=\"main\">.*?</main>", lambda _: body, page, count=1, flags=re.S)
 
-    # remove existing FAQPage ld+json, keep BreadcrumbList; inject fresh ItemList+FAQ
-    page = re.sub(r'<script type="application/ld\+json">\s*\{"@context":"https://schema.org","@type":"FAQPage".*?</script>\s*', "", page, flags=re.S)
+    # strip the page's existing hub-level schema (stale from the seed, e.g. a /rankings/
+    # BreadcrumbList + old ItemList) then inject a fresh, deduped set.
+    page = re.sub(
+        r'<script type="application/ld\+json">(?:(?!</script>).)*?'
+        r'(?:"FAQPage"|"ItemList"|"BreadcrumbList"|"CollectionPage"|"WebSite")'
+        r'(?:(?!</script>).)*?</script>\s*', "", page, flags=re.S)
     page = page.replace("</head>", build_schema(data) + "\n</head>", 1)
 
     # Benoit is scrubbed from WWE history: swap him out of the nav five-star ladder too.
@@ -372,10 +404,22 @@ def main():
     if "/js/media.js" not in page:
         page = page.replace('<script src="/js/nav.js', '<script src="/js/media.js" defer></script>\n<script src="/js/rankings.js" defer></script>\n<script src="/js/nav.js', 1)
 
-    # meta description refresh (hub framing)
-    page = re.sub(r'<meta name="description" content="[^"]*">',
-        '<meta name="description" content="The Wrestle Lore Five-Star Club: a browsable catalog of the highest-rated pro wrestling matches ever. Perfect five-star classics plus the 4.5-star near misses across WWE, WCW, ECW, TNA, ROH and NXT, with spoiler-safe winners and official match video. Filter by rating, sort, and watch.">',
-        page, count=1)
+    # title + meta description + keywords/tags (hub framing: rated AND watchable)
+    TITLE = "Every Great Wrestling Match, Rated and Watchable | WWE, WCW, ECW, TNA, ROH, NXT | Wrestle Lore"
+    DESC = ("The complete archive of the greatest pro wrestling matches ever, star-rated and mostly watchable "
+            "right here as official full-match embeds. WWE, WCW, ECW, TNA, ROH and NXT. Search by wrestler or event, "
+            "filter by promotion, and reveal winners spoiler-safe.")
+    KW = ("best wrestling matches, greatest wrestling matches, five-star matches, watch full wrestling matches, "
+          "WWE, WCW, ECW, TNA, ROH, NXT, WrestleMania matches, Meltzer ratings, Cagematch, match rankings, wrestling video")
+    page = re.sub(r'<title>[^<]*</title>', lambda _: '<title>%s</title>' % TITLE, page, count=1)
+    page = re.sub(r'<meta name="description" content="[^"]*">', lambda _: '<meta name="description" content="%s">' % DESC, page, count=1)
+    if 'name="keywords"' not in page:
+        page = re.sub(r'(<meta name="description"[^>]*>)', lambda m: m.group(1) + '<meta name="keywords" content="%s">' % KW, page, count=1)
+    # keep social cards in sync with the new title/description
+    page = re.sub(r'(<meta property="og:title" content=")[^"]*(">)', lambda m: m.group(1) + TITLE + m.group(2), page)
+    page = re.sub(r'(<meta name="twitter:title" content=")[^"]*(">)', lambda m: m.group(1) + TITLE + m.group(2), page)
+    page = re.sub(r'(<meta property="og:description" content=")[^"]*(">)', lambda m: m.group(1) + DESC + m.group(2), page)
+    page = re.sub(r'(<meta name="twitter:description" content=")[^"]*(">)', lambda m: m.group(1) + DESC + m.group(2), page)
 
     # writing-style safety sweep across the whole page (head + body + attributes):
     # no em dashes as separators, no decorative arrows. En-dash score/range entities are left intact.

@@ -1,3 +1,9 @@
+## 2026-07-29 (Restructure: /matches/ becomes the hub, /rankings/ becomes a rankings directory)
+- **/matches/ is now the matches hub**: the rich video/rankings page (36 matches, random spotlight hero, 32 official embeds, spoiler-safe cards) ported verbatim from /matches/viewing-gallery/, plus a text search (matches wrestler/event/promotion/slug, so "hbk"/"taker" work) and hub SEO (rated + watchable title/meta/keywords/OG; CollectionPage + WebSite + BreadcrumbList + ItemList + FAQ). Replaces the old hand-authored index.
+- **/matches/viewing-gallery/ deleted**, 301 to /matches/ via new vercel.json.
+- **/rankings/ rebuilt as a rankings hub** (build_rankings_hub.py): 36 greatest matches ranked 1 to 36 from real rank data (top 3 flagged) + a directory of ranked categories (rivalries, events, promotions, wrestlers, moments). Distinct from the /matches/ video gallery; own CollectionPage + ordered ItemList + FAQ + BreadcrumbList.
+- Generator idempotency fix: schema strip now includes WebSite/CollectionPage. Files: build/build_rankings.py, build/build_rankings_hub.py (new), css/site.css, js/rankings.js, vercel.json (new). See docs/2026-07-29-matches-hub-rankings-restructure.md.
+
 ## 2026-07-29 (Rankings — every-match video + randomized hero)
 - **Video coverage 21 to 32 of 36 matches**: added 11 official YouTube embeds (WWE / WWE Vault / WWE NXT), each oEmbed-verified (rights-holder channel + title match). Remaining 4 have no official upload (2 Benoit, Sting/Hogan Starrcade '97, Funk/Sabu ECW) and stay poster cards, no fan re-uploads.
 - **Hero rebuilt as a random any-video spotlight**: `build_hero` pool = every match with a video and not `no_hero` (was five-star only); `rankings.js` shuffles and reveals a random 6 per load, so a refresh changes the spotlight. Per-slide badges reflect the real rating (5 / 4.5 / 4 star), not a hardcoded 5-star.

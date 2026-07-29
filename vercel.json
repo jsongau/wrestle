@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/matches/viewing-gallery", "destination": "/matches/", "permanent": true },
+    { "source": "/matches/viewing-gallery/", "destination": "/matches/", "permanent": true }
+  ]
+}
