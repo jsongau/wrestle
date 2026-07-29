@@ -1,3 +1,6 @@
+## 2026-07-29 (Media — featured-match hero on /media/)
+- **/media/ now leads with a featured-match hero**: kept the "Media & Creators" H1 and identity in a left column and added a large playable panel on the right featuring the El Grande Americano vs. "Original" El Grande Americano Mask vs Mask match (AAA Noche de los Grandes, May 30 2026; official WWE upload, 2M+ views). Clicking the panel opens the existing theater modal via the shared .yt facade engine (WL.mountFacades). Page-local <style> + one facade only, no shared CSS/JS/shell changes.
+
 ## 2026-07-29 (Membership — Ringside annual carries into signup)
 - **Signup card Ringside row is now live-wired**: choosing Annual + a contribution on the pricing slider and clicking a Ringside CTA now shows the real annual price (e.g. $650 a year) in the signup tier picker instead of the static $24.99/mo, plus the faction line ("you gift Insider to N fans to lead your own faction"). Reverts to $24.99/mo when Monthly is selected. syncRingside() reads the billing toggle + slider; wired to both on change.
 

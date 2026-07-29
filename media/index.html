@@ -709,13 +709,55 @@
     <div class="cmdk__foot"><span><kbd>&#8593;&#8595;</kbd> navigate</span><span><kbd>&#8629;</kbd> open</span><span><kbd>esc</kbd> close</span></div>
   </div></div>
 <main id="main">
-<section class="ev-hero">
+<style>
+/* ===== /media/ featured-match hero (page-local; reuses site tokens + the .yt facade/modal engine) ===== */
+.media-hero .mh-grid{display:grid;grid-template-columns:1fr;gap:var(--sp-6);align-items:center;margin-top:var(--sp-5);}
+@media (min-width:920px){.media-hero .mh-grid{grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);gap:var(--sp-7);margin-top:var(--sp-6);}}
+.media-hero .mh-copy{min-width:0;}
+.media-hero .mh-copy h1{margin-top:.12em;}
+.media-hero .mh-copy .ev-lede{margin-bottom:0;}
+/* featured match frame */
+.media-hero .mh-feature{position:relative;min-width:0;border:1px solid var(--c-gold-dim);border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,0));padding:var(--sp-3);
+  box-shadow:0 26px 64px -34px rgba(0,0,0,.92);}
+.media-hero .mh-feature .yt{border-radius:calc(var(--r-lg) - 4px);overflow:hidden;border:1px solid var(--c-line);}
+.media-hero .mh-tag{position:absolute;z-index:6;top:calc(var(--sp-3) + 10px);left:calc(var(--sp-3) + 10px);
+  display:inline-flex;align-items:center;gap:.55em;padding:.42em .72em;border-radius:var(--r-pill);
+  background:rgba(10,11,13,.82);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid var(--c-gold-dim);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-gold-bright);pointer-events:none;}
+.media-hero .mh-tag::before{content:"";width:.5em;height:.5em;border-radius:50%;background:var(--c-red);box-shadow:0 0 0 3px var(--c-red-tint);}
+.media-hero .mh-cap{padding:var(--sp-3) var(--sp-2) var(--sp-2);}
+.media-hero .mh-k{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--c-text-dim);}
+.media-hero .mh-ft{font-family:var(--font-display);font-weight:400;text-transform:uppercase;line-height:.95;
+  font-size:clamp(1.7rem,4.4vw,2.7rem);margin:.16em 0 .12em;color:var(--c-text);}
+.media-hero .mh-sub{display:block;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.04em;font-size:var(--fs-400);color:var(--c-text-muted);}
+.media-hero .mh-sub b{color:var(--c-gold);font-weight:600;}
+.media-hero .mh-hint{margin-top:var(--sp-2);display:inline-flex;align-items:center;gap:.5em;
+  font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;font-size:var(--fs-300);color:var(--c-text-dim);}
+.media-hero .mh-hint svg{width:15px;height:15px;fill:var(--c-red-bright);}
+</style>
+<section class="ev-hero media-hero">
   <div class="wrap ev-hero__inner">
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Media &amp; Creators</li></ol></nav>
-
-    <span class="ev-hero__brand">Media &amp; Creators</span>
-    <h1>Media &amp; <span class="accent">Creators</span></h1>
-    <p class="ev-lede">The interviewers, podcasters, and journalists who cover pro wrestling. These are people whose main job is telling the story, not performing it. For the in-ring roster, see the <a href="/wrestlers/">wrestlers directory</a>.</p>
+    <div class="mh-grid">
+      <div class="mh-copy">
+        <span class="ev-hero__brand">Media &amp; Creators</span>
+        <h1>Media &amp; <span class="accent">Creators</span></h1>
+        <p class="ev-lede">The interviewers, podcasters, and journalists who cover pro wrestling, plus the matches and moments worth watching in full. Press play on any clip and it opens right here, no trip to YouTube. For the in-ring roster, see the <a href="/wrestlers/">wrestlers directory</a>.</p>
+      </div>
+      <div class="mh-feature">
+        <span class="mh-tag">Lucha // 2M+ YouTube views</span>
+        <div class="yt" data-yt-id="pfbQdjYBcEc" data-yt-title='FULL MATCH: El Grande Americano vs. "Original" El Grande Americano | Mask vs. Mask Match' data-yt-creator="WWE">
+          <a class="yt__link" href="https://www.youtube.com/watch?v=pfbQdjYBcEc">El Grande Americano vs. Original El Grande Americano, Mask vs. Mask Match</a>
+        </div>
+        <div class="mh-cap">
+          <span class="mh-k">Featured on tape</span>
+          <p class="mh-ft">El Grande Americano</p>
+          <span class="mh-sub">Mask vs Mask &middot; <b>Noche de los Grandes</b> &middot; May 30, 2026</span>
+          <span class="mh-hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Press play to watch the full match here</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
