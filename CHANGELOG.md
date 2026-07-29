@@ -1,3 +1,11 @@
+## 2026-07-29 — home: Gorilla Position hero (slide 1)
+
+- Slide 1 rebuilt as the Gorilla Position: live Ken Burns match screen (official cover art, distinct film-strip frames), Watch the Match opens the Viewing Gallery modal, Full breakdown links to the match page.
+- Ring-bell toggle: hand-drawn gold bell SVG below the card (top right while open) with synthesized ding sound (3 to open, 1 to go home), vibrate-on-hover, RING ME / GO HOME labels.
+- Expanded desk: Lore Feed collapses, 7 Shawn Michaels classics in a scrolling picker, sealed-result reveal, 5-star ballot with Join Insider prompt, Meltzer + Cagematch chips.
+- Compact hero shuffles the featured match on carousel return + an 8s timer; cursor-chasing spotlight removed on slide 1.
+- Jericho WM19 and Rockers MSG 1989 breakdown links point at /matches/ until their pages ship.
+
 ## 2026-07-29 (Explore card — curated marquee rotation)
 - **`js/home-engage.js`**: Replaced the auto-harvested Explore (`.f2-explore`) rotation with a hand-picked marquee set, killing scraped junk (Angle vs Benoit, three Gargano matches, the mangled "Board // Rated 30" hub title). Now rotates: Triple H, The Rock, The Undertaker, Stone Cold profiles; Undertaker vs Michaels (WM25), Rock vs Austin (WM X-Seven), Bret Hart vs Austin (WM13), Undertaker vs Triple H (WM28) matches; plus one live **Watch** card.
 - **Watch card opens the theater modal**: the Watch entry reuses a real, build-maintained `.yt[data-yt-id]` video facade already on the page and clicks it, so it opens the shared media.js theater player (embedded YouTube) on the homepage and never goes stale. Falls back to `window.WL.openModal`, then to the video page.
