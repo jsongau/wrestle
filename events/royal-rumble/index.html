@@ -12,23 +12,96 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0b0c10">
-<link rel="stylesheet" href="/css/site.css?v=dafc4a8c">
+<link rel="stylesheet" href="/css/site.css?v=f4b8872e">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@graph":[
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"https://wrestlelore.com/"},
-      {"@type":"ListItem","position":2,"name":"Events","item":"https://wrestlelore.com/events/"}
+      {"@type":"ListItem","position":2,"name":"Events","item":"https://wrestlelore.com/events/"},
+      {"@type":"ListItem","position":3,"name":"Royal Rumble","item":"https://wrestlelore.com/events/royal-rumble/"}
     ]},
-    {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do you win at the Royal Rumble?","acceptedAnswer":{"@type":"Answer","text":"Since 1993, winning the men's or women's Royal Rumble match earns a world championship match of the winner's choosing at that year's WrestleMania."}},{"@type":"Question","name":"How many wrestlers are in a Royal Rumble match?","acceptedAnswer":{"@type":"Answer","text":"A standard Royal Rumble match features 30 entrants, who enter one at a time at staggered intervals (traditionally every 90 seconds), with eliminations occurring when a wrestler is thrown over the top rope with both feet touching the floor."}},{"@type":"Question","name":"When did the women's Royal Rumble start?","acceptedAnswer":{"@type":"Answer","text":"The first women's Royal Rumble match was held in 2018, won by Asuka."}}]}
+    {"@type":"EventSeries","name":"WWE Royal Rumble","alternateName":"Royal Rumble","url":"https://wrestlelore.com/events/royal-rumble/","description":"WWE's annual January event built around the 30-competitor over-the-top-rope Royal Rumble match. Since 1993 the men's and women's winners earn world-championship matches at WrestleMania. First held January 24, 1988.","startDate":"1988-01-24","organizer":{"@type":"Organization","name":"WWE","url":"https://www.wwe.com/"}},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"What do you win at the Royal Rumble?","acceptedAnswer":{"@type":"Answer","text":"Since 1993, winning the men's or women's Royal Rumble match earns a world-championship match of the winner's choosing at that year's WrestleMania."}},
+      {"@type":"Question","name":"How many wrestlers are in a Royal Rumble match?","acceptedAnswer":{"@type":"Answer","text":"A standard Royal Rumble match features 30 entrants, who enter one at a time at timed intervals (traditionally every 90 seconds). A wrestler is eliminated by being thrown over the top rope with both feet touching the floor, and the last one remaining wins."}},
+      {"@type":"Question","name":"Who won the first Royal Rumble?","acceptedAnswer":{"@type":"Answer","text":"\"Hacksaw\" Jim Duggan won the first Royal Rumble on January 24, 1988 in Hamilton, Ontario. It was a 20-man match aired as a special on the USA Network before the event moved to pay-per-view in 1989."}},
+      {"@type":"Question","name":"Who has won the most Royal Rumble matches?","acceptedAnswer":{"@type":"Answer","text":"Steve Austin holds the record with three wins (1997, 1998 and 2001). Hulk Hogan, Shawn Michaels, Triple H, Batista, John Cena, Randy Orton, Edge and Cody Rhodes have each won twice."}},
+      {"@type":"Question","name":"When did the women's Royal Rumble start?","acceptedAnswer":{"@type":"Answer","text":"The first women's Royal Rumble was held in 2018 and won by Asuka. It now takes place on the same card as the men's match with the same WrestleMania stakes."}},
+      {"@type":"Question","name":"Has anyone won the Royal Rumble from number 1?","acceptedAnswer":{"@type":"Answer","text":"Yes, though it is one of the rarest feats in the match. Shawn Michaels (1995), Chris Benoit (2004) and Edge (2021) all won the men's Rumble after entering at number 1, and Rhea Ripley did it in the 2023 women's match."}},
+      {"@type":"Question","name":"Who won the most recent Royal Rumble?","acceptedAnswer":{"@type":"Answer","text":"At the 2026 Royal Rumble (January 31, 2026 in Riyadh, Saudi Arabia, the first held outside North America), Roman Reigns won the men's match after entering at number 26, and Liv Morgan won the women's match. Both earned world-title shots at WrestleMania 42."}}
+    ]}
   ]
 }
 </script>
+<style>
+/* Royal Rumble page-scoped styles */
+.rr-note{font:500 .82rem/1.5 'Inter',system-ui,sans-serif;color:#9aa0aa;margin:.4rem 0 1rem}
+.rr-note b{color:#f2cc4b;font-weight:600}
+.rr-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(212,175,55,.22);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);margin-bottom:var(--sp-4)}
+.rr-tablewrap--scroll{max-height:583px;overflow-y:auto;position:relative}
+.rr-tablewrap--scroll .rr-table thead th{position:sticky;top:0;z-index:2}
+/* --- hero standfirst + stat band (v4) --- */
+.rr-standfirst{max-width:42ch;margin:var(--sp-4) 0 0;font-family:var(--font-cond);font-weight:500;font-size:var(--fs-600);line-height:1.32;color:var(--c-text)}
+.rr-standfirst b{color:var(--c-gold-bright);font-weight:600}
+.rr-statband{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3);margin-top:var(--sp-6)}
+.rr-stat{padding:var(--sp-4);border:1px solid var(--c-line-strong);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(212,175,55,.01))}
+.rr-stat__k{display:block;font-family:var(--ft-mono);font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--c-gold);margin-bottom:.55em}
+.rr-stat__v{display:block;font-family:var(--font-display);font-weight:400;font-size:2.4rem;line-height:.9;text-transform:uppercase;color:#fff}
+.rr-stat__v--sm{font-size:1.5rem;line-height:1}
+.rr-stat__s{display:block;margin-top:.55em;font-size:.76rem;line-height:1.35;color:var(--c-text-muted)}
+/* --- rules step sequence --- */
+.rr-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3);margin:var(--sp-4) 0 var(--sp-4)}
+.rr-step{padding:var(--sp-4);border:1px solid var(--c-line);border-radius:var(--r-lg);background:rgba(255,255,255,.02)}
+.rr-step__n{display:grid;place-content:center;width:34px;height:34px;border-radius:999px;background:linear-gradient(180deg,var(--c-gold-bright),var(--c-gold-dim));color:#161007;font-family:var(--font-display);font-size:1.05rem;margin-bottom:.7rem}
+.rr-step h3{margin:0 0 .3rem;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.03em;font-size:.92rem;font-weight:700;color:#fff}
+.rr-step p{margin:0;font-size:.82rem;line-height:1.4;color:var(--c-text-muted)}
+/* --- record-book fact rows --- */
+.rr-facts{display:grid;gap:.55rem;margin:var(--sp-4) 0 0}
+.rr-fact{display:grid;grid-template-columns:minmax(140px,210px) 1fr;gap:var(--sp-4);align-items:baseline;padding:.72rem .95rem;border:1px solid var(--c-line);border-radius:var(--r-md);background:rgba(255,255,255,.02)}
+.rr-fact__k{font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.03em;font-weight:700;font-size:.8rem;color:var(--c-gold-bright)}
+.rr-fact__v{font-size:.9rem;line-height:1.45;color:var(--c-text)}
+.rr-fact__v a{color:#f2cc4b;text-decoration:none;border-bottom:1px solid rgba(242,204,75,.22)}
+.rr-fact__v a:hover{border-bottom-color:#f2cc4b}
+.rr-sec-p{max-width:64ch;color:var(--c-text-muted);font-size:var(--fs-500);line-height:var(--lh-body);margin:0}
+.rr-sec-p b{color:var(--c-gold-bright);font-weight:600}
+@media(max-width:760px){.rr-statband{grid-template-columns:repeat(2,1fr)}.rr-steps{grid-template-columns:1fr}}
+@media(max-width:620px){.rr-fact{grid-template-columns:1fr;gap:.15rem}}
+.rr-table{width:100%;min-width:820px;border-collapse:collapse;font-family:'Inter',system-ui,sans-serif}
+.rr-table thead th{background:#14161c;color:#f2cc4b;font:700 .7rem/1.2 'Oswald',sans-serif;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:.72rem .9rem;border-bottom:2px solid rgba(212,175,55,.35);white-space:nowrap}
+.rr-table tbody td{padding:.72rem .9rem;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top;font-size:.86rem;line-height:1.45;color:#d7dae0}
+.rr-table tbody tr:nth-child(odd){background:rgba(255,255,255,.018)}
+.rr-table tbody tr:hover{background:rgba(212,175,55,.06)}
+.rr-ed{font-family:'Anton',sans-serif;color:#fff;white-space:nowrap;font-size:1rem;letter-spacing:.01em}
+.rr-ed b{display:block;font:600 .68rem/1 'JetBrains Mono',monospace;color:#d4af37;margin-top:.22rem}
+.rr-date{font-family:'JetBrains Mono',monospace;font-size:.76rem;white-space:nowrap;color:#c3c7cf}
+.rr-venue span{display:block;font-size:.75rem;color:#9aa0aa;margin-top:.15rem}
+.rr-win{font-weight:600;color:#eef0f3}
+.rr-table a{color:#f2cc4b;text-decoration:none;border-bottom:1px solid rgba(242,204,75,.22)}
+.rr-table a:hover{border-bottom-color:#f2cc4b}
+.rr-muted{color:#6b7078}
+.rr-flag{color:#e11d2a;font-weight:700;cursor:help}
+.rr-recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1.1rem}
+.rr-rec{border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:1rem 1.1rem;background:rgba(255,255,255,.02)}
+.rr-rec h3{font:700 .7rem/1.2 'Oswald',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#9aa0aa;margin:0 0 .45rem}
+.rr-rec p{margin:0;font:400 .95rem/1.45 'Inter',system-ui,sans-serif;color:#e8eaee}
+.rr-rec p b{color:#f2cc4b;font-weight:600}
+.rr-related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem}
+.rr-related a{display:inline-block;padding:.42rem .85rem;border:1px solid rgba(212,175,55,.28);border-radius:999px;font:600 .82rem/1 'Oswald',sans-serif;color:#e8eaee;text-decoration:none;background:rgba(255,255,255,.02);transition:border-color .15s,background .15s,color .15s}
+.rr-related a:hover{border-color:#f2cc4b;color:#fff;background:rgba(212,175,55,.1)}
+@media(max-width:640px){.rr-table{font-size:.8rem}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header nav7">
+    <div class="ticker7 rt" aria-label="Live wrestling headlines">
+  <div class="rt-tag"><span class="rt-live"><svg class="rt-live-mk" width="16" height="16" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9.5" fill="none" stroke="#21e06a" stroke-width="0.9" opacity=".25"/><circle cx="16" cy="16" r="4.4" fill="#21e06a"><animate attributeName="r" values="4.2;5.2;4.2" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.6;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="16" cy="16" r="2.1" fill="#8dffb9"/><g><animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="2.6s" repeatCount="indefinite"/><circle cx="16" cy="6.5" r="2.4" fill="#8dffb9"/><circle cx="16" cy="6.5" r="1.5" fill="none" stroke="#21e06a" stroke-width="1" opacity=".5"/></g><g><animateTransform attributeName="transform" type="rotate" from="180 16 16" to="540 16 16" dur="2.6s" repeatCount="indefinite"/><circle cx="16" cy="8" r="1.2" fill="#21e06a" opacity=".6"/></g></svg></span>LIVE</div>
+  <div class="rt-stage"><a class="rt-item is-on" href="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-aew)"></span><span class="rt-name">Jon Moxley</span><span class="rt-txt">The Death Riders took a hit at Redemption as Will Ospreay walked out on the group.</span><span class="rt-t rf-time" datetime="2026-07-27T02:30:00Z">Jul 27</span></a><a class="rt-item" href="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-aew)"></span><span class="rt-name">Kenny Omega</span><span class="rt-txt">Retained the AEW World Championship against Kevin Knight at Redemption, then turned on All In opponent Will Ospreay.</span><span class="rt-t rf-time" datetime="2026-07-27T03:10:00Z">Jul 27</span></a><a class="rt-item" href="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-aew)"></span><span class="rt-name">Willow Nightingale</span><span class="rt-txt">Captured the AEW Women&#x27;s World Championship at Redemption.</span><span class="rt-t rf-time" datetime="2026-07-27T01:50:00Z">Jul 27</span></a><a class="rt-item" href="https://www.wwe.com/shows/smackdown/2026-07-24" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-wwe)"></span><span class="rt-name">Cody Rhodes</span><span class="rt-txt">Came face to face with CM Punk on SmackDown as the SummerSlam card takes shape.</span><span class="rt-t rf-time" datetime="2026-07-25T02:00:00Z">Jul 25</span></a><a class="rt-item" href="https://www.wwe.com/shows/smackdown/2026-07-24" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-wwe)"></span><span class="rt-name">Gunther</span><span class="rt-txt">The contract signing with Nick Aldis erupted on SmackDown, and the Ring General left him laid out.</span><span class="rt-t rf-time" datetime="2026-07-25T02:20:00Z">Jul 25</span></a><a class="rt-item" href="https://www.wwe.com/shows/raw/2026-07-13/roman-reigns-and-seth-rollins" target="_blank" rel="noopener"><span class="rt-sq" style="background:var(--c-wwe)"></span><span class="rt-name">Roman Reigns</span><span class="rt-txt">The World Heavyweight Title clash with Seth Rollins is official for SummerSlam, two nights at US Bank Stadium in Minneapolis.</span><span class="rt-t rf-time" datetime="2026-07-13T02:30:00Z">Jul 13</span></a></div>
+  <div class="rt-dots" aria-hidden="true"><span class="rt-dot is-on"></span><span class="rt-dot"></span><span class="rt-dot"></span><span class="rt-dot"></span><span class="rt-dot"></span><span class="rt-dot"></span></div>
+  <a class="rt-more" href="/lore-feed/">Lore Feed</a>
+</div>
     <nav class="bar" aria-label="Primary">
       <a class="brand7" href="/" aria-label="Wrestle Lore, home"><span class="mark mark--logo"><img src="/assets/wrestle-lore-logo.png" alt="" width="141" height="96" decoding="async"><span class="sheen" aria-hidden="true"></span></span><span class="bword bw-c"><b class="w">Wrestle</b><b class="l">Lore</b></span></a>
       <div class="tabs7">
@@ -700,24 +773,167 @@
 
     <span class="ev-hero__brand">30 Superstars. One Winner. A Ticket to WrestleMania.</span>
     <h1>Royal Rumble</h1>
+    <p class="rr-standfirst">WWE&rsquo;s annual January battle royal, where <b>30 superstars</b> fight for one prize &mdash; the main event of <b>WrestleMania</b>.</p>
+    <div class="rr-statband">
+      <div class="rr-stat"><span class="rr-stat__k">First Held</span><span class="rr-stat__v">1988</span><span class="rr-stat__s">Jan 24 &middot; Hamilton, Ontario</span></div>
+      <div class="rr-stat"><span class="rr-stat__k">The Field</span><span class="rr-stat__v">30</span><span class="rr-stat__s">Over-the-top-rope battle royal</span></div>
+      <div class="rr-stat"><span class="rr-stat__k">Editions</span><span class="rr-stat__v">39</span><span class="rr-stat__s">Through 2026</span></div>
+      <div class="rr-stat"><span class="rr-stat__k">Winner&rsquo;s Prize</span><span class="rr-stat__v rr-stat__v--sm">WrestleMania</span><span class="rr-stat__s">World-title main event</span></div>
+    </div>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="ev-lede" style="margin-top:var(--sp-5)">
-    <p>The Royal Rumble match debuted on a 1988 USA Network special before becoming its own PPV in 1989. The format has become the most imitated match concept in wrestling: 30 entrants, staggered timed entries, and eliminations by going over the top rope with both feet touching the floor.</p><p>Since 1993, winning the Royal Rumble has guaranteed a world championship match at WrestleMania, making every January edition the true starting gun for WWE's biggest storytelling season. Historic winners include Ric Flair (1992, entering at #3 and winning the vacant WWF Title) and Chris Benoit's iron-man run from the #1 spot in 2004.</p><p>The women's Royal Rumble launched in 2018, instantly becoming an equally prestigious showcase.</p>
+  <div class="sec-h"><h2>How the match works</h2></div>
+  <p class="rr-sec-p">One match, one rule set, elimination by the top rope. Here&rsquo;s the format that has held since 1988:</p>
+  <div class="rr-steps">
+    <div class="rr-step"><span class="rr-step__n">1</span><h3>Two start</h3><p>Entrants #1 and #2 open the match alone in the ring.</p></div>
+    <div class="rr-step"><span class="rr-step__n">2</span><h3>Every ~90 sec</h3><p>A new entrant arrives on a timed interval until the field reaches 30.</p></div>
+    <div class="rr-step"><span class="rr-step__n">3</span><h3>Over the top</h3><p>You&rsquo;re out only when thrown over the top rope with both feet on the floor.</p></div>
+    <div class="rr-step"><span class="rr-step__n">4</span><h3>Last one wins</h3><p>The final superstar standing takes the match &mdash; and the title shot.</p></div>
+  </div>
+  <p class="rr-sec-p">It debuted as a <b>20-man</b> match on a USA Network television special on January 24, 1988 in Hamilton, Ontario, and expanded to its signature <b>30-man</b> format the following year.</p>
+
+  <div class="sec-h"><h2>What&rsquo;s at stake</h2></div>
+  <p class="rr-sec-p">Since <b>1993</b>, the winner earns a world-championship match at that year&rsquo;s <a href="/events/wrestlemania/">WrestleMania</a> &mdash; making the Rumble the official starting gun for WWE&rsquo;s Road to WrestleMania. That single stipulation turned a novelty bout into the second-biggest night on the wrestling calendar.</p>
+
+  <div class="sec-h"><h2>Record-book moments</h2></div>
+  <div class="rr-facts">
+    <div class="rr-fact"><span class="rr-fact__k">Most wins</span><span class="rr-fact__v"><a href="/wrestlers/stone-cold-steve-austin/">Steve Austin</a> &mdash; three (1997, 1998 and 2001).</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">Wire-to-wire from #1</span><span class="rr-fact__v"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a> (1995), <a href="/wrestlers/chris-benoit/">Chris Benoit</a> (2004) and <a href="/wrestlers/edge/">Edge</a> (2021) each lasted the whole match from the first spot.</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">Won from #30</span><span class="rr-fact__v"><a href="/wrestlers/the-undertaker/">The Undertaker</a> (2007) and <a href="/wrestlers/triple-h/">Triple H</a> (2016) &mdash; the only men to win from the final entry.</span></div>
+    <div class="rr-fact"><span class="rr-fact__k">Vacant title from #3</span><span class="rr-fact__v"><a href="/wrestlers/ric-flair/">Ric Flair</a> won the vacant WWF Championship from the #3 spot in 1992.</span></div>
+  </div>
+
+  <div class="sec-h"><h2>The women&rsquo;s Rumble &amp; going global</h2></div>
+  <p class="rr-sec-p">A women&rsquo;s Royal Rumble was added in <b>2018</b>, won by <a href="/wrestlers/asuka/">Asuka</a>, and now runs on the same card with the same WrestleMania stakes. The event has also gone stadium-sized and global: <b>2025</b> was the first Rumble held outside January, and the <b>2026</b> edition in Riyadh, Saudi Arabia &mdash; won by <a href="/wrestlers/roman-reigns/">Roman Reigns</a> and <a href="/wrestlers/liv-morgan/">Liv Morgan</a> &mdash; was the first ever staged outside North America. This page catalogues every Royal Rumble from 1988 to 2026.</p>
+
+<div class="sec-h"><h2>Why the Royal Rumble matters</h2></div>
+  <div class="ev-lede">
+    <p>The Royal Rumble is the structural keystone of WWE's storytelling year. Every January it converts an entire roster into a single number-one contender, launching the roughly two-and-a-half-month build to <a href="/events/wrestlemania/">WrestleMania</a>. Because one match can elevate almost anyone &mdash; a returning veteran, a surprise entrant, a newly minted main-eventer &mdash; the Rumble is WWE's most efficient star-making machine, and its result sets the direction of the entire spring.</p>
+    <p>Commercially it anchors the first quarter of the year: a marquee event that drives subscriptions, ticket sales and host-city tourism, and increasingly a global tentpole (the 2026 edition was staged in Saudi Arabia). For the performers, a Rumble win or a memorable iron-man run is a permanent career marker &mdash; which is why this hub links back to nearly every main-event profile on Wrestle Lore.</p>
+  </div>
+
+  <div class="sec-h"><h2>Every Royal Rumble, 1988&ndash;2026</h2></div>
+  <p class="rr-note">Winners link to full profiles where available. The 2026 venue name differs across sources and is flagged <span class="rr-flag" title="Sources differ on the exact arena name in Riyadh">&#9873;</span>. The table lists all 39 editions oldest-first &mdash; scroll inside it to see the full run.</p>
+  <div class="rr-tablewrap rr-tablewrap--scroll">
+    <table class="rr-table">
+      <caption style="caption-side:top;text-align:left;padding:.6rem .9rem;font:600 .72rem/1.3 'Oswald',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#9aa0aa">Every Royal Rumble men's match, 1988&ndash;2026</caption>
+      <thead><tr><th scope="col">Year</th><th scope="col">Date</th><th scope="col">Venue / City</th><th scope="col">Winner</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+      <tr><td><span class="rr-ed">1988<b>1st</b></span></td><td class="rr-date">Jan 24, 1988</td><td class="rr-venue">Copps Coliseum<span>Hamilton, ON</span></td><td class="rr-win">Jim Duggan</td><td>First Royal Rumble &middot; 20 men &middot; aired on USA Network</td></tr>
+      <tr><td><span class="rr-ed">1989<b>2nd</b></span></td><td class="rr-date">Jan 15, 1989</td><td class="rr-venue">The Summit<span>Houston, TX</span></td><td class="rr-win">Big John Studd</td><td>First 30-man field; first Rumble on pay-per-view</td></tr>
+      <tr><td><span class="rr-ed">1990<b>3rd</b></span></td><td class="rr-date">Jan 21, 1990</td><td class="rr-venue">Orlando Arena<span>Orlando, FL</span></td><td class="rr-win"><a href="/wrestlers/hulk-hogan/">Hulk Hogan</a></td><td>Hogan's first Rumble win</td></tr>
+      <tr><td><span class="rr-ed">1991<b>4th</b></span></td><td class="rr-date">Jan 19, 1991</td><td class="rr-venue">Miami Arena<span>Miami, FL</span></td><td class="rr-win">Hulk Hogan</td><td>Back-to-back wins</td></tr>
+      <tr><td><span class="rr-ed">1992<b>5th</b></span></td><td class="rr-date">Jan 19, 1992</td><td class="rr-venue">Knickerbocker Arena<span>Albany, NY</span></td><td class="rr-win"><a href="/wrestlers/ric-flair/">Ric Flair</a></td><td>Won the vacant WWF Title from #3</td></tr>
+      <tr><td><span class="rr-ed">1993<b>6th</b></span></td><td class="rr-date">Jan 24, 1993</td><td class="rr-venue">ARCO Arena<span>Sacramento, CA</span></td><td class="rr-win"><a href="/wrestlers/yokozuna/">Yokozuna</a></td><td>First year the winner earns a WrestleMania title shot</td></tr>
+      <tr><td><span class="rr-ed">1994<b>7th</b></span></td><td class="rr-date">Jan 22, 1994</td><td class="rr-venue">Providence Civic Center<span>Providence, RI</span></td><td class="rr-win"><a href="/wrestlers/bret-hart/">Bret Hart</a> &amp; <a href="/wrestlers/lex-luger/">Lex Luger</a></td><td>Only co-winners in Rumble history</td></tr>
+      <tr><td><span class="rr-ed">1995<b>8th</b></span></td><td class="rr-date">Jan 22, 1995</td><td class="rr-venue">USF Sun Dome<span>Tampa, FL</span></td><td class="rr-win"><a href="/wrestlers/shawn-michaels/">Shawn Michaels</a></td><td>Won from #1 &mdash; first ever to do it</td></tr>
+      <tr><td><span class="rr-ed">1996<b>9th</b></span></td><td class="rr-date">Jan 21, 1996</td><td class="rr-venue">Selland Arena<span>Fresno, CA</span></td><td class="rr-win">Shawn Michaels</td><td>Back-to-back wins</td></tr>
+      <tr><td><span class="rr-ed">1997<b>10th</b></span></td><td class="rr-date">Jan 19, 1997</td><td class="rr-venue">Alamodome<span>San Antonio, TX</span></td><td class="rr-win"><a href="/wrestlers/stone-cold-steve-austin/">Steve Austin</a></td><td>First of a record three wins</td></tr>
+      <tr><td><span class="rr-ed">1998<b>11th</b></span></td><td class="rr-date">Jan 18, 1998</td><td class="rr-venue">San Jose Arena<span>San Jose, CA</span></td><td class="rr-win">Steve Austin</td><td>Back-to-back wins</td></tr>
+      <tr><td><span class="rr-ed">1999<b>12th</b></span></td><td class="rr-date">Jan 24, 1999</td><td class="rr-venue">Arrowhead Pond<span>Anaheim, CA</span></td><td class="rr-win"><a href="/wrestlers/vince-mcmahon/">Vince McMahon</a></td><td>Owner wins amid the Austin feud</td></tr>
+      <tr><td><span class="rr-ed">2000<b>13th</b></span></td><td class="rr-date">Jan 23, 2000</td><td class="rr-venue">Madison Square Garden<span>New York, NY</span></td><td class="rr-win"><a href="/wrestlers/the-rock/">The Rock</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2001<b>14th</b></span></td><td class="rr-date">Jan 21, 2001</td><td class="rr-venue">New Orleans Arena<span>New Orleans, LA</span></td><td class="rr-win">Steve Austin</td><td>Record third Rumble win</td></tr>
+      <tr><td><span class="rr-ed">2002<b>15th</b></span></td><td class="rr-date">Jan 20, 2002</td><td class="rr-venue">Philips Arena<span>Atlanta, GA</span></td><td class="rr-win"><a href="/wrestlers/triple-h/">Triple H</a></td><td>Won on return from a quad injury</td></tr>
+      <tr><td><span class="rr-ed">2003<b>16th</b></span></td><td class="rr-date">Jan 19, 2003</td><td class="rr-venue">FleetCenter<span>Boston, MA</span></td><td class="rr-win"><a href="/wrestlers/brock-lesnar/">Brock Lesnar</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2004<b>17th</b></span></td><td class="rr-date">Jan 25, 2004</td><td class="rr-venue">Wachovia Center<span>Philadelphia, PA</span></td><td class="rr-win"><a href="/wrestlers/chris-benoit/">Chris Benoit</a></td><td>Went wire-to-wire from #1</td></tr>
+      <tr><td><span class="rr-ed">2005<b>18th</b></span></td><td class="rr-date">Jan 30, 2005</td><td class="rr-venue">Save Mart Center<span>Fresno, CA</span></td><td class="rr-win"><a href="/wrestlers/batista/">Batista</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2006<b>19th</b></span></td><td class="rr-date">Jan 29, 2006</td><td class="rr-venue">American Airlines Arena<span>Miami, FL</span></td><td class="rr-win"><a href="/wrestlers/rey-mysterio/">Rey Mysterio</a></td><td>Iron-man run from #2 (1:02:12)</td></tr>
+      <tr><td><span class="rr-ed">2007<b>20th</b></span></td><td class="rr-date">Jan 28, 2007</td><td class="rr-venue">AT&amp;T Center<span>San Antonio, TX</span></td><td class="rr-win"><a href="/wrestlers/the-undertaker/">The Undertaker</a></td><td>First man to win from #30</td></tr>
+      <tr><td><span class="rr-ed">2008<b>21st</b></span></td><td class="rr-date">Jan 27, 2008</td><td class="rr-venue">Madison Square Garden<span>New York, NY</span></td><td class="rr-win"><a href="/wrestlers/john-cena/">John Cena</a></td><td>Surprise return from injury</td></tr>
+      <tr><td><span class="rr-ed">2009<b>22nd</b></span></td><td class="rr-date">Jan 25, 2009</td><td class="rr-venue">Joe Louis Arena<span>Detroit, MI</span></td><td class="rr-win"><a href="/wrestlers/randy-orton/">Randy Orton</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2010<b>23rd</b></span></td><td class="rr-date">Jan 31, 2010</td><td class="rr-venue">Philips Arena<span>Atlanta, GA</span></td><td class="rr-win"><a href="/wrestlers/edge/">Edge</a></td><td>Surprise return from injury</td></tr>
+      <tr><td><span class="rr-ed">2011<b>24th</b></span></td><td class="rr-date">Jan 30, 2011</td><td class="rr-venue">TD Garden<span>Boston, MA</span></td><td class="rr-win">Alberto Del Rio</td><td>First 40-man Royal Rumble</td></tr>
+      <tr><td><span class="rr-ed">2012<b>25th</b></span></td><td class="rr-date">Jan 29, 2012</td><td class="rr-venue">Scottrade Center<span>St. Louis, MO</span></td><td class="rr-win"><a href="/wrestlers/sheamus/">Sheamus</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2013<b>26th</b></span></td><td class="rr-date">Jan 27, 2013</td><td class="rr-venue">US Airways Center<span>Phoenix, AZ</span></td><td class="rr-win">John Cena</td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2014<b>27th</b></span></td><td class="rr-date">Jan 26, 2014</td><td class="rr-venue">Consol Energy Center<span>Pittsburgh, PA</span></td><td class="rr-win">Batista</td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2015<b>28th</b></span></td><td class="rr-date">Jan 25, 2015</td><td class="rr-venue">Wells Fargo Center<span>Philadelphia, PA</span></td><td class="rr-win"><a href="/wrestlers/roman-reigns/">Roman Reigns</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2016<b>29th</b></span></td><td class="rr-date">Jan 24, 2016</td><td class="rr-venue">Amway Center<span>Orlando, FL</span></td><td class="rr-win">Triple H</td><td>Won the vacant WWE Title from #30</td></tr>
+      <tr><td><span class="rr-ed">2017<b>30th</b></span></td><td class="rr-date">Jan 29, 2017</td><td class="rr-venue">Alamodome<span>San Antonio, TX</span></td><td class="rr-win">Randy Orton</td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2018<b>31st</b></span></td><td class="rr-date">Jan 28, 2018</td><td class="rr-venue">Wells Fargo Center<span>Philadelphia, PA</span></td><td class="rr-win"><a href="/wrestlers/shinsuke-nakamura/">Shinsuke Nakamura</a></td><td>First women's Rumble same night (Asuka)</td></tr>
+      <tr><td><span class="rr-ed">2019<b>32nd</b></span></td><td class="rr-date">Jan 27, 2019</td><td class="rr-venue">Chase Field<span>Phoenix, AZ</span></td><td class="rr-win"><a href="/wrestlers/seth-rollins/">Seth Rollins</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2020<b>33rd</b></span></td><td class="rr-date">Jan 26, 2020</td><td class="rr-venue">Minute Maid Park<span>Houston, TX</span></td><td class="rr-win"><a href="/wrestlers/drew-mcintyre/">Drew McIntyre</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2021<b>34th</b></span></td><td class="rr-date">Jan 31, 2021</td><td class="rr-venue">Tropicana Field<span>St. Petersburg, FL</span></td><td class="rr-win">Edge</td><td>Won wire-to-wire from #1</td></tr>
+      <tr><td><span class="rr-ed">2022<b>35th</b></span></td><td class="rr-date">Jan 29, 2022</td><td class="rr-venue">The Dome at America's Center<span>St. Louis, MO</span></td><td class="rr-win">Brock Lesnar</td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2023<b>36th</b></span></td><td class="rr-date">Jan 28, 2023</td><td class="rr-venue">Alamodome<span>San Antonio, TX</span></td><td class="rr-win"><a href="/wrestlers/cody-rhodes/">Cody Rhodes</a></td><td>Won on return from a torn pec</td></tr>
+      <tr><td><span class="rr-ed">2024<b>37th</b></span></td><td class="rr-date">Jan 27, 2024</td><td class="rr-venue">Tropicana Field<span>St. Petersburg, FL</span></td><td class="rr-win">Cody Rhodes</td><td>Back-to-back wins</td></tr>
+      <tr><td><span class="rr-ed">2025<b>38th</b></span></td><td class="rr-date">Feb 1, 2025</td><td class="rr-venue">Lucas Oil Stadium<span>Indianapolis, IN</span></td><td class="rr-win"><a href="/wrestlers/jey-uso/">Jey Uso</a></td><td>First Rumble held outside January</td></tr>
+      <tr><td><span class="rr-ed">2026<b>39th</b></span></td><td class="rr-date">Jan 31, 2026</td><td class="rr-venue">King Abdullah Financial District <span class="rr-flag" title="Sources differ on the exact arena name in Riyadh">&#9873;</span><span>Riyadh, Saudi Arabia</span></td><td class="rr-win">Roman Reigns</td><td>First Rumble outside North America; won from #26</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-h"><h2>Women's Royal Rumble winners</h2></div>
+  <div class="rr-tablewrap">
+    <table class="rr-table" style="min-width:560px">
+      <caption style="caption-side:top;text-align:left;padding:.6rem .9rem;font:600 .72rem/1.3 'Oswald',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#9aa0aa">Women's Royal Rumble, 2018&ndash;2026</caption>
+      <thead><tr><th scope="col">Year</th><th scope="col">Winner</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+      <tr><td><span class="rr-ed">2018<b>1st</b></span></td><td class="rr-win"><a href="/wrestlers/asuka/">Asuka</a></td><td>Inaugural women's Royal Rumble</td></tr>
+      <tr><td><span class="rr-ed">2019<b>2nd</b></span></td><td class="rr-win"><a href="/wrestlers/becky-lynch/">Becky Lynch</a></td><td>Earned the first women's WrestleMania main event</td></tr>
+      <tr><td><span class="rr-ed">2020<b>3rd</b></span></td><td class="rr-win"><a href="/wrestlers/charlotte-flair/">Charlotte Flair</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2021<b>4th</b></span></td><td class="rr-win"><a href="/wrestlers/bianca-belair/">Bianca Belair</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2022<b>5th</b></span></td><td class="rr-win">Ronda Rousey</td><td>Won on her return</td></tr>
+      <tr><td><span class="rr-ed">2023<b>6th</b></span></td><td class="rr-win"><a href="/wrestlers/rhea-ripley/">Rhea Ripley</a></td><td>Went wire-to-wire from #1</td></tr>
+      <tr><td><span class="rr-ed">2024<b>7th</b></span></td><td class="rr-win"><a href="/wrestlers/bayley/">Bayley</a></td><td><span class="rr-muted">&mdash;</span></td></tr>
+      <tr><td><span class="rr-ed">2025<b>8th</b></span></td><td class="rr-win">Charlotte Flair</td><td>Two-time winner</td></tr>
+      <tr><td><span class="rr-ed">2026<b>9th</b></span></td><td class="rr-win"><a href="/wrestlers/liv-morgan/">Liv Morgan</a></td><td>Entered #14</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-h"><h2>Records &amp; superlatives</h2></div>
+  <div class="rr-recs">
+    <div class="rr-rec"><h3>Most Rumble wins</h3><p><b>Steve Austin &mdash; 3</b> (1997, 1998, 2001), the only three-time winner of the men's Royal Rumble.</p></div>
+    <div class="rr-rec"><h3>Most career eliminations</h3><p><b>Kane &mdash; 46</b> across roughly 20 Royal Rumble appearances, the most in the match's history.</p></div>
+    <div class="rr-rec"><h3>Most eliminations, one match</h3><p><b>13</b> &mdash; shared by Brock Lesnar (2020) and Braun Strowman in the 50-man 2018 Greatest Royal Rumble.</p></div>
+    <div class="rr-rec"><h3>Longest single performance</h3><p><b>Rey Mysterio &mdash; 1:02:12</b> to win the 2006 Rumble from #2; Daniel Bryan lasted <b>1:16:05</b> in the oversized 2018 Greatest Royal Rumble.</p></div>
+    <div class="rr-rec"><h3>Fastest elimination</h3><p><b>Santino Marella &mdash; 1.9 seconds</b> (2009), the quickest exit on record.</p></div>
+    <div class="rr-rec"><h3>Winning from #30</h3><p><b>The Undertaker (2007)</b> and <b>Triple H (2016)</b> are the only men to win entering last, at number 30.</p></div>
+    <div class="rr-rec"><h3>First women's Rumble</h3><p><b>Asuka</b> won the inaugural women's Royal Rumble in 2018; it now carries the same WrestleMania stakes as the men's.</p></div>
   </div>
 
   <div class="sec-h"><h2>Editions on Wrestle Lore</h2></div>
   <div class="event-grid">
-<a class="ev-tile" href="/events/royal-rumble-2026/"><span class="ev-tile__date">January 31, 2026</span><h3 class="ev-tile__name">Royal Rumble 2026</h3><p class="ev-tile__sub">Roman Reigns and Liv Morgan win</p></a>
+<a class="ev-tile" href="/events/royal-rumble-2026/"><span class="ev-tile__date">January 31, 2026</span><h3 class="ev-tile__name">Royal Rumble 2026</h3><p class="ev-tile__sub">Roman Reigns (#26) and Liv Morgan (#14) win in Riyadh</p></a>
+  </div>
+
+  <div class="sec-h"><h2>Related superstars</h2></div>
+  <div class="rr-related">
+    <a href="/wrestlers/stone-cold-steve-austin/">Stone Cold Steve Austin</a>
+    <a href="/wrestlers/hulk-hogan/">Hulk Hogan</a>
+    <a href="/wrestlers/ric-flair/">Ric Flair</a>
+    <a href="/wrestlers/shawn-michaels/">Shawn Michaels</a>
+    <a href="/wrestlers/the-rock/">The Rock</a>
+    <a href="/wrestlers/triple-h/">Triple H</a>
+    <a href="/wrestlers/brock-lesnar/">Brock Lesnar</a>
+    <a href="/wrestlers/the-undertaker/">The Undertaker</a>
+    <a href="/wrestlers/rey-mysterio/">Rey Mysterio</a>
+    <a href="/wrestlers/john-cena/">John Cena</a>
+    <a href="/wrestlers/randy-orton/">Randy Orton</a>
+    <a href="/wrestlers/edge/">Edge</a>
+    <a href="/wrestlers/roman-reigns/">Roman Reigns</a>
+    <a href="/wrestlers/cody-rhodes/">Cody Rhodes</a>
+    <a href="/wrestlers/drew-mcintyre/">Drew McIntyre</a>
+    <a href="/wrestlers/jey-uso/">Jey Uso</a>
+    <a href="/wrestlers/kane/">Kane</a>
+    <a href="/wrestlers/asuka/">Asuka</a>
+    <a href="/wrestlers/becky-lynch/">Becky Lynch</a>
+    <a href="/wrestlers/charlotte-flair/">Charlotte Flair</a>
+    <a href="/wrestlers/rhea-ripley/">Rhea Ripley</a>
+    <a href="/wrestlers/liv-morgan/">Liv Morgan</a>
   </div>
 
   <div class="sec-h"><h2>FAQ</h2></div>
 <div class="faq faq-block">
-<details><summary>What do you win at the Royal Rumble?</summary><div class="faq__body">Since 1993, winning the men's or women's Royal Rumble match earns a world championship match of the winner's choosing at that year's WrestleMania.</div></details>
-<details><summary>How many wrestlers are in a Royal Rumble match?</summary><div class="faq__body">A standard Royal Rumble match features 30 entrants, who enter one at a time at staggered intervals (traditionally every 90 seconds), with eliminations occurring when a wrestler is thrown over the top rope with both feet touching the floor.</div></details>
-<details><summary>When did the women's Royal Rumble start?</summary><div class="faq__body">The first women's Royal Rumble match was held in 2018, won by Asuka.</div></details>
+<details><summary>What do you win at the Royal Rumble?</summary><div class="faq__body">Since 1993, winning the men's or women's Royal Rumble match earns a world-championship match of the winner's choosing at that year's WrestleMania.</div></details>
+<details><summary>How many wrestlers are in a Royal Rumble match?</summary><div class="faq__body">A standard Royal Rumble match features 30 entrants, who enter one at a time at timed intervals (traditionally every 90 seconds). A wrestler is eliminated by being thrown over the top rope with both feet touching the floor, and the last one remaining wins.</div></details>
+<details><summary>Who won the first Royal Rumble?</summary><div class="faq__body">"Hacksaw" Jim Duggan won the first Royal Rumble on January 24, 1988 in Hamilton, Ontario. It was a 20-man match aired as a special on the USA Network before the event moved to pay-per-view in 1989.</div></details>
+<details><summary>Who has won the most Royal Rumble matches?</summary><div class="faq__body">Steve Austin holds the record with three wins (1997, 1998 and 2001). Hulk Hogan, Shawn Michaels, Triple H, Batista, John Cena, Randy Orton, Edge and Cody Rhodes have each won twice.</div></details>
+<details><summary>When did the women's Royal Rumble start?</summary><div class="faq__body">The first women's Royal Rumble was held in 2018 and won by Asuka. It now takes place on the same card as the men's match with the same WrestleMania stakes.</div></details>
+<details><summary>Has anyone won the Royal Rumble from number 1?</summary><div class="faq__body">Yes, though it is one of the rarest feats in the match. Shawn Michaels (1995), Chris Benoit (2004) and Edge (2021) all won the men's Rumble after entering at number 1, and Rhea Ripley did it in the 2023 women's match.</div></details>
+<details><summary>Who won the most recent Royal Rumble?</summary><div class="faq__body">At the 2026 Royal Rumble (January 31, 2026 in Riyadh, Saudi Arabia, the first held outside North America), Roman Reigns won the men's match after entering at number 26, and Liv Morgan won the women's match. Both earned world-title shots at WrestleMania 42.</div></details>
 </div>
 
 </div>
@@ -870,8 +1086,8 @@
   })();
   </script>
 </footer>
-<script src="/js/main.js?v=dafc4a8c"></script>
-<script src="/js/search-index.js?v=dafc4a8c" defer></script>
-<script src="/js/nav.js?v=dafc4a8c" defer></script>
+<script src="/js/main.js?v=f4b8872e"></script>
+<script src="/js/search-index.js?v=f4b8872e" defer></script>
+<script src="/js/nav.js?v=f4b8872e" defer></script>
 </body>
 </html>
