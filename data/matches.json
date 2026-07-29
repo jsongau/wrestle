@@ -1,1328 +1,1508 @@
 [
-  {
-    "slug": "undertaker-vs-hbk-wm25",
-    "title": "The Undertaker vs Shawn Michaels",
-    "participants": [
-      {
-        "name": "The Undertaker",
-        "href": "/wrestlers/the-undertaker/",
-        "winner": true
-      },
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": false
-      }
-    ],
-    "winner": "The Undertaker",
-    "result": "Undertaker def. Michaels (17–0)",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.6 / 10",
-    "event": "WrestleMania XXV",
-    "date": "April 5, 2009",
-    "year": 2009,
-    "venue": "Reliant Stadium, Houston",
-    "stipulation": "Singles — The Streak (16–0)",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression / PG Era",
-    "hook": "The Undertaker won, extending his WrestleMania streak to 17–0, in a match regularly voted the greatest in WrestleMania history. Two legends in their 40s built a near-perfect escalating drama of false finishes — including Undertaker's terrif",
-    "video": {
-      "id": "Gd54flkPtL4",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 0,
-    "rank": 1
+ {
+  "slug": "undertaker-vs-hbk-wm25",
+  "title": "The Undertaker vs Shawn Michaels",
+  "participants": [
+   {
+    "name": "The Undertaker",
+    "href": "/wrestlers/the-undertaker/",
+    "winner": true
+   },
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": false
+   }
+  ],
+  "winner": "The Undertaker",
+  "result": "Undertaker def. Michaels (17–0)",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.6 / 10",
+  "event": "WrestleMania XXV",
+  "date": "April 5, 2009",
+  "year": 2009,
+  "venue": "Reliant Stadium, Houston",
+  "stipulation": "Singles — The Streak (16–0)",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression / PG Era",
+  "hook": "The Undertaker won, extending his WrestleMania streak to 17–0, in a match regularly voted the greatest in WrestleMania history. Two legends in their 40s built a near-perfect escalating drama of false finishes — including Undertaker's terrif",
+  "video": {
+   "id": "Gd54flkPtL4",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "cm-punk-vs-cena-mitb-2011",
-    "title": "CM Punk vs John Cena",
-    "participants": [
-      {
-        "name": "CM Punk",
-        "href": "/wrestlers/cm-punk/",
-        "winner": true
-      },
-      {
-        "name": "John Cena",
-        "href": "/wrestlers/john-cena/",
-        "winner": false
-      }
-    ],
-    "winner": "CM Punk",
-    "result": "Punk won the WWE Title and left the company with it",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75; some tallies 5)",
-    "cagematch": "~9.4 / 10",
-    "event": "WWE Money in the Bank 2011",
-    "date": "July 17, 2011",
-    "year": 2011,
-    "venue": "Allstate Arena, Chicago",
-    "stipulation": "Singles — WWE Championship (Punk's contract expiring)",
-    "promotion": "WWE",
-    "era": "PG Era / Reality Era",
-    "hook": "CM Punk won the WWE Championship in his hometown of Chicago and, with his contract expiring, left the company holding the title. It was the payoff to the \"pipebomb\" summer that had reinvigorated WWE, and it delivered on a level almost no mo",
-    "video": {
-      "id": "QZb3dfX3cQA",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 2,
-    "rank": 2
+  "tier": "five-star",
+  "_order": 0,
+  "rank": 1
+ },
+ {
+  "slug": "cm-punk-vs-cena-mitb-2011",
+  "title": "CM Punk vs John Cena",
+  "participants": [
+   {
+    "name": "CM Punk",
+    "href": "/wrestlers/cm-punk/",
+    "winner": true
+   },
+   {
+    "name": "John Cena",
+    "href": "/wrestlers/john-cena/",
+    "winner": false
+   }
+  ],
+  "winner": "CM Punk",
+  "result": "Punk won the WWE Title and left the company with it",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75; some tallies 5)",
+  "cagematch": "~9.4 / 10",
+  "event": "WWE Money in the Bank 2011",
+  "date": "July 17, 2011",
+  "year": 2011,
+  "venue": "Allstate Arena, Chicago",
+  "stipulation": "Singles — WWE Championship (Punk's contract expiring)",
+  "promotion": "WWE",
+  "era": "PG Era / Reality Era",
+  "hook": "CM Punk won the WWE Championship in his hometown of Chicago and, with his contract expiring, left the company holding the title. It was the payoff to the \"pipebomb\" summer that had reinvigorated WWE, and it delivered on a level almost no mo",
+  "video": {
+   "id": "QZb3dfX3cQA",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "samoa-joe-vs-cm-punk-roh-2004",
-    "title": "Samoa Joe vs CM Punk",
-    "participants": [
-      {
-        "name": "Samoa Joe",
-        "href": "/wrestlers/samoa-joe/",
-        "winner": false
-      },
-      {
-        "name": "CM Punk",
-        "href": "/wrestlers/cm-punk/",
-        "winner": false
-      }
-    ],
-    "winner": null,
-    "result": "Time-limit draw (Joe retained the ROH World Championship)",
-    "rating": 5.0,
-    "meltzer": "★★★★★ (5.0 — ROH's first five-star)",
-    "cagematch": "~9.3 / 10",
-    "event": "ROH World Title Classic (\"Joe vs Punk II\")",
-    "date": "October 16, 2004",
-    "year": 2004,
-    "venue": "Frontier Fieldhouse, Chicago Ridge",
-    "stipulation": "Singles — ROH World Championship, 60-minute time limit",
-    "promotion": "ROH",
-    "era": "Independent Era / ROH Golden Age",
-    "hook": "The match went the full 60-minute time limit to a draw, so Samoa Joe retained the ROH World Championship — and in doing so, \"Joe vs Punk II\" legitimized the American independent scene as a home for world-class wrestling. It is the best chap",
-    "video": {
-      "id": "d3NJyWauUE0",
-      "type": "highlights",
-      "channel": "Ring of Honor Wrestling"
-    },
-    "tier": "five-star",
-    "_order": 3,
-    "rank": 3
+  "tier": "five-star",
+  "_order": 2,
+  "rank": 2
+ },
+ {
+  "slug": "samoa-joe-vs-cm-punk-roh-2004",
+  "title": "Samoa Joe vs CM Punk",
+  "participants": [
+   {
+    "name": "Samoa Joe",
+    "href": "/wrestlers/samoa-joe/",
+    "winner": false
+   },
+   {
+    "name": "CM Punk",
+    "href": "/wrestlers/cm-punk/",
+    "winner": false
+   }
+  ],
+  "winner": null,
+  "result": "Time-limit draw (Joe retained the ROH World Championship)",
+  "rating": 5.0,
+  "meltzer": "★★★★★ (5.0 — ROH's first five-star)",
+  "cagematch": "~9.3 / 10",
+  "event": "ROH World Title Classic (\"Joe vs Punk II\")",
+  "date": "October 16, 2004",
+  "year": 2004,
+  "venue": "Frontier Fieldhouse, Chicago Ridge",
+  "stipulation": "Singles — ROH World Championship, 60-minute time limit",
+  "promotion": "ROH",
+  "era": "Independent Era / ROH Golden Age",
+  "hook": "The match went the full 60-minute time limit to a draw, so Samoa Joe retained the ROH World Championship — and in doing so, \"Joe vs Punk II\" legitimized the American independent scene as a home for world-class wrestling. It is the best chap",
+  "video": {
+   "id": "d3NJyWauUE0",
+   "type": "highlights",
+   "channel": "Ring of Honor Wrestling"
   },
-  {
-    "slug": "styles-vs-daniels-vs-joe-unbreakable-2005",
-    "title": "AJ Styles vs Christopher Daniels vs Samoa Joe",
-    "participants": [
-      {
-        "name": "AJ Styles",
-        "href": "/wrestlers/aj-styles/",
-        "winner": true
-      },
-      {
-        "name": "Christopher Daniels · Samoa Joe",
-        "href": "/wrestlers/christopher-daniels/",
-        "winner": false
-      }
-    ],
-    "winner": "AJ Styles",
-    "result": "AJ Styles won the X-Division Championship",
-    "rating": 5.0,
-    "meltzer": "★★★★★ (5.0 — TNA's first five-star)",
-    "cagematch": "~9.2 / 10",
-    "event": "TNA Unbreakable",
-    "date": "September 11, 2005",
-    "year": 2005,
-    "venue": "TNA Impact Zone (Universal Studios), Orlando",
-    "stipulation": "Triple Threat — TNA X-Division Championship",
-    "promotion": "TNA",
-    "era": "X-Division Golden Age",
-    "hook": "AJ Styles won the TNA X-Division Championship in a Triple Threat against Christopher Daniels and Samoa Joe that became TNA's first ever five-star match — the bout that put the company and its X-Division on the international map.",
-    "video": {
-      "id": "mTm3IQBzKmI",
-      "type": "event",
-      "channel": "TNA Wrestling"
-    },
-    "tier": "five-star",
-    "_order": 4,
-    "rank": 4
+  "tier": "five-star",
+  "_order": 3,
+  "rank": 3
+ },
+ {
+  "slug": "styles-vs-daniels-vs-joe-unbreakable-2005",
+  "title": "AJ Styles vs Christopher Daniels vs Samoa Joe",
+  "participants": [
+   {
+    "name": "AJ Styles",
+    "href": "/wrestlers/aj-styles/",
+    "winner": true
+   },
+   {
+    "name": "Christopher Daniels · Samoa Joe",
+    "href": "/wrestlers/christopher-daniels/",
+    "winner": false
+   }
+  ],
+  "winner": "AJ Styles",
+  "result": "AJ Styles won the X-Division Championship",
+  "rating": 5.0,
+  "meltzer": "★★★★★ (5.0 — TNA's first five-star)",
+  "cagematch": "~9.2 / 10",
+  "event": "TNA Unbreakable",
+  "date": "September 11, 2005",
+  "year": 2005,
+  "venue": "TNA Impact Zone (Universal Studios), Orlando",
+  "stipulation": "Triple Threat — TNA X-Division Championship",
+  "promotion": "TNA",
+  "era": "X-Division Golden Age",
+  "hook": "AJ Styles won the TNA X-Division Championship in a Triple Threat against Christopher Daniels and Samoa Joe that became TNA's first ever five-star match — the bout that put the company and its X-Division on the international map.",
+  "video": {
+   "id": "mTm3IQBzKmI",
+   "type": "event",
+   "channel": "TNA Wrestling"
   },
-  {
-    "slug": "rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997",
-    "title": "Rey Mysterio Jr vs Eddie Guerrero",
-    "participants": [
-      {
-        "name": "Rey Mysterio Jr",
-        "href": "/wrestlers/rey-mysterio/",
-        "winner": true
-      },
-      {
-        "name": "Eddie Guerrero",
-        "href": "/wrestlers/eddie-guerrero/",
-        "winner": false
-      }
-    ],
-    "winner": "Rey Mysterio Jr",
-    "result": "Mysterio def. Guerrero (won title, kept mask)",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.0 / 10",
-    "event": "WCW Halloween Havoc",
-    "date": "October 26, 1997",
-    "year": 1997,
-    "venue": "MGM Grand Garden Arena, Las Vegas",
-    "stipulation": "Title vs Mask — WCW Cruiserweight Title",
-    "promotion": "WCW",
-    "era": "Monday Night War / Cruiserweight Golden Age",
-    "hook": "Rey Mysterio Jr won the WCW Cruiserweight Championship and kept his mask in a Title vs Mask match widely regarded as the greatest cruiserweight bout in American wrestling history — the match that proved US audiences would embrace lucha-styl",
-    "video": {
-      "id": "sqRYKCH8dUc",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 5,
-    "rank": 5
+  "tier": "five-star",
+  "_order": 4,
+  "rank": 4
+ },
+ {
+  "slug": "rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997",
+  "title": "Rey Mysterio Jr vs Eddie Guerrero",
+  "participants": [
+   {
+    "name": "Rey Mysterio Jr",
+    "href": "/wrestlers/rey-mysterio/",
+    "winner": true
+   },
+   {
+    "name": "Eddie Guerrero",
+    "href": "/wrestlers/eddie-guerrero/",
+    "winner": false
+   }
+  ],
+  "winner": "Rey Mysterio Jr",
+  "result": "Mysterio def. Guerrero (won title, kept mask)",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.0 / 10",
+  "event": "WCW Halloween Havoc",
+  "date": "October 26, 1997",
+  "year": 1997,
+  "venue": "MGM Grand Garden Arena, Las Vegas",
+  "stipulation": "Title vs Mask — WCW Cruiserweight Title",
+  "promotion": "WCW",
+  "era": "Monday Night War / Cruiserweight Golden Age",
+  "hook": "Rey Mysterio Jr won the WCW Cruiserweight Championship and kept his mask in a Title vs Mask match widely regarded as the greatest cruiserweight bout in American wrestling history — the match that proved US audiences would embrace lucha-styl",
+  "video": {
+   "id": "sqRYKCH8dUc",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "bret-hart-vs-austin-wm13",
-    "title": "Bret Hart vs Stone Cold Steve Austin",
-    "participants": [
-      {
-        "name": "Bret \"Hitman\" Hart",
-        "href": "/wrestlers/bret-hart/",
-        "winner": true
-      },
-      {
-        "name": "\"Stone Cold\" Steve Austin",
-        "href": "/wrestlers/stone-cold-steve-austin/",
-        "winner": false
-      }
-    ],
-    "winner": "Bret \"Hitman\" Hart",
-    "result": "Hart def. Austin (referee stoppage)",
-    "rating": 5.0,
-    "meltzer": "★★★★½ (4.5)",
-    "cagematch": "~9.3–9.5 / 10",
-    "event": "WWF WrestleMania 13",
-    "date": "March 23, 1997",
-    "year": 1997,
-    "venue": "Allstate Arena, Rosemont",
-    "stipulation": "No-DQ Submission (ref Ken Shamrock)",
-    "promotion": "WWF",
-    "era": "New Generation / Attitude Era Dawn",
-    "hook": "Bret Hart won when Austin passed out in the Sharpshooter — yet Austin left as the hero. This is the gold standard of the wrestling double-turn: the villain walked out the biggest babyface in the industry, and the hero walked out a heel, all",
-    "video": {
-      "id": "DYELJpHHwCQ",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 6,
-    "rank": 6
+  "tier": "five-star",
+  "_order": 5,
+  "rank": 5
+ },
+ {
+  "slug": "bret-hart-vs-austin-wm13",
+  "title": "Bret Hart vs Stone Cold Steve Austin",
+  "participants": [
+   {
+    "name": "Bret \"Hitman\" Hart",
+    "href": "/wrestlers/bret-hart/",
+    "winner": true
+   },
+   {
+    "name": "\"Stone Cold\" Steve Austin",
+    "href": "/wrestlers/stone-cold-steve-austin/",
+    "winner": false
+   }
+  ],
+  "winner": "Bret \"Hitman\" Hart",
+  "result": "Hart def. Austin (referee stoppage)",
+  "rating": 5.0,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": "~9.3–9.5 / 10",
+  "event": "WWF WrestleMania 13",
+  "date": "March 23, 1997",
+  "year": 1997,
+  "venue": "Allstate Arena, Rosemont",
+  "stipulation": "No-DQ Submission (ref Ken Shamrock)",
+  "promotion": "WWF",
+  "era": "New Generation / Attitude Era Dawn",
+  "hook": "Bret Hart won when Austin passed out in the Sharpshooter — yet Austin left as the hero. This is the gold standard of the wrestling double-turn: the villain walked out the biggest babyface in the industry, and the hero walked out a heel, all",
+  "video": {
+   "id": "DYELJpHHwCQ",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "hbk-vs-angle-wm21-2005",
-    "title": "Shawn Michaels vs Kurt Angle",
-    "participants": [
-      {
-        "name": "Kurt Angle",
-        "href": "/wrestlers/kurt-angle/",
-        "winner": true
-      },
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": false
-      }
-    ],
-    "winner": "Kurt Angle",
-    "result": "Angle def. Michaels (ankle lock submission)",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.0 / 10",
-    "event": "WrestleMania 21",
-    "date": "April 3, 2005",
-    "year": 2005,
-    "venue": "Staples Center, Los Angeles",
-    "stipulation": "Singles (dream match)",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression Era",
-    "hook": "Kurt Angle won when Shawn Michaels submitted to the ankle lock, ending a long-awaited dream match that lived up to every ounce of anticipation. It paired the best pure wrestler of the era against its best all-around performer, and the resul",
-    "video": {
-      "id": "zSC0we1MxkY",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 7,
-    "rank": 7
+  "tier": "five-star",
+  "_order": 6,
+  "rank": 6
+ },
+ {
+  "slug": "hbk-vs-angle-wm21-2005",
+  "title": "Shawn Michaels vs Kurt Angle",
+  "participants": [
+   {
+    "name": "Kurt Angle",
+    "href": "/wrestlers/kurt-angle/",
+    "winner": true
+   },
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": false
+   }
+  ],
+  "winner": "Kurt Angle",
+  "result": "Angle def. Michaels (ankle lock submission)",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.0 / 10",
+  "event": "WrestleMania 21",
+  "date": "April 3, 2005",
+  "year": 2005,
+  "venue": "Staples Center, Los Angeles",
+  "stipulation": "Singles (dream match)",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression Era",
+  "hook": "Kurt Angle won when Shawn Michaels submitted to the ankle lock, ending a long-awaited dream match that lived up to every ounce of anticipation. It paired the best pure wrestler of the era against its best all-around performer, and the resul",
+  "video": {
+   "id": "zSC0we1MxkY",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "gargano-vs-ciampa-takeover-new-orleans-2018",
-    "title": "Johnny Gargano vs Tommaso Ciampa",
-    "participants": [
-      {
-        "name": "Tommaso Ciampa",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Johnny Gargano",
-        "href": null,
-        "winner": false
-      }
-    ],
-    "winner": "Tommaso Ciampa",
-    "result": "Ciampa def. Gargano",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.1 / 10",
-    "event": "NXT TakeOver: New Orleans",
-    "date": "April 7, 2018",
-    "year": 2018,
-    "venue": "Smoothie King Center, New Orleans",
-    "stipulation": "Unsanctioned Match",
-    "promotion": "NXT",
-    "era": "NXT Black-and-Gold Era",
-    "hook": "Tommaso Ciampa won the Unsanctioned Match, defeating his betrayed former partner Johnny Gargano in the explosive blow-off to the best-told feud in NXT history. There was no title and no rules — only the settling of a personal grudge that ha",
-    "video": {
-      "id": "PKUMW0beZ0Y",
-      "type": "event",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 9,
-    "rank": 8
+  "tier": "five-star",
+  "_order": 7,
+  "rank": 7
+ },
+ {
+  "slug": "gargano-vs-ciampa-takeover-new-orleans-2018",
+  "title": "Johnny Gargano vs Tommaso Ciampa",
+  "participants": [
+   {
+    "name": "Tommaso Ciampa",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Johnny Gargano",
+    "href": null,
+    "winner": false
+   }
+  ],
+  "winner": "Tommaso Ciampa",
+  "result": "Ciampa def. Gargano",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.1 / 10",
+  "event": "NXT TakeOver: New Orleans",
+  "date": "April 7, 2018",
+  "year": 2018,
+  "venue": "Smoothie King Center, New Orleans",
+  "stipulation": "Unsanctioned Match",
+  "promotion": "NXT",
+  "era": "NXT Black-and-Gold Era",
+  "hook": "Tommaso Ciampa won the Unsanctioned Match, defeating his betrayed former partner Johnny Gargano in the explosive blow-off to the best-told feud in NXT history. There was no title and no rules — only the settling of a personal grudge that ha",
+  "video": {
+   "id": "PKUMW0beZ0Y",
+   "type": "event",
+   "channel": "WWE"
   },
-  {
-    "slug": "adam-cole-vs-gargano-takeover-xxv-2019",
-    "title": "Adam Cole vs Johnny Gargano",
-    "participants": [
-      {
-        "name": "Adam Cole",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Johnny Gargano",
-        "href": null,
-        "winner": false
-      }
-    ],
-    "winner": "Adam Cole",
-    "result": "Cole def. Gargano 2–1 (won NXT Title)",
-    "rating": 5.0,
-    "meltzer": "★★★★★ (5.0)",
-    "cagematch": "~9.1 / 10",
-    "event": "NXT TakeOver: XXV",
-    "date": "June 1, 2019",
-    "year": 2019,
-    "venue": "Webster Bank Arena, Bridgeport",
-    "stipulation": "Best 2-out-of-3 Falls — NXT Championship",
-    "promotion": "NXT",
-    "era": "NXT Black-and-Gold Era",
-    "hook": "Adam Cole won the NXT Championship two falls to one, outlasting Johnny Gargano in a near-40-minute epic that many consider the greatest NXT match ever. It crowned Cole as the standard-bearer of the Black-and-Gold era at its creative peak.",
-    "video": {
-      "id": "ub4RPi8XFkw",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 10,
-    "rank": 9
+  "tier": "five-star",
+  "_order": 9,
+  "rank": 8
+ },
+ {
+  "slug": "adam-cole-vs-gargano-takeover-xxv-2019",
+  "title": "Adam Cole vs Johnny Gargano",
+  "participants": [
+   {
+    "name": "Adam Cole",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Johnny Gargano",
+    "href": null,
+    "winner": false
+   }
+  ],
+  "winner": "Adam Cole",
+  "result": "Cole def. Gargano 2–1 (won NXT Title)",
+  "rating": 5.0,
+  "meltzer": "★★★★★ (5.0)",
+  "cagematch": "~9.1 / 10",
+  "event": "NXT TakeOver: XXV",
+  "date": "June 1, 2019",
+  "year": 2019,
+  "venue": "Webster Bank Arena, Bridgeport",
+  "stipulation": "Best 2-out-of-3 Falls — NXT Championship",
+  "promotion": "NXT",
+  "era": "NXT Black-and-Gold Era",
+  "hook": "Adam Cole won the NXT Championship two falls to one, outlasting Johnny Gargano in a near-40-minute epic that many consider the greatest NXT match ever. It crowned Cole as the standard-bearer of the Black-and-Gold era at its creative peak.",
+  "video": {
+   "id": "ub4RPi8XFkw",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "almas-vs-gargano-takeover-philadelphia-2018",
-    "title": "Andrade \"Cien\" Almas vs Johnny Gargano",
-    "participants": [
-      {
-        "name": "Andrade \"Cien\" Almas",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Johnny Gargano",
-        "href": null,
-        "winner": false
-      }
-    ],
-    "winner": "Andrade \"Cien\" Almas",
-    "result": "Almas def. Gargano (retained NXT Title)",
-    "rating": 5.0,
-    "meltzer": "★★★★★ (5.0)",
-    "cagematch": "~9.2 / 10",
-    "event": "NXT TakeOver: Philadelphia",
-    "date": "January 27, 2018",
-    "year": 2018,
-    "venue": "Wells Fargo Center, Philadelphia",
-    "stipulation": "Singles — NXT Championship",
-    "promotion": "NXT",
-    "era": "NXT Black-and-Gold Era",
-    "hook": "Andrade Almas retained the NXT Championship, surviving a career-making challenge from Johnny Gargano in a bout that earned the first WWE-banner five-star Meltzer rating in years. It transformed Almas into a top talent and cemented Gargano a",
-    "video": {
-      "id": "b8C5JzzkIU8",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "_order": 11,
-    "rank": 10
+  "tier": "five-star",
+  "_order": 10,
+  "rank": 9
+ },
+ {
+  "slug": "almas-vs-gargano-takeover-philadelphia-2018",
+  "title": "Andrade \"Cien\" Almas vs Johnny Gargano",
+  "participants": [
+   {
+    "name": "Andrade \"Cien\" Almas",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Johnny Gargano",
+    "href": null,
+    "winner": false
+   }
+  ],
+  "winner": "Andrade \"Cien\" Almas",
+  "result": "Almas def. Gargano (retained NXT Title)",
+  "rating": 5.0,
+  "meltzer": "★★★★★ (5.0)",
+  "cagematch": "~9.2 / 10",
+  "event": "NXT TakeOver: Philadelphia",
+  "date": "January 27, 2018",
+  "year": 2018,
+  "venue": "Wells Fargo Center, Philadelphia",
+  "stipulation": "Singles — NXT Championship",
+  "promotion": "NXT",
+  "era": "NXT Black-and-Gold Era",
+  "hook": "Andrade Almas retained the NXT Championship, surviving a career-making challenge from Johnny Gargano in a bout that earned the first WWE-banner five-star Meltzer rating in years. It transformed Almas into a top talent and cemented Gargano a",
+  "video": {
+   "id": "b8C5JzzkIU8",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "hbk-vs-undertaker-badd-blood-1997",
-    "title": "Shawn Michaels vs The Undertaker",
-    "participants": [
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": true
-      },
-      {
-        "name": "The Undertaker",
-        "href": "/wrestlers/the-undertaker/",
-        "winner": false
-      }
-    ],
-    "winner": "Shawn Michaels",
-    "result": "Michaels def. Undertaker (Kane debut)",
-    "rating": 4.5,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.0 / 10",
-    "event": "In Your House 18: Badd Blood",
-    "date": "October 5, 1997",
-    "year": 1997,
-    "venue": "Kiel Center, St. Louis",
-    "stipulation": "Hell in a Cell (the first ever)",
-    "promotion": "WWF",
-    "era": "Attitude Era",
-    "hook": "Shawn Michaels won after Kane made his debut, tore the cell door from its hinges, Tombstoned The Undertaker and let HBK steal the pin. It was the first-ever Hell in a Cell — the blueprint for the most iconic gimmick match WWE would ever cre",
-    "video": {
-      "id": "BvZ2KQuCTds",
-      "type": "full",
-      "channel": "WWE Vault"
-    },
-    "tier": "near-miss",
-    "_order": 100,
-    "rank": 11
+  "tier": "five-star",
+  "_order": 11,
+  "rank": 10
+ },
+ {
+  "slug": "hbk-vs-undertaker-badd-blood-1997",
+  "title": "Shawn Michaels vs The Undertaker",
+  "participants": [
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": true
+   },
+   {
+    "name": "The Undertaker",
+    "href": "/wrestlers/the-undertaker/",
+    "winner": false
+   }
+  ],
+  "winner": "Shawn Michaels",
+  "result": "Michaels def. Undertaker (Kane debut)",
+  "rating": 4.5,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.0 / 10",
+  "event": "In Your House 18: Badd Blood",
+  "date": "October 5, 1997",
+  "year": 1997,
+  "venue": "Kiel Center, St. Louis",
+  "stipulation": "Hell in a Cell (the first ever)",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "Shawn Michaels won after Kane made his debut, tore the cell door from its hinges, Tombstoned The Undertaker and let HBK steal the pin. It was the first-ever Hell in a Cell — the blueprint for the most iconic gimmick match WWE would ever cre",
+  "video": {
+   "id": "BvZ2KQuCTds",
+   "type": "full",
+   "channel": "WWE Vault"
   },
-  {
-    "slug": "nwo-formation-bash-at-the-beach-1996",
-    "title": "The nWo Formation",
-    "participants": [
-      {
-        "name": "Hulk Hogan",
-        "href": "/wrestlers/hulk-hogan/",
-        "winner": true
-      },
-      {
-        "name": "Sting",
-        "href": "/wrestlers/sting/",
-        "winner": false
-      }
-    ],
-    "winner": "Hulk Hogan",
-    "result": "Outsiders' side won (Hogan turns, nWo born)",
-    "rating": 4.5,
-    "meltzer": "★★ (angle rated far higher)",
-    "cagematch": "— (angle)",
-    "event": "WCW Bash at the Beach",
-    "date": "July 7, 1996",
-    "year": 1996,
-    "venue": "Ocean Center, Daytona Beach",
-    "stipulation": "Six-man tag (the third-man reveal)",
-    "promotion": "WCW",
-    "era": "Monday Night War",
-    "hook": "The Outsiders' side won when Hulk Hogan emerged as the mystery third man, betrayed the WCW roster and leg-dropped Randy Savage — birthing the New World Order. We include it for historical weight, not workrate: as a match it is a forgettable",
-    "video": {
-      "id": "B638ROb-iYk",
-      "type": "highlights",
-      "channel": "WWE Vault"
-    },
-    "tier": "near-miss",
-    "_order": 101,
-    "rank": 12
+  "tier": "near-miss",
+  "_order": 100,
+  "rank": 11
+ },
+ {
+  "slug": "nwo-formation-bash-at-the-beach-1996",
+  "title": "The nWo Formation",
+  "participants": [
+   {
+    "name": "Hulk Hogan",
+    "href": "/wrestlers/hulk-hogan/",
+    "winner": true
+   },
+   {
+    "name": "Sting",
+    "href": "/wrestlers/sting/",
+    "winner": false
+   }
+  ],
+  "winner": "Hulk Hogan",
+  "result": "Outsiders' side won (Hogan turns, nWo born)",
+  "rating": 4.5,
+  "meltzer": "★★ (angle rated far higher)",
+  "cagematch": "— (angle)",
+  "event": "WCW Bash at the Beach",
+  "date": "July 7, 1996",
+  "year": 1996,
+  "venue": "Ocean Center, Daytona Beach",
+  "stipulation": "Six-man tag (the third-man reveal)",
+  "promotion": "WCW",
+  "era": "Monday Night War",
+  "hook": "The Outsiders' side won when Hulk Hogan emerged as the mystery third man, betrayed the WCW roster and leg-dropped Randy Savage — birthing the New World Order. We include it for historical weight, not workrate: as a match it is a forgettable",
+  "video": {
+   "id": "B638ROb-iYk",
+   "type": "highlights",
+   "channel": "WWE Vault"
   },
-  {
-    "slug": "tlc-2-wrestlemania-x-seven-2001",
-    "title": "TLC II — Edge & Christian vs The Hardy Boyz vs The Dudley Boyz",
-    "participants": [
-      {
-        "name": "Edge & Christian",
-        "href": "/wrestlers/edge/",
-        "winner": true
-      },
-      {
-        "name": "Hardy Boyz & Dudley Boyz",
-        "href": "/wrestlers/bully-ray/",
-        "winner": false
-      }
-    ],
-    "winner": "Edge & Christian",
-    "result": "Edge & Christian won the titles",
-    "rating": 4.5,
-    "meltzer": "★★★★¼ (~4.25)",
-    "cagematch": "~8.7 / 10",
-    "event": "WrestleMania X-Seven",
-    "date": "April 1, 2001",
-    "year": 2001,
-    "venue": "Reliant Astrodome, Houston",
-    "stipulation": "Tables, Ladders & Chairs — WWF Tag Titles",
-    "promotion": "WWF",
-    "era": "Attitude Era",
-    "hook": "Edge & Christian won the WWF Tag Team Championship, outlasting the Hardy Boyz and the Dudley Boyz in the ladder-match arms race that redefined tag wrestling. It matters because it took car-crash choreography and turned it into art — the tem",
-    "video": {
-      "id": "Y4JoVecKu9I",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 102,
-    "rank": 13
+  "tier": "near-miss",
+  "_order": 101,
+  "rank": 12
+ },
+ {
+  "slug": "tlc-2-wrestlemania-x-seven-2001",
+  "title": "TLC II — Edge & Christian vs The Hardy Boyz vs The Dudley Boyz",
+  "participants": [
+   {
+    "name": "Edge & Christian",
+    "href": "/wrestlers/edge/",
+    "winner": true
+   },
+   {
+    "name": "Hardy Boyz & Dudley Boyz",
+    "href": "/wrestlers/bully-ray/",
+    "winner": false
+   }
+  ],
+  "winner": "Edge & Christian",
+  "result": "Edge & Christian won the titles",
+  "rating": 4.5,
+  "meltzer": "★★★★¼ (~4.25)",
+  "cagematch": "~8.7 / 10",
+  "event": "WrestleMania X-Seven",
+  "date": "April 1, 2001",
+  "year": 2001,
+  "venue": "Reliant Astrodome, Houston",
+  "stipulation": "Tables, Ladders & Chairs — WWF Tag Titles",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "Edge & Christian won the WWF Tag Team Championship, outlasting the Hardy Boyz and the Dudley Boyz in the ladder-match arms race that redefined tag wrestling. It matters because it took car-crash choreography and turned it into art — the tem",
+  "video": {
+   "id": "Y4JoVecKu9I",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "rock-vs-austin-wm-x-seven-2001",
-    "title": "The Rock vs Stone Cold Steve Austin",
-    "participants": [
-      {
-        "name": "Stone Cold Steve Austin",
-        "href": "/wrestlers/stone-cold-steve-austin/",
-        "winner": true
-      },
-      {
-        "name": "The Rock",
-        "href": "/wrestlers/the-rock/",
-        "winner": false
-      }
-    ],
-    "winner": "Stone Cold Steve Austin",
-    "result": "Austin won the WWF Title (heel turn)",
-    "rating": 4.5,
-    "meltzer": "★★★★½ (4.5)",
-    "cagematch": "~8.8 / 10",
-    "event": "WrestleMania X-Seven",
-    "date": "April 1, 2001",
-    "year": 2001,
-    "venue": "Reliant Astrodome, Houston",
-    "stipulation": "No-Disqualification — WWF Title",
-    "promotion": "WWF",
-    "era": "Attitude Era",
-    "hook": "Steve Austin won the WWF Championship — then aligned with Vince McMahon in a shocking heel turn. It closed the main event of what many call the greatest WrestleMania ever, pitting the two biggest stars of the boom against each other at the ",
-    "video": {
-      "id": "UicJBCAIgto",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 103,
-    "rank": 14
+  "tier": "near-miss",
+  "_order": 102,
+  "rank": 13
+ },
+ {
+  "slug": "rock-vs-austin-wm-x-seven-2001",
+  "title": "The Rock vs Stone Cold Steve Austin",
+  "participants": [
+   {
+    "name": "Stone Cold Steve Austin",
+    "href": "/wrestlers/stone-cold-steve-austin/",
+    "winner": true
+   },
+   {
+    "name": "The Rock",
+    "href": "/wrestlers/the-rock/",
+    "winner": false
+   }
+  ],
+  "winner": "Stone Cold Steve Austin",
+  "result": "Austin won the WWF Title (heel turn)",
+  "rating": 4.5,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": "~8.8 / 10",
+  "event": "WrestleMania X-Seven",
+  "date": "April 1, 2001",
+  "year": 2001,
+  "venue": "Reliant Astrodome, Houston",
+  "stipulation": "No-Disqualification — WWF Title",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "Steve Austin won the WWF Championship — then aligned with Vince McMahon in a shocking heel turn. It closed the main event of what many call the greatest WrestleMania ever, pitting the two biggest stars of the boom against each other at the ",
+  "video": {
+   "id": "UicJBCAIgto",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "undertaker-vs-angle-no-way-out-2006",
-    "title": "The Undertaker vs Kurt Angle",
-    "participants": [
-      {
-        "name": "Kurt Angle",
-        "href": "/wrestlers/kurt-angle/",
-        "winner": true
-      },
-      {
-        "name": "The Undertaker",
-        "href": "/wrestlers/the-undertaker/",
-        "winner": false
-      }
-    ],
-    "winner": "Kurt Angle",
-    "result": "Angle retained the World Heavyweight Title",
-    "rating": 4.5,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~8.8 / 10",
-    "event": "WWE No Way Out 2006",
-    "date": "February 19, 2006",
-    "year": 2006,
-    "venue": "1st Mariner Arena, Baltimore",
-    "stipulation": "Singles — World Heavyweight Championship",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression Era",
-    "hook": "Kurt Angle retained the World Heavyweight Championship in what is frequently cited as one of the very best non-WrestleMania Undertaker matches. Away from the grand-stage spectacle, the two built a tense, counter-heavy near-fall symphony tha",
-    "video": {
-      "id": "t_9c9Px7Eac",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 104,
-    "rank": 15
+  "tier": "near-miss",
+  "_order": 103,
+  "rank": 14
+ },
+ {
+  "slug": "undertaker-vs-angle-no-way-out-2006",
+  "title": "The Undertaker vs Kurt Angle",
+  "participants": [
+   {
+    "name": "Kurt Angle",
+    "href": "/wrestlers/kurt-angle/",
+    "winner": true
+   },
+   {
+    "name": "The Undertaker",
+    "href": "/wrestlers/the-undertaker/",
+    "winner": false
+   }
+  ],
+  "winner": "Kurt Angle",
+  "result": "Angle retained the World Heavyweight Title",
+  "rating": 4.5,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~8.8 / 10",
+  "event": "WWE No Way Out 2006",
+  "date": "February 19, 2006",
+  "year": 2006,
+  "venue": "1st Mariner Arena, Baltimore",
+  "stipulation": "Singles — World Heavyweight Championship",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression Era",
+  "hook": "Kurt Angle retained the World Heavyweight Championship in what is frequently cited as one of the very best non-WrestleMania Undertaker matches. Away from the grand-stage spectacle, the two built a tense, counter-heavy near-fall symphony tha",
+  "video": {
+   "id": "t_9c9Px7Eac",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "undertaker-vs-hbk-wm26-2010",
-    "title": "The Undertaker vs Shawn Michaels (Streak vs Career)",
-    "participants": [
-      {
-        "name": "The Undertaker",
-        "href": "/wrestlers/the-undertaker/",
-        "winner": true
-      },
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": false
-      }
-    ],
-    "winner": "The Undertaker",
-    "result": "Undertaker def. Michaels (18–0); HBK retired",
-    "rating": 4.5,
-    "meltzer": "★★★★½ (4.5)",
-    "cagematch": "~9.4 / 10",
-    "event": "WrestleMania XXVI",
-    "date": "March 28, 2010",
-    "year": 2010,
-    "venue": "University of Phoenix Stadium, Glendale",
-    "stipulation": "No Disqualification — Streak vs Career",
-    "promotion": "WWE",
-    "era": "PG Era",
-    "hook": "The Undertaker won, extending the Streak to 18–0 and forcing Shawn Michaels into retirement. A rare sequel that justified itself, it layered HBK's entire career onto the Streak's mystique and turned a rematch into a farewell.",
-    "video": {
-      "id": "ljb34LNhGQw",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 105,
-    "rank": 16
+  "tier": "near-miss",
+  "_order": 104,
+  "rank": 15
+ },
+ {
+  "slug": "undertaker-vs-hbk-wm26-2010",
+  "title": "The Undertaker vs Shawn Michaels (Streak vs Career)",
+  "participants": [
+   {
+    "name": "The Undertaker",
+    "href": "/wrestlers/the-undertaker/",
+    "winner": true
+   },
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": false
+   }
+  ],
+  "winner": "The Undertaker",
+  "result": "Undertaker def. Michaels (18–0); HBK retired",
+  "rating": 4.5,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": "~9.4 / 10",
+  "event": "WrestleMania XXVI",
+  "date": "March 28, 2010",
+  "year": 2010,
+  "venue": "University of Phoenix Stadium, Glendale",
+  "stipulation": "No Disqualification — Streak vs Career",
+  "promotion": "WWE",
+  "era": "PG Era",
+  "hook": "The Undertaker won, extending the Streak to 18–0 and forcing Shawn Michaels into retirement. A rare sequel that justified itself, it layered HBK's entire career onto the Streak's mystique and turned a rematch into a farewell.",
+  "video": {
+   "id": "ljb34LNhGQw",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "undertaker-vs-triple-h-wm28-2012",
-    "title": "The Undertaker vs Triple H (End of an Era)",
-    "participants": [
-      {
-        "name": "The Undertaker",
-        "href": "/wrestlers/the-undertaker/",
-        "winner": true
-      },
-      {
-        "name": "Triple H",
-        "href": "/wrestlers/triple-h/",
-        "winner": false
-      }
-    ],
-    "winner": "The Undertaker",
-    "result": "Undertaker def. Triple H (20–0)",
-    "rating": 4.5,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.2 / 10",
-    "event": "WrestleMania XXVIII",
-    "date": "April 1, 2012",
-    "year": 2012,
-    "venue": "Sun Life Stadium, Miami Gardens",
-    "stipulation": "Hell in a Cell — The Streak on the line (ref: Shawn Michaels)",
-    "promotion": "WWE",
-    "era": "PG Era",
-    "hook": "The Undertaker won inside Hell in a Cell, extending the Streak to 20–0, in the match billed and remembered as the \"End of an Era.\" It served as the final chapter of the Undertaker, Triple H and Shawn Michaels trilogy — a three-way character",
-    "video": {
-      "id": "FOoSvAeFPP4",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 106,
-    "rank": 17
+  "tier": "near-miss",
+  "_order": 105,
+  "rank": 16
+ },
+ {
+  "slug": "undertaker-vs-triple-h-wm28-2012",
+  "title": "The Undertaker vs Triple H (End of an Era)",
+  "participants": [
+   {
+    "name": "The Undertaker",
+    "href": "/wrestlers/the-undertaker/",
+    "winner": true
+   },
+   {
+    "name": "Triple H",
+    "href": "/wrestlers/triple-h/",
+    "winner": false
+   }
+  ],
+  "winner": "The Undertaker",
+  "result": "Undertaker def. Triple H (20–0)",
+  "rating": 4.5,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.2 / 10",
+  "event": "WrestleMania XXVIII",
+  "date": "April 1, 2012",
+  "year": 2012,
+  "venue": "Sun Life Stadium, Miami Gardens",
+  "stipulation": "Hell in a Cell — The Streak on the line (ref: Shawn Michaels)",
+  "promotion": "WWE",
+  "era": "PG Era",
+  "hook": "The Undertaker won inside Hell in a Cell, extending the Streak to 20–0, in the match billed and remembered as the \"End of an Era.\" It served as the final chapter of the Undertaker, Triple H and Shawn Michaels trilogy — a three-way character",
+  "video": {
+   "id": "FOoSvAeFPP4",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "bryan-vs-cena-summerslam-2013",
-    "title": "Daniel Bryan vs John Cena",
-    "participants": [
-      {
-        "name": "Daniel Bryan",
-        "href": "/wrestlers/daniel-bryan/",
-        "winner": true
-      },
-      {
-        "name": "John Cena",
-        "href": "/wrestlers/john-cena/",
-        "winner": false
-      }
-    ],
-    "winner": "Daniel Bryan",
-    "result": "Bryan def. Cena clean; Randy Orton then cashed in MITB (after Triple H turned) to win the title",
-    "rating": 4.5,
-    "meltzer": "★★★★½ (4.5)",
-    "cagematch": "~8.8 / 10",
-    "event": "WWE SummerSlam 2013",
-    "date": "August 18, 2013",
-    "year": 2013,
-    "venue": "Staples Center, Los Angeles",
-    "stipulation": "Singles — WWE Championship (ref: Triple H)",
-    "promotion": "WWE",
-    "era": "Reality Era",
-    "hook": "Daniel Bryan pinned John Cena cleanly to win the WWE Championship — only for the night to be turned on its head. With Triple H as special guest referee, the moment of triumph curdled instantly: Triple H turned, Pedigreed the new champion, a",
-    "video": {
-      "id": "2oR_1WBmkHM",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 107,
-    "rank": 18
+  "tier": "near-miss",
+  "_order": 106,
+  "rank": 17
+ },
+ {
+  "slug": "bryan-vs-cena-summerslam-2013",
+  "title": "Daniel Bryan vs John Cena",
+  "participants": [
+   {
+    "name": "Daniel Bryan",
+    "href": "/wrestlers/daniel-bryan/",
+    "winner": true
+   },
+   {
+    "name": "John Cena",
+    "href": "/wrestlers/john-cena/",
+    "winner": false
+   }
+  ],
+  "winner": "Daniel Bryan",
+  "result": "Bryan def. Cena clean; Randy Orton then cashed in MITB (after Triple H turned) to win the title",
+  "rating": 4.5,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": "~8.8 / 10",
+  "event": "WWE SummerSlam 2013",
+  "date": "August 18, 2013",
+  "year": 2013,
+  "venue": "Staples Center, Los Angeles",
+  "stipulation": "Singles — WWE Championship (ref: Triple H)",
+  "promotion": "WWE",
+  "era": "Reality Era",
+  "hook": "Daniel Bryan pinned John Cena cleanly to win the WWE Championship — only for the night to be turned on its head. With Triple H as special guest referee, the moment of triumph curdled instantly: Triple H turned, Pedigreed the new champion, a",
+  "video": {
+   "id": "2oR_1WBmkHM",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "daniel-bryan-wm30-2014",
-    "title": "Daniel Bryan's WrestleMania XXX Night",
-    "participants": [
-      {
-        "name": "Daniel Bryan",
-        "href": "/wrestlers/daniel-bryan/",
-        "winner": true
-      },
-      {
-        "name": "Triple H · Batista · Randy Orton",
-        "href": "/wrestlers/triple-h/",
-        "winner": false
-      }
-    ],
-    "winner": "Daniel Bryan",
-    "result": "Bryan def. Triple H, then won the title (submitted Batista)",
-    "rating": 4.5,
-    "meltzer": "★★★★½ opener (~4.5) · ~4 main event",
-    "cagematch": "~8.9 / 10 (opener)",
-    "event": "WWE WrestleMania XXX",
-    "date": "April 6, 2014",
-    "year": 2014,
-    "venue": "Mercedes-Benz Superdome, New Orleans",
-    "stipulation": "Singles opener + Triple Threat for the WWE World Heavyweight Championship",
-    "promotion": "WWE",
-    "era": "Reality Era",
-    "hook": "Daniel Bryan won twice in one night — first beating Triple H, then submitting Batista to capture the WWE World Heavyweight Championship — completing the most satisfying underdog arc of the era. The night as a whole is one of WWE's great emo",
-    "video": {
-      "id": "UHjLdrKKmXs",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "_order": 108,
-    "rank": 19
+  "tier": "near-miss",
+  "_order": 107,
+  "rank": 18
+ },
+ {
+  "slug": "daniel-bryan-wm30-2014",
+  "title": "Daniel Bryan's WrestleMania XXX Night",
+  "participants": [
+   {
+    "name": "Daniel Bryan",
+    "href": "/wrestlers/daniel-bryan/",
+    "winner": true
+   },
+   {
+    "name": "Triple H · Batista · Randy Orton",
+    "href": "/wrestlers/triple-h/",
+    "winner": false
+   }
+  ],
+  "winner": "Daniel Bryan",
+  "result": "Bryan def. Triple H, then won the title (submitted Batista)",
+  "rating": 4.5,
+  "meltzer": "★★★★½ opener (~4.5) · ~4 main event",
+  "cagematch": "~8.9 / 10 (opener)",
+  "event": "WWE WrestleMania XXX",
+  "date": "April 6, 2014",
+  "year": 2014,
+  "venue": "Mercedes-Benz Superdome, New Orleans",
+  "stipulation": "Singles opener + Triple Threat for the WWE World Heavyweight Championship",
+  "promotion": "WWE",
+  "era": "Reality Era",
+  "hook": "Daniel Bryan won twice in one night — first beating Triple H, then submitting Batista to capture the WWE World Heavyweight Championship — completing the most satisfying underdog arc of the era. The night as a whole is one of WWE's great emo",
+  "video": {
+   "id": "UHjLdrKKmXs",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "sami-zayn-vs-neville-takeover-revolution-2014",
-    "title": "Sami Zayn vs Adrian Neville",
-    "participants": [
-      {
-        "name": "Sami Zayn",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Adrian Neville",
-        "href": null,
-        "winner": false
-      }
-    ],
-    "winner": "Sami Zayn",
-    "result": "Zayn def. Neville (won NXT Title)",
-    "rating": 4.5,
-    "meltzer": "★★★★½ (4.5)",
-    "cagematch": "~9.0 / 10",
-    "event": "NXT TakeOver: R Evolution",
-    "date": "December 11, 2014",
-    "year": 2014,
-    "venue": "Full Sail University, Winter Park",
-    "stipulation": "Singles — NXT Championship",
-    "promotion": "NXT",
-    "era": "NXT Black-and-Gold Era",
-    "hook": "Sami Zayn won the NXT Championship — his first title in WWE — beating champion Adrian Neville in the emotional main event of TakeOver: R Evolution. It was the ultimate underdog payoff of the early TakeOver era, the beloved perennial nearly-",
-    "video": {
-      "id": "abZV6hJf6zc",
-      "type": "full",
-      "channel": "WWE NXT"
-    },
-    "tier": "near-miss",
-    "_order": 109,
-    "rank": 20
+  "tier": "near-miss",
+  "_order": 108,
+  "rank": 19
+ },
+ {
+  "slug": "sami-zayn-vs-neville-takeover-revolution-2014",
+  "title": "Sami Zayn vs Adrian Neville",
+  "participants": [
+   {
+    "name": "Sami Zayn",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Adrian Neville",
+    "href": null,
+    "winner": false
+   }
+  ],
+  "winner": "Sami Zayn",
+  "result": "Zayn def. Neville (won NXT Title)",
+  "rating": 4.5,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": "~9.0 / 10",
+  "event": "NXT TakeOver: R Evolution",
+  "date": "December 11, 2014",
+  "year": 2014,
+  "venue": "Full Sail University, Winter Park",
+  "stipulation": "Singles — NXT Championship",
+  "promotion": "NXT",
+  "era": "NXT Black-and-Gold Era",
+  "hook": "Sami Zayn won the NXT Championship — his first title in WWE — beating champion Adrian Neville in the emotional main event of TakeOver: R Evolution. It was the ultimate underdog payoff of the early TakeOver era, the beloved perennial nearly-",
+  "video": {
+   "id": "abZV6hJf6zc",
+   "type": "full",
+   "channel": "WWE NXT"
   },
-  {
-    "slug": "bayley-vs-sasha-banks-takeover-brooklyn-2015",
-    "title": "Bayley vs Sasha Banks",
-    "participants": [
-      {
-        "name": "Bayley",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Sasha Banks",
-        "href": "/wrestlers/mercedes-mone/",
-        "winner": false
-      }
-    ],
-    "winner": "Bayley",
-    "result": "Bayley def. Banks (won NXT Women's Title)",
-    "rating": 4.5,
-    "meltzer": "★★★★ (4.0)",
-    "cagematch": "~8.8 / 10",
-    "event": "NXT TakeOver: Brooklyn",
-    "date": "August 22, 2015",
-    "year": 2015,
-    "venue": "Barclays Center, Brooklyn",
-    "stipulation": "Singles — NXT Women's Championship",
-    "promotion": "NXT",
-    "era": "NXT Black-and-Gold Era",
-    "hook": "Bayley won the NXT Women's Championship, dethroning Sasha Banks in the match most credited with proving women's wrestling could steal the show on WWE's grandest stages. It played to a sold-out Barclays Center of more than 15,000 fans — a sc",
-    "video": {
-      "id": "-qA9E1CHe_M",
-      "type": "full",
-      "channel": "WWE Vault"
-    },
-    "tier": "near-miss",
-    "_order": 110,
-    "rank": 21
+  "tier": "near-miss",
+  "_order": 109,
+  "rank": 20
+ },
+ {
+  "slug": "bayley-vs-sasha-banks-takeover-brooklyn-2015",
+  "title": "Bayley vs Sasha Banks",
+  "participants": [
+   {
+    "name": "Bayley",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Sasha Banks",
+    "href": "/wrestlers/mercedes-mone/",
+    "winner": false
+   }
+  ],
+  "winner": "Bayley",
+  "result": "Bayley def. Banks (won NXT Women's Title)",
+  "rating": 4.5,
+  "meltzer": "★★★★ (4.0)",
+  "cagematch": "~8.8 / 10",
+  "event": "NXT TakeOver: Brooklyn",
+  "date": "August 22, 2015",
+  "year": 2015,
+  "venue": "Barclays Center, Brooklyn",
+  "stipulation": "Singles — NXT Women's Championship",
+  "promotion": "NXT",
+  "era": "NXT Black-and-Gold Era",
+  "hook": "Bayley won the NXT Women's Championship, dethroning Sasha Banks in the match most credited with proving women's wrestling could steal the show on WWE's grandest stages. It played to a sold-out Barclays Center of more than 15,000 fans — a sc",
+  "video": {
+   "id": "-qA9E1CHe_M",
+   "type": "full",
+   "channel": "WWE Vault"
   },
-  {
-    "slug": "terry-funk-vs-sabu-born-to-be-wired-1997",
-    "title": "Terry Funk vs Sabu",
-    "participants": [
-      {
-        "name": "Terry Funk",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Sabu",
-        "href": null,
-        "winner": false
-      }
-    ],
-    "winner": "Terry Funk",
-    "result": "Funk def. Sabu (won ECW Title)",
-    "rating": 4.0,
-    "meltzer": "★★★★ (~3.75–4)",
-    "cagematch": "—",
-    "event": "ECW Born to Be Wired",
-    "date": "August 9, 1997",
-    "year": 1997,
-    "venue": "Hammonton, NJ",
-    "stipulation": "Barbed Wire ropes — ECW World Title",
-    "promotion": "ECW",
-    "era": "ECW Extreme Era",
-    "hook": "Terry Funk won the ECW World Heavyweight Championship in a match with no ropes — only strands of barbed wire ringing the ring. It is not a wrestling clinic and was never meant to be; it is the single most complete statement of what made ECW",
-    "video": {
-      "id": null,
-      "type": "none",
-      "channel": null
-    },
-    "tier": "classic",
-    "_order": 160,
-    "rank": 22
+  "tier": "near-miss",
+  "_order": 110,
+  "rank": 21
+ },
+ {
+  "slug": "terry-funk-vs-sabu-born-to-be-wired-1997",
+  "title": "Terry Funk vs Sabu",
+  "participants": [
+   {
+    "name": "Terry Funk",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Sabu",
+    "href": null,
+    "winner": false
+   }
+  ],
+  "winner": "Terry Funk",
+  "result": "Funk def. Sabu (won ECW Title)",
+  "rating": 4.0,
+  "meltzer": "★★★★ (~3.75–4)",
+  "cagematch": "—",
+  "event": "ECW Born to Be Wired",
+  "date": "August 9, 1997",
+  "year": 1997,
+  "venue": "Hammonton, NJ",
+  "stipulation": "Barbed Wire ropes — ECW World Title",
+  "promotion": "ECW",
+  "era": "ECW Extreme Era",
+  "hook": "Terry Funk won the ECW World Heavyweight Championship in a match with no ropes — only strands of barbed wire ringing the ring. It is not a wrestling clinic and was never meant to be; it is the single most complete statement of what made ECW",
+  "video": {
+   "id": null,
+   "type": "none",
+   "channel": null
   },
-  {
-    "slug": "goldberg-vs-hogan-nitro-1998",
-    "title": "Goldberg vs Hollywood Hulk Hogan",
-    "participants": [
-      {
-        "name": "Bill Goldberg",
-        "href": "/wrestlers/goldberg/",
-        "winner": true
-      },
-      {
-        "name": "Hollywood Hulk Hogan",
-        "href": "/wrestlers/hulk-hogan/",
-        "winner": false
-      }
-    ],
-    "winner": "Bill Goldberg",
-    "result": "Goldberg def. Hogan (won title, streak intact)",
-    "rating": 4.0,
-    "meltzer": "★★★ (3)",
-    "cagematch": "—",
-    "event": "WCW Monday Nitro",
-    "date": "July 6, 1998",
-    "year": 1998,
-    "venue": "Georgia Dome, Atlanta",
-    "stipulation": "Singles — WCW World Title (free on Nitro)",
-    "promotion": "WCW",
-    "era": "Monday Night War",
-    "hook": "Goldberg won the WCW World Heavyweight Championship, spearing and Jackhammering Hollywood Hulk Hogan to keep his undefeated streak alive. It was the apex of the Goldberg phenomenon — and the textbook example of \"hot-shotting\" a marquee matc",
-    "video": {
-      "id": "hT05KuubRoU",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "classic",
-    "_order": 160,
-    "rank": 23
+  "tier": "classic",
+  "_order": 160,
+  "rank": 22
+ },
+ {
+  "slug": "goldberg-vs-hogan-nitro-1998",
+  "title": "Goldberg vs Hollywood Hulk Hogan",
+  "participants": [
+   {
+    "name": "Bill Goldberg",
+    "href": "/wrestlers/goldberg/",
+    "winner": true
+   },
+   {
+    "name": "Hollywood Hulk Hogan",
+    "href": "/wrestlers/hulk-hogan/",
+    "winner": false
+   }
+  ],
+  "winner": "Bill Goldberg",
+  "result": "Goldberg def. Hogan (won title, streak intact)",
+  "rating": 4.0,
+  "meltzer": "★★★ (3)",
+  "cagematch": "—",
+  "event": "WCW Monday Nitro",
+  "date": "July 6, 1998",
+  "year": 1998,
+  "venue": "Georgia Dome, Atlanta",
+  "stipulation": "Singles — WCW World Title (free on Nitro)",
+  "promotion": "WCW",
+  "era": "Monday Night War",
+  "hook": "Goldberg won the WCW World Heavyweight Championship, spearing and Jackhammering Hollywood Hulk Hogan to keep his undefeated streak alive. It was the apex of the Goldberg phenomenon — and the textbook example of \"hot-shotting\" a marquee matc",
+  "video": {
+   "id": "hT05KuubRoU",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "lesnar-vs-angle-wm19-2003",
-    "title": "Brock Lesnar vs Kurt Angle",
-    "participants": [
-      {
-        "name": "Brock Lesnar",
-        "href": "/wrestlers/brock-lesnar/",
-        "winner": true
-      },
-      {
-        "name": "Kurt Angle",
-        "href": "/wrestlers/kurt-angle/",
-        "winner": false
-      }
-    ],
-    "winner": "Brock Lesnar",
-    "result": "Lesnar won the WWE Title",
-    "rating": 4.0,
-    "meltzer": "★★★★¼ (~4.25)",
-    "cagematch": "~8.5 / 10",
-    "event": "WrestleMania XIX",
-    "date": "March 30, 2003",
-    "year": 2003,
-    "venue": "Safeco Field, Seattle",
-    "stipulation": "Singles — WWE Championship",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression Era",
-    "hook": "Brock Lesnar won the WWE Championship in a superb amateur-based main event that is remembered as much for its near-tragedy as its quality. It matters because it capped Lesnar's astonishing first-year rise and pitted two genuine NCAA and Oly",
-    "video": {
-      "id": "f0qpWB2MD8I",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "classic",
-    "_order": 160,
-    "rank": 24
+  "tier": "classic",
+  "_order": 160,
+  "rank": 23
+ },
+ {
+  "slug": "lesnar-vs-angle-wm19-2003",
+  "title": "Brock Lesnar vs Kurt Angle",
+  "participants": [
+   {
+    "name": "Brock Lesnar",
+    "href": "/wrestlers/brock-lesnar/",
+    "winner": true
+   },
+   {
+    "name": "Kurt Angle",
+    "href": "/wrestlers/kurt-angle/",
+    "winner": false
+   }
+  ],
+  "winner": "Brock Lesnar",
+  "result": "Lesnar won the WWE Title",
+  "rating": 4.0,
+  "meltzer": "★★★★¼ (~4.25)",
+  "cagematch": "~8.5 / 10",
+  "event": "WrestleMania XIX",
+  "date": "March 30, 2003",
+  "year": 2003,
+  "venue": "Safeco Field, Seattle",
+  "stipulation": "Singles — WWE Championship",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression Era",
+  "hook": "Brock Lesnar won the WWE Championship in a superb amateur-based main event that is remembered as much for its near-tragedy as its quality. It matters because it capped Lesnar's astonishing first-year rise and pitted two genuine NCAA and Oly",
+  "video": {
+   "id": "f0qpWB2MD8I",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "rollins-cash-in-wm31-2015",
-    "title": "Seth Rollins' Money in the Bank Cash-In",
-    "participants": [
-      {
-        "name": "Seth Rollins",
-        "href": "/wrestlers/seth-rollins/",
-        "winner": true
-      },
-      {
-        "name": "Brock Lesnar · Roman Reigns",
-        "href": "/wrestlers/brock-lesnar/",
-        "winner": false
-      }
-    ],
-    "winner": "Seth Rollins",
-    "result": "Rollins won the title (pinned Reigns)",
-    "rating": 4.0,
-    "meltzer": "★★★★¼ (~4.25, Lesnar/Reigns portion)",
-    "cagematch": "~8.7 / 10",
-    "event": "WWE WrestleMania 31",
-    "date": "March 29, 2015",
-    "year": 2015,
-    "venue": "Levi's Stadium, Santa Clara",
-    "stipulation": "Singles for the WWE World Heavyweight Championship Triple Threat via MITB cash-in",
-    "promotion": "WWE",
-    "era": "Reality Era",
-    "hook": "Seth Rollins won the WWE World Heavyweight Championship by cashing in Money in the Bank mid-main-event, converting Brock Lesnar vs Roman Reigns into a Triple Threat and pinning Reigns — the first MITB cash-in ever during a WrestleMania main",
-    "video": {
-      "id": "vON3XVcGOW8",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "classic",
-    "_order": 160,
-    "rank": 25
+  "tier": "classic",
+  "_order": 160,
+  "rank": 24
+ },
+ {
+  "slug": "rollins-cash-in-wm31-2015",
+  "title": "Seth Rollins' Money in the Bank Cash-In",
+  "participants": [
+   {
+    "name": "Seth Rollins",
+    "href": "/wrestlers/seth-rollins/",
+    "winner": true
+   },
+   {
+    "name": "Brock Lesnar · Roman Reigns",
+    "href": "/wrestlers/brock-lesnar/",
+    "winner": false
+   }
+  ],
+  "winner": "Seth Rollins",
+  "result": "Rollins won the title (pinned Reigns)",
+  "rating": 4.0,
+  "meltzer": "★★★★¼ (~4.25, Lesnar/Reigns portion)",
+  "cagematch": "~8.7 / 10",
+  "event": "WWE WrestleMania 31",
+  "date": "March 29, 2015",
+  "year": 2015,
+  "venue": "Levi's Stadium, Santa Clara",
+  "stipulation": "Singles for the WWE World Heavyweight Championship Triple Threat via MITB cash-in",
+  "promotion": "WWE",
+  "era": "Reality Era",
+  "hook": "Seth Rollins won the WWE World Heavyweight Championship by cashing in Money in the Bank mid-main-event, converting Brock Lesnar vs Roman Reigns into a Triple Threat and pinning Reigns — the first MITB cash-in ever during a WrestleMania main",
+  "video": {
+   "id": "vON3XVcGOW8",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "rousey-charlotte-becky-wm35-2019",
-    "title": "Ronda Rousey vs Charlotte Flair vs Becky Lynch",
-    "participants": [
-      {
-        "name": "Becky Lynch",
-        "href": "/wrestlers/becky-lynch/",
-        "winner": true
-      },
-      {
-        "name": "Charlotte Flair · Ronda Rousey",
-        "href": "/wrestlers/charlotte-flair/",
-        "winner": false
-      }
-    ],
-    "winner": "Becky Lynch",
-    "result": "Becky Lynch won both titles (pinned Rousey)",
-    "rating": 4.0,
-    "meltzer": "★★★★ (~3.75–4)",
-    "cagematch": "~7.5 / 10",
-    "event": "WWE WrestleMania 35",
-    "date": "April 7, 2019",
-    "year": 2019,
-    "venue": "MetLife Stadium, East Rutherford",
-    "stipulation": "Winner Take All Triple Threat — Raw & SmackDown Women's Championships",
-    "promotion": "WWE",
-    "era": "New Era",
-    "hook": "Becky Lynch won both the Raw and SmackDown Women's Championships, pinning Ronda Rousey in a Winner Take All Triple Threat that became the first women's match ever to main-event WrestleMania — the symbolic summit of the women's revolution th",
-    "video": {
-      "id": "B828y_pJIWk",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "classic",
-    "_order": 160,
-    "rank": 26
+  "tier": "classic",
+  "_order": 160,
+  "rank": 25
+ },
+ {
+  "slug": "rousey-charlotte-becky-wm35-2019",
+  "title": "Ronda Rousey vs Charlotte Flair vs Becky Lynch",
+  "participants": [
+   {
+    "name": "Becky Lynch",
+    "href": "/wrestlers/becky-lynch/",
+    "winner": true
+   },
+   {
+    "name": "Charlotte Flair · Ronda Rousey",
+    "href": "/wrestlers/charlotte-flair/",
+    "winner": false
+   }
+  ],
+  "winner": "Becky Lynch",
+  "result": "Becky Lynch won both titles (pinned Rousey)",
+  "rating": 4.0,
+  "meltzer": "★★★★ (~3.75–4)",
+  "cagematch": "~7.5 / 10",
+  "event": "WWE WrestleMania 35",
+  "date": "April 7, 2019",
+  "year": 2019,
+  "venue": "MetLife Stadium, East Rutherford",
+  "stipulation": "Winner Take All Triple Threat — Raw & SmackDown Women's Championships",
+  "promotion": "WWE",
+  "era": "New Era",
+  "hook": "Becky Lynch won both the Raw and SmackDown Women's Championships, pinning Ronda Rousey in a Winner Take All Triple Threat that became the first women's match ever to main-event WrestleMania — the symbolic summit of the women's revolution th",
+  "video": {
+   "id": "B828y_pJIWk",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "sasha-banks-vs-bianca-belair-wm37-2021",
-    "title": "Sasha Banks vs Bianca Belair",
-    "participants": [
-      {
-        "name": "Bianca Belair",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Sasha Banks",
-        "href": "/wrestlers/mercedes-mone/",
-        "winner": false
-      }
-    ],
-    "winner": "Bianca Belair",
-    "result": "Bianca Belair won the SmackDown Women's Championship",
-    "rating": 4.0,
-    "meltzer": "★★★★ (~4.0)",
-    "cagematch": "~8.3 / 10",
-    "event": "WWE WrestleMania 37, Night 1",
-    "date": "April 10, 2021",
-    "year": 2021,
-    "venue": "Raymond James Stadium, Tampa",
-    "stipulation": "Singles — SmackDown Women's Championship",
-    "promotion": "WWE",
-    "era": "New Era",
-    "hook": "Bianca Belair won the SmackDown Women's Championship — her first world title — pinning Sasha Banks in a match that main-evented Night 1 of WrestleMania 37: the first WrestleMania ever headlined by two Black women.",
-    "video": {
-      "id": "jIqkxwNjXnU",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "classic",
-    "_order": 160,
-    "rank": 27
+  "tier": "classic",
+  "_order": 160,
+  "rank": 26
+ },
+ {
+  "slug": "sasha-banks-vs-bianca-belair-wm37-2021",
+  "title": "Sasha Banks vs Bianca Belair",
+  "participants": [
+   {
+    "name": "Bianca Belair",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Sasha Banks",
+    "href": "/wrestlers/mercedes-mone/",
+    "winner": false
+   }
+  ],
+  "winner": "Bianca Belair",
+  "result": "Bianca Belair won the SmackDown Women's Championship",
+  "rating": 4.0,
+  "meltzer": "★★★★ (~4.0)",
+  "cagematch": "~8.3 / 10",
+  "event": "WWE WrestleMania 37, Night 1",
+  "date": "April 10, 2021",
+  "year": 2021,
+  "venue": "Raymond James Stadium, Tampa",
+  "stipulation": "Singles — SmackDown Women's Championship",
+  "promotion": "WWE",
+  "era": "New Era",
+  "hook": "Bianca Belair won the SmackDown Women's Championship — her first world title — pinning Sasha Banks in a match that main-evented Night 1 of WrestleMania 37: the first WrestleMania ever headlined by two Black women.",
+  "video": {
+   "id": "jIqkxwNjXnU",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "sting-vs-hogan-starrcade-1997",
-    "title": "Sting vs Hollywood Hulk Hogan",
-    "participants": [
-      {
-        "name": "Sting",
-        "href": "/wrestlers/sting/",
-        "winner": true
-      },
-      {
-        "name": "Hollywood Hulk Hogan",
-        "href": "/wrestlers/hulk-hogan/",
-        "winner": false
-      }
-    ],
-    "winner": "Sting",
-    "result": "Sting def. Hogan (won title, disputed finish)",
-    "rating": 3.5,
-    "meltzer": "★★–★★½ (2–2.5)",
-    "cagematch": "—",
-    "event": "WCW Starrcade",
-    "date": "December 28, 1997",
-    "year": 1997,
-    "venue": "MCI Center, Washington, D.C.",
-    "stipulation": "Singles — WCW World Heavyweight Title",
-    "promotion": "WCW",
-    "era": "Monday Night War",
-    "hook": "Sting won the WCW World Heavyweight Championship — but only after a controversial referee count and a Bret Hart-ordered restart turned the payoff into a mess. Starrcade 1997 was the most anticipated match in company history, the climax of W",
-    "video": {
-      "id": null,
-      "type": "none",
-      "channel": null
-    },
-    "tier": "classic",
-    "_order": 165,
-    "rank": 28
+  "tier": "classic",
+  "_order": 160,
+  "rank": 27
+ },
+ {
+  "slug": "sting-vs-hogan-starrcade-1997",
+  "title": "Sting vs Hollywood Hulk Hogan",
+  "participants": [
+   {
+    "name": "Sting",
+    "href": "/wrestlers/sting/",
+    "winner": true
+   },
+   {
+    "name": "Hollywood Hulk Hogan",
+    "href": "/wrestlers/hulk-hogan/",
+    "winner": false
+   }
+  ],
+  "winner": "Sting",
+  "result": "Sting def. Hogan (won title, disputed finish)",
+  "rating": 3.5,
+  "meltzer": "★★–★★½ (2–2.5)",
+  "cagematch": "—",
+  "event": "WCW Starrcade",
+  "date": "December 28, 1997",
+  "year": 1997,
+  "venue": "MCI Center, Washington, D.C.",
+  "stipulation": "Singles — WCW World Heavyweight Title",
+  "promotion": "WCW",
+  "era": "Monday Night War",
+  "hook": "Sting won the WCW World Heavyweight Championship — but only after a controversial referee count and a Bret Hart-ordered restart turned the payoff into a mess. Starrcade 1997 was the most anticipated match in company history, the climax of W",
+  "video": {
+   "id": null,
+   "type": "none",
+   "channel": null
   },
-  {
-    "slug": "triple-h-vs-cactus-jack-royal-rumble-2000",
-    "title": "Triple H vs Cactus Jack",
-    "participants": [
-      {
-        "name": "Triple H",
-        "href": "/wrestlers/triple-h/",
-        "winner": true
-      },
-      {
-        "name": "Cactus Jack",
-        "href": "/wrestlers/mick-foley/",
-        "winner": false
-      }
-    ],
-    "winner": "Triple H",
-    "result": "Triple H def. Cactus Jack (retained WWF Title)",
-    "rating": 4.5,
-    "meltzer": "★★★★½ (4.5)",
-    "cagematch": null,
-    "event": "Royal Rumble 2000",
-    "date": null,
-    "year": 2000,
-    "venue": "Madison Square Garden, New York",
-    "stipulation": "Street Fight — WWF Championship",
-    "promotion": "WWF",
-    "era": "Attitude Era",
-    "hook": "Mick Foley dragged the corporate Triple H into a war of thumbtacks, a barbed-wire board, and a fall off the entrance stage. The night Triple H proved he would give his body for a main event.",
-    "video": {
-      "id": "2uUGE_VGUAA",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "rank": 29
+  "tier": "classic",
+  "_order": 165,
+  "rank": 28
+ },
+ {
+  "slug": "triple-h-vs-cactus-jack-royal-rumble-2000",
+  "title": "Triple H vs Cactus Jack",
+  "participants": [
+   {
+    "name": "Triple H",
+    "href": "/wrestlers/triple-h/",
+    "winner": true
+   },
+   {
+    "name": "Cactus Jack",
+    "href": "/wrestlers/mick-foley/",
+    "winner": false
+   }
+  ],
+  "winner": "Triple H",
+  "result": "Triple H def. Cactus Jack (retained WWF Title)",
+  "rating": 4.5,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": null,
+  "event": "Royal Rumble 2000",
+  "date": null,
+  "year": 2000,
+  "venue": "Madison Square Garden, New York",
+  "stipulation": "Street Fight — WWF Championship",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "Mick Foley dragged the corporate Triple H into a war of thumbtacks, a barbed-wire board, and a fall off the entrance stage. The night Triple H proved he would give his body for a main event.",
+  "video": {
+   "id": "2uUGE_VGUAA",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "triple-h-vs-austin-no-way-out-2001",
-    "title": "Triple H vs Stone Cold Steve Austin",
-    "participants": [
-      {
-        "name": "Triple H",
-        "href": "/wrestlers/triple-h/",
-        "winner": true
-      },
-      {
-        "name": "Stone Cold Steve Austin",
-        "href": "/wrestlers/stone-cold-steve-austin/",
-        "winner": false
-      }
-    ],
-    "winner": "Triple H",
-    "result": "Triple H def. Austin, 2 falls to 1",
-    "rating": 4.5,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": null,
-    "event": "No Way Out 2001",
-    "date": null,
-    "year": 2001,
-    "venue": "Thomas & Mack Center, Las Vegas",
-    "stipulation": "Three Stages of Hell (2-out-of-3 falls)",
-    "promotion": "WWF",
-    "era": "Attitude Era",
-    "hook": "Two of the toughest of their generation across three falls: a straight match, a street fight, and a steel cage. Nearly forty minutes of two men beating each other into the canvas with everything the rules allowed.",
-    "video": {
-      "id": "EP5P-w5dgq8",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "rank": 30
+  "tier": "near-miss",
+  "rank": 29
+ },
+ {
+  "slug": "triple-h-vs-austin-no-way-out-2001",
+  "title": "Triple H vs Stone Cold Steve Austin",
+  "participants": [
+   {
+    "name": "Triple H",
+    "href": "/wrestlers/triple-h/",
+    "winner": true
+   },
+   {
+    "name": "Stone Cold Steve Austin",
+    "href": "/wrestlers/stone-cold-steve-austin/",
+    "winner": false
+   }
+  ],
+  "winner": "Triple H",
+  "result": "Triple H def. Austin, 2 falls to 1",
+  "rating": 4.5,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": null,
+  "event": "No Way Out 2001",
+  "date": null,
+  "year": 2001,
+  "venue": "Thomas & Mack Center, Las Vegas",
+  "stipulation": "Three Stages of Hell (2-out-of-3 falls)",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "Two of the toughest of their generation across three falls: a straight match, a street fight, and a steel cage. Nearly forty minutes of two men beating each other into the canvas with everything the rules allowed.",
+  "video": {
+   "id": "EP5P-w5dgq8",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "triple-h-vs-hbk-summerslam-2002",
-    "title": "Triple H vs Shawn Michaels",
-    "participants": [
-      {
-        "name": "Triple H",
-        "href": "/wrestlers/triple-h/",
-        "winner": false
-      },
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": true
-      }
-    ],
-    "winner": "Shawn Michaels",
-    "result": "Michaels def. Triple H",
-    "rating": 4.0,
-    "meltzer": "★★★★¼ (4.25)",
-    "cagematch": null,
-    "event": "SummerSlam 2002",
-    "date": null,
-    "year": 2002,
-    "venue": "Nassau Coliseum, Long Island",
-    "stipulation": "Unsanctioned Street Fight",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression",
-    "hook": "Shawn Michaels had not wrestled in over four years and a broken back was supposed to have ended him. His best friend turned on him, and the two settled it in an unsanctioned street fight of ladders, chairs, and history.",
-    "video": {
-      "id": "jphS4xGOBFQ",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "classic",
-    "rank": 31
+  "tier": "near-miss",
+  "rank": 30
+ },
+ {
+  "slug": "triple-h-vs-hbk-summerslam-2002",
+  "title": "Triple H vs Shawn Michaels",
+  "participants": [
+   {
+    "name": "Triple H",
+    "href": "/wrestlers/triple-h/",
+    "winner": false
+   },
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": true
+   }
+  ],
+  "winner": "Shawn Michaels",
+  "result": "Michaels def. Triple H",
+  "rating": 4.0,
+  "meltzer": "★★★★¼ (4.25)",
+  "cagematch": null,
+  "event": "SummerSlam 2002",
+  "date": null,
+  "year": 2002,
+  "venue": "Nassau Coliseum, Long Island",
+  "stipulation": "Unsanctioned Street Fight",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression",
+  "hook": "Shawn Michaels had not wrestled in over four years and a broken back was supposed to have ended him. His best friend turned on him, and the two settled it in an unsanctioned street fight of ladders, chairs, and history.",
+  "video": {
+   "id": "jphS4xGOBFQ",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "hbk-vs-razor-ramon-wrestlemania-x",
-    "title": "Shawn Michaels vs Razor Ramon",
-    "participants": [
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": false
-      },
-      {
-        "name": "Razor Ramon",
-        "href": "/wrestlers/razor-ramon/",
-        "winner": true
-      }
-    ],
-    "winner": "Razor Ramon",
-    "result": "Razor Ramon def. Michaels (unified the Intercontinental Title)",
-    "rating": 5.0,
-    "meltzer": "★★★★★ (5.0)",
-    "cagematch": null,
-    "event": "WrestleMania X",
-    "date": null,
-    "year": 1994,
-    "venue": "Madison Square Garden, New York",
-    "stipulation": "Ladder Match — Intercontinental Title",
-    "promotion": "WWF",
-    "era": "New Generation",
-    "hook": "The ladder match that invented the genre. Two Intercontinental Titles hung above the ring and two men threw themselves off the top rung to reach them. Every ladder spot for the next thirty years traces back to this night.",
-    "video": {
-      "id": "0MS9CY_Gn7E",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "five-star",
-    "rank": 32
+  "tier": "classic",
+  "rank": 31
+ },
+ {
+  "slug": "hbk-vs-razor-ramon-wrestlemania-x",
+  "title": "Shawn Michaels vs Razor Ramon",
+  "participants": [
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": false
+   },
+   {
+    "name": "Razor Ramon",
+    "href": "/wrestlers/razor-ramon/",
+    "winner": true
+   }
+  ],
+  "winner": "Razor Ramon",
+  "result": "Razor Ramon def. Michaels (unified the Intercontinental Title)",
+  "rating": 5.0,
+  "meltzer": "★★★★★ (5.0)",
+  "cagematch": null,
+  "event": "WrestleMania X",
+  "date": null,
+  "year": 1994,
+  "venue": "Madison Square Garden, New York",
+  "stipulation": "Ladder Match — Intercontinental Title",
+  "promotion": "WWF",
+  "era": "New Generation",
+  "hook": "The ladder match that invented the genre. Two Intercontinental Titles hung above the ring and two men threw themselves off the top rung to reach them. Every ladder spot for the next thirty years traces back to this night.",
+  "video": {
+   "id": "0MS9CY_Gn7E",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "hbk-vs-mankind-mind-games-1996",
-    "title": "Shawn Michaels vs Mankind",
-    "participants": [
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": true
-      },
-      {
-        "name": "Mankind",
-        "href": "/wrestlers/mick-foley/",
-        "winner": false
-      }
-    ],
-    "winner": "Shawn Michaels",
-    "result": "Michaels retained the WWF Championship",
-    "rating": 4.5,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": null,
-    "event": "In Your House: Mind Games",
-    "date": null,
-    "year": 1996,
-    "venue": "CoreStates Center, Philadelphia",
-    "stipulation": "Singles — WWF Championship",
-    "promotion": "WWF",
-    "era": "New Generation",
-    "hook": "A boyhood-dream champion against a deranged newcomer who felt no pain. Michaels and Mankind turned a title defense into a psychological horror match critics still cite as one of the most influential of the decade.",
-    "video": {
-      "id": "QUKhSNr7_tM",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "rank": 33
+  "tier": "five-star",
+  "rank": 32
+ },
+ {
+  "slug": "hbk-vs-mankind-mind-games-1996",
+  "title": "Shawn Michaels vs Mankind",
+  "participants": [
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": true
+   },
+   {
+    "name": "Mankind",
+    "href": "/wrestlers/mick-foley/",
+    "winner": false
+   }
+  ],
+  "winner": "Shawn Michaels",
+  "result": "Michaels retained the WWF Championship",
+  "rating": 4.5,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": null,
+  "event": "In Your House: Mind Games",
+  "date": null,
+  "year": 1996,
+  "venue": "CoreStates Center, Philadelphia",
+  "stipulation": "Singles — WWF Championship",
+  "promotion": "WWF",
+  "era": "New Generation",
+  "hook": "A boyhood-dream champion against a deranged newcomer who felt no pain. Michaels and Mankind turned a title defense into a psychological horror match critics still cite as one of the most influential of the decade.",
+  "video": {
+   "id": "QUKhSNr7_tM",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "hbk-vs-razor-ramon-summerslam-1995",
-    "title": "Shawn Michaels vs Razor Ramon",
-    "participants": [
-      {
-        "name": "Shawn Michaels",
-        "href": "/wrestlers/shawn-michaels/",
-        "winner": true
-      },
-      {
-        "name": "Razor Ramon",
-        "href": "/wrestlers/razor-ramon/",
-        "winner": false
-      }
-    ],
-    "winner": "Shawn Michaels",
-    "result": "Michaels def. Razor Ramon (retained Intercontinental Title)",
-    "rating": 4.5,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": null,
-    "event": "SummerSlam 1995",
-    "date": null,
-    "year": 1995,
-    "venue": "Pittsburgh Civic Arena",
-    "stipulation": "Ladder Match — Intercontinental Title",
-    "promotion": "WWF",
-    "era": "New Generation",
-    "hook": "The rematch that had no business being as good as the original, and somehow was. Michaels and Ramon climbed the ladder again a year later and topped their WrestleMania classic with bigger, more dangerous bumps.",
-    "video": {
-      "id": "FjVqTVh6V1I",
-      "type": "full",
-      "channel": "WWE"
-    },
-    "tier": "near-miss",
-    "rank": 34
+  "tier": "near-miss",
+  "rank": 33
+ },
+ {
+  "slug": "hbk-vs-razor-ramon-summerslam-1995",
+  "title": "Shawn Michaels vs Razor Ramon",
+  "participants": [
+   {
+    "name": "Shawn Michaels",
+    "href": "/wrestlers/shawn-michaels/",
+    "winner": true
+   },
+   {
+    "name": "Razor Ramon",
+    "href": "/wrestlers/razor-ramon/",
+    "winner": false
+   }
+  ],
+  "winner": "Shawn Michaels",
+  "result": "Michaels def. Razor Ramon (retained Intercontinental Title)",
+  "rating": 4.5,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": null,
+  "event": "SummerSlam 1995",
+  "date": null,
+  "year": 1995,
+  "venue": "Pittsburgh Civic Arena",
+  "stipulation": "Ladder Match — Intercontinental Title",
+  "promotion": "WWF",
+  "era": "New Generation",
+  "hook": "The rematch that had no business being as good as the original, and somehow was. Michaels and Ramon climbed the ladder again a year later and topped their WrestleMania classic with bigger, more dangerous bumps.",
+  "video": {
+   "id": "FjVqTVh6V1I",
+   "type": "full",
+   "channel": "WWE"
   },
-  {
-    "slug": "angle-vs-benoit-royal-rumble-2003",
-    "title": "Kurt Angle vs Chris Benoit",
-    "participants": [
-      {
-        "name": "Kurt Angle",
-        "href": "/wrestlers/kurt-angle/",
-        "winner": true
-      },
-      {
-        "name": "Chris Benoit",
-        "href": null,
-        "winner": false
-      }
-    ],
-    "winner": "Kurt Angle",
-    "result": "Angle retained the WWE Title",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.0 / 10",
-    "event": "WWE Royal Rumble",
-    "date": "January 19, 2003",
-    "year": 2003,
-    "venue": "FleetCenter, Boston",
-    "stipulation": "Singles — WWE Championship",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression Era",
-    "hook": "Kurt Angle retained the WWE Championship in what is widely held up as one of the finest technical matches WWE has ever produced. It matters because it demonstrated that, deep in the sports-entertainment era, a world title match could still ",
-    "video": {
-      "id": null,
-      "type": "none",
-      "channel": null
-    },
-    "tier": "five-star",
-    "no_hero": true,
-    "rank": 35
+  "tier": "near-miss",
+  "rank": 34
+ },
+ {
+  "slug": "angle-vs-benoit-royal-rumble-2003",
+  "title": "Kurt Angle vs Chris Benoit",
+  "participants": [
+   {
+    "name": "Kurt Angle",
+    "href": "/wrestlers/kurt-angle/",
+    "winner": true
+   },
+   {
+    "name": "Chris Benoit",
+    "href": null,
+    "winner": false
+   }
+  ],
+  "winner": "Kurt Angle",
+  "result": "Angle retained the WWE Title",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.0 / 10",
+  "event": "WWE Royal Rumble",
+  "date": "January 19, 2003",
+  "year": 2003,
+  "venue": "FleetCenter, Boston",
+  "stipulation": "Singles — WWE Championship",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression Era",
+  "hook": "Kurt Angle retained the WWE Championship in what is widely held up as one of the finest technical matches WWE has ever produced. It matters because it demonstrated that, deep in the sports-entertainment era, a world title match could still ",
+  "video": {
+   "id": null,
+   "type": "none",
+   "channel": null
   },
-  {
-    "slug": "benoit-vs-triple-h-vs-hbk-wm20-2004",
-    "title": "Chris Benoit vs Triple H vs Shawn Michaels",
-    "participants": [
-      {
-        "name": "Chris Benoit",
-        "href": null,
-        "winner": true
-      },
-      {
-        "name": "Triple H & Shawn Michaels",
-        "href": "/wrestlers/triple-h/",
-        "winner": false
-      }
-    ],
-    "winner": "Chris Benoit",
-    "result": "Benoit won (submitted Triple H)",
-    "rating": 5.0,
-    "meltzer": "★★★★¾ (4.75)",
-    "cagematch": "~9.0 / 10",
-    "event": "WrestleMania XX",
-    "date": "March 14, 2004",
-    "year": 2004,
-    "venue": "Madison Square Garden, New York",
-    "stipulation": "Triple Threat — World Heavyweight Title",
-    "promotion": "WWE",
-    "era": "Ruthless Aggression Era",
-    "hook": "Chris Benoit won the World Heavyweight Championship, submitting Triple H with the Crippler Crossface in the main event of WrestleMania XX at Madison Square Garden. It matters as the ultimate underdog-makes-good story of the era: a career mi",
-    "video": {
-      "id": null,
-      "type": "none",
-      "channel": null
-    },
-    "tier": "five-star",
-    "no_hero": true,
-    "rank": 36
-  }
+  "tier": "five-star",
+  "no_hero": true,
+  "rank": 35
+ },
+ {
+  "slug": "benoit-vs-triple-h-vs-hbk-wm20-2004",
+  "title": "Chris Benoit vs Triple H vs Shawn Michaels",
+  "participants": [
+   {
+    "name": "Chris Benoit",
+    "href": null,
+    "winner": true
+   },
+   {
+    "name": "Triple H & Shawn Michaels",
+    "href": "/wrestlers/triple-h/",
+    "winner": false
+   }
+  ],
+  "winner": "Chris Benoit",
+  "result": "Benoit won (submitted Triple H)",
+  "rating": 5.0,
+  "meltzer": "★★★★¾ (4.75)",
+  "cagematch": "~9.0 / 10",
+  "event": "WrestleMania XX",
+  "date": "March 14, 2004",
+  "year": 2004,
+  "venue": "Madison Square Garden, New York",
+  "stipulation": "Triple Threat — World Heavyweight Title",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression Era",
+  "hook": "Chris Benoit won the World Heavyweight Championship, submitting Triple H with the Crippler Crossface in the main event of WrestleMania XX at Madison Square Garden. It matters as the ultimate underdog-makes-good story of the era: a career mi",
+  "video": {
+   "id": null,
+   "type": "none",
+   "channel": null
+  },
+  "tier": "five-star",
+  "no_hero": true,
+  "rank": 36
+ },
+ {
+  "slug": "rock-vs-triple-h-judgment-day-2000",
+  "title": "The Rock vs Triple H",
+  "participants": [
+   {
+    "name": "Triple H",
+    "href": "/wrestlers/triple-h/",
+    "winner": true
+   },
+   {
+    "name": "The Rock",
+    "href": "/wrestlers/the-rock/",
+    "winner": false
+   }
+  ],
+  "winner": "Triple H",
+  "result": "Triple H won the WWF Title 6–5 (Rock DQ’d on the Undertaker’s return)",
+  "rating": 4.5,
+  "meltzer": "★★★★½ (4.5)",
+  "cagematch": "",
+  "event": "Judgment Day 2000",
+  "date": "May 21, 2000",
+  "year": 2000,
+  "venue": "Freedom Hall, Louisville",
+  "stipulation": "60-Minute Iron Man — WWF Title",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "Sixty minutes, twelve falls — Triple H edged The Rock 6–5 to reclaim the WWF Title, sealed when a returning Undertaker stormed the ring and got Rock disqualified for the final fall.",
+  "video": {
+   "id": "_VLhPF1Jx1c",
+   "type": "full",
+   "channel": "WWE"
+  },
+  "tier": "near-miss",
+  "rank": 37
+ },
+ {
+  "slug": "rock-vs-jericho-no-mercy-2001",
+  "title": "The Rock vs Chris Jericho",
+  "participants": [
+   {
+    "name": "Chris Jericho",
+    "href": "/wrestlers/chris-jericho/",
+    "winner": true
+   },
+   {
+    "name": "The Rock",
+    "href": "/wrestlers/the-rock/",
+    "winner": false
+   }
+  ],
+  "winner": "Chris Jericho",
+  "result": "Jericho won the WCW Championship — his first world title",
+  "rating": 4.5,
+  "meltzer": "★★★★¼ (4.25)",
+  "cagematch": "",
+  "event": "No Mercy 2001",
+  "date": "October 21, 2001",
+  "year": 2001,
+  "venue": "Savvis Center, St. Louis",
+  "stipulation": "WCW Championship",
+  "promotion": "WWF",
+  "era": "Attitude Era / Invasion",
+  "hook": "Chris Jericho beat The Rock to win the WCW Championship — the first world title of his career, a milestone on his road to becoming the first Undisputed Champion.",
+  "video": {
+   "id": "",
+   "type": "full",
+   "channel": ""
+  },
+  "tier": "near-miss",
+  "rank": 38
+ },
+ {
+  "slug": "rock-vs-austin-wm19-2003",
+  "title": "The Rock vs Stone Cold Steve Austin",
+  "participants": [
+   {
+    "name": "The Rock",
+    "href": "/wrestlers/the-rock/",
+    "winner": true
+   },
+   {
+    "name": "Stone Cold Steve Austin",
+    "href": "/wrestlers/stone-cold-steve-austin/",
+    "winner": false
+   }
+  ],
+  "winner": "The Rock",
+  "result": "The Rock finally beat Austin at WrestleMania — Austin’s last match",
+  "rating": 4.0,
+  "meltzer": "★★★★ (4.0)",
+  "cagematch": "",
+  "event": "WrestleMania XIX",
+  "date": "March 30, 2003",
+  "year": 2003,
+  "venue": "Safeco Field, Seattle",
+  "stipulation": "Singles — third WrestleMania meeting",
+  "promotion": "WWE",
+  "era": "Ruthless Aggression",
+  "hook": "Their third and final WrestleMania meeting — and the only one The Rock won, hitting three Rock Bottoms to beat Austin in what turned out to be Stone Cold’s last match.",
+  "video": {
+   "id": "yWugBmcUBlo",
+   "type": "full",
+   "channel": "WWE"
+  },
+  "tier": "classic",
+  "rank": 39
+ },
+ {
+  "slug": "rock-vs-hogan-wm-x8-2002",
+  "title": "The Rock vs Hollywood Hulk Hogan",
+  "participants": [
+   {
+    "name": "The Rock",
+    "href": "/wrestlers/the-rock/",
+    "winner": true
+   },
+   {
+    "name": "Hollywood Hulk Hogan",
+    "href": "/wrestlers/hulk-hogan/",
+    "winner": false
+   }
+  ],
+  "winner": "The Rock",
+  "result": "The Rock won Icon vs Icon in a legendary atmosphere",
+  "rating": 4.0,
+  "meltzer": "★★★★¼ (4.25)",
+  "cagematch": "",
+  "event": "WrestleMania X8",
+  "date": "March 17, 2002",
+  "year": 2002,
+  "venue": "SkyDome, Toronto",
+  "stipulation": "Icon vs Icon",
+  "promotion": "WWE",
+  "era": "Attitude Era",
+  "hook": "Icon vs Icon — two generations collide as a red-hot Toronto crowd hijacks the match for Hogan. The Rock won, then the post-match respect turned into an all-time WrestleMania moment.",
+  "video": {
+   "id": "eJ9zibElS5w",
+   "type": "full",
+   "channel": "WWE"
+  },
+  "tier": "classic",
+  "rank": 40
+ },
+ {
+  "slug": "rock-vs-mankind-royal-rumble-1999",
+  "title": "The Rock vs Mankind",
+  "participants": [
+   {
+    "name": "The Rock",
+    "href": "/wrestlers/the-rock/",
+    "winner": true
+   },
+   {
+    "name": "Mankind",
+    "href": "/wrestlers/mick-foley/",
+    "winner": false
+   }
+  ],
+  "winner": "The Rock",
+  "result": "The Rock won the WWF Title via a pre-recorded ‘I Quit’",
+  "rating": 3.75,
+  "meltzer": "★★★¾ (3.75)",
+  "cagematch": "",
+  "event": "Royal Rumble 1999",
+  "date": "January 24, 1999",
+  "year": 1999,
+  "venue": "Arrowhead Pond, Anaheim",
+  "stipulation": "‘I Quit’ — WWF Title",
+  "promotion": "WWF",
+  "era": "Attitude Era",
+  "hook": "The brutal ‘I Quit’ match immortalised in Beyond the Mat — eleven unprotected chair shots, and a Rock win sealed by a pre-recorded tape of Mankind saying ‘I quit.’",
+  "video": {
+   "id": "jBFQ81l7iK0",
+   "type": "full",
+   "channel": "WWE"
+  },
+  "tier": "classic",
+  "rank": 41
+ }
 ]
