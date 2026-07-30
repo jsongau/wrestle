@@ -1,4 +1,9 @@
 ## 2026-07-29 — home: interactive lower half, shorter hero, alias search
+## 2026-07-30 (rivalries + moments hubs — re-stacked on current main)
+- Re-based the rivalries hub redesign and the cinematic moments hub onto the current production main (they had been built on an older tip that diverged after parallel work landed).
+- Rivalries: added the 16th card (Eddie Guerrero vs Brock Lesnar) now that its page is live; updated ItemList schema to 16.
+- No other files touched; shell re-stamped for consistent cache-bust.
+
 
 - Hero slide 1 tightened: one-line lede, GORILLA POSITION banner pill hidden (the bell is the only trigger), featured card starts at the top, viewport and screen heights reduced; Lore Feed folds to match and scrolls internally.
 - New: Wrestler Deck (Block 3 tiles now one auto-dealing row of 6 from a pool of 12 + Shuffle the Deck; "Roster" wording and all 107 counts removed).
