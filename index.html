@@ -1424,8 +1424,75 @@
 
 <main id="main" class="hv3">
 
+  <!-- ============ HOMEPAGE TELEMETRY BAR (page-local scroll-progress sub-nav) ============ -->
+  <style id="hp-tbar-css">
+  #hpTBar{position:sticky;top:calc(var(--wl-shell-h) - 1px);z-index:90;display:flex;align-items:center;gap:16px;
+    height:48px;padding:0 clamp(.8rem,3vw,1.4rem);background:linear-gradient(180deg,#000,#0a0b0d);
+    border-bottom:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.45);}
+  #hpTBar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--golddim),transparent);opacity:.6;}
+  #hpTBar .now{flex:0 0 250px;width:250px;display:flex;align-items:center;gap:11px;height:34px;
+    padding:0 16px 0 12px;position:relative;background:linear-gradient(180deg,rgba(26,29,35,.7),rgba(18,20,24,.5));
+    border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  #hpTBar .now::before{content:"";position:absolute;top:3px;left:3px;width:7px;height:7px;
+    border-top:1px solid var(--gold);border-left:1px solid var(--gold);opacity:.9;}
+  #hpTBar .now::after{content:"";position:absolute;bottom:3px;right:3px;width:7px;height:7px;
+    border-bottom:1px solid var(--golddim);border-right:1px solid var(--golddim);}
+  #hpTBar .tb-mk{flex:0 0 26px;width:26px;height:26px;overflow:visible;}
+  #hpTBar .rd{display:flex;flex-direction:column;justify-content:center;min-width:0;line-height:1;flex:1;}
+  #hpTBar .rd .idx{font-family:var(--mono7);font-size:9px;letter-spacing:.15em;color:var(--gold);white-space:nowrap;}
+  #hpTBar .rd .idx b{color:var(--goldb);}
+  #hpTBar .rd .ttl{font-family:var(--osw);text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:.02em;
+    color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px;}
+  #hpTBar .track{flex:1;position:relative;display:flex;gap:4px;align-items:center;height:100%;min-width:0;}
+  #hpTBar .seg{flex:1;position:relative;height:10px;cursor:pointer;display:flex;align-items:center;background:none;border:0;padding:0;}
+  #hpTBar .seg .bar{width:100%;height:3px;background:var(--line2);border-radius:2px;overflow:hidden;transition:height .15s;}
+  #hpTBar .seg .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .12s linear;}
+  #hpTBar .seg.active .bar{height:6px;box-shadow:0 0 10px rgba(212,175,55,.5);}
+  #hpTBar .seg.active .bar i{background:linear-gradient(90deg,var(--goldb),var(--gold));}
+  #hpTBar .seg.done .bar i{background:var(--golddim);width:100%;}
+  #hpTBar .seg .tag{position:absolute;bottom:18px;left:50%;transform:translateX(-50%) translateY(4px);
+    font-family:var(--mono7);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--goldb);
+    background:rgba(10,11,13,.96);border:1px solid var(--line);padding:3px 7px;border-radius:4px;white-space:nowrap;
+    opacity:0;pointer-events:none;transition:.14s;z-index:4;}
+  #hpTBar .seg:hover .tag,#hpTBar .seg:focus-visible .tag{opacity:1;transform:translateX(-50%) translateY(0);}
+  #hpTBar .head{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);z-index:3;pointer-events:none;transition:left .12s linear;}
+  #hpTBar .head .stem{width:2px;height:16px;background:var(--goldb);box-shadow:0 0 8px var(--goldb);margin:0 auto;}
+  #hpTBar .head .dia{width:7px;height:7px;background:var(--goldb);transform:rotate(45deg);margin:-2px auto 0;box-shadow:0 0 8px var(--goldb);}
+  #hpTBar .pct{flex:0 0 auto;font-family:var(--mono7);font-size:11px;letter-spacing:.08em;color:var(--mut);white-space:nowrap;}
+  #hpTBar .pct b{color:var(--goldb);}
+  #hpTBar .tb-mk [data-a]{transform-box:view-box;transform-origin:16px 16px;}
+  #hpTBar .tb-mk .r1{animation:hpSpin 9s linear infinite;}
+  #hpTBar .tb-mk .r2{animation:hpSpin 6s linear infinite reverse;}
+  #hpTBar .tb-mk .sw{animation:hpSpin 3.4s linear infinite;}
+  #hpTBar .tb-mk .co{animation:hpPulse 2.4s ease-in-out infinite;}
+  @keyframes hpSpin{to{transform:rotate(360deg);}}
+  @keyframes hpPulse{0%,100%{opacity:.5;transform:scale(.8);}50%{opacity:1;transform:scale(1.08);}}
+  [data-hpnav]{scroll-margin-top:calc(var(--wl-shell-h) + 58px);}
+  @media(max-width:720px){#hpTBar{gap:10px;}#hpTBar .now{flex:0 0 176px;width:176px;}#hpTBar .seg .bar{height:4px;}#hpTBar .track{gap:2px;}#hpTBar .pct{display:none;}}
+  @media(prefers-reduced-motion:reduce){#hpTBar .tb-mk *{animation:none!important;}#hpTBar .seg .bar i,#hpTBar .head{transition:none!important;}}
+  </style>
+  <nav id="hpTBar" aria-label="Page progress">
+    <div class="now">
+      <svg class="tb-mk" viewBox="0 0 32 32" aria-hidden="true">
+        <defs>
+          <radialGradient id="hpCore" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f7dd7a"/><stop offset="55%" stop-color="#f2cc4b"/><stop offset="100%" stop-color="#d4af37"/></radialGradient>
+          <linearGradient id="hpSweep" x1="16" y1="16" x2="16" y2="2" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#f2cc4b" stop-opacity="0"/><stop offset="100%" stop-color="#f2cc4b" stop-opacity=".55"/></linearGradient>
+        </defs>
+        <g class="sw" data-a><path d="M16 16 L16 2 A14 14 0 0 1 27.7 8.6 Z" fill="url(#hpSweep)"/></g>
+        <g class="r1" data-a><circle cx="16" cy="16" r="13" fill="none" stroke="#8c7420" stroke-width="1.4" stroke-dasharray="3 5" stroke-linecap="round"/></g>
+        <g class="r2" data-a><circle cx="16" cy="16" r="8.5" fill="none" stroke="#d4af37" stroke-width="1" stroke-dasharray="1.5 4" opacity=".9"/></g>
+        <g stroke="#d4af37" stroke-width="1.2" stroke-linecap="round" opacity=".85"><line x1="16" y1="1.5" x2="16" y2="5"/><line x1="16" y1="27" x2="16" y2="30.5"/><line x1="1.5" y1="16" x2="5" y2="16"/><line x1="27" y1="16" x2="30.5" y2="16"/></g>
+        <circle class="co" data-a cx="16" cy="16" r="3.4" fill="url(#hpCore)"/>
+      </svg>
+      <div class="rd"><span class="idx">SEC <b id="hpN">01</b>/10</span><span class="ttl" id="hpTtl">Gorilla Position</span></div>
+    </div>
+    <div class="track" id="hpTrack"><div class="head" id="hpHead"><div class="stem"></div><div class="dia"></div></div></div>
+    <div class="pct">SHOW <b id="hpPct">0%</b></div>
+  </nav>
+
   <!-- ============ BLOCK 1: HERO + BLOCK 2: SCALE READOUTS ============ -->
-  <section class="hv3-hero">
+  <section id="hp-top" data-hpnav class="hv3-hero">
 <div class="herofx-amb" aria-hidden="true">
       <div class="hfx-rig">
         <span class="hfx-rig__key"></span>
@@ -1725,7 +1792,7 @@
   @media (prefers-reduced-motion:reduce){.thisweek .yt__thumb{transition:none;transform:none;}.thisweek .yt:hover .yt__thumb,.thisweek .yt:focus-within .yt__thumb{transform:none;}}
   @media (hover:none){.thisweek .yt:hover .yt__thumb,.thisweek .yt:focus-within .yt__thumb{transform:scale(1.01);}}
   </style>
-  <section class="section thisweek" aria-label="This week in wrestling">
+  <section id="hp-week" data-hpnav class="section thisweek" aria-label="This week in wrestling">
     <div class="wrap">
       <div class="section-head">
         <div><p class="eyebrow">The Week &middot; Catch Up</p><h2>This week in wrestling</h2><hr class="rule-gold"></div>
@@ -2062,7 +2129,7 @@
 </style>
 
   <!-- ============ BLOCK 3: WRESTLER DISCOVERY ============ -->
-  <section class="section"><div class="wrap">
+  <section id="hp-wrestlers" data-hpnav class="section"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">The Wrestlers</p><h2>Pick a lane, pull a card</h2><hr class="rule-gold"></div>
       <a class="link-more" href="/wrestlers/">Every wrestler, A to Z</a>
@@ -2312,7 +2379,7 @@
 </style>
 
 <!-- ============ BLOCK 7: AJ STYLES, HALL OF FAME · CAREER TIMELINE DOSSIER ============ -->
-<section class="section aj3"><div class="wrap">
+<section id="hp-hof" data-hpnav class="section aj3"><div class="wrap">
   <div class="section-head" data-reveal>
     <div><p class="eyebrow" style="color:var(--c-hof-bright)">Hall of Fame</p><h2>The Phenomenal One goes in</h2><hr class="rule-gold"></div>
     <a class="link-more" href="/hall-of-fame/2026/">The full class</a>
@@ -2581,7 +2648,7 @@
 </script>
 
   <!-- ============ BLOCK 4: EVENTS, 2026 SEASON ============ -->
-  <section class="section hv3-alt"><div class="wrap">
+  <section id="hp-results" data-hpnav class="section hv3-alt"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">2026 Season</p><h2>Latest results, full cards</h2><hr class="rule-gold"></div>
       <a class="link-more" href="/events/">All events</a>
@@ -2636,7 +2703,7 @@
   </div></section>
 
   <!-- ============ BLOCK 8: MOMENTS REEL ============ -->
-  <section class="section hv3-alt hv3-media"><div class="wrap">
+  <section id="hp-isocam" data-hpnav class="section hv3-alt hv3-media"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow" style="color:var(--c-media-bright)">The Iso Cam</p><h2>The moments reel</h2><hr class="rule-gold"></div>
       <a class="link-more" href="/moments/">Every moment</a>
@@ -2663,7 +2730,7 @@
   </div></section>
 
   <!-- ============ BLOCK 10: THE ROSTER FILES ============ -->
-  <section class="section hv3-alt"><div class="wrap">
+  <section id="hp-files" data-hpnav class="section hv3-alt"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">The Wrestler Files</p><h2>Pull a file from the cabinet</h2><hr class="rule-gold"></div>
       <a class="link-more" href="/wrestlers/">Open the cabinet</a>
@@ -2677,7 +2744,7 @@
   </div></section>
 
   <!-- ============ BLOCK 9: FIVE-STAR CLASSICS ============ -->
-  <section class="section"><div class="wrap">
+  <section id="hp-classics" data-hpnav class="section"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">Five-Star Classics</p><h2>The matches that defined an era</h2><hr class="rule-gold"></div>
       <a class="link-more" href="/rankings/">The full ladder</a>
@@ -2709,7 +2776,7 @@
   </div></section>
 
   <!-- ============ BLOCK 5: WHERE TO WATCH, 8 BRAND CARDS ============ -->
-  <section class="section"><div class="wrap">
+  <section id="hp-watch" data-hpnav class="section"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">Where to Watch</p><h2>Eight brands, every feed</h2><hr class="rule-gold"></div>
       <a class="link-more" href="/promotions/">All promotions</a>
@@ -2770,7 +2837,7 @@
   </div></section>
 
   <!-- ============ BLOCK 11: THE PRODUCTION TRUCK ============ -->
-  <section class="section"><div class="wrap">
+  <section id="hp-truck" data-hpnav class="section"><div class="wrap">
     <div class="section-head" data-reveal>
       <div><p class="eyebrow">The Production Truck</p><h2>Seven feeds. Call the shot.</h2><hr class="rule-gold"></div>
     </div>
@@ -3146,6 +3213,52 @@
 })();
 </script>
 
+  <script id="hp-tbar-js">
+  (function(){
+    var LB={'hp-top':['Gorilla Position','GORILLA'],'hp-week':['This Week in Wrestling','THIS WEEK'],
+      'hp-wrestlers':['The Wrestlers','WRESTLERS'],'hp-hof':['Hall of Fame','HALL OF FAME'],
+      'hp-results':['Latest Results','RESULTS'],'hp-isocam':['The Iso Cam','ISO CAM'],
+      'hp-files':['The Wrestler Files','THE FILES'],'hp-classics':['Five-Star Classics','FIVE-STAR'],
+      'hp-watch':['Where to Watch','WHERE TO WATCH'],'hp-truck':['The Production Truck','THE TRUCK']};
+    var bar=document.getElementById('hpTBar'); if(!bar) return;
+    var secEls=[].slice.call(document.querySelectorAll('#main [data-hpnav]'));
+    var data=secEls.map(function(el,i){var lb=LB[el.id]||[el.id,el.id];
+      return {el:el,id:el.id,num:String(i+1).padStart(2,'0'),full:lb[0],short:lb[1]};});
+    var N=data.length; if(!N) return;
+    var track=document.getElementById('hpTrack'),head=document.getElementById('hpHead');
+    var elN=document.getElementById('hpN'),elTtl=document.getElementById('hpTtl'),elPct=document.getElementById('hpPct');
+    function jump(id){var el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth'});}
+    data.forEach(function(d){
+      var seg=document.createElement('button'); seg.type='button'; seg.className='seg';
+      seg.setAttribute('aria-label','Jump to '+d.full);
+      seg.innerHTML='<span class="bar"><i></i></span><span class="tag">'+d.num+' '+d.short+'</span>';
+      seg.addEventListener('click',function(){jump(d.id);});
+      track.appendChild(seg);
+    });
+    var segs=[].slice.call(track.querySelectorAll('.seg')),active=0;
+    function render(){
+      var vh=window.innerHeight,docH=document.documentElement.scrollHeight-vh,sc=window.pageYOffset;
+      var pct=docH>0?Math.min(100,Math.max(0,sc/docH*100)):0,line=sc+vh*0.42,idx=0;
+      var tops=data.map(function(d){return d.el.getBoundingClientRect().top+sc;});
+      for(var i=0;i<N;i++){ if(tops[i]<=line) idx=i; }
+      active=idx;
+      function fill(i){var top=tops[i],h=data[i].el.offsetHeight;
+        if(line<top) return 0; if(i<active) return 100;
+        return Math.min(100,Math.max(0,(line-top)/h*100));}
+      elN.textContent=data[active].num; elTtl.textContent=data[active].full; elPct.textContent=Math.round(pct)+'%';
+      segs.forEach(function(seg,i){seg.classList.toggle('active',i===active);seg.classList.toggle('done',i<active);
+        seg.querySelector('i').style.width=fill(i)+'%';});
+      head.style.left=pct+'%';
+    }
+    var ticking=false;
+    function onScroll(){if(!ticking){requestAnimationFrame(function(){render();ticking=false;});ticking=true;}}
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',render);
+    if(document.readyState!=='loading') render();
+    else document.addEventListener('DOMContentLoaded',render);
+    render();
+  })();
+  </script>
 </main>
 
 <!-- ===================== FOOTER ===================== -->
