@@ -4,6 +4,10 @@
 - Implementation is page-local (one `<style id="hp-tbar-css">` + one vanilla `<script id="hp-tbar-js">` inside `<main>`), zero shared-file changes (no css/site.css or js/ edits) so it cannot collide with other work. Added `id` + `data-hpnav` to the 10 content sections and a `scroll-margin-top` so anchored jumps clear the sticky header+bar.
 - Verified headless over the real page: bar pins at ~102px under the 103px header; scrubber start x is identical (288.39px) across all 10 sections (no reflow); scroll-spy maps SEC 01..10 to 0..100% with exactly one active segment; segment click jumps to the right section; zero JS console errors (only sandbox-firewalled YouTube thumbnail fetches fail).
 
+## 2026-07-30 (Sticky Tale-of-the-Tape rail: remove inner scroll on all profiles)
+- **The right sticky rail no longer has its own inner scrollbar.** The earlier top-spacing fix capped the rail with `max-height` + `overflow:auto`, which turned it into a scroll box. Removed that: the rail is now its natural height with `overflow:visible`, sticking below the header stack and scrolling with the page. Applies to every dossier profile (CM Punk, AJ Styles, Triple H, The Rock and any future profile) via the shared `css/profile.css`. Cache-buster bumped on all four profile pages. Files: css/profile.css, wrestlers/{cm-punk,aj-styles,triple-h,the-rock}/index.html.
+- Verified headless at 1440px: all four rails report `overflow:visible`, no inner scroll (`scrollHeight == clientHeight`), still `position:sticky`, zero console errors.
+
 ## 2026-07-30 (Cabinet "Pull a file" signal marks — Rock/Austin/Undertaker/Triple H; Undertaker + Rock elevated)
 - **Four new animated SVG signal marks** for the homepage "Pull a file from the cabinet" tabs (The Rock, Stone Cold Steve Austin, The Undertaker, Triple H), matching the CM Punk / AJ Styles marks. Each is an original ornamented emblem that animates on `.rfx-tab:hover`, with `prefers-reduced-motion` fully respected. Inline in index.html (the cabinet FILES array + render).
 - **The Undertaker** — ornate gothic cross: rotating rays + dashed halo, a consecration gleam sweep, purple drop-shadow glow, and a gem glint.
