@@ -1387,14 +1387,14 @@
     <text class="dn-cap" x="60" y="74" text-anchor="middle">WIN RATE</text>
    </svg>
    <div class="rec2-wl-side" aria-hidden="true">
-    <p class="rec2-wl-rec"><b id="wl-rec">0-0</b><span>as booked on this card</span></p>
+    <p class="rec2-wl-rec"><b id="wl-rec">0-0</b></p>
     <ul class="rec2-wl-legend">
      <li><i class="lg lg-w"></i>Wins <b id="wl-w">0</b></li>
      <li><i class="lg lg-l"></i>Losses <b id="wl-l">0</b></li>
      <li><i class="lg lg-d"></i>Draws <b id="wl-d">0</b></li>
      <li><i class="lg lg-n"></i>No contests <b id="wl-n">0</b></li>
     </ul>
-    <p class="rec2-wl-note">Change the card above and the book follows</p>
+    
    </div>
    <div class="rec2-wl-veil">
     <p>The book is kayfabe protected</p>
@@ -1611,7 +1611,7 @@
   'use strict';
   /* cap a ledger at 8 visible rows; the rest scrolls inside the frame */
   function capRows(sc,tb,n){
-    var th=sc.querySelector('thead');var rs=tb.querySelectorAll('tr');
+    var th=sc.querySelector('thead');var rs=[].slice.call(tb.querySelectorAll('tr')).filter(function(r){return r.offsetHeight>0;});
     if(!th||rs.length<=n)return;
     var h=th.getBoundingClientRect().height;
     for(var i=0;i<n;i++){h+=rs[i].getBoundingClientRect().height;}

@@ -2853,6 +2853,8 @@ a.wl-modal__title:hover{color:var(--c-gold-bright,#f2cc4b);text-decoration:under
 .wev-a-row:last-child{border-bottom:0;} .wev-a-row b{color:var(--goldb,#f2cc4b);font-family:var(--jb,'JetBrains Mono',monospace);font-size:.72rem;margin-right:.5em;}
 .wev-a-row:hover{color:var(--tx,#e8eaed);}
 @media (max-width:900px){.wev-a{top:auto!important;bottom:14px;right:12px;left:12px;width:auto;}.wev-a-stub{width:auto;}}
+/* mobile: hide both corner floaters (ticket + explore) per request */
+@media (max-width:760px){.wev-a,.f2-explore{display:none!important;}}
 
 /* WL: sparkle engine recovered verbatim from 32c951f - lore gem, sale spin, live radar, hover glows */
 .wglyph{display:inline-block;vertical-align:middle;overflow:visible;line-height:0;filter:drop-shadow(0 0 4px #ff3b48) drop-shadow(0 0 8px rgba(255,59,72,.5));}
