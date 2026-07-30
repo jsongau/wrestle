@@ -58,6 +58,14 @@
 .wl-dossier .rec2-spoiler tr.rev-open .rw{display:inline-grid}
 .wl-dossier .rec2-spoiler tr.rev-open .rw-show{display:none}
 .wl-dossier .rec2-spoiler .rec2-note{filter:blur(5px);user-select:none}
+/* kayfabe veil over the W/L donut until spoilers are turned on (matches the newest record system) */
+.wl-dossier .record-top{position:relative}
+.wl-dossier .record-top.is-veiled > .donut,.wl-dossier .record-top.is-veiled > .record-legend{filter:blur(9px);opacity:.55;pointer-events:none;user-select:none}
+.wl-dossier .record-top .rt-veil{position:absolute;inset:-6px;display:grid;place-content:center;justify-items:center;gap:12px;text-align:center;background:radial-gradient(120% 120% at 50% 30%,rgba(10,12,16,.7),rgba(10,12,16,.9));border-radius:14px;z-index:2}
+.wl-dossier .record-top:not(.is-veiled) .rt-veil{display:none}
+.wl-dossier .rt-veil p{margin:0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8a8f98}
+.wl-dossier .rt-unveil{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.5);color:#f2cc4b;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;cursor:pointer;transition:.15s}
+.wl-dossier .rt-unveil:hover{background:rgba(212,175,55,.2);border-color:#f2cc4b}
 .wl-dossier .rec2-spoiler tr.rev-open .rec2-note{filter:none}
 @media(max-width:640px){
   .wl-dossier .rec2-table{min-width:600px;font-size:12px}
@@ -1095,7 +1103,7 @@
     <!-- RECORD -->
     <section class="sec reveal" id="record">
       <div class="sec-h"><span class="n">02</span><h2>Wins &amp; Losses</h2><span class="rule"></span><button class="spl" id="hhhSpl" type="button" aria-pressed="false" title="Show every win and loss"><span class="spl-lbl">Spoilers off</span><span class="spl-track"><span class="spl-knob"></span></span></button></div>
-      <div class="record-top">
+      <div class="record-top is-veiled" id="hhhRecTop">
         <figure class="donut" style="--w:47" role="img" aria-label="Curated landmark ledger: 7 wins, 8 losses">
           <figcaption><b>7&ndash;8</b><span>Landmark W&ndash;L</span></figcaption>
         </figure>
@@ -1104,6 +1112,7 @@
           <div class="lg"><i class="i-red"></i><span>Landmark Losses</span><b>8</b></div>
           <div class="lg" style="color:var(--muted)"><i style="background:var(--panel2);border:1px solid var(--line)"></i><span>Total tracked bouts</span><b>~1,005</b></div>
         </div>
+        <div class="rt-veil"><p>The book is kayfabe protected</p><button class="rt-unveil" type="button">Turn spoilers on</button></div>
       </div>
       <p class="ledger-note">&#9873; Curated landmark ledger &mdash; his most historically significant bouts, not a complete career record. Tap any column header to sort. Results stay hidden until you reveal a row or flip the spoiler switch. Results from Triple H&rsquo;s perspective.</p>
 
@@ -1473,13 +1482,17 @@
     btn.addEventListener('click',function(){r.classList.add('rev-open');});
   });
   var tgl=document.getElementById('hhhSpl');
-  if(tgl){tgl.addEventListener('click',function(){
-    var on=tgl.getAttribute('aria-pressed')!=='true';
-    tgl.setAttribute('aria-pressed',on?'true':'false');
-    tgl.querySelector('.spl-lbl').textContent=on?'Spoilers on':'Spoilers off';
-    tgl.title=on?'Hide every result':'Show every win and loss';
+  var recTop=document.getElementById('hhhRecTop');
+  function setSpoilers(on){
+    if(tgl){tgl.setAttribute('aria-pressed',on?'true':'false');
+      tgl.querySelector('.spl-lbl').textContent=on?'Spoilers on':'Spoilers off';
+      tgl.title=on?'Hide every result':'Show every win and loss';}
     scroller.classList.toggle('rec2-spoiler',!on);
-  });}
+    if(recTop)recTop.classList.toggle('is-veiled',!on);
+  }
+  if(tgl){tgl.addEventListener('click',function(){setSpoilers(tgl.getAttribute('aria-pressed')!=='true');});}
+  var unveilBtn=recTop&&recTop.querySelector('.rt-unveil');
+  if(unveilBtn){unveilBtn.addEventListener('click',function(){setSpoilers(true);});}
 
   /* sorting */
   function cellTxt(r,sel){var c=r.querySelector(sel);return c?c.textContent.trim().toLowerCase():'';}
