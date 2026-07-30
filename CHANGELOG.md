@@ -4,6 +4,13 @@
 - Implementation is page-local (one `<style id="hp-tbar-css">` + one vanilla `<script id="hp-tbar-js">` inside `<main>`), zero shared-file changes (no css/site.css or js/ edits) so it cannot collide with other work. Added `id` + `data-hpnav` to the 10 content sections and a `scroll-margin-top` so anchored jumps clear the sticky header+bar.
 - Verified headless over the real page: bar pins at ~102px under the 103px header; scrubber start x is identical (288.39px) across all 10 sections (no reflow); scroll-spy maps SEC 01..10 to 0..100% with exactly one active segment; segment click jumps to the right section; zero JS console errors (only sandbox-firewalled YouTube thumbnail fetches fail).
 
+## 2026-07-30 (Cabinet "Pull a file" signal marks — Rock/Austin/Undertaker/Triple H; Undertaker + Rock elevated)
+- **Four new animated SVG signal marks** for the homepage "Pull a file from the cabinet" tabs (The Rock, Stone Cold Steve Austin, The Undertaker, Triple H), matching the CM Punk / AJ Styles marks. Each is an original ornamented emblem that animates on `.rfx-tab:hover`, with `prefers-reduced-motion` fully respected. Inline in index.html (the cabinet FILES array + render).
+- **The Undertaker** — ornate gothic cross: rotating rays + dashed halo, a consecration gleam sweep, purple drop-shadow glow, and a gem glint.
+- **The Rock** — muscular Brahma Bull bust: bold sweeping horns, shield head with heavy brow, muscular shoulders/chest with muscle striations, nostrils and a nose ring. On hover the head/body charges forward (scale), horns flex wider, muscle lines brighten, the nose ring swings, and the **eyes ignite red with a glow**.
+- Verified headless: zero console errors; all six cabinet tabs render; hover animations fire; reduced-motion path clean. Files: index.html.
+>>>>>>> 83ccf76e (cabinet: elevate Undertaker (gothic cross) + Rock (muscular Brahma Bull, red-glow eyes on hover))
+
 ## 2026-07-30 (Sticky rail spacing fix; Triple H record gets the kayfabe veil)
 - **Sticky Tale-of-the-Tape rail no longer tucks under the mega nav** (all profile pages: CM Punk, AJ Styles, Triple H and any future dossier). The `>=1200px` rule dropped the rail to `nav-h + 14` (76px) while the real sticky header stack is taller, cutting off the rail's top. Both rail rules now stick at `calc(var(--stack-top) + 28px)` so the rail clears the stack with an ~18px gap. Files: css/profile.css.
 - **Triple H's record now uses the kayfabe veil** (the "spoilers hidden thing" from the newest record system). His W/L donut was shown openly; it's now blurred behind a "The book is kayfabe protected / Turn spoilers on" panel until spoilers are turned on, wired to his existing spoiler toggle and a new unveil button. Files: wrestlers/triple-h/index.html.
