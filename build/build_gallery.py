@@ -128,19 +128,33 @@ def facade_card(promo, yid, date, label):
             % (yid, esc(ttl), promo, esc(net), url, href, href, esc(label), dayshort(date), esc(label)))
 
 def week_widget(wk):
+    # Every promotion in ORDER gets a tab. Promos that aired this week show their
+    # this-week clips; promos that have not aired yet (e.g. AEW/TNA early in the
+    # week) fall back to their latest clips pulled from the gallery, so the tab is
+    # never empty. The panel kicker says whether the clips are THIS WEEK or RECENT.
     tabs, panels = [], []
-    active = [p for p in ORDER if wk["promos"].get(p)]  # skip promotions with no aired shows this week
-    for i, promo in enumerate(active):
-        sel = "true" if i==0 else "false"; ti = "" if i==0 else ' tabindex="-1"'
+    n = 0
+    for promo in ORDER:
+        this_week = wk["promos"].get(promo)
+        if this_week:
+            clips = [(promo, y, d, l) for (y, d, l) in this_week]
+            kk = wk["label"].upper()
+        else:
+            clips = latest_by_promo(WEEKS, promo, 8)  # (promo,y,d,l) across weeks
+            kk = "RECENT"
+        if not clips:
+            continue
+        sel = "true" if n==0 else "false"; ti = "" if n==0 else ' tabindex="-1"'
         tabs.append('<button class="tw-item" type="button" role="tab" id="tw-tab-%s" aria-controls="tw-panel-%s" aria-selected="%s"%s><span class="tw-item__name">%s</span><span class="tw-item__net">%s</span></button>'
                     % (promo.lower(),promo.lower(),sel,ti,promo,esc(TABNET[promo])))
-        hidden = "" if i==0 else " hidden"
-        cards = "\n              ".join(facade_card(promo,y,d,l) for (y,d,l) in wk["promos"][promo])
+        hidden = "" if n==0 else " hidden"
+        cards = "\n              ".join(facade_card(p,y,d,l) for (p,y,d,l) in clips)
         panels.append('<div class="tw-panel" role="tabpanel" id="tw-panel-%s" aria-labelledby="tw-tab-%s"%s>'
           '<div class="tw-panel__head"><span class="telemetry"><b>%s · %s</b></span>'
           '<span class="tw-nets">%s</span></div>'
           '<ul class="tw-rail">\n              %s\n            </ul></div>'
-          % (promo.lower(),promo.lower(),hidden,wk["label"].upper(),promo,WATCHLINKS[promo],cards))
+          % (promo.lower(),promo.lower(),hidden,kk,promo,WATCHLINKS[promo],cards))
+        n += 1
     return '<div class="tw-layout"><div class="tw-list" data-wl-tabs role="tablist" aria-label="Choose a promotion">%s</div><div class="tw-detail">%s</div></div>' % ("".join(tabs),"".join(panels))
 
 def media_thisweek_grid(wk):
@@ -200,7 +214,7 @@ def week_page(wk, older, newer):
       '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/gallery/">Viewing Gallery</a></li><li aria-current="page">%s</li></ol></nav>\n'
       '%s\n'
       '<div class="section-head"><div><p class="eyebrow">The Week · Catch Up</p><h2>%s</h2><hr class="rule-gold"></div><span class="tw-dateline">%s</span></div>\n'
-      '<p class="tw-lede">Every show from this week in one place. Titles give nothing away and thumbnails blur until you hover, so you can catch up without getting spoiled. Pick a promotion, press play, and each clip opens with a link to where the full show streams.</p>\n'
+      '<p class="tw-lede">Every show from this week in one place. Titles give nothing away, so you can catch up without results jumping out at you. Pick a promotion, press play, and each clip opens with a link to where the full show streams.</p>\n'
       '%s\n<div class="cluster" style="gap:var(--sp-4);margin-top:var(--sp-5)">%s</div>\n</div>\n</section>'
       % (wk["label"],wk["label"],gallery_week_switcher(wk["week"]),wk["label"],wk["label"].upper(),week_widget(wk)," ".join(nav)))
     return shell(vtitle_week(wk), "Catch up on %s: WWE, AEW, TNA and NXT highlights in one spoiler-safe viewing gallery, with links to where each show streams." % wk["label"],
