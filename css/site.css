@@ -4283,3 +4283,661 @@ body[data-home] .wl-totop{display:none!important;}
 
 /* moments: hide the facade's duplicate title caption over the thumbnail (title lives in the card body) */
 .mo-card__media .yt__meta,.mo-dossier__media .yt__meta{display:none}
+
+
+/* ==== MOBILE OPTIMIZATION (<=760px) ==== */
+
+/* ---- mobile/nav.css ---- */
+/* =====================================================================
+   MOBILE NAV — hamburger + slide-in drawer
+   Scope: wrestlelore.com nav7 shell. All new elements prefixed .mnav-.
+   Tokens reused from the .nav7 scope (--gold, --red, --e1, --line, etc.).
+
+   Structure:
+     · @media (min-width:761px)  — desktop: hide the new elements only.
+       (No other desktop rule; the mega-panel bar is left 100% untouched.)
+     · @media (max-width:760px)  — phones: collapse the desktop bar,
+       show the hamburger + drawer.
+     · @media (max-width:480px)  — small-phone tightening.
+   ===================================================================== */
+
+/* ---- DESKTOP (>760px): the drawer + hamburger + scrim never render.
+        This is the ONLY rule above 760px; it touches new .mnav- elements
+        exclusively, so the existing nav7 mega-panel bar is unchanged. ---- */
+@media (min-width:761px){
+  .mnav-burger,
+  .mnav-scrim,
+  .mnav-drawer{ display:none !important; }
+}
+
+/* =====================================================================
+   PHONES (<=760px)
+   ===================================================================== */
+@media (max-width:760px){
+
+  /* ---- collapse the desktop mega-panel bar ---- */
+  .nav7 .tabs7{ display:none; }
+  .nav7 .spacer{ display:none; }
+
+  /* keep the bar tidy: burger | brand ......... search | join */
+  .nav7 .bar{ gap:6px; min-height:58px; padding-inline:12px; }
+  .nav7 .brand7{ margin-right:auto; font-size:19px; gap:.55em; }
+
+  /* search pill collapses to a 44x44 icon button */
+  .nav7 .pill{
+    min-width:0; width:44px; height:44px; padding:0;
+    justify-content:center; margin:0 2px 0 0; border-radius:10px;
+  }
+  .nav7 .pill .ph,
+  .nav7 .pill .kbd7{ display:none; }
+  .nav7 .pill svg{ width:18px; height:18px; }
+
+  /* Join Insider stays visible but compact */
+  :is(.nav7,.hv3) .cta{ padding:.55em .8em; font-size:12px; letter-spacing:.04em; }
+
+  /* ---------- HAMBURGER BUTTON ---------- */
+  .mnav-burger{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:44px; height:44px; flex:0 0 auto; padding:0; margin:0 2px 0 -4px;
+    background:transparent; border:0; border-radius:10px; cursor:pointer;
+    color:var(--tx,#e8eaed); -webkit-tap-highlight-color:transparent;
+  }
+  .mnav-burger:hover{ color:#fff; }
+  .mnav-burger:focus-visible{ outline:2px solid var(--gold,#d4af37); outline-offset:2px; }
+  .mnav-burger__box{
+    position:relative; width:22px; height:16px; display:block;
+  }
+  .mnav-burger__line{
+    position:absolute; left:0; width:22px; height:2px; border-radius:2px;
+    background:currentColor; transition:transform .28s ease, opacity .2s ease, top .28s ease;
+  }
+  .mnav-burger__line:nth-child(1){ top:0; }
+  .mnav-burger__line:nth-child(2){ top:7px; }
+  .mnav-burger__line:nth-child(3){ top:14px; }
+  /* animate to an X when the drawer is open */
+  .mnav-burger[aria-expanded="true"] .mnav-burger__line:nth-child(1){ top:7px; transform:rotate(45deg); }
+  .mnav-burger[aria-expanded="true"] .mnav-burger__line:nth-child(2){ opacity:0; }
+  .mnav-burger[aria-expanded="true"] .mnav-burger__line:nth-child(3){ top:7px; transform:rotate(-45deg); }
+
+  /* ---------- BODY SCROLL LOCK ---------- */
+  /* class-based (survives the cmdk palette clearing body.style.overflow) */
+  body.mnav-open{ overflow:hidden; }
+
+  /* the [hidden] attr is the master off-switch; keep it winning over the
+     drawer's own display:flex so the drawer stays gone until JS opens it */
+  .mnav-drawer[hidden],
+  .mnav-scrim[hidden]{ display:none !important; }
+
+  /* ---------- SCRIM ---------- */
+  .mnav-scrim{
+    position:fixed; inset:0; z-index:148;
+    background:rgba(4,5,7,.62); backdrop-filter:blur(2px);
+    opacity:0; transition:opacity .3s ease;
+  }
+  .mnav-scrim.is-open{ opacity:1; }
+
+  /* ---------- DRAWER ---------- */
+  .mnav-drawer{
+    position:fixed; top:0; right:0; z-index:150;
+    width:min(88vw,400px); height:100%; height:100dvh;
+    display:flex; flex-direction:column;
+    background:linear-gradient(180deg,#101216,#0b0c10);
+    border-left:1px solid var(--line2,#39414c);
+    box-shadow:-24px 0 60px rgba(0,0,0,.55);
+    transform:translateX(100%); transition:transform .3s cubic-bezier(.22,.61,.36,1);
+    will-change:transform;
+  }
+  .mnav-drawer.is-open{ transform:translateX(0); }
+  /* gold hairline down the leading edge */
+  .mnav-drawer::before{
+    content:""; position:absolute; top:0; bottom:0; left:0; width:1px;
+    background:linear-gradient(180deg,transparent,rgba(212,175,55,.55) 12%,rgba(212,175,55,.35) 80%,transparent);
+    pointer-events:none;
+  }
+
+  /* drawer top: brand + close */
+  .mnav-top{
+    flex:0 0 auto; display:flex; align-items:center; gap:.6em;
+    padding:14px 14px 12px; border-bottom:1px solid var(--line,#242a32);
+  }
+  .mnav-brand{
+    display:flex; align-items:center; gap:.6em; text-decoration:none;
+    color:#fff; font-family:var(--anton,sans-serif); font-size:20px; letter-spacing:.02em;
+    margin-right:auto; min-width:0;
+  }
+  .mnav-mark{
+    width:32px; height:32px; flex:0 0 auto; display:grid; place-content:center;
+    border-radius:5px; overflow:hidden;
+    background:linear-gradient(180deg,#f7e08a,var(--gold,#d4af37) 55%,var(--golddim,#8c7420));
+    box-shadow:0 0 0 1px var(--golddim,#8c7420), 0 4px 14px rgba(212,175,55,.18);
+  }
+  .mnav-mark img{ width:100%; height:100%; object-fit:cover; }
+  .mnav-word b{ color:#fff; font-weight:400; }
+  .mnav-word i{ color:var(--gold,#d4af37); font-style:normal; font-weight:400; }
+  .mnav-close{
+    flex:0 0 auto; width:44px; height:44px; display:grid; place-content:center;
+    background:transparent; border:1px solid var(--line2,#39414c); border-radius:10px;
+    color:var(--mut,#9aa2ad); cursor:pointer; transition:color .2s ease, border-color .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mnav-close:hover{ color:#fff; border-color:var(--gold,#d4af37); }
+  .mnav-close:focus-visible{ outline:2px solid var(--gold,#d4af37); outline-offset:2px; }
+
+  /* search field */
+  .mnav-search{ flex:0 0 auto; padding:12px 14px; }
+  .mnav-searchfield{
+    width:100%; min-height:46px; display:flex; align-items:center; gap:.6em;
+    padding:0 14px; background:var(--e2,#161a20); border:1px solid var(--line2,#39414c);
+    border-radius:12px; color:var(--dim,#828a96); cursor:pointer; text-align:left;
+    font-family:var(--inter,system-ui); font-size:14px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .mnav-searchfield:hover{ border-color:var(--gold,#d4af37); color:var(--mut,#9aa2ad); }
+  .mnav-searchfield:focus-visible{ outline:2px solid var(--gold,#d4af37); outline-offset:2px; }
+  .mnav-searchfield svg{ flex:0 0 auto; }
+
+  /* scroll region + bottom edge fade */
+  .mnav-scrollwrap{ position:relative; flex:1 1 auto; min-height:0; }
+  .mnav-body{
+    height:100%; overflow-y:auto; overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch; padding:4px 0 8px;
+  }
+  .mnav-fade{
+    position:absolute; left:0; right:0; bottom:0; height:52px; pointer-events:none;
+    background:linear-gradient(180deg,transparent,#0b0c10 92%);
+    opacity:1; transition:opacity .25s ease;
+  }
+  .mnav-scrollwrap.is-end .mnav-fade{ opacity:0; }
+
+  /* ---------- ACCORDION ---------- */
+  .mnav-acc{ border-bottom:1px solid var(--line,#242a32); }
+  .mnav-acc__h{ margin:0; font:inherit; }
+  .mnav-acc__btn{
+    width:100%; min-height:52px; display:flex; align-items:center; justify-content:space-between;
+    gap:.6em; padding:12px 16px; background:transparent; border:0; cursor:pointer;
+    color:var(--tx,#e8eaed); font-family:var(--osw,sans-serif); text-transform:uppercase;
+    letter-spacing:.09em; font-size:15px; font-weight:500; text-align:left;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mnav-acc__btn:hover{ color:#fff; }
+  .mnav-acc__btn:focus-visible{ outline:2px solid var(--gold,#d4af37); outline-offset:-2px; }
+  .mnav-acc__chev{
+    flex:0 0 auto; color:var(--dim,#828a96); transition:transform .28s ease, color .2s ease;
+  }
+  .mnav-acc.is-open .mnav-acc__btn{ color:#fff; }
+  .mnav-acc.is-open .mnav-acc__chev{ transform:rotate(180deg); color:var(--gold,#d4af37); }
+  /* gold accent tick that appears on the open section */
+  .mnav-acc__title{ position:relative; padding-left:12px; }
+  .mnav-acc__title::before{
+    content:""; position:absolute; left:0; top:50%; width:3px; height:0; border-radius:2px;
+    transform:translateY(-50%); background:var(--gold,#d4af37);
+    transition:height .28s ease;
+  }
+  .mnav-acc.is-open .mnav-acc__title::before{ height:15px; }
+
+  /* collapsible panel — visibility:hidden removes links from tab order + AT
+     while collapsed, and animates alongside max-height for a smooth reveal */
+  .mnav-acc__panel{
+    max-height:0; overflow:hidden; visibility:hidden;
+    transition:max-height .3s ease, visibility .3s ease;
+  }
+  .mnav-acc.is-open .mnav-acc__panel{ visibility:visible; }
+  .mnav-acc__inner{ padding:2px 0 12px; }
+
+  /* links */
+  .mnav-link{
+    display:flex; align-items:center; min-height:44px; padding:6px 16px 6px 28px;
+    color:var(--mut,#9aa2ad); text-decoration:none; font-family:var(--inter,system-ui);
+    font-size:14.5px; line-height:1.25; transition:color .15s ease, background .15s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .mnav-link:hover{ color:#fff; background:rgba(255,255,255,.03); }
+  .mnav-link:focus-visible{ outline:2px solid var(--gold,#d4af37); outline-offset:-2px; }
+  .mnav-link--all{
+    color:#fff; font-family:var(--osw,sans-serif); text-transform:uppercase;
+    letter-spacing:.05em; font-size:13.5px; font-weight:500;
+  }
+  .mnav-tag{
+    margin-left:auto; font-family:var(--mono7,monospace); font-size:10px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--gold,#d4af37); border:1px solid rgba(212,175,55,.3);
+    border-radius:99px; padding:.1em .6em;
+  }
+  .mnav-sub{
+    display:block; padding:12px 16px 4px 28px; font-family:var(--mono7,monospace);
+    font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim,#828a96);
+  }
+
+  /* ---------- CTA FOOTER ---------- */
+  .mnav-foot{
+    flex:0 0 auto; padding:14px 16px calc(14px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--line,#242a32); background:#0b0c10;
+  }
+  .mnav-join{
+    display:flex; align-items:center; justify-content:center; min-height:50px;
+    background:var(--red,#e11d2a); color:#fff; text-decoration:none;
+    font-family:var(--osw,sans-serif); text-transform:uppercase; letter-spacing:.08em;
+    font-weight:600; font-size:15px; border-radius:10px;
+    box-shadow:0 6px 20px rgba(225,29,42,.28); transition:background .15s ease, transform .1s ease;
+  }
+  .mnav-join:hover{ background:var(--redb,#ff3b48); color:#fff; }
+  .mnav-join:active{ transform:translateY(1px); }
+  .mnav-join:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+}
+
+/* =====================================================================
+   SMALL PHONES (<=480px) — tighten so nothing overflows
+   ===================================================================== */
+@media (max-width:480px){
+  /* drop the wordmark in the top bar, keep the WL mark, to guarantee fit */
+  .nav7 .brand7 .bword{ display:none; }
+  .nav7 .bar{ padding-inline:10px; gap:4px; }
+  :is(.nav7,.hv3) .cta{ padding:.5em .65em; font-size:11.5px; }
+  .mnav-drawer{ width:min(92vw,400px); }
+}
+
+/* =====================================================================
+   REDUCED MOTION — no slide, just fade; no chevron/burger tweening
+   ===================================================================== */
+@media (max-width:760px) and (prefers-reduced-motion:reduce){
+  .mnav-drawer{
+    transition:opacity .2s ease; transform:none; opacity:0;
+    pointer-events:none; visibility:hidden;
+  }
+  .mnav-drawer.is-open{ opacity:1; pointer-events:auto; visibility:visible; }
+  .mnav-scrim{ transition:opacity .2s ease; }
+  .mnav-burger__line,
+  .mnav-acc__chev,
+  .mnav-acc__title::before,
+  .mnav-acc__panel{ transition:none; }
+}
+
+/* ---- mobile/hero.css ---- */
+/* ============================================================================
+   wrestlelore.com — HOMEPAGE HERO, MOBILE ONLY
+   Block 1: .hv3-hero  (Lore Feed rail + .hspot carousel / match-desk)
+   Scope: everything below is inside @media (max-width:760px) / (max-width:480px).
+   Desktop (>760px) is untouched. CSS-only. No markup changes required.
+
+   THE OVERLAP + WHY THE FIRST PASS LOST:
+   index.html has an INLINE <style id="home-ringfeed"> block in <head> that loads
+   AFTER css/site.css, holding the carousel layout on the `.js` prefix (the `.js`
+   class lives on <html>):
+     .js .hspot__viewport{position:relative;display:block;min-height:clamp(320px,46vw,400px);}
+     .js .hspot__slide{position:absolute;inset:0;display:flex;opacity:0;visibility:hidden;...}
+     .js .hspot__slide.is-active{opacity:1;visibility:visible;pointer-events:auto;...}
+   The JS (sizeViewport) also writes an inline height onto .hspot__viewport (~647px).
+   All three slides stay position:absolute;inset:0, so the active slide overlays the
+   copy + Lore Feed = the pile-up.
+
+   To guarantee the win, the carousel rules below use the SAME `.js` selector prefix
+   as the inline block (identical specificity) plus !important, so they beat both the
+   inline stylesheet rules AND the JS-written inline height (inline styles without
+   !important lose to an !important declaration).
+   ============================================================================ */
+
+/* Slide-change fade — top level so no @rule nesting can drop it */
+@keyframes hvHeroFade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+@media (max-width:760px){
+
+  /* ---- 0 · Contain the hero: kill any horizontal page scroll ---------------- */
+  .hv3-hero{padding:22px 0 26px;overflow-x:clip;}
+  .hv3-hero .wrap{width:100%;box-sizing:border-box;}
+  .hv3 .frame{padding:20px 16px 22px;border-radius:12px;}
+
+  /* ---- 1 · Outer Lore-Feed grid → single column, rail moves LAST ------------ */
+  .hv3-hero .hrl-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:0!important;
+  }
+  .hv3-hero .hrl-hero{order:1;min-width:0;}
+  .hv3-hero .hrl-railwrap{
+    order:2;
+    position:static!important;
+    height:min(60vh,480px)!important;   /* bounded, self-scrolling feed strip */
+    margin-top:22px!important;
+    transform:none!important;
+  }
+  .hv3-hero .hrl-rail{border-radius:12px;}
+
+  /* ---- 2 · CAROUSEL: beat the inline `.js …` rules + JS inline height -------- */
+  /* Viewport flows and releases the JS-written pixel height.                     */
+  .js .hspot__viewport{
+    position:static!important;
+    display:block!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  /* Every slide out of the absolute stack; ONLY the active one occupies flow.    */
+  .js .hspot__slide{
+    position:static!important;
+    inset:auto!important;
+    display:none!important;
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    transform:none!important;
+    transition:none!important;
+  }
+  .js .hspot__slide.is-active{
+    display:block!important;
+    animation:hvHeroFade .4s ease both;
+  }
+  /* Poster / media keep a real height box so their inset:0 image has something to
+     fill (they never escape the slide).                                          */
+  .js .hspot__poster,
+  .js .hspot__poster--img,
+  .js .mdx-screen{
+    position:relative!important;
+    min-height:clamp(240px,70vw,320px)!important;
+  }
+
+  /* ---- 3 · Inner hero grid → single column, app-like vertical order ---------- */
+  /* copy (headline · lede · CTAs) first, match-desk card second.                 */
+  .hv3 .herogrid,
+  .hv3 .herogrid.is-desk{
+    display:flex!important;
+    flex-direction:column!important;
+    grid-template-columns:none!important;
+    gap:16px!important;
+    align-items:stretch!important;
+  }
+  .hv3 .hspot__copy{order:1;min-width:0;}
+  .hv3 .mdx-stage{order:2;min-width:0;}
+
+  /* ---- 4 · Headline scaled DOWN to sit cleanly in 2–3 lines ----------------- */
+  .hv3-hero .hv3-h1{
+    font-size:clamp(1.95rem,7.4vw,2.7rem)!important;
+    line-height:1.03!important;
+    letter-spacing:.005em;
+    margin:.1em 0 .3em!important;
+  }
+  .hv3-hero .lede{
+    font-size:15px!important;
+    line-height:1.5!important;
+    max-width:none!important;
+  }
+  .hv3 .onair{font-size:11px;}
+
+  /* ---- 5 · Primary CTAs → comfortable 44px tap targets ---------------------- */
+  .hv3 .herocta,
+  .hv3 .mdx-cta{gap:10px!important;margin-top:16px!important;}
+  .hv3 .mdx-cta .mdx-watch,
+  .hv3 .mdx-cta .btn-ghost,
+  .hv3 .herocta>a{
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+  }
+  .mdx-open{max-width:100%!important;box-sizing:border-box;}
+  .mdx-open__t{line-height:1.3;}
+
+  /* ---- 6 · Match-desk card: sized to the viewport, readable, tappable ------- */
+  .hv3 .mdx-stage{margin-top:2px;}
+  .js .mdx-screen,
+  .hv3 .mdx-screen{height:clamp(260px,72vw,330px)!important;}
+  .hv3 .mdx-belt{margin-top:14px!important;flex-wrap:wrap;gap:10px 14px;}
+  .hv3 .mdx-bell{width:56px;height:48px;}
+  /* keep the ledger (sealed result / ballot) legible if the desk is expanded */
+  .hv3 .herogrid.is-desk .mdx-ledger{grid-template-columns:1fr!important;}
+
+  /* ---- 7 · Carousel controls (dots / prev / next / play) → 44px targets ----- */
+  .js .hspot__ui{margin-top:14px!important;flex-wrap:wrap;gap:8px 10px;}
+  .hspot__nav,
+  .hspot__play{width:44px!important;height:44px!important;}
+  .hspot__nav svg{width:18px;height:18px;}
+  .hspot__dots{gap:12px;}
+  .hspot__dot{position:relative;}
+  .hspot__dot::before{               /* invisible 44×44 hit area, visuals unchanged */
+    content:"";position:absolute;top:50%;left:50%;
+    width:44px;height:44px;transform:translate(-50%,-50%);
+  }
+
+  /* ---- 8 · Lore Feed rail: keep-form inputs tappable ------------------------ */
+  .hrl-keep input{min-height:44px;box-sizing:border-box;}
+  .hrl-keep button{min-height:44px;}
+  .hrl-filters{gap:.55rem 1rem;}
+  .hrl-filters a{padding:6px 0;}
+}
+
+/* ============================================================================
+   SMALL PHONE FINE-TUNING (<=480px)
+   ============================================================================ */
+@media (max-width:480px){
+
+  .hv3-hero{padding:18px 0 22px;}
+  .hv3 .frame{padding:16px 12px 18px;border-radius:11px;}
+
+  .hv3-hero .hv3-h1{
+    font-size:clamp(1.7rem,8.6vw,2.25rem)!important;
+    line-height:1.04!important;
+  }
+  .hv3-hero .lede{font-size:14.5px!important;}
+
+  /* Stack the primary CTAs full-width for one-thumb reach */
+  .hv3 .mdx-cta,
+  .hv3 .herocta{flex-direction:column!important;align-items:stretch!important;}
+  .hv3 .mdx-cta .mdx-watch,
+  .hv3 .mdx-cta .btn-ghost,
+  .hv3 .herocta>a{width:100%;}
+
+  .js .mdx-screen,
+  .hv3 .mdx-screen{height:clamp(230px,64vw,290px)!important;}
+  .js .hspot__poster,
+  .js .hspot__poster--img{min-height:clamp(220px,62vw,280px)!important;}
+  .hv3 .mdx-title{font-size:clamp(1.35rem,6vw,1.8rem)!important;}
+
+  .hv3-hero .hrl-railwrap{height:min(64vh,440px)!important;}
+}
+
+/* ============================================================================
+   Reduced motion: no fade on slide change
+   ============================================================================ */
+@media (max-width:760px) and (prefers-reduced-motion:reduce){
+  .js .hspot__slide.is-active{animation:none!important;}
+}
+
+/* ---- mobile Lore Feed rail: stop the absolute overlay, let it flow below the hero ---- */
+@media (max-width:760px){
+  .hrl-railwrap{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;margin-top:1.1rem!important;}
+  .hrl-rail{position:static!important;inset:auto!important;height:auto!important;max-height:70vh!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;}
+}
+
+/* ---- mobile/sections.css ---- */
+/* ==========================================================================
+   wrestlelore.com  ·  MOBILE HOMEPAGE SECTIONS  (everything below the hero)
+   --------------------------------------------------------------------------
+   Goal: premium app-like phone experience. One clean column, no horizontal
+   PAGE scroll, intentional swipeable rails with edge-fade + a "swipe" hint.
+
+   Scope rules:
+     - Everything lives inside @media (max-width:760px) or (max-width:480px).
+     - Desktop above 760px is never touched.
+     - Pairs with js/scroll.js, which adds .js-hscroll (+ .hs-wrap / .hs-hint)
+       and drives the --hsl / --hsr edge-fade variables. Layout collapse and
+       rail conversion are pure CSS so they work even before the JS runs.
+     - Selectors are id-led (#wdeal, #tpx, #clx, #ptk) or double-class
+       (.hv3 .foo) so they win over the page's inline <style> blocks
+       regardless of source order.
+   ========================================================================== */
+
+/* ======================= PRIMARY MOBILE  (<=760px) ======================= */
+@media (max-width:760px){
+
+  /* 0 · PAGE CONTAINMENT — the html/body must never exceed the viewport ---- */
+  html,body{max-width:100%;overflow-x:hidden;}
+
+  /* 1 · SECTION RHYTHM & TYPE -------------------------------------------- */
+  .hv3 .section{padding-block:var(--sp-6,2rem);}
+  .hv3 .section-head{margin-bottom:var(--sp-4,1rem);gap:.3rem .8rem;}
+  .hv3 .section-head h2{font-size:clamp(1.55rem,7.4vw,2.1rem);line-height:1.02;}
+  .thisweek .tw-lede{font-size:.94rem;line-height:1.55;}
+
+  /* 44px tap targets across the homepage controls ------------------------ */
+  .hv3 .chip7{min-height:44px;display:inline-flex;align-items:center;}
+  .hv3 .rowlink{min-height:44px;}
+  .thisweek .tw-item{min-height:48px;}
+
+  /* 2 · STACK — multi-column desktop grids collapse to ONE column -------- */
+  .hv3 .lanegrid,
+  .hv3 .grid8,
+  .hv3 .serierow{grid-template-columns:1fr;}
+
+  /* 2026 Season events: the .rail7 timeline row -> single stacked column */
+  .hv3 .rail7{flex-direction:column;gap:10px;padding-top:6px;}
+  .hv3 .rail7::before{display:none;}                 /* drop the horizontal spine */
+  .hv3 .rail7 .tc,
+  .hv3 .rail7 .tc--main{flex:1 1 auto;width:100%;min-height:82px;}
+  .hv3 .rail7 .tc::before{display:none;}             /* drop the spine node dots */
+
+  /* AJ HOF dossier: two-column .aj3-grid -> one column (extends 940 rule) */
+  .section.aj3 .aj3-grid{grid-template-columns:1fr;gap:16px;}
+  .section.aj3 .aj3-spot{padding:20px 18px 18px;}
+  /* the .aj3 career timeline is VERTICAL (a stacked spine), so it simply
+     stays one column — no horizontal scroller needed. */
+
+  /* Five-Star Classics: spotlight + rail -> stacked, rail becomes a swiper */
+  #clx{grid-template-columns:1fr;gap:14px;}
+  #clx .clx-main{min-height:300px;}
+
+  /* The Production Truck monitor bank -> stacked program, 2-up monitors */
+  #ptk{grid-template-columns:1fr;gap:14px;}
+  #ptk .ptk-program{min-height:300px;}
+  #ptk .ptk-bank{grid-template-columns:repeat(2,minmax(0,1fr));}
+
+  /* The Moments Reel wrapper -> single column (film strip below is a swiper) */
+  #tpx{grid-template-columns:1fr;gap:14px;}
+
+  /* 3 · INTENTIONAL HORIZONTAL SCROLLERS --------------------------------- *
+     Kept swipeable, contained in the viewport, momentum + snap. The
+     edge-fade mask + "swipe" hint are layered on by .js-hscroll below.     */
+
+  /* shared momentum + snap for every converted rail */
+  .thisweek .tw-rail,
+  .thisweek .tw-list,
+  #wdeal,
+  .hv3 .filterrow,
+  #tpx .tpx-reel,
+  #clx .clx-rail{
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;
+  }
+
+  /* This Week — video card rail (already a scroller; add snap on the list) */
+  .thisweek .tw-list{scroll-snap-type:x proximity;}
+  .thisweek .tw-item{scroll-snap-align:start;}
+  .thisweek .tw-rail>li{scroll-snap-align:start;}
+
+  /* The Wrestlers — #wdeal card deck: grid -> horizontal deck */
+  #wdeal{display:flex;flex-wrap:nowrap;grid-template-columns:none;gap:12px;
+    overflow-x:auto;padding-bottom:4px;}
+  #wdeal .tile{display:block;flex:0 0 62%;max-width:62%;min-width:0;scroll-snap-align:start;}
+
+  /* The Wrestlers — chip/lane filter rail: wrap -> horizontal swiper */
+  .hv3 .filterrow{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;
+    margin-bottom:var(--sp-4);}
+  .hv3 .filterrow .chip7{flex:0 0 auto;scroll-snap-align:start;}
+
+  /* The Moments Reel — #tpx film strip: auto-roll off, becomes a manual swiper */
+  #tpx .tpx-reel{overflow-x:auto;padding:14px 0;}
+  #tpx .tpx-reel::before,
+  #tpx .tpx-reel::after{display:none;}   /* JS edge-fade mask replaces these */
+  #tpx .tpx-track{animation:none;}
+  #tpx .tpx-frame{scroll-snap-align:start;}
+
+  /* Five-Star Classics — #clx rail of match cards: grid -> horizontal swiper */
+  #clx .clx-rail{display:flex;flex-wrap:nowrap;grid-template-columns:none;
+    grid-auto-rows:auto;gap:8px;overflow-x:auto;padding-bottom:4px;}
+  #clx .clx-card{flex:0 0 78%;scroll-snap-align:start;}
+
+  /* 4 · SCROLL INDICATOR SYSTEM (added by js/scroll.js) ------------------ *
+     .hs-wrap  — a relative positioned wrapper JS inserts around each rail
+                 (only on mobile; removed again above 760px so desktop DOM
+                 stays untouched).
+     .js-hscroll — the rail itself; carries the edge-fade mask.
+     --hsl / --hsr — left / right fade width, toggled by JS on scroll.       */
+
+  .hv3 .hs-wrap{position:relative;min-width:0;}
+
+  .hv3 .js-hscroll{
+    --hsl:0px; --hsr:30px;                 /* default: hint that more is to the right */
+    scrollbar-width:none;                  /* rely on fade + hint, not a bar */
+    -webkit-mask-image:linear-gradient(to right,
+      transparent 0, #000 var(--hsl,0px),
+      #000 calc(100% - var(--hsr,0px)), transparent 100%);
+    mask-image:linear-gradient(to right,
+      transparent 0, #000 var(--hsl,0px),
+      #000 calc(100% - var(--hsr,0px)), transparent 100%);
+  }
+  .hv3 .js-hscroll::-webkit-scrollbar{display:none;}
+
+  /* the "swipe" affordance: a small gold pill pinned to the right edge */
+  .hv3 .hs-hint{
+    position:absolute; top:50%; right:8px; z-index:8;
+    transform:translateY(-50%);
+    display:inline-flex; align-items:center; gap:7px;
+    pointer-events:none; user-select:none;
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+    font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:#0d0e12;
+    background:linear-gradient(180deg,#f2cc4b,#d4af37);
+    border-radius:999px; padding:6px 11px;
+    box-shadow:0 4px 14px rgba(0,0,0,.45);
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .hv3 .hs-hint__dots{display:inline-flex; gap:3px;}
+  .hv3 .hs-hint__dots i{width:4px; height:4px; border-radius:50%; background:#0d0e12; opacity:.4;
+    animation:hsDots 1.15s ease-in-out infinite;}
+  .hv3 .hs-hint__dots i:nth-child(2){animation-delay:.15s;}
+  .hv3 .hs-hint__dots i:nth-child(3){animation-delay:.3s;}
+  .hv3 .hs-hint.is-gone{opacity:0; transform:translateY(-50%) scale(.9);}
+  @keyframes hsDots{0%,100%{opacity:.35; transform:translateX(0);}
+                    50%{opacity:1; transform:translateX(2px);}}
+
+  /* 5 · TICKER — the .rt live strip wraps to TWO lines (taller, readable) - *
+     Items are position:absolute, so the strip can't auto-grow; min-height is
+     sized for a name line + a headline that may wrap once, with no clipping. */
+  .ticker7.rt{height:auto; min-height:68px; align-items:stretch;}
+  .ticker7.rt .rt-tag{align-items:center; padding:0 13px;}
+  .ticker7.rt .rt-stage{min-height:68px;}
+  .ticker7.rt .rt-item{
+    white-space:normal; flex-wrap:wrap; align-content:center;
+    row-gap:2px; column-gap:.5em; padding:8px 14px;
+  }
+  .ticker7.rt .rt-name{flex:0 0 auto; font-size:13px;}
+  .ticker7.rt .rt-txt{
+    flex:1 1 100%; min-width:0; white-space:normal; line-height:1.28;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .ticker7.rt .rt-t{flex:0 0 auto; margin-left:auto;}
+}
+
+/* ======================= SMALL PHONE  (<=480px) ========================== */
+@media (max-width:480px){
+  .hv3 .section{padding-block:var(--sp-5,1.5rem);}
+  .hv3 .section-head h2{font-size:clamp(1.4rem,8vw,1.85rem);}
+
+  /* give a touch more of the next card as a "there's more" cue */
+  #wdeal .tile{flex-basis:70%; max-width:70%;}
+  #clx .clx-card{flex-basis:85%;}
+  .thisweek .tw-rail>li{flex:0 0 82%;}
+
+  /* monitor bank single column so each feed stays legible */
+  #ptk .ptk-bank{grid-template-columns:1fr;}
+
+  /* taller two-line ticker on the narrowest screens */
+  .ticker7.rt,
+  .ticker7.rt .rt-stage{min-height:72px;}
+}
+
+/* ================== REDUCED MOTION (mobile scroll layer) ================== *
+   These selectors only exist on mobile (JS adds them there), so toning them
+   down here never affects desktop.                                          */
+@media (prefers-reduced-motion:reduce){
+  .hv3 .hs-hint{transition:none;}
+  .hv3 .hs-hint__dots i{animation:none; opacity:.6;}
+  #tpx .tpx-track{animation:none;}
+}

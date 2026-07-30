@@ -245,3 +245,329 @@
   }
   if(document.readyState!=='loading')initRingTicker();else document.addEventListener('DOMContentLoaded',initRingTicker);
 })();
+
+
+/* ===== MOBILE: hamburger drawer + horizontal-scroll indicators ===== */
+
+/* ---- mobile/nav.js ---- */
+/* =====================================================================
+   MOBILE NAV DRAWER  (append to js/nav.js)
+   Toggle · scrim · Escape · focus trap · body scroll lock ·
+   accordion expand/collapse · bottom scroll-fade.
+   No dependencies. Wrapped in an IIFE and gated on the hamburger existing,
+   so it is a no-op on any page/viewport where the burger is not present.
+   The in-drawer search button reuses [data-cmdk-open] (handled by the
+   command-palette IIFE above), so no search wiring is needed here.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var burger = document.querySelector('.mnav-burger');
+  var drawer = document.getElementById('mnav-drawer');
+  var scrim  = document.querySelector('.mnav-scrim');
+  if (!burger || !drawer || !scrim) return;
+
+  var scrollwrap = drawer.querySelector('.mnav-scrollwrap');
+  var body       = drawer.querySelector('.mnav-body');
+  var isOpen = false;
+  var lastFocus = null;
+
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---------- focusable helpers (recomputed per Tab, so collapsed
+       accordion links — visibility:hidden — are correctly excluded) ---- */
+  var FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';
+  function visible(el) {
+    if (getComputedStyle(el).visibility === 'hidden') return false;
+    return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+  }
+  function focusables() {
+    return Array.prototype.filter.call(drawer.querySelectorAll(FOCUSABLE), visible);
+  }
+
+  /* ---------- open / close ---------- */
+  function open() {
+    if (isOpen) return;
+    isOpen = true;
+    lastFocus = document.activeElement;
+
+    scrim.hidden = false;
+    drawer.hidden = false;
+    drawer.setAttribute('aria-hidden', 'false');
+    // force reflow so the transition runs from the hidden state
+    void drawer.offsetWidth;
+
+    scrim.classList.add('is-open');
+    drawer.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('mnav-open');
+
+    updateFade();
+    // move focus into the drawer (the close button)
+    var close = drawer.querySelector('.mnav-close');
+    (close || drawer).focus();
+  }
+
+  function finishClose() {
+    if (isOpen) return;            // re-opened mid-transition
+    drawer.hidden = true;
+    scrim.hidden = true;
+  }
+
+  function close() {
+    if (!isOpen) return;
+    isOpen = false;
+
+    scrim.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('mnav-open');
+
+    // hide from layout after the slide/fade finishes
+    if (reduce) {
+      finishClose();
+    } else {
+      var done = false;
+      var onEnd = function (e) {
+        if (e.target !== drawer) return;
+        done = true;
+        drawer.removeEventListener('transitionend', onEnd);
+        finishClose();
+      };
+      drawer.addEventListener('transitionend', onEnd);
+      setTimeout(function () { if (!done) { drawer.removeEventListener('transitionend', onEnd); finishClose(); } }, 400);
+    }
+
+    // return focus to the trigger
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    else burger.focus();
+  }
+
+  function toggle() { isOpen ? close() : open(); }
+
+  burger.addEventListener('click', function (e) { e.preventDefault(); toggle(); });
+  Array.prototype.forEach.call(drawer.querySelectorAll('[data-mnav-close]'), function (b) {
+    b.addEventListener('click', function (e) { e.preventDefault(); close(); });
+  });
+  scrim.addEventListener('click', close);
+
+  /* ---------- Escape + focus trap ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (!isOpen) return;
+    // let the command palette own Escape while it is open above the drawer
+    var pal = document.getElementById('cmdk');
+    if (pal && pal.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key !== 'Tab') return;
+
+    var f = focusables();
+    if (!f.length) { e.preventDefault(); return; }
+    var first = f[0], last = f[f.length - 1], act = document.activeElement;
+    // keep focus inside the drawer
+    if (!drawer.contains(act)) { e.preventDefault(); first.focus(); return; }
+    if (e.shiftKey && act === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && act === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ---------- accordions ---------- */
+  var accs = Array.prototype.slice.call(drawer.querySelectorAll('.mnav-acc'));
+  accs.forEach(function (acc) {
+    var btn = acc.querySelector('.mnav-acc__btn');
+    var panel = acc.querySelector('.mnav-acc__panel');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', function () {
+      var willOpen = !acc.classList.contains('is-open');
+      acc.classList.toggle('is-open', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      if (willOpen) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      } else {
+        // set an explicit px first (in case it is 'none') so the collapse animates
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        void panel.offsetWidth;
+        panel.style.maxHeight = '0px';
+      }
+      // the drawer's scrollable height just changed
+      updateFade();
+    });
+
+    // once expanded, release the fixed height so nested reflow can't clip
+    panel.addEventListener('transitionend', function (e) {
+      if (e.propertyName !== 'max-height') return;
+      if (acc.classList.contains('is-open')) panel.style.maxHeight = 'none';
+      updateFade();
+    });
+  });
+
+  /* ---------- bottom scroll-fade affordance ---------- */
+  function updateFade() {
+    if (!scrollwrap || !body) return;
+    var atEnd = body.scrollTop + body.clientHeight >= body.scrollHeight - 4;
+    scrollwrap.classList.toggle('is-end', atEnd);
+  }
+  if (body) body.addEventListener('scroll', updateFade, { passive: true });
+  window.addEventListener('resize', function () { if (isOpen) updateFade(); });
+})();
+
+/* ---- mobile/scroll.js ---- */
+/* ==========================================================================
+   wrestlelore.com  ·  MOBILE HORIZONTAL-SCROLL INDICATORS
+   --------------------------------------------------------------------------
+   Append this IIFE to js/nav.js. It enhances the homepage's intentional
+   horizontal rails on phones (<=760px):
+
+     · wraps each rail in a relative .hs-wrap (so the hint can be pinned)
+     · tags the rail .js-hscroll and drives an edge-fade mask via the
+       --hsl / --hsr custom properties (see sections.css)
+     · shows a small "Swipe" pill that fades after the first scroll / touch,
+       or after a few seconds, so it's obvious content continues off-screen
+
+   Safe by design: no dependencies, gated on element presence, only active
+   at <=760px, fully torn down (DOM restored) above 760px so desktop is
+   untouched, and reduced-motion aware.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  if (typeof window === 'undefined' || !window.matchMedia) return;
+
+  var MQ    = window.matchMedia('(max-width:760px)');
+  var RM     = window.matchMedia('(prefers-reduced-motion:reduce)');
+  var FADE   = '30px';           // must match sections.css --hsr default
+  var HINT_TIMEOUT = 4600;       // ms before the swipe pill auto-hides
+
+  /* The intentional horizontal scrollers, by their existing id/class hooks. */
+  var SELECTORS = [
+    '.thisweek .tw-rail',   // This Week video cards
+    '.thisweek .tw-list',   // This Week promotion tabs
+    '#wdeal',               // The Wrestlers card deck
+    '.hv3 .filterrow',      // The Wrestlers chip/lane rail
+    '#tpx .tpx-reel',       // The Moments Reel film strip
+    '#clx .clx-rail'        // Five-Star Classics rail
+  ];
+
+  function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+
+  function collect() {
+    var found = [];
+    each(SELECTORS, function (sel) {
+      each(document.querySelectorAll(sel), function (el) {
+        if (found.indexOf(el) === -1) found.push(el);
+      });
+    });
+    return found;
+  }
+
+  /* ---- enable one rail ------------------------------------------------- */
+  function enable(el) {
+    if (el.__hs) return;
+
+    // wrap so the swipe hint has a stable, non-scrolling anchor
+    var wrap = document.createElement('div');
+    wrap.className = 'hs-wrap';
+    el.parentNode.insertBefore(wrap, el);
+    wrap.appendChild(el);
+    el.classList.add('js-hscroll');
+
+    // the swipe affordance (no arrows/dashes — a labelled pill + pulsing dots)
+    var hint = document.createElement('div');
+    hint.className = 'hs-hint';
+    hint.setAttribute('aria-hidden', 'true');
+    hint.innerHTML = '<span class="hs-hint__dots"><i></i><i></i><i></i></span>Swipe';
+    wrap.appendChild(hint);
+
+    var state = { wrap: wrap, hint: hint, timer: 0, dismissed: false, ro: null };
+    el.__hs = state;
+
+    function dismissHint() {
+      if (state.dismissed) return;
+      state.dismissed = true;
+      if (state.timer) { clearTimeout(state.timer); state.timer = 0; }
+      hint.classList.add('is-gone');
+      window.setTimeout(function () {
+        if (hint && hint.parentNode) hint.style.display = 'none';
+      }, RM.matches ? 0 : 480);
+    }
+
+    function update() {
+      var max = el.scrollWidth - el.clientWidth;
+      var x   = el.scrollLeft;
+      if (max <= 2) {                       // nothing to scroll: no fade, no hint
+        el.style.setProperty('--hsl', '0px');
+        el.style.setProperty('--hsr', '0px');
+        if (!state.dismissed) hint.style.display = 'none';
+        return;
+      }
+      if (!state.dismissed) hint.style.display = '';
+      el.style.setProperty('--hsl', x > 4 ? FADE : '0px');
+      el.style.setProperty('--hsr', x < max - 4 ? FADE : '0px');
+    }
+    state.update = update;
+
+    state.onScroll = function () {
+      if (el.scrollLeft > 6) dismissHint();
+      update();
+    };
+    el.addEventListener('scroll', state.onScroll, { passive: true });
+    el.addEventListener('pointerdown', dismissHint, { passive: true });
+    el.addEventListener('touchstart', dismissHint, { passive: true });
+
+    // recompute when content fills in late (e.g. the JS-built #wdeal deck)
+    if (window.ResizeObserver) {
+      state.ro = new ResizeObserver(update);
+      state.ro.observe(el);
+    }
+
+    state.timer = window.setTimeout(dismissHint, HINT_TIMEOUT);
+    update();
+  }
+
+  /* ---- disable one rail (restore original DOM) ------------------------- */
+  function disable(el) {
+    var s = el.__hs;
+    if (!s) return;
+    el.removeEventListener('scroll', s.onScroll);
+    if (s.ro) s.ro.disconnect();
+    if (s.timer) clearTimeout(s.timer);
+    if (s.hint && s.hint.parentNode) s.hint.parentNode.removeChild(s.hint);
+    el.classList.remove('js-hscroll');
+    el.style.removeProperty('--hsl');
+    el.style.removeProperty('--hsr');
+    var w = s.wrap;
+    if (w && w.parentNode) {                // unwrap
+      w.parentNode.insertBefore(el, w);
+      w.parentNode.removeChild(w);
+    }
+    el.__hs = null;
+  }
+
+  /* ---- sync to the current breakpoint ---------------------------------- */
+  function sync() {
+    var rails = collect();
+    if (!rails.length) return;
+    if (MQ.matches) each(rails, enable);
+    else            each(rails, disable);
+  }
+
+  function refresh() {                      // recompute fades for active rails
+    each(collect(), function (el) { if (el.__hs) el.__hs.update(); });
+  }
+
+  function boot() {
+    sync();
+    // late layout / font / async content settling
+    window.addEventListener('load', refresh);
+    window.addEventListener('resize', refresh, { passive: true });
+    if (MQ.addEventListener) MQ.addEventListener('change', sync);
+    else if (MQ.addListener) MQ.addListener(sync);   // older Safari
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
