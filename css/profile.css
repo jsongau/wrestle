@@ -233,9 +233,9 @@ html.js .wl-dossier .reveal.in{opacity:1;transform:none;transition:opacity .7s e
   margin-inline:0;padding:40px clamp(20px,3vw,48px) 90px}
 .wl-dossier .profile-main{min-width:0;max-width:1120px;justify-self:start;width:100%}
 .wl-dossier .prose{max-width:880px}
-/* rail clears the sticky header stack plus a small gap, so its top is never tucked under the mega nav. No inner scroll: the rail is its natural height and sticks/scrolls with the page (no max-height/overflow scroll box). */
-.wl-dossier .rail{position:sticky;top:calc(var(--stack-top) + 28px);align-self:start;display:grid;gap:16px;min-width:0;max-height:none;overflow:visible}
-@media(min-width:1200px){.wl-dossier .rail{top:calc(var(--stack-top) + 28px);z-index:52}}
+/* rail pins directly under the sticky mega-nav bar (measured 103px tall across desktop widths; the --nav-h token is stale). The condensed id-plate is centered, not in the right column, so the rail can sit this high without colliding. No inner scroll: natural height, sticks/scrolls with the page. */
+.wl-dossier .rail{position:sticky;top:112px;align-self:start;display:grid;gap:16px;min-width:0;max-height:none;overflow:visible}
+@media(min-width:1200px){.wl-dossier .rail{top:112px;z-index:52}}
 @media(max-width:960px){.wl-dossier .layout{grid-template-columns:minmax(0,1fr)}
 .wl-dossier .rail{position:static;order:-1;max-height:none;overflow:visible}}
 @media(max-width:640px){.wl-dossier .hero .wrap{padding-top:30px;padding-bottom:34px}
