@@ -23,7 +23,8 @@ POSTER_PC = {"WWE":"#7a1f24","WWF":"#7a1f24","WCW":"#243b6b","TNA":"#4a2668","NX
 # The program's official streaming home (verified 2026-07-28). Used for the watch-full-match link-out.
 WWE_STREAM = ("Peacock", "https://www.peacocktv.com/sports/wwe")
 STREAM = {"WWE":WWE_STREAM,"WWF":WWE_STREAM,"WCW":WWE_STREAM,"ECW":WWE_STREAM,"NXT":WWE_STREAM,
-          "TNA":("TNA+","https://watch.tnawrestling.com/"), "ROH":("HonorClub","https://www.ringofhonor.com/")}
+          "TNA":("TNA+","https://watch.tnawrestling.com/"), "ROH":("HonorClub","https://www.ringofhonor.com/"),
+          "NJPW":("NJPW World","https://watch.njpw1972.com/")}
 def stream_of(m): return STREAM.get(m.get("promotion") or "", (None, None))
 CH_SHORT = {"Ring of Honor Wrestling": "ROH", "TNA Wrestling": "TNA", "WWE": "WWE"}
 

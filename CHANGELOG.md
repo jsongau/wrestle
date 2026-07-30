@@ -1,3 +1,9 @@
+## 2026-07-30 (AJ Styles — Rock-standard profile rebuild + 5 signature match pages)
+- **`wrestlers/aj-styles/index.html` rebuilt to the Rock gold standard**: hero on profile.css vocabulary; rec2 record ledger (spoilers-off default, per-row click-to-reveal + master toggle, all columns sortable, green wins, 8-row inline scroll); 24-match landmark ledger across TNA/NJPW/WWE with 20 opponent names internally linked. Filters verified: TNA 8, NJPW 6, WWE 10, all 24; no JS errors.
+- **5 new signature match pages** in the /matches hub, spoiler-safe (tap-to-reveal winner): cena-vs-styles-royal-rumble-2017 (WWE embed), styles-vs-joe-turning-point-2005 (TNA Vault embed), styles-vs-daniels-against-all-odds-2005, styles-vs-nakamura-wrestle-kingdom-10-2016, styles-vs-suzuki-g1-climax-24-2014 (streaming fallbacks, no unverified uploads).
+- **Review fixes**: Daniels Against All Odds 2005 result corrected to "2-1 in overtime"; Suzuki restored as SportsEvent competitor; em-dash separators cleaned; OG/Twitter cards + stable Person @id added; Nakamura addressRegion Tokyo.
+- Rebased onto live main (7b95c19b); shell re-stamped (287 pages, 0 warnings); hubs rebuilt (46 cards, 38 with video, 46 ranked). Files: build/build_rankings.py, data/matches.json, data/aj-styles.md, matches/index.html, rankings/index.html, wrestlers/aj-styles/index.html.
+
 ## 2026-07-29 — home: interactive lower half, shorter hero, alias search
 ## 2026-07-30 (rivalries + moments hubs — re-stacked on current main)
 - Re-based the rivalries hub redesign and the cinematic moments hub onto the current production main (they had been built on an older tip that diverged after parallel work landed).
