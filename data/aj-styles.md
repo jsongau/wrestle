@@ -96,7 +96,7 @@ Styles debuted as a surprise #3 entrant at the 2016 Royal Rumble (Jan 24, 2016),
 
 > **Did NOT hold:** ROH World Championship or IWGP Tag Team Championship — despite occasional listings, neither is his.
 
-## 7. Signature Matches
+## 7. Signature Matches (Critically Acclaimed)
 
 All star figures are Dave Meltzer / Wrestling Observer reported opinion; Cagematch figures are community-vote averages (out of 10) and shift over time. Ordered by acclaim.
 
@@ -109,7 +109,7 @@ All star figures are Dave Meltzer / Wrestling Observer reported opinion; Cagemat
 | vs. Samoa Joe | TNA Turning Point | Dec 11, 2005 | Joe won (Coquina Clutch) | Meltzer 4.75★; Cagematch ~9.43 |
 | vs. Daniels vs. Joe | TNA Turning Point | Nov 15, 2009 | Styles retained TNA World Title | Cagematch ~9.36 |
 | vs. Kazuchika Okada | NJPW Dominion 7.5 | July 5, 2015 | Okada won IWGP Title | Cagematch ~9.28 |
-| vs. Christopher Daniels (30-min Iron Man) | TNA Against All Odds | Feb 13, 2005 | Styles won 2–1 (X-Division) | Meltzer 4.75★ |
+| vs. Christopher Daniels (30-min Iron Man) | TNA Against All Odds | Feb 13, 2005 | Styles won 2–1 in OT (X-Division) | Meltzer 4.75★ |
 | vs. John Cena | WWE Royal Rumble | Jan 29, 2017 | Cena won WWE Title (record-tying 16th) | Meltzer 4.75★ |
 | vs. Daniel Bryan | WWE TLC | Dec 16, 2018 | Bryan retained WWE Title | Meltzer 4.75★ |
 | vs. John Cena | WWE SummerSlam | Aug 21, 2016 | Styles won | Meltzer 4.5★ |
@@ -119,6 +119,246 @@ All star figures are Dave Meltzer / Wrestling Observer reported opinion; Cagemat
 | vs. The Undertaker (Boneyard Match) | WWE WrestleMania 36 | Apr 4, 2020 | Undertaker won (cinematic) | Meltzer: Not Rated |
 
 > Corrections: There is **no** Styles vs. Kenny Omega Wrestle Kingdom 11 match (that main event was Omega vs. Okada; the two never had a televised singles match). The Styles–Nakamura WrestleMania singles bout was **WM34 (2018)**, not WM33 (where Styles faced Shane McMahon). Meltzer declined to star-rate any WM36 match, citing the cinematic, empty-arena format.
+
+## 7b. Complete Career Match Record (176 Notable Bouts)
+
+Comprehensive ledger of PPV/major-event matches and significant TV bouts, 2002–2026. Every G1 Climax block match, every title change, every major stipulation bout. This is the source data for the `/wrestlers/aj-styles/` record ledger. Tag matches noted with [TAG]. Results: W=Win, L=Loss, D=Draw, NC=No Contest.
+
+
+### Career-Defining Bouts (31) — the default "Career-defining" view on the page
+
+These are flagged `data-landmark="1"` in the record ledger and surface by default; the full 176 are one toggle away. Selection favors title wins/losses that changed his trajectory, promotion debuts, dream matches, MOTY-caliber classics, WrestleMania/Wrestle Kingdom marquee bouts, and the retirement match.
+
+| Date | Promo | Event | Opponent | Milestone |
+|---|---|---|---|---|
+| 2002-06-19 | TNA | NWA-TNA Week 1 | Jerry Lynn | Won X-Division (1st) |
+| 2003-06-11 | TNA | NWA-TNA PPV | Jeff Jarrett & D-Lo Brown | Won NWA World (1st) |
+| 2004-03-13 | ROH | War of the Wire | CM Punk | Won ROH Pure (inaugural) |
+| 2004-04-21 | TNA | TNA Lockdown 2004 | Jeff Jarrett | Won NWA World (2nd) |
+| 2005-02-13 | TNA | Against All Odds 2005 | Christopher Daniels | Won X-Division (2–1 OT) |
+| 2005-05-15 | TNA | Hard Justice 2005 | Jeff Jarrett | Won NWA World (3rd) |
+| 2005-09-11 | TNA | Unbreakable 2005 | Christopher Daniels & Samoa Joe | X-Division (def.) |
+| 2009-09-06 | TNA | No Surrender 2009 | Kurt Angle / Sting  /  Matt Morgan  /  Hernandez | Won TNA World (1st) |
+| 2013-09-01 | TNA | No Surrender 2013 | Magnus | Won BFG Series |
+| 2013-10-20 | TNA | Bound for Glory 2013 | Bully Ray | Won TNA World (2nd) |
+| 2014-04-06 | NJPW | Invasion Attack 2014 | Kazuchika Okada | Bullet Club debut |
+| 2014-05-03 | NJPW | Wrestling Dontaku 2014 | Kazuchika Okada | Won IWGP (1st) |
+| 2014-08-17 | NJPW | G1 Climax 24 Final | Tomohiro Ishii | G1 runner-up |
+| 2015-02-11 | NJPW | The New Beginning 2015 | Hiroshi Tanahashi | Won IWGP (2nd) |
+| 2015-05-03 | NJPW | Wrestling Dontaku 2015 | Shinsuke Nakamura | — |
+| 2016-01-04 | NJPW | Wrestle Kingdom 10 | Shinsuke Nakamura | — |
+| 2016-01-24 | WWE | Royal Rumble 2016 | Field | WWE debut (eliminated) |
+| 2016-04-03 | WWE | WrestleMania 32 | Chris Jericho | — |
+| 2016-09-11 | WWE | Backlash 2016 | Dean Ambrose | Won WWE (1st) |
+| 2017-01-29 | WWE | Royal Rumble 2017 | John Cena | Lost WWE |
+| 2017-05-21 | WWE | Backlash 2017 | Kevin Owens | Won US (1st) |
+| 2017-11-07 | WWE | SmackDown Live (Manchester) | Jinder Mahal | Won WWE (2nd, 371 days) |
+| 2017-11-19 | WWE | Survivor Series 2017 | Brock Lesnar | — |
+| 2018-04-08 | WWE | WrestleMania 34 | Shinsuke Nakamura | WWE (def.) |
+| 2018-11-13 | WWE | SmackDown Live | Daniel Bryan | Lost WWE |
+| 2020-04-04 | WWE | WrestleMania 36 | The Undertaker | — |
+| 2020-06-12 | WWE | SmackDown | Daniel Bryan | Won Intercontinental |
+| 2021-04-10 | WWE | WrestleMania 37 | w/ Omos vs The New Day (Kofi & Xavier) | [TAG] Won Raw Tag |
+| 2022-11-26 | WWE | Survivor Series: WarGames 2022 | The Bloodline | [TAG] — |
+| 2025-04-05 | WWE | WrestleMania 41 Night 1 | Gunther | — |
+| 2026-01-31 | WWE | Royal Rumble 2026 | Gunther | Career finale — retired |
+
+### ROH (2002–2005)
+
+| Date | Event | Opponent | Stipulation | Title Note | Result |
+|---|---|---|---|---|---|
+| 2002-07-13 | Era of Honor Begins | Low Ki | Singles | — | L |
+| 2002-10-05 | Round Robin Challenge | Low Ki | Singles | — | L |
+| 2004-03-13 | War of the Wire | CM Punk | Pure Title Final | Won ROH Pure (inaugural) | W |
+| 2004-03-27 | Reborn: Stage One | CM Punk | ROH Pure | Pure (def.) | W |
+| 2004-06-05 | Reborn Completion | Samoa Joe | ROH Pure | Lost Pure | L |
+| 2004-07-24 | All Star Extravaganza II | Alex Shelley & Jimmy Rave | ROH Tag [TAG] | Won ROH Tag (w/ Matt Sydal) | W |
+| 2005-03-12 | Showdown in the Sun | Samoa Joe | Singles | — | W |
+
+### TNA (2002–2013)
+
+| Date | Event | Opponent | Stipulation | Title Note | Result |
+|---|---|---|---|---|---|
+| 2002-06-19 | NWA-TNA Week 1 | Jerry Lynn | X-Division | Won X-Division (1st) | W |
+| 2002-07-03 | NWA-TNA PPV | Low Ki | X-Division | Lost X-Division | L |
+| 2002-08-28 | NWA-TNA PPV | Syxx-Pac (X-Pac) | X-Division | Won X-Division (2nd) | W |
+| 2002-10-23 | NWA-TNA PPV | Jerry Lynn | X-Division | Won X-Division (3rd) | W |
+| 2002-10-23 | NWA-TNA PPV | Jerry Lynn | NWA Tag [TAG] | Won NWA Tag (w/ Jerry Lynn) | W |
+| 2003-02-05 | NWA-TNA PPV | Jerry Lynn | NWA Tag [TAG] | NWA Tag (def., w/ Lynn) | W |
+| 2003-06-11 | NWA-TNA PPV | Jeff Jarrett & D-Lo Brown | 3-Way | Won NWA World (1st) | W |
+| 2003-10-22 | NWA-TNA PPV | Jeff Jarrett | Singles | Lost NWA World | L |
+| 2004-03-04 | Against All Odds 2004 | Jeff Jarrett | Singles | — | W |
+| 2004-04-21 | TNA Lockdown 2004 | Jeff Jarrett | Steel Cage | Won NWA World (2nd) | W |
+| 2004-05-19 | NWA-TNA PPV | Ron Killings | Singles | Lost NWA World | L |
+| 2004-06-09 | TNA Slammiversary 2004 | Frankie Kazarian | X-Division | Won X-Division (4th) | W |
+| 2005-02-13 | Against All Odds 2005 | Christopher Daniels | 30-Min Iron Man | Won X-Division (2–1 OT) | W |
+| 2005-05-15 | Hard Justice 2005 | Jeff Jarrett | Singles | Won NWA World (3rd) | W |
+| 2005-06-19 | Slammiversary 2005 | Raven / Jarrett / Killings / Monty Brown | King of the Mountain | Lost NWA World | L |
+| 2005-09-11 | Unbreakable 2005 | Christopher Daniels & Samoa Joe | Three-Way X-Division | X-Division (def.) | W |
+| 2005-10-23 | Bound for Glory 2005 | Christopher Daniels | Singles | Lost X-Division | L |
+| 2005-12-11 | Turning Point 2005 | Samoa Joe | 60-Min Iron Man | — | L |
+| 2006-02-12 | Against All Odds 2006 | Samoa Joe | Singles | — | L |
+| 2006-06-04 | Slammiversary 2006 | Samoa Joe | Singles | — | W |
+| 2006-09-24 | No Surrender 2006 | Christopher Daniels | X-Division | Won X-Division (5th) | W |
+| 2006-10-15 | Bound for Glory 2006 | Christopher Daniels & Samoa Joe | Three-Way X-Division | X-Division (def.) | W |
+| 2006-10-29 | TNA Impact | LAX (Homicide & Hernandez) | NWA Tag [TAG] | Won NWA Tag (w/ Daniels) | W |
+| 2006-11-02 | TNA Impact | Chris Sabin | X-Division | Won X-Division (6th) | W |
+| 2006-11-12 | Genesis 2006 | Samoa Joe | Singles | — | L |
+| 2007-02-11 | Against All Odds 2007 | Samoa Joe & Christopher Daniels | Three-Way | — | W |
+| 2007-06-11 | Slammiversary 2007 | Christopher Daniels | Singles | — | L |
+| 2007-10-14 | Bound for Glory 2007 | Team 3D & Johnny Devine | TNA Tag [TAG] | Won TNA Tag (w/ Tomko) | W |
+| 2007-11-11 | Genesis 2007 | Kurt Angle | Singles | — | L |
+| 2008-06-08 | Slammiversary 2008 | Kurt Angle | Singles | — | W |
+| 2008-08-10 | Hard Justice 2008 | Kurt Angle | 2-out-of-3 Falls | — | L |
+| 2008-11-09 | Turning Point 2008 | Kurt Angle | Singles | — | L |
+| 2009-02-01 | Against All Odds 2009 | Sting | Singles | — | W |
+| 2009-09-06 | No Surrender 2009 | Angle / Sting / Morgan / Hernandez | Five-Way | Won TNA World (1st) | W |
+| 2009-10-25 | Bound for Glory 2009 | Sting | Singles | TNA World (def.) | W |
+| 2009-11-08 | Turning Point 2009 | Samoa Joe | Singles | TNA World (def.) | W |
+| 2010-02-07 | Against All Odds 2010 | Samoa Joe & Kurt Angle | Triple Threat | TNA World (def.) | W |
+| 2010-04-18 | Lockdown 2010 | Rob Van Dam | Cage | Lost TNA World | L |
+| 2010-07-18 | Victory Road 2010 | Rob Van Dam | Singles | — | L |
+| 2010-10-10 | Bound for Glory 2010 | Jeff Hardy | Singles | — | L |
+| 2011-03-13 | Victory Road 2011 | Jeff Hardy | TNA World | TNA World (def.) | W |
+| 2011-04-10 | Lockdown 2011 | Lethal Lockdown | Cage [TAG] | — | W |
+| 2011-07-10 | Destination X 2011 | Brian Kendrick | Option C | — | W |
+| 2011-11-13 | Turning Point 2011 | Bobby Roode | Singles | — | L |
+| 2012-03-11 | Victory Road 2012 | Robert Roode | Singles | — | L |
+| 2012-04-01 | Lockdown 2012 | Kurt Angle | Submission Match | — | W |
+| 2012-05-27 | Slammiversary 2012 | Mr. Anderson | Singles | — | W |
+| 2012-07-01 | Destination X 2012 | Samoa Joe | Singles | — | W |
+| 2012-08-12 | Hardcore Justice 2012 | James Storm | Singles | — | W |
+| 2012-10-14 | Bound for Glory 2012 | Jeff Hardy | Singles | — | L |
+| 2012-11-04 | Open Fight Night | Kazarian & Daniels | TNA Tag [TAG] | Won TNA Tag (w/ Kurt Angle) | W |
+| 2012-12-09 | Final Resolution 2012 | Bobby Roode & Austin Aries | Tag [TAG] | TNA Tag (def., w/ Angle) | W |
+| 2013-03-10 | Lockdown 2013 | Bully Ray | Cage | — | L |
+| 2013-07-14 | Destination X 2013 | Samoa Joe | BFG Series | BFG Series (20 pts) | W |
+| 2013-08-11 | Hardcore Justice 2013 | Magnus | BFG Series | BFG Series | W |
+| 2013-09-01 | No Surrender 2013 | Magnus | BFG Series Final | Won BFG Series | W |
+| 2013-10-20 | Bound for Glory 2013 | Bully Ray | Singles | Won TNA World (2nd) | W |
+
+### NJPW (2014–2016)
+
+| Date | Event | Opponent | Stipulation | Title Note | Result |
+|---|---|---|---|---|---|
+| 2014-04-06 | Invasion Attack 2014 | Kazuchika Okada | Debut attack | Bullet Club debut | NC |
+| 2014-05-03 | Wrestling Dontaku 2014 | Kazuchika Okada | Singles | Won IWGP (1st) | W |
+| 2014-08-03 | G1 Climax 24 (Block B) | Karl Anderson | Tournament | G1 Block B | W |
+| 2014-08-05 | G1 Climax 24 (Block B) | Hirooki Goto | Tournament | G1 Block B | W |
+| 2014-08-07 | G1 Climax 24 (Block B) | Tomohiro Ishii | Tournament | G1 Block B | W |
+| 2014-08-09 | G1 Climax 24 (Block B) | Minoru Suzuki | Tournament | G1 Block B — ****3/4 | W |
+| 2014-08-11 | G1 Climax 24 (Block B) | Yujiro Takahashi | Tournament | G1 Block B | W |
+| 2014-08-13 | G1 Climax 24 (Block B) | Kazuchika Okada | Tournament | G1 Block B | L |
+| 2014-08-15 | G1 Climax 24 (Block B) | Bad Luck Fale | Tournament | G1 Block B | W |
+| 2014-08-17 | G1 Climax 24 Final | Tomohiro Ishii | Tournament Final | G1 runner-up | L |
+| 2014-10-13 | King of Pro-Wrestling 2014 | Hiroshi Tanahashi | Singles | Lost IWGP | L |
+| 2015-02-11 | The New Beginning 2015 | Hiroshi Tanahashi | Singles | Won IWGP (2nd) | W |
+| 2015-04-05 | Invasion Attack 2015 | Kota Ibushi | Singles | IWGP (def.) | W |
+| 2015-05-03 | Wrestling Dontaku 2015 | Shinsuke Nakamura | IWGP Intercontinental | — | W |
+| 2015-06-21 | Dominion 6.21 | Kazuchika Okada | Singles | Lost IWGP | L |
+| 2015-08-05 | G1 Climax 25 (Block A) | Katsuyori Shibata | Tournament | G1 Block A | D |
+| 2015-08-07 | G1 Climax 25 (Block A) | Bad Luck Fale | Tournament | G1 Block A | W |
+| 2015-08-08 | G1 Climax 25 (Block A) | Hiroshi Tanahashi | Tournament | G1 Block A — ****1/2 | W |
+| 2015-08-10 | G1 Climax 25 (Block A) | Satoshi Kojima | Tournament | G1 Block A | W |
+| 2015-08-12 | G1 Climax 25 (Block A) | Toru Yano | Tournament | G1 Block A | W |
+| 2015-08-14 | G1 Climax 25 (Block A) | Hiroyoshi Tenzan | Tournament | G1 Block A | W |
+| 2015-08-16 | G1 Climax 25 (Block A) | Togi Makabe | Tournament | G1 Block A | L |
+| 2015-08-16 | G1 Climax 25 Final | Hiroshi Tanahashi | Tournament Final | G1 runner-up | L |
+| 2015-10-12 | King of Pro-Wrestling 2015 | Shinsuke Nakamura | IWGP Intercontinental | — | L |
+| 2016-01-04 | Wrestle Kingdom 10 | Shinsuke Nakamura | IWGP Intercontinental | — | L |
+
+### WWE (2016–2026)
+
+| Date | Event | Opponent | Stipulation | Title Note | Result |
+|---|---|---|---|---|---|
+| 2016-01-24 | Royal Rumble 2016 | Field | Royal Rumble | WWE debut (eliminated) | L |
+| 2016-02-22 | Elimination Chamber 2016 | Kevin Owens et al | IC Chamber | IC Chamber | L |
+| 2016-04-03 | WrestleMania 32 | Chris Jericho | Singles | — | W |
+| 2016-05-22 | Extreme Rules 2016 | Anderson & Gallows | 6-Man Tag [TAG] | — (w/ Enzo & Cass) | W |
+| 2016-06-19 | Money in the Bank 2016 | ADR / Cesaro / Ambrose / KO / Zayn | MITB Ladder | — | L |
+| 2016-07-24 | Battleground 2016 | John Cena | Singles | — | L |
+| 2016-08-21 | SummerSlam 2016 | John Cena | Singles | — | W |
+| 2016-09-11 | Backlash 2016 | Dean Ambrose | Singles | Won WWE (1st) | W |
+| 2016-10-09 | No Mercy 2016 | Dean Ambrose & John Cena | Triple Threat | WWE (def.) | W |
+| 2016-11-15 | Survivor Series 2016 | Brock Lesnar | Singles (Brand) | — | L |
+| 2016-12-04 | TLC 2016 | Dean Ambrose | Tables, Ladders & Chairs | WWE (def.) | W |
+| 2017-01-29 | Royal Rumble 2017 | John Cena | Singles | Lost WWE | L |
+| 2017-03-12 | Elimination Chamber 2017 | Ambrose / Corbin / Wyatt / Harper / Cena | SDL Chamber | — | L |
+| 2017-04-02 | WrestleMania 33 | Shane McMahon | Singles | — | L |
+| 2017-04-30 | Payback 2017 | Kevin Owens | Singles | US Championship | L |
+| 2017-05-21 | Backlash 2017 | Kevin Owens | Singles | Won US (1st) | W |
+| 2017-06-18 | Money in the Bank 2017 | Kevin Owens | Singles | US (def.) | W |
+| 2017-07-23 | Battleground 2017 | Kevin Owens | Flag Match | US (def.) | W |
+| 2017-08-20 | SummerSlam 2017 | Kevin Owens | Singles | Lost US | L |
+| 2017-09-24 | Hell in a Cell 2017 | Kevin Owens | HIAC | Won US (2nd) | W |
+| 2017-11-07 | SmackDown Live (Manchester) | Jinder Mahal | Singles | Won WWE (2nd, 371 days) | W |
+| 2017-11-19 | Survivor Series 2017 | Brock Lesnar | Singles (Brand) | — | L |
+| 2017-12-17 | Clash of Champions 2017 | Jinder Mahal | Singles | WWE (def.) | W |
+| 2018-01-28 | Royal Rumble 2018 | Sami Zayn & Kevin Owens | Handicap | WWE (def.) | W |
+| 2018-02-25 | Elimination Chamber 2018 | Zayn / Owens / Corbin / Cena / Ziggler | SDL Chamber | WWE (def.) | W |
+| 2018-04-08 | WrestleMania 34 | Shinsuke Nakamura | Singles | WWE (def.) | W |
+| 2018-05-06 | Backlash 2018 | Shinsuke Nakamura | Singles | WWE (def.) | W |
+| 2018-06-17 | Money in the Bank 2018 | Shinsuke Nakamura | Singles | WWE (def.) | W |
+| 2018-07-15 | Extreme Rules 2018 | Shinsuke Nakamura | Extreme Rules | WWE (def.) | W |
+| 2018-08-19 | SummerSlam 2018 | Samoa Joe | Singles | WWE (def.) | W |
+| 2018-09-16 | Hell in a Cell 2018 | Samoa Joe | HIAC | WWE (def.) | W |
+| 2018-10-28 | Crown Jewel 2018 | Samoa Joe & Daniel Bryan | Triple Threat | WWE (def.) | W |
+| 2018-11-13 | SmackDown Live | Daniel Bryan | Singles | Lost WWE | L |
+| 2018-11-16 | Survivor Series 2018 | Samoa Joe | Singles | — | W |
+| 2018-12-16 | TLC 2018 | Daniel Bryan | TLC Match | — | L |
+| 2019-01-27 | Royal Rumble 2019 | Samoa Joe | Singles | Won US (3rd) | W |
+| 2019-04-07 | WrestleMania 35 | Randy Orton | Singles | — | W |
+| 2019-05-19 | Money in the Bank 2019 | Ricochet | Singles | US (def.) | W |
+| 2019-06-23 | Stomping Grounds 2019 | Ricochet | Singles | US (def.) | W |
+| 2019-07-14 | Extreme Rules 2019 | Ricochet | Singles | US (def.) | W |
+| 2019-08-11 | SummerSlam 2019 | Ricochet | Singles | US (def.) | W |
+| 2019-09-15 | Clash of Champions 2019 | Shinsuke Nakamura | Singles | Lost US | L |
+| 2019-10-06 | Hell in a Cell 2019 | Shinsuke Nakamura | HIAC | US (def.) | W |
+| 2019-10-31 | Crown Jewel 2019 | Humberto Carrillo | Singles | US (def.) | W |
+| 2019-11-24 | Survivor Series 2019 | Team Raw | Survivor Series Elim. [TAG] | — | W |
+| 2019-12-15 | TLC 2019 | Randy Orton | TLC | — | W |
+| 2020-01-26 | Royal Rumble 2020 | Field | Royal Rumble | Rumble entry | L |
+| 2020-04-04 | WrestleMania 36 | The Undertaker | Boneyard Match | — | L |
+| 2020-05-10 | Money in the Bank 2020 | Hardy / Bryan / Elias / Mysterio / Sheamus | MITB Ladder | — | L |
+| 2020-06-12 | SmackDown | Daniel Bryan | IC Tournament Final | Won Intercontinental | W |
+| 2020-10-25 | Hell in a Cell 2020 | Sami Zayn | Singles | IC (def.) | W |
+| 2020-11-22 | Survivor Series 2020 | Sami Zayn | Singles | Lost IC | L |
+| 2021-01-28 | Royal Rumble 2021 | Field | Royal Rumble | Rumble entry | L |
+| 2021-02-28 | Elimination Chamber 2021 | Roman Reigns et al | Chamber | — | L |
+| 2021-04-10 | WrestleMania 37 | w/ Omos vs The New Day | Raw Tag [TAG] | Won Raw Tag | W |
+| 2021-05-23 | WrestleMania Backlash 2021 | Viking Raiders | Raw Tag [TAG] | Raw Tag (def., w/ Omos) | W |
+| 2021-07-18 | Money in the Bank 2021 | Kofi & Xavier Woods | Raw Tag [TAG] | Raw Tag (def., w/ Omos) | W |
+| 2021-08-21 | SummerSlam 2021 | RK-Bro | Raw Tag [TAG] | Lost Raw Tag | L |
+| 2021-10-21 | Crown Jewel 2021 | RK-Bro | Raw Tag [TAG] | — | L |
+| 2021-11-21 | Survivor Series 2021 | Big E | Singles | — | L |
+| 2022-01-29 | Royal Rumble 2022 | Field | Royal Rumble | Rumble entry | L |
+| 2022-04-02 | WrestleMania 38 Night 1 | Edge | Singles | — | W |
+| 2022-06-05 | Hell in a Cell 2022 | Edge | HIAC | — | L |
+| 2022-07-02 | Money in the Bank 2022 | Riddle / Omos / Rollins / McIntyre / Zayn / Sheamus | MITB Ladder | — | L |
+| 2022-07-30 | SummerSlam 2022 | Edge | Singles | — | L |
+| 2022-10-08 | Extreme Rules 2022 | Edge | I Quit Match | — | W |
+| 2022-10-29 | Crown Jewel 2022 | Finn Balor | Singles | — | W |
+| 2022-11-26 | Survivor Series: WarGames 2022 | The Bloodline | WarGames [TAG] | — | W |
+| 2023-01-28 | Royal Rumble 2023 | Field | Royal Rumble | Rumble entry | L |
+| 2023-02-18 | Elimination Chamber 2023 | Rhodes / Zayn / Theory / Sheamus / Gargano | SDL Chamber | — | L |
+| 2023-04-01 | WrestleMania 39 Night 1 | LA Knight | Singles | — | L |
+| 2023-05-27 | Night of Champions 2023 | Solo Sikoa | Singles | — | L |
+| 2023-07-29 | SummerSlam 2023 | The Miz | Singles | — | W |
+| 2023-10-28 | Crown Jewel 2023 | Solo Sikoa | Singles | — | W |
+| 2023-11-25 | Survivor Series: WarGames 2023 | The Judgment Day | WarGames [TAG] | — | W |
+| 2024-01-27 | Royal Rumble 2024 | Field | Royal Rumble | Rumble entry | L |
+| 2024-04-06 | WrestleMania XL Night 1 | LA Knight | Singles | US Championship | L |
+| 2024-05-25 | King and Queen of the Ring 2024 | Cody Rhodes | KOTR Tournament | — | L |
+| 2024-08-03 | SummerSlam 2024 | Randy Orton | Singles | — | L |
+| 2024-10-05 | Bad Blood 2024 | Roman Reigns | Singles | — | L |
+| 2024-11-02 | Crown Jewel 2024 | Carmelo Hayes | Singles | — | W |
+| 2024-11-23 | Survivor Series 2024 | CM Punk et al | WarGames [TAG] | — | W |
+| 2025-01-25 | Royal Rumble 2025 | Field | Royal Rumble | Rumble entry | L |
+| 2025-04-05 | WrestleMania 41 Night 1 | Gunther | IC Championship | — | L |
+| 2025-11-08 | Survivor Series 2025 | Field | Retirement tour | Farewell tour | W |
+| 2026-01-31 | Royal Rumble 2026 | Gunther | Retirement Match | Career finale — retired | L |
+
+> Data note: This table covers 176 notable bouts across all major promotions. Not included: dark matches, house shows, minor TV squashes, and most early-career indie matches (1998–2001). Tag match partner listed in opponent column where space allows.
 
 ## 8. Personas & In-Ring Style
 
