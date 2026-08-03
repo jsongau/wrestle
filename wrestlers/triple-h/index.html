@@ -12,8 +12,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0b0c10">
-<link rel="stylesheet" href="/css/site.css?v=3bbe3120">
-<link rel="stylesheet" href="/css/profile.css?v=3bbe3120">
+<link rel="stylesheet" href="/css/site.css?v=f9b1847b">
+<link rel="stylesheet" href="/css/profile.css?v=b35bd594">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Triple H","alternateName":["HHH","Paul Michael Levesque","Hunter Hearst Helmsley","The Game","The King of Kings"],"jobTitle":"Chief Content Officer, WWE","description":"Triple H — The Game, The King of Kings — is a 14-time world champion, co-founder of DX, architect of NXT, and WWE's Chief Content Officer.","url":"https://wrestlelore.com/wrestlers/triple-h/","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.5","ratingCount":"10","bestRating":"5","worstRating":"1"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://wrestlelore.com/"},{"@type":"ListItem","position":2,"name":"Wrestlers","item":"https://wrestlelore.com/wrestlers/"},{"@type":"ListItem","position":3,"name":"Triple H","item":"https://wrestlelore.com/wrestlers/triple-h/"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many world titles has Triple H won?","acceptedAnswer":{"@type":"Answer","text":"Fourteen — 8 WWE Championships and 5 World Heavyweight Championships (plus one more depending on the counting system used). Third-most world title reigns in WWE history."}},{"@type":"Question","name":"What is the Pedigree?","acceptedAnswer":{"@type":"Answer","text":"Triple H's finishing move — he hooks both of the opponent's arms behind their back in a double underhook position, then drops them face-first onto the mat. One of wrestling's most protected finishers; rarely kicked out of."}},{"@type":"Question","name":"What happened at the MSG Curtain Call?","acceptedAnswer":{"@type":"Answer","text":"In 1996, at a non-televised MSG show, Triple H, Shawn Michaels, Kevin Nash, and Scott Hall broke character to embrace in the ring — a public display of the real Kliq friendship. Nash and Hall were leaving for WCW, so the only person left to punish was Triple H, who lost his planned King of the Ring win and had to rebuild over 18 months."}}]}]</script>
 <style id="hhh-rec2">
 .wl-dossier .sec-h .spl{display:inline-flex;align-items:center;gap:9px;background:none;border:0;cursor:pointer;padding:4px 2px;margin-left:auto;align-self:center}
@@ -58,6 +58,14 @@
 .wl-dossier .rec2-spoiler tr.rev-open .rw{display:inline-grid}
 .wl-dossier .rec2-spoiler tr.rev-open .rw-show{display:none}
 .wl-dossier .rec2-spoiler .rec2-note{filter:blur(5px);user-select:none}
+/* kayfabe veil over the W/L donut until spoilers are turned on (matches the newest record system) */
+.wl-dossier .record-top{position:relative}
+.wl-dossier .record-top.is-veiled > .donut,.wl-dossier .record-top.is-veiled > .record-legend{filter:blur(9px);opacity:.55;pointer-events:none;user-select:none}
+.wl-dossier .record-top .rt-veil{position:absolute;inset:-6px;display:grid;place-content:center;justify-items:center;gap:12px;text-align:center;background:radial-gradient(120% 120% at 50% 30%,rgba(10,12,16,.7),rgba(10,12,16,.9));border-radius:14px;z-index:2}
+.wl-dossier .record-top:not(.is-veiled) .rt-veil{display:none}
+.wl-dossier .rt-veil p{margin:0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8a8f98}
+.wl-dossier .rt-unveil{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.5);color:#f2cc4b;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;cursor:pointer;transition:.15s}
+.wl-dossier .rt-unveil:hover{background:rgba(212,175,55,.2);border-color:#f2cc4b}
 .wl-dossier .rec2-spoiler tr.rev-open .rec2-note{filter:none}
 @media(max-width:640px){
   .wl-dossier .rec2-table{min-width:600px;font-size:12px}
@@ -76,6 +84,14 @@
   <a class="rt-more" href="/lore-feed/">Lore Feed</a>
 </div>
     <nav class="bar" aria-label="Primary">
+      <button class="mnav-burger" type="button" aria-label="Open menu"
+        aria-expanded="false" aria-controls="mnav-drawer" data-mnav-open>
+  <span class="mnav-burger__box" aria-hidden="true">
+    <span class="mnav-burger__line"></span>
+    <span class="mnav-burger__line"></span>
+    <span class="mnav-burger__line"></span>
+  </span>
+</button>
       <a class="brand7" href="/" aria-label="Wrestle Lore, home"><span class="mark mark--logo"><img src="/assets/wrestle-lore-logo.png" alt="" width="141" height="96" decoding="async"><span class="sheen" aria-hidden="true"></span></span><span class="bword bw-c"><b class="w">Wrestle</b><b class="l">Lore</b></span></a>
       <div class="tabs7">
         <!-- ========== 1 / WRESTLERS: roster dossier (current stars left) ========== -->
@@ -730,6 +746,256 @@
       </button>
       <a class="cta" href="/membership/">Join Insider</a>
     </nav>
+<div class="mnav-scrim" data-mnav-close hidden></div>
+
+<aside id="mnav-drawer" class="mnav-drawer" role="dialog" aria-modal="true"
+       aria-label="Site menu" aria-hidden="true" hidden>
+
+  <!-- drawer top bar: brand + close -->
+  <div class="mnav-top">
+    <a class="mnav-brand" href="/" aria-label="Wrestle Lore, home">
+      <span class="mnav-mark"><img src="/assets/wrestle-lore-logo.png" alt="" width="141" height="96" decoding="async"></span>
+      <span class="mnav-word"><b>Wrestle</b><i>Lore</i></span>
+    </a>
+    <button class="mnav-close" type="button" aria-label="Close menu" data-mnav-close>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <!-- prominent search field (opens the cmdk palette) -->
+  <div class="mnav-search">
+    <button class="mnav-searchfield" type="button" data-cmdk-open aria-label="Search Wrestle Lore">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Search wrestlers, matches&hellip;</span>
+    </button>
+  </div>
+
+  <!-- scrolling accordion body (edge-fade lives in the wrap) -->
+  <div class="mnav-scrollwrap">
+    <nav class="mnav-body" aria-label="Mobile primary">
+
+      <!-- 1 / WRESTLERS -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-w">
+            <span class="mnav-acc__title">Wrestlers</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-w" role="region" aria-label="Wrestlers">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/wrestlers/">All Wrestlers <span class="mnav-tag">A&ndash;Z</span></a>
+            <span class="mnav-sub">Current Stars</span>
+            <a class="mnav-link" href="/wrestlers/cm-punk/">CM Punk</a>
+            <a class="mnav-link" href="/wrestlers/roman-reigns/">Roman Reigns</a>
+            <a class="mnav-link" href="/wrestlers/cody-rhodes/">Cody Rhodes</a>
+            <a class="mnav-link" href="/wrestlers/gunther/">Gunther</a>
+            <a class="mnav-link" href="/wrestlers/seth-rollins/">Seth Rollins</a>
+            <a class="mnav-link" href="/wrestlers/drew-mcintyre/">Drew McIntyre</a>
+            <a class="mnav-link" href="/wrestlers/jey-uso/">Jey Uso</a>
+            <a class="mnav-link" href="/wrestlers/jon-moxley/">Jon Moxley</a>
+            <a class="mnav-link" href="/wrestlers/kenny-omega/">Kenny Omega</a>
+            <a class="mnav-link" href="/wrestlers/nic-nemeth/">Nic Nemeth</a>
+            <span class="mnav-sub">Women's Division</span>
+            <a class="mnav-link" href="/wrestlers/rhea-ripley/">Rhea Ripley</a>
+            <a class="mnav-link" href="/wrestlers/tiffany-stratton/">Tiffany Stratton</a>
+            <a class="mnav-link" href="/wrestlers/becky-lynch/">Becky Lynch</a>
+            <a class="mnav-link" href="/women/">See all women</a>
+            <span class="mnav-sub">Rising Prospects</span>
+            <a class="mnav-link" href="/wrestlers/bron-breakker/">Bron Breakker</a>
+            <a class="mnav-link" href="/wrestlers/oba-femi/">Oba Femi</a>
+            <a class="mnav-link" href="/wrestlers/trick-williams/">Trick Williams</a>
+            <a class="mnav-link" href="/current/">See all current</a>
+            <span class="mnav-sub">Legends</span>
+            <a class="mnav-link" href="/wrestlers/the-rock/">The Rock</a>
+            <a class="mnav-link" href="/wrestlers/stone-cold-steve-austin/">Stone Cold Steve Austin</a>
+            <a class="mnav-link" href="/wrestlers/the-undertaker/">The Undertaker</a>
+            <a class="mnav-link" href="/wrestlers/ric-flair/">Ric Flair</a>
+            <a class="mnav-link" href="/legends/">All Legends</a>
+            <a class="mnav-link" href="/archive/">The Archive</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 / MATCHES -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-m">
+            <span class="mnav-acc__title">Matches</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-m" role="region" aria-label="Matches">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/matches/">All Matches <span class="mnav-tag">30</span></a>
+            <span class="mnav-sub">Five-Star Ladder</span>
+            <a class="mnav-link" href="/matches/undertaker-vs-hbk-wm25/">Undertaker vs Michaels</a>
+            <a class="mnav-link" href="/matches/cm-punk-vs-cena-mitb-2011/">CM Punk vs John Cena</a>
+            <a class="mnav-link" href="/matches/styles-vs-daniels-vs-joe-unbreakable-2005/">Styles vs Daniels vs Joe</a>
+            <a class="mnav-link" href="/matches/gargano-vs-ciampa-takeover-new-orleans-2018/">Gargano vs Ciampa</a>
+            <a class="mnav-link" href="/matches/angle-vs-benoit-royal-rumble-2003/">Angle vs Benoit</a>
+            <a class="mnav-link" href="/matches/rey-mysterio-vs-eddie-guerrero-halloween-havoc-1997/">Rey vs Eddie</a>
+            <span class="mnav-sub">Boards</span>
+            <a class="mnav-link" href="/rankings/">Five-Star Rankings</a>
+            <a class="mnav-link" href="/moments/">Moments</a>
+            <a class="mnav-link" href="/rivalries/">Rivalries</a>
+            <a class="mnav-link" href="/methodology/">How stars get counted</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 / EVENTS -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-e">
+            <span class="mnav-acc__title">Events</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-e" role="region" aria-label="Events">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/events/">All Events</a>
+            <a class="mnav-link" href="/events/tickets/">Tickets &amp; where to buy</a>
+            <span class="mnav-sub">2026 Season</span>
+            <a class="mnav-link" href="/events/royal-rumble-2026/">Royal Rumble 2026</a>
+            <a class="mnav-link" href="/events/elimination-chamber-2026/">Elimination Chamber</a>
+            <a class="mnav-link" href="/events/wrestlemania-42-2026/">WrestleMania 42</a>
+            <a class="mnav-link" href="/events/backlash-2026/">Backlash 2026</a>
+            <a class="mnav-link" href="/events/night-of-champions-2026/">Night of Champions</a>
+            <a class="mnav-link" href="/events/">Worlds Collide <span class="mnav-tag">Sept 12</span></a>
+            <span class="mnav-sub">Series</span>
+            <a class="mnav-link" href="/events/wrestlemania/">WrestleMania, every year</a>
+            <a class="mnav-link" href="/events/royal-rumble/">Royal Rumble, every year</a>
+            <a class="mnav-link" href="/events/tour/">The Road &middot; 2026 tour map</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 / PROMOTIONS -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-p">
+            <span class="mnav-acc__title">Promotions</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-p" role="region" aria-label="Promotions">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/promotions/">All Promotions <span class="mnav-tag">7</span></a>
+            <a class="mnav-link" href="/promotions/wwe/">WWE</a>
+            <a class="mnav-link" href="/promotions/wcw/">WCW</a>
+            <a class="mnav-link" href="/promotions/ecw/">ECW</a>
+            <a class="mnav-link" href="/promotions/tna/">TNA</a>
+            <a class="mnav-link" href="/promotions/nxt/">NXT</a>
+            <a class="mnav-link" href="/promotions/njpw/">NJPW</a>
+            <a class="mnav-link" href="/promotions/aew/">AEW</a>
+            <a class="mnav-link" href="/promotions/">AAA <span class="mnav-tag">Lucha</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 / HALL OF FAME -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-h">
+            <span class="mnav-acc__title">Hall of Fame</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-h" role="region" aria-label="Hall of Fame">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/hall-of-fame/">All Classes</a>
+            <a class="mnav-link" href="/hall-of-fame/2026/">Class of 2026 <span class="mnav-tag">AJ Styles</span></a>
+            <a class="mnav-link" href="/hall-of-fame/2025/">Class of 2025</a>
+            <span class="mnav-sub">Two-Time Club</span>
+            <a class="mnav-link" href="/wrestlers/ric-flair/">Ric Flair</a>
+            <a class="mnav-link" href="/wrestlers/shawn-michaels/">Shawn Michaels</a>
+            <span class="mnav-sub">Legend Profiles</span>
+            <a class="mnav-link" href="/wrestlers/the-undertaker/">The Undertaker</a>
+            <a class="mnav-link" href="/wrestlers/sting/">Sting</a>
+            <a class="mnav-link" href="/showcases/aj-styles/">AJ Styles Showcase</a>
+            <a class="mnav-link" href="/legends/">Legends Index</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 / TITLES & TEAMS -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-t">
+            <span class="mnav-acc__title">Titles &amp; Teams</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-t" role="region" aria-label="Titles and Teams">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/titles/">All Titles</a>
+            <span class="mnav-sub">Champions</span>
+            <a class="mnav-link" href="/titles/undisputed-wwe-championship/">Undisputed WWE Championship</a>
+            <a class="mnav-link" href="/titles/world-heavyweight-championship/">World Heavyweight Championship</a>
+            <a class="mnav-link" href="/titles/intercontinental-championship/">Intercontinental Championship</a>
+            <a class="mnav-link" href="/titles/united-states-championship/">United States Championship</a>
+            <a class="mnav-link" href="/titles/wwe-womens-championship/">Women's Championship</a>
+            <a class="mnav-link" href="/titles/nxt-championship/">NXT Championship</a>
+            <a class="mnav-link" href="/titles/wwe-tag-team-championship/">WWE Tag Team Championship</a>
+            <span class="mnav-sub">Factions</span>
+            <a class="mnav-link" href="/factions/">All Factions</a>
+            <a class="mnav-link" href="/factions/the-bloodline/">The Bloodline</a>
+            <a class="mnav-link" href="/factions/nwo/">nWo</a>
+            <a class="mnav-link" href="/factions/d-generation-x/">D-Generation X</a>
+            <a class="mnav-link" href="/factions/the-shield/">The Shield</a>
+            <a class="mnav-link" href="/factions/judgment-day/">Judgment Day</a>
+            <a class="mnav-link" href="/factions/bullet-club/">Bullet Club</a>
+            <span class="mnav-sub">Tag Teams</span>
+            <a class="mnav-link" href="/tag-teams/">All Teams</a>
+            <a class="mnav-link" href="/tag-teams/the-hardy-boyz/">Hardy Boyz</a>
+            <a class="mnav-link" href="/tag-teams/edge-and-christian/">Edge &amp; Christian</a>
+            <a class="mnav-link" href="/tag-teams/the-usos/">The Usos</a>
+            <a class="mnav-link" href="/tag-teams/the-new-day/">The New Day</a>
+            <a class="mnav-link" href="/tag-teams/ftr/">FTR</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 / MEDIA -->
+      <section class="mnav-acc">
+        <h2 class="mnav-acc__h">
+          <button class="mnav-acc__btn" type="button" aria-expanded="false" aria-controls="mnav-sec-d">
+            <span class="mnav-acc__title">Media</span>
+            <svg class="mnav-acc__chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h2>
+        <div class="mnav-acc__panel" id="mnav-sec-d" role="region" aria-label="Media">
+          <div class="mnav-acc__inner">
+            <a class="mnav-link mnav-link--all" href="/media/">All Media</a>
+            <a class="mnav-link" href="/lore-feed/">Lore Feed <span class="mnav-tag">Live</span></a>
+            <span class="mnav-sub">Studio</span>
+            <a class="mnav-link" href="/media/chris-van-vliet/">Chris Van Vliet</a>
+            <a class="mnav-link" href="/media/interviews/">Interviews</a>
+            <a class="mnav-link" href="/moments/">Moments</a>
+            <a class="mnav-link" href="/rivalries/">Rivalries</a>
+            <a class="mnav-link" href="/relationships/">Relationships</a>
+            <a class="mnav-link" href="/showcases/aj-styles/">AJ Styles File</a>
+            <a class="mnav-link" href="/gallery/">Viewing Gallery</a>
+            <span class="mnav-sub">House</span>
+            <a class="mnav-link" href="/methodology/">Methodology</a>
+            <a class="mnav-link" href="/about/">About Wrestle Lore</a>
+            <a class="mnav-link" href="/membership/">Insider Membership</a>
+          </div>
+        </div>
+      </section>
+
+    </nav>
+    <span class="mnav-fade" aria-hidden="true"></span>
+  </div>
+
+  <!-- pinned CTA footer -->
+  <div class="mnav-foot">
+    <a class="mnav-join" href="/membership/">Join Insider</a>
+  </div>
+
+</aside>
+<!-- ========== end drawer ========== -->
 </header>
 <div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Search Wrestle Lore" aria-hidden="true" data-wl-shell>
   <div class="cmdk__box"><div class="cmdk__head">
@@ -837,7 +1103,7 @@
     <!-- RECORD -->
     <section class="sec reveal" id="record">
       <div class="sec-h"><span class="n">02</span><h2>Wins &amp; Losses</h2><span class="rule"></span><button class="spl" id="hhhSpl" type="button" aria-pressed="false" title="Show every win and loss"><span class="spl-lbl">Spoilers off</span><span class="spl-track"><span class="spl-knob"></span></span></button></div>
-      <div class="record-top">
+      <div class="record-top is-veiled" id="hhhRecTop">
         <figure class="donut" style="--w:47" role="img" aria-label="Curated landmark ledger: 7 wins, 8 losses">
           <figcaption><b>7&ndash;8</b><span>Landmark W&ndash;L</span></figcaption>
         </figure>
@@ -846,6 +1112,7 @@
           <div class="lg"><i class="i-red"></i><span>Landmark Losses</span><b>8</b></div>
           <div class="lg" style="color:var(--muted)"><i style="background:var(--panel2);border:1px solid var(--line)"></i><span>Total tracked bouts</span><b>~1,005</b></div>
         </div>
+        <div class="rt-veil"><p>The book is kayfabe protected</p><button class="rt-unveil" type="button">Turn spoilers on</button></div>
       </div>
       <p class="ledger-note">&#9873; Curated landmark ledger &mdash; his most historically significant bouts, not a complete career record. Tap any column header to sort. Results stay hidden until you reveal a row or flip the spoiler switch. Results from Triple H&rsquo;s perspective.</p>
 
@@ -1181,11 +1448,11 @@
   })();
   </script>
 </footer>
-<script src="/js/main.js?v=3bbe3120"></script>
-<script src="/js/search-index.js?v=3bbe3120" defer></script>
-<script src="/js/nav.js?v=3bbe3120" defer></script>
-<script src="/js/engage.js?v=3bbe3120" defer></script>
-<script src="/js/profile.js?v=3bbe3120" defer></script>
+<script src="/js/main.js?v=f9b1847b"></script>
+<script src="/js/search-index.js?v=f9b1847b" defer></script>
+<script src="/js/nav.js?v=f9b1847b" defer></script>
+<script src="/js/engage.js?v=f9b1847b" defer></script>
+<script src="/js/profile.js?v=f9b1847b" defer></script>
 <script>
 (function(){
   'use strict';
@@ -1215,13 +1482,17 @@
     btn.addEventListener('click',function(){r.classList.add('rev-open');});
   });
   var tgl=document.getElementById('hhhSpl');
-  if(tgl){tgl.addEventListener('click',function(){
-    var on=tgl.getAttribute('aria-pressed')!=='true';
-    tgl.setAttribute('aria-pressed',on?'true':'false');
-    tgl.querySelector('.spl-lbl').textContent=on?'Spoilers on':'Spoilers off';
-    tgl.title=on?'Hide every result':'Show every win and loss';
+  var recTop=document.getElementById('hhhRecTop');
+  function setSpoilers(on){
+    if(tgl){tgl.setAttribute('aria-pressed',on?'true':'false');
+      tgl.querySelector('.spl-lbl').textContent=on?'Spoilers on':'Spoilers off';
+      tgl.title=on?'Hide every result':'Show every win and loss';}
     scroller.classList.toggle('rec2-spoiler',!on);
-  });}
+    if(recTop)recTop.classList.toggle('is-veiled',!on);
+  }
+  if(tgl){tgl.addEventListener('click',function(){setSpoilers(tgl.getAttribute('aria-pressed')!=='true');});}
+  var unveilBtn=recTop&&recTop.querySelector('.rt-unveil');
+  if(unveilBtn){unveilBtn.addEventListener('click',function(){setSpoilers(true);});}
 
   /* sorting */
   function cellTxt(r,sel){var c=r.querySelector(sel);return c?c.textContent.trim().toLowerCase():'';}
