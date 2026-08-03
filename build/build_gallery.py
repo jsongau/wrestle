@@ -22,9 +22,11 @@ PEACOCK = "https://www.peacocktv.com/sports/wwe"
 CWAPP   = "https://www.cwtv.com/shows/wwe-nxt/"
 HBOMAX  = "https://www.hbomax.com/aew"
 AMCPLUS = "https://www.amcplus.com"
+ESPN    = "https://www.espn.com/wwe/"  # WWE Premium Live Events (US) moved to ESPN's DTC app in 2026
 SHOWNET = {  # show -> (streaming label, url)
   "Raw": ("Netflix", NETFLIX), "SmackDown": ("Peacock", PEACOCK), "NXT": ("The CW", CWAPP),
   "Dynamite": ("HBO Max", HBOMAX), "Collision": ("HBO Max", HBOMAX), "iMPACT": ("AMC+", AMCPLUS),
+  "SummerSlam": ("ESPN", ESPN),
 }
 def shownet(label):
     return SHOWNET.get(label.split("·")[0].strip(), ("Netflix", NETFLIX))
@@ -42,8 +44,8 @@ WATCHLINKS = {
 ORDER = ["WWE", "AEW", "TNA", "NXT"]
 # full creator names + show display names for the media-page one-card-per-show grid
 CREATOR = {"WWE":"WWE","NXT":"WWE","AEW":"All Elite Wrestling","TNA":"TNA Wrestling","NJPW":"New Japan Pro-Wrestling","TKO":"WWE"}
-SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision"}
-SHOWORDER = ["Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
+SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam"}
+SHOWORDER = ["SummerSlam","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
 
 # ---- the recurring weekly TV grid (Mon=0..Sun=6) + dated specials ----
 SCHEDULE = {
@@ -58,10 +60,15 @@ SCHEDULE = {
 SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL dates
   datetime.date(2026, 7, 18): ("WWE", "Saturday Night's Main Event", "MSG · NBC · Peacock"),
   datetime.date(2026, 7, 26): ("AEW", "Redemption", "Montreal · HBO Max · PPV"),
+  datetime.date(2026, 8, 1): ("WWE", "SummerSlam", "Night 1 · Minneapolis · ESPN"),
+  datetime.date(2026, 8, 2): ("WWE", "SummerSlam", "Night 2 · Minneapolis · ESPN"),
 }
 CHIPCLS = {"Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
+  {"week":"2026-08-03","label":"Week of August 3, 2026","start":datetime.date(2026,8,3),"promos":{
+     "WWE":[("fhccSekCjhc","2026-08-01","SummerSlam · Saturday full show highlights"),("-Iy_6T23ttg","2026-08-02","SummerSlam · Sunday full show highlights"),("MXIhmvodQXM","2026-08-02","SummerSlam · World Heavyweight Title"),("vppyXi3THwo","2026-08-01","SummerSlam · Undisputed WWE Title"),("NWG1hYXMS0M","2026-08-01","SummerSlam · Hell in a Cell"),("9MEIl3OR1DQ","2026-08-02","SummerSlam · Intercontinental Title"),("8f4oQURoi_w","2026-08-01","SummerSlam · Gunther vs. Aldis"),("gVJFzfzQIvM","2026-08-01","SummerSlam · Women's tag showdown")]
+  }},
   {"week":"2026-07-27","label":"Week of July 27, 2026","start":datetime.date(2026,7,27),"promos":{
      "WWE":[("mjkfX_uZUvk","2026-07-27","Raw · Full show highlights"),("--hLGjImq-0","2026-07-27","Raw · Top 10 moments"),("saKRhf4w5TE","2026-07-27","Raw · Reigns and Rollins faceoff"),("JbIeCIKWGyc","2026-07-27","Raw · Women's Intercontinental Title"),("-3a1GBuAXRc","2026-07-27","Raw · Bloodline six-man brawl")],
      "NXT":[("uue21lg-9ek","2026-07-28","NXT · Full show highlights"),("fjDZCSmQ--8","2026-07-28","NXT · North American Title"),("oEbR8Ycp5d0","2026-07-28","NXT · Lizzy Rain vs. Izzi Dame"),("N4VYaqhr8Ts","2026-07-28","NXT · Cruz Montana confrontation")]
