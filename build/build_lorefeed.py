@@ -25,6 +25,42 @@ def esc(s): return _html.escape(str(s), quote=True)
 # cat: title|event|signing|departure|return|business|media|roster|retirement|passing
 # promo: wwe|nxt|aew|tna|njpw|tko|industry   official: True=promotion-confirmed, False=trade report
 DISPATCHES = [
+  dict(date="2026-08-02", promo="wwe", cat="event", official=True, who="Roman Reigns", lead=True, mono="SummerSlam", home=True, htags="matches titles",
+       hl="Roman Reigns retains and closes out Seth Rollins at SummerSlam",
+       dek="The World Heavyweight Championship main event on night two keeps the title on the champion and ends the rivalry that ran all summer.",
+       src="ESPN", url="https://www.espn.com/wwe/story/_/id/49465881/wwe-summerslam-2026-night-2-live-results-analysis-roman-reigns-vs-seth-rollins"),
+  dict(date="2026-08-02", promo="wwe", cat="title", official=True, who="Chad Gable", home=True, htags="titles",
+       hl="Chad Gable dethrones Penta for the Intercontinental Title",
+       dek="A heavy favorite makes it count on night two, ending Penta's reign for Gable's first Intercontinental Championship.",
+       src="The SmackDown Hotel", url="https://www.thesmackdownhotel.com/events-results/ppv-special/wwe-summerslam-2026"),
+  dict(date="2026-08-02", promo="wwe", cat="title", official=True, who="Baron Corbin", home=True, htags="titles",
+       hl="Baron Corbin takes the United States Title from Trick Williams",
+       dek="Corbin catches Trick Williams on night two to claim the United States Championship.",
+       src="The SmackDown Hotel", url="https://www.thesmackdownhotel.com/events-results/ppv-special/wwe-summerslam-2026"),
+  dict(date="2026-08-02", promo="wwe", cat="title", official=True, who="Chelsea Green", home=True, htags="titles",
+       hl="Chelsea Green wins the interim Women's Title in a five-way ladder match",
+       dek="Green beats Charlotte Flair, Jade Cargill, Tiffany Stratton and Lash Legend to pull down the interim Women's Championship.",
+       src="The SmackDown Hotel", url="https://www.thesmackdownhotel.com/events-results/ppv-special/wwe-summerslam-2026"),
+  dict(date="2026-08-02", promo="wwe", cat="event", official=True, who="Kevin Owens",
+       hl="Kevin Owens wins the number-one-contender match, next for CM Punk",
+       dek="Owens outlasts Sami Zayn, Finn Balor and Gunther on night two to earn the next Undisputed WWE Title shot.",
+       src="The SmackDown Hotel", url="https://www.thesmackdownhotel.com/events-results/ppv-special/wwe-summerslam-2026"),
+  dict(date="2026-08-01", promo="wwe", cat="event", official=True, who="Oba Femi", mono="Hell in a Cell", home=True, htags="matches",
+       hl="Oba Femi conquers Brock Lesnar inside Hell in a Cell",
+       dek="The night-one signature match sees the young powerhouse stand tall over Brock Lesnar and Paul Heyman.",
+       src="Forbes", url="https://www.forbes.com/sites/alfredkonuwa/2026/08/02/wwe-summerslam-night-2-results-winners-and-live-updates/"),
+  dict(date="2026-08-01", promo="wwe", cat="event", official=True, who="CM Punk",
+       hl="CM Punk turns back Cody Rhodes to keep the Undisputed WWE Title",
+       dek="The champion retains on night one in a headline clash with Cody Rhodes.",
+       src="The SmackDown Hotel", url="https://www.thesmackdownhotel.com/events-results/ppv-special/wwe-summerslam-2026"),
+  dict(date="2026-08-01", promo="wwe", cat="event", official=True, who="Liv Morgan",
+       hl="Liv Morgan retains the Women's World Title over IYO SKY",
+       dek="Morgan keeps the Women's World Championship on the opening night of SummerSlam.",
+       src="The SmackDown Hotel", url="https://www.thesmackdownhotel.com/events-results/ppv-special/wwe-summerslam-2026"),
+  dict(date="2026-08-01", promo="wwe", cat="return", official=True, who="Randy Orton", home=True, htags="roster",
+       hl="Randy Orton returns at SummerSlam",
+       dek="The Viper is back, making a surprise night-one return.",
+       src="Forbes", url="https://www.forbes.com/sites/alfredkonuwa/2026/08/02/wwe-summerslam-night-2-results-winners-and-live-updates/"),
   dict(date="2026-07-28", promo="nxt", cat="return", official=False, who="Grayson Waller",
        hl="Grayson Waller crashes NXT, calls his shot at Tony D'Angelo",
        dek="A surprise return promo put the whole men's roster on notice and the NXT Championship squarely in his sights.",
@@ -41,7 +77,7 @@ DISPATCHES = [
        hl="WWE opens the doors on Club WWE, a paid membership tier",
        dek="A 99-dollar-a-year program bundling a match-used welcome kit, exclusive merch, early ticket access and a premium library, live July 31.",
        src="WWE.com", url="https://corporate.wwe.com/about/news/2026/07-27-2026"),
-  dict(date="2026-07-26", promo="aew", cat="event", official=True, who="Kenny Omega", lead=True, mono="Redemption",
+  dict(date="2026-07-26", promo="aew", cat="event", official=True, who="Kenny Omega", lead=True, mono="Redemption", home=True, htags="titles rivalries",
        hl="Omega survives Redemption, then lights the fuse on All In",
        dek="Kenny Omega turned back The Jet, Kevin Knight, to keep the AEW World Championship, then turned on the man he now meets in London: Will Ospreay, fresh off walking out on the Death Riders the same night.",
        src="AEW.com", url="https://www.allelitewrestling.com/post/aew-redemption-results-july-26-2026"),
@@ -580,6 +616,37 @@ def build_preview_style():
 PREVIEW_TICKER_JS = """<script>(function(){var s=document.querySelector('.rt-stage');if(!s)return;var it=[].slice.call(s.querySelectorAll('.rt-item')),d=[].slice.call(document.querySelectorAll('.rt-dot')),i=0;setInterval(function(){it[i].classList.remove('is-on');if(d[i])d[i].classList.remove('is-on');i=(i+1)%it.length;it[i].classList.add('is-on');if(d[i])d[i].classList.add('is-on');},3200);})();</script>"""
 
 # ------------------------------------------------------------------ MAIN
+import re as _re_rail
+def rel_ago(d):
+    n = (TODAY - d).days
+    if n <= 0: return "today"
+    if n == 1: return "1d ago"
+    if n < 7: return "%dd ago" % n
+    w = n // 7
+    return "1w ago" if w == 1 else "%dw ago" % w
+def home_rail_items(cap=7):
+    feat = [d for d in DISPATCHES if d.get("home")]
+    feat.sort(key=lambda x: x["date"], reverse=True)
+    return feat[:cap]
+def render_home_rail():
+    out = []
+    for d in home_rail_items():
+        tags = d.get("htags") or "roster"
+        out.append('<a class="hrl-d" data-tags="%s" href="%s" target="_blank" rel="noopener"><p class="hrl-dt">%s</p><h4 class="hrl-dh"><b>%s</b> %s</h4><p class="hrl-ds">Source: %s</p></a>' % (esc(tags), esc(d["url"]), esc(rel_ago(d2date(d["date"]))), esc(d["who"]), esc(d["dek"]), esc(d["src"])))
+    return "".join(out)
+def update_home_rail():
+    p = os.path.join(ROOT, "index.html")
+    if not os.path.exists(p): return
+    html = open(p, encoding="utf-8").read()
+    items = render_home_rail()
+    new, n = _re_rail.subn(r'(<div class="hrl-list">).*?(<p class="hrl-empty")', lambda m: m.group(1) + items + m.group(2), html, count=1, flags=_re_rail.DOTALL)
+    if n == 1 and new != html:
+        open(p, "w", encoding="utf-8").write(new); print("home rail patched into index.html (%d items)" % len(home_rail_items()))
+    elif n == 0:
+        print("WARN: hrl-list not found in index.html")
+    else:
+        print("home rail already current")
+
 if __name__ == "__main__":
     if not LF_CSS:
         raise SystemExit("build/lorefeed.css missing — write it first")
@@ -591,6 +658,7 @@ if __name__ == "__main__":
         write("/lore-feed/%s/index.html" % mon.isoformat(), week_page(mon, items, older, newer))
     write("/lore-feed/index.html", hub_page(WEEKS))
     patch_meganav()
+    update_home_rail()
     update_sitemap()
     # 2) self-contained previews (for review only; not committed)
     style = build_preview_style()
