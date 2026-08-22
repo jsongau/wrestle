@@ -1,3 +1,9 @@
+## 2026-08-22 (Viewing Gallery - August catch-up: Aug 3 filled in, Aug 10 and Aug 17 added)
+- **74 official clips added** to `WEEKS` in `build/build_gallery.py`. The week of Aug 3 went from 8 SummerSlam clips and six "clips landing soon" slots to all 7 shows captured; new `/gallery/2026-08-10/` and `/gallery/2026-08-17/` cover both following weeks. 74 new `/media/w/` video pages with VideoObject schema, sitemap +74.
+- **Every id oEmbed-verified** against the YouTube endpoint, accepted only on author_name of WWE, All Elite Wrestling or TNA Wrestling with a matching title and date. Labels kept spoiler-safe: stakes and participants, never results.
+- **PLE countdown relit**: `gallery_app.html` still pointed at SummerSlam on Aug 1 and was one day from `pleInRange` hiding the band and emptying the "road to" rail. Repointed at AEW All In: London, Aug 30 at Wembley. SPECIALS gained Aug 30 All In and Sep 6 Sunday Night's Main Event in both the server and client copies.
+- Build gate: 452 pages stamped, 0 NOHDR / 0 NOFTR. Notes in `docs/2026-08-22-lorefeed-august-catchup.md`.
+
 ## 2026-08-22 (Lore Feed - August catch-up: weeks of Aug 3, Aug 10, Aug 17)
 - **Three missing weeks published.** 45 new dispatches appended to `DISPATCHES` in `build/build_lorefeed.py`: `/lore-feed/2026-08-03/` (16, lead = AEW World Trios change at Grand Slam Mexico), `/lore-feed/2026-08-10/` (14, lead = The MFTs win the WWE Tag Team Titles), `/lore-feed/2026-08-17/` (15, lead = CM Punk retains as Sami Zayn turns on Kevin Owens). Hub, rolling 7-day ticker and homepage rail all regenerate from the same list.
 - **Every dispatch source-verified.** 21 distinct URLs fetched and read; one failed claim corrected (Dragunov's last appearance), two weakly-sourced items dropped. Official promotion recaps preferred (wwe.com, allelitewrestling.com, tnawrestling.com, corporate.wwe.com, TKO investor relations); trade press carries the Report stamp.

@@ -27,3 +27,28 @@ Every dispatch points at a page that was fetched and read. 21 distinct source UR
 2. Consider moving `DISPATCHES` out of the Python file into a JSON data file, so adding news does not mean editing code. Not needed while one person edits the feed.
 3. Automate research: pull wwe.com and allelitewrestling.com recaps into a review queue so a week becomes an approval step instead of a research session.
 4. Still open from 2026-08-03: the 6 AM PT nightly sync on the jsongaum account can re-clobber pages. It has not been confirmed disabled.
+
+---
+
+# Same day, second pass: Viewing Gallery caught up
+
+## What changed
+`/gallery/` stopped at the week of Aug 3, and that week held only the eight SummerSlam clips with Mon through Sat reading "clips landing soon". Added 74 clips to `WEEKS` in `build/build_gallery.py`.
+
+- Week of Aug 3 filled in: Raw 5, NXT 4, Dynamite 5 from Grand Slam Mexico, iMPACT 5, SmackDown 5, Collision 4, alongside the existing 8 SummerSlam clips. The page went from "1 show in" to "7 shows in".
+- New `/gallery/2026-08-10/`: Raw 5, NXT 5, Dynamite 5, iMPACT 2, SmackDown 5, Collision 5.
+- New `/gallery/2026-08-17/`: Raw 4, NXT 5, Dynamite 5, iMPACT 1, SmackDown 2. Collision Aug 22 has no official clips yet, so the rail shows "tonight on HBO Max".
+- 74 new `/media/w/<slug>/` pages, one per clip, each with VideoObject schema. Sitemap +74.
+
+## Verification
+Every one of the 74 ids was checked through the YouTube oEmbed endpoint and accepted only when author_name was WWE, All Elite Wrestling or TNA Wrestling and the returned title matched the show and date. Four were re-checked by hand afterward as a control and all four matched. No id was accepted on search-result text alone.
+
+## PLE countdown relit
+`gallery_app.html` still pointed at SummerSlam on Aug 1, three weeks past. `pleInRange` hides a PLE after 21 days, so as of Aug 22 the countdown band and the whole "road to" rail were one day from silently emptying. Repointed at AEW All In: London, Aug 30, Wembley Stadium, HBO Max. `href` goes to `/events/` because no All In event page exists yet. Added SPECIALS entries in both the server and the client for Aug 30 All In and Sep 6 Sunday Night's Main Event at State Farm Arena in Atlanta, so both show on the day rails.
+
+## Trap
+`build_gallery.py` needs `WL_ROOT="$PWD"` exactly like `build_lorefeed.py`. Both default ROOT to `/root/wwe`.
+
+## Still open
+- No All In or Sunday Night's Main Event page under `/events/`. The PLE card links to the events hub as a stand-in.
+- Clip ingestion is still a manual hunt. Pulling the official channel uploads feeds would remove the weekly research pass entirely.
