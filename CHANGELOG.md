@@ -1,3 +1,11 @@
+## 2026-08-22 (Real American Freestyle: new /promotions/raf/ section, wired into the feed and gallery)
+- **New generator `build/build_raf.py`** emits the RAF hub plus 13 event pages (RAF 01 to RAF 12 and RAF Georgia), 141 bouts with weight class, winner, method, score and title status, 42 oEmbed-verified official clips, SportsEvent / FAQPage / BreadcrumbList schema, sitemap +14. Third instance of the one-source generator pattern; no new abstractions.
+- **Lore Feed**: `raf` added to the `PROMO` map plus 10 sourced dispatches, so RAF flows into the weekly feed, the site-wide ticker and the homepage rail from the same list as WWE and AEW.
+- **Gallery + homepage This Week**: RAF is a fifth promotion tab, with clips in the three weeks that contain a RAF card (Jul 6, Jul 13, Aug 17). The tab only appears in weeks that have one, which the per-week `promos` dict handles for free.
+- **Nav unchanged at the top level.** RAF went into the existing Promotions mega menu and the `/promotions/` directory instead.
+- Traps: `js/media.js` owns `.yt[data-yt-id]` and replaces any custom facade with "NO SIGNAL"; the `.dk bcard` promotions grid lives in `components/meganav.html`, so editing `promotions/index.html` is reverted by apply_shell; `vtitle()` read "RAF RAF" when a promo's tab name equals its show name. All three fixed. Notes in `docs/2026-08-22-raf-integration.md`.
+- Build gate: 474 pages stamped, 0 NOHDR / 0 NOFTR.
+
 ## 2026-08-22 (Viewing Gallery - August catch-up: Aug 3 filled in, Aug 10 and Aug 17 added)
 - **74 official clips added** to `WEEKS` in `build/build_gallery.py`. The week of Aug 3 went from 8 SummerSlam clips and six "clips landing soon" slots to all 7 shows captured; new `/gallery/2026-08-10/` and `/gallery/2026-08-17/` cover both following weeks. 74 new `/media/w/` video pages with VideoObject schema, sitemap +74.
 - **Every id oEmbed-verified** against the YouTube endpoint, accepted only on author_name of WWE, All Elite Wrestling or TNA Wrestling with a matching title and date. Labels kept spoiler-safe: stakes and participants, never results.

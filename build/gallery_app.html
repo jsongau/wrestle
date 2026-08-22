@@ -476,11 +476,11 @@ button.vg-dr__day--on:hover{border-color:var(--c-gold);background:var(--c-bg-ele
   var SHOWNET = {
     Raw:["Netflix","Mon"], SmackDown:["Peacock","Fri"], NXT:["The CW","Tue"],
     Dynamite:["HBO Max","Wed"], Collision:["HBO Max","Sat"], "iMPACT":["AMC+","Thu"],
-    SummerSlam:["ESPN","Sat"]
+    SummerSlam:["ESPN","Sat"], RAF:["Fox Nation","Sat"]
   };
   var TABNET = {WWE:"RAW // NETFLIX · SMACKDOWN // PEACOCK", AEW:"TBS / TNT · STREAM ON HBO MAX",
-                TNA:"IMPACT · AMC & AMC+", NXT:"NXT · THE CW"};
-  var ORDER = ["WWE","AEW","TNA","NXT"];
+                TNA:"IMPACT · AMC & AMC+", NXT:"NXT · THE CW", RAF:"RAF · FOX NATION"};
+  var ORDER = ["WWE","AEW","TNA","NXT","RAF"];
   var SCHEDULE = [ /* recurring grid, Mon..Sat */
     {day:"Mon",show:"Raw",promo:"WWE",net:"Netflix"},
     {day:"Tue",show:"NXT",promo:"NXT",net:"The CW"},
@@ -497,10 +497,13 @@ button.vg-dr__day--on:hover{border-color:var(--c-gold);background:var(--c-bg-ele
     "2026-08-01":{nm:"SummerSlam",net:"ESPN"},
     "2026-08-02":{nm:"SummerSlam",net:"ESPN"},
     "2026-08-30":{nm:"All In",net:"HBO Max"},
-    "2026-09-06":{nm:"SNME",net:"Peacock"}
+    "2026-09-06":{nm:"SNME",net:"Peacock"},
+    "2026-07-11":{nm:"RAF Georgia",net:"Fox Nation"},
+    "2026-07-18":{nm:"RAF 11",net:"Fox Nation"},
+    "2026-08-22":{nm:"RAF 12",net:"Fox Nation"}
   };
   var DAYACC={Mon:"--c-wwe",Tue:"--c-nxt",Wed:"--c-aew",Thu:"--c-tna",Fri:"--c-wwe",Sat:"--c-aew"};
-  var SHOWACC={Raw:"--c-wwe",SmackDown:"--c-wwe",NXT:"--c-nxt",Dynamite:"--c-aew",Collision:"--c-aew","iMPACT":"--c-tna"};
+  var SHOWACC={Raw:"--c-wwe",SmackDown:"--c-wwe",NXT:"--c-nxt",Dynamite:"--c-aew",Collision:"--c-aew","iMPACT":"--c-tna",RAF:"--c-raf"};
   var DAYKEYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
   var WEEKS = {{WEEKS_JSON}};
@@ -601,7 +604,7 @@ button.vg-dr__day--on:hover{border-color:var(--c-gold);background:var(--c-bg-ele
       if(!byShow[s]) byShow[s]={show:s,promo:p,clips:[]};
       byShow[s].clips.push(c);
     });});
-    var order=["SummerSlam","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"];
+    var order=["SummerSlam","RAF","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"];
     return order.filter(function(s){return byShow[s];}).map(function(s){return byShow[s];});
   }
   function allClips(wk){ // day-ordered, full-show-highlight first per show
@@ -809,7 +812,7 @@ button.vg-dr__day--on:hover{border-color:var(--c-gold);background:var(--c-bg-ele
   }
 
   function shortWeek(wk){return new Date(wk.start+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",day:"numeric",timeZone:"UTC"}).toUpperCase();}
-  function showFull(s){return ({Raw:"Monday Night Raw",NXT:"WWE NXT",Dynamite:"AEW Dynamite","iMPACT":"TNA iMPACT",SmackDown:"WWE SmackDown",Collision:"AEW Collision",SummerSlam:"WWE SummerSlam"})[s]||s;}
+  function showFull(s){return ({Raw:"Monday Night Raw",NXT:"WWE NXT",Dynamite:"AEW Dynamite","iMPACT":"TNA iMPACT",SmackDown:"WWE SmackDown",Collision:"AEW Collision",SummerSlam:"WWE SummerSlam",RAF:"Real American Freestyle"})[s]||s;}
   function netOf(s){return (SHOWNET[s]||["Netflix"])[0];}
   function pleInRange(wk){
     var start=new Date(wk.start+"T00:00:00Z").getTime();

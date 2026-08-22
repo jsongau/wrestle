@@ -23,29 +23,31 @@ CWAPP   = "https://www.cwtv.com/shows/wwe-nxt/"
 HBOMAX  = "https://www.hbomax.com/aew"
 AMCPLUS = "https://www.amcplus.com"
 ESPN    = "https://www.espn.com/wwe/"  # WWE Premium Live Events (US) moved to ESPN's DTC app in 2026
+FOXNATION = "https://nation.foxnews.com/real-american-freestyle-nation/"
 SHOWNET = {  # show -> (streaming label, url)
   "Raw": ("Netflix", NETFLIX), "SmackDown": ("Peacock", PEACOCK), "NXT": ("The CW", CWAPP),
   "Dynamite": ("HBO Max", HBOMAX), "Collision": ("HBO Max", HBOMAX), "iMPACT": ("AMC+", AMCPLUS),
-  "SummerSlam": ("ESPN", ESPN),
+  "SummerSlam": ("ESPN", ESPN), "RAF": ("Fox Nation", FOXNATION),
 }
 def shownet(label):
     return SHOWNET.get(label.split("·")[0].strip(), ("Netflix", NETFLIX))
 
-SHOWS  = {"WWE": "Raw & SmackDown", "AEW": "Dynamite & Collision", "TNA": "iMPACT", "NXT": "NXT"}
+SHOWS  = {"WWE": "Raw & SmackDown", "AEW": "Dynamite & Collision", "TNA": "iMPACT", "NXT": "NXT", "RAF": "Real American Freestyle"}
 TABNET = {"WWE": "Raw · Netflix — SmackDown · USA/Peacock", "AEW": "TBS/TNT · HBO Max",
-          "TNA": "iMPACT · AMC & AMC+", "NXT": "NXT · The CW"}
+          "TNA": "iMPACT · AMC & AMC+", "NXT": "NXT · The CW", "RAF": "RAF · Fox Nation"}
 WATCHLINKS = {
   "WWE": ('<a class="tw-net" href="%s" target="_blank" rel="noopener">Raw on Netflix</a>'
           '<a class="tw-net" href="%s" target="_blank" rel="noopener">SmackDown on Peacock</a>' % (NETFLIX, PEACOCK)),
   "AEW": '<a class="tw-net" href="%s" target="_blank" rel="noopener">AEW on TBS/TNT · stream on HBO Max</a>' % HBOMAX,
   "TNA": '<a class="tw-net" href="%s" target="_blank" rel="noopener">iMPACT on AMC · stream on AMC+</a>' % AMCPLUS,
   "NXT": '<a class="tw-net" href="%s" target="_blank" rel="noopener">NXT live on The CW</a>' % CWAPP,
+  "RAF": '<a class="tw-net" href="%s" target="_blank" rel="noopener">RAF on Fox Nation</a>' % FOXNATION,
 }
-ORDER = ["WWE", "AEW", "TNA", "NXT"]
+ORDER = ["WWE", "AEW", "TNA", "NXT", "RAF"]
 # full creator names + show display names for the media-page one-card-per-show grid
-CREATOR = {"WWE":"WWE","NXT":"WWE","AEW":"All Elite Wrestling","TNA":"TNA Wrestling","NJPW":"New Japan Pro-Wrestling","TKO":"WWE"}
-SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam"}
-SHOWORDER = ["SummerSlam","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
+CREATOR = {"WWE":"WWE","NXT":"WWE","AEW":"All Elite Wrestling","TNA":"TNA Wrestling","NJPW":"New Japan Pro-Wrestling","TKO":"WWE","RAF":"Real American Freestyle"}
+SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam","RAF":"Real American Freestyle"}
+SHOWORDER = ["SummerSlam","RAF","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
 
 # ---- the recurring weekly TV grid (Mon=0..Sun=6) + dated specials ----
 SCHEDULE = {
@@ -64,14 +66,18 @@ SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL 
   datetime.date(2026, 8, 2): ("WWE", "SummerSlam", "Night 2 · Minneapolis · ESPN"),
   datetime.date(2026, 8, 30): ("AEW", "All In: London", "Wembley Stadium · HBO Max"),
   datetime.date(2026, 9, 6): ("WWE", "Sunday Night's Main Event", "State Farm Arena · Atlanta"),
+  datetime.date(2026, 7, 11): ("RAF", "RAF Georgia", "Tbilisi · Fox Nation"),
+  datetime.date(2026, 7, 18): ("RAF", "RAF 11", "Milwaukee · Fox Nation"),
+  datetime.date(2026, 8, 22): ("RAF", "RAF 12", "Cleveland · Fox Nation"),
 }
-CHIPCLS = {"Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
+CHIPCLS = {"RAF": "raf", "Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
   {"week":"2026-08-17","label":"Week of August 17, 2026","start":datetime.date(2026,8,17),"promos":{
      "WWE":[("x7ZLXWnymTM","2026-08-17","Raw \u00b7 Full show highlights"),("O0OgOIuQqdE","2026-08-17","Raw \u00b7 World Title contender tournament"),("C60srGVYAF4","2026-08-17","Raw \u00b7 Je'Von Evans and Big Cass"),("lYF8Sn5n9p8","2026-08-17","Raw \u00b7 Rey Fenix and Penta backstage"),("D2eLpXiVwLU","2026-08-21","SmackDown \u00b7 Full show highlights"),("aGwyn-uPXyw","2026-08-21","SmackDown \u00b7 Nakamura and Kyoki")],
      "AEW":[("VjYPwrh18Ds","2026-08-19","Dynamite \u00b7 Moxley vs. Jay White"),("I4wfux9M0U8","2026-08-19","Dynamite \u00b7 United Empire vs. Don Callis Family"),("VVXitdVh0do","2026-08-19","Dynamite \u00b7 TBS Title four-way"),("dV5VxSbECAA","2026-08-19","Dynamite \u00b7 Mercedes Mone vs. Willow Nightingale"),("OionnecJzTg","2026-08-19","Dynamite \u00b7 Omega and Ospreay before Wembley")],
      "TNA":[("qq9G8OpeAa8","2026-08-20","iMPACT \u00b7 Eight-man main event before Lockdown")],
+     "RAF":[("XYVMMGxHjIo","2026-08-22","RAF \u00b7 RAF 12 live from Cleveland")],
      "NXT":[("nRqHmvwgzSM","2026-08-18","NXT \u00b7 Full show highlights"),("AvgvkBuJxq0","2026-08-18","NXT \u00b7 Top 10 moments"),("r4PUMGY_2sk","2026-08-18","NXT \u00b7 Zilla Fatu contract signing"),("5usYW-kZ494","2026-08-18","NXT \u00b7 Three men want Zilla Fatu"),("K0uMA3NndK4","2026-08-18","NXT \u00b7 Grey and Sinclair vs. Jordan and Armstrong")]
   }},
   {"week":"2026-08-10","label":"Week of August 10, 2026","start":datetime.date(2026,8,10),"promos":{
@@ -99,12 +105,14 @@ WEEKS = [
      "NXT":[("gt46FaNa18E","2026-07-21","NXT · Full show highlights"),("cB_XQGhra-c","2026-07-21","NXT · Title Street Fight"),("nFUnfdu326Q","2026-07-21","NXT · A new arrival"),("6BPO4g8oFFM","2026-07-21","NXT · Grudge match")]
   }},
   {"week":"2026-07-13","label":"Week of July 13, 2026","start":datetime.date(2026,7,13),"promos":{
+     "RAF":[("uLSj7bv8mMQ","2026-07-18","RAF \u00b7 RAF 11 live from Milwaukee"),("-l1jyB1k3Fo","2026-07-18","RAF \u00b7 RAF 11 opening matches"),("injIWpjSTP4","2026-07-18","RAF \u00b7 Inside RAF 11 on match day")],
      "WWE":[("F5MaGPEgNpk","2026-07-13","Raw · Full show highlights"),("HoY5Q2MEulU","2026-07-13","Raw · Top 10 moments"),("to3cS-GFBhw","2026-07-13","Raw · Evans vs. Dragon Lee gauntlet"),("f0fhFVG0S6Q","2026-07-17","SmackDown · Full show highlights"),("o1H6NTSLkTM","2026-07-17","SmackDown · Top 10 moments"),("X7QbBu7nc7M","2026-07-17","SmackDown · Four-way chaos")],
      "AEW":[("-RBTRrsa8wI","2026-07-15","Dynamite · Tag team match"),("H1UiQT5SewE","2026-07-15","Dynamite · Women's tag match"),("VgH9wRLzDis","2026-07-15","Dynamite · Fletcher vs. Komander title"),("N_d-5kFe_zE","2026-07-15","Dynamite · Main event"),("La3j1kfw60o","2026-07-15","Dynamite · Title celebration"),("aTgsJgs0kfw","2026-07-18","Collision · Singles match"),("WJ_-lFglkW4","2026-07-18","Collision · Backstage"),("1zqI39P6P1Y","2026-07-18","Collision · Ospreay vs. Brooks"),("-JwJ4m7-AtI","2026-07-18","Collision · Shida vs. Aminata title"),("llqGQlMwWf4","2026-07-18","Collision · Perry vs. Wayne")],
      "TNA":[("MufGdGZQ7DA","2026-07-16","iMPACT · X-Division Championship"),("ptlVuM7K09E","2026-07-16","iMPACT · TV Title tournament"),("xFyXTGKBLqg","2026-07-16","iMPACT · In-ring segment"),("qp8XCs-MHRI","2026-07-16","iMPACT · Backstage"),("wBcD3SJX7iY","2026-07-16","iMPACT · Heavyweight collision")],
      "NXT":[("0drmI0Tx5pA","2026-07-14","NXT · Full show highlights"),("D7XrmRr-TtU","2026-07-14","NXT · Top 10 moments"),("XRkOtmOderI","2026-07-14","NXT · Triple threat match"),("xbzzpgJG6RM","2026-07-14","NXT · Tag Team Championship")]
   }},
   {"week":"2026-07-06","label":"Week of July 6, 2026","start":datetime.date(2026,7,6),"promos":{
+     "RAF":[("qGYemvUYAac","2026-07-11","RAF \u00b7 RAF Georgia full show"),("_4xneZSiDC0","2026-07-11","RAF \u00b7 RAF Georgia full broadcast"),("FdAHq4V_DhE","2026-07-11","RAF \u00b7 RAF Georgia opening matches"),("6iI2OHmk4tg","2026-07-11","RAF \u00b7 Countdown to RAF Georgia")],
      "WWE":[("WLLhAIBGYes","2026-07-06","Raw · Full show highlights"),("CaO9NYMtf0Q","2026-07-06","Raw · Top 10 moments"),("oEC0G3EbTPA","2026-07-06","Raw · Punk def. Zayn for the title"),("CmYUhl_Sj40","2026-07-10","SmackDown · Full show highlights"),("7l1LecGUU0c","2026-07-10","SmackDown · Top 10 moments"),("9ByuFejfsOk","2026-07-10","SmackDown · Keys vs. Jimmy Uso")],
      "AEW":[("I3fnU7ZLh7Y","2026-07-08","Dynamite · Omega wins the AEW World Title"),("3G4Tjv9qkNw","2026-07-08","Dynamite · Fletcher vs. Takeshita"),("jffQcqkJETM","2026-07-08","Dynamite · Jericho vs. Ciampa"),("3m0YvB2Xmek","2026-07-11","Collision · Bailey vs. Davis title"),("XOM3ayF4hf8","2026-07-11","Collision · Moxley declares war")],
      "TNA":[("4uG-F-ldUc8","2026-07-09","iMPACT · Top 10 moments"),("rZzXdXzLIWo","2026-07-09","iMPACT · Lee vs. Brookside No DQ title"),("QgihHvX9b-E","2026-07-09","iMPACT · The Hardys defend the tag titles")],
@@ -134,7 +142,10 @@ def dayshort(dstr): return datetime.date.fromisoformat(dstr).strftime("%a · %b 
 
 def slug(promo, date, label): return slugify("%s %s %s" % (promo, label, date))
 def page_url(promo, date, label): return "/media/w/%s/" % slug(promo, date, label)
-def vtitle(promo, label, date): return "%s %s, %s" % (promo, label.replace(" · ", ", "), pretty(date))
+def vtitle(promo, label, date):
+    t = "%s %s, %s" % (promo, label.replace(" \u00b7 ", ", "), pretty(date))
+    # a promo whose tab name equals its show name (RAF) would read "RAF RAF, ..."
+    return re.sub(r"^(\S+) \1\b", r"\1", t)
 
 # ---- index for related lookups ----
 INDEX = {}  # yid -> dict
