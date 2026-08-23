@@ -103,6 +103,7 @@ EVENTS = [
         ("Lightweight","Merab Dvalishvili","Frankie Edgar","Merab Dvalishvili","tech fall 12-1",None,False),
         ("Featherweight","Real Woods","Ibragim Ilyasov","Real Woods","fall 2:11","Featherweight Championship",True),
         ("Middleweight","Jason Nolf","Christopher Minto","Jason Nolf","dec 10-5",None,False),
+        ("Middleweight","Arman Tsarukyan","Keelon Jimison","Arman Tsarukyan","tech fall 16-5",None,False),
         ("Cruiserweight","Parker Keckeisen","Georgios Kougioumtsidis","Parker Keckeisen","dec 8-5",None,False),
         ("Lightweight","Zain Retherford","Antrell Taylor","Zain Retherford","dec 8-0",None,False),
         ("Lightweight","Ridge Lovett","Bajrang Punia","Ridge Lovett","dec 13-8",None,False),
@@ -298,6 +299,155 @@ for e in EVENTS:
     e["_dt"] = d2(e["date"])
 EVENTS.sort(key=lambda e: e["_dt"], reverse=True)
 
+
+# ------------------------------------------------------------------ ATHLETES
+# Profiles for RAF competitors who are NOT pro wrestlers, so they stay out of
+# the /wrestlers/ roster namespace (its A-Z, counts and search index).
+ATHLETES = [
+ dict(slug="arman-tsarukyan", name="Arman Tsarukyan", nick="Ahalkalakets",
+      tagline="The UFC lightweight who wrestles for real",
+      bornplace="Akhalkalaki, Georgia", nationality="Armenian", dob="1996-10-11",
+      height="5 ft 7 in", reach="72.5 in", division="Lightweight", team="American Top Team",
+      coach="Marcos da Matta", division_raf="Middleweight",
+      stats=[("23-3","Pro MMA record"),("10-2","UFC record"),("7-1","RAF record"),("#2","UFC lightweight")],
+      now="Ranked number two at lightweight. Faces Mauricio Ruffy at UFC 331 on September 19.",
+      bio=[
+        "Arman Tsarukyan is the clearest example of what Real American Freestyle was built to do. He is a top two UFC lightweight who spends the gaps between fights wrestling actual freestyle matches, and he has been the most active crossover athlete on the RAF roster since January 2026.",
+        "He was born in Akhalkalaki, Georgia, to an Armenian family, and played junior ice hockey for six years before choosing combat sport at seventeen. He turned professional in MMA in 2015 and arrived in the UFC in 2019 on short notice, losing a Fight of the Night decision to Islam Makhachev on debut. He has lost once since.",
+        "His RAF run has been lopsided. Seven of his first eight matches were wins, five of them technical falls, which in freestyle means a ten point lead ends the match early. The exception is the one that mattered most: Colby Covington beat him 5-2 at RAF 11 for the inaugural Crossover Championship, handing him his first RAF loss.",
+        "He is also the reason RAF got its first genuine pull apart brawl. After beating Georgio Poullas at RAF 06 he shoved and punched him, and both corners spilled onto the mat.",
+      ],
+      correction=("A note on the record. Tsarukyan and Islam Makhachev have fought once, in 2019, and Makhachev won. "
+                  "A second fight was booked for the lightweight title at UFC 311 in January 2025 and Tsarukyan withdrew the day before with a back injury. "
+                  "It is often written up as a series. It is not one."),
+      raf=[  # (event slug, date, opponent, win?, method, note)
+        ("raf-14","2026-10-03","Dillon Danis",None,"Crossover middleweight title","Announced"),
+        ("raf-11","2026-07-18","Colby Covington",False,"dec 2-5","Crossover Championship"),
+        ("raf-georgia","2026-07-11","Kuat Khamitov",True,"tech fall 11-0",""),
+        ("raf-10","2026-06-13","Tony Ferguson",True,"tech fall 10-0",""),
+        ("raf-09","2026-05-30","Keelon Jimison",True,"tech fall 16-5",""),
+        ("raf-08","2026-04-18","Urijah Faber",True,"tech fall 13-1",""),
+        ("raf-07","2026-03-28","Georgio Poullas",True,"dec 9-3","Rematch"),
+        ("raf-06","2026-02-28","Georgio Poullas",True,"dec 5-3","Brawl after the bell"),
+        ("raf-05","2026-01-10","Lance Palmer",True,"tech fall 10-0",""),
+      ],
+      ufc=[  # (date, opponent, win?, method, rd, time, event)
+        ("2025-11-22","Dan Hooker",True,"Submission, arm triangle","2","3:34","UFC Fight Night: Tsarukyan vs. Hooker"),
+        ("2024-04-13","Charles Oliveira",True,"Decision, split","3","5:00","UFC 300"),
+        ("2023-12-02","Beneil Dariush",True,"KO, knee and punches","1","1:04","UFC on ESPN: Dariush vs. Tsarukyan"),
+        ("2023-06-17","Joaquim Silva",True,"TKO, punches","3","3:25","UFC on ESPN 47"),
+        ("2022-12-17","Damir Ismagulov",True,"Decision, unanimous","3","5:00","UFC Fight Night 216"),
+        ("2022-06-25","Mateusz Gamrot",False,"Decision, unanimous","5","5:00","UFC on ESPN: Tsarukyan vs. Gamrot"),
+        ("2022-02-26","Joel Alvarez",True,"TKO, punches","2","1:57","UFC Fight Night 202"),
+        ("2021-09-18","Christos Giagos",True,"TKO, punches","1","2:09","UFC Fight Night 192"),
+        ("2021-01-23","Matt Frevola",True,"Decision, unanimous","3","5:00","UFC 257"),
+        ("2020-07-19","Davi Ramos",True,"Decision, unanimous","3","5:00","UFC Fight Night: Figueiredo vs. Benavidez 2"),
+        ("2019-07-27","Olivier Aubin-Mercier",True,"Decision, unanimous","3","5:00","UFC 240"),
+        ("2019-04-20","Islam Makhachev",False,"Decision, unanimous","3","5:00","UFC Fight Night 149"),
+      ],
+      grappling="Submission grappling record of 4-0-1, including a technical decision over Benson Henderson and a fifth round rear naked choke on Patricky Freire at ADXC 10 in May 2025.",
+      background=("His wrestling background is real but thinner than the reputation suggests, and it is worth being exact about it. "
+                  "He holds Master of Sport rank in freestyle wrestling and a second in mixed martial arts. No world, European or national "
+                  "championship medal appears in any published record. Armenian coverage has framed a European Championship run as something "
+                  "he could still do, not something he has done."),
+      srcs=[("UFC.com","https://www.ufc.com/athlete/arman-tsarukyan"),
+            ("Wikipedia","https://en.wikipedia.org/wiki/Arman_Tsarukyan"),
+            ("Sherdog","https://www.sherdog.com/fighter/Arman-Tsarukyan-213913"),
+            ("RAF athlete page","https://www.realamericanfreestyle.com/athletes/arman-tsarukyan")]),
+]
+EVENT_BY_SLUG = {e["slug"]: e for e in EVENTS}
+
+def _age(dob):
+    d = d2(dob)
+    return TODAY.year - d.year - ((TODAY.month, TODAY.day) < (d.month, d.day))
+
+def athlete_page(a):
+    title = "%s: RAF Record, UFC Record and Bio | Wrestle Lore" % a["name"]
+    desc = ("%s, the UFC lightweight who competes in Real American Freestyle. Complete RAF record, "
+            "every UFC fight, and how the two careers run alongside each other." % a["name"])
+    canonical = "%s/promotions/raf/athletes/%s/" % (BASE, a["slug"])
+
+    stats = "".join('<div><b>%s</b>%s</div>' % (esc(v), esc(l)) for v, l in a["stats"])
+
+    rrows = []
+    for slug, date, opp, win, method, note in a["raf"]:
+        ev = EVENT_BY_SLUG.get(slug)
+        evcell = ('<a href="/promotions/raf/%s/">%s</a>' % (slug, esc(ev["name"]))) if ev else esc(slug.upper().replace("-", " "))
+        if win is None:
+            res = '<span class="raf-tbd">Announced</span>'
+        else:
+            res = '<span class="raf-n is-win">Win</span>' if win else '<span class="raf-res-l">Loss</span>'
+        rrows.append('<tr><td class="raf-wc">%s</td><td>%s</td><td class="raf-vs"><span class="raf-n">%s</span>%s</td>'
+                     '<td class="raf-res">%s</td><td class="raf-res">%s</td></tr>'
+                     % (pretty(date), evcell, esc(opp),
+                        ('<span class="raf-belt">%s</span>' % esc(note)) if note else "", res, esc(method)))
+
+    urows = []
+    for date, opp, win, method, rd, tm, event in a["ufc"]:
+        urows.append('<tr><td class="raf-wc">%s</td><td class="raf-vs"><span class="raf-n%s">%s</span></td>'
+                     '<td class="raf-res">%s</td><td class="raf-res">%s</td><td class="raf-res">%s</td>'
+                     '<td class="raf-wc">%s</td></tr>'
+                     % (pretty(date), " is-win" if win else "", esc(opp),
+                        '<span class="raf-n is-win">Win</span>' if win else '<span class="raf-res-l">Loss</span>',
+                        esc(method), "R%s %s" % (esc(rd), esc(tm)), esc(event)))
+
+    srcs = " ".join('<a href="%s" target="_blank" rel="noopener">%s</a>' % (esc(u), esc(n)) for n, u in a["srcs"])
+
+    jsonld = ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person",'
+      '"name":"%s","alternateName":"%s","birthDate":"%s","birthPlace":{"@type":"Place","name":"%s"},'
+      '"nationality":"%s","jobTitle":"Mixed martial artist and freestyle wrestler","url":"%s",'
+      '"affiliation":[{"@type":"SportsOrganization","name":"Real American Freestyle"},'
+      '{"@type":"SportsOrganization","name":"Ultimate Fighting Championship"}],"sameAs":[%s]}</script>\n'
+      '<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
+      '{"@type":"ListItem","position":1,"name":"Home","item":"%s/"},'
+      '{"@type":"ListItem","position":2,"name":"Promotions","item":"%s/promotions/"},'
+      '{"@type":"ListItem","position":3,"name":"RAF","item":"%s/promotions/raf/"},'
+      '{"@type":"ListItem","position":4,"name":"%s","item":"%s"}]}</script>\n'
+      % (esc(a["name"]), esc(a["nick"]), a["dob"], esc(a["bornplace"]), esc(a["nationality"]), canonical,
+         ",".join('"%s"' % u for _, u in a["srcs"]), BASE, BASE, BASE, esc(a["name"]), canonical))
+
+    bio = "".join('<p class="raf-p">%s</p>' % esc(x) for x in a["bio"])
+
+    main = ('<div class="raf raf--athlete">'
+      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li>'
+      '<li><a href="/promotions/">Promotions</a></li><li><a href="/promotions/raf/">RAF</a></li>'
+      '<li aria-current="page">%s</li></ol></nav>'
+      '<div class="raf-hero">'
+      '<p class="raf-kicker"><span class="raf-mark">RAF</span>%s</p>'
+      '<h1 class="raf-h1">%s</h1><p class="raf-tag">%s</p>'
+      '<div class="raf-meta">'
+      '<span><b>Born</b>%s, %s</span><span><b>Age</b>%d</span><span><b>Height</b>%s</span>'
+      '<span><b>Reach</b>%s</span><span><b>UFC division</b>%s</span><span><b>RAF division</b>%s</span>'
+      '<span><b>Team</b>%s</span></div></div>'
+      '<div class="raf-now">%s</div>'
+      '<div class="raf-stats raf-stats--ath">%s</div>'
+      '<h2 class="raf-h2">Overview</h2>%s'
+      '<div class="raf-correct"><b>Setting one thing straight</b><p>%s</p></div>'
+      '<h2 class="raf-h2">RAF record</h2>'
+      '<p class="raf-sub">%s in Real American Freestyle. Every match links to the full card.</p>'
+      '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Event</th><th>Opponent</th>'
+      '<th>Result</th><th>Method</th></tr></thead><tbody>%s</tbody></table></div>'
+      '<h2 class="raf-h2">UFC record</h2>'
+      '<p class="raf-sub">%s in the UFC, %s as a professional. Debut April 2019.</p>'
+      '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Opponent</th><th>Result</th>'
+      '<th>Method</th><th>Round</th><th>Event</th></tr></thead><tbody>%s</tbody></table></div>'
+      '<h2 class="raf-h2">Wrestling and grappling background</h2>'
+      '<p class="raf-p">%s</p><p class="raf-p">%s</p>'
+      '<div class="raf-watch"><b>Sources</b><p>Every figure on this page traces to a published record. '
+      'Where sources disagree, the disagreement is stated rather than smoothed over.</p>%s</div>'
+      '<div class="raf-nav"><a class="link-more" href="/promotions/raf/">All RAF events</a>'
+      '<a class="link-more" href="/promotions/raf/raf-11/">His RAF title match</a></div>'
+      '<p class="raf-colophon">Wrestle Lore is an independent, fan made project and is not affiliated with Real American '
+      'Freestyle, the UFC, WWE, TKO Group Holdings, AEW, TNA or NJPW.</p>'
+      '</div>'
+      % (esc(a["name"]), esc(a["tagline"]), esc(a["name"]), esc(a["nick"]),
+         esc(a["bornplace"]), esc(a["nationality"]), _age(a["dob"]), esc(a["height"]), esc(a["reach"]),
+         esc(a["division"]), esc(a["division_raf"]), esc(a["team"]),
+         esc(a["now"]), stats, bio, esc(a["correction"]),
+         a["stats"][2][0], "".join(rrows), a["stats"][1][0], a["stats"][0][0], "".join(urows),
+         esc(a["background"]), esc(a["grappling"]), srcs))
+    return shell(title, desc, canonical, main, extra_head=jsonld)
+
 # ------------------------------------------------------------------ RENDER
 FOXNATION = "https://nation.foxnews.com/real-american-freestyle-nation/"
 def yt(vid, label, ev):
@@ -484,16 +634,25 @@ def hub_page():
       '<h2 class="raf-h2">Current champions</h2>'
       '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Division</th><th>Champion</th><th>Notes</th></tr></thead>'
       '<tbody>%s</tbody></table></div>'
+      '<h2 class="raf-h2">Athlete files</h2>'
+      '<p class="raf-sub">Crossover competitors with a record in more than one sport.</p>'
+      '<div class="raf-evs">%s</div>'
       '<h2 class="raf-h2">Questions fans actually ask</h2>%s'
       '<p class="raf-colophon">Wrestle Lore is an independent, fan made project and is not affiliated with Real American Freestyle, '
       'WWE, TKO Group Holdings, AEW, TNA or NJPW. Results are filed from USA Wrestling, FloWrestling and Real American Freestyle, and every '
       'video is embedded from an official channel.</p>'
       '</div>'
-      % (len(EVENTS), sum(len(e["bouts"]) for e in EVENTS), "".join(rows), champ, faq_html))
+      % (len(EVENTS), sum(len(e["bouts"]) for e in EVENTS), "".join(rows), champ,
+         "".join('<a class="raf-ev" href="/promotions/raf/athletes/%s/">'
+                 '<span class="raf-ev__n">%s</span><span class="raf-ev__t">%s</span>'
+                 '<span class="raf-ev__v">%s</span><span class="raf-ev__c">Full record</span></a>'
+                 % (a["slug"], esc(a["name"]), esc(a["tagline"]),
+                    " and ".join(x[0] for x in a["stats"][:3])) for a in ATHLETES),
+         faq_html))
     return shell(title, desc, canonical, main, extra_head=jsonld)
 
 # ------------------------------------------------------------------ SHELL
-def shell(title, desc, canonical, main, extra_head=""):
+def shell(title, desc, canonical, main, extra_head="", profile_css=False):
     return ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
       '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
       '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n'
@@ -501,12 +660,14 @@ def shell(title, desc, canonical, main, extra_head=""):
       '<meta property="og:type" content="website">\n<meta property="og:title" content="%s">\n'
       '<meta property="og:description" content="%s">\n<meta property="og:url" content="%s">\n'
       '<meta property="og:site_name" content="Wrestle Lore">\n%s'
-      '<link rel="stylesheet" href="/css/site.css">\n</head>\n<body>\n'
+      '<link rel="stylesheet" href="/css/site.css">\n'
+      '%s</head>\n<body>\n'
       '<header class="site-header nav7"></header>\n<main id="main">\n%s\n</main>\n'
       '<footer class="site-footer site-footer--fat"></footer>\n'
       '<script src="/js/main.js" defer></script>\n<script src="/js/nav.js" defer></script>\n'
       '<script src="/js/media.js" defer></script>\n</body>\n</html>\n'
-      % (esc(title), esc(desc), canonical, esc(title), esc(desc), canonical, extra_head, main))
+      % (esc(title), esc(desc), canonical, esc(title), esc(desc), canonical, extra_head,
+         '<link rel="stylesheet" href="/css/profile.css">\n' if profile_css else "", main))
 
 # ------------------------------------------------------------------ CSS
 RAF_CSS = """
@@ -578,6 +739,14 @@ table.raf-card tbody tr:last-child td{border-bottom:none}
 .raf-faq[open] summary::after{content:"\\2013"}
 .raf-faq p{margin:0;padding:0 18px 17px;font-size:15.5px;line-height:1.65;color:var(--c-ink-2,#b9c2cb);max-width:70ch}
 .chip--raf{background:rgba(46,95,163,.16);color:var(--c-raf-b);border-color:rgba(46,95,163,.5)}
+.raf-now{margin:22px 0 0;padding:12px 18px;border:1px solid var(--c-gold-dim,rgba(212,175,55,.4));font:600 12.5px/1.5 var(--f-mono,monospace);letter-spacing:.06em;color:var(--c-gold);display:inline-block}
+.raf-p{font-size:16.5px;line-height:1.72;color:var(--c-ink-2,#b9c2cb);max-width:70ch;margin:0 0 15px}
+.raf-correct{margin:26px 0 0;border-left:3px solid var(--c-raf-b);padding:16px 20px;background:var(--c-bg-2,rgba(255,255,255,.03))}
+.raf-correct b{display:block;font:600 10.5px/1 var(--f-mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:var(--c-raf-b);margin-bottom:9px}
+.raf-correct p{margin:0;font-size:15.5px;line-height:1.65;color:var(--c-ink-2,#b9c2cb);max-width:72ch}
+.raf-res-l{font-weight:600;color:var(--c-loss,#c4574d)}
+.raf-stats--ath{margin:24px 0 0}
+.raf-stats--ath b{color:var(--c-raf-b)}
 .raf-colophon{margin-top:52px;padding-top:20px;border-top:1px solid var(--c-line);
   font-size:13px;line-height:1.7;color:var(--c-ink-3,#8892a0);max-width:82ch}
 @media (max-width:640px){
@@ -609,7 +778,8 @@ def update_sitemap():
     p = os.path.join(ROOT, "sitemap.xml")
     if not os.path.exists(p): return
     xml = open(p, encoding="utf-8").read()
-    urls = ["%s/promotions/raf/" % BASE] + ["%s/promotions/raf/%s/" % (BASE, e["slug"]) for e in EVENTS]
+    urls = ["%s/promotions/raf/" % BASE] + ["%s/promotions/raf/%s/" % (BASE, e["slug"]) for e in EVENTS]\
+           + ["%s/promotions/raf/athletes/%s/" % (BASE, a["slug"]) for a in ATHLETES]
     add = [u for u in urls if u not in xml]
     if not add:
         print("sitemap: RAF urls already present"); return
@@ -691,6 +861,8 @@ if __name__ == "__main__":
         older = EVENTS[i+1] if i < len(EVENTS)-1 else None
         write("/promotions/raf/%s/index.html" % e["slug"], event_page(e, older, newer)); n += 1
     write("/promotions/raf/index.html", hub_page())
+    for a in ATHLETES:
+        write("/promotions/raf/athletes/%s/index.html" % a["slug"], athlete_page(a))
     patch_promotions_index()
     update_sitemap()
     print("done: RAF hub + %d event pages (%d bouts, %d clips) ROOT=%s"

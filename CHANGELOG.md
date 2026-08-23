@@ -1,3 +1,10 @@
+## 2026-08-23 (RAF: Arman Tsarukyan athlete file, RAF 09 card corrected)
+- **New `/promotions/raf/athletes/arman-tsarukyan/`**: full RAF record (8 matches plus the announced RAF 14 booking) with every match linked to its event card, the complete 12 fight UFC record, bio, and the wrestling background stated honestly. Person + BreadcrumbList schema. Linked from a new "Athlete files" block on the RAF hub so it is not an orphan.
+- **Placed under `/promotions/raf/athletes/`, not `/wrestlers/`.** Tsarukyan is an MMA fighter, not a pro wrestler; putting him in the wrestler namespace would pollute its A to Z, its counts and its search index.
+- **Corrected the RAF 09 card**: it was missing the Tsarukyan vs. Keelon Jimison bout (tech fall 16-5). The athlete page would have claimed a RAF 09 win the RAF 09 page did not list. 141 bouts to 142.
+- **Two research corrections baked into the page**: Tsarukyan and Makhachev have fought once, not twice (the UFC 311 rematch was booked and withdrawn from), and no world, European or national freestyle medal appears in any published record, so the page says Master of Sport rank and nothing more.
+- `.rec2-*` classes are scoped under `.profile-main` and render unstyled elsewhere; the athlete page uses the RAF stat block instead. Build gate: 475 pages stamped, 0 NOHDR / 0 NOFTR.
+
 ## 2026-08-22 (Real American Freestyle: new /promotions/raf/ section, wired into the feed and gallery)
 - **New generator `build/build_raf.py`** emits the RAF hub plus 13 event pages (RAF 01 to RAF 12 and RAF Georgia), 141 bouts with weight class, winner, method, score and title status, 42 oEmbed-verified official clips, SportsEvent / FAQPage / BreadcrumbList schema, sitemap +14. Third instance of the one-source generator pattern; no new abstractions.
 - **Lore Feed**: `raf` added to the `PROMO` map plus 10 sourced dispatches, so RAF flows into the weekly feed, the site-wide ticker and the homepage rail from the same list as WWE and AEW.

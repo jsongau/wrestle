@@ -5053,6 +5053,14 @@ table.raf-card tbody tr:last-child td{border-bottom:none}
 .raf-faq[open] summary::after{content:"\2013"}
 .raf-faq p{margin:0;padding:0 18px 17px;font-size:15.5px;line-height:1.65;color:var(--c-ink-2,#b9c2cb);max-width:70ch}
 .chip--raf{background:rgba(46,95,163,.16);color:var(--c-raf-b);border-color:rgba(46,95,163,.5)}
+.raf-now{margin:22px 0 0;padding:12px 18px;border:1px solid var(--c-gold-dim,rgba(212,175,55,.4));font:600 12.5px/1.5 var(--f-mono,monospace);letter-spacing:.06em;color:var(--c-gold);display:inline-block}
+.raf-p{font-size:16.5px;line-height:1.72;color:var(--c-ink-2,#b9c2cb);max-width:70ch;margin:0 0 15px}
+.raf-correct{margin:26px 0 0;border-left:3px solid var(--c-raf-b);padding:16px 20px;background:var(--c-bg-2,rgba(255,255,255,.03))}
+.raf-correct b{display:block;font:600 10.5px/1 var(--f-mono,monospace);letter-spacing:.14em;text-transform:uppercase;color:var(--c-raf-b);margin-bottom:9px}
+.raf-correct p{margin:0;font-size:15.5px;line-height:1.65;color:var(--c-ink-2,#b9c2cb);max-width:72ch}
+.raf-res-l{font-weight:600;color:var(--c-loss,#c4574d)}
+.raf-stats--ath{margin:24px 0 0}
+.raf-stats--ath b{color:var(--c-raf-b)}
 .raf-colophon{margin-top:52px;padding-top:20px;border-top:1px solid var(--c-line);
   font-size:13px;line-height:1.7;color:var(--c-ink-3,#8892a0);max-width:82ch}
 @media (max-width:640px){
