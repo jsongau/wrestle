@@ -107,7 +107,56 @@ for _r in ROWS:
         _r["opponent"] = '<a class="opp-link" href="/wrestlers/%s/">%s</a>' % (_slug, _r["opponent"])
         _r["opponent_html"] = True
 
+PULSE = dict(
+ handle="CodyRhodes",
+ lead=("What he is posting, as it happens. His X account is active and curated here from "
+       "press-verified posts &mdash; every quote is verbatim, every card links the original "
+       "post. His family life lives on Instagram; the Orton feud, notably, he has not "
+       "posted about at all. Newest first."),
+ foot=("Follow live: <a href=\"https://x.com/CodyRhodes\" target=\"_blank\" rel=\"noopener\">"
+       "@CodyRhodes on X</a> &middot; curated by hand &middot; quotes verbatim from the linked posts "
+       "&middot; no engagement counts shown because we refuse to fake them"),
+ cards=[
+  dict(x_url="https://x.com/CodyRhodes/status/2087977889421525411", date="Aug 13 &middot; 2026", wide=True,
+       quote=("&ldquo;Bus broke down on the side of the road (still going to make the house show!) "
+              "but while we pass the time&hellip; &#128165; Old school. Q/A &#128165; Use #CodyBus&rdquo;"),
+       why=("A flat tire became an hour-long live Q&amp;A with fans from the roadside &mdash; the "
+            "replies below are from that thread."),
+       src="Wrestling Headlines",
+       src_url="https://wrestlingheadlines.com/cody-rhodes-american-nightmare-tour-bus-breaks-down-rhodes-does-live-twitter-qa-to-pass-time/"),
+  dict(x_url="https://x.com/CodyRhodes/status/2087311053109510352", date="Aug 11 &middot; 2026",
+       quote=("&ldquo;Arik my friend no shade intended, but my outlook&hellip; Avery is 19. His Father "
+              "was paying dues and making sacrifices throughout that young man&rsquo;s youth that some "
+              "people may never understand&hellip; To simplify&hellip;he already set up the fn&rsquo; chairs&rdquo;"),
+       why="Defending AJ Styles&rsquo; 19-year-old son against a paying-dues callout. The locker-room-leader voice, unprompted.",
+       src="Fightful",
+       src_url="https://www.fightful.com/wrestling/cody-rhodes-explains-how-avery-styles-already-set-up-the-fn-chairs/"),
+  dict(x_url="https://x.com/CodyRhodes/status/2087985660569207180", date="Aug 13 &middot; 2026",
+       quote=("&ldquo;The rest of the cast. Everybody loving and knowing the games! 10/16 &#128165; "
+              "can&rsquo;t come soon enough!&rdquo;"),
+       why="From the bus Q&amp;A: what excited him most about playing Guile in the Street Fighter film, in theaters October 16.",
+       src="Wrestling Headlines",
+       src_url="https://wrestlingheadlines.com/cody-rhodes-american-nightmare-tour-bus-breaks-down-rhodes-does-live-twitter-qa-to-pass-time/"),
+  dict(x_url="https://x.com/CodyRhodes/status/2087986716581753006", date="Aug 13 &middot; 2026",
+       quote="&ldquo;Tomorrow morning actually&hellip; &#128064; Brand new collection. First class.&rdquo;",
+       why="Merch tease from the same thread; the collection dropped the next morning.",
+       src="Wrestling Headlines",
+       src_url="https://wrestlingheadlines.com/cody-rhodes-american-nightmare-tour-bus-breaks-down-rhodes-does-live-twitter-qa-to-pass-time/"),
+  dict(x_url="https://x.com/CodyRhodes/status/2074214475851284791", date="Jul 6 &middot; 2026",
+       quote="&#127942;&#127942;&#127942;&#127942;",
+       why=("Four trophies, no words, posted hours before his booked title rematch on Raw &mdash; the match "
+            "a Gunther attack took him out of. The fourth-reign reading is ours, not his; he never explained it."),
+       src="SI",
+       src_url="https://www.si.com/fannation/wrestling/wwe/wwe-raw-results-cody-rhodes-unable-to-compete-for-wwe-title"),
+  dict(x_url="https://x.com/CodyRhodes/status/2030986108490637821", date="Mar 9 &middot; 2026",
+       quote="&ldquo;Records can be broken (even your own) There&rsquo;s nothing like Mania&rdquo;",
+       why="On course for his fourth straight WrestleMania main event, a record he already held.",
+       src="Yahoo Sports",
+       src_url="https://sports.yahoo.com/articles/cody-rhodes-reacts-4th-consecutive-160500987.html"),
+ ])
+
 DATA = dict(
+ pulse=PULSE,
     slug="cody-rhodes",
     name="Cody Rhodes",
     realname="Cody Garrett Runnels",

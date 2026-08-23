@@ -1145,3 +1145,32 @@ button.tt-cred{cursor:pointer}
    below the full stack instead. */
 .wl-dossier .idn{top:calc(var(--nav-h) + var(--subnav-h))}
 @media(max-width:1199px){.wl-dossier .idn{top:var(--nav-h)}}
+
+/* ==== LEDGER DISCLAIMER =================================================
+   "Some bouts may not be listed." A curated ledger is not a career count;
+   say so at the point of reading, not only in the lead paragraph. One line,
+   mono, gold tick - the house annotation voice, not a warning box. */
+.wl-dossier .ledger-note{display:flex;align-items:center;gap:8px;margin:10px 0 0;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(244,245,247,.38)}
+.wl-dossier .ledger-note::before{content:"";flex:0 0 18px;height:1px;background:var(--gold,#d4af37);opacity:.55}
+.wl-dossier .ledger-note b{color:rgba(244,245,247,.6);font-weight:600}
+.wl-dossier .fm .ledger-note{margin:8px 2px 0;font-size:9.5px}
+
+/* ==== PULSE: X-embed card chrome =========================================
+   A pulse card carrying x_url renders with real post anatomy - avatar
+   monogram, name/handle, the X glyph, View on X - in the house palette, not
+   Twitter's. Static and curated: only verified posts, real status URLs, no
+   invented engagement numbers. */
+.wl-dossier .pulse-card--x{border-color:rgba(244,245,247,.14)}
+.wl-dossier .pulse-xhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.wl-dossier .pulse-av{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#2a2416,#15171d);border:1px solid rgba(212,175,55,.4);
+  font-family:'Anton',sans-serif;font-size:13px;color:var(--gold,#d4af37);letter-spacing:.04em}
+.wl-dossier .pulse-who{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.wl-dossier .pulse-who b{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;color:#f4f5f7}
+.wl-dossier .pulse-who span{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(244,245,247,.42)}
+.wl-dossier .pulse-xglyph{margin-left:auto;font-size:15px;color:rgba(244,245,247,.5)}
+.wl-dossier .pulse-card--x .pulse-quote{font-style:normal}
+.wl-dossier .pulse-links{display:flex;align-items:center;gap:14px;margin-top:12px;flex-wrap:wrap}
+.wl-dossier .pulse-links .pulse-date{margin-left:0}

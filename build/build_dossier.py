@@ -110,6 +110,7 @@ SEC_META = {
     "media":     ("Media &amp; Gaming",    "Media"),
     "mma":       ("MMA Record &mdash; UFC", None),
     "feats":     ("Records &amp; Feats",   None),
+    "pulse":     ("Right Now",             None),
     "reference": ("Official &amp; Reference", None),
     "faq":       ("Frequently Asked",      "FAQ"),
 }
@@ -124,6 +125,8 @@ def sections_for(a):
     s.append("titles")
     s.append(a["slot5"]["id"])
     s += ["personas", "career", "rivalries", "media"]
+    if a.get("pulse"):
+        s.append("pulse")
     if a.get("slot10"):
         s.append(a["slot10"]["id"])
     s += ["reference", "faq"]
@@ -288,7 +291,9 @@ def sec_record(n, a):
       '<a data-see-all role="button" tabindex="0">See them in the full record</a></td></tr>'
       '</tbody></table></div>\n'
       '<p class="rec2-count" id="rec2-count" aria-live="polite" aria-atomic="true">'
-      '<b id="rec2-shown">%d</b> of %d matches shown</p></section>'
+      '<b id="rec2-shown">%d</b> of %d matches shown</p>'
+      '<p class="ledger-note"><b>Curated ledger</b> &middot; documented highlights &middot; '
+      'some bouts are not listed</p></section>'
       % (cd, full_label, total, "".join(fbtns), tbtns, WL_DONUT, REC_THEAD,
          "".join(match_row(r) for r in rows), cd, total))
 
@@ -431,7 +436,40 @@ def sec_overview(n, a):
         ps.append(para)
     return sec_h(n, "overview") + "".join(ps) + "</section>"
 
-BUILDERS = {"overview": sec_overview, "record": sec_record, "signature": sec_signature,
+def sec_pulse(n, a):
+    """Optional 'Right Now' social pulse. Cards are curated, press-verified posts -
+    never fabricated, never given invented engagement counts. A card with x_url gets
+    X-embed chrome (avatar monogram, name/handle, X glyph, View on X); platform
+    cards get a chip instead. cm-punk's hand-authored section defined the vocabulary."""
+    p = a["pulse"]
+    cards = []
+    for c in p["cards"]:
+        cls = "pulse-card" + (" pulse-featured" if c.get("wide") else "") + (" pulse-card--x" if c.get("x_url") else "")
+        if c.get("x_url"):
+            top = ('<div class="pulse-xhead"><span class="pulse-av">%s</span>'
+                   '<span class="pulse-who"><b>%s</b><span>@%s</span></span>'
+                   '<span class="pulse-xglyph" aria-hidden="true">&#120143;</span></div>'
+                   % (esc(a.get("mono","")), esc(a["name"]), esc(p["handle"])))
+        else:
+            top = ('<div class="pulse-top"><span class="pulse-chip">%s</span>'
+                   '<span class="pulse-date">%s</span></div>' % (esc(c.get("chip","")), c["date"]))
+        body = '<p class="pulse-quote">%s</p>' % c["quote"]
+        if c.get("why"): body += '<p class="pulse-why">%s</p>' % c["why"]
+        links = ""
+        if c.get("x_url"):
+            links += ('<span class="pulse-date">%s</span><a class="pulse-src" href="%s" target="_blank" '
+                      'rel="noopener">View on X &rarr;</a>' % (c["date"], esc(c["x_url"])))
+        if c.get("src_url"):
+            links += ('<a class="pulse-src" href="%s" target="_blank" rel="noopener">via %s &rarr;</a>'
+                      % (esc(c["src_url"]), esc(c["src"])))
+        cards.append('<article class="%s">%s%s<div class="pulse-links">%s</div></article>'
+                     % (cls, top, body, links))
+    foot = ('<p class="pulse-foot">%s</p>' % p["foot"]) if p.get("foot") else ""
+    h = sec_h(n, "pulse")
+    h = h.replace("<h2>%s</h2>" % SEC_META["pulse"][0], "<h2>Right Now</h2>")
+    return h + lead(p["lead"]) + '<div class="pulse-grid">%s</div>%s</section>' % ("".join(cards), foot)
+
+BUILDERS = {"overview": sec_overview, "record": sec_record, "signature": sec_signature, "pulse": sec_pulse,
             "titles": sec_titles, "factions": sec_slot5, "before": sec_slot5,
             "personas": sec_personas, "career": sec_career, "rivalries": sec_rivalries,
             "media": sec_media, "mma": sec_slot10, "feats": sec_slot10,
