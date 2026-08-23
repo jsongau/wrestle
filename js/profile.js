@@ -162,6 +162,10 @@ document.documentElement.classList.add('js');
 /* ===== mini-nav interactions ===== */
 (function(){
   var idn=document.getElementById('idn'), hero=document.querySelector('.wl-dossier .hero');
+  // Not every .wl-dossier page carries the sticky identity plate: the faction
+  // pages use an .ev-hero instead. Without this guard onScroll() throws on the
+  // first (immediate) call and takes the rest of this IIFE with it.
+  if(!idn) return;
   function onScroll(){
     idn.classList.toggle('scrolled', window.scrollY > 40);           // breadcrumbs leave early
     var past = hero ? (window.scrollY > hero.offsetTop+hero.offsetHeight-180) : window.scrollY>220;

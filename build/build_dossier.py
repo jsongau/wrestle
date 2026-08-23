@@ -368,6 +368,93 @@ def hero(a):
          a.get("now_label", "NOW"), esc(a["now_bold"]), a["now_tail"], hs, CHEV,
          esc(a["ghost_link"]), fig))
 
+# ------------------------------------------------ THE WALK-OUT (optional)
+# An entrance-theme strip between the hero and .layout: the overture before the
+# dossier. OPTIONAL and data-driven, like slot10 - a subject with no DATA["theme"]
+# emits nothing at all (no band, no stylesheet cost beyond the shared css, no
+# js/theme-song.js tag). Shape:
+#
+#   DATA["theme"] = {
+#     "kicker":   "Entrance theme",                  # left of the dateline
+#     "since":    "Raw &middot; July 25, 2011",      # optional dateline
+#     "track":    "Cult of Personality",
+#     "artist":   "Living Colour",
+#     "meta":     "Vivid &middot; 1988 &middot; 4:54",
+#     "note":     "<b>...</b> one paragraph of HTML",
+#     "cue":      {"quote": "...", "src": "..."},    # optional crowd-pop line
+#     "spotify_id": "5e3YOg6fIkP0wD5TyxcHOH",        # optional; no id = links only
+#     "links":    [{"svc": "Spotify", "sub": "Full track", "href": "..."}, ...],
+#     "lineage":  [{"date": "2005", "title": "...", "who": "AFI &middot; ROH",
+#                   "now": False}, ...],
+#     "foot":     "sourcing line, may contain <a>",  # optional
+#   }
+#
+# Two rules the markup depends on and verify() enforces:
+#   1. `links` is REQUIRED and must be non-empty, because it IS the fallback and
+#      the fallback is the only thing a blocked visitor ever sees.
+#   2. the listen row ships UNHIDDEN. js/theme-song.js hides it only while a
+#      live embed attempt is in flight (see that file's header).
+def theme_band(a):
+    t = a.get("theme")
+    if not t:
+        return ""
+    head = esc(t.get("kicker", "Entrance theme"))
+    if t.get("since"):
+        head += " <i>&middot;</i> %s" % t["since"]
+    cue = ""
+    if t.get("cue"):
+        cue = ('<blockquote class="wo-cue"><p>&ldquo;%s&rdquo;</p><cite>%s</cite></blockquote>'
+               % (t["cue"]["quote"], t["cue"]["src"]))
+    links = "".join(
+        '<li><a href="%s" target="_blank" rel="noopener" aria-label="%s">'
+        '<span class="wo-svc">%s</span><span class="wo-sub">%s</span>'
+        '<span class="wo-go" aria-hidden="true">&rarr;</span></a></li>'
+        % (esc(l["href"]),
+           esc("%s by %s on %s (opens in a new tab)" % (t["track"], t["artist"], l["svc"])),
+           esc(l["svc"]), esc(l["sub"]))
+        for l in t["links"])
+    lin = "".join(
+        '<li%s><span class="wo-d">%s%s</span><span><b>%s</b>'
+        '<span class="wo-w">%s</span></span></li>'
+        % (' class="is-now"' if e.get("now") else "", esc(e["date"]),
+           '<span class="wo-now">Now</span>' if e.get("now") else "",
+           esc(e["title"]), e["who"])
+        for e in t.get("lineage", []))
+    lineage = ('<div class="wo-line"><p class="wo-lbl">Theme lineage</p>'
+               '<ol class="wo-lin">%s</ol></div>' % lin) if lin else ""
+    # cue + sourcing share one full-width strip; without either there is no strip
+    foot = ('<p class="wo-foot">%s</p>' % t["foot"]) if t.get("foot") else ""
+    under = ('    <div class="wo-under">%s%s</div>\n' % (cue, foot)) if (cue or foot) else ""
+    # The embed is wired only when an id is present; without one the strip is
+    # still complete - the listen row is the player.
+    embed = ""
+    if t.get("spotify_id"):
+        embed = (' data-walkout data-embed="https://open.spotify.com/embed/track/%s"'
+                 ' data-embed-title="%s"'
+                 % (esc(t["spotify_id"]),
+                    esc("Spotify player: %s by %s" % (t["track"], t["artist"]))))
+    return ('<section class="walkout reveal" id="walkout" aria-labelledby="wo-h"%s>\n'
+      '  <div class="walkout-in">\n'
+      '    <div class="wo-rule"><span class="wo-rule-k">The walk-out</span>'
+      '<span class="wo-rule-line" aria-hidden="true"></span>'
+      '<span class="wo-rule-src">%s</span></div>\n'
+      '    <div class="wo-grid">\n'
+      '      <div class="wo-lede">\n'
+      '        <p class="wo-kick">%s</p>\n'
+      '        <h2 class="wo-track" id="wo-h">%s</h2>\n'
+      '        <p class="wo-by">%s<span class="wo-meta">%s</span></p>\n'
+      '        <p class="wo-note">%s</p>\n      </div>\n'
+      '      <div class="wo-play"><p class="wo-lbl">Hear it</p>\n'
+      '        <div class="wo-stage">\n'
+      '          <span class="wo-wait" aria-hidden="true">Cueing the record</span>\n'
+      '          <div class="wo-live" hidden></div>\n'
+      '          <ul class="wo-listen">%s</ul>\n'
+      '        </div>\n      </div>\n'
+      '      %s\n    </div>\n%s  </div>\n</section>'
+      % (embed, t.get("source_label", "Player &middot; Spotify"),
+         head, esc(t["track"]), esc(t["artist"]), t.get("meta", ""), t.get("note", ""),
+         links, lineage, under))
+
 WL_DONUT = ('<div class="rec2-wl rec2-wl-veiled" id="rec2-wl"><svg class="rec2-donut" viewBox="0 0 120 120" '
   'role="img" aria-hidden="true" aria-label="Win and loss share for the card shown">'
   '<circle class="dn-bg" cx="60" cy="60" r="44"></circle><circle class="dn-seg" id="dn-w" cx="60" cy="60" r="44"></circle>'
@@ -450,19 +537,235 @@ def sec_record(n, a):
       % (cd, full_label, total, "".join(fbtns), tbtns, WL_DONUT, REC_THEAD,
          "".join(match_row(r) for r in rows), cd, total))
 
+# ---------------------------------------------------------------- signature links + hover preview
+# Signature cards link to /matches/<slug>/ breakdown pages and carry baked preview
+# data (data-sp-*) that js/sig-preview.js renders on hover/focus. Two hard rules:
+#
+#   1. NEVER emit an href we have not stat'd on disk. Only ~a third of the signature
+#      cards across the roster have a breakdown page written yet; a card with no page
+#      stays an inert <div>. A thin stub would be worse than an honest non-link.
+#   2. The preview is baked at build time (no fetch on hover), and it must not spoil.
+#      Match pages hide the result behind .wl-spoiler-block on purpose, so the hook is
+#      read from the ratingbox critic line and the spoiler paragraph is never touched.
+
+_SIG_STOP = {"the", "and", "vs", "for", "with", "his", "her", "one", "two", "night",
+             "match", "title", "championship", "world", "classic", "min", "minute"}
+
+_SIG_ABBR = {
+    "money-in-the-bank": "mitb", "wrestlemania": "wm", "survivor-series": "ss",
+    "royal-rumble": "rumble", "night-of-champions": "noc", "hell-in-a-cell": "hiac",
+    "elimination-chamber": "chamber", "over-the-limit": "otl", "extreme-rules": "er",
+    "money-in-the-bank-ladder-match": "mitb",
+}
+
+def _sig_slugify(s):
+    s = _html.unescape(str(s or ""))
+    s = re.sub(r"[‘’'`]", "", s)
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+def _sig_people(s):
+    """Split an opponent field into individual wrestlers ('Sheamus & Drew McIntyre')."""
+    parts = re.split(r"\s*(?:&amp;|&|,|/| and )\s*", _html.unescape(str(s or "")))
+    return [p.strip() for p in parts if p.strip()]
+
+def _sig_aliases(name):
+    """Slug forms a real filename might use for one person: full, surname, last two."""
+    s = _sig_slugify(name)
+    out = {s}
+    p = [x for x in s.split("-") if x]
+    if len(p) > 1:
+        out.add(p[-1]); out.add("-".join(p[-2:]))
+    return {a for a in out if len(a) >= 3}
+
+def _sig_year(*fields):
+    for f in fields:
+        m = re.search(r"\b(?:19|20)\d{2}\b", _html.unescape(str(f or "")))
+        if m: return m.group(0)
+    return None
+
+def _sig_tokens(*fields):
+    out = []
+    for f in fields:
+        for t in _sig_slugify(f).split("-"):
+            if len(t) >= 3 and t not in _SIG_STOP and not t.isdigit():
+                out.append(t)
+    return out
+
+def _sig_event_keys(event):
+    """Slug fragments an event might appear as: full slug, known abbreviation,
+    the promotion/first token, and the slug with a trailing year stripped."""
+    ev = _sig_slugify(event)
+    ev_noyear = re.sub(r"-?(?:19|20)\d{2}$", "", ev).strip("-")
+    keys = [ev, ev_noyear]
+    for full, ab in _SIG_ABBR.items():
+        if ev_noyear.startswith(full): keys.append(ab)
+    head = ev_noyear.split("-")[0] if ev_noyear else ""
+    if head and len(head) >= 2: keys.append(head)
+    keys.append(re.sub(r"[^a-z0-9]", "", "".join(w[0] for w in ev_noyear.split("-") if w))[:5])
+    seen, out = set(), []
+    for k in keys:
+        if k and k not in seen: seen.add(k); out.append(k)
+    return out
+
+SIG_WARN = []
+
+_SIG_DIRS = None
+def _sig_match_dirs():
+    """Every /matches/<slug>/ that actually has an index.html. Read from disk, never
+    hardcoded: a breakdown page added to the repo lights its card up on the next build."""
+    global _SIG_DIRS
+    if _SIG_DIRS is None:
+        d = os.path.join(ROOT, "matches")
+        _SIG_DIRS = sorted(
+            x for x in (os.listdir(d) if os.path.isdir(d) else [])
+            if os.path.isfile(os.path.join(d, x, "index.html")))
+    return _SIG_DIRS
+
+def _sig_exists(url):
+    """True if a site-absolute URL maps to a real index.html under ROOT."""
+    if not url or not url.startswith("/") or "//" in url[1:]: return False
+    p = os.path.join(ROOT, url.strip("/").replace("/", os.sep), "index.html")
+    return os.path.isfile(p)
+
+def _sig_has(slug, alias):
+    return re.search(r"(?:^|-)%s(?:-|$)" % re.escape(alias), slug) is not None
+
+def resolve_sig_url(subject, card):
+    """Best /matches/ page for one signature card, or None. Two passes, both of which
+    only ever return a path that exists on disk:
+      1. construct candidate slugs (both name orders x event/abbrev x year) and stat them;
+      2. failing that, scan the real directory listing for a slug naming BOTH wrestlers,
+         scored on year + event tokens, and take it only if the winner is unambiguous."""
+    if card.get("url"):
+        # An AUTHORED url is the owner's assertion and is emitted verbatim. A checkout
+        # may hold only a subset of the site (this is how the sandbox is shaped), so
+        # deleting the link because the page is absent HERE would silently break a
+        # link that is fine in production. Warn loudly instead; verify() exempts
+        # authored urls from the must-resolve rule and holds derived ones to it.
+        if not _sig_exists(card["url"]):
+            SIG_WARN.append("%s / %s -> authored url %s has no index.html in this checkout"
+                            % (subject, card.get("event"), card["url"]))
+        return card["url"]
+    subj = _sig_aliases(subject)
+    people = [_sig_aliases(p) for p in _sig_people(card.get("opponent"))]
+    if not subj or not people: return None
+    year = _sig_year(card.get("event"), card.get("stip"))
+    evkeys = _sig_event_keys(card.get("event"))
+
+    # --- pass 1: constructed candidates
+    tails = []
+    for ev in evkeys + [""]:
+        for y in ([year, ""] if year else [""]):
+            t = "-".join(x for x in (ev, y) if x)
+            if t not in tails: tails.append(t)
+    for opp in people:
+        for a in sorted(subj, key=len, reverse=True):
+            for b in sorted(opp, key=len, reverse=True):
+                for x, y in ((a, b), (b, a)):
+                    for tail in tails:
+                        cand = "-".join(p for p in ("%s-vs-%s" % (x, y), tail) if p)
+                        if os.path.isfile(os.path.join(ROOT, "matches", cand, "index.html")):
+                            return "/matches/%s/" % cand
+
+    # --- pass 2: scored scan of what is actually on disk
+    toks = set(_sig_tokens(card.get("event"), card.get("stip"))) | set(evkeys)
+    namet = {t for al in list(subj) + [a for o in people for a in o] for t in al.split("-")}
+    best = []
+    for slug in _sig_match_dirs():
+        if not any(_sig_has(slug, a) for a in subj): continue
+        if not any(any(_sig_has(slug, a) for a in opp) for opp in people): continue
+        dy = _sig_year(slug)
+        if year and dy and dy != year: continue
+        # The slug's event portion is whatever is left after the two names, "vs" and the
+        # year. If it names an event and none of the card's event keys appear in it, this
+        # is a DIFFERENT bout between the same two wrestlers -- do not link it.
+        rest = "".join(t for t in slug.split("-")
+                       if t not in namet and t != "vs" and t != dy)
+        if rest and not any(k and k in rest for k in evkeys): continue
+        score = (3 if (year and dy == year) else 0) + sum(1 for t in toks if _sig_has(slug, t))
+        best.append((score, slug))
+    if not best: return None
+    best.sort(key=lambda x: (-x[0], x[1]))
+    if len(best) > 1 and best[0][0] == best[1][0]:
+        return None          # ambiguous (a trilogy, say) -> stay honest, stay unlinked
+    return "/matches/%s/" % best[0][1]
+
+_SIG_PV_CACHE = {}
+_SIG_MONTHS = ("January|February|March|April|May|June|July|August|September|"
+               "October|November|December")
+
+def _sig_text(s):
+    return re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
+
+def sig_preview(url):
+    """Read the real target page and lift the five preview fields. Build time only —
+    the hover panel never touches the network. Returns {} when the page is not a
+    match breakdown (e.g. a card that points at a wrestler dossier) so the card
+    still links but simply carries no panel."""
+    if url in _SIG_PV_CACHE: return _SIG_PV_CACHE[url]
+    out = {}
+    p = os.path.join(ROOT, url.strip("/").replace("/", os.sep), "index.html")
+    try:
+        h = open(p, encoding="utf-8").read()
+    except OSError:
+        _SIG_PV_CACHE[url] = out; return out
+    m = re.search(r"<h1[^>]*>(.*?)</h1>", h, re.S)
+    out["title"] = _sig_text(m.group(1)) if m else ""
+    m = re.search(r'<p class="hero__lead"[^>]*>(.*?)</p>', h, re.S)
+    lead = _sig_text(m.group(1)) if m else ""
+    if lead:
+        dm = re.search(r"\b(?:%s)\s+\d{1,2},\s+\d{4}\b" % _SIG_MONTHS, lead)
+        out["date"] = dm.group(0) if dm else ""
+        out["where"] = lead.rsplit("·", 1)[1].strip() if "·" in lead else ""
+        head = lead.split("—")[0].strip()
+        out["event"] = head if head and head != lead else (lead if not out["date"] else "")
+    m = re.search(r'class="ratingbox__big"[^>]*>\s*([0-9](?:\.[0-9]+)?)', h)
+    out["rate"] = m.group(1) if m else ""
+    m = re.search(r'class="rating__stars"[^>]*>(.*?)</span>', h, re.S)
+    out["stars"] = _sig_text(m.group(1)) if m else ""
+    # The hook is the ratingbox critic line. The lede proper lives inside
+    # .wl-spoiler-block and states the result — baking it would spoil the page.
+    i = h.find('class="ratingbox"')
+    if i != -1:
+        m = re.search(r'<p class="muted"[^>]*>(.*?)</p>', h[i:i + 3000], re.S)
+        if m: out["hook"] = _sig_text(m.group(1))
+    if not out.get("hook"):
+        body = re.sub(r'<div class="wl-spoiler-block".*?</div>', " ", h, flags=re.S)
+        j = body.find("<h2>The Story</h2>")
+        if j != -1:
+            m = re.search(r"<p>(.*?)</p>", body[j:j + 4000], re.S)
+            if m:
+                t = _sig_text(m.group(1))
+                s = re.split(r"(?<=[.!?])\s+", t)
+                out["hook"] = _clip_words(esc(s[0] if s else t), 150) if t else ""
+                out["hook"] = _html.unescape(out["hook"])
+    out = {k: v for k, v in out.items() if v}
+    # A card may legitimately point somewhere that is not a match breakdown (a
+    # dossier, say). No rating + title means no panel — the card still links.
+    if not (out.get("rate") and out.get("title")): out = {}
+    _SIG_PV_CACHE[url] = out
+    return out
+
+def sig_card(subject, c):
+    """One signature card: <a> with baked preview data when a real page backs it,
+    inert <div> when nothing does."""
+    stars = "★" * int(float(c["rating"]))
+    inner = ('<div class="sig2-top"><span class="sig2-rate">%s</span><span class="sig2-stars">%s</span></div>'
+             '<h3 class="sig2-ev">%s</h3><p class="sig2-opp">vs %s</p><p class="sig2-stip">%s</p>'
+             % (c["rating"], stars, esc(c["event"]), esc(c["opponent"]), esc(c["stip"])))
+    url = resolve_sig_url(subject, c)
+    if not url:
+        return '<div class="sig2-card">%s</div>' % inner
+    pv = sig_preview(url)
+    at = "".join(' data-sp-%s="%s"' % (k, esc(pv[k]))
+                 for k in ("title", "date", "where", "event", "rate", "stars", "hook")
+                 if pv.get(k))
+    return '<a class="sig2-card sig2-card--link" href="%s"%s>%s</a>' % (esc(url), at, inner)
+
 def sec_signature(n, a):
     cards = a["signature"]
     reel = len(cards) >= 8
-    out = []
-    for c in cards:
-        stars = "★" * int(float(c["rating"]))
-        inner = ('<div class="sig2-top"><span class="sig2-rate">%s</span><span class="sig2-stars">%s</span></div>'
-                 '<h3 class="sig2-ev">%s</h3><p class="sig2-opp">vs %s</p><p class="sig2-stip">%s</p>'
-                 % (c["rating"], stars, esc(c["event"]), esc(c["opponent"]), esc(c["stip"])))
-        if c.get("url"):
-            out.append('<a class="sig2-card sig2-card--link" href="%s">%s</a>' % (esc(c["url"]), inner))
-        else:
-            out.append('<div class="sig2-card">%s</div>' % inner)
+    out = [sig_card(a["name"], c) for c in cards]
     ld = a.get("signature_lead") or ("The nights that made %s, by acclaim (Meltzer / Cagematch, as reported)."
                                      % a["epithet"])
     if reel: ld += " Scroll for all %s." % a.get("signature_count_word", "eight")
@@ -702,6 +1005,7 @@ def jsonld(a, secs):
 # ------------------------------------------------------------------ page
 def page(a):
     secs = sections_for(a)
+    band = theme_band(a)
     u = "%s/wrestlers/%s/" % (BASE, a["slug"])
     body_secs = []
     for i, sid in enumerate(secs, 1):
@@ -740,6 +1044,7 @@ def page(a):
       '<div class="wl-dossier bar-glass" id="main">\n'
       '<!-- ===== STICKY SUB-NAV ===== -->\n%s\n'
       '<!-- ===== STICKY IDENTITY / SOCIAL BAR ===== -->\n%s\n%s\n'
+      '<!-- ===== THE WALK-OUT (entrance theme) ===== -->\n%s'
       '<div class="layout"><main class="profile-main">\n    %s\n  </main>%s</div>\n'
       '<footer class="site-footer site-footer--fat" data-wl-shell></footer>\n'
       '<script>%s</script>\n'
@@ -750,12 +1055,16 @@ def page(a):
       '<script src="/js/profile.js?v=%s" defer></script>\n'
       '<script src="/js/rail.js?v=%s"></script>\n'
       '<script src="/js/herotabs.js?v=%s" defer></script>\n'
-      '<script>%s</script>\n</body>\n</html>\n'
+      '<script src="/js/sig-preview.js?v=%s" defer></script>\n'
+      '%s<script>%s</script>\n</body>\n</html>\n'
       % (esc(title), esc(a["meta_desc"]), u, esc(a["name"]), esc(a["epithet"]), esc(a["og_desc"]), u,
          BASE, esc(a["name"]), BASE, esc(a["name"]), esc(a["epithet"]), esc(a["tw_desc"]),
          ASSET_V, jsonld(a, secs), ASSET_V, ASSET_V,
-         subnav(a, secs), idn(a), hero(a), "\n    ".join(body_secs), rail(a),
-         FACT_JS, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, tail))
+         subnav(a, secs), idn(a), hero(a), (band + "\n") if band else "",
+         "\n    ".join(body_secs), rail(a),
+         FACT_JS, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V,
+         ('<script src="/js/theme-song.js?v=%s" defer></script>\n' % ASSET_V) if band else "",
+         tail))
 
 # ------------------------------------------------------------------ driver
 def load_all():
@@ -793,9 +1102,43 @@ def verify(a, htmlstr):
             errs.append("overview[%d]: malformed .pull markup (needs aria-hidden + pull-fig/pull-quote child)" % i)
         if n_pull != p.count('class="pull-cap"') + p.count('class="pull-quote"'):
             errs.append("overview[%d]: a .pull is missing its pull-cap/pull-quote" % i)
+    t = a.get("theme")
+    if t is not None:
+        for k in ("track", "artist", "note"):
+            if not t.get(k): errs.append("theme is missing %s" % k)
+        # the listen row IS the fallback; a theme with no links has no fallback
+        if not t.get("links"): errs.append("theme has no links -> the fallback would be empty")
+        for l in t.get("links", []):
+            for k in ("svc", "sub", "href"):
+                if not l.get(k): errs.append("theme link missing %s" % k)
+            if not str(l.get("href", "")).startswith("https://"):
+                errs.append("theme link href is not https: %r" % l.get("href"))
+        for e in t.get("lineage", []):
+            for k in ("date", "title", "who"):
+                if not e.get(k): errs.append("theme lineage entry missing %s" % k)
+        if len([e for e in t.get("lineage", []) if e.get("now")]) > 1:
+            errs.append("theme lineage flags more than one entry as now")
+        sid = t.get("spotify_id")
+        # a guessed id is worse than no player at all: Spotify base-62 ids are 22 chars
+        if sid is not None and not re.fullmatch(r"[A-Za-z0-9]{22}", str(sid)):
+            errs.append("theme spotify_id %r is not a 22-char Spotify track id" % sid)
+        if t.get("cue") and not (t["cue"].get("quote") and t["cue"].get("src")):
+            errs.append("theme cue needs both quote and src")
+        if '<ul class="wo-listen">' in htmlstr and 'class="wo-listen" hidden' in htmlstr:
+            errs.append("the walk-out fallback ships hidden (it must be visible without JS)")
     for m in re.findall(r'<script type="application/ld\+json">(.*?)</script>', htmlstr, re.S):
         try: json.loads(m)
         except Exception as e: errs.append("invalid JSON-LD: %s" % e)
+    authored = {c["url"] for c in a.get("signature", []) if c.get("url")}
+    for href in re.findall(r'<a class="sig2-card sig2-card--link" href="([^"]+)"', htmlstr):
+        href = _html.unescape(href)
+        # Derived links must resolve. Authored ones are the owner's call (see
+        # resolve_sig_url) and only earn a WARN, so a partial checkout still builds.
+        if href not in authored and not _sig_exists(href):
+            errs.append("signature card links %s which has no index.html on disk" % href)
+    for card in re.findall(r'<a class="sig2-card sig2-card--link"[^>]*>', htmlstr):
+        if "data-sp-" in card and not ('data-sp-title="' in card and 'data-sp-rate="' in card):
+            errs.append("signature preview data is half-baked (needs title + rate)")
     shown = re.search(r'<b id="rec2-shown">(\d+)</b> of (\d+)', htmlstr)
     if shown and (int(shown.group(1)) != cd or int(shown.group(2)) != total):
         errs.append("rec2-count disagrees with row data")
@@ -820,6 +1163,7 @@ def main(argv):
         print("  %-20s %6.0f KB  %2d sections  %3d matches" %
               (slug, len(h) / 1024, len(secs), len(a["record"]["rows"])))
         n += 1
+    for w in SIG_WARN: print("  WARN signature: %s" % w)
     print("done: %d dossier pages  ROOT=%s" % (n, ROOT))
     print("now run: python3 build/apply_shell.py")
     return 0

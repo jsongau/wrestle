@@ -1269,3 +1269,323 @@ button.tt-cred{cursor:pointer}
   .wl-dossier .portrait[data-fm-tabs] .fm{padding-bottom:10px}
   .wl-dossier .portrait[data-fm-tabs] .fm-panel>.ledger-note{margin:6px 16px 72px}
 }
+
+/* ============================================================================
+   FACTION PAGES  (build/build_factions.py)  --  ADDITIVE ONLY
+   ----------------------------------------------------------------------------
+   /factions/<slug>/ is a SITE page (css/site.css), built from the same
+   vocabulary as the hand-authored /factions/the-shield/ and
+   /factions/the-bloodline/: .ev-hero, .meta-chips, .sec-h, .grid-cards >
+   .card, .moment-body, .related-links. Almost nothing new is needed, and
+   nothing here restyles an existing class: every rule is scoped to
+   .wl-faction, which only <main id="main" class="wl-faction"> sets.
+
+   Two gaps in site.css, and only two:
+     1. .timeline is a bare <li> list with an inline .tl-year. The faction
+        timeline is a date + heading + paragraph per beat, which has no
+        equivalent. site.css also declares .timeline twice (a ul border-left at
+        the top of the file, per-li borders further down), so the ul rule is
+        neutralised here to avoid a doubled 4px rail.
+     2. .card__initials is sized at --fs-800 (up to 3.6rem). The shipped cards
+        use 2-5 characters; a six-character surname (SERENA, CABANA, OTUNGA)
+        overflows the 4:5 media box, so it gets a one-step-down modifier.
+   ========================================================================== */
+
+/* --- 1. timeline rows ---------------------------------------------------- */
+.wl-faction .timeline{border-left:0;margin-left:0;padding-left:0;list-style:none}
+.wl-faction .timeline li{padding:0 0 var(--sp-5) var(--sp-5)}
+.wl-faction .timeline li:last-child{padding-bottom:0}
+.wl-faction .timeline .tl-year{display:block;margin:0 0 .15em;font-size:var(--fs-300);
+  text-transform:uppercase;letter-spacing:.08em}
+.wl-faction .timeline .tl-title{margin:0 0 .25em;font-family:var(--font-cond);
+  text-transform:uppercase;letter-spacing:.01em;font-size:var(--fs-500);line-height:1.15;
+  color:var(--c-text)}
+.wl-faction .timeline .tl-desc{margin:0;color:var(--c-text-muted);font-size:var(--fs-400);
+  line-height:var(--lh-body);max-width:74ch}
+
+/* --- 2. six-character card initials -------------------------------------- */
+.wl-faction .card__initials--long{font-size:var(--fs-600);letter-spacing:.02em}
+
+/* --- 3. rhythm ------------------------------------------------------------
+   The site template has no "section" element on these pages - .sec-h supplies
+   its own top margin - so the only spacing the faction pages add is the gap
+   under the last block before the footer, and a little air around the
+   sub-headings that group a section's second half. */
+.wl-faction .related-links{margin-bottom:var(--sp-8)}
+.wl-faction .night-h{margin-top:var(--sp-6)}
+.wl-faction .stats-strip{margin-top:var(--sp-5)}
+.wl-faction .sig-card>p:last-child,.wl-faction .persona-card>p:last-child{margin-bottom:0}
+.wl-faction .champ-row+.champ-row{margin-top:0}
+.wl-faction .faq__body p:last-child{margin-bottom:0}
+
+
+/* ==== training partners (cm-punk #mma, Roufusport .fac-card) ================
+   Reuses .ref2-item so each partner is a discrete key/value element rather than
+   a run-on sentence. Two rules only, both needed:
+   1. .fac-mem carries no top margin, so the label needs air above the grid.
+   2. .ref2-item is authored for <a>; partners with no page on disk render as
+      <div>, and must not keep the hover affordance of a link that isn't there. */
+.wl-dossier .fac-partners-h{margin-top:14px}
+.wl-dossier .fac-partners{margin:0}
+.wl-dossier div.ref2-item:hover{border-color:rgba(255,255,255,.07);background:#12141a}
+/* 3. and the reverse: a partner who DOES have a page must read as a link, so the
+      gold that means "go here" everywhere else on the page marks the name. */
+.wl-dossier .fac-partners a.ref2-item .ref2-k{color:#d4af37}
+.wl-dossier .fac-partners a.ref2-item:hover .ref2-k{color:#f2cc4b}
+/* ==== /training partners ==== */
+
+/* ============================================================================
+   THE WALK-OUT  —  entrance-theme strip  (build/build_dossier.py :: theme_band,
+   js/theme-song.js, optional DATA["theme"] dict)  --  ADDITIVE ONLY
+   ----------------------------------------------------------------------------
+   A full-bleed band between the hero and .layout: the overture before the
+   dossier. Everything here is scoped to .walkout, so nothing above is touched.
+
+   Rules of the house that this block obeys:
+     * gold #d4af37 / dim gold #8c7420, panels #15171d / #0f1015, 12px radii,
+       the same rgba(255,255,255,.09) hairline used everywhere else;
+     * NO green. Spotify is named as the source, never as the skin;
+     * no new shadows, no pills — rules and hairlines do the separating;
+     * Anton for the track, Oswald caps for labels, JetBrains Mono for
+       annotations, Inter for the one paragraph of prose.
+
+   LAYOUT-STABILITY CONTRACT (the reason the swap is free):
+   .wo-stage is a fixed 154px box and both of its children (.wo-live,
+   .wo-listen) are position:absolute;inset:0. The player and the listen row
+   therefore occupy exactly the same box, so js/theme-song.js can swap one for
+   the other without moving a single pixel of the page. 154 is deliberate: the
+   1px hairline on each side leaves the iframe exactly 152 CSS pixels, which is
+   the height Spotify's own oEmbed returns for a compact track player. Measured
+   across the swap at 1440/1280/760: CLS 0.000, geometry byte-identical.
+   ========================================================================== */
+.wl-dossier .walkout{--golddim:#8c7420;position:relative;border-top:1px solid rgba(212,175,55,.22);
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(620px 200px at 7% 0%, rgba(212,175,55,.075), transparent 62%),
+    linear-gradient(180deg,#0f1015 0%,#0c0d12 100%)}
+.wl-dossier .walkout-in{max-width:var(--max);margin-inline:auto;
+  padding:16px var(--gutter) 18px}
+
+/* --- the rule line: gold dash, label, hairline to the right margin -------- */
+.wl-dossier .wo-rule{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.wl-dossier .wo-rule::before{content:"";flex:0 0 34px;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent)}
+.wl-dossier .wo-rule-k{font-family:var(--osw);font-weight:600;font-size:11.5px;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.wl-dossier .wo-rule-line{flex:1 1 auto;height:1px;background:var(--line)}
+.wl-dossier .wo-rule-src{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim);white-space:nowrap}
+
+/* --- three columns, separated by hairlines rather than boxes -------------- */
+.wl-dossier .wo-grid{display:grid;grid-template-columns:minmax(0,1fr) 348px 286px;
+  gap:28px;align-items:start}
+.wl-dossier .wo-play,.wl-dossier .wo-line{border-left:1px solid var(--line);padding-left:28px}
+
+/* --- column 1: the track, set editorially -------------------------------- */
+.wl-dossier .wo-kick{margin:0;font-family:var(--osw);font-weight:600;font-size:10.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.wl-dossier .wo-kick i{font-style:normal;color:var(--golddim,#8c7420);margin:0 5px}
+.wl-dossier .wo-track{margin:7px 0 0;font-family:var(--anton);font-weight:400;
+  font-size:clamp(26px,3vw,38px);line-height:.9;letter-spacing:.008em;
+  text-transform:uppercase;color:var(--ink)}
+.wl-dossier .wo-by{margin:9px 0 0;font-family:var(--osw);font-weight:600;font-size:13px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--goldb)}
+.wl-dossier .wo-meta{display:block;margin-top:5px;font-family:var(--mono);font-weight:400;
+  font-size:10px;letter-spacing:.05em;text-transform:none;color:var(--dim)}
+.wl-dossier .wo-note{margin:11px 0 0;font-family:var(--inter);font-size:13.5px;
+  line-height:1.5;color:var(--muted)}
+.wl-dossier .wo-note b{color:var(--ink);font-weight:600}
+/* --- the caption strip under the three columns --------------------------
+   The crowd-pop cue and the sourcing line share one full-width row, which is
+   what keeps this a band: the cue would otherwise stretch column one to twice
+   the height of the player beside it. */
+.wl-dossier .wo-under{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:34px;margin-top:13px;padding-top:11px;border-top:1px solid var(--line2)}
+.wl-dossier .wo-cue{margin:0;padding-left:13px;border-left:1px solid var(--golddim,#8c7420);
+  max-width:72ch}
+.wl-dossier .wo-cue p{margin:0;font-family:var(--inter);font-style:italic;font-size:14px;
+  line-height:1.45;color:var(--ink)}
+.wl-dossier .wo-cue cite{display:block;margin-top:4px;font-family:var(--mono);font-style:normal;
+  font-size:9.5px;letter-spacing:.04em;line-height:1.5;color:var(--dim)}
+.wl-dossier .wo-cue cite i{font-style:italic}
+
+/* --- column labels shared by the player and the lineage ------------------- */
+.wl-dossier .wo-lbl{margin:0 0 8px;font-family:var(--osw);font-weight:600;font-size:9.5px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+
+/* --- column 2: the player stage (fixed box — see the contract above) ------ */
+.wl-dossier .wo-stage{position:relative;height:154px;border:1px solid var(--line);
+  border-radius:12px;background:#15171d;overflow:hidden}
+.wl-dossier .wo-live{position:absolute;inset:0}
+.wl-dossier .wo-live[hidden]{display:none}
+.wl-dossier .wo-live iframe{display:block;width:100%;height:100%;border:0}
+/* shown behind the frame while an attempt is in flight; never an error message */
+.wl-dossier .wo-wait{position:absolute;inset:0;z-index:0;display:none;
+  align-items:center;justify-content:center;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.wl-dossier .wo-stage.is-pending .wo-wait{display:flex}
+
+/* --- the fallback: a listen row that stands on its own ------------------- */
+.wl-dossier .wo-listen{position:absolute;inset:0;z-index:1;margin:0;padding:0;list-style:none;
+  display:flex;flex-direction:column;justify-content:center}
+.wl-dossier .wo-listen[hidden]{display:none}
+.wl-dossier .wo-listen li+li{border-top:1px solid var(--line)}
+.wl-dossier .wo-listen a{display:flex;align-items:baseline;gap:10px;padding:11px 14px;
+  text-decoration:none;color:var(--ink);transition:background .2s ease,color .2s ease}
+.wl-dossier .wo-listen a:hover{background:rgba(212,175,55,.06)}
+.wl-dossier .wo-svc{font-family:var(--osw);font-weight:600;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase}
+.wl-dossier .wo-listen a:hover .wo-svc{color:var(--goldb)}
+.wl-dossier .wo-sub{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--dim);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wl-dossier .wo-go{margin-left:auto;color:var(--golddim,#8c7420);font-size:12px;line-height:1}
+.wl-dossier .wo-listen a:hover .wo-go{color:var(--gold)}
+.wl-dossier .wo-listen a:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;border-radius:11px}
+
+/* --- column 3: the lineage, as small dated entries ----------------------- */
+.wl-dossier .wo-lin{margin:0;padding:0;list-style:none}
+.wl-dossier .wo-lin li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:10px;
+  align-items:baseline;padding:6px 0;border-top:1px solid var(--line2)}
+.wl-dossier .wo-lin li:first-child{border-top:0;padding-top:0}
+.wl-dossier .wo-d{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--golddim,#8c7420)}
+.wl-dossier .wo-lin b{display:block;font-family:var(--osw);font-weight:600;font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.3}
+.wl-dossier .wo-lin span.wo-w{display:block;font-family:var(--mono);font-size:9px;
+  letter-spacing:.04em;color:var(--dim);margin-top:2px}
+.wl-dossier .wo-lin li.is-now .wo-d{color:var(--goldb)}
+.wl-dossier .wo-lin li.is-now b{color:var(--ink)}
+.wl-dossier .wo-now{display:block;margin-top:2px;font-family:var(--osw);font-weight:600;
+  font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+
+/* --- the sourcing line, in the house's credibility voice ----------------- */
+.wl-dossier .wo-foot{flex:0 1 auto;margin:0;max-width:58ch;text-align:right;line-height:1.7;
+  font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--dim)}
+.wl-dossier .wo-foot a{color:var(--dim);text-decoration:none;border-bottom:1px solid rgba(140,116,32,.5)}
+.wl-dossier .wo-foot a:hover{color:var(--goldb);border-bottom-color:var(--gold)}
+
+@media(prefers-reduced-motion:reduce){
+  .wl-dossier .wo-listen a{transition:none}}
+
+/* --- narrow: lineage drops under the first two columns ------------------- */
+@media(max-width:1180px){
+  .wl-dossier .wo-grid{grid-template-columns:minmax(0,1fr) 330px}
+  .wl-dossier .wo-line{grid-column:1/-1;border-left:0;padding-left:0;padding-top:14px;
+    border-top:1px solid var(--line)}
+  .wl-dossier .wo-lin{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 22px}
+  .wl-dossier .wo-lin li{border-top:0;padding:0;grid-template-columns:1fr;gap:3px}
+  .wl-dossier .wo-lin li:first-child{padding-top:0}
+}
+@media(max-width:1180px){
+  .wl-dossier .wo-under{flex-direction:column;gap:12px}
+  .wl-dossier .wo-foot{text-align:left;max-width:none}
+}
+@media(max-width:860px){
+  .wl-dossier .walkout-in{padding:18px var(--gutter) 20px}
+  .wl-dossier .wo-grid{grid-template-columns:minmax(0,1fr);gap:20px}
+  .wl-dossier .wo-play{border-left:0;padding-left:0;padding-top:16px;border-top:1px solid var(--line)}
+  .wl-dossier .wo-line{padding-top:16px}
+  .wl-dossier .wo-lin{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px}
+  .wl-dossier .wo-rule-src{display:none}
+  .wl-dossier .wo-note,.wl-dossier .wo-cue{max-width:none}
+}
+@media(max-width:480px){
+  .wl-dossier .wo-lin{grid-template-columns:minmax(0,1fr);gap:10px}
+  .wl-dossier .wo-rule-k{letter-spacing:.24em;font-size:10.5px}
+}
+/* ======================= end THE WALK-OUT ======================= */
+
+/* ============================================================================
+   SIGNATURE PREVIEW  —  hover/focus card for a linked .sig2-card
+   (build/build_dossier.py :: sig_card / sig_preview, js/sig-preview.js,
+   build/patch_sig_links.py for the hand-authored pages)  --  ADDITIVE ONLY
+   ----------------------------------------------------------------------------
+   .sig2-reel is `overflow-x:auto`, which makes it a scroll container and CLIPS
+   every descendant on both axes. A popover parented to the card is therefore
+   impossible to show — it is cut off at the reel's padding box no matter what
+   z-index or transform it carries, because clipping is not a paint-order
+   problem. So the panel is NOT a descendant: js/sig-preview.js appends ONE
+   .sig-prev to <body> and positions it `fixed` from the hovered card's
+   getBoundingClientRect(). Nothing about the reel can clip it, and because it
+   is a single shared node the DOM cost is one element per page, not one per
+   card. `pointer-events:none` means the panel can never sit between the cursor
+   and the card, so hover can never flicker or stick.
+
+   Rules of the house that this block obeys:
+     * gold #d4af37 / dim gold #8c7420, panels #15171d / #0f1015, 12px radii
+     * hairlines only — no new shadows, no pills, no green
+     * `fixed` + a body parent means the panel is out of flow: zero layout shift
+   ========================================================================== */
+.sig-prev{
+  position:fixed;top:0;left:0;z-index:140;
+  width:min(320px,calc(100vw - 24px));
+  box-sizing:border-box;padding:14px 15px 13px;
+  background:#15171d;border:1px solid rgba(212,175,55,.34);border-radius:12px;
+  pointer-events:none;visibility:hidden;opacity:0;
+  transform:translateY(4px);
+  transition:opacity .13s ease,transform .13s ease,visibility 0s linear .13s;
+}
+.sig-prev.is-open{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+
+/* --- the head: what the match is, and how it rated ------------------------ */
+.sig-prev-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.sig-prev-ttl{
+  font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+  font-size:15px;line-height:1.2;color:#f4f5f7;margin:0;
+}
+.sig-prev-rate{font-family:'Anton',sans-serif;font-size:22px;line-height:1;color:#f2cc4b;flex:0 0 auto}
+.sig-prev-stars{display:block;font-size:9.5px;letter-spacing:1px;color:#d4af37;text-align:right;margin-top:3px}
+
+/* --- the dateline, in the house's mono voice ------------------------------ */
+.sig-prev-meta{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:#8a8f98;margin:9px 0 0;line-height:1.55;
+}
+.sig-prev-meta b{color:#d4af37;font-weight:400}
+.sig-prev-hook{
+  font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.5;
+  color:rgba(244,245,247,.72);margin:10px 0 0;
+  padding-top:10px;border-top:1px solid rgba(255,255,255,.07);
+}
+.sig-prev-cue{
+  display:block;font-family:'JetBrains Mono',monospace;font-size:7.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:#8c7420;margin-top:10px;
+}
+
+/* --- the card that owns the open panel reads as active -------------------- */
+.wl-dossier .sig2-card--link.is-previewing{border-color:rgba(212,175,55,.45)}
+
+/* Touch and coarse pointers never get the panel at all: there is no hover
+   there, a tap must simply follow the link, and a panel with no way to
+   dismiss it would strand the reader. JS gates on the same query. */
+@media (hover:none) and (pointer:coarse){
+  .sig-prev{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .sig-prev{transition:none;transform:none}
+  .sig-prev.is-open{transform:none}
+}
+/* ==================== end SIGNATURE PREVIEW ==================== */
+
+/* ==== MMA SECTION: shield, order, breathing room ========================
+   Three fixes. (1) The MMA record carried no spoiler shield while the
+   pro-wrestling ledger above it did - inconsistent, and these results spoil
+   too. (2) The gym card sat ABOVE the record; the record is the point of the
+   section, so it leads. (3) The Roufusport card had no separation from the
+   table above or the section below. */
+.wl-dossier .mma-ledger{position:relative;border-radius:12px;overflow:hidden}
+.wl-dossier .mma-ledger .mma-body{transition:filter .3s ease,opacity .3s ease}
+.wl-dossier .mma-veiled .mma-body{filter:blur(7px);opacity:.5;pointer-events:none;user-select:none}
+.wl-dossier .mma-veil{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;
+  background:linear-gradient(180deg,rgba(15,16,21,.72),rgba(15,16,21,.88))}
+.wl-dossier .mma-veil p{margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;
+  letter-spacing:.07em;text-transform:uppercase;color:rgba(244,245,247,.62);max-width:44ch;line-height:1.6}
+.wl-dossier .mma-ledger:not(.mma-veiled) .mma-veil{display:none}
+
+/* the gym card, given room to breathe on both sides */
+.wl-dossier .mma-subhead{margin:30px 0 12px;font-family:'Oswald',system-ui,sans-serif;font-size:11.5px;
+  font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,245,247,.5)}
+.wl-dossier #mma .fac-grid{margin-bottom:8px}
+.wl-dossier #mma .fac-card{padding:20px 22px}
+.wl-dossier #mma .fac-desc{margin-top:10px}
+@media(prefers-reduced-motion:reduce){.wl-dossier .mma-ledger .mma-body{transition:none}}

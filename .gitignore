@@ -15,3 +15,5 @@ _freshidx.html
 /hub-full.png
 /week-full.png
 /week-aew.png
+__pycache__/
+*.pyc

@@ -1,3 +1,13 @@
+## 2026-08-23
+
+- Signature match cards are now links to their match pages, with a hover/focus preview card (`js/sig-preview.js`); preview node is appended to `<body>` so it escapes the reel's `overflow-x` clipping. Applied to generated dossiers and to the hand-authored pages via `build/patch_sig_links.py` (cm-punk 2/8, john-cena 3/8, aj-styles 6/6 — the rest have no match page yet).
+- CM Punk MMA section restructured: the record ledger now comes BEFORE the Roufusport gym card, carries the same kayfabe spoiler shield as the wrestling record (`#mmaTgl`, wired to `#splTgl` in `js/herotabs.js`), and the gym card gained 20px/22px padding so it no longer crowds its neighbours.
+- Notable training partners added, with a full RAF athlete profile for Tyron Woodley (`/promotions/raf/athletes/tyron-woodley/`), linked from CM Punk and present in `sitemap.xml`.
+- Three CM Punk faction pages built by a new generator (`build/build_factions.py` + `build/facdata/`): Straight Edge Society, The New Nexus, The Second City Saints. Each is crawlable, cross-links every member, and was inserted non-destructively into the factions hub (8 -> 11 cards).
+- Theme song module (`js/theme-song.js`): playable Spotify embed at the top of the profile, lazy-loaded on intersection, no autoplay, with a postMessage + reachability adjudication at 4s and a text fallback when the embed is blocked.
+- Fixed a real bug in `js/profile.js`: the ID-bar code threw on every page without an `.idn` element (all faction pages). Added a guard.
+- Shell reapplied to 489 pages. Invalid JSON-LD across the site: 0.
+
 ## 2026-08-23 (Hero card tabs: FIGHT METRICS / LIVE FEED, and the feed refreshes itself)
 - **The hero roster-file card is now tabbed** - METRICS and FEED, subnav-style gold underline, full keyboard support. FEED is the default tab for a wrestler with an active X account; METRICS otherwise. Nothing was lost: the Fight Metrics panel moved into its tab intact.
 - **The FEED tab tries X's live embedded timeline first** - genuinely auto-updating when it renders - and falls back within 4 seconds to the three newest curated cards if the widget is blocked, fails X's logged-out lottery, or an adblocker eats it. The swap is jump-free (fixed-height stage). The live path could not be observed from the build sandbox (platform.twitter.com is egress-blocked there), so it is correct by construction and verified structurally; the fallback path is verified end to end.

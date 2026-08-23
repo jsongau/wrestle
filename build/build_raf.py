@@ -421,7 +421,8 @@ ATHLETES = [
             ("RAF athlete file","https://www.realamericanfreestyle.com/athletes/arman-tsarukyan")]),
 ]
 
-# ---- Opponents Arman Tsarukyan has faced or is booked against in RAF.
+# ---- Athlete files beyond Tsarukyan: everyone he has faced or is booked against in RAF,
+# ---- plus crossover fighters the rest of the RAF data already names (see Woodley, below).
 S_X = '<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-7-6.2 7H1.7l8.1-9.3L1 2h7.1l4.9 6.4L18.9 2Zm-2.4 18h1.9L7.6 3.9H5.6L16.5 20Z"/></svg>'
 S_IG = '<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4 3.8 3.8 0 0 1-1.4.9c-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.6A6.2 6.2 0 1 0 12 18.2 6.2 6.2 0 0 0 12 5.8Zm0 10.2A4 4 0 1 1 12 8a4 4 0 0 1 0 8Zm6.4-10.5a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg>'
 W_RAF = ("RAF","Real American Freestyle","Every RAF card on Fox Nation","Watch","https://nation.foxnews.com/real-american-freestyle-nation/")
@@ -778,6 +779,96 @@ OPPONENTS = [
       srcs=[("Sherdog","https://www.sherdog.com/fighter/Kuat-Khamitov-86936"),
             ("RAF athlete file","https://www.realamericanfreestyle.com/athletes/kuat-khamitov"),
             ("Tapology","https://www.tapology.com/fightcenter/fighters/27721-kuat-khamitov")]),
+
+ # Woodley is NOT a Tsarukyan opponent. He files here because he is on the RAF 12 card
+ # and sits inside Colby Covington's UFC record above, so athlete_link() already reaches
+ # for him from two places. He is a mixed martial artist, so he stays out of /wrestlers/.
+ dict(slug="tyron-woodley", name="Tyron Woodley", nick="The Chosen One", initials="TW",
+      debut_year="2009", tagline="The welterweight champion who went back to the mat",
+      kick="The Chosen One · Two time NCAA All American, Missouri", the="Real American Freestyle",
+      hero_tag='Cruiserweight · <em>RAF · UFC · Boxing</em>',
+      now_b="1-0 in RAF", now_rest="meets Khamzat Chimaev at RAF Moscow on September 5",
+      bornplace="Ferguson, Missouri", nationality="American", dob="1982-04-07",
+      height="5 ft 9 in", reach="74 in", team="ATT Evolution",
+      stats=[("19-7-1","Pro MMA"),("9-6-1","In the UFC"),("1-0","In RAF"),("2x","NCAA All American")],
+      rafstats=[("1-0","RAF record"),("14-8","Debut win"),("13","Unanswered points"),("2","Matches booked")],
+      bio=["Tyron Woodley held the UFC welterweight championship for 945 days and defended it three times, and at 44 he has taken the wrestling that built all of it back to an actual wrestling mat.",
+           "The wrestling came first and it was serious. He went 48-0 as a senior at McCluer High School in Florissant, Missouri and won the Class 4A state title at 160 pounds in 2000. At the University of Missouri he finished 110-38, became the first Big 12 champion in the programme's history in 2003, and earned All America honours twice, eighth at 165 pounds in 2003 and seventh in 2005.",
+           "He turned professional in mixed martial arts in February 2009, went 10-1 across Strikeforce and the regional circuit, and knocked out Robbie Lawler in 2:12 at UFC 201 in July 2016 for the welterweight belt. He lost it to Kamaru Usman at UFC 235 in March 2019 and never won again in the octagon, dropping his last four to Usman, Gilbert Burns, Colby Covington and Vicente Luque.",
+           "Boxing did not go better: two losses to Jake Paul in 2021, the second by sixth round knockout, and a second round stoppage by a 50 year old Anderson Silva in December 2025, leaving him 0-3. Then RAF put him on its anniversary card in Cleveland against Joaquin Buckley. He went 8-1 down in the first period, a point from losing by technical superiority, scored thirteen unanswered and won 14-8. It was his first competitive win of any kind since Darren Till in 2018."],
+      correction=("UFC.com bills his reign as four title defences and lists Stephen Thompson twice. Three of the four were wins. "
+                  "The fourth, UFC 205 in November 2016, was a majority draw: Woodley kept the belt because a champion keeps the belt on a draw, "
+                  "but he did not beat Thompson that night, which is exactly why the rematch was ordered. Wikipedia's summary repeats the four and "
+                  "Sports Illustrated headlined the draw as a successful defence. The three real defences are UFC 209, UFC 214 and UFC 228."),
+      social=[("X","https://x.com/TWooodley",S_X),("Instagram","https://www.instagram.com/twooodley/",S_IG)],
+      watch=[W_RAF,("UFC","UFC athlete profile","Full MMA record","Visit","https://www.ufc.com/athlete/tyron-woodley"),
+             ("RAF","His RAF athlete file","Match by match","Visit","https://www.realamericanfreestyle.com/athletes/tyron-woodley")],
+      tape=[("Born","April 7, 1982"),("Birthplace","Ferguson, Missouri"),("Nationality","American"),
+            ("Height","5 ft 9 in"),("Reach","74 in"),("Stance","Orthodox"),
+            ("RAF division","Cruiserweight"),("MMA division","Welterweight"),("Team","ATT Evolution"),
+            ("High school","McCluer, Florissant, Missouri"),("State title","160 lb, Class 4A, 2000"),
+            ("College","Missouri"),("College record","110-38"),("Big 12 title","165 lb, 2003"),
+            ("NCAA best","7th at 165 lb, 2005"),("Pro MMA debut","February 7, 2009"),
+            ("UFC debut","February 2, 2013"),("UFC title reign","July 30, 2016 to March 2, 2019"),
+            ("Pro boxing","0-3"),("RAF debut","August 22, 2026")],
+      raf=[("raf-moscow","2026-09-05","Khamzat Chimaev",None,"Catchweight, main event","Announced"),
+           ("raf-12","2026-08-22","Joaquin Buckley",True,"dec 14-8","RAF debut")],
+      alt_title="UFC record, decided bouts",
+      alt_lead=("9-6-1 across sixteen UFC bouts between 2013 and 2021. The fifteen decided bouts are below. The sixteenth, "
+                "Stephen Thompson at UFC 205 on November 12, 2016, was a majority draw he left still holding the belt."),
+      altstats=[("19-7-1","Pro record"),("9-6-1","UFC record"),("3","Title defences"),("945","Days as champion"),("0-3","Pro boxing")],
+      alt=[("2021-03-27","Vicente Luque",False,"Submission, D'Arce choke","1","3:56","UFC 260"),
+           ("2020-09-19","Colby Covington",False,"TKO, rib injury","5","1:19","UFC Fight Night 178"),
+           ("2020-05-30","Gilbert Burns",False,"Decision, unanimous","5","5:00","UFC on ESPN: Woodley vs. Burns"),
+           ("2019-03-02","Kamaru Usman",False,"Decision, unanimous","5","5:00","UFC 235"),
+           ("2018-09-08","Darren Till",True,"Submission, D'Arce choke","2","4:19","UFC 228, title defence"),
+           ("2017-07-29","Demian Maia",True,"Decision, unanimous","5","5:00","UFC 214, title defence"),
+           ("2017-03-04","Stephen Thompson",True,"Decision, majority","5","5:00","UFC 209, title defence"),
+           ("2016-07-30","Robbie Lawler",True,"KO, punches","1","2:12","UFC 201, won the title"),
+           ("2015-01-31","Kelvin Gastelum",True,"Decision, split","3","5:00","UFC 183"),
+           ("2014-08-23","Dong Hyun Kim",True,"TKO, punches","1","1:01","UFC Fight Night 48"),
+           ("2014-06-14","Rory MacDonald",False,"Decision, unanimous","3","5:00","UFC 174"),
+           ("2014-03-15","Carlos Condit",True,"TKO, knee injury","2","2:00","UFC 171"),
+           ("2013-11-16","Josh Koscheck",True,"KO, punches","1","4:38","UFC 167"),
+           ("2013-06-15","Jake Shields",False,"Decision, split","3","5:00","UFC 161"),
+           ("2013-02-02","Jay Hieron",True,"KO, punches","1","0:36","UFC 156, UFC debut")],
+      background=("The wrestling is the deepest credential on this page, and it is worth being exact about it. He was an all state pick in 1999 and 2000 "
+                  "at McCluer High School in Florissant, went 48-0 as a senior, and took Missouri's Class 4A title at 160 pounds with a 3-1 decision over "
+                  "Adam Stern, the most wins of any Missouri state champion that year and only the third state title in his school's history. At the "
+                  "University of Missouri he wrestled four years at 165 pounds, finished 110-38, and in 2003 beat Iowa State's Nick Passolano 5-1 in "
+                  "overtime to become the first Big 12 champion the Missouri programme ever had. He was an NCAA Division I All American twice, eighth in "
+                  "2003 and seventh in 2005, and graduated that year in agricultural economics. What is not there matters too: no NCAA title, no Olympic "
+                  "or senior world medal, and no senior freestyle national title is published for him. The closest are a 2006 University freestyle national "
+                  "runner up finish and a Real Pro Wrestling regional championship the same year. Missouri put him in its athletics hall of fame in 2019."),
+      rivalries=[("Colby Covington","UFC Fight Night 178, September 2020",
+                  "Five rounds, and the finish is still argued over. Woodley's rib gave out at 1:19 of the fifth and the bout was waved off as a TKO by injury, "
+                  "which Covington has always framed as a quit. Covington holds RAF's Cruiserweight Crossover Championship on the same roster Woodley just joined."),
+                 ("Stephen Thompson","UFC 205 and UFC 209",
+                  "Ten rounds over four months for the belt: a majority draw in New York in November 2016, then a majority decision in Las Vegas in March 2017. "
+                  "Neither was popular, and the first is the reason his defence count is misreported to this day."),
+                 ("Joaquin Buckley","RAF 12, August 22",
+                  "His RAF debut and his first competitive win since 2018. Buckley led 8-1 inside the first period, one point from ending it by technical superiority, "
+                  "and Woodley answered with thirteen straight to win 14-8."),
+                 ("Khamzat Chimaev","RAF Moscow, September 5",
+                  "Announced as the catchweight main event of RAF's first card in Russia, two weeks after Cleveland. Chimaev pinned Dillon Danis in 41 seconds "
+                  "on his own RAF debut at RAF 10.")],
+      faq=[("Is Tyron Woodley a professional wrestler?",
+            "No. He is a former UFC welterweight champion competing in freestyle wrestling for RAF. RAF matches are real competition scored under freestyle rules, not worked pro wrestling matches. He wrestled at Missouri long before he ever fought."),
+           ("How many times did he defend the UFC welterweight title?",
+            "Three: Stephen Thompson at UFC 209, Demian Maia at UFC 214 and Darren Till at UFC 228. UFC.com says four because it counts the UFC 205 majority draw with Thompson, which he did not win."),
+           ("What is his RAF record?",
+            "1-0. He beat Joaquin Buckley 14-8 at RAF 12 in Cleveland on August 22, 2026, after trailing 8-1 in the first period."),
+           ("Was he an NCAA champion?",
+            "No. He was an NCAA Division I All American twice at Missouri, eighth at 165 pounds in 2003 and seventh in 2005, and the first Big 12 champion in Missouri history. He never won a national title."),
+           ("What is his professional boxing record?",
+            "0-3. He lost twice to Jake Paul in 2021 and was stopped in the second round by Anderson Silva in December 2025."),
+           ("Who does he face next?",
+            "Khamzat Chimaev at RAF Moscow on September 5, 2026, in a catchweight main event.")],
+      srcs=[("UFC.com","https://www.ufc.com/athlete/tyron-woodley"),
+            ("Wikipedia","https://en.wikipedia.org/wiki/Tyron_Woodley"),
+            ("Sherdog","https://www.sherdog.com/fighter/Tyron-Woodley-42605"),
+            ("Missouri Athletics","https://mutigers.com/news/2019/11/14/mizzou-hall-of-fame-feature-tyron-woodley"),
+            ("RAF athlete file","https://www.realamericanfreestyle.com/athletes/tyron-woodley")]),
 ]
 
 ATHLETES = ATHLETES + OPPONENTS
@@ -1284,7 +1375,7 @@ def hub_page():
       '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Division</th><th>Champion</th><th>Notes</th></tr></thead>'
       '<tbody>%s</tbody></table></div>'
       '<h2 class="raf-h2">Athlete files</h2>'
-      '<p class="raf-sub">Every athlete Arman Tsarukyan has met on an RAF mat, plus Tsarukyan himself. Each file carries the full RAF record with every match linked to its card.</p>'
+      '<p class="raf-sub">Tsarukyan, everyone he has met on an RAF mat, and the other crossover fighters this section already tracks. Each file carries the full RAF record with every match linked to its card.</p>'
       '<div class="raf-evs">%s</div>'
       '<h2 class="raf-h2">Questions fans actually ask</h2>%s'
       '<p class="raf-colophon">Wrestle Lore is an independent, fan made project and is not affiliated with Real American Freestyle, '

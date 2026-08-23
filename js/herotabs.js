@@ -196,3 +196,25 @@
   }
   select(start, false);
 })();
+
+/* ---- MMA record spoiler shield -------------------------------------------
+   The pro-wrestling ledger has #splTgl; the MMA table had no shield at all.
+   Same contract, its own toggle: results stay veiled until asked for, and the
+   page's main spoiler toggle also lifts it so a reader who turned spoilers on
+   once is not asked twice. */
+(function () {
+  'use strict';
+  var led = document.getElementById('mma-ledger');
+  if (!led) return;
+  var body = led.querySelector('.mma-body');
+  var btn = document.getElementById('mmaTgl');
+  function reveal() {
+    led.classList.remove('mma-veiled');
+    if (body) body.setAttribute('aria-hidden', 'false');
+  }
+  if (btn) btn.addEventListener('click', reveal);
+  var spl = document.getElementById('splTgl');
+  if (spl) spl.addEventListener('click', function () {
+    if (spl.getAttribute('aria-pressed') === 'true') reveal();
+  });
+})();
