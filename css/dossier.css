@@ -1589,3 +1589,28 @@ button.tt-cred{cursor:pointer}
 .wl-dossier #mma .fac-card{padding:20px 22px}
 .wl-dossier #mma .fac-desc{margin-top:10px}
 @media(prefers-reduced-motion:reduce){.wl-dossier .mma-ledger .mma-body{transition:none}}
+
+/* ==== FACTION PROSE MEASURE ==============================================
+   The faction pages inherit .wrap (1200px) with no measure of their own, so
+   the lead callout (p.answer) and the deck line (p.muted) set at the full
+   1200px - roughly 130 characters per line, about double the 55-75 that
+   people read comfortably. .moment-body already carries max-width:68ch and
+   was the only reason the body copy below looked right; the two lead
+   elements above it did not, which is exactly the "too far left, too wide"
+   read: a 1200px line has no right edge to return to.
+
+   Scoped to main.wl-faction so nothing on the dossier or hub pages moves.
+   First attempt used 68ch on each element and did NOT work: ch is relative to
+   the element's own font-size, and .answer sets at --fs-500 while .moment-body
+   sets at body size, so "the same 68ch" resolved to 926px and 720px - two
+   different right edges, which is the defect, not the fix. A measure that is
+   supposed to be shared has to be ONE value, so it is a single custom property
+   in px, applied to all three. Verified: lead, callout and body all end at the
+   same x.
+   ========================================================================== */
+.wl-faction{--fac-measure:720px}
+.wl-faction .answer{max-width:var(--fac-measure)}
+.wl-faction > .wrap > p.muted{max-width:var(--fac-measure)}
+.wl-faction .sec-h + p.muted{max-width:var(--fac-measure)}
+.wl-faction .moment-body{max-width:var(--fac-measure)}
+/* ==================== end FACTION PROSE MEASURE ==================== */
