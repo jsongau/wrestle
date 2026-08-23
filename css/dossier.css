@@ -371,3 +371,281 @@
 .wl-dossier .sig2-reel::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:99px}
 .wl-dossier .sig2-reel::-webkit-scrollbar-thumb{background:rgba(212,175,55,.4);border-radius:99px}
 .wl-dossier .sig2-reel::-webkit-scrollbar-thumb:hover{background:rgba(212,175,55,.65)}
+
+/* ==========================================================================
+   TALE OF THE TAPE — the sticky rail, made reachable
+   --------------------------------------------------------------------------
+   THE DEFECT
+   `.wl-dossier .rail` (profile.css:237) is `position:sticky;top:112px` with no
+   bound, so any Tale-of-the-Tape card taller than `100vh - 112px` has a
+   permanently unreachable bottom. The height driver was never the facts — it
+   was the `.cm` provenance sub-line hung under each one (rhea-ripley: 14 of 14
+   rows carry one, 1389px of card against a 788px slot).
+
+   THE FIX — hierarchy, not a scrollbar.
+     register 1 · the fact.  One line per row. Always visible. Never folded.
+     register 2 · the source note.  Folded into a native <details> whose
+       <summary> IS the fact line, so folding costs exactly zero vertical space
+       and the disclosure's label and its content are the same row.
+
+   No JS is required for the mechanism: <details> gives keyboard operation, the
+   expanded/collapsed state in the a11y tree, and per-row reveal on its own.
+   /js/rail.js only adds the card-level SOURCED control and the
+   fold-only-what-does-not-fit default.
+
+   TWO REGISTERS OF METRIC, AND ONLY TWO.
+   Everything below the "base" section is gated behind a state class that
+   /js/rail.js puts on the `.rail` element, never on the page as a whole:
+
+     (no class)   the card fits its slot. ORIGINAL profile.css metrics —
+                  92px label column, 9px row padding, 10.5px dt, 11px .cm.
+                  Byte-identical to the pre-change page. cm-punk lives here.
+     .tt-cap      the card must be bounded: flex column, capped, the ledger
+                  scrolls inside its own frame, notes fold. Metrics still
+                  original.
+     .tt-dense    folding alone was not enough: tighter tape setting on top of
+                  .tt-cap. This — and ONLY this — is where 88px/8px/10px/the
+                  gold-ruled mono note live.
+
+   Idioms taken from the dossier rather than invented: the CSS-drawn gold +/-
+   of `.faq2-ic` (dossier.css:128), the `aria-expanded` control grammar of
+   `.idn-support`, the thin gold scrollbar of `.mdx-picks`, and the JS-toggled
+   bottom scroll-fade of `.mnav-fade` (site.css:4452).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE — present on every dossier page, in every state.
+      Nothing here may change the tape's metrics. It only makes the
+      <details>/<summary> wrapper render exactly like the text node + block
+      `.cm` it replaced.
+   -------------------------------------------------------------------------- */
+.wl-dossier .tott .tsrc{display:block}
+
+.wl-dossier .tott .tsrc-v{
+  display:block;             /* was an anonymous block box around the fact */
+  list-style:none;
+  cursor:pointer;
+  border-radius:2px;
+}
+.wl-dossier .tott .tsrc-v::-webkit-details-marker{display:none}
+.wl-dossier .tott .tsrc-v::marker{content:"";font-size:0}
+.wl-dossier .tott .tsrc-v:focus-visible{outline:2px solid var(--goldb,#f2cc4b);outline-offset:2px}
+
+/* the +/- rides the fact's own baseline, so folding costs no height.
+   It is HIDDEN while the row is open in an uncapped card — that is the state
+   that has to stay pixel-identical to the old page, and an open row has
+   nothing left to disclose. */
+.wl-dossier .tott .tsrc-ic{
+  display:none;
+  position:relative;
+  width:9px;height:9px;
+  margin-left:7px;
+  color:rgba(212,175,55,.62);
+  transition:color .18s ease;
+}
+.wl-dossier .tott .tsrc:not([open]) .tsrc-ic,
+.wl-dossier .rail.tt-cap .tott .tsrc-ic{display:inline-block}
+.wl-dossier .tott .tsrc-ic:before,
+.wl-dossier .tott .tsrc-ic:after{
+  content:"";position:absolute;background:currentColor;transition:transform .2s ease;
+}
+.wl-dossier .tott .tsrc-ic:before{left:0;top:4px;width:9px;height:1.5px}
+.wl-dossier .tott .tsrc-ic:after{left:4px;top:0;width:1.5px;height:9px}
+.wl-dossier .tott .tsrc[open] .tsrc-ic:after{transform:scaleY(0)}
+.wl-dossier .tott .tsrc-v:hover .tsrc-ic,
+.wl-dossier .tott .tsrc[open] .tsrc-ic{color:var(--goldb,#f2cc4b)}
+
+/* --------------------------------------------------------------------------
+   2. THE CREDIBILITY LINE — "we show our sources", asserted while collapsed.
+      The old footer line ("14 of 14 entries carry a source note") cost 34px of
+      the very height we are trying to buy back. It is restored here on the
+      title's own baseline, where it costs ZERO vertical space, and it carries
+      the ratio — not a bare count — so the claim survives folding. With
+      /js/rail.js absent it is a static <p>; with it, the same element becomes
+      the button that opens or closes every note at once, and its accessible
+      name is the full sentence.
+   -------------------------------------------------------------------------- */
+.wl-dossier .tott .tt-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+}
+.wl-dossier .tott .tt-head .kick{margin:0 0 12px}   /* unchanged from profile.css */
+
+.wl-dossier .tott .tt-cred{
+  flex:none;
+  display:inline-flex;
+  align-items:baseline;
+  gap:5px;
+  margin:0;
+  padding:0;
+  background:none;
+  border:0;
+  line-height:1;
+  white-space:nowrap;
+  font-family:var(--osw,'Oswald',system-ui,sans-serif);
+  font-weight:600;
+  font-size:9.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#8c7420;
+  transition:color .18s ease;
+}
+button.tt-cred{cursor:pointer}
+.wl-dossier .tott button.tt-cred:hover,
+.wl-dossier .tott button.tt-cred[aria-expanded="true"]{color:var(--gold,#d4af37)}
+.wl-dossier .tott .tt-cred:focus-visible{
+  outline:2px solid var(--goldb,#f2cc4b);
+  outline-offset:3px;
+  border-radius:2px;
+}
+.wl-dossier .tott .tt-cred .tt-n{
+  font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace);
+  font-size:9.5px;
+  letter-spacing:.02em;
+  color:#a98d27;
+  transition:color .18s ease;
+}
+.wl-dossier .tott button.tt-cred:hover .tt-n,
+.wl-dossier .tott button.tt-cred[aria-expanded="true"] .tt-n{color:var(--goldb,#f2cc4b)}
+
+/* the house +/- glyph, at header scale */
+.wl-dossier .tott .tt-ic{flex:none;position:relative;width:10px;height:10px;align-self:center}
+.wl-dossier .tott .tt-ic:before,
+.wl-dossier .tott .tt-ic:after{
+  content:"";position:absolute;background:currentColor;transition:transform .2s ease;
+}
+.wl-dossier .tott .tt-ic:before{left:0;top:4.5px;width:10px;height:1.5px}
+.wl-dossier .tott .tt-ic:after{left:4.5px;top:0;width:1.5px;height:10px}
+.wl-dossier .tott .tt-cred[aria-expanded="true"] .tt-ic:after{transform:scaleY(0)}
+
+/* --------------------------------------------------------------------------
+   3. .tt-cap — the bounded card. Applied by /js/rail.js only when the fully
+      expanded card cannot fit the sticky slot. Header and (on triple-h) the
+      rating block stay pinned; only the ledger moves.
+      METRICS ARE UNCHANGED HERE — this section buys height by folding, not by
+      tightening.
+   -------------------------------------------------------------------------- */
+/* site.css:2352 declares a global, unscoped `.rail` (a horizontal snap
+   carousel) carrying `padding-block:var(--sp-2)`. The dossier's vertical
+   sidebar inherits those 16px by accident. Reclaimed only when height is
+   actually scarce, so an uncapped page is left exactly where it was. */
+.wl-dossier .rail.tt-cap{padding-block:0}
+
+.wl-dossier .rail.tt-cap .card.tott{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  max-height:calc(100vh - 124px);   /* sticky top 112px + a 12px foot */
+}
+.wl-dossier .rail.tt-cap .card.tott > .tt-head{flex:none}
+.wl-dossier .rail.tt-cap .card.tott > .tott-rating{flex:none}
+
+/* transient state used by rail.js to measure the un-bounded height */
+.wl-dossier .rail .card.tott.tt-measure{max-height:none}
+.wl-dossier .rail .card.tott.tt-measure dl{overflow:visible;max-height:none}
+
+.wl-dossier .rail.tt-cap .tott dl{
+  min-height:0;                 /* flex plumbing: shrink first, then scroll */
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  padding-right:2px;
+  scrollbar-width:thin;
+  scrollbar-color:#8c7420 transparent;
+}
+.wl-dossier .rail.tt-cap .tott dl:focus-visible{outline:2px solid var(--goldb,#f2cc4b);outline-offset:3px;border-radius:4px}
+.wl-dossier .rail.tt-cap .tott dl::-webkit-scrollbar{width:5px}
+.wl-dossier .rail.tt-cap .tott dl::-webkit-scrollbar-track{background:transparent}
+.wl-dossier .rail.tt-cap .tott dl::-webkit-scrollbar-thumb{background:#8c7420;border-radius:99px}
+
+/* Safety net: the collapsed card always fits. If the reader opens everything
+   and the tape then outgrows the slot, the LEDGER scrolls inside its own frame
+   and a gold bottom fade says there is more below. It recedes at the end of the
+   scroll, exactly as `.mnav-fade` does. */
+.wl-dossier .rail.tt-cap .card.tott::after{
+  content:"";
+  position:absolute;
+  left:16px;right:16px;
+  bottom:14px;
+  height:46px;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(180deg,rgba(15,16,21,0),rgba(15,16,21,.97) 76%);
+  transition:opacity .25s ease;
+}
+.wl-dossier .rail.tt-cap .card.tott.is-scrollable:not(.is-end)::after{opacity:1}
+
+/* --------------------------------------------------------------------------
+   4. .tt-dense — the ONLY place the tape's setting changes. Reached only when
+      a fully folded card at the original setting still will not fit.
+      This is the register the prototype wrongly applied to every page.
+   -------------------------------------------------------------------------- */
+.wl-dossier .rail.tt-dense .card.tott{padding:16px 16px 14px}
+.wl-dossier .rail.tt-dense .tott .tt-head .kick{margin:0 0 10px}
+.wl-dossier .rail.tt-dense .tott .row{grid-template-columns:88px 1fr;gap:10px;padding:5px 0}
+.wl-dossier .rail.tt-dense .tott dt{font-size:10px;letter-spacing:.085em;line-height:1.5}
+.wl-dossier .rail.tt-dense .tott dd{font-size:14px;line-height:1.42}
+/* the note, set as marginal apparatus: mono, dim, hung off a gold rule */
+.wl-dossier .rail.tt-dense .tott dd .cm{
+  margin:4px 0 2px;
+  padding-left:9px;
+  border-left:1px solid rgba(212,175,55,.3);
+  font-size:10.5px;
+  line-height:1.55;
+}
+
+/* --------------------------------------------------------------------------
+   4b. .tt-tight — LAST RESORT, on top of .tt-dense. Reached only when the
+      fully folded dense ledger still overflows the slot, which happens when a
+      tape's values are long enough to wrap two or three times. In this tree
+      that is cody-rhodes at 1440x700 and nothing else. It buys its height from
+      the label column and the leading, not from a fifth type size.
+   -------------------------------------------------------------------------- */
+.wl-dossier .rail.tt-dense.tt-tight .card.tott{padding:14px 14px 12px}
+.wl-dossier .rail.tt-dense.tt-tight .tott .tt-head .kick{margin:0 0 8px}
+.wl-dossier .rail.tt-dense.tt-tight .tott .row{grid-template-columns:80px 1fr;gap:8px;padding:4px 0}
+.wl-dossier .rail.tt-dense.tt-tight .tott dt{font-size:9.5px;letter-spacing:.07em;line-height:1.45}
+.wl-dossier .rail.tt-dense.tt-tight .tott dd{font-size:13.5px;line-height:1.4}
+.wl-dossier .rail.tt-dense.tt-tight .card.tott::after{left:14px;right:14px;bottom:12px}
+
+/* --------------------------------------------------------------------------
+   5. <=960px — the rail is already static, full-width and un-pinned there, so
+      there is no height to save. Every state class is released and rail.js
+      defaults every note to open.
+   -------------------------------------------------------------------------- */
+@media(max-width:960px){
+  .wl-dossier .rail.tt-cap{padding-block:revert}
+  .wl-dossier .rail.tt-cap .card.tott{display:block;max-height:none;padding:18px}
+  .wl-dossier .rail.tt-cap .tott dl{overflow:visible;max-height:none;padding-right:0}
+  .wl-dossier .rail.tt-cap .card.tott::after{display:none}
+  /* belt and braces: if a reader drags the window down past 960px while the
+     dense setting is still latched, release it here too. */
+  .wl-dossier .rail.tt-dense .card.tott,
+  .wl-dossier .rail.tt-dense.tt-tight .card.tott{padding:18px}
+  .wl-dossier .rail.tt-dense.tt-tight .tott .tt-head .kick{margin:0 0 12px}
+  .wl-dossier .rail.tt-dense.tt-tight .tott .row{grid-template-columns:92px 1fr;gap:12px;padding:9px 0}
+  .wl-dossier .rail.tt-dense.tt-tight .tott dt{font-size:10.5px;letter-spacing:.09em;line-height:normal}
+  .wl-dossier .rail.tt-dense.tt-tight .tott dd{font-size:14.5px;line-height:normal}
+  .wl-dossier .rail.tt-dense .tott .tt-head .kick{margin:0 0 12px}
+  .wl-dossier .rail.tt-dense .tott .row{grid-template-columns:92px 1fr;gap:12px;padding:9px 0}
+  .wl-dossier .rail.tt-dense .tott dt{font-size:10.5px;letter-spacing:.09em;line-height:normal}
+  .wl-dossier .rail.tt-dense .tott dd{font-size:14.5px;line-height:normal}
+  .wl-dossier .rail.tt-dense .tott dd .cm{margin:0;padding-left:0;border-left:0;font-size:11px;line-height:normal}
+}
+
+/* --------------------------------------------------------------------------
+   6. Reduced motion
+   -------------------------------------------------------------------------- */
+@media(prefers-reduced-motion:reduce){
+  .wl-dossier .tott .tt-cred,
+  .wl-dossier .tott .tt-cred .tt-n,
+  .wl-dossier .tott .tt-ic:before,
+  .wl-dossier .tott .tt-ic:after,
+  .wl-dossier .tott .tsrc-ic,
+  .wl-dossier .tott .tsrc-ic:before,
+  .wl-dossier .tott .tsrc-ic:after,
+  .wl-dossier .rail.tt-cap .card.tott::after{transition:none}
+}
+/* ====================== end Tale of the Tape rail ====================== */

@@ -415,13 +415,36 @@ BUILDERS = {"overview": sec_overview, "record": sec_record, "signature": sec_sig
             "media": sec_media, "mma": sec_slot10, "feats": sec_slot10,
             "reference": sec_reference, "faq": sec_faq}
 
+# Tale of the Tape. A row whose fact carries a `sub` provenance note becomes a
+# native <details> whose <summary> IS the fact line, so the note can fold away
+# at zero vertical cost and the sticky rail's bottom stays reachable
+# (css/dossier.css "TALE OF THE TAPE", js/rail.js). A row with no `sub` has
+# nothing to disclose and keeps the plain form. The whitespace-normalised
+# rendered text of the card is unchanged by the transform: the value and the
+# note were already on separate lines, because `.tott dd .cm` is display:block.
+ROW_SRC = ('<div class="row row--src"><dt>%s</dt><dd>'
+           '<details class="tsrc"><summary class="tsrc-v">'
+           '<span class="tsrc-p">%s</span><span class="tsrc-ic" aria-hidden="true"></span>'
+           '</summary><span class="cm tsrc-n">%s</span></details></dd></div>')
+ROW_PLAIN = '<div class="row"><dt>%s</dt><dd>%s</dd></div>'
+
 def rail(a):
+    tape = a["tape"]
     rows = "".join(
-        '<div class="row"><dt>%s</dt><dd>%s%s</dd></div>'
-        % (esc(r["label"]), r["value"], (' <span class="cm">%s</span>' % r["sub"]) if r.get("sub") else "")
-        for r in a["tape"])
-    return ('<aside class="rail" aria-label="Quick facts"><section class="card tott" aria-labelledby="tott-h">'
-            '<h2 id="tott-h" class="kick">Tale of the Tape</h2><dl>%s</dl></section></aside>' % rows)
+        (ROW_SRC % (esc(r["label"]), r["value"], r["sub"])) if r.get("sub")
+        else (ROW_PLAIN % (esc(r["label"]), r["value"]))
+        for r in tape)
+    sourced, total = sum(1 for r in tape if r.get("sub")), len(tape)
+    # The credibility line the site is positioned on. It used to sit in the card
+    # footer and cost 34px; on the title's baseline it costs nothing and it
+    # survives folding, which is the state it matters most in.
+    cred = ('<p class="tt-cred" title="%d of %d entries carry a source note">'
+            '<span class="tt-n">%d/%d</span><span class="tt-lbl">sourced</span></p>'
+            % (sourced, total, sourced, total)) if total else ""
+    return ('<aside class="rail" aria-label="Quick facts">'
+            '<section class="card tott" data-tape aria-labelledby="tott-h">'
+            '<div class="tt-head"><h2 id="tott-h" class="kick">Tale of the Tape</h2>%s</div>'
+            '<dl id="tott-dl">%s</dl></section></aside>' % (cred, rows))
 
 # ------------------------------------------------------------------ JSON-LD
 def jsonld(a, secs):
@@ -509,12 +532,13 @@ def page(a):
       '<script src="/js/nav.js?v=%s" defer></script>\n'
       '<script src="/js/engage.js?v=%s" defer></script>\n'
       '<script src="/js/profile.js?v=%s" defer></script>\n'
+      '<script src="/js/rail.js?v=%s"></script>\n'
       '<script>%s</script>\n</body>\n</html>\n'
       % (esc(title), esc(a["meta_desc"]), u, esc(a["name"]), esc(a["epithet"]), esc(a["og_desc"]), u,
          BASE, esc(a["name"]), BASE, esc(a["name"]), esc(a["epithet"]), esc(a["tw_desc"]),
          ASSET_V, jsonld(a, secs), ASSET_V, ASSET_V,
          subnav(a, secs), idn(a), hero(a), "\n    ".join(body_secs), rail(a),
-         FACT_JS, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, tail))
+         FACT_JS, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, tail))
 
 # ------------------------------------------------------------------ driver
 def load_all():
