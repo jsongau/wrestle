@@ -980,3 +980,168 @@ button.tt-cred{cursor:pointer}
   border-color:rgba(212,175,55,.55);
 }
 /* ================== end PROSE & SPREAD ================== */
+
+/* ==== SUBNAV STICKY FIX ==================================================
+   The subnav pins at top:var(--nav-h) where profile.css declares --nav-h:62px.
+   That token predates the current header: .site-header.nav7 stacks the ticker
+   above the nav bar and is 103px tall, sticky, z-index 100. So a pinned subnav
+   slid 41px under the header and was painted over - "the subnav goes away when
+   I click Personas". Correct the token where the dossier uses it, and give
+   every section a scroll margin so anchor jumps land below the full stack. */
+.wl-dossier{--nav-h:103px;--stack-top:calc(var(--nav-h) + var(--subnav-h))}
+/* profile.js computes its scroll offset from these tokens read off :root (with
+   stale 60/44 fallbacks) - so they must exist at :root, not only on the dossier. */
+:root{--nav-h:103px;--subnav-h:42px;--idbar-h:0px}
+.wl-dossier .sec,.wl-dossier [id]{scroll-margin-top:calc(var(--nav-h) + var(--subnav-h) + 28px)}
+@media(max-width:760px){.wl-dossier{--nav-h:96px}}
+
+/* ===== Hero "Fight Metrics" panel (roster-file card) ===================== */
+.wl-dossier .portrait .fm-tag{position:absolute;top:14px;right:14px;z-index:2;
+  font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#d4af37;
+  border:1px solid rgba(212,175,55,.35);padding:3px 7px;border-radius:6px;background:rgba(15,16,21,.55)}
+.wl-dossier .portrait .fm{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;
+  padding:44px 14px 84px}
+/* big-digit strip */
+.wl-dossier .fm-digits{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.wl-dossier .fm-d{background:rgba(21,23,29,.82);border:1px solid rgba(255,255,255,.09);border-radius:12px;
+  padding:9px 4px 7px;text-align:center;min-width:0}
+.wl-dossier .fm-d b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:25px;line-height:1;color:#f2cc4b}
+.wl-dossier .fm-d span{display:block;margin-top:4px;font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:7.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(244,245,247,.42);line-height:1.35}
+/* middle row: veiled win-rate ring + kayfabe-legal ledger */
+.wl-dossier .fm-mid{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px}
+.wl-dossier .fm-wl{position:relative;overflow:hidden;background:rgba(15,16,21,.85);
+  border:1px solid rgba(212,175,55,.26);border-radius:12px;padding:8px 10px 7px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:116px}
+.wl-dossier .fm-wl .rec2-donut{width:86px;height:86px}
+.wl-dossier #fm-w{stroke:#d4af37}
+.wl-dossier #fm-l{stroke:#e1525c}
+.wl-dossier #fm-d{stroke:#cfd2d8}
+.wl-dossier #fm-n{stroke:#8a8f98}
+.wl-dossier .fm-wl-rec{margin:0;text-align:center}
+.wl-dossier .fm-wl-rec b{font-family:'Anton',sans-serif;font-weight:400;font-size:15px;letter-spacing:.03em;color:#f4f5f7}
+.wl-dossier .fm-wl-rec span{display:block;margin-top:2px;font-family:'JetBrains Mono',monospace;
+  font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,245,247,.42)}
+/* the veil reuses .rec2-wl-veil / .rec2-wl-unveil verbatim; only sized down here */
+.wl-dossier .fm-wl .rec2-wl-veil{gap:8px;padding:8px}
+.wl-dossier .fm-wl .rec2-wl-veil p{font-size:7.5px;letter-spacing:.08em}
+.wl-dossier .fm-wl .rec2-wl-unveil{font-size:10px;padding:5px 12px;border-radius:8px}
+/* two-ledger record card */
+.wl-dossier .fm-ledger{background:rgba(21,23,29,.82);border:1px solid rgba(255,255,255,.09);border-radius:12px;
+  padding:9px 11px;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.wl-dossier .fm-lg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  margin:0 0 7px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.07)}
+.wl-dossier .fm-lg-h span:first-child{font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;
+  letter-spacing:.2em;text-transform:uppercase;color:#d4af37}
+.wl-dossier .fm-chip{font-family:'Oswald',sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:#0a0b0e;background:linear-gradient(180deg,#f2cc4b,#d4af37);
+  padding:3px 9px;border-radius:999px}
+.wl-dossier .fm-lg{margin:0;display:flex;flex-direction:column;gap:5px}
+.wl-dossier .fm-lg>div{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.wl-dossier .fm-lg dt{font-family:'Oswald',sans-serif;font-weight:500;font-size:8.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(244,245,247,.42);white-space:nowrap}
+.wl-dossier .fm-lg dd{margin:0;font-family:'JetBrains Mono',monospace;font-size:9px;line-height:1.4;
+  color:rgba(244,245,247,.85);text-align:right}
+.wl-dossier .fm-lg dd em{font-style:normal;color:#d4af37}
+/* bouts-by-promotion bars */
+.wl-dossier .fm-bars{background:rgba(21,23,29,.82);border:1px solid rgba(255,255,255,.09);border-radius:12px;
+  padding:9px 11px 10px}
+.wl-dossier .fm-bars-h{font-family:'Oswald',sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:#d4af37;margin-bottom:6px}
+.wl-dossier .fm-bar{display:grid;grid-template-columns:28px minmax(0,1fr) 20px 28px;align-items:center;gap:7px;margin-top:4px}
+.wl-dossier .fm-bar .l{font-family:'Oswald',sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.09em;color:rgba(244,245,247,.75)}
+.wl-dossier .fm-bar .t{height:5px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden}
+.wl-dossier .fm-bar .t i{display:block;height:100%;min-width:2px;border-radius:3px;
+  background:linear-gradient(90deg,#8c7420,#d4af37)}
+.wl-dossier .fm-bar .n{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:400;color:#f4f5f7;text-align:right}
+.wl-dossier .fm-bar .p{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(244,245,247,.42);text-align:right}
+/* narrow roster card (portrait maxes at 320px under 900px) */
+@media(max-width:900px){
+  .wl-dossier .portrait .fm{padding:40px 11px 76px;gap:6px}
+  .wl-dossier .fm-d b{font-size:21px}
+  .wl-dossier .fm-wl{min-width:104px;padding:7px 8px 6px}
+  .wl-dossier .fm-wl .rec2-donut{width:74px;height:74px}
+  .wl-dossier .fm-lg dd{font-size:8.5px}
+}
+/* let the narrow roster card grow past its 3/4 ratio when the metrics need the room
+   (aspect-ratio wins over max-content minimums, so drop the ratio where the card is 320px) */
+@media(max-width:900px){.wl-dossier .portrait:has(.fm){aspect-ratio:auto}}
+
+/* ==== RIGHT NOW - curated social pulse ==== */
+/* RIGHT NOW — social pulse (curated, press-sourced). Scoped under .wl-dossier like every other section family. */
+
+.wl-dossier .pulse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.wl-dossier .pulse-card{display:flex;flex-direction:column;min-width:0;position:relative;
+  background:linear-gradient(180deg,#15171d,#0f1015);
+  border:1px solid rgba(255,255,255,.07);border-left:2px solid var(--gold,#d4af37);
+  border-radius:12px;padding:16px 18px 15px;transition:border-color .16s,transform .16s}
+.wl-dossier .pulse-card:hover{border-left-color:var(--goldb,#f2cc4b);transform:translateY(-2px)}
+.wl-dossier .pulse-featured{grid-column:span 2}
+.wl-dossier .pulse-featured .pulse-quote{font-size:21px}
+
+/* top row: platform chip + date */
+.wl-dossier .pulse-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.wl-dossier .pulse-chip{font-family:var(--mono,'JetBrains Mono',monospace);font-size:9px;letter-spacing:.09em;
+  text-transform:uppercase;color:rgba(244,245,247,.62);border:1px solid rgba(255,255,255,.14);
+  border-radius:5px;padding:3px 7px;white-space:nowrap}
+.wl-dossier .pulse-chip-ig{color:var(--goldb,#f2cc4b);border-color:rgba(212,175,55,.4);background:rgba(212,175,55,.06)}
+.wl-dossier .pulse-date{font-family:var(--mono,'JetBrains Mono',monospace);font-size:10px;letter-spacing:.05em;
+  text-transform:uppercase;color:rgba(244,245,247,.42);white-space:nowrap}
+
+/* the quote / the moment */
+.wl-dossier .pulse-quote{font-family:var(--osw,'Oswald',sans-serif);font-weight:500;font-size:17px;line-height:1.32;
+  color:#f4f5f7;margin:0 0 9px;letter-spacing:.005em}
+.wl-dossier .pulse-quote::first-letter{color:var(--goldb,#f2cc4b)} /* gilds the opening ldquo */
+.wl-dossier .pulse-moment{font-family:var(--osw,'Oswald',sans-serif);font-weight:400;font-size:15.5px;line-height:1.38;
+  color:rgba(244,245,247,.88);margin:0 0 9px;font-style:italic}
+.wl-dossier .pulse-why{font-family:var(--inter,'Inter',sans-serif);font-size:12.5px;line-height:1.5;
+  color:rgba(244,245,247,.5);margin:0 0 13px}
+.wl-dossier .pulse-del{color:var(--redb,#ff2d3d);font-style:normal}
+
+/* source link, pinned to card bottom */
+.wl-dossier .pulse-src{margin-top:auto;align-self:flex-start;font-family:var(--osw,'Oswald',sans-serif);font-weight:600;
+  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold,#d4af37);transition:color .14s}
+.wl-dossier .pulse-src:hover{color:var(--goldb,#f2cc4b)}
+
+/* context card: the feed's editorial closer — mono, hairline frame, no gold spine */
+.wl-dossier .pulse-context{grid-column:1/-1;background:transparent;
+  border:1px solid rgba(212,175,55,.22);border-left-width:1px;border-radius:12px}
+.wl-dossier .pulse-context:hover{border-color:rgba(212,175,55,.38);transform:none}
+.wl-dossier .pulse-context .pulse-quote{font-family:var(--mono,'JetBrains Mono',monospace);font-weight:500;
+  font-size:15px;line-height:1.45;letter-spacing:0}
+.wl-dossier .pulse-context .pulse-why{font-family:var(--mono,'JetBrains Mono',monospace);font-size:11px;line-height:1.6;
+  color:rgba(244,245,247,.46);max-width:88ch}
+@media(min-width:901px){
+  .wl-dossier .pulse-context{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:34px;align-items:start}
+  .wl-dossier .pulse-context .pulse-top{grid-column:1/-1}
+  .wl-dossier .pulse-context .pulse-quote{grid-column:1;font-size:17px;margin-bottom:0}
+  .wl-dossier .pulse-context .pulse-why{grid-column:2;grid-row:2 / span 2;margin-bottom:0}
+  .wl-dossier .pulse-context .pulse-src{grid-column:1;margin-top:14px}
+}
+
+/* footer row */
+.wl-dossier .pulse-foot{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  margin-top:16px;padding-top:13px;border-top:1px solid rgba(255,255,255,.07)}
+.wl-dossier .pulse-follow{font-family:var(--osw,'Oswald',sans-serif);font-weight:600;font-size:12.5px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--gold,#d4af37);transition:color .14s}
+.wl-dossier .pulse-follow:hover{color:var(--goldb,#f2cc4b)}
+.wl-dossier .pulse-dormant{font-family:var(--mono,'JetBrains Mono',monospace);font-size:10px;letter-spacing:.05em;
+  text-transform:uppercase;color:rgba(244,245,247,.34)}
+
+/* reflow: 3 → 2 → 1 */
+@media(max-width:1080px){
+  .wl-dossier .pulse-grid{grid-template-columns:repeat(2,1fr)}
+  .wl-dossier .pulse-featured{grid-column:1/-1}
+}
+@media(max-width:640px){
+  .wl-dossier .pulse-grid{grid-template-columns:1fr}
+  .wl-dossier .pulse-featured .pulse-quote{font-size:18px}
+}
+
+
+/* The idn nameplate pinned at a hardcoded 104px - written for the old 62px
+   header, where it sat just below the subnav. With the corrected 103px header
+   the subnav now occupies 103-145, so the plate slid underneath it. Pin it
+   below the full stack instead. */
+.wl-dossier .idn{top:calc(var(--nav-h) + var(--subnav-h))}
+@media(max-width:1199px){.wl-dossier .idn{top:var(--nav-h)}}
