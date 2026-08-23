@@ -1,3 +1,9 @@
+## 2026-08-23 (Arman Tsarukyan page rebuilt on the real profile template)
+- **The athlete page now uses the `/wrestlers/` profile template**, not a RAF-styled approximation: sticky sub nav, the `.idn` identity bar with vitals and socials, the `.hero` block with kicker, NOW chip, stat row and portrait card, numbered `.sec` sections, and the Tale of the Tape rail. `profile.css` scopes roughly 432 rules under `.wl-dossier`, so that wrapper is the template, not decoration.
+- `.rec2-stats` and `.rec2-stat` were page-local to cm-punk's inline `<style>` and existed in neither stylesheet. Moved into the idempotent RAF block in `css/site.css` so any future profile can use them.
+- Fixes found by rendering: `&middot;` in the hero kicker was double escaped by `esc()`; and joining a two word name with `&nbsp;` overflowed the `h1`, which only works for a short name like CM Punk.
+- Build gate: 475 pages stamped, 0 NOHDR / 0 NOFTR.
+
 ## 2026-08-23 (RAF: Arman Tsarukyan athlete file, RAF 09 card corrected)
 - **New `/promotions/raf/athletes/arman-tsarukyan/`**: full RAF record (8 matches plus the announced RAF 14 booking) with every match linked to its event card, the complete 12 fight UFC record, bio, and the wrestling background stated honestly. Person + BreadcrumbList schema. Linked from a new "Athlete files" block on the RAF hub so it is not an orphan.
 - **Placed under `/promotions/raf/athletes/`, not `/wrestlers/`.** Tsarukyan is an MMA fighter, not a pro wrestler; putting him in the wrestler namespace would pollute its A to Z, its counts and its search index.

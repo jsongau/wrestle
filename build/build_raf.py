@@ -304,23 +304,40 @@ EVENTS.sort(key=lambda e: e["_dt"], reverse=True)
 # Profiles for RAF competitors who are NOT pro wrestlers, so they stay out of
 # the /wrestlers/ roster namespace (its A-Z, counts and search index).
 ATHLETES = [
- dict(slug="arman-tsarukyan", name="Arman Tsarukyan", nick="Ahalkalakets",
+ dict(slug="arman-tsarukyan", name="Arman Tsarukyan", realname="Arman Nairovich Tsarukyan",
+      nick="Ahalkalakets", initials="AT", debut_year="2015",
       tagline="The UFC lightweight who wrestles for real",
+      kick="Ahalkalakets \u00b7 Master of Sport, freestyle wrestling",
+      the="Real American Freestyle",
+      hero_tag='Crossover Cruiserweight \u00b7 <em>UFC \u00b7 RAF \u00b7 ADXC</em>',
+      now_b="No. 2 UFC lightweight",
+      now_rest="facing Mauricio Ruffy at UFC 331 on September 19",
       bornplace="Akhalkalaki, Georgia", nationality="Armenian", dob="1996-10-11",
-      height="5 ft 7 in", reach="72.5 in", division="Lightweight", team="American Top Team",
-      coach="Marcos da Matta", division_raf="Middleweight",
-      stats=[("23-3","Pro MMA record"),("10-2","UFC record"),("7-1","RAF record"),("#2","UFC lightweight")],
-      now="Ranked number two at lightweight. Faces Mauricio Ruffy at UFC 331 on September 19.",
+      height="5 ft 7 in", reach="72.5 in", division="Lightweight", division_raf="Middleweight",
+      team="American Top Team", coach="Marcos da Matta",
+      stats=[("23-3","Pro MMA"),("10-2","In the UFC"),("7-1","In RAF"),("No. 2","Lightweight rank")],
+      rafstats=[("7-1","RAF record"),("5","Tech falls"),("1","Title match"),("9","Matches booked")],
+      ufcstats=[("23-3","Pro record"),("10-2","UFC record"),("9","KO or TKO"),("6","Submissions"),("4","Performance bonuses")],
       bio=[
-        "Arman Tsarukyan is the clearest example of what Real American Freestyle was built to do. He is a top two UFC lightweight who spends the gaps between fights wrestling actual freestyle matches, and he has been the most active crossover athlete on the RAF roster since January 2026.",
-        "He was born in Akhalkalaki, Georgia, to an Armenian family, and played junior ice hockey for six years before choosing combat sport at seventeen. He turned professional in MMA in 2015 and arrived in the UFC in 2019 on short notice, losing a Fight of the Night decision to Islam Makhachev on debut. He has lost once since.",
-        "His RAF run has been lopsided. Seven of his first eight matches were wins, five of them technical falls, which in freestyle means a ten point lead ends the match early. The exception is the one that mattered most: Colby Covington beat him 5-2 at RAF 11 for the inaugural Crossover Championship, handing him his first RAF loss.",
-        "He is also the reason RAF got its first genuine pull apart brawl. After beating Georgio Poullas at RAF 06 he shoved and punched him, and both corners spilled onto the mat.",
+        "Arman Tsarukyan is the clearest example of what Real American Freestyle was built to do. He is a top two UFC lightweight who spends the gaps between fights wrestling actual freestyle matches, and since January 2026 he has been the most active crossover athlete on the RAF roster.",
+        "He was born in Akhalkalaki, Georgia, to an Armenian family, and played junior ice hockey for six years, including with the youth side of HC Amur, before choosing combat sport at seventeen. He turned professional in MMA in 2015 and arrived in the UFC in April 2019 on short notice, losing a Fight of the Night decision to Islam Makhachev on debut. He has lost once in the octagon since.",
+        "His RAF run has been lopsided. Seven of his first eight matches were wins and five of those were technical falls. The exception is the one that mattered most: Colby Covington beat him 5-2 at RAF 11 for the inaugural Crossover Championship, handing him his first RAF loss and taking the belt he had called for.",
+        "He is also the reason RAF got its first genuine pull apart brawl. After beating Georgio Poullas at RAF 06 in Tempe he shoved and punched him, both corners spilled onto the mat, and the fighting carried into the crowd.",
       ],
-      correction=("A note on the record. Tsarukyan and Islam Makhachev have fought once, in 2019, and Makhachev won. "
-                  "A second fight was booked for the lightweight title at UFC 311 in January 2025 and Tsarukyan withdrew the day before with a back injury. "
-                  "It is often written up as a series. It is not one."),
-      raf=[  # (event slug, date, opponent, win?, method, note)
+      correction=("Tsarukyan and Islam Makhachev have fought once, in April 2019, and Makhachev won a unanimous decision. "
+                  "A second fight was booked for the lightweight title at UFC 311 in January 2025 and Tsarukyan withdrew the day before with a back injury from the weight cut. "
+                  "It gets written up as a two fight series constantly. It is not one. He has contested zero UFC title fights: one booked and withdrawn from, one declined in 2024, and one eliminator won at UFC 300."),
+      social=[("X","https://x.com/ArmanUfc",'<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-7-6.2 7H1.7l8.1-9.3L1 2h7.1l4.9 6.4L18.9 2Zm-2.4 18h1.9L7.6 3.9H5.6L16.5 20Z"/></svg>'),
+              ("Instagram","https://www.instagram.com/arman_tsarukyan_/",'<svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2a3.8 3.8 0 0 1-.9 1.4 3.8 3.8 0 0 1-1.4.9c-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.6A6.2 6.2 0 1 0 12 18.2 6.2 6.2 0 0 0 12 5.8Zm0 10.2A4 4 0 1 1 12 8a4 4 0 0 1 0 8Zm6.4-10.5a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg>')],
+      watch=[("RAF","Real American Freestyle","Every RAF card on Fox Nation","Watch","https://nation.foxnews.com/real-american-freestyle-nation/"),
+             ("UFC","UFC athlete profile","Official record and rankings","Visit","https://www.ufc.com/athlete/arman-tsarukyan"),
+             ("RAF","His RAF athlete file","Match by match on RAF.com","Visit","https://www.realamericanfreestyle.com/athletes/arman-tsarukyan")],
+      tape=[("Real name","Arman Nairovich Tsarukyan"),("Born","October 11, 1996"),("Birthplace","Akhalkalaki, Georgia"),
+            ("Nationality","Armenian"),("Height","5 ft 7 in"),("Reach","72.5 in"),("Stance","Orthodox"),
+            ("UFC division","Lightweight, 155 lb"),("RAF division","Middleweight"),("Team","American Top Team"),
+            ("Head coach","Marcos da Matta"),("Pro MMA debut","September 2015"),("UFC debut","April 20, 2019"),
+            ("RAF debut","January 10, 2026")],
+      raf=[
         ("raf-14","2026-10-03","Dillon Danis",None,"Crossover middleweight title","Announced"),
         ("raf-11","2026-07-18","Colby Covington",False,"dec 2-5","Crossover Championship"),
         ("raf-georgia","2026-07-11","Kuat Khamitov",True,"tech fall 11-0",""),
@@ -329,9 +346,9 @@ ATHLETES = [
         ("raf-08","2026-04-18","Urijah Faber",True,"tech fall 13-1",""),
         ("raf-07","2026-03-28","Georgio Poullas",True,"dec 9-3","Rematch"),
         ("raf-06","2026-02-28","Georgio Poullas",True,"dec 5-3","Brawl after the bell"),
-        ("raf-05","2026-01-10","Lance Palmer",True,"tech fall 10-0",""),
+        ("raf-05","2026-01-10","Lance Palmer",True,"tech fall 10-0","RAF debut"),
       ],
-      ufc=[  # (date, opponent, win?, method, rd, time, event)
+      ufc=[
         ("2025-11-22","Dan Hooker",True,"Submission, arm triangle","2","3:34","UFC Fight Night: Tsarukyan vs. Hooker"),
         ("2024-04-13","Charles Oliveira",True,"Decision, split","3","5:00","UFC 300"),
         ("2023-12-02","Beneil Dariush",True,"KO, knee and punches","1","1:04","UFC on ESPN: Dariush vs. Tsarukyan"),
@@ -345,108 +362,211 @@ ATHLETES = [
         ("2019-07-27","Olivier Aubin-Mercier",True,"Decision, unanimous","3","5:00","UFC 240"),
         ("2019-04-20","Islam Makhachev",False,"Decision, unanimous","3","5:00","UFC Fight Night 149"),
       ],
-      grappling="Submission grappling record of 4-0-1, including a technical decision over Benson Henderson and a fifth round rear naked choke on Patricky Freire at ADXC 10 in May 2025.",
+      rivalries=[
+        ("Colby Covington","RAF 11, Crossover Championship",
+         "Tsarukyan called Covington out from the mat at RAF 08 and Covington accepted. Three months later Covington beat him 5-2 in Milwaukee for the inaugural Crossover Championship, handing him his only RAF loss."),
+        ("Georgio Poullas","RAF 06 and RAF 07",
+         "The one that turned personal. Tsarukyan won 5-3 in Tempe then attacked Poullas after the bell, triggering a mat wide brawl with both corners and fights in the crowd. He won the Tampa rematch 9-3."),
+        ("Islam Makhachev","UFC Fight Night 149, 2019",
+         "Makhachev won their only meeting by unanimous decision in Saint Petersburg, a Fight of the Night that was Tsarukyan's octagon debut on short notice. The rematch has been booked twice and has never happened."),
+        ("Dillon Danis","RAF 14, October 3",
+         "Announced for the first crossover middleweight championship at Fontainebleau Las Vegas. Danis was pinned in 41 seconds by Khamzat Chimaev at RAF 10."),
+      ],
+      faq=[
+        ("Is Arman Tsarukyan a professional wrestler?",
+         "No. He is a mixed martial artist who competes in freestyle wrestling. RAF matches are real competition scored under freestyle rules, not worked pro wrestling matches."),
+        ("What is his RAF record?",
+         "Seven wins and one loss across eight completed matches, with five of the wins by technical fall. The loss is to Colby Covington at RAF 11 in the Crossover Championship match."),
+        ("Has he fought Islam Makhachev twice?",
+         "No. They fought once, in April 2019, and Makhachev won by unanimous decision. A title rematch was booked for UFC 311 in January 2025 and Tsarukyan pulled out the day before with a back injury."),
+        ("Did he win an Olympic or World wrestling medal?",
+         "No. He holds Master of Sport rank in freestyle wrestling and a second in mixed martial arts, but no world, European or national championship medal appears in any published record."),
+        ("Who does he face next?",
+         "Mauricio Ruffy at UFC 331 on September 19, 2026, and Dillon Danis at RAF 14 on October 3, 2026."),
+      ],
+      grappling=("His submission grappling record is 4-0-1, including a technical decision over Benson Henderson by arm triangle "
+                 "and a fifth round rear naked choke on former Bellator champion Patricky Freire at ADXC 10 in May 2025."),
       background=("His wrestling background is real but thinner than the reputation suggests, and it is worth being exact about it. "
                   "He holds Master of Sport rank in freestyle wrestling and a second in mixed martial arts. No world, European or national "
-                  "championship medal appears in any published record. Armenian coverage has framed a European Championship run as something "
-                  "he could still do, not something he has done."),
+                  "championship medal appears in any published record, and Armenian coverage has framed a European Championship run as "
+                  "something he could still do rather than something he has done. What is documented is a wrestling base built alongside six "
+                  "years of junior ice hockey, and a takedown game that has carried into both sports."),
       srcs=[("UFC.com","https://www.ufc.com/athlete/arman-tsarukyan"),
             ("Wikipedia","https://en.wikipedia.org/wiki/Arman_Tsarukyan"),
             ("Sherdog","https://www.sherdog.com/fighter/Arman-Tsarukyan-213913"),
-            ("RAF athlete page","https://www.realamericanfreestyle.com/athletes/arman-tsarukyan")]),
+            ("RAF athlete file","https://www.realamericanfreestyle.com/athletes/arman-tsarukyan")]),
 ]
+
 EVENT_BY_SLUG = {e["slug"]: e for e in EVENTS}
 
 def _age(dob):
     d = d2(dob)
     return TODAY.year - d.year - ((TODAY.month, TODAY.day) < (d.month, d.day))
 
-def athlete_page(a):
-    title = "%s: RAF Record, UFC Record and Bio | Wrestle Lore" % a["name"]
-    desc = ("%s, the UFC lightweight who competes in Real American Freestyle. Complete RAF record, "
-            "every UFC fight, and how the two careers run alongside each other." % a["name"])
-    canonical = "%s/promotions/raf/athletes/%s/" % (BASE, a["slug"])
+def profile_shell(title, desc, canonical, body, extra_head=""):
+    """The /wrestlers/ profile template, exactly. profile.css scopes ~432 rules under
+    .wl-dossier, so that wrapper is not decoration, it IS the template."""
+    return ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+      '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+      '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n'
+      '<meta name="robots" content="index,follow">\n'
+      '<meta property="og:type" content="profile">\n<meta property="og:title" content="%s">\n'
+      '<meta property="og:description" content="%s">\n<meta property="og:url" content="%s">\n'
+      '<meta property="og:site_name" content="Wrestle Lore">\n%s'
+      '<link rel="stylesheet" href="/css/site.css">\n'
+      '<link rel="stylesheet" href="/css/profile.css">\n</head>\n<body>\n'
+      '<header class="site-header nav7"></header>\n%s\n'
+      '<footer class="site-footer site-footer--fat"></footer>\n'
+      '<script src="/js/main.js" defer></script>\n<script src="/js/search-index.js" defer></script>\n'
+      '<script src="/js/nav.js" defer></script>\n<script src="/js/engage.js" defer></script>\n'
+      '<script src="/js/profile.js" defer></script>\n</body>\n</html>\n'
+      % (esc(title), esc(desc), canonical, esc(title), esc(desc), canonical, extra_head, body))
 
-    stats = "".join('<div><b>%s</b>%s</div>' % (esc(v), esc(l)) for v, l in a["stats"])
+SECS = [("overview","Overview"),("record","RAF Record"),("mma","UFC Record"),
+        ("background","Background"),("rivalries","Rivalries"),("faq","FAQ")]
+
+def athlete_page(a):
+    title = "%s: RAF Record, UFC Record and Profile | Wrestle Lore" % a["name"]
+    desc = ("%s, the UFC lightweight who wrestles for real. Complete Real American Freestyle record, "
+            "every UFC fight, and the background behind both." % a["name"])
+    canonical = "%s/promotions/raf/athletes/%s/" % (BASE, a["slug"])
+    num = lambda i: '<span class="n">%02d</span>' % i
+
+    subnav = ('<nav class="subnav" aria-label="Profile sections"><ul>%s</ul>'
+              '<span class="subnav-ind" aria-hidden="true"></span></nav>'
+              % "".join('<li><a href="#%s">%s</a></li>' % (i, l) for i, l in SECS))
+
+    vitals = ("EST.&nbsp;%s <i>&middot;</i> %s <i>&middot;</i> %s REACH <i>&middot;</i> %s MMA "
+              "<i>&middot;</i> <b>&#10216;&nbsp;%s&nbsp;&#10217;</b>"
+              % (a["debut_year"], a["height"].replace(" ", "&nbsp;"), a["reach"].replace(" ", "&nbsp;"),
+                 a["stats"][0][0], a["nick"].upper()))
+
+    idn = ('<div class="idn" id="idn"><div class="idn-in">'
+      '<nav class="idn-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep">&rsaquo;</span>'
+      '<a href="/promotions/raf/">RAF</a><span class="sep">&rsaquo;</span><span class="cur">%s</span></nav>'
+      '<div class="idn-plate"><span class="idn-eye">%s</span><b class="idn-name">%s</b>'
+      '<span class="idn-dia">&#9670;</span><span class="idn-vitals">%s</span><span class="idn-sep"></span>'
+      '<div class="idn-soc">%s</div>'
+      '<div class="idn-supwrap"><button class="idn-support js-idn" aria-expanded="false">Watch <span class="chev">&#8964;</span></button>'
+      '<div class="idn-panel" id="idnPanel"><div class="sp-head"><span class="sp-k">Where to watch %s</span>'
+      '<span class="sp-note">RAF &middot; UFC</span></div>%s</div></div></div>'
+      '<div class="idn-rightspace" aria-hidden="true"></div></div></div>'
+      % (esc(a["name"].split()[-1]), esc(a["tagline"]), esc(a["name"].upper()), vitals,
+         "".join('<a href="%s" target="_blank" rel="noopener" aria-label="%s">%s</a>' % (esc(u), esc(lbl), ic)
+                 for lbl, u, ic in a["social"]),
+         esc(a["name"].split()[0]),
+         "".join('<a class="sp-item" href="%s" target="_blank" rel="noopener"><span class="sp-ic">%s</span>'
+                 '<span class="sp-txt"><b>%s</b><span>%s</span></span><span class="sp-tag">%s</span></a>'
+                 % (esc(u), esc(ic), esc(t), esc(sub), esc(tag)) for ic, t, sub, tag, u in a["watch"])))
+
+    hstats = "".join('<div class="hstat"><b><span class="num">%s</span></b><span>%s</span></div>'
+                     % (esc(v), esc(l)) for v, l in a["stats"])
+
+    hero = ('<header class="hero" id="top"><div class="wrap"><div>'
+      '<div class="hero-kick">%s</div>'
+      '<h1><span class="the">%s</span>%s</h1>'
+      '<p class="hero-tag">%s</p>'
+      '<div class="hero-now"><span>NOW</span><b>%s</b> &middot; %s</div>'
+      '<div class="hero-stats">%s</div>'
+      '<div class="hero-cta-row"><button class="discover" type="button" data-scroll="#record">Explore the full record'
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>'
+      '<a class="ghost-link" href="#mma">And the UFC record alongside it</a></div></div>'
+      '<figure class="portrait" aria-label="%s key art"><span class="slot">PHOTO SLOT</span>'
+      '<span class="vlabel">Est. %s &middot; %s</span>'
+      '<svg class="crown" viewBox="0 0 64 54" aria-hidden="true"><path d="M6 46 L2 14 L18 26 L32 6 L46 26 L62 14 L58 46 Z"/></svg>'
+      '<span class="mono" aria-hidden="true">%s</span>'
+      '<figcaption class="cap"><span class="r">Roster File &middot; %s</span><span class="n">%s</span></figcaption>'
+      '</figure></div></header>'
+      % (a["kick"], esc(a["the"]), esc(a["name"]), a["hero_tag"],
+         esc(a["now_b"]), esc(a["now_rest"]), hstats, esc(a["name"]), a["debut_year"], esc(a["bornplace"]),
+         esc(a["initials"]), esc(a["tagline"]), esc(a["realname"])))
+
+    bio = "".join('<p class="raf-p">%s</p>' % esc(x) for x in a["bio"])
+    sec1 = ('<section class="sec reveal" id="overview"><div class="sec-h">%s<h2>Overview</h2></div>%s'
+            '<div class="raf-correct"><b>Setting one thing straight</b><p>%s</p></div></section>'
+            % (num(1), bio, esc(a["correction"])))
 
     rrows = []
     for slug, date, opp, win, method, note in a["raf"]:
         ev = EVENT_BY_SLUG.get(slug)
-        evcell = ('<a href="/promotions/raf/%s/">%s</a>' % (slug, esc(ev["name"]))) if ev else esc(slug.upper().replace("-", " "))
+        evc = ('<a href="/promotions/raf/%s/">%s</a>' % (slug, esc(ev["name"]))) if ev else esc(slug.upper().replace("-", " "))
         if win is None:
             res = '<span class="raf-tbd">Announced</span>'
         else:
             res = '<span class="raf-n is-win">Win</span>' if win else '<span class="raf-res-l">Loss</span>'
         rrows.append('<tr><td class="raf-wc">%s</td><td>%s</td><td class="raf-vs"><span class="raf-n">%s</span>%s</td>'
                      '<td class="raf-res">%s</td><td class="raf-res">%s</td></tr>'
-                     % (pretty(date), evcell, esc(opp),
+                     % (pretty(date), evc, esc(opp),
                         ('<span class="raf-belt">%s</span>' % esc(note)) if note else "", res, esc(method)))
+    sec2 = ('<section class="sec reveal" id="record"><div class="sec-h">%s<h2>RAF Record</h2></div>'
+            '<div class="rec2-stats">%s</div>'
+            '<p class="sec-lead">%s in Real American Freestyle across %d completed matches. Every one links to its full card. '
+            'A tech fall means a ten point lead ended it early, which is freestyle wrestling&rsquo;s version of a squash.</p>'
+            '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Event</th><th>Opponent</th>'
+            '<th>Result</th><th>Method</th></tr></thead><tbody>%s</tbody></table></div></section>'
+            % (num(2), "".join('<div class="rec2-stat"><b>%s</b><span>%s</span></div>' % (esc(v), esc(l)) for v, l in a["rafstats"]),
+               a["stats"][2][0], len([x for x in a["raf"] if x[3] is not None]), "".join(rrows)))
 
     urows = []
     for date, opp, win, method, rd, tm, event in a["ufc"]:
         urows.append('<tr><td class="raf-wc">%s</td><td class="raf-vs"><span class="raf-n%s">%s</span></td>'
-                     '<td class="raf-res">%s</td><td class="raf-res">%s</td><td class="raf-res">%s</td>'
+                     '<td class="raf-res">%s</td><td class="raf-res">%s</td><td class="raf-res">R%s %s</td>'
                      '<td class="raf-wc">%s</td></tr>'
                      % (pretty(date), " is-win" if win else "", esc(opp),
                         '<span class="raf-n is-win">Win</span>' if win else '<span class="raf-res-l">Loss</span>',
-                        esc(method), "R%s %s" % (esc(rd), esc(tm)), esc(event)))
+                        esc(method), esc(rd), esc(tm), esc(event)))
+    sec3 = ('<section class="sec reveal" id="mma"><div class="sec-h">%s<h2>UFC Record</h2></div>'
+            '<div class="rec2-stats">%s</div>'
+            '<p class="sec-lead">%s in the UFC, %s as a professional. He debuted in April 2019 on short notice.</p>'
+            '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Opponent</th><th>Result</th>'
+            '<th>Method</th><th>Round</th><th>Event</th></tr></thead><tbody>%s</tbody></table></div></section>'
+            % (num(3), "".join('<div class="rec2-stat"><b>%s</b><span>%s</span></div>' % (esc(v), esc(l)) for v, l in a["ufcstats"]),
+               a["stats"][1][0], a["stats"][0][0], "".join(urows)))
 
-    srcs = " ".join('<a href="%s" target="_blank" rel="noopener">%s</a>' % (esc(u), esc(n)) for n, u in a["srcs"])
+    sec4 = ('<section class="sec reveal" id="background"><div class="sec-h">%s<h2>Background</h2></div>'
+            '<p class="raf-p">%s</p><p class="raf-p">%s</p></section>'
+            % (num(4), esc(a["background"]), esc(a["grappling"])))
 
+    sec5 = ('<section class="sec reveal" id="rivalries"><div class="sec-h">%s<h2>Rivalries</h2></div>'
+            '<div class="raf-evs">%s</div></section>'
+            % (num(5), "".join('<div class="raf-ev"><span class="raf-ev__n">%s</span>'
+                               '<span class="raf-ev__c">%s</span><span class="raf-ev__v">%s</span></div>'
+                               % (esc(t), esc(k), esc(d)) for t, k, d in a["rivalries"])))
+
+    sec6 = ('<section class="sec reveal" id="faq"><div class="sec-h">%s<h2>FAQ</h2></div>%s</section>'
+            % (num(6), "".join('<details class="raf-faq"><summary>%s</summary><p>%s</p></details>'
+                               % (esc(q), esc(ans)) for q, ans in a["faq"])))
+
+    rail = ('<aside class="rail" aria-label="Quick facts">'
+      '<section class="card tott" aria-labelledby="tott-h"><h2 id="tott-h" class="kick">Tale of the Tape</h2><dl>%s</dl></section>'
+      '<section class="card" aria-labelledby="src-h"><h2 id="src-h" class="kick">Sources</h2>'
+      '<p class="raf-sub">Every figure traces to a published record. Where sources disagree, the page says so.</p>'
+      '<div class="raf-nav">%s</div></section></aside>'
+      % ("".join('<div class="row"><dt>%s</dt><dd>%s</dd></div>' % (esc(k), esc(v)) for k, v in a["tape"]),
+         "".join('<a class="link-more" href="%s" target="_blank" rel="noopener">%s</a>' % (esc(u), esc(nm))
+                 for nm, u in a["srcs"])))
+
+    q2 = lambda t: esc(t).replace('"', '\\"')
+    faq_ld = ",".join('{"@type":"Question","name":"%s","acceptedAnswer":{"@type":"Answer","text":"%s"}}'
+                      % (q2(q), q2(ans)) for q, ans in a["faq"])
     jsonld = ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person",'
       '"name":"%s","alternateName":"%s","birthDate":"%s","birthPlace":{"@type":"Place","name":"%s"},'
-      '"nationality":"%s","jobTitle":"Mixed martial artist and freestyle wrestler","url":"%s",'
+      '"nationality":"%s","height":"%s","jobTitle":"Mixed martial artist and freestyle wrestler","url":"%s",'
       '"affiliation":[{"@type":"SportsOrganization","name":"Real American Freestyle"},'
       '{"@type":"SportsOrganization","name":"Ultimate Fighting Championship"}],"sameAs":[%s]}</script>\n'
+      '<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[%s]}</script>\n'
       '<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
       '{"@type":"ListItem","position":1,"name":"Home","item":"%s/"},'
       '{"@type":"ListItem","position":2,"name":"Promotions","item":"%s/promotions/"},'
       '{"@type":"ListItem","position":3,"name":"RAF","item":"%s/promotions/raf/"},'
       '{"@type":"ListItem","position":4,"name":"%s","item":"%s"}]}</script>\n'
-      % (esc(a["name"]), esc(a["nick"]), a["dob"], esc(a["bornplace"]), esc(a["nationality"]), canonical,
-         ",".join('"%s"' % u for _, u in a["srcs"]), BASE, BASE, BASE, esc(a["name"]), canonical))
+      % (esc(a["name"]), esc(a["nick"]), a["dob"], esc(a["bornplace"]), esc(a["nationality"]), esc(a["height"]),
+         canonical, ",".join('"%s"' % u for _, u in a["srcs"]), faq_ld, BASE, BASE, BASE, esc(a["name"]), canonical))
 
-    bio = "".join('<p class="raf-p">%s</p>' % esc(x) for x in a["bio"])
-
-    main = ('<div class="raf raf--athlete">'
-      '<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li>'
-      '<li><a href="/promotions/">Promotions</a></li><li><a href="/promotions/raf/">RAF</a></li>'
-      '<li aria-current="page">%s</li></ol></nav>'
-      '<div class="raf-hero">'
-      '<p class="raf-kicker"><span class="raf-mark">RAF</span>%s</p>'
-      '<h1 class="raf-h1">%s</h1><p class="raf-tag">%s</p>'
-      '<div class="raf-meta">'
-      '<span><b>Born</b>%s, %s</span><span><b>Age</b>%d</span><span><b>Height</b>%s</span>'
-      '<span><b>Reach</b>%s</span><span><b>UFC division</b>%s</span><span><b>RAF division</b>%s</span>'
-      '<span><b>Team</b>%s</span></div></div>'
-      '<div class="raf-now">%s</div>'
-      '<div class="raf-stats raf-stats--ath">%s</div>'
-      '<h2 class="raf-h2">Overview</h2>%s'
-      '<div class="raf-correct"><b>Setting one thing straight</b><p>%s</p></div>'
-      '<h2 class="raf-h2">RAF record</h2>'
-      '<p class="raf-sub">%s in Real American Freestyle. Every match links to the full card.</p>'
-      '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Event</th><th>Opponent</th>'
-      '<th>Result</th><th>Method</th></tr></thead><tbody>%s</tbody></table></div>'
-      '<h2 class="raf-h2">UFC record</h2>'
-      '<p class="raf-sub">%s in the UFC, %s as a professional. Debut April 2019.</p>'
-      '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Opponent</th><th>Result</th>'
-      '<th>Method</th><th>Round</th><th>Event</th></tr></thead><tbody>%s</tbody></table></div>'
-      '<h2 class="raf-h2">Wrestling and grappling background</h2>'
-      '<p class="raf-p">%s</p><p class="raf-p">%s</p>'
-      '<div class="raf-watch"><b>Sources</b><p>Every figure on this page traces to a published record. '
-      'Where sources disagree, the disagreement is stated rather than smoothed over.</p>%s</div>'
-      '<div class="raf-nav"><a class="link-more" href="/promotions/raf/">All RAF events</a>'
-      '<a class="link-more" href="/promotions/raf/raf-11/">His RAF title match</a></div>'
-      '<p class="raf-colophon">Wrestle Lore is an independent, fan made project and is not affiliated with Real American '
-      'Freestyle, the UFC, WWE, TKO Group Holdings, AEW, TNA or NJPW.</p>'
-      '</div>'
-      % (esc(a["name"]), esc(a["tagline"]), esc(a["name"]), esc(a["nick"]),
-         esc(a["bornplace"]), esc(a["nationality"]), _age(a["dob"]), esc(a["height"]), esc(a["reach"]),
-         esc(a["division"]), esc(a["division_raf"]), esc(a["team"]),
-         esc(a["now"]), stats, bio, esc(a["correction"]),
-         a["stats"][2][0], "".join(rrows), a["stats"][1][0], a["stats"][0][0], "".join(urows),
-         esc(a["background"]), esc(a["grappling"]), srcs))
-    return shell(title, desc, canonical, main, extra_head=jsonld)
+    body = ('<div class="wl-dossier bar-glass raf" id="main">%s%s%s'
+            '<div class="layout"><main class="profile-main">%s%s%s%s%s%s</main>%s</div></div>'
+            % (subnav, idn, hero, sec1, sec2, sec3, sec4, sec5, sec6, rail))
+    return profile_shell(title, desc, canonical, body, extra_head=jsonld)
 
 # ------------------------------------------------------------------ RENDER
 FOXNATION = "https://nation.foxnews.com/real-american-freestyle-nation/"
@@ -747,6 +867,11 @@ table.raf-card tbody tr:last-child td{border-bottom:none}
 .raf-res-l{font-weight:600;color:var(--c-loss,#c4574d)}
 .raf-stats--ath{margin:24px 0 0}
 .raf-stats--ath b{color:var(--c-raf-b)}
+.rec2-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px;margin:2px 0 18px}
+.rec2-stat{background:#12141a;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:3px}
+.rec2-stat b{font-family:var(--f-display,inherit);font-size:22px;line-height:1;color:var(--c-gold);letter-spacing:-.01em}
+.rec2-stat span{font:500 10.5px/1.3 var(--f-mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3,#8892a0)}
+@media (max-width:640px){.rec2-stats{grid-template-columns:repeat(2,1fr)}}
 .raf-colophon{margin-top:52px;padding-top:20px;border-top:1px solid var(--c-line);
   font-size:13px;line-height:1.7;color:var(--c-ink-3,#8892a0);max-width:82ch}
 @media (max-width:640px){

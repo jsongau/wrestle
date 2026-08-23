@@ -5061,6 +5061,11 @@ table.raf-card tbody tr:last-child td{border-bottom:none}
 .raf-res-l{font-weight:600;color:var(--c-loss,#c4574d)}
 .raf-stats--ath{margin:24px 0 0}
 .raf-stats--ath b{color:var(--c-raf-b)}
+.rec2-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px;margin:2px 0 18px}
+.rec2-stat{background:#12141a;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:3px}
+.rec2-stat b{font-family:var(--f-display,inherit);font-size:22px;line-height:1;color:var(--c-gold);letter-spacing:-.01em}
+.rec2-stat span{font:500 10.5px/1.3 var(--f-mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3,#8892a0)}
+@media (max-width:640px){.rec2-stats{grid-template-columns:repeat(2,1fr)}}
 .raf-colophon{margin-top:52px;padding-top:20px;border-top:1px solid var(--c-line);
   font-size:13px;line-height:1.7;color:var(--c-ink-3,#8892a0);max-width:82ch}
 @media (max-width:640px){
