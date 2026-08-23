@@ -151,11 +151,17 @@ DATA = dict(
     mono="RR",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Roman Reigns</b> is the wrestler WWE built its post-Cena decade around, and the numbers "
         "are the argument: a single Universal Championship reign of 1,316 days, eleven WrestleMania "
         "main events, and a run as the promotion&rsquo;s top-billed act across two ownership structures "
-        "and a platform shift to Netflix. He is also the rare case where the company&rsquo;s first plan "
+        "and a platform shift to Netflix. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">1,316</span>'
+        '<span class="pull-cap">days as Universal Champion &mdash; the longest reign in that title&rsquo;s history</span></span>'
+        "He is also the rare case where the company&rsquo;s first plan "
         "failed in public and the second one worked. Pushed as a smiling franchise hero from 2014 to "
         "2020 against loud, sustained rejection, he came back from a COVID-era layoff as &ldquo;The "
         "Tribal Chief,&rdquo; a heel built on his real Samoan wrestling lineage, and became the most "
@@ -174,6 +180,8 @@ DATA = dict(
         "are narrower and still enormous: the longest Universal Championship reign ever, and the longest "
         "recognised world title reign in WWE since Hogan&rsquo;s ended in 1988.",
 
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">11</span>'
+        '<span class="pull-cap">WrestleMania main events</span></span>'
         "He was born Leati Joseph Anoa&rsquo;i on May 25, 1985 in Pensacola, Florida, son of Sika of the "
         "Wild Samoans and a first cousin once removed to Jimmy Uso, Jey Uso and Solo Sikoa. Wrestling "
         "was the second career: defensive tackle at Georgia Tech, three-year starter, senior captain, "
@@ -189,7 +197,10 @@ DATA = dict(
         "in August 2024 as the Original Tribal Chief, reclaimed the seat on the January 6, 2025 Netflix "
         "premiere of Raw, won the 2026 Royal Rumble on January 31 &mdash; his second, eleven years after "
         "his first &mdash; and cashed it in at WrestleMania 42 on April 19, 2026, beating CM Punk for the "
-        "World Heavyweight Championship in a match Dave Meltzer gave the full five stars. He retained "
+        "World Heavyweight Championship in a match Dave Meltzer gave the full five stars. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig pull-fig--sm">5&nbsp;STARS</span>'
+        '<span class="pull-cap">Meltzer&rsquo;s full rating for the WrestleMania 42 win over CM Punk</span></span>'
+        "He retained "
         "against Rollins at SummerSlam on August 2 and has since drifted back to villainy; the August 3, "
         "2026 Raw, where he endorsed Jacob Fatu maiming Royce Keys, is the segment most reports treat as "
         "the turn, though TheSmackDownHotel&rsquo;s database dates the switch to June and WWE has "

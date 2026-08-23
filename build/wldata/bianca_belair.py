@@ -117,12 +117,18 @@ DATA = dict(
     mono="BB",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Bianca Belair</b> is the rare main-event wrestler whose case rests almost entirely on "
         "documented numbers rather than argument. She holds the longest single continuous reign in the "
         "history of the Raw Women&rsquo;s Championship lineage &mdash; 419 days by WWE&rsquo;s count, 420 "
         "by Wikipedia&rsquo;s and WrestleIndex&rsquo;s &mdash; and she is one of only two women ever to "
-        "hold that title for a continuous year or more. She won the 2021 Royal Rumble from the No. 3 "
+        "hold that title for a continuous year or more. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">419</span>'
+        '<span class="pull-cap">days as Raw Women&rsquo;s Champion &mdash; the longest single reign in the lineage&rsquo;s history (Wikipedia counts 420)</span></span>'
+        "She won the 2021 Royal Rumble from the No. 3 "
         "entry position after more than 56 minutes, main-evented Night 1 of WrestleMania 37 against "
         "Sasha Banks in the first WrestleMania main event contested between two Black wrestlers, and is "
         "the ninth Women&rsquo;s Triple Crown Champion. She had never wrestled a match before she was 27.",
@@ -146,7 +152,10 @@ DATA = dict(
         "wrestling from track and field. At Austin East High School she was a four-time Tennessee state "
         "champion in the hurdles with bests of 13.57 in the 100m and 41.97 in the 300m &mdash; marks that "
         "rank second all-time in Tennessee prep history in both events &mdash; and placed third in the "
-        "100m hurdles at Nike Outdoor Nationals as a senior. College was less linear: South Carolina, then "
+        "100m hurdles at Nike Outdoor Nationals as a senior. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">4&times;</span>'
+        '<span class="pull-cap">Tennessee state hurdles champion at Austin East &mdash; marks second all-time in state prep history</span></span>'
+        "College was less linear: South Carolina, then "
         "Texas A&amp;M, then a walk-on spot at Tennessee in 2013, where she ran a wind-legal 13.38 and "
         "qualified for the NCAA East Regional. Wikipedia records All-SEC and All-American honours; "
         "MileSplit&rsquo;s account of the same career emphasises that she never matched her prep marks in "
@@ -160,7 +169,10 @@ DATA = dict(
         "Becky Lynch at SummerSlam in 26 seconds, the record Raw Women&rsquo;s Championship reign from "
         "WrestleMania 38 on April 2, 2022 to Night of Champions on May 27, 2023, a WWE Women&rsquo;s "
         "Championship reign in August 2023 that lasted under a day, and two Women&rsquo;s Tag Team "
-        "Championship reigns with Jade Cargill, the second finished alongside Naomi. WrestleIndex totals "
+        "Championship reigns with Jade Cargill, the second finished alongside Naomi. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">772</span>'
+        '<span class="pull-cap">days as champion across five reigns and three titles, per WrestleIndex</span></span>'
+        "WrestleIndex totals "
         "her at 772 days as champion across five reigns and three titles. She has not competed since "
         "WrestleMania 41 in April 2025, where she broke a finger at the joint taking a triple German "
         "suplex; she returned at WrestleMania 42 on April 18, 2026 to announce, on air and in her own "

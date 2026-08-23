@@ -154,10 +154,16 @@ DATA = dict(
     mono="RR",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Rhea Ripley</b> is the wrestler who proved WWE could build a women&rsquo;s division around "
         "an archetype it had spent forty years avoiding: a tall, heavy-hitting heel who beats opponents "
-        "rather than out-athletes them. The concrete measure is the trophy cabinet. She has held all five "
+        "rather than out-athletes them. The concrete measure is the trophy cabinet. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig pull-fig--sm">ALL&nbsp;5</span>'
+        '<span class="pull-cap">championships in the WWE women&rsquo;s Grand Slam set &mdash; the full trophy cabinet, completed at 26</span></span>'
+        "She has held all five "
         "championships in the WWE women&rsquo;s Grand Slam set &mdash; NXT UK Women&rsquo;s, NXT "
         "Women&rsquo;s, the Raw/WWE Women&rsquo;s Championship lineage, the SmackDown/Women&rsquo;s World "
         "Championship lineage and the Women&rsquo;s Tag Team Championship &mdash; and completed the set "
@@ -178,6 +184,8 @@ DATA = dict(
         "is, and Bayley&rsquo;s October 11, 2019 &ndash; October 25, 2020 reign is level with it. The "
         "honest superlative is narrower and still large: nobody has held it longer.",
 
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">4</span>'
+        '<span class="pull-cap">sources publish four different debut dates &mdash; genuinely unsettled, all listed in the tape</span></span>'
         "She was born Demi Bennett in Adelaide, South Australia on October 11, 1996 and came up through "
         "the Australian independents &mdash; two Riot City Wrestling Women&rsquo;s Championship reigns, "
         "tours of Japan in 2015 for Pro Wrestling Zero1 and Sendai Girls. Her debut date is genuinely "

@@ -182,13 +182,19 @@ DATA = dict(
     mono="SR",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Seth Rollins</b> is the hinge WWE reaches for when it wants a story to turn. Six world title "
         "reigns &mdash; two WWE Championships, two Universal Championships, two World Heavyweight "
         "Championships &mdash; sit alongside the two things nobody else has: the only Money in the Bank "
         "cash-in ever executed inside a WrestleMania main event, on March 29, 2015, and a 316-day inaugural "
         "reign with the 2023 World Heavyweight Championship that is still the record for that belt as of "
-        "August 2026. He is also the inaugural NXT Champion, WWE&rsquo;s 29th Triple Crown and 19th Grand "
+        "August 2026. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">6</span>'
+        '<span class="pull-cap">world title reigns &mdash; two WWE, two Universal, two World Heavyweight</span></span>'
+        "He is also the inaugural NXT Champion, WWE&rsquo;s 29th Triple Crown and 19th Grand "
         "Slam winner, a two-time Money in the Bank holder (2014 and 2025), the 2019 Royal Rumble winner, and "
         "a three-time PWI 500 number one.",
 
@@ -210,7 +216,10 @@ DATA = dict(
         "the Chicago/Oak Park border, and debuted on August 21, 2004 as &ldquo;Gixx.&rdquo; From 2005 to "
         "2010 he was <b>Tyler Black</b> on the American independents &mdash; Ring of Honor, Full Impact Pro, "
         "Pro Wrestling Guerrilla &mdash; a founding figure in the Age of the Fall, ROH World Champion for "
-        "210 days and a two-time ROH World Tag Team Champion with Jimmy Jacobs. WWE signed him to Florida "
+        "210 days and a two-time ROH World Tag Team Champion with Jimmy Jacobs. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig pull-fig--sm">MAR&nbsp;29, 2015</span>'
+        '<span class="pull-cap">the only Money in the Bank cash-in ever executed inside a WrestleMania main event</span></span>'
+        "WWE signed him to Florida "
         "Championship Wrestling, and he became the first NXT Champion in the Gold Rush tournament final: "
         "the taping was July 26, 2012, the broadcast August 29, and only the August 29 date squares with the "
         "133-day length both databases agree on. The Shield debuted at Survivor Series on November 18, 2012; "
@@ -220,7 +229,10 @@ DATA = dict(
         "The modern run is three peaks and one reset. He beat Brock Lesnar for the Universal Championship at "
         "WrestleMania 35 and again at SummerSlam 2019 &mdash; the first man to beat Lesnar at both. He beat "
         "AJ Styles in Jeddah on May 27, 2023 to become the inaugural World Heavyweight Champion and held it "
-        "316 days as Seth &ldquo;Freakin&rdquo; Rollins. Then, after WrestleMania 41 in April 2025, he "
+        "316 days as Seth &ldquo;Freakin&rdquo; Rollins. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">316</span>'
+        '<span class="pull-cap">days as the inaugural World Heavyweight Champion &mdash; still the record for that belt</span></span>'
+        "Then, after WrestleMania 41 in April 2025, he "
         "turned heel with Paul Heyman and built <b>The Vision</b> with Bron Breakker and Bronson Reed &mdash; "
         "the stable that turned on him during his shoulder layoff and holds the World Tag Team Championship "
         "without him. He returned on March 1, 2026 at Elimination Chamber, hunted his own group through "

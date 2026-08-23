@@ -161,10 +161,16 @@ DATA = dict(
     mono="CR",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Cody Rhodes</b> is the wrestler who left WWE as a mid-card comedy act, built a rival "
         "company, and came back to end the longest world title reign of the modern era &mdash; and the "
-        "industry rearranged itself around that arc. He is the only person to have been an executive "
+        "industry rearranged itself around that arc. "
+        '<span class="pull pull--q" aria-hidden="true">'
+        '<span class="pull-quote">He took a character WWE had discarded and turned it into the company&rsquo;s most bankable act &mdash; and he did it by leaving first.</span></span>'
+        "He is the only person to have been an executive "
         "vice president of All Elite Wrestling and then the top babyface of WWE. Between 2023 and 2026 "
         "he won back-to-back Royal Rumbles, main-evented four consecutive WrestleManias, topped the "
         "PWI 500 in consecutive years, and took the Wrestling Observer Newsletter&rsquo;s Wrestler of "
@@ -196,6 +202,8 @@ DATA = dict(
         "Brotherhood with Goldust, and finally Stardust, the face-painted cosmic gimmick he asked to be "
         "released from. WWE granted the release on May 21, 2016.",
 
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">10,000</span>'
+        '<span class="pull-cap">seats at All In, the self-financed 2018 show he co-promoted &mdash; the proof of concept for AEW</span></span>'
         "The run that made him happened outside WWE. He worked as &ldquo;Cody,&rdquo; a mononym, "
         "because WWE owned the surname &mdash; a trademark he did not get back until November 2020. He "
         "joined Bullet Club and The Elite, took the ROH World Championship from Christopher Daniels on "
@@ -203,7 +211,10 @@ DATA = dict(
         "2018 at All In, the self-financed 10,000-seat show he co-promoted with the Young Bucks and "
         "which became the proof-of-concept for AEW. As an AEW EVP he was the inaugural and record "
         "three-time TNT Champion, and never AEW World Champion &mdash; he wrote a stipulation barring "
-        "himself from the title into his own storyline, a call he has since said was a mistake. He left "
+        "himself from the title into his own storyline, a call he has since said was a mistake. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">650</span>'
+        '<span class="pull-cap">days as Undisputed WWE Champion across three reigns after finishing the story</span></span>'
+        "He left "
         "in February 2022, returned at WrestleMania 38, won the Rumble in 2023 and 2024, and finished "
         "the story on April 7, 2024. Three reigns and 650 days later he is untitled, on SmackDown, and "
         "back in a feud with Randy Orton that started in 2009.",

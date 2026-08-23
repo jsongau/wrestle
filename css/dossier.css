@@ -649,3 +649,334 @@ button.tt-cred{cursor:pointer}
   .wl-dossier .rail.tt-cap .card.tott::after{transition:none}
 }
 /* ====================== end Tale of the Tape rail ====================== */
+
+/* ==========================================================================
+   ==== PROSE & SPREAD — merged reading pass (proto A) + layout events (proto B)
+   --------------------------------------------------------------------------
+   GEOMETRY, one paragraph: the text column and the rail are ONE centered
+   editorial spread. >=1200px the grid is [minmax(0,72ch)] [rail], centered,
+   with the body size fluid (16.5px -> 18.7px) so the 72ch measure grows in px
+   while staying 72ch. >=1600px a third track opens between them — the
+   PULL BAND, var(--pull-w) wide — and .profile-main spans tracks 1-2 so data
+   exhibits (record table, tiles, timeline, the wide .corr) may breathe out to
+   72ch + gap + band while paragraphs stay capped at 72ch. Margin pull-facts
+   float out of the 72ch paragraph box into the band; their right edge lands
+   exactly on the main area's right edge, one full column-gap short of the
+   rail, so they can never touch it. Below 1600px the band is 0 and every
+   .pull is display:none — each pull only DUPLICATES a fact already in the
+   running text (aria-hidden), so nothing is lost. Below 1200px (and <=960px
+   single-column) nothing here changes the layout at all.
+
+   AUTHORING CONVENTION for pull-facts (raw HTML inside overview strings /
+   hand-authored paragraphs — see build_dossier.py sec_overview docstring):
+     <span class="pull" aria-hidden="true">
+       <span class="pull-fig">650</span>          big Anton numeral
+       <span class="pull-cap">days as champion…</span></span>
+     variants: pull-fig--sm (Oswald, for words/dates), pull--q + pull-quote.
+   Facts only, already present in the text; never inside the .corr paragraph.
+   ========================================================================== */
+
+/* ------------------------------------------------------------- 1. the scale */
+.wl-dossier{--prose-size:16.5px; --pull-w:0px; --pull-gap:0px}
+@media (min-width:1200px){
+  .wl-dossier{--prose-size:clamp(16.5px, 12.9px + 0.3vw, 18.7px)}
+}
+@media (min-width:1600px){
+  .wl-dossier{--pull-w:240px; --pull-gap:clamp(44px, 3vw, 64px)}
+}
+@media (min-width:1900px){
+  .wl-dossier{--pull-w:260px}
+}
+
+/* ------------------------------------------ 2. the centered spread (>=1200) */
+@media (min-width:1200px){
+  .wl-dossier .layout{
+    font-size:var(--prose-size);   /* the 72ch track resolves against this */
+    grid-template-columns:minmax(0,72ch) var(--rail-w);
+    justify-content:center;
+    column-gap:clamp(56px, 4.2vw + 8px, 96px);
+    padding-top:48px;
+  }
+  .wl-dossier .profile-main{max-width:none}
+}
+/* three tracks: [prose 72ch] [pull band] [rail], still centered as one object */
+@media (min-width:1600px){
+  .wl-dossier .layout{
+    grid-template-columns:minmax(0,72ch) var(--pull-w) var(--rail-w);
+    column-gap:var(--pull-gap);
+  }
+  .wl-dossier .profile-main{grid-column:1 / 3}
+  .wl-dossier .rail{grid-column:3}
+}
+
+/* ------------------------------------------------------------ 3. body prose
+   .ov-p is the class the generator emits. The [style] variants exist only to
+   beat the legacy inline styles still carried by the hand-authored pages;
+   the .prose variant covers triple-h, whose overview wraps its paragraphs. */
+.wl-dossier .ov-p{
+  font-family:'Inter',system-ui,sans-serif;
+  color:rgba(244,245,247,.84);
+  font-size:var(--prose-size);
+  line-height:1.72;
+  max-width:72ch;
+  margin:0;
+}
+.wl-dossier #overview > p[style],
+.wl-dossier #overview .corr > p[style]{
+  font-size:var(--prose-size) !important;
+  line-height:1.72 !important;
+  color:rgba(244,245,247,.84) !important;
+  margin:0 !important;
+}
+.wl-dossier #overview .prose > p{
+  font-size:var(--prose-size);
+  line-height:1.72;
+  color:rgba(244,245,247,.84);
+  max-width:72ch;
+  margin:0;
+}
+.wl-dossier #overview > p,
+.wl-dossier #overview .prose > p{
+  text-wrap:pretty;
+  hanging-punctuation:first last;
+}
+/* the [style] variants must outrank the margin:0 in the [style] reset above
+   ((1,3,2) vs (1,2,1)) or legacy inline-styled pages lose their spacing */
+.wl-dossier #overview > p + p,
+.wl-dossier #overview > p[style] + p[style],
+.wl-dossier #overview > aside + p,
+.wl-dossier #overview > aside + p[style],
+.wl-dossier #overview .prose > p + p,
+.wl-dossier #overview .prose > aside + p{margin-top:1em !important}
+
+/* --------------------------------------------- 4. the lead-in (first para) */
+.wl-dossier #overview > p:first-of-type,
+.wl-dossier #overview .prose > p:first-of-type{
+  font-size:calc(var(--prose-size)*1.09) !important;
+  line-height:1.62 !important;
+  color:rgba(244,245,247,.92) !important;
+  /* its ch is 1.09x the layout's, so cap the measure at the BASE-size 72ch —
+     otherwise the lead spills past the 72ch grid track into the pull band and
+     pushes its margin pulls onto the rail. calc resolves against the
+     element's own (inflated) font, hence the division. */
+  max-width:calc(72ch / 1.09) !important;
+}
+@media (min-width:1200px){
+  .wl-dossier #overview > p:first-of-type::first-letter,
+  .wl-dossier #overview .prose > p:first-of-type::first-letter{
+    float:left;
+    font-family:var(--anton,'Anton',sans-serif);
+    font-weight:400;
+    font-size:3.65em;
+    line-height:.8;
+    padding:.08em .16em 0 0;
+    color:var(--gold,#d4af37);
+  }
+}
+
+/* ------------------------------------------ 5. emphasis, italics and links */
+.wl-dossier #overview b, .wl-dossier #overview strong,
+.wl-dossier .prose b,    .wl-dossier .prose strong{color:#fff;font-weight:600}
+.wl-dossier #overview i, .wl-dossier #overview em,
+.wl-dossier .prose i,    .wl-dossier .prose em{color:rgba(244,245,247,.94)}
+.wl-dossier #overview a{color:var(--goldb,#f2cc4b);border-bottom:1px solid rgba(242,204,75,.25)}
+.wl-dossier #overview a:hover{border-color:var(--goldb,#f2cc4b)}
+
+/* --------------------------- 6. section rhythm (A) + giant ordinals (B) */
+.wl-dossier .sec{display:flow-root}   /* contain pulls + drop cap floats */
+.wl-dossier .sec-h{gap:18px}
+.wl-dossier .sec-h .n{
+  font-family:var(--anton,'Anton',sans-serif);
+  font-size:clamp(30px,3vw,52px);
+  line-height:.8;
+  letter-spacing:.01em;
+  color:rgba(212,175,55,.30);
+}
+@supports (-webkit-text-stroke:1px #000){
+  .wl-dossier .sec-h .n{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(212,175,55,.55);
+  }
+}
+.wl-dossier .sec-h .rule{display:none}   /* ::after below replaces it */
+.wl-dossier .sec-h::after{
+  content:"";
+  flex:1 1 24px;
+  height:1px;
+  align-self:center;
+  background:linear-gradient(90deg, rgba(212,175,55,.35), var(--line,rgba(255,255,255,.09)) 45%, transparent);
+}
+@media (max-width:640px){
+  .wl-dossier .sec-h .n{font-size:24px}
+}
+@media (min-width:1200px){
+  .wl-dossier .sec{margin-bottom:clamp(52px, 4.5vw, 74px)}
+  .wl-dossier .sec-h{margin-bottom:16px}
+  .wl-dossier .sec-h h2{text-wrap:balance}
+  .wl-dossier .sec-lead{
+    font-size:calc(var(--prose-size)*.94);
+    line-height:1.6;
+    margin:-2px 0 24px;
+  }
+}
+
+/* --------------------------------------------------- 7. margin pull-facts
+   Floated right out of the 72ch paragraph box via a negative right margin
+   sized by the same tokens that size the band's grid track, so a pull's right
+   edge coincides with .profile-main's right edge — one full column-gap short
+   of the rail. Net outer width ~0: the text lines never shorten. */
+.wl-dossier .pull{display:none}
+@media (min-width:1600px){
+  .wl-dossier .pull{
+    display:block;
+    float:right;
+    clear:right;
+    width:var(--pull-w);
+    margin-right:calc(-1 * (var(--pull-w) + var(--pull-gap)));
+    margin-left:0;
+    text-align:left;
+  }
+  .wl-dossier .pull::before{
+    content:"";
+    display:block;
+    width:34px;
+    height:2px;
+    background:var(--gold,#d4af37);
+    margin-bottom:12px;
+  }
+  .wl-dossier .pull-fig{
+    display:block;
+    font-family:var(--anton,'Anton',sans-serif);
+    font-size:clamp(36px,2.6vw,54px);
+    line-height:.92;
+    color:var(--gold,#d4af37);
+    letter-spacing:.01em;
+  }
+  .wl-dossier .pull-fig--sm{
+    font-family:var(--osw,'Oswald',sans-serif);
+    font-weight:600;
+    font-size:clamp(19px,1.4vw,26px);
+    line-height:1.15;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .wl-dossier .pull-cap{
+    display:block;
+    margin-top:9px;
+    font-family:var(--inter,'Inter',sans-serif);
+    font-size:12.5px;
+    line-height:1.55;
+    color:rgba(244,245,247,.55);
+  }
+  .wl-dossier .pull--q::before{display:none}
+  .wl-dossier .pull-quote{
+    display:block;
+    font-family:var(--inter,'Inter',sans-serif);
+    font-style:italic;
+    font-size:15.5px;
+    line-height:1.6;
+    color:rgba(244,245,247,.78);
+  }
+  .wl-dossier .pull-quote::before{
+    content:"\201C";
+    display:block;
+    font-family:var(--anton,'Anton',sans-serif);
+    font-style:normal;
+    font-size:46px;
+    line-height:.6;
+    padding-top:10px;
+    color:var(--gold,#d4af37);
+    margin-bottom:10px;
+  }
+  .wl-dossier .pull-quote::after{content:"\201D"}
+}
+
+/* -------------------------------------------- 8. "Setting one thing straight"
+   The correction callout, promoted to a framed exhibit. At >=1600px it breaks
+   the 72ch column and splits into two print columns across the pull band,
+   right edge aligned with the pulls' (== .profile-main's right edge). */
+.wl-dossier .corr{
+  position:relative;
+  clear:right;               /* never render under a margin pull */
+  margin:26px 0 28px;
+  padding:22px 26px 21px;
+  max-width:72ch;
+  background:linear-gradient(180deg,#15171d,#0f1015);
+  border:1px solid rgba(212,175,55,.26);
+  border-left:3px solid var(--gold,#d4af37);
+  border-radius:14px;
+}
+.wl-dossier .corr-kick{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 13px;
+  font-family:var(--osw,'Oswald',sans-serif);
+  font-weight:600;
+  font-size:11.5px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gold,#d4af37);
+}
+.wl-dossier .corr-kick::before{
+  content:"\25C6";
+  font-size:9px;
+  line-height:1;
+  transform:translateY(-1px);
+}
+.wl-dossier .corr p{
+  max-width:none !important;
+  margin:0 !important;
+  font-size:15px !important;
+  line-height:1.68 !important;
+}
+.wl-dossier .corr b{color:var(--goldb,#f2cc4b)}
+@media (min-width:1600px){
+  .wl-dossier .corr{
+    max-width:calc(72ch + var(--pull-gap) + var(--pull-w));
+    padding:26px 32px 24px;
+  }
+  .wl-dossier .corr p{
+    column-count:2;
+    column-gap:44px;
+  }
+}
+@media (max-width:640px){
+  .wl-dossier .corr{padding:16px 16px 15px;border-radius:11px}
+}
+
+/* --------------------------------- 9. wide exhibits' internal measures (B)
+   The data sections take .profile-main's full span at >=1600px; single-column
+   list content inside them is re-capped so line lengths stay sane. */
+@media (min-width:1600px){
+  .wl-dossier .faq2-list{max-width:920px}
+  .wl-dossier .pod-list{max-width:980px}
+  .wl-dossier .ch-list{max-width:1080px}
+  .wl-dossier .arch-desc{max-width:70ch}
+  .wl-dossier .arch-line{padding-left:24px}
+  .wl-dossier .arch-row{grid-template-columns:132px 1fr;padding:13px 0}
+  .wl-dossier .arch-yr{font-size:13px;letter-spacing:.04em}
+  .wl-dossier .arch-title{font-size:16.5px}
+  .wl-dossier .arch-desc{font-size:14px}
+}
+
+/* -------------------------------------- 10. the rail's SOURCE NOTES control
+   Wording is B's — "10 SOURCE NOTES" (count + noun) — the chip treatment is
+   A's, so the live control finally looks like the button it is. The static
+   no-JS <p> keeps the plain text-badge look. The accessible name set by
+   rail.js is unchanged: "10 of 14 entries carry a source note. Show all
+   source notes." */
+.wl-dossier .tott .tt-cred{font-size:10px;gap:6px}
+.wl-dossier .tott .tt-cred .tt-n{font-size:10px}
+.wl-dossier .tott button.tt-cred{
+  border:1px solid rgba(212,175,55,.28);
+  border-radius:7px;
+  padding:5px 8px 5px 9px;
+  margin-top:-4px;               /* keep the baseline where the <p> sat */
+  transition:color .18s ease,border-color .18s ease;
+}
+.wl-dossier .tott button.tt-cred:hover,
+.wl-dossier .tott button.tt-cred[aria-expanded="true"]{
+  border-color:rgba(212,175,55,.55);
+}
+/* ================== end PROSE & SPREAD ================== */

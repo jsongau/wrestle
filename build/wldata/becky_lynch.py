@@ -105,12 +105,18 @@ DATA = dict(
     mono="BL",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Becky Lynch</b> is the clearest modern case of a wrestler rewriting her own ceiling in public. "
         "In the summer of 2018 she was a mid-card babyface WWE kept losing with; by April 2019 she closed "
         "WrestleMania holding two world championships, and by the end of that year she had led WWE "
         "merchandise sales and become the first woman ever named <i>Pro Wrestling Illustrated</i>&rsquo;s "
-        "Most Popular Wrestler of the Year. The concrete record underneath the story: seven world title "
+        "Most Popular Wrestler of the Year. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">7</span>'
+        '<span class="pull-cap">world title reigns across two lineages &mdash; alongside the 2019 Royal Rumble and the inaugural SmackDown Women&rsquo;s Championship</span></span>'
+        "The concrete record underneath the story: seven world title "
         "reigns across two lineages, the inaugural SmackDown Women&rsquo;s Championship, the 2019 Royal "
         "Rumble, an NXT Women&rsquo;s Championship, two Women&rsquo;s Tag Team Championship reigns, and "
         "both the longest and the shortest reigns in the history of the Women&rsquo;s Intercontinental "
@@ -132,7 +138,10 @@ DATA = dict(
 
         "She was born Rebecca Quin on January 30, 1987 in Limerick and debuted on November 11, 2002 at "
         "fifteen, trained by Fergal Devitt &mdash; later Finn B&aacute;lor &mdash; and Paul Tracey, with "
-        "further training at NWA UK Hammerlock. As <b>Rebecca Knox</b> she worked the European and North "
+        "further training at NWA UK Hammerlock. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig pull-fig--sm">AGE&nbsp;15</span>'
+        '<span class="pull-cap">her age at her November 11, 2002 debut, trained by Fergal Devitt &mdash; later Finn B&aacute;lor</span></span>'
+        "As <b>Rebecca Knox</b> she worked the European and North "
         "American independents, winning the inaugural ECCW SuperGirls Championship in 2005 and the World "
         "Queens of Chaos Championship, and briefly worked as Komeera. A head injury took roughly six years "
         "out of her career; she was an Aer Lingus flight attendant, took a degree from Dublin Institute of "
@@ -142,7 +151,10 @@ DATA = dict(
         "sympathetic underdog &mdash; until Flair was inserted into her SummerSlam 2018 title match, Lynch "
         "attacked her, the crowd sided with the attacker, and WWE let the reaction dictate the character.",
 
-        "The years since have been a series of reinventions. She returned at SummerSlam 2021 as &ldquo;Big "
+        "The years since have been a series of reinventions. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">162</span>'
+        '<span class="pull-cap">days as Raw Women&rsquo;s Champion after the SummerSlam 2021 return &mdash; won in roughly 26 seconds</span></span>'
+        "She returned at SummerSlam 2021 as &ldquo;Big "
         "Time Becks,&rdquo; beat Bianca Belair in roughly 26 seconds and took the Raw Women&rsquo;s "
         "Championship that October for 162 days; she won the Women&rsquo;s Tag Team Championship with Lita "
         "in 2023 and the NXT Women&rsquo;s Championship from Tiffany Stratton that September; she won the "

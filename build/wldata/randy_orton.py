@@ -128,11 +128,17 @@ DATA = dict(
     mono="RO",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Randy Orton</b> is the wrestler whose significance is measurable rather than rhetorical. He "
         "holds fourteen world championships across the WWE Championship and World Heavyweight "
         "Championship lineages, a total behind only John Cena&rsquo;s seventeen and Ric Flair&rsquo;s "
-        "sixteen and level with Triple H. He won the first of them at 24, which is still the youngest in "
+        "sixteen and level with Triple H. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">14</span>'
+        '<span class="pull-cap">world championships &mdash; behind only John Cena&rsquo;s 17 and Ric Flair&rsquo;s 16</span></span>'
+        "He won the first of them at 24, which is still the youngest in "
         "WWE history, and he was still headlining WrestleMania twenty-two years later &mdash; Night 1 of "
         "WrestleMania 42 in April 2026. He has more pay-per-view matches than any other male wrestler in "
         "WWE, a record of durability rather than of any single peak, and the RKO is one of the very few "
@@ -165,6 +171,8 @@ DATA = dict(
         "a reasoned minority position that refuses to count a one-minute ceremonial reign, and 15 is "
         "simply wrong.",
 
+        '<span class="pull" aria-hidden="true"><span class="pull-fig pull-fig--sm">3RD&nbsp;GEN</span>'
+        '<span class="pull-cap">grandfather Bob Orton Sr., father &ldquo;Cowboy&rdquo; Bob Orton Jr., uncle Barry Orton</span></span>'
         "He is third generation &mdash; grandfather Bob Orton Sr., father &ldquo;Cowboy&rdquo; Bob Orton "
         "Jr., uncle Barry Orton &mdash; and his father trained him, alongside the staff of the "
         "Mid-Missouri Wrestling Alliance&ndash;Southern Illinois Conference Wrestling promotion in St. "
@@ -172,7 +180,10 @@ DATA = dict(
         "began in January 2003 with Evolution, the Triple H / Ric Flair / Batista group built explicitly "
         "as wrestling&rsquo;s past, present and future. By December 2003 Evolution held every major Raw "
         "championship, Orton&rsquo;s share being a 210-day Intercontinental Championship reign, then the "
-        "longest in seven years. He beat Chris Benoit for the World Heavyweight Championship at SummerSlam "
+        "longest in seven years. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">24</span>'
+        '<span class="pull-cap">his age winning the World Heavyweight title at SummerSlam 2004 &mdash; still WWE&rsquo;s youngest world champion</span></span>'
+        "He beat Chris Benoit for the World Heavyweight Championship at SummerSlam "
         "on August 15, 2004 and was ejected from the group the next night. What followed was thirteen more "
         "world titles, two Royal Rumble wins in 2009 and 2017, a Money in the Bank cash-in at SummerSlam "
         "2013, and three more stables. As of August 2026 he is a part-time SmackDown heel who turned on "

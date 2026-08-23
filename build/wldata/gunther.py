@@ -137,12 +137,18 @@ DATA = dict(
     mono="GU",
 
     # ---------------------------------------------------------------- 01 overview
+    # index into overview of the correction paragraph -> the framed
+    # "Setting one thing straight" callout (aside.corr) on the page
+    correction=1,
     overview=[
         "<b>Gunther</b> held the WWE Intercontinental Championship for 666 days, and almost everything "
         "else about him follows from that. He is a 6&#8242;4&#8243; Austrian who wrestles a European "
         "catch style built on knife-edge chops and submissions, who spent thirteen years on the "
         "independents as Big Van Walter, Big Daddy Walter and then WALTER before WWE renamed him, and "
-        "who has been booked since 2024 as the wall that other careers end against. He is a two-time "
+        "who has been booked since 2024 as the wall that other careers end against. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">666</span>'
+        '<span class="pull-cap">days as Intercontinental Champion &mdash; the longest reign in the title&rsquo;s history</span></span>'
+        "He is a two-time "
         "World Heavyweight Champion, the 2024 King of the Ring, and the holder of the longest survival "
         "time in Royal Rumble history at 71 minutes 25 seconds. He is <i>not</i> a Triple Crown or Grand "
         "Slam champion &mdash; he has never held a WWE tag team or United States title &mdash; and that "
@@ -167,14 +173,20 @@ DATA = dict(
         "Tatsuhito Takaiwa and Tomohiro Ishii, which is where the strong-style edge in the work comes "
         "from. He won wXw&rsquo;s 16 Carat Gold tournament in 2010 at twenty-two, the youngest winner at "
         "the time, took the wXw Unified World Wrestling Championship three times and the tag titles four, "
-        "and ran the wXw Wrestling Academy as head trainer from 2015 to 2020. Then came the run that "
+        "and ran the wXw Wrestling Academy as head trainer from 2015 to 2020. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">870</span>'
+        '<span class="pull-cap">days as NXT UK Champion &mdash; the longest reign of any WWE championship of the modern era until January 2023</span></span>'
+        "Then came the run that "
         "moved him: as WALTER he beat Pete Dunne at NXT UK TakeOver: New York on April 5, 2019, ending "
         "Dunne&rsquo;s 685-day reign, and kept the NXT United Kingdom Championship for <b>870 days</b> "
         "until Ilja Dragunov beat him at NXT TakeOver 36 on August 22, 2021. That was the longest reign "
         "of any WWE championship in the modern era &mdash; until Roman Reigns&rsquo; second Universal "
         "Championship reign passed it in January 2023, a caveat almost every retelling drops.",
 
-        "Since 2024 he has been the gatekeeper. He beat Damian Priest for the World Heavyweight "
+        "Since 2024 he has been the gatekeeper. "
+        '<span class="pull" aria-hidden="true"><span class="pull-fig">259</span>'
+        '<span class="pull-cap">days in his first World Heavyweight Championship reign, ended by Jey Uso at WrestleMania 41</span></span>'
+        "He beat Damian Priest for the World Heavyweight "
         "Championship at SummerSlam on August 3, 2024 and held it 259 days until Jey Uso made him tap at "
         "WrestleMania 41 on April 19, 2025; he took it back on the June 9, 2025 Raw and lost it to CM "
         "Punk at SummerSlam on August 2, 2025 after 54 days, working the finish with a broken nose that "

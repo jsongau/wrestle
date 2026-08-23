@@ -402,11 +402,33 @@ def sec_faq(n, a):
     return sec_h(n, "faq") + '<div class="faq2-list">%s</div></section>' % items
 
 def sec_overview(n, a):
+    """Overview paragraphs, on classes instead of inline styles.
+
+    * Every paragraph is <p class="ov-p">; css/dossier.css ("PROSE & SPREAD")
+      owns the measure, the fluid size and the spacing. No inline styles, no
+      !important fighting.
+    * a["correction"] — an int index into a["overview"] — marks the paragraph
+      that corrects a widely repeated error about the subject. It is wrapped
+      in the framed <aside class="corr"> ("Setting one thing straight") and
+      splits into two print columns at >=1600px.
+    * MARGIN PULL-FACTS are authored inline in the overview strings:
+          <span class="pull" aria-hidden="true">
+            <span class="pull-fig">650</span>
+            <span class="pull-cap">days as champion &mdash; ...</span></span>
+      pull-fig--sm for words/dates; pull--q + pull-quote for a quote pull.
+      A pull must DUPLICATE a fact already present in the running text — it is
+      aria-hidden and display:none below 1600px, so it must be able to vanish
+      without losing information. Facts only. Never author a pull inside the
+      correction paragraph: the .corr frame clears the pull band.
+    """
+    corr = a.get("correction")
     ps = []
     for i, p in enumerate(a["overview"]):
-        mt = "" if i == 0 else ";margin-top:14px"
-        ps.append('<p style="font-family:\'Inter\',sans-serif;color:rgba(244,245,247,.82);font-size:16px;'
-                  'line-height:1.7;max-width:72ch%s">%s</p>' % (mt, p))
+        para = '<p class="ov-p">%s</p>' % p
+        if corr is not None and i == corr:
+            para = ('<aside class="corr"><h3 class="corr-kick">Setting one thing straight</h3>'
+                    '%s</aside>' % para)
+        ps.append(para)
     return sec_h(n, "overview") + "".join(ps) + "</section>"
 
 BUILDERS = {"overview": sec_overview, "record": sec_record, "signature": sec_signature,
@@ -438,9 +460,12 @@ def rail(a):
     # The credibility line the site is positioned on. It used to sit in the card
     # footer and cost 34px; on the title's baseline it costs nothing and it
     # survives folding, which is the state it matters most in.
+    # Wording: count + noun ("10 SOURCE NOTES"), so the control answers "what
+    # is this?" at a glance. The title keeps the full fraction; rail.js keeps
+    # the full-sentence accessible name.
     cred = ('<p class="tt-cred" title="%d of %d entries carry a source note">'
-            '<span class="tt-n">%d/%d</span><span class="tt-lbl">sourced</span></p>'
-            % (sourced, total, sourced, total)) if total else ""
+            '<span class="tt-n">%d</span><span class="tt-lbl">source notes</span></p>'
+            % (sourced, total, sourced)) if total else ""
     return ('<aside class="rail" aria-label="Quick facts">'
             '<section class="card tott" data-tape aria-labelledby="tott-h">'
             '<div class="tt-head"><h2 id="tott-h" class="kick">Tale of the Tape</h2>%s</div>'
@@ -564,6 +589,18 @@ def verify(a, htmlstr):
         for k in ("q", "a", "q_ld", "a_ld"):
             if not f.get(k): errs.append("faq entry missing %s" % k)
     if len(a["hstats"]) != 4: errs.append("hstats must be exactly 4, got %d" % len(a["hstats"]))
+    corr = a.get("correction")
+    if corr is not None:
+        if not isinstance(corr, int) or not (0 <= corr < len(a["overview"])):
+            errs.append("correction=%r is not a valid overview index" % (corr,))
+        elif re.search(r'<span class="pull(?: pull--q)?"', a["overview"][corr]):
+            errs.append("a .pull is authored inside the correction paragraph (the .corr frame clears the band)")
+    for i, p in enumerate(a["overview"]):
+        n_pull = len(re.findall(r'<span class="pull(?: pull--q)?"', p))
+        if n_pull != p.count('aria-hidden="true"><span class="pull-'):
+            errs.append("overview[%d]: malformed .pull markup (needs aria-hidden + pull-fig/pull-quote child)" % i)
+        if n_pull != p.count('class="pull-cap"') + p.count('class="pull-quote"'):
+            errs.append("overview[%d]: a .pull is missing its pull-cap/pull-quote" % i)
     for m in re.findall(r'<script type="application/ld\+json">(.*?)</script>', htmlstr, re.S):
         try: json.loads(m)
         except Exception as e: errs.append("invalid JSON-LD: %s" % e)

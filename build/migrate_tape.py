@@ -84,9 +84,10 @@ def transform_rail(rail_html):
     out = DL_RE.sub(dl, out, count=1)
 
     # header wrapper + the credibility line, on the title's own baseline
+    # count + noun wording ("10 SOURCE NOTES"), same as build_dossier.py rail()
     cred = ('<p class="tt-cred" title="%d of %d entries carry a source note">'
-            '<span class="tt-n">%d/%d</span><span class="tt-lbl">sourced</span></p>'
-            % (n_src[0], n_rows[0], n_src[0], n_rows[0])) if n_rows[0] else ""
+            '<span class="tt-n">%d</span><span class="tt-lbl">source notes</span></p>'
+            % (n_src[0], n_rows[0], n_src[0])) if n_rows[0] else ""
     out = H2_RE.sub(lambda m: '<div class="tt-head">' + m.group("h2") + cred + '</div>', out, count=1)
 
     return out, n_rows[0], n_src[0], False
