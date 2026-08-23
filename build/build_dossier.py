@@ -189,12 +189,171 @@ def idn(a):
       % (nb(esc(a["name"])), esc(a["epithet"]), nb(esc(a["name"]).upper()),
          " <i>&middot;</i> ".join(vit), soc, esc(a["name"]), a.get("support_note", "Merch &middot; Games &middot; Watch"), sp))
 
+# --------------------------------------------------- hero fight-metrics tabs
+def _clip_words(s, n=120):
+    """Truncate an HTML-entity string to ~n visible chars at a word boundary.
+    Splitting on spaces can never bisect an entity (entities contain no
+    spaces); visible length is measured on the unescaped text."""
+    import html as _h
+    if len(_h.unescape(s)) <= n:
+        return s
+    out, used = [], 0
+    for w in s.split(" "):
+        wlen = len(_h.unescape(w)) + (1 if out else 0)
+        if used + wlen > n:
+            break
+        out.append(w); used += wlen
+    return " ".join(out).rstrip(".,;:") + "&hellip;"
+
+def _fm_world_titles(a):
+    """World-title count: the hstat that mentions world titles, else the
+    identity bar's world_titles, else counted from the JSON-LD award list."""
+    for h in a["hstats"]:
+        if "world" in h["label"].lower():
+            return str(h["value"])
+    if a.get("world_titles"):
+        return str(a["world_titles"])
+    return str(len([w for w in a["ld"]["award"] if "world champion" in w.lower()]))
+
+def fm_metrics(a):
+    """METRICS panel body: cm-punk's hand-built .fm-* vocabulary, generated
+    from the same data the record section is built from."""
+    rec = a["record"]; rows = rec["rows"]
+    total = rec.get("total") or len(rows)
+    cd = len([r for r in rows if r.get("landmark")])
+    wt = _fm_world_titles(a)
+    # fourth digit: the biggest remaining hero stat (punk's slot holds "434
+    # day title reign" - the headline number that is neither a bout count nor
+    # the world-title tally)
+    def _num(v):
+        m = re.search(r"\d+", str(v))
+        return int(m.group(0)) if m else -1
+    extra = max((h for h in a["hstats"] if "world" not in h["label"].lower()),
+                key=lambda h: _num(h["value"]))
+    digits = (
+        '<div class="fm-digits" role="list" aria-label="Career numbers">'
+        '<div class="fm-d" role="listitem"><b>%d</b><span>Documented bouts</span></div>'
+        '<div class="fm-d" role="listitem"><b>%d</b><span>Career-defining</span></div>'
+        '<div class="fm-d" role="listitem"><b>%s</b><span>World titles</span></div>'
+        '<div class="fm-d" role="listitem"><b>%s</b><span>%s</span></div></div>'
+        % (total, cd, wt, extra["value"], esc(extra["label"])))
+    ring = ('<div class="fm-wl rec2-wl-veiled" id="fm-wl">'
+        '<svg class="rec2-donut" viewBox="0 0 120 120" role="img" aria-hidden="true" '
+        'aria-label="Career win rate across the full book">'
+        '<circle class="dn-bg" cx="60" cy="60" r="44"></circle>'
+        '<circle class="dn-seg" id="fm-w" cx="60" cy="60" r="44"></circle>'
+        '<circle class="dn-seg" id="fm-l" cx="60" cy="60" r="44"></circle>'
+        '<circle class="dn-seg" id="fm-d" cx="60" cy="60" r="44"></circle>'
+        '<circle class="dn-seg" id="fm-n" cx="60" cy="60" r="44"></circle>'
+        '<text class="dn-pct" id="fm-pct" x="60" y="58" text-anchor="middle">0%</text>'
+        '<text class="dn-cap" x="60" y="74" text-anchor="middle">WIN RATE</text></svg>\n'
+        '<p class="rec2-wl-side fm-wl-rec" aria-hidden="true"><b id="fm-rec">0-0</b>'
+        '<span>W&ndash;L &middot; full book</span></p>\n'
+        '<div class="rec2-wl-veil"><p>Kayfabe protected</p>'
+        '<button class="rec2-wl-unveil" type="button" '
+        'aria-label="Turn spoilers on to reveal the win rate">Spoilers</button></div></div>')
+    # ledger: current billing, world titles, bout count, billed-from
+    chip = ""
+    now_txt = "%s %s" % (a.get("now_label", ""), a.get("now_bold", ""))
+    if "champion" in now_txt.lower():
+        chip = '<span class="fm-chip">Champion</span>'
+    billed = ""
+    for t in a["tape"]:
+        if t["label"].lower().startswith("billed"):
+            billed = t["value"]; break
+    if billed and a.get("weight_lb"):
+        billed += " &middot; %s lb" % a["weight_lb"]
+    ledger = ('<div class="fm-ledger"><div class="fm-lg-h"><span>Record</span>%s</div>'
+        '<dl class="fm-lg">'
+        '<div><dt>Now</dt><dd>%s</dd></div>'
+        '<div><dt>World titles</dt><dd>%s</dd></div>'
+        '<div><dt>In the books</dt><dd>%d bouts</dd></div>'
+        '%s</dl></div>'
+        % (chip, esc(a["now_bold"]), wt, total,
+           ('<div><dt>Billed</dt><dd>%s</dd></div>' % billed) if billed else ""))
+    # bouts-by-promotion bars from real row counts
+    order = rec.get("promo_order") or []
+    for r in rows:
+        if r["promo"] not in order: order.append(r["promo"])
+    counts = [(k, len([r for r in rows if r["promo"] == k])) for k in order]
+    counts = [(k, n) for k, n in counts if n]
+    mx = max(n for _, n in counts)
+    bars = "".join(
+        '<div class="fm-bar" data-fm-promo="%s"><span class="l">%s</span>'
+        '<span class="t"><i style="width:%s%%"></i></span><b class="n">%d</b>'
+        '<span class="p">%d%%</span></div>'
+        % (esc(k), esc(rec.get("promo_labels", {}).get(k, k)),
+           ("%.1f" % (100.0 * n / mx)).rstrip("0").rstrip("."), n,
+           round(100.0 * n / total))
+        for k, n in counts)
+    return ('<div class="fm">%s<div class="fm-mid">%s%s</div>'
+        '<div class="fm-bars" aria-label="Bouts by promotion">'
+        '<div class="fm-bars-h">Bouts by promotion</div>%s</div></div>\n'
+        '<p class="ledger-note"><b>Curated ledger</b> &middot; documented highlights '
+        '&middot; some bouts are not listed</p>'
+        % (digits, ring, ledger, bars))
+
+def fm_feed(a):
+    """FEED panel body: empty live mount + compact fallback cards built from
+    the 3 newest pulse cards. The fallback ships visible (no-JS safe);
+    js/herotabs.js hides it only while a live widget attempt is pending."""
+    p = a["pulse"]; handle = p["handle"]
+    minis = []
+    for c in p["cards"][:3]:
+        head = ('<div class="fm-mini-top"><span class="fm-mini-av">%s</span>'
+                '<span class="fm-mini-who"><b>%s</b><span>@%s</span></span>'
+                '<span class="fm-mini-date">%s</span></div>'
+                % (esc(a.get("mono", "")), esc(a["name"]), esc(handle), c["date"]))
+        link = ('<a class="fm-mini-src" href="%s" target="_blank" rel="noopener">'
+                'View on X &rarr;</a>' % esc(c["x_url"])) if c.get("x_url") else ""
+        minis.append('<article class="fm-mini">%s<p class="fm-mini-q">%s</p>%s</article>'
+                     % (head, _clip_words(c["quote"]), link))
+    foot = ('<div class="fm-feed-foot"><a href="#pulse">All posts &rarr;</a>'
+            '<a href="https://x.com/%s" target="_blank" rel="noopener">@%s on X</a></div>'
+            % (esc(handle), esc(handle)))
+    return ('<div class="fm-feed" data-x-handle="%s">'
+            '<div class="fm-feed-body">'
+            '<div class="fm-feed-live" aria-live="polite"></div>'
+            '<div class="fm-feed-fallback">%s%s</div>'
+            '</div></div>' % (esc(handle), "".join(minis), foot))
+
+def fm_figure(a):
+    """Tabbed portrait figure - FIGHT METRICS / LIVE FEED - for subjects with
+    a live X pulse. data-fm-generated tells js/herotabs.js to wire the ring
+    (the hand-built cm-punk page wires its own and ships without the flag).
+    Default tab is FEED because the subject has a live X account."""
+    return ('<figure class="portrait" aria-label="%s fight metrics and live feed" '
+      'data-fm-tabs data-fm-generated data-default-tab="feed">\n'
+      '      <span class="vlabel">%s</span>\n'
+      '      <div class="fm-tabbar" role="tablist" aria-label="Roster card views">'
+      '<button class="fm-tab" id="fmTabMetrics" type="button" role="tab" data-tab="metrics" '
+      'aria-selected="false" aria-controls="fmPanelMetrics" tabindex="-1">Metrics</button>'
+      '<button class="fm-tab" id="fmTabFeed" type="button" role="tab" data-tab="feed" '
+      'aria-selected="true" aria-controls="fmPanelFeed">Feed</button></div>\n'
+      '      <div class="fm-panel" id="fmPanelMetrics" role="tabpanel" aria-labelledby="fmTabMetrics" hidden>%s</div>\n'
+      '      <div class="fm-panel" id="fmPanelFeed" role="tabpanel" aria-labelledby="fmTabFeed">%s</div>\n'
+      '      <figcaption class="cap"><span class="r">Roster File &middot; %s</span><span class="n">%s</span>'
+      '</figcaption>\n    </figure>'
+      % (esc(a["name"]), a["vlabel"], fm_metrics(a), fm_feed(a),
+         esc(a["epithet"]), esc(a["realname"])))
+
 def hero(a):
     _h1t, _h1s = hero_name(a["name"])
     hs = "".join(
         '<div class="hstat"><b><span class="num" data-count="%s">%s</span>%s</b><span>%s</span></div>'
         % (h["value"], h["value"], '<span class="x">&times;</span>' if h.get("x") else "", esc(h["label"]))
         for h in a["hstats"])
+    if a.get("pulse") and a["pulse"].get("handle"):
+        fig = fm_figure(a)
+    else:
+        fig = ('<figure class="portrait" aria-label="%s key art">\n      <span class="slot">PHOTO SLOT</span>\n'
+      '      <span class="vlabel">%s</span>\n'
+      '      <svg class="crown" viewBox="0 0 64 54" aria-hidden="true"><path d="%s"/></svg>\n'
+      '      <span class="mono" aria-hidden="true">%s</span>\n'
+      '      <figcaption class="cap"><span class="r">Roster File &middot; %s</span><span class="n">%s</span>'
+      '</figcaption>\n    </figure>'
+      % (esc(a["name"]), a["vlabel"], CROWN, esc(a["mono"]),
+         esc(a["epithet"]), esc(a["realname"])))
     return ('<header class="hero" id="top"><div class="wrap">\n    <div>\n'
       '      <div class="hero-kick">%s</div>\n'
       '      <h1%s><span class="the">%s</span>%s</h1>\n'
@@ -204,16 +363,10 @@ def hero(a):
       '      <div class="hero-cta-row">\n'
       '        <button class="discover" type="button" data-scroll="#record">Explore the full record%s</button>\n'
       '        <a class="ghost-link" href="#career">%s</a>\n      </div>\n    </div>\n'
-      '    <figure class="portrait" aria-label="%s key art">\n      <span class="slot">PHOTO SLOT</span>\n'
-      '      <span class="vlabel">%s</span>\n'
-      '      <svg class="crown" viewBox="0 0 64 54" aria-hidden="true"><path d="%s"/></svg>\n'
-      '      <span class="mono" aria-hidden="true">%s</span>\n'
-      '      <figcaption class="cap"><span class="r">Roster File &middot; %s</span><span class="n">%s</span>'
-      '</figcaption>\n    </figure>\n  </div></header>'
+      '    %s\n  </div></header>'
       % (a["hero_kick"], _h1s, esc(a["epithet"]), _h1t, a["hero_tag"],
          a.get("now_label", "NOW"), esc(a["now_bold"]), a["now_tail"], hs, CHEV,
-         esc(a["ghost_link"]), esc(a["name"]), a["vlabel"], CROWN, esc(a["mono"]),
-         esc(a["epithet"]), esc(a["realname"])))
+         esc(a["ghost_link"]), fig))
 
 WL_DONUT = ('<div class="rec2-wl rec2-wl-veiled" id="rec2-wl"><svg class="rec2-donut" viewBox="0 0 120 120" '
   'role="img" aria-hidden="true" aria-label="Win and loss share for the card shown">'
@@ -596,12 +749,13 @@ def page(a):
       '<script src="/js/engage.js?v=%s" defer></script>\n'
       '<script src="/js/profile.js?v=%s" defer></script>\n'
       '<script src="/js/rail.js?v=%s"></script>\n'
+      '<script src="/js/herotabs.js?v=%s" defer></script>\n'
       '<script>%s</script>\n</body>\n</html>\n'
       % (esc(title), esc(a["meta_desc"]), u, esc(a["name"]), esc(a["epithet"]), esc(a["og_desc"]), u,
          BASE, esc(a["name"]), BASE, esc(a["name"]), esc(a["epithet"]), esc(a["tw_desc"]),
          ASSET_V, jsonld(a, secs), ASSET_V, ASSET_V,
          subnav(a, secs), idn(a), hero(a), "\n    ".join(body_secs), rail(a),
-         FACT_JS, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, tail))
+         FACT_JS, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, ASSET_V, tail))
 
 # ------------------------------------------------------------------ driver
 def load_all():

@@ -1174,3 +1174,98 @@ button.tt-cred{cursor:pointer}
 .wl-dossier .pulse-card--x .pulse-quote{font-style:normal}
 .wl-dossier .pulse-links{display:flex;align-items:center;gap:14px;margin-top:12px;flex-wrap:wrap}
 .wl-dossier .pulse-links .pulse-date{margin-left:0}
+
+/* ============================================================ */
+/* ==== HERO TABS - FIGHT METRICS / LIVE FEED (portrait card) == */
+/* ============================================================ */
+/* Tab bar: subnav vocabulary - Oswald caps, gold underline indicator,
+   hairline separator, no pills. Sits in flow below the absolute .vlabel. */
+.wl-dossier .portrait .fm-tabbar{position:relative;z-index:2;display:flex;gap:4px;
+  margin:36px 14px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.wl-dossier .fm-tab{appearance:none;background:none;border:0;cursor:pointer;position:relative;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(244,245,247,.45);padding:6px 12px 8px;transition:color .2s}
+.wl-dossier .fm-tab:hover{color:#fff}
+.wl-dossier .fm-tab::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;
+  border-radius:2px;background:var(--gold,#d4af37);transform:scaleX(0);transform-origin:left;
+  transition:transform .28s ease}
+.wl-dossier .fm-tab[aria-selected="true"]{color:var(--gold,#d4af37)}
+.wl-dossier .fm-tab[aria-selected="true"]::after{transform:scaleX(1)}
+.wl-dossier .fm-tab:focus-visible{outline:2px solid var(--gold,#d4af37);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){
+  .wl-dossier .fm-tab,.wl-dossier .fm-tab::after{transition:none}}
+.wl-dossier .fm-panel[hidden]{display:none}
+/* the tab bar replaces .fm-tag and eats into .fm's old 44px top clearance */
+.wl-dossier .portrait[data-fm-tabs] .fm{padding:8px 14px 78px;gap:7px}
+.wl-dossier .portrait[data-fm-tabs] .fm .ledger-note,
+.wl-dossier .portrait[data-fm-tabs] .fm-panel>.ledger-note{margin:7px 16px 0;font-size:9px}
+/* ---- FEED panel ---- */
+.wl-dossier .fm-feed{position:relative;z-index:1;padding:8px 14px 78px}
+/* fixed-height stage: live mount and fallback swap inside it, so the figure
+   never jumps when the widget attempt fails over to the curated cards */
+.wl-dossier .fm-feed-body{position:relative;min-height:344px;display:flex;flex-direction:column}
+.wl-dossier .fm-feed-live{min-height:0;flex:1 1 auto;display:flex;flex-direction:column}
+.wl-dossier .fm-feed-live[hidden]{display:none}
+.wl-dossier .fm-feed-live .twitter-timeline{font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.08em;color:rgba(244,245,247,.42);text-transform:uppercase;padding:10px 2px}
+.wl-dossier .fm-feed-live iframe{border-radius:12px}
+.wl-dossier .fm-feed.is-fallback .fm-feed-live{display:none}
+.wl-dossier .fm-feed-fallback{display:flex;flex-direction:column;gap:6px}
+.wl-dossier .fm-feed-fallback[hidden]{display:none}
+/* compact post card */
+.wl-dossier .fm-mini{background:rgba(21,23,29,.82);border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;padding:8px 10px;min-width:0}
+.wl-dossier .fm-mini-top{display:flex;align-items:center;gap:7px;min-width:0}
+.wl-dossier .fm-mini-av{flex:0 0 20px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(180deg,#f2cc4b,#d4af37);color:#0a0b0e;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:8px;letter-spacing:.04em}
+.wl-dossier .fm-mini-who{display:flex;align-items:baseline;gap:6px;min-width:0}
+.wl-dossier .fm-mini-who b{font-family:'Oswald',sans-serif;font-weight:600;font-size:10px;
+  letter-spacing:.05em;color:#f4f5f7;white-space:nowrap}
+.wl-dossier .fm-mini-who span{font-family:'JetBrains Mono',monospace;font-size:8px;
+  color:rgba(244,245,247,.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wl-dossier .fm-mini-top .pulse-chip{font-size:7.5px;padding:2px 7px}
+.wl-dossier .fm-mini-date{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:7.5px;
+  letter-spacing:.04em;color:rgba(244,245,247,.42);white-space:nowrap}
+/* clamped quote: ~120 chars are emitted, the clamp guarantees two lines max */
+.wl-dossier .fm-mini-q{margin:5px 0 0;font-family:'Inter',sans-serif;font-size:10.5px;line-height:1.45;
+  color:rgba(244,245,247,.85);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.wl-dossier .fm-mini-src{display:inline-block;margin-top:5px;font-family:'Oswald',sans-serif;font-weight:600;
+  font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#d4af37)}
+.wl-dossier .fm-mini-src:hover{color:#fff}
+.wl-dossier .fm-feed-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:auto;padding-top:7px;border-top:1px solid rgba(255,255,255,.09);flex-wrap:wrap}
+.wl-dossier .fm-feed-foot a{font-family:'Oswald',sans-serif;font-weight:600;font-size:8.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold,#d4af37)}
+.wl-dossier .fm-feed-foot a:hover{color:#fff}
+.wl-dossier .fm-feed-foot .fm-foot-note{color:rgba(244,245,247,.45)}
+.wl-dossier .fm-feed-foot .fm-foot-note:hover{color:#fff}
+/* the tabbed card carries taller content than the 3/4 frame on narrow screens;
+   the :has(.fm) escape at <=900px already covers both pages (both panels hold .fm) */
+@media(max-width:900px){
+  .wl-dossier .portrait[data-fm-tabs] .fm{padding:8px 11px 72px;gap:6px}
+  .wl-dossier .fm-feed{padding:8px 11px 72px}
+  .wl-dossier .portrait .fm-tabbar{margin:34px 11px 0}
+}
+/* Desktop (fixed 3/4 card): the tab bar costs ~23px the untabbed card did not
+   pay, so the metrics panel compresses to keep six promo bars clear of the
+   caption. The in-panel ledger-note was already clipped invisible by the
+   3/4 frame on the untabbed card; keep that contract explicit here and let it
+   show only under 900px where the card grows with its content. */
+@media(min-width:901px){
+  .wl-dossier .portrait[data-fm-tabs] .fm-tabbar{margin-top:32px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-tab{padding:5px 12px 7px}
+  .wl-dossier .portrait[data-fm-tabs] .fm{gap:6px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-d{padding:7px 4px 6px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-d b{font-size:23px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-wl .rec2-donut{width:76px;height:76px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-bar{margin-top:3px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-panel .ledger-note{display:none}
+}
+/* <=900px the card is content-height: the flow ledger-note is the last thing
+   before the absolute caption, so IT carries the caption clearance instead of
+   .fm's bottom padding (which would put the note underneath the caption). */
+@media(max-width:900px){
+  .wl-dossier .portrait[data-fm-tabs] .fm{padding-bottom:10px}
+  .wl-dossier .portrait[data-fm-tabs] .fm-panel>.ledger-note{margin:6px 16px 72px}
+}
