@@ -403,9 +403,81 @@ def _age(dob):
     d = d2(dob)
     return TODAY.year - d.year - ((TODAY.month, TODAY.day) < (d.month, d.day))
 
+# Page-local CSS, mirroring how /wrestlers/ profiles ship theirs in an inline <style>.
+# These classes exist in NEITHER site.css NOR profile.css. Verbatim from the cm-punk page
+# so this profile renders identically. Scoped under .wl-dossier exactly as there.
+PROFILE_CSS = """
+.wl-dossier .sec-lead{font-family:'Inter',system-ui,sans-serif;color:rgba(244,245,247,.62);font-size:15px;line-height:1.55;max-width:74ch;margin:-4px 0 22px}
+.wl-dossier .sec-body{font-family:'Inter',system-ui,sans-serif;color:rgba(244,245,247,.82);font-size:16px;line-height:1.7;max-width:72ch;margin:0 0 14px}
+.wl-dossier .rec2-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px;margin:2px 0 16px}
+.wl-dossier .rec2-stat{background:#12141a;border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:11px 13px}
+.wl-dossier .rec2-stat b{display:block;font-family:'Anton',sans-serif;font-size:22px;color:#f4f5f7;letter-spacing:.01em}
+.wl-dossier .rec2-stat span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#8a8f98}
+.wl-dossier .rec2-scroll{max-height:366px;overflow-y:auto;overflow-x:auto;border:1px solid rgba(255,255,255,.08);border-radius:12px;scrollbar-width:thin;scrollbar-color:#d4af37 transparent;background:linear-gradient(90deg,#0f1116 30%,rgba(15,17,22,0)) 0 0/28px 100% no-repeat,linear-gradient(90deg,rgba(15,17,22,0),#0f1116 70%) 100% 0/28px 100% no-repeat,radial-gradient(farthest-side at 0 50%,rgba(212,175,55,.28),transparent) 0 0/14px 100% no-repeat,radial-gradient(farthest-side at 100% 50%,rgba(212,175,55,.28),transparent) 100% 0/14px 100% no-repeat;background-attachment:local,local,scroll,scroll}
+.wl-dossier .rec2-scroll::-webkit-scrollbar{width:9px;height:9px}
+.wl-dossier .rec2-scroll::-webkit-scrollbar-thumb{background:rgba(212,175,55,.5);border-radius:9px}
+.wl-dossier .rec2-table{width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;font-size:12.5px;min-width:760px}
+.wl-dossier .rec2-table thead th{position:sticky;top:0;z-index:2;background:#0f1116;text-align:left;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a8f98;border-bottom:1px solid rgba(212,175,55,.28);white-space:nowrap}
+.wl-dossier .rec2-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.045);vertical-align:top;color:rgba(244,245,247,.82)}
+.wl-dossier .rec2-table tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+.wl-dossier .rec2-table tbody tr:hover{background:rgba(212,175,55,.06)}
+.wl-dossier .rec2-table td.dim{color:rgba(244,245,247,.5)}
+.wl-dossier .rec2-table th:first-child,.wl-dossier .rec2-table td:first-child{min-width:88px}
+.wl-dossier .rec2-date{font-family:'JetBrains Mono',monospace;font-size:11px;white-space:nowrap}
+.wl-dossier .rec2-per{font-size:11.5px;color:rgba(244,245,247,.62);white-space:nowrap}
+.wl-dossier .rec2-ev{font-weight:500;color:#f4f5f7;min-width:150px}
+.wl-dossier .rec2-opp{color:rgba(244,245,247,.8)}
+.wl-dossier .rec2-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8f98;margin:11px 0 0}
+.wl-dossier .rec2-count b{color:#f2cc4b}
+.wl-dossier .opp-link{color:inherit;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.28);transition:color .12s,border-color .12s}
+.wl-dossier .opp-link:hover{color:#f2cc4b;border-bottom-color:#f2cc4b}
+.wl-dossier .opp-link:focus-visible{outline:2px solid #d4af37;outline-offset:2px;border-radius:2px}
+.wl-dossier .rw{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font-family:'Anton',sans-serif;font-size:12px}
+.wl-dossier .rw-w{background:rgba(37,181,110,.16);color:#4ce39a;border:1px solid rgba(37,181,110,.44)}
+.wl-dossier .rw-l{background:rgba(225,29,42,.14);color:#ff6b73;border:1px solid rgba(225,29,42,.34)}
+.wl-dossier .rw-d{background:rgba(255,255,255,.08);color:#cfd2d8;border:1px solid rgba(255,255,255,.16)}
+.wl-dossier .pchip{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:5px;background:rgba(255,255,255,.06);color:#a7abb2;white-space:nowrap}
+.wl-dossier .pchip-raf{background:rgba(46,95,163,.2);color:#8fb0ff}
+.wl-dossier .pchip-ufc{background:rgba(225,29,42,.14);color:#ff8a90}
+.wl-dossier .pchip-belt{background:rgba(212,175,55,.14);color:#f2cc4b}
+.wl-dossier .faq2-list{display:flex;flex-direction:column;gap:8px}
+.wl-dossier .faq2-item{background:#12141a;border:1px solid rgba(255,255,255,.07);border-radius:11px;overflow:hidden}
+.wl-dossier .faq2-item[open]{border-color:rgba(212,175,55,.28)}
+.wl-dossier .faq2-q{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.02em;font-size:14px;color:#f4f5f7}
+.wl-dossier .faq2-q::-webkit-details-marker{display:none}
+.wl-dossier .faq2-ic{flex:none;position:relative;width:14px;height:14px}
+.wl-dossier .faq2-ic:before,.wl-dossier .faq2-ic:after{content:"";position:absolute;background:#d4af37;transition:transform .2s}
+.wl-dossier .faq2-ic:before{left:0;top:6px;width:14px;height:2px}
+.wl-dossier .faq2-ic:after{left:6px;top:0;width:2px;height:14px}
+.wl-dossier .faq2-item[open] .faq2-ic:after{transform:scaleY(0)}
+.wl-dossier .faq2-a{font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;color:rgba(244,245,247,.66);margin:0;padding:0 16px 15px}
+.wl-dossier .fac-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.wl-dossier .fac-card{background:linear-gradient(180deg,#14161d,#0f1116);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:18px;min-width:0}
+.wl-dossier .fac-era{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a8f98;margin-bottom:7px;display:block}
+.wl-dossier .fac-name{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:20px;color:#f4f5f7;margin:0 0 9px;line-height:1.05}
+.wl-dossier .fac-desc{font-family:'Inter',sans-serif;font-size:13px;line-height:1.5;color:rgba(244,245,247,.6);margin:0}
+.wl-dossier .corr{background:#12141a;border:1px solid rgba(212,175,55,.26);border-left:3px solid #d4af37;border-radius:12px;padding:15px 19px;margin:6px 0 0}
+.wl-dossier .corr b{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#f2cc4b;margin-bottom:8px}
+.wl-dossier .corr p{margin:0;font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;color:rgba(244,245,247,.72);max-width:74ch}
+.wl-dossier .srcs{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.wl-dossier .srcs a{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:#d4af37;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.24);padding-bottom:5px}
+.wl-dossier .srcs a:hover{color:#f2cc4b}
+@media(max-width:640px){
+.wl-dossier .rec2-table{min-width:640px;font-size:12px}
+.wl-dossier .rec2-table thead th{padding:9px 10px}
+.wl-dossier .rec2-table td{padding:8px 10px}
+.wl-dossier .rec2-date{font-size:10.5px}
+.wl-dossier .rec2-ev{min-width:130px}
+.wl-dossier .rec2-stats{grid-template-columns:repeat(2,1fr)}
+.wl-dossier .sec-lead{font-size:14px}
+.wl-dossier .fac-grid{grid-template-columns:1fr}
+}
+"""
+
 def profile_shell(title, desc, canonical, body, extra_head=""):
-    """The /wrestlers/ profile template, exactly. profile.css scopes ~432 rules under
-    .wl-dossier, so that wrapper is not decoration, it IS the template."""
+    """The /wrestlers/ profile template. profile.css scopes ~432 rules under .wl-dossier,
+    and the profiles ship a further page-local <style> block for components that live in
+    neither stylesheet (.rec2-*, .rw, .pchip, .faq2-*, .sec-lead). Both are required."""
     return ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
       '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
       '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n'
@@ -414,13 +486,15 @@ def profile_shell(title, desc, canonical, body, extra_head=""):
       '<meta property="og:description" content="%s">\n<meta property="og:url" content="%s">\n'
       '<meta property="og:site_name" content="Wrestle Lore">\n%s'
       '<link rel="stylesheet" href="/css/site.css">\n'
-      '<link rel="stylesheet" href="/css/profile.css">\n</head>\n<body>\n'
+      '<link rel="stylesheet" href="/css/profile.css">\n'
+      '<style>%s</style>\n</head>\n<body>\n'
       '<header class="site-header nav7"></header>\n%s\n'
       '<footer class="site-footer site-footer--fat"></footer>\n'
       '<script src="/js/main.js" defer></script>\n<script src="/js/search-index.js" defer></script>\n'
       '<script src="/js/nav.js" defer></script>\n<script src="/js/engage.js" defer></script>\n'
       '<script src="/js/profile.js" defer></script>\n</body>\n</html>\n'
-      % (esc(title), esc(desc), canonical, esc(title), esc(desc), canonical, extra_head, body))
+      % (esc(title), esc(desc), canonical, esc(title), esc(desc), canonical, extra_head,
+         PROFILE_CSS.strip("\n"), body))
 
 SECS = [("overview","Overview"),("record","RAF Record"),("mma","UFC Record"),
         ("background","Background"),("rivalries","Rivalries"),("faq","FAQ")]
@@ -461,10 +535,8 @@ def athlete_page(a):
 
     hstats = "".join('<div class="hstat"><b><span class="num">%s</span></b><span>%s</span></div>'
                      % (esc(v), esc(l)) for v, l in a["stats"])
-
     hero = ('<header class="hero" id="top"><div class="wrap"><div>'
-      '<div class="hero-kick">%s</div>'
-      '<h1><span class="the">%s</span>%s</h1>'
+      '<div class="hero-kick">%s</div><h1><span class="the">%s</span>%s</h1>'
       '<p class="hero-tag">%s</p>'
       '<div class="hero-now"><span>NOW</span><b>%s</b> &middot; %s</div>'
       '<div class="hero-stats">%s</div>'
@@ -477,74 +549,77 @@ def athlete_page(a):
       '<span class="mono" aria-hidden="true">%s</span>'
       '<figcaption class="cap"><span class="r">Roster File &middot; %s</span><span class="n">%s</span></figcaption>'
       '</figure></div></header>'
-      % (a["kick"], esc(a["the"]), esc(a["name"]), a["hero_tag"],
-         esc(a["now_b"]), esc(a["now_rest"]), hstats, esc(a["name"]), a["debut_year"], esc(a["bornplace"]),
-         esc(a["initials"]), esc(a["tagline"]), esc(a["realname"])))
+      % (a["kick"], esc(a["the"]), esc(a["name"]), a["hero_tag"], esc(a["now_b"]), esc(a["now_rest"]),
+         hstats, esc(a["name"]), a["debut_year"], esc(a["bornplace"]), esc(a["initials"]),
+         esc(a["tagline"]), esc(a["realname"])))
 
-    bio = "".join('<p class="raf-p">%s</p>' % esc(x) for x in a["bio"])
-    sec1 = ('<section class="sec reveal" id="overview"><div class="sec-h">%s<h2>Overview</h2></div>%s'
-            '<div class="raf-correct"><b>Setting one thing straight</b><p>%s</p></div></section>'
-            % (num(1), bio, esc(a["correction"])))
+    tiles = lambda rows: '<div class="rec2-stats">%s</div>' % "".join(
+        '<div class="rec2-stat"><b>%s</b><span>%s</span></div>' % (esc(v), esc(l)) for v, l in rows)
+
+    sec1 = ('<section class="sec reveal" id="overview"><div class="sec-h">%s<h2>Overview</h2></div>'
+            '<p class="sec-lead">%s</p>%s'
+            '<div class="corr"><b>Setting one thing straight</b><p>%s</p></div></section>'
+            % (num(1), esc(a["bio"][0]),
+               "".join('<p class="sec-body">%s</p>' % esc(x) for x in a["bio"][1:]), esc(a["correction"])))
 
     rrows = []
     for slug, date, opp, win, method, note in a["raf"]:
         ev = EVENT_BY_SLUG.get(slug)
-        evc = ('<a href="/promotions/raf/%s/">%s</a>' % (slug, esc(ev["name"]))) if ev else esc(slug.upper().replace("-", " "))
-        if win is None:
-            res = '<span class="raf-tbd">Announced</span>'
-        else:
-            res = '<span class="raf-n is-win">Win</span>' if win else '<span class="raf-res-l">Loss</span>'
-        rrows.append('<tr><td class="raf-wc">%s</td><td>%s</td><td class="raf-vs"><span class="raf-n">%s</span>%s</td>'
-                     '<td class="raf-res">%s</td><td class="raf-res">%s</td></tr>'
-                     % (pretty(date), evc, esc(opp),
-                        ('<span class="raf-belt">%s</span>' % esc(note)) if note else "", res, esc(method)))
-    sec2 = ('<section class="sec reveal" id="record"><div class="sec-h">%s<h2>RAF Record</h2></div>'
-            '<div class="rec2-stats">%s</div>'
-            '<p class="sec-lead">%s in Real American Freestyle across %d completed matches. Every one links to its full card. '
-            'A tech fall means a ten point lead ended it early, which is freestyle wrestling&rsquo;s version of a squash.</p>'
-            '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Event</th><th>Opponent</th>'
-            '<th>Result</th><th>Method</th></tr></thead><tbody>%s</tbody></table></div></section>'
-            % (num(2), "".join('<div class="rec2-stat"><b>%s</b><span>%s</span></div>' % (esc(v), esc(l)) for v, l in a["rafstats"]),
-               a["stats"][2][0], len([x for x in a["raf"] if x[3] is not None]), "".join(rrows)))
+        evc = ('<a class="opp-link" href="/promotions/raf/%s/">%s</a>' % (slug, esc(ev["name"]))) if ev \
+              else esc(slug.upper().replace("-", " "))
+        badge = ('<span class="rw rw-w">W</span>' if win else '<span class="rw rw-l">L</span>') \
+                if win is not None else '<span class="rw rw-d">&ndash;</span>'
+        chip = '<span class="pchip pchip-belt">%s</span>' % esc(note) if note else ""
+        rrows.append('<tr><td class="rec2-date">%s</td><td class="rec2-ev">%s %s</td>'
+                     '<td class="rec2-opp">%s</td><td>%s</td><td class="dim">%s</td></tr>'
+                     % (pretty(date), evc, chip, esc(opp), badge, esc(method)))
+    done = len([x for x in a["raf"] if x[3] is not None])
+    sec2 = ('<section class="sec reveal" id="record"><div class="sec-h">%s<h2>RAF Record</h2></div>%s'
+            '<p class="sec-lead">%s across %d completed matches, every one linked to its full card. A tech fall means '
+            'a ten point lead ended it early, freestyle wrestling&rsquo;s version of a squash.</p>'
+            '<div class="rec2-scroll"><table class="rec2-table"><thead><tr><th>Date</th><th>Event</th>'
+            '<th>Opponent</th><th>Result</th><th>Method</th></tr></thead><tbody>%s</tbody></table></div>'
+            '<p class="rec2-count"><b>%d</b> matches on record, <b>%d</b> announced</p></section>'
+            % (num(2), tiles(a["rafstats"]), a["stats"][2][0], done, "".join(rrows),
+               done, len(a["raf"]) - done))
 
     urows = []
     for date, opp, win, method, rd, tm, event in a["ufc"]:
-        urows.append('<tr><td class="raf-wc">%s</td><td class="raf-vs"><span class="raf-n%s">%s</span></td>'
-                     '<td class="raf-res">%s</td><td class="raf-res">%s</td><td class="raf-res">R%s %s</td>'
-                     '<td class="raf-wc">%s</td></tr>'
-                     % (pretty(date), " is-win" if win else "", esc(opp),
-                        '<span class="raf-n is-win">Win</span>' if win else '<span class="raf-res-l">Loss</span>',
+        urows.append('<tr><td class="rec2-date">%s</td><td class="rec2-opp">%s</td>'
+                     '<td>%s</td><td class="dim">%s</td><td class="rec2-per">R%s %s</td>'
+                     '<td class="rec2-ev">%s</td></tr>'
+                     % (pretty(date), esc(opp),
+                        '<span class="rw rw-w">W</span>' if win else '<span class="rw rw-l">L</span>',
                         esc(method), esc(rd), esc(tm), esc(event)))
-    sec3 = ('<section class="sec reveal" id="mma"><div class="sec-h">%s<h2>UFC Record</h2></div>'
-            '<div class="rec2-stats">%s</div>'
-            '<p class="sec-lead">%s in the UFC, %s as a professional. He debuted in April 2019 on short notice.</p>'
-            '<div class="raf-tw"><table class="raf-card"><thead><tr><th>Date</th><th>Opponent</th><th>Result</th>'
-            '<th>Method</th><th>Round</th><th>Event</th></tr></thead><tbody>%s</tbody></table></div></section>'
-            % (num(3), "".join('<div class="rec2-stat"><b>%s</b><span>%s</span></div>' % (esc(v), esc(l)) for v, l in a["ufcstats"]),
-               a["stats"][1][0], a["stats"][0][0], "".join(urows)))
+    sec3 = ('<section class="sec reveal" id="mma"><div class="sec-h">%s<h2>UFC Record</h2></div>%s'
+            '<p class="sec-lead">%s in the UFC and %s as a professional. He debuted in April 2019 on short notice.</p>'
+            '<div class="rec2-scroll"><table class="rec2-table"><thead><tr><th>Date</th><th>Opponent</th>'
+            '<th>Result</th><th>Method</th><th>Round</th><th>Event</th></tr></thead><tbody>%s</tbody></table></div>'
+            '<p class="rec2-count"><b>%d</b> octagon appearances</p></section>'
+            % (num(3), tiles(a["ufcstats"]), a["stats"][1][0], a["stats"][0][0], "".join(urows), len(a["ufc"])))
 
     sec4 = ('<section class="sec reveal" id="background"><div class="sec-h">%s<h2>Background</h2></div>'
-            '<p class="raf-p">%s</p><p class="raf-p">%s</p></section>'
+            '<p class="sec-body">%s</p><p class="sec-body">%s</p></section>'
             % (num(4), esc(a["background"]), esc(a["grappling"])))
 
     sec5 = ('<section class="sec reveal" id="rivalries"><div class="sec-h">%s<h2>Rivalries</h2></div>'
-            '<div class="raf-evs">%s</div></section>'
-            % (num(5), "".join('<div class="raf-ev"><span class="raf-ev__n">%s</span>'
-                               '<span class="raf-ev__c">%s</span><span class="raf-ev__v">%s</span></div>'
-                               % (esc(t), esc(k), esc(d)) for t, k, d in a["rivalries"])))
+            '<div class="fac-grid">%s</div></section>'
+            % (num(5), "".join('<div class="fac-card"><span class="fac-era">%s</span>'
+                               '<h3 class="fac-name">%s</h3><p class="fac-desc">%s</p></div>'
+                               % (esc(k), esc(t), esc(d)) for t, k, d in a["rivalries"])))
 
-    sec6 = ('<section class="sec reveal" id="faq"><div class="sec-h">%s<h2>FAQ</h2></div>%s</section>'
-            % (num(6), "".join('<details class="raf-faq"><summary>%s</summary><p>%s</p></details>'
-                               % (esc(q), esc(ans)) for q, ans in a["faq"])))
+    sec6 = ('<section class="sec reveal" id="faq"><div class="sec-h">%s<h2>FAQ</h2></div>'
+            '<div class="faq2-list">%s</div></section>'
+            % (num(6), "".join('<details class="faq2-item"><summary class="faq2-q">%s'
+                               '<span class="faq2-ic" aria-hidden="true"></span></summary>'
+                               '<p class="faq2-a">%s</p></details>' % (esc(q), esc(ans)) for q, ans in a["faq"])))
 
     rail = ('<aside class="rail" aria-label="Quick facts">'
       '<section class="card tott" aria-labelledby="tott-h"><h2 id="tott-h" class="kick">Tale of the Tape</h2><dl>%s</dl></section>'
       '<section class="card" aria-labelledby="src-h"><h2 id="src-h" class="kick">Sources</h2>'
-      '<p class="raf-sub">Every figure traces to a published record. Where sources disagree, the page says so.</p>'
-      '<div class="raf-nav">%s</div></section></aside>'
+      '<div class="srcs">%s</div></section></aside>'
       % ("".join('<div class="row"><dt>%s</dt><dd>%s</dd></div>' % (esc(k), esc(v)) for k, v in a["tape"]),
-         "".join('<a class="link-more" href="%s" target="_blank" rel="noopener">%s</a>' % (esc(u), esc(nm))
-                 for nm, u in a["srcs"])))
+         "".join('<a href="%s" target="_blank" rel="noopener">%s</a>' % (esc(u), esc(nm)) for nm, u in a["srcs"])))
 
     q2 = lambda t: esc(t).replace('"', '\\"')
     faq_ld = ",".join('{"@type":"Question","name":"%s","acceptedAnswer":{"@type":"Answer","text":"%s"}}'
@@ -563,7 +638,7 @@ def athlete_page(a):
       % (esc(a["name"]), esc(a["nick"]), a["dob"], esc(a["bornplace"]), esc(a["nationality"]), esc(a["height"]),
          canonical, ",".join('"%s"' % u for _, u in a["srcs"]), faq_ld, BASE, BASE, BASE, esc(a["name"]), canonical))
 
-    body = ('<div class="wl-dossier bar-glass raf" id="main">%s%s%s'
+    body = ('<div class="wl-dossier bar-glass" id="main">%s%s%s'
             '<div class="layout"><main class="profile-main">%s%s%s%s%s%s</main>%s</div></div>'
             % (subnav, idn, hero, sec1, sec2, sec3, sec4, sec5, sec6, rail))
     return profile_shell(title, desc, canonical, body, extra_head=jsonld)

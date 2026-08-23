@@ -1,3 +1,9 @@
+## 2026-08-23 (Tsarukyan page: real template classes, page-local CSS shipped like the profiles do)
+- Agents dissected the cm-punk page. The profile template is THREE layers, not two: `site.css`, `profile.css` scoped under `.wl-dossier`, and a **36KB page-local `<style>` block** carrying components that exist in neither stylesheet.
+- The athlete page now ships its own `<style>` block the same way, with the verbatim rules for `.sec-lead`, `.rec2-*` (stat tiles, scroll container, sticky-header table), `.rw`/`.rw-w`/`.rw-l` result badges, `.pchip` chips, `.faq2-*` accordion and `.fac-*` cards.
+- Markup rewritten onto those classes: `rec2-scroll` + `rec2-table` for both record tables, `rw` badges instead of text, `pchip` for title and event tags, `faq2-item` instead of a bare `details`, `opp-link` for the event links. Verified full class parity against cm-punk, zero template classes missing.
+- Notes for later: `.rw` and `.lg` collide by name with unrelated `.wl-dossier .rw` / `.record-legend .lg` rules in profile.css, which is why the profiles keep them page-local rather than in a shared sheet. Three chips used in cm-punk's markup (`pchip-aew`, `pchip-ecw`, `pchip-ind`) have no rule anywhere and render grey.
+
 ## 2026-08-23 (Arman Tsarukyan page rebuilt on the real profile template)
 - **The athlete page now uses the `/wrestlers/` profile template**, not a RAF-styled approximation: sticky sub nav, the `.idn` identity bar with vitals and socials, the `.hero` block with kicker, NOW chip, stat row and portrait card, numbered `.sec` sections, and the Tale of the Tape rail. `profile.css` scopes roughly 432 rules under `.wl-dossier`, so that wrapper is the template, not decoration.
 - `.rec2-stats` and `.rec2-stat` were page-local to cm-punk's inline `<style>` and existed in neither stylesheet. Moved into the idempotent RAF block in `css/site.css` so any future profile can use them.
