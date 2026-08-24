@@ -1,3 +1,11 @@
+## 2026-08-24
+
+- **The homepage was advertising a show that already happened.** SummerSlam ran Aug 1-2; on Aug 24 the ticker, the production-truck vignette and the floating widget still called it "the next stop," with the countdown frozen at 00/00/00/00. Replaced with Sunday Night's Main Event (Sep 6, State Farm Arena, Atlanta) — and, more to the point, replaced the way it was stored.
+- **`build/eventsdata.py` is now the only place the upcoming schedule is written down.** It was previously stated in six hand-typed places across two files, which is why five of them were wrong. `upcoming()` filters by date, so the list self-advances as shows pass; you only ever append newly announced dates. Every entry carries the URL its date and venue were read from.
+- **`build/patch_next_event.py`** stamps that data into the pages, anchored on markup rather than line numbers, and is idempotent. `--check` reports staleness and writes nothing — run it before a deploy to find out the site is lying before a visitor does. A target that stops matching is a hard failure, not a warning, because a silent miss is exactly how the six copies drifted apart in the first place.
+- The ticker strip lives in `components/meganav.html`, not `index.html` — so the dead SummerSlam line was on all 489 pages, and patching the homepage copy would have been reverted by the next `apply_shell.py` run. Now fixed at the component and propagated.
+- Verified in Chromium from `file://`: ticker, vignette and widget all read Sunday Night's Main Event; both countdowns tick live (13d 09h and falling); 0 JS errors.
+
 ## 2026-08-23
 
 - Signature match cards are now links to their match pages, with a hover/focus preview card (`js/sig-preview.js`); preview node is appended to `<body>` so it escapes the reel's `overflow-x` clipping. Applied to generated dossiers and to the hand-authored pages via `build/patch_sig_links.py` (cm-punk 2/8, john-cena 3/8, aj-styles 6/6 — the rest have no match page yet).

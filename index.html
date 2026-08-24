@@ -28,7 +28,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" href="/css/site.css?v=3a633b84">
+<link rel="stylesheet" href="/css/site.css?v=db18bdb8">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://wrestlelore.com/#org","name":"Wrestle Lore, the Pro Wrestling Database","url":"https://wrestlelore.com/","logo":{"@type":"ImageObject","url":"https://wrestlelore.com/assets/logo-512.png","width":512,"height":512},"description":"A crawlable database of modern professional wrestling: 107 wrestler profiles, 30 five-star matches, 11 championship lineages, plus rivalries, factions and real-life relationships across WWE, WCW, ECW, TNA, NXT, NJPW and AEW, with AAA covered through its WWE partnership.","foundingDate":"2026","sameAs":["https://twitter.com/matwrestling","https://www.youtube.com/@matwrestling"]}
 </script>
@@ -707,7 +707,7 @@
         <div class="navitem nv-e">
           <a class="tab" href="/events/" aria-haspopup="true" aria-expanded="false">Events</a>
           <div class="mega7 mega7--timeline" role="group" aria-label="Events menu">
-            <a class="evlive" href="/events/tickets/" aria-label="Live events on sale now"><span class="evlive-mk"><svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"/></g><circle class="wg-core" cx="12" cy="12" r="1.9"/></svg></span><span class="evlive-l"><span class="evlive-k">Live Events &middot; On sale now</span><span class="evlive-nm">SummerSlam <b class="evlive-next">Aug 1&ndash;2</b></span><span class="evlive-meta">U.S. Bank Stadium, Minneapolis &middot; 3 more shows on sale</span></span><span class="evlive-cta">Get tickets</span></a>
+            <a class="evlive" href="/events/tickets/" aria-label="Live events on sale now"><span class="evlive-mk"><svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"/></g><circle class="wg-core" cx="12" cy="12" r="1.9"/></svg></span><span class="evlive-l"><span class="evlive-k">Live Events &middot; On sale now</span><span class="evlive-nm">Sunday Night's Main Event <b class="evlive-next">Sep 6</b></span><span class="evlive-meta">State Farm Arena, Atlanta &middot; 3 more shows on sale</span></span><span class="evlive-cta">Get tickets</span></a>
             <div class="rail7" role="group" aria-label="2026 season timeline">
               <a class="tc" href="/events/royal-rumble-2026/">
                 <span class="dt">T-01 // JANUARY</span>
@@ -3018,7 +3018,7 @@
   var FEEDS=[
     {id:'wrestlers',cam:'CAM 1',name:'Wrestlers',s:'THE FILES',href:'/wrestlers/',sub:'EVERY PROFILE ON RECORD // CURRENT, LEGENDS, WOMEN'},
     {id:'matches',cam:'CAM 2',name:'Matches',s:'THE LADDER',href:'/matches/',sub:'THE FIVE STAR LADDER, RATED AND WATCHABLE'},
-    {id:'events',cam:'CAM 3',name:'Events',s:'2026 SEASON',href:'/events/',sub:'SUMMERSLAM // US BANK STADIUM // MINNEAPOLIS'},
+    {id:'events',cam:'CAM 3',name:'Events',s:'2026 SEASON',href:'/events/',sub:'SUNDAY NIGHT\'S MAIN EVENT // STATE FARM ARENA // ATLANTA'},
     {id:'promotions',cam:'CAM 4',name:'Promotions',s:'THE FEEDS',href:'/promotions/',sub:'EVERY TERRITORY PLUS AAA THROUGH THE WWE PARTNERSHIP'},
     {id:'hof',cam:'CAM 5',name:'Hall of Fame',s:'CLASS OF 26',href:'/hall-of-fame/',sub:'AJ STYLES HEADLINES THE CLASS OF 2026'},
     {id:'titles',cam:'CAM 6',name:'Titles &amp; Teams',s:'THE GOLD',href:'/titles/',sub:'REIGN CLOCKS RUN LIVE // EVERY LINEAGE TRACKED'},
@@ -3061,11 +3061,11 @@
         inner=setInterval(function(){k=(k+1)%CLASSICS.length;show(k);},3400);
       },
       events:function(){
-        vig.innerHTML='<span class="ptk-kl">NEXT STOP // SUMMERSLAM // AUG 1 AND 2</span><div class="ptk-count">'+
+        vig.innerHTML='<span class="ptk-kl">NEXT STOP // SUNDAY NIGHT\'S MAIN EVENT // SEP 6</span><div class="ptk-count">'+
           '<div class="ptk-cell"><b data-u="d">0</b><span>DAYS</span></div><div class="ptk-cell"><b data-u="h">0</b><span>HRS</span></div>'+
           '<div class="ptk-cell"><b data-u="m">0</b><span>MIN</span></div><div class="ptk-cell"><b data-u="s">0</b><span>SEC</span></div></div>'+
-          '<div class="ptk-under">US BANK STADIUM // MINNEAPOLIS // TWO NIGHTS</div>';
-        var T=new Date('2026-08-01T23:00:00Z').getTime();
+          '<div class="ptk-under">STATE FARM ARENA // ATLANTA // ONE NIGHT</div>';
+        var T=new Date('2026-09-06T20:00:00-04:00').getTime();
         function tick(){
           var ms=Math.max(0,T-Date.now()),d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
           var q=function(u){var el=vig.querySelector('[data-u="'+u+'"]');return el;};
@@ -3471,12 +3471,12 @@
 </footer>
 
 <div class="grain" aria-hidden="true"></div>
-<script src="/js/main.js?v=3a633b84" defer></script>
-<script src="/js/enhance.js?v=3a633b84" defer></script>
-<script src="/js/search-index.js?v=3a633b84" defer></script>
-<script src="/js/nav.js?v=3a633b84" defer></script>
-<script src="/js/home-engage.js?v=3a633b84" defer></script>
-<script src="/js/media.js?v=3a633b84" defer></script>
+<script src="/js/main.js?v=db18bdb8" defer></script>
+<script src="/js/enhance.js?v=db18bdb8" defer></script>
+<script src="/js/search-index.js?v=db18bdb8" defer></script>
+<script src="/js/nav.js?v=db18bdb8" defer></script>
+<script src="/js/home-engage.js?v=db18bdb8" defer></script>
+<script src="/js/media.js?v=db18bdb8" defer></script>
 <script id="home-ringfeed-js">
 /* Hero spotlight slider — full-column crossfade, progressive enhancement, no deps */
 (function(){
@@ -4022,8 +4022,8 @@
 </script>
 
 <aside class="wev-a" data-open="false" aria-label="Upcoming WWE live events">
-  <button class="wev-a-tab" type="button" aria-label="Show upcoming WWE events"><svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"/></g><circle class="wg-core" cx="12" cy="12" r="1.9"/></svg><span class="wev-a-tab-lbl">SummerSlam</span><span class="wev-a-tab-cd" data-cdtab>--d --h</span><span class="wev-a-tab-x" aria-hidden="true">&rsaquo;</span></button>
-  <div class="wev-a-stub" role="dialog" aria-label="Next WWE event"><span class="wev-a-notch wev-a-notch--t"></span><span class="wev-a-notch wev-a-notch--b"></span><div class="wev-a-head"><span class="wev-a-onsale"><svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"/></g><circle class="wg-core" cx="12" cy="12" r="1.9"/></svg>On sale</span><button class="wev-a-close" type="button" aria-label="Collapse">Hide</button></div><p class="wev-a-kick">The next stop</p><h3 class="wev-a-name">SummerSlam</h3><div class="wev-a-cd" data-cd role="timer" aria-live="polite" aria-label="Countdown to SummerSlam"><span><b data-d>00</b><i>days</i></span><span><b data-h>00</b><i>hrs</i></span><span><b data-m>00</b><i>min</i></span><span><b data-s>00</b><i>sec</i></span></div><p class="wev-a-when">Saturday &amp; Sunday, Aug 1-2, 2026</p><p class="wev-a-where">U.S. Bank Stadium, Minneapolis, MN</p><a class="wev-a-cta" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener">Get tickets</a><div class="wev-a-also"><p class="wev-a-also-k">Also on sale</p><a class="wev-a-row" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener"><b>Sep 6</b> Sunday Night's Main Event, Atlanta</a><a class="wev-a-row" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener"><b>Sep 26</b> Worlds Collide, Rosemont</a><a class="wev-a-row" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener"><b>Oct 10</b> Money in the Bank, New Orleans</a></div></div>
+  <button class="wev-a-tab" type="button" aria-label="Show upcoming WWE events"><svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"/></g><circle class="wg-core" cx="12" cy="12" r="1.9"/></svg><span class="wev-a-tab-lbl">Sunday Night's Main Event</span><span class="wev-a-tab-cd" data-cdtab>--d --h</span><span class="wev-a-tab-x" aria-hidden="true">&rsaquo;</span></button>
+  <div class="wev-a-stub" role="dialog" aria-label="Next WWE event"><span class="wev-a-notch wev-a-notch--t"></span><span class="wev-a-notch wev-a-notch--b"></span><div class="wev-a-head"><span class="wev-a-onsale"><svg class="wglyph wglyph--sale" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><g class="wg-spin"><path class="wg-spark" d="M12 1.6 C12.7 8.1 15.9 11.3 22.4 12 C15.9 12.7 12.7 15.9 12 22.4 C11.3 15.9 8.1 12.7 1.6 12 C8.1 11.3 11.3 8.1 12 1.6 Z"/></g><circle class="wg-core" cx="12" cy="12" r="1.9"/></svg>On sale</span><button class="wev-a-close" type="button" aria-label="Collapse">Hide</button></div><p class="wev-a-kick">The next stop</p><h3 class="wev-a-name">Sunday Night's Main Event</h3><div class="wev-a-cd" data-cd role="timer" aria-live="polite" aria-label="Countdown to Sunday Night's Main Event"><span><b data-d>00</b><i>days</i></span><span><b data-h>00</b><i>hrs</i></span><span><b data-m>00</b><i>min</i></span><span><b data-s>00</b><i>sec</i></span></div><p class="wev-a-when">Sunday, Sep 6, 2026</p><p class="wev-a-where">State Farm Arena, Atlanta, GA</p><a class="wev-a-cta" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener">Get tickets</a><div class="wev-a-also"><p class="wev-a-also-k">Also on sale</p><a class="wev-a-row" href="https://www.ticketmaster.com/wweaaanxt-worlds-collide-rosemont-illinois-09-26-2026/event/040064EFEABD140C" target="_blank" rel="noopener"><b>Sep 26</b> Worlds Collide, Rosemont</a><a class="wev-a-row" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener"><b>Oct 10</b> Money in the Bank, New Orleans</a><a class="wev-a-row" href="https://www.ticketmaster.com/wwe-tickets/artist/807358" target="_blank" rel="noopener"><b>Nov 28</b> Survivor Series, Houston</a></div></div>
 </aside>
 <script>
 
@@ -4031,7 +4031,7 @@
   var w=document.querySelector('.wev-a'); if(!w) return;
   var header=document.querySelector('.site-header');
   var hero=document.querySelector('.hv3-hero');
-  var target=new Date('2026-08-01T19:00:00-05:00').getTime();
+  var target=new Date('2026-09-06T20:00:00-04:00').getTime();
   var d=w.querySelector('[data-d]'),h=w.querySelector('[data-h]'),m=w.querySelector('[data-m]'),s=w.querySelector('[data-s]'),tab=w.querySelector('[data-cdtab]');
   function p(n){return (n<10?'0':'')+n;}
   function tick(){var t=target-Date.now();if(t<0)t=0;var D=Math.floor(t/864e5),H=Math.floor(t/36e5)%24,M=Math.floor(t/6e4)%60,Sx=Math.floor(t/1e3)%60;
