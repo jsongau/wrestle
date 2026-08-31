@@ -1,3 +1,11 @@
+## 2026-08-31
+
+- **Week of Aug 24-30 published to the Lore Feed and the Gallery.** 34 sourced dispatches and 20 verified videos across WWE, AEW, NXT, TNA, NJPW, RAF and the business desk. The week carried two premium live events on the same night — AEW All In: London at Wembley (seven title changes) and WWE NXT Heatwave in Edinburg (five) — so it is roughly double a normal week, which ran 17.
+- Researched by four agents working one lane each. **Every YouTube ID was resolved through YouTube's own oEmbed endpoint** before it was allowed into the gallery, confirming the video exists, its exact title, and that it sits on the promotion's official channel. Direct watch-page fetches were rate-limited all session; oEmbed is the stricter check anyway, since a dead or private ID returns an error rather than a page. No ID was pattern-matched or reconstructed.
+- Homepage rail marked deliberately: **seven `home=True` items, one per promotion**. The rail is `home_rail_items(cap=7)` and takes the newest seven, so marking ten Aug 30 items would have made it read as an all-AEW day and buried WWE, TNA, NJPW and RAF.
+- `SPECIALS` in the gallery generator now accepts a list of events per date, not a single tuple — Aug 30 held both All In and NXT Heatwave and the old lookup could only render one. Correct, but currently unreachable: `hub_page()` and `calendar_html()` are V1 code the live build no longer calls.
+- Site is now 511 pages, up from 489. Invalid JSON-LD: 0.
+
 ## 2026-08-24
 
 - **The homepage was advertising a show that already happened.** SummerSlam ran Aug 1-2; on Aug 24 the ticker, the production-truck vignette and the floating widget still called it "the next stop," with the countdown frozen at 00/00/00/00. Replaced with Sunday Night's Main Event (Sep 6, State Farm Arena, Atlanta) — and, more to the point, replaced the way it was stored.

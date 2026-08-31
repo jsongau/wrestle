@@ -46,8 +46,8 @@ WATCHLINKS = {
 ORDER = ["WWE", "AEW", "TNA", "NXT", "RAF"]
 # full creator names + show display names for the media-page one-card-per-show grid
 CREATOR = {"WWE":"WWE","NXT":"WWE","AEW":"All Elite Wrestling","TNA":"TNA Wrestling","NJPW":"New Japan Pro-Wrestling","TKO":"WWE","RAF":"Real American Freestyle"}
-SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam","RAF":"Real American Freestyle"}
-SHOWORDER = ["SummerSlam","RAF","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
+SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam","All In":"AEW All In: London","RAF":"Real American Freestyle"}
+SHOWORDER = ["SummerSlam","All In","RAF","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
 
 # ---- the recurring weekly TV grid (Mon=0..Sun=6) + dated specials ----
 SCHEDULE = {
@@ -64,7 +64,8 @@ SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL 
   datetime.date(2026, 7, 26): ("AEW", "Redemption", "Montreal · HBO Max · PPV"),
   datetime.date(2026, 8, 1): ("WWE", "SummerSlam", "Night 1 · Minneapolis · ESPN"),
   datetime.date(2026, 8, 2): ("WWE", "SummerSlam", "Night 2 · Minneapolis · ESPN"),
-  datetime.date(2026, 8, 30): ("AEW", "All In: London", "Wembley Stadium · HBO Max"),
+  datetime.date(2026, 8, 30): [("AEW", "All In: London", "Wembley Stadium · HBO Max"),
+                               ("WWE", "NXT Heatwave", "Edinburg, TX · The CW")],
   datetime.date(2026, 9, 6): ("WWE", "Sunday Night's Main Event", "State Farm Arena · Atlanta"),
   datetime.date(2026, 7, 11): ("RAF", "RAF Georgia", "Tbilisi · Fox Nation"),
   datetime.date(2026, 7, 18): ("RAF", "RAF 11", "Milwaukee · Fox Nation"),
@@ -73,6 +74,12 @@ SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL 
 CHIPCLS = {"RAF": "raf", "Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
+  {"week":"2026-08-24","label":"Week of August 24, 2026","start":datetime.date(2026,8,24),"promos":{
+     "WWE":[("YKkV6B4XugE","2026-08-24","Raw \u00b7 Full show highlights"),("3z-lAWwmk4w","2026-08-24","Raw \u00b7 Top 10 moments"),("h2wGqoYC5nE","2026-08-24","Raw \u00b7 Royce Keys and OTM attack The Usos"),("prGteFbrO2g","2026-08-24","Raw \u00b7 Oba Femi and Bron Breakker contract signing"),("9Le3pCbsepc","2026-08-28","SmackDown \u00b7 Full show highlights"),("Ti6LMGlWzvU","2026-08-28","SmackDown \u00b7 Top 10 moments"),("q-cGhdmje6A","2026-08-28","SmackDown \u00b7 Sami Zayn ruins the No. 1 Contender's Match"),("FSyaWfLxgpA","2026-08-28","SmackDown \u00b7 Jacy Jayne vs. Paige, Women's U.S. Title")],
+     "AEW":[("w0H7dv46UhY","2026-08-30","All In \u00b7 Cold open"),("LJxwEkDzc4Q","2026-08-30","All In \u00b7 Ospreay vs. Omega, AEW World Title"),("R1Aq466zfG4","2026-08-30","All In \u00b7 The Buy In pre-show"),("LfCPoPIAAJk","2026-08-30","All In \u00b7 Post-show media scrum"),("WPdoj16in-Y","2026-08-26","Dynamite \u00b7 Moxley vs. Castagnoli, Continental Challenge Cup"),("0bduV-wWUvs","2026-08-26","Dynamite \u00b7 Will Ospreay promo in Glasgow"),("0Y7ngGOI_4s","2026-08-29","Collision \u00b7 Kyle Fletcher ambushes Takeshita")],
+     "TNA":[("4pGKgB9DxyI","2026-08-27","iMPACT \u00b7 Santino Marella books the Nemeths in the main event"),("dB4z9Iy0HG0","2026-08-27","iMPACT \u00b7 Zoey Serrano debuts by attacking Indi Hartwell")],
+     "NXT":[("N66zv_yR-MU","2026-08-25","NXT \u00b7 Full show highlights"),("M2aCEW7dxic","2026-08-25","NXT \u00b7 Top 10 moments"),("dJqBkDltFcg","2026-08-25","NXT \u00b7 The Heatwave Summit erupts into a brawl")]
+  }},
   {"week":"2026-08-17","label":"Week of August 17, 2026","start":datetime.date(2026,8,17),"promos":{
      "WWE":[("x7ZLXWnymTM","2026-08-17","Raw \u00b7 Full show highlights"),("O0OgOIuQqdE","2026-08-17","Raw \u00b7 World Title contender tournament"),("C60srGVYAF4","2026-08-17","Raw \u00b7 Je'Von Evans and Big Cass"),("lYF8Sn5n9p8","2026-08-17","Raw \u00b7 Rey Fenix and Penta backstage"),("D2eLpXiVwLU","2026-08-21","SmackDown \u00b7 Full show highlights"),("aGwyn-uPXyw","2026-08-21","SmackDown \u00b7 Nakamura and Kyoki")],
      "AEW":[("VjYPwrh18Ds","2026-08-19","Dynamite \u00b7 Moxley vs. Jay White"),("I4wfux9M0U8","2026-08-19","Dynamite \u00b7 United Empire vs. Don Callis Family"),("VVXitdVh0do","2026-08-19","Dynamite \u00b7 TBS Title four-way"),("dV5VxSbECAA","2026-08-19","Dynamite \u00b7 Mercedes Mone vs. Willow Nightingale"),("OionnecJzTg","2026-08-19","Dynamite \u00b7 Omega and Ospreay before Wembley")],
@@ -320,8 +327,15 @@ def calendar_html(weeks):
             cells.append('<span class="cal3-cell cal3-cell--empty" aria-hidden="true"></span>'); continue
         chips = "".join(cal_chip("WWE" if co=="WWE" else co, show, note) for (co, show, note) in SCHEDULE[d.weekday()])
         if d in SPECIALS:
-            sco, sname, snote = SPECIALS[d]
-            chips += cal_chip(sco, sname, snote, special=True)
+            # A date can hold more than one special. August 30, 2026 held two:
+            # AEW All In: London at Wembley and WWE NXT Heatwave in Edinburg,
+            # twelve title changes between them. The original single-tuple
+            # lookup could only render one, so Heatwave silently vanished from
+            # the calendar. A list is accepted here and a bare tuple still is,
+            # so no existing SPECIALS entry needs touching.
+            _ev = SPECIALS[d]
+            for (sco, sname, snote) in (_ev if isinstance(_ev, list) else [_ev]):
+                chips += cal_chip(sco, sname, snote, special=True)
         head = ('<span class="cal3-d"><b>%d</b><small>%s</small></span>' % (d.day, d.strftime("%a")))
         w = wbm.get(d)
         if w:
