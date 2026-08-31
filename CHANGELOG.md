@@ -1,3 +1,7 @@
+## 2026-08-31 (later)
+
+- **Site search now knows about the whole site.** The command palette's index was a hand-maintained file nothing regenerated — frozen Aug 4 at 209 entries while the site grew to 512 pages, which is why searching "tyr" found Drew McIntyre and not Tyron Woodley. `build/build_search_index.py` now rebuilds it from the pages themselves: keeps every hand-curated entry and its aliases verbatim, appends what is missing, drops entries whose pages are gone. 512 entries for 512 pages. The 214 video pages are indexed last so short queries surface people before highlight clips.
+
 ## 2026-08-31
 
 - **Week of Aug 24-30 published to the Lore Feed and the Gallery.** 34 sourced dispatches and 20 verified videos across WWE, AEW, NXT, TNA, NJPW, RAF and the business desk. The week carried two premium live events on the same night — AEW All In: London at Wembley (seven title changes) and WWE NXT Heatwave in Edinburg (five) — so it is roughly double a normal week, which ran 17.
