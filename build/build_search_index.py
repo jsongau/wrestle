@@ -43,9 +43,13 @@ SKIP_DIRS = {"_to_delete", ".git", ".deploy_trash", ".wl_tmp5", "node_modules",
 # url-prefix -> (kind chip, weight). Lower weight sorts earlier among ADDED rows.
 # The kind chip text renders in the palette; wrestler/match/event/moment have
 # styled chips in css and everything else falls back to the default chip look.
+# "Pro Wrestler" is the show; "Wrestler" is the real sport. RAF athletes are
+# actual freestyle wrestlers, so THEY get the unqualified word - Stone Cold is
+# the professional. The distinction was the owner's call and it is the
+# editorially correct one.
 SECTIONS = [
-    ("wrestlers/",               "Wrestler",   0),
-    ("promotions/raf/athletes/", "Wrestler",   1),
+    ("wrestlers/",               "Pro Wrestler", 0),
+    ("promotions/raf/athletes/", "Wrestler",     1),
     ("factions/",                "Faction",    2),
     ("tag-teams/",               "Tag Team",   3),
     ("titles/",                  "Title",      4),
@@ -145,6 +149,24 @@ def main():
 
     live = set(live_pages())
     kept = [e for e in existing if e["u"] in live]
+
+    # Kind migration for curated rows: they predate the Pro Wrestler /
+    # Wrestler split, so /wrestlers/ entries still saying "Wrestler" are
+    # relabeled in place. Everything else about them stays verbatim.
+    for e in kept:
+        if e["u"].startswith("/wrestlers/") and e.get("k") == "Wrestler":
+            e["k"] = "Pro Wrestler"
+
+    # Crossovers: pro wrestlers with verified elite amateur credentials carry
+    # BOTH chips (k2 renders beside k in the palette). Membership is a fact
+    # claim, so the bar is a national/world-level amateur record, not "did
+    # some wrestling in school": Lesnar is the 2000 NCAA Division I heavyweight
+    # champion; Angle won Olympic freestyle gold in 1996. Add here only with
+    # that caliber of sourced credential.
+    DUAL = {"/wrestlers/brock-lesnar/", "/wrestlers/kurt-angle/"}
+    for e in kept:
+        if e["u"] in DUAL:
+            e["k2"] = "Wrestler"
     dropped = [e["u"] for e in existing if e["u"] not in live]
     have = {e["u"] for e in kept}
 
@@ -156,7 +178,10 @@ def main():
         if not name:
             print("  !! no name derivable, skipped:", u)
             continue
-        added.append({"t": name, "u": u, "k": kind, "_w": weight})
+        row = {"t": name, "u": u, "k": kind, "_w": weight}
+        if u in DUAL:
+            row["k2"] = "Wrestler"
+        added.append(row)
 
     added.sort(key=lambda e: (e.pop("_w"), e["t"]))
     out = kept + added

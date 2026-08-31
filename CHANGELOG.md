@@ -1,3 +1,7 @@
+## 2026-08-31 (night)
+
+- **Search chips now separate the show from the sport.** RAF athletes read "Wrestler" in RAF blue - they are the actual wrestlers; performers read "Pro Wrestler" in gold. Lesnar and Angle, who are legitimately both, wear the two chips joined by an x. The bar for the crossover set is a national/world amateur record, not "wrestled in school."
+
 ## 2026-08-31 (evening)
 
 - **50 wrestlers moved onto the enriched dossier format** (58 total, was 8). Ten agents researched one era-lane each; every module passed a structural validator plus the generator's verify(). Facts current through All In: London (Aug 30). Deceased wrestlers get memorial framing with verified dates. No invented matches, ratings or totals anywhere - conflicts are printed as conflicts.

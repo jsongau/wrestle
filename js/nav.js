@@ -63,9 +63,19 @@
       return;
     }
     list.innerHTML = items.map(function (it, i) {
+      // Kind chip class must be one token ("Pro Wrestler" -> pro-wrestler); a
+      // raw toLowerCase() would leak the space as a stray class. k2, when
+      // present, is a SECOND discipline - Brock Lesnar is a pro wrestler AND
+      // a legit amateur wrestler - rendered as a joined pair with an x
+      // between, so the crossover reads at a glance.
+      var kcls = function (k) { return k.toLowerCase().replace(/\s+/g, '-'); };
+      var chips = '<span class="cmdk__kind cmdk__kind--' + kcls(it.k) + '">' + it.k + '</span>';
+      if (it.k2) {
+        chips += '<span class="cmdk__x" aria-hidden="true">&times;</span>' +
+          '<span class="cmdk__kind cmdk__kind--' + kcls(it.k2) + '">' + it.k2 + '</span>';
+      }
       return '<li class="cmdk__row' + (i === active ? ' is-active' : '') + '" role="option" data-url="' +
-        it.u + '"><span class="cmdk__kind cmdk__kind--' + it.k.toLowerCase() + '">' + it.k +
-        '</span><span class="cmdk__title">' + esc(it.t) +
+        it.u + '">' + chips + '<span class="cmdk__title">' + esc(it.t) +
         (it._aka ? ' <span style="opacity:.55;font-size:.85em">&middot; ' + esc(it._aka) + '</span>' : '') + '</span></li>';
     }).join('');
   }

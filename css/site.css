@@ -1079,7 +1079,13 @@ table.record tr[data-result="L"] td:first-child{box-shadow:inset 3px 0 0 var(--c
 .cmdk__row.is-active,.cmdk__row:hover{background:var(--c-bg-elev-2);}
 .cmdk__kind{flex:none;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;font-size:var(--fs-300);
   padding:.15em .55em;border-radius:var(--r-pill);border:1px solid var(--c-line-strong);color:var(--c-text-dim);min-width:74px;text-align:center;}
-.cmdk__kind--wrestler{color:var(--c-gold-bright);border-color:var(--c-gold-dim);background:var(--c-gold-tint);}
+ /* Two disciplines, two chips. "Pro Wrestler" is the show - it keeps the
+   house gold. "Wrestler" is the real sport (RAF athletes, amateur pedigrees)
+   and wears RAF blue, so the palette itself teaches the difference. A
+   crossover entry (Lesnar, Angle) renders both chips joined by .cmdk__x. */
+.cmdk__kind--pro-wrestler{color:var(--c-gold-bright);border-color:var(--c-gold-dim);background:var(--c-gold-tint);}
+.cmdk__kind--wrestler{color:var(--c-raf-b);border-color:var(--c-raf);background:rgba(46,95,163,.14);}
+.cmdk__x{flex:none;color:var(--c-text-dim);font-size:var(--fs-300);margin:0 -2px;opacity:.7;}
 .cmdk__kind--event{color:var(--c-gold-bright);border-color:var(--c-gold-dim);}
 .cmdk__kind--moment{color:var(--c-red-bright);border-color:var(--c-red-dim);background:var(--c-red-tint);}
 .cmdk__kind--match{color:#8fb7ff;border-color:#2f4a78;}
