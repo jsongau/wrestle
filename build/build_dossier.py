@@ -749,10 +749,19 @@ def sig_preview(url):
 def sig_card(subject, c):
     """One signature card: <a> with baked preview data when a real page backs it,
     inert <div> when nothing does."""
-    stars = "★" * int(float(c["rating"]))
-    inner = ('<div class="sig2-top"><span class="sig2-rate">%s</span><span class="sig2-stars">%s</span></div>'
+    # A rating can legitimately be non-numeric: the research rule is "never
+    # invent a star rating", so a match with no verifiable Observer grade
+    # arrives as "&mdash;". int(float(...)) crashed on the first such module
+    # (batista). An unrated match renders its dash and no star row - honest
+    # data must not be a build error.
+    try:
+        stars = "★" * int(float(c["rating"]))
+    except (TypeError, ValueError):
+        stars = ""
+    star_html = '<span class="sig2-stars">%s</span>' % stars if stars else ""
+    inner = ('<div class="sig2-top"><span class="sig2-rate">%s</span>%s</div>'
              '<h3 class="sig2-ev">%s</h3><p class="sig2-opp">vs %s</p><p class="sig2-stip">%s</p>'
-             % (c["rating"], stars, esc(c["event"]), esc(c["opponent"]), esc(c["stip"])))
+             % (c["rating"], star_html, esc(c["event"]), esc(c["opponent"]), esc(c["stip"])))
     url = resolve_sig_url(subject, c)
     if not url:
         return '<div class="sig2-card">%s</div>' % inner

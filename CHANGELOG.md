@@ -1,3 +1,8 @@
+## 2026-08-31 (evening)
+
+- **50 wrestlers moved onto the enriched dossier format** (58 total, was 8). Ten agents researched one era-lane each; every module passed a structural validator plus the generator's verify(). Facts current through All In: London (Aug 30). Deceased wrestlers get memorial framing with verified dates. No invented matches, ratings or totals anywhere - conflicts are printed as conflicts.
+- Generator hardened: a signature match with no verifiable star rating no longer crashes the build (renders dash, no stars).
+
 ## 2026-08-31 (later)
 
 - **Site search now knows about the whole site.** The command palette's index was a hand-maintained file nothing regenerated — frozen Aug 4 at 209 entries while the site grew to 512 pages, which is why searching "tyr" found Drew McIntyre and not Tyron Woodley. `build/build_search_index.py` now rebuilds it from the pages themselves: keeps every hand-curated entry and its aliases verbatim, appends what is missing, drops entries whose pages are gone. 512 entries for 512 pages. The 214 video pages are indexed last so short queries surface people before highlight clips.
