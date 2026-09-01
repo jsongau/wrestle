@@ -74,6 +74,10 @@ SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL 
 CHIPCLS = {"RAF": "raf", "Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
+  {"week":"2026-08-31","label":"Week of August 31, 2026","start":datetime.date(2026,8,31),"promos":{
+     "WWE":[("LU0-WUBQNvI","2026-08-31","Raw \u00b7 Full show highlights"),("gwdABPJQsNs","2026-08-31","Raw \u00b7 Penta vs. Rey Fenix, No. 1 Contender's Match"),("zbqhZfSAF2w","2026-08-31","Raw \u00b7 Roman Reigns Superman Punches LA Knight")],
+     "AEW":[("s2NfvFpUCX8","2026-08-31","All In \u00b7 Ospreay and Omega share a moment after Wembley")]
+  }},
   {"week":"2026-08-24","label":"Week of August 24, 2026","start":datetime.date(2026,8,24),"promos":{
      "WWE":[("YKkV6B4XugE","2026-08-24","Raw \u00b7 Full show highlights"),("3z-lAWwmk4w","2026-08-24","Raw \u00b7 Top 10 moments"),("h2wGqoYC5nE","2026-08-24","Raw \u00b7 Royce Keys and OTM attack The Usos"),("prGteFbrO2g","2026-08-24","Raw \u00b7 Oba Femi and Bron Breakker contract signing"),("9Le3pCbsepc","2026-08-28","SmackDown \u00b7 Full show highlights"),("Ti6LMGlWzvU","2026-08-28","SmackDown \u00b7 Top 10 moments"),("q-cGhdmje6A","2026-08-28","SmackDown \u00b7 Sami Zayn ruins the No. 1 Contender's Match"),("FSyaWfLxgpA","2026-08-28","SmackDown \u00b7 Jacy Jayne vs. Paige, Women's U.S. Title")],
      "AEW":[("w0H7dv46UhY","2026-08-30","All In \u00b7 Cold open"),("LJxwEkDzc4Q","2026-08-30","All In \u00b7 Ospreay vs. Omega, AEW World Title"),("R1Aq466zfG4","2026-08-30","All In \u00b7 The Buy In pre-show"),("LfCPoPIAAJk","2026-08-30","All In \u00b7 Post-show media scrum"),("WPdoj16in-Y","2026-08-26","Dynamite \u00b7 Moxley vs. Castagnoli, Continental Challenge Cup"),("0bduV-wWUvs","2026-08-26","Dynamite \u00b7 Will Ospreay promo in Glasgow"),("0Y7ngGOI_4s","2026-08-29","Collision \u00b7 Kyle Fletcher ambushes Takeshita")],

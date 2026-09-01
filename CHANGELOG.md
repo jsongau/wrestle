@@ -1,3 +1,8 @@
+## 2026-09-01
+
+- **Every search chip has its own color now.** First pass left Wrestler and Match in near-identical blues; complete 18-kind map installed with fixed anchors (gold = the show, RAF blue = the sport, red = moments) and programmatically verified zero duplicate computed colors.
+- **Week of Aug 31 opened** (partial, through Sep 1, fills nightly): Raw from Cleveland, All In fallout including the 41,102 turnstile count, RAF Moscow fight week, Carmella's retirement. 16 dispatches, 4 verified videos.
+
 ## 2026-08-31 (night)
 
 - **Search chips now separate the show from the sport.** RAF athletes read "Wrestler" in RAF blue - they are the actual wrestlers; performers read "Pro Wrestler" in gold. Lesnar and Angle, who are legitimately both, wear the two chips joined by an x. The bar for the crossover set is a national/world amateur record, not "wrestled in school."

@@ -1079,16 +1079,39 @@ table.record tr[data-result="L"] td:first-child{box-shadow:inset 3px 0 0 var(--c
 .cmdk__row.is-active,.cmdk__row:hover{background:var(--c-bg-elev-2);}
 .cmdk__kind{flex:none;font-family:var(--font-cond);text-transform:uppercase;letter-spacing:.05em;font-size:var(--fs-300);
   padding:.15em .55em;border-radius:var(--r-pill);border:1px solid var(--c-line-strong);color:var(--c-text-dim);min-width:74px;text-align:center;}
- /* Two disciplines, two chips. "Pro Wrestler" is the show - it keeps the
-   house gold. "Wrestler" is the real sport (RAF athletes, amateur pedigrees)
-   and wears RAF blue, so the palette itself teaches the difference. A
-   crossover entry (Lesnar, Angle) renders both chips joined by .cmdk__x. */
+ /* ONE COLOR PER KIND - the complete map, every search-index kind listed.
+   The first pass gave Wrestler RAF blue while Match kept its old light blue,
+   and the owner immediately read them as the same chip. Lesson kept here:
+   when color IS the taxonomy, near is equal - either every kind gets its own
+   hue or the system claims a distinction it does not draw.
+
+   Construction is uniform: light text (readable on the dark ground), a
+   darker border of the same hue, a ~12% tint. Anchors that stay fixed:
+   Pro Wrestler = house gold (the show), Wrestler = RAF blue #2E5FA3 (the
+   real sport, brand-set), Moment = house red. Everything else spreads
+   around the wheel; the four one-or-two-entry kinds at the bottom sit in
+   deliberately quiet distinct grays so rare chips never outshine the
+   taxonomy that matters. Crossovers (Lesnar, Angle) join two chips with
+   .cmdk__x. */
 .cmdk__kind--pro-wrestler{color:var(--c-gold-bright);border-color:var(--c-gold-dim);background:var(--c-gold-tint);}
 .cmdk__kind--wrestler{color:var(--c-raf-b);border-color:var(--c-raf);background:rgba(46,95,163,.14);}
-.cmdk__x{flex:none;color:var(--c-text-dim);font-size:var(--fs-300);margin:0 -2px;opacity:.7;}
-.cmdk__kind--event{color:var(--c-gold-bright);border-color:var(--c-gold-dim);}
+.cmdk__kind--match{color:#b3a1f9;border-color:#5b46b8;background:rgba(122,92,230,.13);}
+.cmdk__kind--event{color:#ffa057;border-color:#a3591c;background:rgba(214,116,37,.13);}
 .cmdk__kind--moment{color:var(--c-red-bright);border-color:var(--c-red-dim);background:var(--c-red-tint);}
-.cmdk__kind--match{color:#8fb7ff;border-color:#2f4a78;}
+.cmdk__kind--rivalry{color:#f77fb9;border-color:#a12e68;background:rgba(220,70,140,.12);}
+.cmdk__kind--title{color:#e7e2d2;border-color:#9a927c;background:rgba(230,220,190,.09);}
+.cmdk__kind--faction{color:#58d98f;border-color:#1f7a4a;background:rgba(46,160,95,.12);}
+.cmdk__kind--tag-team{color:#4fd8c8;border-color:#147568;background:rgba(32,160,146,.12);}
+.cmdk__kind--promotion{color:#74d0f4;border-color:#1a7ca8;background:rgba(56,160,205,.12);}
+.cmdk__kind--lore-feed{color:#c3d95a;border-color:#6b7a1e;background:rgba(150,170,50,.12);}
+.cmdk__kind--recap{color:#d8b078;border-color:#8a6430;background:rgba(190,140,70,.11);}
+.cmdk__kind--video{color:#97a3f7;border-color:#4a58c9;background:rgba(90,105,225,.12);}
+.cmdk__kind--media{color:#cf9ad6;border-color:#7e478b;background:rgba(170,100,190,.11);}
+.cmdk__kind--hall-of-fame{color:#eaa48f;border-color:#96513c;background:rgba(210,120,95,.11);}
+.cmdk__kind--hub{color:#aab6c4;border-color:#55616e;background:rgba(150,165,180,.09);}
+.cmdk__kind--showcase{color:#c4b8aa;border-color:#6e6255;background:rgba(180,165,150,.09);}
+.cmdk__kind--page{color:#9aa3b8;border-color:#4e576e;background:rgba(140,150,180,.09);}
+.cmdk__x{flex:none;color:var(--c-text-dim);font-size:var(--fs-300);margin:0 -2px;opacity:.7;}
 .cmdk__title{color:var(--c-text);font-size:var(--fs-400);}
 .cmdk__row.is-active .cmdk__title{color:var(--c-gold-bright);}
 .cmdk__empty{padding:var(--sp-5);text-align:center;color:var(--c-text-dim);}
