@@ -28,6 +28,7 @@ SHOWNET = {  # show -> (streaming label, url)
   "Raw": ("Netflix", NETFLIX), "SmackDown": ("Peacock", PEACOCK), "NXT": ("The CW", CWAPP),
   "Dynamite": ("HBO Max", HBOMAX), "Collision": ("HBO Max", HBOMAX), "iMPACT": ("AMC+", AMCPLUS),
   "SummerSlam": ("ESPN", ESPN), "RAF": ("Fox Nation", FOXNATION),
+  "Sunday Night's Main Event": ("Peacock", PEACOCK), "All In": ("HBO Max", HBOMAX),
 }
 def shownet(label):
     return SHOWNET.get(label.split("·")[0].strip(), ("Netflix", NETFLIX))
@@ -46,8 +47,8 @@ WATCHLINKS = {
 ORDER = ["WWE", "AEW", "TNA", "NXT", "RAF"]
 # full creator names + show display names for the media-page one-card-per-show grid
 CREATOR = {"WWE":"WWE","NXT":"WWE","AEW":"All Elite Wrestling","TNA":"TNA Wrestling","NJPW":"New Japan Pro-Wrestling","TKO":"WWE","RAF":"Real American Freestyle"}
-SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam","All In":"AEW All In: London","RAF":"Real American Freestyle"}
-SHOWORDER = ["SummerSlam","All In","RAF","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
+SHOWNAME = {"Raw":"WWE Raw","NXT":"WWE NXT","Dynamite":"AEW Dynamite","iMPACT":"TNA iMPACT","SmackDown":"WWE SmackDown","Collision":"AEW Collision","SummerSlam":"WWE SummerSlam","Sunday Night's Main Event":"WWE Sunday Night's Main Event","All In":"AEW All In: London","RAF":"Real American Freestyle"}
+SHOWORDER = ["SummerSlam","Sunday Night's Main Event","All In","RAF","Raw","NXT","Dynamite","iMPACT","SmackDown","Collision"]
 
 # ---- the recurring weekly TV grid (Mon=0..Sun=6) + dated specials ----
 SCHEDULE = {
@@ -74,9 +75,22 @@ SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL 
 CHIPCLS = {"RAF": "raf", "Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
+  {"week":"2026-09-14","label":"Week of September 14, 2026","start":datetime.date(2026,9,14),"promos":{
+     "WWE":[("t7m12y_xvr0","2026-09-14","Raw \u00b7 Roman Reigns vs. Penta World Heavyweight Title match highlights from Mexico City"),("bXaM4W2nquo","2026-09-14","Raw \u00b7 Penta reacts to his match against Roman Reigns in a WWE digital exclusive"),("qLCQyYed-dI","2026-09-18","SmackDown \u00b7 Kevin Owens steps up to challenge new champion Sami Zayn for the WWE Title"),("efd8w7YrrR4","2026-09-18","SmackDown \u00b7 CM Punk blasts Kevin Owens with the title as Sami Zayn retains the WWE Championship")],
+     "AEW":[("3nVvKLNsxyU","2026-09-16","Dynamite \u00b7 Will Ospreay fights off the Death Riders and The Dogs"),("kutouK73ozY","2026-09-19","Collision \u00b7 PAC challenges Andrade El Idolo to a National Title match at All Out"),("AfAchQFBqlU","2026-09-19","Collision \u00b7 Jon Moxley vs Zachary Wentz match highlights")],
+     "NXT":[("TfC5onUse0w","2026-09-15","NXT \u00b7 Tony D'Angelo vs. Saquon Shugars vs. Mason Rook triple threat highlights")],
+     "TNA":[("PUXKEyMbXpQ","2026-09-17","iMPACT \u00b7 Moose puts his TNA career on the line against Frankie Kazarian")],
+     "RAF":[("IR3ZKkuwcoo","2026-09-18","RAF \u00b7 Khamzat Chimaev vs. Gilbert Burns full highlights from RAF 13")]
+  }},
+  {"week":"2026-09-07","label":"Week of September 7, 2026","start":datetime.date(2026,9,7),"promos":{
+     "WWE":[("xqJShWjSl54","2026-09-07","Raw \u00b7 Liv Morgan vs. Stephanie Vaquer Women's World Title match"),("G4vd2W-87mI","2026-09-07","Raw \u00b7 Bayley returns; Sol Ruca qualifies for Money in the Bank"),("lNlvNejNtDE","2026-09-11","SmackDown \u00b7 Sami Zayn wins WWE Title in chaotic match against CM Punk"),("tjle7ArGJJ0","2026-09-11","SmackDown \u00b7 Full highlights from Mexico City")],
+     "AEW":[("BAyFq4bb3vg","2026-09-09","Dynamite \u00b7 Will Ospreay defends against David Finlay in a world title eliminator at Rebel Heart"),("54zi-ZL557E","2026-09-12","Collision \u00b7 The Butcher Battle Royale honors Andy Williams, won by Daniel Garcia"),("WGvgsrKVQq8","2026-09-12","Collision \u00b7 Jon Moxley vs Speedball Mike Bailey in a Continental Title eliminator")],
+     "NXT":[("wV2oAkgoySU","2026-09-08","NXT \u00b7 Full highlights from the September 8 episode"),("irVQC190THI","2026-09-08","NXT \u00b7 Kelani Jordan vs. Jaida Parker, NXT Women's Championship full match")],
+     "TNA":[("bKPsplrBxHc","2026-09-10","iMPACT \u00b7 Nic Nemeth vs. Matt Hardy, No DQ TNA World Title match")]
+  }},
   {"week":"2026-08-31","label":"Week of August 31, 2026","start":datetime.date(2026,8,31),"promos":{
-     "WWE":[("LU0-WUBQNvI","2026-08-31","Raw \u00b7 Full show highlights"),("gwdABPJQsNs","2026-08-31","Raw \u00b7 Penta vs. Rey Fenix, No. 1 Contender's Match"),("zbqhZfSAF2w","2026-08-31","Raw \u00b7 Roman Reigns Superman Punches LA Knight")],
-     "AEW":[("s2NfvFpUCX8","2026-08-31","All In \u00b7 Ospreay and Omega share a moment after Wembley")]
+     "WWE":[("LU0-WUBQNvI","2026-08-31","Raw \u00b7 Full show highlights"),("gwdABPJQsNs","2026-08-31","Raw \u00b7 Penta vs. Rey Fenix, No. 1 Contender's Match"),("zbqhZfSAF2w","2026-08-31","Raw \u00b7 Roman Reigns Superman Punches LA Knight"),("x1HDr0olLQM","2026-09-04","SmackDown \u00b7 Full SmackDown highlights: Sept. 4, 2026"),("pv64CXrsrMo","2026-09-04","SmackDown \u00b7 FULL MATCH: CM Punk vs. Johnny Gargano for the WWE Title"),("03j8KkW7r1w","2026-09-06","Sunday Night's Main Event \u00b7 Full show highlights from State Farm Arena in Atlanta"),("bzR8FA4nPl4","2026-09-06","Sunday Night's Main Event \u00b7 Cody Rhodes vs. Randy Orton main event highlights")],
+     "AEW":[("s2NfvFpUCX8","2026-08-31","All In \u00b7 Ospreay and Omega share a moment after Wembley"),("VUGjamw-kQM","2026-09-02","Dynamite \u00b7 Jon Moxley vs AR Fox match highlights"),("XPZrndkFTi0","2026-09-02","Dynamite \u00b7 Austin Creed and Kofi's first match on Dynamite"),("cAOPO1nRYFk","2026-09-02","Dynamite \u00b7 Cope calls for chairs, tables and ladders for the Tag Team Titles at All Out"),("DTt20FexAik","2026-09-05","Collision \u00b7 Andrade El Idolo vs Gabe Kidd for the AEW National Championship")]
   }},
   {"week":"2026-08-24","label":"Week of August 24, 2026","start":datetime.date(2026,8,24),"promos":{
      "WWE":[("YKkV6B4XugE","2026-08-24","Raw \u00b7 Full show highlights"),("3z-lAWwmk4w","2026-08-24","Raw \u00b7 Top 10 moments"),("h2wGqoYC5nE","2026-08-24","Raw \u00b7 Royce Keys and OTM attack The Usos"),("prGteFbrO2g","2026-08-24","Raw \u00b7 Oba Femi and Bron Breakker contract signing"),("9Le3pCbsepc","2026-08-28","SmackDown \u00b7 Full show highlights"),("Ti6LMGlWzvU","2026-08-28","SmackDown \u00b7 Top 10 moments"),("q-cGhdmje6A","2026-08-28","SmackDown \u00b7 Sami Zayn ruins the No. 1 Contender's Match"),("FSyaWfLxgpA","2026-08-28","SmackDown \u00b7 Jacy Jayne vs. Paige, Women's U.S. Title")],

@@ -1,3 +1,10 @@
+## 2026-09-20
+
+- **The September gap is closed.** Three weeks backfilled in one sitting after 19 days unattended: the week of Aug 31 filled out (Sep 2-6: Dynamite, iMPACT, SmackDown 9/4, Collision, RAF Moscow, SNME), and the weeks of Sep 7 and Sep 14 opened complete. 56 new dispatches (205 total), 19 new oEmbed-verified official-channel videos, three new week pages each in the gallery and the Lore Feed.
+- **The big beats, all two-source verified:** Sami Zayn beat CM Punk for the Undisputed WWE Title on the 9/11 SmackDown in Mexico City (WWE.com's own headline); Roman Reigns RETAINED over Penta on the 9/14 Raw - a fan video titled as a Penta win (FkxdfCo5QyQ, channel "NagraPidi") was caught by oEmbed author check and rejected; Stephanie Vaquer took the Women's World Title at a live event in Chile 9/12; Orton over Rhodes at SNME; RAF 13 landed Sep 18 (not the briefed 9/19), Covington 10-0 Muhammad.
+- **SHOWNET repaired:** "Sunday Night's Main Event" (Peacock) and "All In" (HBO Max) added - both were silently mislabeling as Netflix; SNME added to SHOWNAME and SHOWORDER.
+- **Next-event panel self-advanced** to Worlds Collide (Sep 26, Allstate Arena) - eventsdata.py did its job, zero edits needed, --check clean.
+
 ## 2026-09-01
 
 - **Every search chip has its own color now.** First pass left Wrestler and Match in near-identical blues; complete 18-kind map installed with fixed anchors (gold = the show, RAF blue = the sport, red = moments) and programmatically verified zero duplicate computed colors.

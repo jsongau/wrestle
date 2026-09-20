@@ -129,11 +129,11 @@
         inner=setInterval(function(){k=(k+1)%CLASSICS.length;show(k);},3400);
       },
       events:function(){
-        vig.innerHTML='<span class="ptk-kl">NEXT STOP // SUNDAY NIGHT\'S MAIN EVENT // SEP 6</span><div class="ptk-count">'+
+        vig.innerHTML='<span class="ptk-kl">NEXT STOP // WORLDS COLLIDE // SEP 26</span><div class="ptk-count">'+
           '<div class="ptk-cell"><b data-u="d">0</b><span>DAYS</span></div><div class="ptk-cell"><b data-u="h">0</b><span>HRS</span></div>'+
           '<div class="ptk-cell"><b data-u="m">0</b><span>MIN</span></div><div class="ptk-cell"><b data-u="s">0</b><span>SEC</span></div></div>'+
-          '<div class="ptk-under">STATE FARM ARENA // ATLANTA // ONE NIGHT</div>';
-        var T=new Date('2026-09-06T20:00:00-04:00').getTime();
+          '<div class="ptk-under">ALLSTATE ARENA // ROSEMONT // ONE NIGHT</div>';
+        var T=new Date('2026-09-26T19:30:00-05:00').getTime();
         function tick(){
           var ms=Math.max(0,T-Date.now()),d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;
           var q=function(u){var el=vig.querySelector('[data-u="'+u+'"]');return el;};
