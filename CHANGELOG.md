@@ -1,3 +1,10 @@
+## 2026-09-25
+
+- **Week of Sep 21-25 opened** (through Sep 25 morning, SmackDown tonight preview-only). 18 new dispatches (222 total), 8 oEmbed-verified official-channel videos (WWE 4, AEW 3, TNA 1). Lead: 946 kidnaps Solo Sikoa on Raw in San Antonio; Penta replaces him and qualifies for MITB.
+- **Key storylines filed:** Dusty Rhodes Tag Team Classic begins on NXT, Mike Bailey officially joins United Empire on AEW Dynamite, Syx faction revealed as Sawyer and Shaw on TNA iMPACT, Oba Femi returns to attack Bron Breakker, Liv Morgan invokes the Santiago Screwjob. WWE-Rumble streaming partnership announced.
+- **Stale facts fixed:** CM Punk dossier updated to reflect title loss to Sami Zayn (Sep 11). Events/tickets page updated from SummerSlam (past) to Worlds Collide (Sep 26).
+- **Previous fix commit bundled:** The Sep 20 fix commit (36 missing pages from a git lock glitch) ships with this push, fixing 404s on Sep 7 and Sep 14 week pages plus 32 video pages.
+
 ## 2026-09-20
 
 - **The September gap is closed.** Three weeks backfilled in one sitting after 19 days unattended: the week of Aug 31 filled out (Sep 2-6: Dynamite, iMPACT, SmackDown 9/4, Collision, RAF Moscow, SNME), and the weeks of Sep 7 and Sep 14 opened complete. 56 new dispatches (205 total), 19 new oEmbed-verified official-channel videos, three new week pages each in the gallery and the Lore Feed.

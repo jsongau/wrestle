@@ -75,6 +75,12 @@ SPECIALS = {  # date -> (company, event, note)  — PLEs/specials on their REAL 
 CHIPCLS = {"RAF": "raf", "Raw": "wwe", "SmackDown": "wwe", "NXT": "nxt", "Dynamite": "aew", "Collision": "aew", "iMPACT": "tna"}
 
 WEEKS = [
+  {"week":"2026-09-21","label":"Week of September 21, 2026","start":datetime.date(2026,9,21),"promos":{
+     "WWE":[("Eod0YsUxGwQ","2026-09-21","Raw \u00b7 Penta fights off The Judgment Day in Raw highlights from San Antonio"),("Rkr6Yw1WOrI","2026-09-21","Raw \u00b7 Penta qualifies for Money in the Bank after Solo Sikoa\u2019s abduction")],
+     "AEW":[("ETANjtz_Rmg","2026-09-23","Dynamite \u00b7 Persephone vs Hyan for the TBS Championship match highlights"),("4DrtpslLWTk","2026-09-23","Dynamite \u00b7 Jon Moxley vs Dezmond Xavier match highlights"),("n682IQt55s4","2026-09-23","Dynamite \u00b7 Cage and Cope, FTR and The Young Bucks preview All Out")],
+     "NXT":[("jh8GHTPNcFE","2026-09-22","NXT \u00b7 Full highlights from the Dusty Classic premiere on The CW"),("4Quvhy8Oo7M","2026-09-22","NXT \u00b7 Top 10 NXT moments from the Dusty Classic episode")],
+     "TNA":[("rWAbJEEBDhM","2026-09-24","iMPACT \u00b7 Mustafa Ali defends International Title in a triple threat classic")]
+  }},
   {"week":"2026-09-14","label":"Week of September 14, 2026","start":datetime.date(2026,9,14),"promos":{
      "WWE":[("t7m12y_xvr0","2026-09-14","Raw \u00b7 Roman Reigns vs. Penta World Heavyweight Title match highlights from Mexico City"),("bXaM4W2nquo","2026-09-14","Raw \u00b7 Penta reacts to his match against Roman Reigns in a WWE digital exclusive"),("qLCQyYed-dI","2026-09-18","SmackDown \u00b7 Kevin Owens steps up to challenge new champion Sami Zayn for the WWE Title"),("efd8w7YrrR4","2026-09-18","SmackDown \u00b7 CM Punk blasts Kevin Owens with the title as Sami Zayn retains the WWE Championship")],
      "AEW":[("3nVvKLNsxyU","2026-09-16","Dynamite \u00b7 Will Ospreay fights off the Death Riders and The Dogs"),("kutouK73ozY","2026-09-19","Collision \u00b7 PAC challenges Andrade El Idolo to a National Title match at All Out"),("AfAchQFBqlU","2026-09-19","Collision \u00b7 Jon Moxley vs Zachary Wentz match highlights")],
