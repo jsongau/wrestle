@@ -25,6 +25,302 @@ def esc(s): return _html.escape(str(s), quote=True)
 # cat: title|event|signing|departure|return|business|media|roster|retirement|passing
 # promo: wwe|nxt|aew|tna|njpw|tko|industry   official: True=promotion-confirmed, False=trade report
 DISPATCHES = [
+  # ================= WEEK OF OCTOBER 26 - NOVEMBER 1, 2026 (Halloween Havoc) =================
+  # Assembled Nov 7. Halloween Havoc headlines; Aminata wins the TBS title; Zayn
+  # keeps the Undisputed Title and the Crown Jewel card locks in; the Demon
+  # returns. See build/add_week_1026.py.
+
+  # ---- WWE NXT Halloween Havoc (Oct 31, Orlando) ----
+  dict(date="2026-10-31", promo="nxt", cat="title", official=True, who="Grayson Waller", lead=True, mono="Halloween Havoc", home=True, htags="titles rivalries",
+       hl="Grayson Waller survives Halloween Havoc as CM Punk sets his sights on the NXT Title",
+       dek="Grayson Waller retained the NXT Championship over Tony D'Angelo at Halloween Havoc in Orlando, and Kelani Jordan kept the Women's Title, before CM Punk appeared to call Waller out and promise a challenge for the gold. Danhausen hosted the Halloween special.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-nxt-halloween-havoc-results-10-31-2026-danhausen-hosts-grayson-waller-kelani-jordan-zilla-fatu-more/"),
+
+  # ---- AEW Fright Night Dynamite (Oct 28, St. Louis) ----
+  dict(date="2026-10-28", promo="aew", cat="title", official=True, who="Queen Aminata", home=True, htags="titles",
+       hl="Queen Aminata dethrones Persephone for the AEW TBS Championship",
+       dek="On Fright Night Dynamite, Queen Aminata pinned Persephone with a running knee to win the TBS Championship, overcoming a belt shot from Britt Baker. Darby Allin also retained the TNT Title over Josh Alexander.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2297881/aew-fright-night-dynamite-october-28-2026-results/"),
+
+  # ---- WWE SmackDown Oct 30 (Charleston) ----
+  dict(date="2026-10-30", promo="wwe", cat="title", official=True, who="Sami Zayn", home=True, htags="titles rivalries",
+       hl="Sami Zayn keeps the Undisputed WWE Title over Trick Williams as Crown Jewel locks in",
+       dek="In a restarted No Disqualification match, Sami Zayn retained the Undisputed WWE Championship over Trick Williams with a title-belt shot. The Crown Jewel card took shape with Zayn vs. Roman Reigns, Cody Rhodes vs. Randy Orton in a Last Man Standing match, and Chelsea Green vs. Liv Morgan.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-30"),
+  dict(date="2026-10-30", promo="wwe", cat="return", official=True, who="Finn Balor", home=True, htags="rivalries",
+       hl="The Demon returns as Finn Balor lays out Gunther on SmackDown",
+       dek="After Gunther attacked Danhausen, Finn Balor appeared as The Demon and drove Gunther through the announce table with a Coup de Grace off a ladder, with reports of a possible clash between them at Crown Jewel.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-30"),
+
+  # ---- AEW Fright Night Dynamite build ----
+  dict(date="2026-10-28", promo="aew", cat="event", official=True, who="Jon Moxley",
+       hl="Blood and Guts is set as AEW builds toward Full Gear",
+       dek="A Blood and Guts match was set between Team Allin and the Don Callis Family, and Jon Moxley challenged The Cut to an Anarchy in the Arena match at Full Gear on November 14. The Motor City Machine Guns also moved ahead of FTR in their best-of-five series.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2297881/aew-fright-night-dynamite-october-28-2026-results/"),
+
+  # ---- WWE Raw Oct 26 (Fresno) ----
+  dict(date="2026-10-26", promo="wwe", cat="event", official=True, who="Penta",
+       hl="Penta teases his cash-in as Sami Zayn turns back Je'Von Evans on Raw",
+       dek="Sami Zayn retained the Undisputed WWE Title over Je'Von Evans in Fresno when Penta appeared to tease a Money in the Bank cash-in and Bron Breakker intervened. Becky Lynch beat Liv Morgan by disqualification, with Morgan keeping the Women's World Title, and Tiffany Stratton's own cash-in attempt was thwarted.",
+       src="WWE.com", url="https://www.wwe.com/shows/raw/2026-10-26"),
+  # =============== end week of October 26 - November 1, 2026 ===============
+
+  # ================= WEEK OF NOVEMBER 2 - NOVEMBER 6, 2026 (Crown Jewel go-home) =================
+  # Assembled Nov 7 (current week). Cena returns in Brooklyn; Ethan Page takes the
+  # IC title; Blood & Guts; Waller turns back CM Punk; Crown Jewel looms tonight.
+  # See build/add_week_1102.py.
+
+  # ---- WWE Raw Nov 2 (Brooklyn) ----
+  dict(date="2026-11-02", promo="wwe", cat="media", official=True, who="John Cena", lead=True, mono="Cena Returns", home=True, htags="roster",
+       hl="John Cena returns to Raw in Brooklyn and launches the John Cena Classic",
+       dek="John Cena appeared at Barclays Center to unveil the John Cena Classic, a December 14 event, naming Cody Rhodes the first invitee and promising to scout talent at Survivor Series: WarGames. The go-home Raw also ended with Sami Zayn leveling Roman Reigns with a Helluva Kick before Crown Jewel.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-raw-results-11-2-2026-solo-sikoa-vs-royce-keys-john-cena-roman-reigns-more/"),
+  dict(date="2026-11-02", promo="wwe", cat="title", official=True, who="Ethan Page", home=True, htags="titles",
+       hl="Ethan Page dethrones Chad Gable for the Intercontinental Championship on Raw",
+       dek="Ethan Page beat Chad Gable in Brooklyn to win the Intercontinental Championship, ending Gable's reign after weeks of attacks alongside Big Cass.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2303334/wwe-raw-november-2-2026-results/"),
+
+  # ---- AEW Dynamite: Blood & Guts (Nov 4) ----
+  dict(date="2026-11-04", promo="aew", cat="event", official=True, who="Don Callis Family", home=True, htags="matches rivalries",
+       hl="The Don Callis Family wins Blood and Guts as Adam Copeland surrenders",
+       dek="In the men's Blood and Guts, the Don Callis Family beat Team Allin when Adam Copeland surrendered while chained to the cage with Kyle Fletcher holding a screwdriver to Will Ospreay's throat. Earlier, Kris Statlander's team won the women's Blood and Guts.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2307145/aew-dynamite-november-4-2026-results/"),
+
+  # ---- WWE NXT Nov 4 ----
+  dict(date="2026-11-04", promo="nxt", cat="title", official=True, who="Grayson Waller", home=True, htags="titles",
+       hl="Grayson Waller turns back CM Punk as Moreno and Dar win the Dusty Classic",
+       dek="Grayson Waller retained the NXT Championship over CM Punk after a Kevin Owens distraction let him roll Punk up with the tights. Romeo Moreno and Noam Dar won the Dusty Rhodes Tag Team Classic final, with Cody Rhodes presenting the cup.",
+       src="WWE.com", url="https://www.wwe.com/shows/wwenxt/2026-11-4"),
+
+  # ---- WWE Crown Jewel PREVIEW (Nov 7, Riyadh) ----
+  dict(date="2026-11-06", promo="wwe", cat="event", official=True, who="Roman Reigns", home=True, htags="rivalries",
+       hl="Crown Jewel descends on Riyadh with Reigns vs. Zayn and Cody vs. Orton",
+       dek="WWE Crown Jewel emanates from Riyadh on November 7 in a champion-versus-champion main event, World Heavyweight Champion Roman Reigns against Undisputed WWE Champion Sami Zayn, with Cody Rhodes meeting Randy Orton in a Last Man Standing match. (Preview - the event had not taken place at publication.)",
+       src="WWE.com", url="https://www.wwe.com/shows/wwe-crown-jewel/crown-jewel-2026"),
+
+  # ---- WWE SmackDown Nov 6 (Brooklyn, taped) ----
+  dict(date="2026-11-06", promo="wwe", cat="event", official=True, who="Kevin Owens",
+       hl="Kevin Owens beats CM Punk in a No Holds Barred war in Brooklyn",
+       dek="On a SmackDown taped at Barclays Center, Kevin Owens beat CM Punk in a No Holds Barred match, driving him through the announce table, as the Baddies and Fatal Influence teased a WarGames collision.",
+       src="Sacnilk", url="https://www.sacnilk.com/news/wwe-smackdown-spoilers-november-6-2026-taped-results-winners"),
+  # =============== end week of November 2 - November 6, 2026 ===============
+
+  # ================= WEEK OF OCTOBER 19 - OCTOBER 25, 2026 (Crown Jewel build) =================
+  # Assembled Nov 7. Crown Jewel card forms (Cody vs Orton Last Man Standing);
+  # Michin & B-Fab win the women's tag titles; Reigns returns on Raw; Ilja
+  # Dragunov wins his AEW in-ring debut. See build/add_week_1019.py.
+
+  # ---- WWE SmackDown Oct 23 (Ontario, CA) ----
+  dict(date="2026-10-23", promo="wwe", cat="event", official=True, who="Cody Rhodes", lead=True, mono="Crown Jewel", home=True, htags="rivalries",
+       hl="Cody Rhodes and Randy Orton sign a Last Man Standing match for Crown Jewel",
+       dek="On SmackDown, GM Nick Aldis booked Cody Rhodes against Randy Orton at Crown Jewel in Riyadh on November 7, and Rhodes insisted on Last Man Standing rules as the former partners' feud turned personal.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-23/results"),
+  dict(date="2026-10-23", promo="wwe", cat="title", official=True, who="Michin", home=True, htags="titles",
+       hl="Michin and B-Fab capture the Women's Tag Team Titles on SmackDown",
+       dek="Jade Cargill struck Tatum Paxley from ringside, and Michin pinned her with a Styles Clash as Michin and B-Fab beat Alexa Bliss and Paxley for the Women's Tag Team Championship.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-23/results"),
+  dict(date="2026-10-23", promo="wwe", cat="title", official=True, who="Chelsea Green",
+       hl="Chelsea Green turns back Roxanne Perez as Stratton stalks a cash-in",
+       dek="Chelsea Green retained the WWE Women's Championship against Roxanne Perez, and Tiffany Stratton nearly cashed in her Money in the Bank contract on Liv Morgan before Morgan escaped.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-23/results"),
+
+  # ---- WWE Raw Oct 19 (San Diego) ----
+  dict(date="2026-10-19", promo="wwe", cat="event", official=True, who="Roman Reigns", home=True, htags="rivalries",
+       hl="Roman Reigns returns on Raw to stand with The Bloodline against 946",
+       dek="Reigns made a surprise return to help The Usos and Solo Sikoa clear out 946, now bolstered by Carmelo Hayes, and traded words with Undisputed WWE Champion Sami Zayn over which title matters most ahead of Crown Jewel. Chad Gable retained the Intercontinental Title in a triple threat.",
+       src="WWE.com", url="https://www.wwe.com/shows/raw/2026-10-19"),
+
+  # ---- AEW Dynamite Oct 21 (Coral Gables) ----
+  dict(date="2026-10-21", promo="aew", cat="event", official=True, who="Ilja Dragunov", home=True, htags="rivalries",
+       hl="Ilja Dragunov wins his AEW in-ring debut over Mike Bailey",
+       dek="Days after arriving at WrestleDream, Ilja Dragunov beat Speedball Mike Bailey with an H-Bomb on Dynamite. Later, Darby Allin, Steven Borden, The Young Bucks, Will Ospreay and Adam Copeland issued a Blood and Guts challenge to the Don Callis Family.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2292521/aew-dynamite-october-21-2026-results/"),
+  dict(date="2026-10-21", promo="aew", cat="event", official=True, who="Swerve Strickland",
+       hl="Swerve Strickland demands a Trios rematch as AEW builds to Full Gear",
+       dek="Swerve Strickland pushed for a World Trios Championship rematch against Adam Page, Brody King and Bandido, calling for a Texas Death Match, as AEW set its sights on Full Gear.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2292521/aew-dynamite-october-21-2026-results/"),
+  # =============== end week of October 19 - October 25, 2026 ===============
+
+  # ================= WEEK OF OCTOBER 12 - OCTOBER 18, 2026 (WrestleDream) =================
+  # Assembled Nov 7. Ospreay wins the first Clockwork Carnage; Hangman's side takes
+  # the Trios titles; Ilja Dragunov debuts in AEW; Carmelo Hayes joins 946; the
+  # Cody-Orton feud reignites. See build/add_week_1012.py.
+
+  # ---- AEW WrestleDream (Oct 17, Orlando) ----
+  dict(date="2026-10-17", promo="aew", cat="title", official=True, who="Will Ospreay", lead=True, mono="WrestleDream", home=True, htags="titles matches",
+       hl="Will Ospreay survives the first-ever Clockwork Carnage to keep the AEW World Title",
+       dek="In the WrestleDream main event in Orlando, Ospreay retained the AEW World Championship in the inaugural Clockwork Carnage match against Samoa Joe, Adam Copeland, Konosuke Takeshita, Kazuchika Okada, Ricochet, Mike Bailey and Darby Allin.",
+       src="Fightful", url="https://www.fightful.com/wrestling/aew-wrestledream-results-10-17-2026-mercedes-mone-vs-thekla-clockwork-carnage-more/"),
+  dict(date="2026-10-17", promo="aew", cat="title", official=True, who="Hangman Page", home=True, htags="titles",
+       hl="Hangman Page, Bandido and Brody King win the AEW World Trios Titles",
+       dek="In a two-out-of-three-falls match at WrestleDream, Hangman Page, Bandido and Brody King dethroned Swerve Strickland and New Level (Kofi Kingston and Austin Creed) for the World Trios Championship.",
+       src="Fightful", url="https://www.fightful.com/wrestling/aew-wrestledream-results-10-17-2026-mercedes-mone-vs-thekla-clockwork-carnage-more/"),
+  dict(date="2026-10-17", promo="aew", cat="title", official=True, who="Mercedes Mone",
+       hl="Mercedes Mone turns back Thekla to retain the AEW Women's World Title",
+       dek="Mercedes Mone beat Thekla at WrestleDream to keep the Women's World Championship in the match Thekla earned by winning the All Out number one contender bout.",
+       src="Fightful", url="https://www.fightful.com/wrestling/aew-wrestledream-results-10-17-2026-mercedes-mone-vs-thekla-clockwork-carnage-more/"),
+  dict(date="2026-10-17", promo="aew", cat="signing", official=True, who="Ilja Dragunov", home=True, htags="roster",
+       hl="Ilja Dragunov debuts at WrestleDream and is All Elite",
+       dek="Ilja Dragunov made a surprise AEW debut at WrestleDream, months after his WWE exit, and was announced as All Elite.",
+       src="Fightful", url="https://www.fightful.com/wrestling/aew-wrestledream-results-10-17-2026-mercedes-mone-vs-thekla-clockwork-carnage-more/"),
+
+  # ---- WWE Raw Oct 12 (Bossier City) ----
+  dict(date="2026-10-12", promo="wwe", cat="event", official=True, who="Carmelo Hayes", home=True, htags="rivalries",
+       hl="Carmelo Hayes joins 946 as the faction ambushes The Bloodline on Raw",
+       dek="The six-man between The Bloodline (Solo Sikoa and The Usos) and 946 ended in chaos when Carmelo Hayes revealed himself as the newest member of 946, and the group closed the show standing tall over The Bloodline.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-raw-results-10-12-2026-the-bloodline-vs-946-chad-gable-vs-rey-fenix-liv-morgan-more/"),
+  dict(date="2026-10-12", promo="wwe", cat="title", official=True, who="Chad Gable",
+       hl="Chad Gable turns back Rey Fenix to keep the Intercontinental Title",
+       dek="Chad Gable retained the Intercontinental Championship against Rey Fenix on Raw, with Ethan Page attacking Fenix backstage beforehand.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-raw-results-10-12-2026-the-bloodline-vs-946-chad-gable-vs-rey-fenix-liv-morgan-more/"),
+
+  # ---- AEW Dynamite Oct 14 (Cleveland) ----
+  dict(date="2026-10-14", promo="aew", cat="retirement", official=True, who="Adam Copeland",
+       hl="Adam Copeland announces he will retire in 2027",
+       dek="On Dynamite, Adam Copeland said he will retire in 2027 and blamed Christian Cage for breaking his ribs, before the Don Callis Family attacked him. The night also set the Clockwork Carnage field with qualifier wins for Ricochet, Takeshita and Copeland.",
+       src="Fightful", url="https://www.fightful.com/wrestling/aew-dynamite-results-10-14-2026-will-ospreay-andrade-in-tag-action-clockwork-carnage-qualifiers-mercedes-mone-dani-luna-more/"),
+
+  # ---- WWE SmackDown Oct 16 (Sacramento) ----
+  dict(date="2026-10-16", promo="wwe", cat="event", official=True, who="Cody Rhodes", home=True, htags="rivalries",
+       hl="Randy Orton costs Cody Rhodes again as their feud boils over on SmackDown",
+       dek="Cody Rhodes beat Baron Corbin by disqualification in Sacramento when Randy Orton interfered, and Orton then drove Cody into the steel steps as the former partners' rivalry intensified.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-16/results"),
+
+  # ---- TNA iMPACT Oct 15 (San Antonio) ----
+  dict(date="2026-10-15", promo="tna", cat="event", official=True, who="Trey Miguel",
+       hl="Trey Miguel wins a ladder match to earn a shot at champion Leon Slater",
+       dek="Trey Miguel won a five-way ladder match on iMPACT to become number one contender to new TNA World Champion Leon Slater, with the title match set for Destination X on November 15.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2287262/tna-thursday-night-impact-october-15-2026-results/"),
+  # =============== end week of October 12 - October 18, 2026 ===============
+
+  # ================= WEEK OF OCTOBER 5 - OCTOBER 11, 2026 (MITB + Bound for Glory) =================
+  # Assembled Nov 7. Double-PLE week. Penta + Stratton win briefcases; Liv Morgan
+  # dethrones Vaquer; Reigns ret.; Bliss/Paxley win tag gold; and at Bound for
+  # Glory Leon Slater becomes the youngest TNA World Champ with four more title
+  # changes. See build/add_week_1005.py.
+
+  # ---- WWE Money in the Bank (Oct 10, New Orleans) ----
+  dict(date="2026-10-10", promo="wwe", cat="event", official=True, who="Penta", lead=True, mono="Money in the Bank", home=True, htags="matches",
+       hl="Penta climbs to win the men's Money in the Bank briefcase in New Orleans",
+       dek="At Money in the Bank, Penta won the men's ladder match over Bron Breakker, CM Punk, Kevin Owens, Trick Williams and Je'Von Evans, hitting Breakker with a Mexican Destroyer onto a bridged ladder before pulling down the briefcase. Breakker had earlier speared Evans through an ambulance.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2281848/wwe-money-in-the-bank-2026-results/"),
+  dict(date="2026-10-10", promo="wwe", cat="title", official=True, who="Liv Morgan", home=True, htags="titles rivalries",
+       hl="Liv Morgan dethrones Stephanie Vaquer for the Women's World Championship",
+       dek="In a triple threat at Money in the Bank, Liv Morgan pinned champion Stephanie Vaquer with Oblivion, after Vaquer sent Becky Lynch into a table, to capture the Women's World Championship.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2281848/wwe-money-in-the-bank-2026-results/"),
+  dict(date="2026-10-10", promo="wwe", cat="event", official=True, who="Tiffany Stratton",
+       hl="Tiffany Stratton wins the women's Money in the Bank ladder match",
+       dek="Stratton outlasted Sol Ruca, Lola Vice, Jacy Jayne, Roxanne Perez and Lash Legend, using the briefcase to knock Legend off a ladder before unclipping it to earn a guaranteed title shot.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2281848/wwe-money-in-the-bank-2026-results/"),
+  dict(date="2026-10-10", promo="wwe", cat="title", official=True, who="Roman Reigns",
+       hl="Roman Reigns turns back LA Knight to keep the World Heavyweight Title",
+       dek="Reigns beat LA Knight with a Spear to retain the World Heavyweight Championship. Afterward 946 confronted Reigns, and The Usos and Solo Sikoa brawled with the group.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2281848/wwe-money-in-the-bank-2026-results/"),
+
+  # ---- WWE SmackDown Oct 9 (Lafayette) ----
+  dict(date="2026-10-09", promo="wwe", cat="title", official=True, who="Alexa Bliss", home=True, htags="titles",
+       hl="Alexa Bliss and Tatum Paxley capture the Women's Tag Team Titles on SmackDown",
+       dek="Standing in for an injured Charlotte Flair, Bliss teamed with Tatum Paxley to beat Fatal Influence (Fallon Henley and Lainey Reid) in Lafayette, with Paxley landing Cemetery Drive on Henley. It is Bliss's fifth women's tag title reign.",
+       src="Sacnilk", url="https://www.sacnilk.com/news/new-champions-crowned-on-wwe-smackdown-october-9-2026"),
+
+  # ---- WWE Raw Oct 5 (St. Louis) ----
+  dict(date="2026-10-05", promo="wwe", cat="event", official=True, who="Stephanie Vaquer",
+       hl="Vaquer's interference turns the Women's World Title into a Money in the Bank triple threat",
+       dek="On Raw in St. Louis, Becky Lynch vs. Liv Morgan broke down when champion Stephanie Vaquer interfered, and Adam Pearce added both challengers to make it a triple threat at Money in the Bank. Roman Reigns and LA Knight came face to face ahead of their title match.",
+       src="WWE.com", url="https://www.wwe.com/shows/raw/2026-10-05/results"),
+
+  # ---- TNA Bound for Glory (Oct 11, Tampa) ----
+  dict(date="2026-10-11", promo="tna", cat="title", official=True, who="Leon Slater", home=True, htags="titles matches",
+       hl="Leon Slater becomes the youngest TNA World Champion at Bound for Glory",
+       dek="Having given up the X-Division Title to invoke Option C, Leon Slater beat Nic Nemeth with a Swanton 450 in Tampa to win the TNA World Championship and become the youngest champion in company history.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2283301/tna-bound-for-glory-2026-results/"),
+  dict(date="2026-10-11", promo="tna", cat="title", official=True, who="Amazing Red", home=True, htags="titles",
+       hl="Amazing Red wins the vacant X-Division Title hours after his Hall of Fame induction",
+       dek="Inducted into the TNA Hall of Fame on the pre-show, Amazing Red then won a seven-way scramble for the vacant X-Division Championship, pinning KC Navarro with a Code Red.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2283301/tna-bound-for-glory-2026-results/"),
+  dict(date="2026-10-11", promo="tna", cat="title", official=True, who="Jason Hotch",
+       hl="Jason Hotch pins Mustafa Ali to take the TNA International Title",
+       dek="In a fatal four-way, Jason Hotch rolled up champion Mustafa Ali to win the International Championship, with John Skyler and Special Agent Zero also in the match after the Order 4 breakup.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2283301/tna-bound-for-glory-2026-results/"),
+  dict(date="2026-10-11", promo="tna", cat="title", official=True, who="Indi Hartwell",
+       hl="Indi Hartwell dethrones Xia Brookside for the Knockouts World Title",
+       dek="With Mickie James as special guest referee, Indi Hartwell beat champion Xia Brookside with a Nelson slam to win the Knockouts World Championship at Bound for Glory.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2283301/tna-bound-for-glory-2026-results/"),
+  dict(date="2026-10-11", promo="tna", cat="event", official=True, who="Syx",
+       hl="Syx beat the Hardys in a Falls Count Anywhere war as Erick Redbeard appears",
+       dek="Joseph Sawyer and Samuel Shaw of Syx beat Matt and Jeff Hardy in a Falls Count Anywhere match, with Erick Redbeard appearing mid-match to help the faction. Frankie Kazarian had earlier won the Call Your Shot Gauntlet.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2283301/tna-bound-for-glory-2026-results/"),
+  # =============== end week of October 5 - October 11, 2026 ===============
+
+  # ================= WEEK OF SEPTEMBER 28 - OCTOBER 4, 2026 =================
+  # Assembled Nov 7. Lead: the passing of PAC (Benjamin Satterley). MITB fields
+  # set; Bloodline-946 war escalates; Dusty Classic rolls on; BFG build on TNA.
+  # See build/add_week_0928.py.
+
+  dict(date="2026-09-28", promo="aew", cat="passing", official=True, who="PAC", lead=True, mono="In Memoriam", home=True, htags="roster",
+       hl="Wrestling mourns PAC, Benjamin Satterley, dead at 40",
+       dek="AEW confirmed that Benjamin Satterley, the British star known as PAC and formerly Neville in WWE, had died at 40, a day after wrestling at All Out in the Chicago area. A cause was not given. AEW's September 30 Dynamite became a tribute show with a ten-bell salute and an emotional Jon Moxley promo, and TNA iMPACT and WWE honored him on their programs.",
+       src="Cleveland 19", url="https://www.cleveland19.com/2026/09/28/aew-star-benjamin-pac-satterley-dead-40/"),
+
+  # ---- WWE: Raw Sep 28 (Milwaukee) ----
+  dict(date="2026-09-28", promo="wwe", cat="event", official=True, who="Jaida Parker", home=True, htags="rivalries",
+       hl="Jaida Parker revealed as 946 as the faction war with The Bloodline explodes on Raw",
+       dek="946 (Royce Keys, Bronco Nima and Lucien Price) escalated their war with The Bloodline in Milwaukee, and Jaida Parker was revealed as a member of the group, striking Jacob Fatu with a car during the chaos.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-raw-results-9-28-2026-stephanie-vaquer-appears-bloodline-calls-out-946-more/"),
+  dict(date="2026-09-28", promo="wwe", cat="media", official=True, who="Stephanie Vaquer",
+       hl="Stephanie Vaquer books Liv Morgan vs. Becky Lynch to name her next challenger",
+       dek="Women's World Champion Stephanie Vaquer announced that Liv Morgan and Becky Lynch would meet on Raw the following week, with the winner earning a shot at her title.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-raw-results-9-28-2026-stephanie-vaquer-appears-bloodline-calls-out-946-more/"),
+
+  # ---- WWE: SmackDown Oct 2 (Denver) ----
+  dict(date="2026-10-02", promo="wwe", cat="event", official=True, who="Kevin Owens", home=True, htags="matches",
+       hl="Kevin Owens and Tiffany Stratton win the final Money in the Bank qualifiers",
+       dek="On SmackDown in Denver, Kevin Owens beat Cody Rhodes and Johnny Gargano for the last men's ladder spot after Randy Orton derailed Rhodes, while Tiffany Stratton won her triple threat to complete the women's field for Money in the Bank on October 10 in New Orleans.",
+       src="WWE.com", url="https://www.wwe.com/shows/smackdown/2026-10-02/results"),
+
+  # ---- NXT Sep 29 (Orlando) ----
+  dict(date="2026-09-29", promo="nxt", cat="title", official=True, who="Grayson Waller", home=True, htags="titles",
+       hl="Grayson Waller answers an open challenge as the Dusty Classic rolls on",
+       dek="NXT Champion Grayson Waller beat EK Prosper in an open challenge in Orlando, while Fraxiom and the team of Mini Vikingo and Chazz Hall advanced in the Dusty Rhodes Tag Team Classic.",
+       src="Fightful", url="https://www.fightful.com/wrestling/wwe-nxt-results-9-29-2026-grayson-waller-defends-the-nxt-title-dusty-cup-continues-more/"),
+
+  # ---- AEW Collision Oct 3 (Highland Heights, KY) ----
+  dict(date="2026-10-03", promo="aew", cat="title", official=True, who="Jon Moxley",
+       hl="Jon Moxley retains the Continental Championship as WrestleDream takes shape",
+       dek="Moxley beat Jake Doyle in a Continental Championship Eliminator on Collision, and AEW announced the World Championship will be defended in a Clockwork Carnage match at WrestleDream. Paul Wight and Nigel McGuinness paid tribute to PAC during the broadcast.",
+       src="Fightful", url="https://www.fightful.com/wrestling/aew-collision-results-10-3-2026-kofi-vs-lee-moriarty-jon-moxley-death-riders-queen-aminata-more/"),
+
+  # ---- TNA iMPACT Oct 1 (San Antonio) ----
+  dict(date="2026-10-01", promo="tna", cat="event", official=True, who="The Hardys", home=True, htags="rivalries",
+       hl="The Hardys and Syx sign a No-DQ Bound for Glory clash on iMPACT",
+       dek="On an iMPACT dedicated to PAC, Joseph Sawyer and Samuel Shaw of Syx targeted the Hardys, and a No Disqualification, Falls Count Anywhere tag match was announced for Bound for Glory. A four-way for the International Title was also set for the pay-per-view.",
+       src="Fightful", url="https://www.fightful.com/wrestling/tna-impact-results-10-1-syx-to-speak-leon-slater-competes/"),
+  # =============== end week of September 28 - October 4, 2026 ===============
+
+  # ============ SEP 26 PLE BACKFILL - WORLDS COLLIDE / ALL OUT (groups into wk of Sep 21) ============
+  # Both shows ran head-to-head Sat Sep 26 in the Chicago area. Added Nov 7. See build/add_week_0928.py.
+  dict(date="2026-09-26", promo="aew", cat="title", official=True, who="Will Ospreay",
+       hl="Will Ospreay pins Jon Moxley to retain the AEW World Championship at All Out",
+       dek="In the All Out main event in the Chicago area, Ospreay survived heavy interference and a briefcase shot to beat Moxley with the Hidden Blade in his first defense since winning the title at All In. Moxley placed the belt on Ospreay's shoulder afterward in a show of respect.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2269727/aew-all-out-2026-several-titles-on-line-two-number-one-contenders-matches/"),
+  dict(date="2026-09-26", promo="aew", cat="title", official=True, who="The Young Bucks",
+       hl="The Young Bucks climb to capture the AEW World Tag Team Titles at All Out",
+       dek="Matt and Nick Jackson pulled the belts down in a three-team ladder match to dethrone champions Christian Cage and Adam Copeland, with FTR also in the match.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2269727/aew-all-out-2026-several-titles-on-line-two-number-one-contenders-matches/"),
+  dict(date="2026-09-26", promo="aew", cat="event", official=True, who="Thekla",
+       hl="Thekla beats Willow Nightingale to earn a shot at Mercedes Mone",
+       dek="Thekla won the Women's World Championship number one contender match and will challenge Mercedes Mone at WrestleDream on October 17. Mone appeared afterward to hold up the title.",
+       src="WrestlingInc", url="https://www.wrestlinginc.com/2269727/aew-all-out-2026-several-titles-on-line-two-number-one-contenders-matches/"),
+  dict(date="2026-09-26", promo="wwe", cat="event", official=True, who="CM Punk",
+       hl="CM Punk, Rey Mysterio and El Grande Americano win the Worlds Collide main event",
+       dek="At the WWE x AAA Worlds Collide show in the Chicago area, the trio beat Dominik Mysterio, JD McDonagh and Omos, with Punk landing the GTS on McDonagh. The card was taped September 26 and aired on WWE's YouTube channel on September 30.",
+       src="WWE.com", url="https://www.wwe.com/shows/wwe-worlds-collide/2026"),
+  dict(date="2026-09-26", promo="wwe", cat="title", official=True, who="La Catalina",
+       hl="La Catalina retains the AAA Reina de Reinas Title over Roxanne Perez",
+       dek="La Catalina countered Perez's Pop Rox to keep the championship at Worlds Collide. Perez attacked her after the bell and raised the title high.",
+       src="WWE.com", url="https://www.wwe.com/shows/wwe-worlds-collide/2026"),
+  # ============ end Sep 26 PLE backfill ============
+
   # ================= WEEK OF SEPTEMBER 21 - SEPTEMBER 25, 2026 (in progress) =================
   # Assembled Sep 25. 946 kidnaps Sikoa on Raw; Penta replaces him and qualifies
   # for MITB; Dusty Classic begins on NXT; AEW All Out go-home. SmackDown 9/25

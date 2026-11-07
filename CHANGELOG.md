@@ -1,3 +1,13 @@
+## 2026-11-07
+
+- **Six-week catch-up: Sep 28 through Nov 6 opened.** After the site sat at the Sep 21 week, all six missing weeks were researched live and filed: weeks of Sep 28, Oct 5, Oct 12, Oct 19, Oct 26, and Nov 2. 272 total dispatches across 21 Lore Feed weeks. Every dispatch is sourced to a real, opened recap (Fightful, WWE.com, WrestlingInc, AEW, TNA, Cleveland 19); nothing invented, conflicts omitted rather than guessed.
+- **Six pay-per-views covered:** WWE x AAA Worlds Collide and AEW All Out (both Sep 26, backfilled into the Sep 21 week by date), WWE Money in the Bank (Oct 10), TNA Bound for Glory (Oct 11), AEW WrestleDream (Oct 17), and NXT Halloween Havoc (Oct 31), plus a Crown Jewel preview (Nov 7).
+- **In memoriam:** The week of Sep 28 leads with the passing of Benjamin Satterley (PAC) at 40, handled as a respectful memoriam; AEW, TNA, and WWE tributes noted.
+- **Title changes tracked:** Liv Morgan (Women's World), Leon Slater (TNA World, youngest ever), the Young Bucks (AEW Tag), Hangman Page/Bandido/Brody King (AEW Trios), Queen Aminata (TBS), Ethan Page (Intercontinental), plus multiple WWE women's tag swaps and five new TNA champions at Bound for Glory.
+- **Verification catches:** Rejected a circulating "Kyle O'Reilly taps Moxley" Blood and Guts result that was actually the 2025 show; filed the real 2026 result (Don Callis Family def. Team Allin). Confirmed CM Punk did NOT win the NXT Title (Waller retained via a Kevin Owens distraction).
+- **Next event self-advanced** to Survivor Series (Nov 28, Houston); the tickets page and homepage widget were re-stamped by patch_next_event.
+- **Known gaps (follow-ups):** no gallery video weeks were added for Sep 28-Nov 6 (a verified-video / oEmbed pass is pending, to avoid unverified IDs); TNA iMPACT for Oct 22, Oct 29, and Nov 5 was not cleanly sourced; wrestler-dossier champion statuses have not yet been audited against these six weeks of title changes.
+
 ## 2026-09-25
 
 - **Week of Sep 21-25 opened** (through Sep 25 morning, SmackDown tonight preview-only). 18 new dispatches (222 total), 8 oEmbed-verified official-channel videos (WWE 4, AEW 3, TNA 1). Lead: 946 kidnaps Solo Sikoa on Raw in San Antonio; Penta replaces him and qualifies for MITB.
