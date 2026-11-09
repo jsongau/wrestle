@@ -646,6 +646,16 @@ def load_all():
 
 
 # --------------------------------------------------------------- crawl plumbing
+# Internal links: every page this script writes goes through the shared linking
+# engine (build/wl_links.py), so it links wrestlers, teams, titles, factions and
+# events like every other page family. Safe to remove only with intent.
+def _wl_link(htmlstr, path):
+    import sys as _s, os as _o
+    _b = _o.path.join(_o.environ.get("WL_ROOT", _o.getcwd()), "build")
+    if _b not in _s.path: _s.path.insert(0, _b)
+    import wl_links
+    return wl_links.link_page(htmlstr, path)
+
 def update_sitemap(slugs):
     """Same shape as build_raf.py's update_sitemap(): append only what is absent."""
     p = os.path.join(ROOT, "sitemap.xml")
@@ -875,6 +885,7 @@ def build_pass(data, want, quiet=False):
             continue
         p = os.path.join(ROOT, "factions", slug, "index.html")
         os.makedirs(os.path.dirname(p), exist_ok=True)
+        h = _wl_link(h, os.path.relpath(p, ROOT))
         open(p, "w", encoding="utf-8").write(h)
         written.append(slug)
         if quiet:

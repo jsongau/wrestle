@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="bb-t" id="bb-r">
+<title id="bb-t">Running powerslam arc, studded collar ring, stadium light row</title>
+<style>
+#bb-r .bb-sw{animation:bb-sw 12s ease-in-out infinite}
+@keyframes bb-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#bb-r .bb-l{animation:bb-l 8s ease-in-out infinite}
+@keyframes bb-l{0%,100%{opacity:.55}50%{opacity:1}}
+#bb-r .bb-ring{transform-origin:150px 170px;animation:bb-spin 14s linear infinite}
+@keyframes bb-spin{to{transform:rotate(360deg)}}
+#bb-r .bb-k{stroke-dasharray:100 100;animation:bb-k 9s cubic-bezier(.55,0,.2,1) infinite}
+@keyframes bb-k{0%{stroke-dashoffset:100}32%,76%{stroke-dashoffset:0}100%{stroke-dashoffset:-100}}
+#bb-r .bb-hit{transform-box:fill-box;transform-origin:center;animation:bb-hit 9s ease-out infinite}
+@keyframes bb-hit{0%,30%{transform:scale(.4);opacity:0}33%{opacity:.9}60%,100%{transform:scale(1.5);opacity:0}}
+#bb-r .bb-run{animation:bb-run 9s ease-in-out infinite}
+@keyframes bb-run{0%,100%{transform:translateX(0);opacity:.2}15%{transform:translateX(10px);opacity:.8}32%{opacity:.2}}
+@media (prefers-reduced-motion:reduce){#bb-r,#bb-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="bb-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="bb-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="bb-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="bb-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="bb-c"><rect width="300" height="280"/></clipPath>
+<linearGradient id="bb-kg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1e73be" stop-opacity=".15"/><stop offset="1" stop-color="#f2cc4b"/></linearGradient>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#bb-g)"/>
+<path d="M24 52H276" stroke="#d4af37" stroke-opacity=".35"/><path d="M24 30H276" stroke="#d4af37" stroke-opacity=".16"/><g class="bb-l" style="animation-delay:-0s"><circle cx="36" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="30" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-0.8s"><circle cx="61.3" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="55.3" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-1.6s"><circle cx="86.6" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="80.6" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-2.4s"><circle cx="111.9" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="105.9" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-3.2s"><circle cx="137.2" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="131.2" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-4s"><circle cx="162.5" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="156.5" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-4.8s"><circle cx="187.8" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="181.8" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-5.6s"><circle cx="213.1" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="207.1" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-6.4s"><circle cx="238.4" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="232.4" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g><g class="bb-l" style="animation-delay:-7.2s"><circle cx="263.7" cy="40" r="11" fill="#f2cc4b" fill-opacity=".12"/><rect x="257.7" y="36" width="12" height="8" rx="2" fill="#fff" fill-opacity=".85"/></g>
+<path d="M48 56L66 56L40 170L14 170ZM234 56L252 56L286 170L260 170Z" fill="#f2cc4b" fill-opacity=".05"/>
+<circle cx="150" cy="170" r="38" fill="#1e73be" fill-opacity=".1"/>
+<g fill="none"><circle cx="150" cy="170" r="53" stroke="#d4af37" stroke-opacity=".5"/><circle cx="150" cy="170" r="39" stroke="#d4af37" stroke-opacity=".5"/><circle cx="150" cy="170" r="46" stroke="#c8102e" stroke-opacity=".55" stroke-width="10"/></g>
+<g class="bb-ring"><circle cx="196" cy="170" r="3.6" fill="#fff"/><circle cx="193.2" cy="185.7" r="3.6" fill="#f2cc4b"/><circle cx="185.2" cy="199.6" r="3.6" fill="#f2cc4b"/><circle cx="173" cy="209.8" r="3.6" fill="#fff"/><circle cx="158" cy="215.3" r="3.6" fill="#f2cc4b"/><circle cx="142" cy="215.3" r="3.6" fill="#f2cc4b"/><circle cx="127" cy="209.8" r="3.6" fill="#fff"/><circle cx="114.8" cy="199.6" r="3.6" fill="#f2cc4b"/><circle cx="106.8" cy="185.7" r="3.6" fill="#f2cc4b"/><circle cx="104" cy="170" r="3.6" fill="#fff"/><circle cx="106.8" cy="154.3" r="3.6" fill="#f2cc4b"/><circle cx="114.8" cy="140.4" r="3.6" fill="#f2cc4b"/><circle cx="127" cy="130.2" r="3.6" fill="#fff"/><circle cx="142" cy="124.7" r="3.6" fill="#f2cc4b"/><circle cx="158" cy="124.7" r="3.6" fill="#f2cc4b"/><circle cx="173" cy="130.2" r="3.6" fill="#fff"/><circle cx="185.2" cy="140.4" r="3.6" fill="#f2cc4b"/><circle cx="193.2" cy="154.3" r="3.6" fill="#f2cc4b"/></g>
+<g class="bb-run" stroke="#fff" stroke-opacity=".6" stroke-linecap="round"><path d="M16 236h10M14 246h12M18 256h8"/></g>
+<g fill="none" stroke-linecap="round">
+<path d="M22 254C84 54 206 56 256 226" stroke="#fff" stroke-opacity=".1"/>
+<path class="bb-k" pathLength="100" d="M30 250C90 60 200 60 248 222" stroke="url(#bb-kg)" stroke-width="3.4"/></g>
+<circle cx="248" cy="222" r="3.4" fill="#fff"/>
+<circle class="bb-hit" cx="248" cy="222" r="16" fill="none" stroke="#c8102e" stroke-width="2"/>
+<rect width="300" height="280" fill="url(#bb-h)"/>
+<g clip-path="url(#bb-c)"><g transform="skewX(-16)"><rect class="bb-sw" x="-60" y="0" width="70" height="300" fill="url(#bb-s)"/></g></g>
+<rect width="300" height="400" fill="url(#bb-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="mh-t" id="mh-r">
-<title id="mh-t">Twist-of-fate spiral, ladder, broken-glass fracture</title>
+<title id="mh-t">Twist-of-fate spiral, ladder, broken-glass shards</title>
 <style>
 #mh-r .mh-sw{animation:mh-sw 12s ease-in-out infinite}
 @keyframes mh-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
@@ -26,11 +26,12 @@
 <path class="mh-sp" d="M154 138L155 139.3L155.5 141.2L155.4 143.4L154.4 145.6L152.6 147.7L150 149.2L146.8 150L143.2 149.8L139.5 148.5L136.1 146L133.3 142.5L131.5 138L131 132.9L131.9 127.6L134.4 122.4L138.4 117.8L143.7 114.4L150 112.3L157 112L164 113.7L170.7 117.3L176.4 122.8L180.6 129.8L182.9 138L182.9 146.8L180.6 155.7L175.8 163.8L168.9 170.7L160.1 175.6L150 178.1L139.3 177.9L128.7 174.8L119.1 168.9L111.1 160.5L105.4 149.9L102.6 138L103.1 125.4L106.9 113.1L114 102L123.9 92.8L136.2 86.4L150 83.4L164.4 84.1L178.5 88.6L191.1 96.9L201.4 108.3L208.5 122.3L211.8 138L210.9 154.3L205.6 170.1L196.3 184.3L183.3 195.7L167.6 203.5L150 207L131.8 205.8L114.3 199.9L98.6 189.4L86 174.9L77.5 157.4L73.7 138L75.2 118L81.9 98.7L93.5 81.5L109.5 67.8L128.7 58.5L150 54.5L171.9 56.2L192.9 63.6L211.6 76.4L226.5 93.9L236.5 114.8L240.7 138L238.8 161.8L230.6 184.6L216.7 204.7L197.8 220.7L175 231.4L150 235.9L124.3 233.8L99.8 224.9L78.2 209.8L61 189.4L49.6 164.9L44.8 138" fill="none" stroke="#d4af37" stroke-opacity=".38" stroke-width="1.4"/>
 <g fill="none" stroke-linecap="round"><path d="M98 266L124 36M162 266L184 36" stroke="#f2cc4b" stroke-width="3.2" stroke-opacity=".85"/>
 <path d="M100 236h59M104 204h58M108 172h57M111 140h57M115 108h57M118 76h57M121 48h57" stroke="#d4af37" stroke-width="2.4" stroke-opacity=".7"/></g>
-<g class="mh-gl"><path d="M204 108L217.7 105.2L234 107.4L248.8 97.6L265.9 104.2M204 108L216.4 114.5L228 126L244.9 129.1L254.5 143.9M204 108L210.7 120.3L215.2 135.8L214.8 152.7L233.2 162.7M204 108L197.9 120.6L187.8 133.3L184.6 149.7L181.6 165.8M204 108L190.7 112.3L174 108.6L159.2 118.3L144.4 125M204 108L190.1 106.3L175.4 99.1L158.1 104.6L143.5 94.6M204 108L197.1 95.8L191 81L177.2 70.6L167.8 57.7M204 108L205.6 94.1L204.8 78L203.3 62L209.1 46.2M204 108L213.9 98.1L228.6 90.8L240.7 80.3L246.8 63.1M228 108.5L222.3 123.6L205.7 131.9L190.7 128L182 117.5L182.7 96.9L189.9 88.6L207.6 84.3L223.4 93.9Z" fill="none" stroke="#1e73be" stroke-opacity=".7" stroke-width="1.1" transform="translate(1.5 1)"/></g>
-<path class="mh-cr" d="M204 108L217.7 105.2L234 107.4L248.8 97.6L265.9 104.2M204 108L216.4 114.5L228 126L244.9 129.1L254.5 143.9M204 108L210.7 120.3L215.2 135.8L214.8 152.7L233.2 162.7M204 108L197.9 120.6L187.8 133.3L184.6 149.7L181.6 165.8M204 108L190.7 112.3L174 108.6L159.2 118.3L144.4 125M204 108L190.1 106.3L175.4 99.1L158.1 104.6L143.5 94.6M204 108L197.1 95.8L191 81L177.2 70.6L167.8 57.7M204 108L205.6 94.1L204.8 78L203.3 62L209.1 46.2M204 108L213.9 98.1L228.6 90.8L240.7 80.3L246.8 63.1M228 108.5L222.3 123.6L205.7 131.9L190.7 128L182 117.5L182.7 96.9L189.9 88.6L207.6 84.3L223.4 93.9Z" fill="none" stroke="#fff" stroke-width=".9" stroke-linejoin="bevel"/>
-<circle cx="204" cy="108" r="3" fill="#fff"/>
-<g class="mh-sh" fill="#fff"><path d="M246 70l12-6-4 14z" fill-opacity=".5"/><path d="M236 156l9 3-8 7z" fill-opacity=".35"/><path d="M168 66l-8-8 11 1z" fill-opacity=".4"/></g>
-<path d="M250 72l6-3M240 158l4 1" stroke="#1e73be" stroke-width="1.2"/>
+<g class="mh-cr"><path d="M212 112L276 96L274.4 118.6L245.7 140.3Z" fill="#fff" fill-opacity=".12"/><path d="M213.5 116.8L247.3 145L225.3 212.6L193.2 198.3Z" fill="#fff" fill-opacity=".05"/><path d="M212 112L191.7 193.5L168.8 163.5L154.9 122.1Z" fill="#fff" fill-opacity=".1"/><path d="M208.3 110.6L151.1 120.6L156.6 78.3L184.9 80.6Z" fill="#fff" fill-opacity=".07"/></g>
+<g class="mh-gl"><path d="M212 112L276 96L274.4 118.6L245.7 140.3ZM213.5 116.8L247.3 145L225.3 212.6L193.2 198.3ZM212 112L191.7 193.5L168.8 163.5L154.9 122.1ZM208.3 110.6L151.1 120.6L156.6 78.3L184.9 80.6Z" fill="none" stroke="#1e73be" stroke-opacity=".7" stroke-width="1.1" transform="translate(1.5 1)"/></g>
+<path class="mh-cr" d="M212 112L276 96L274.4 118.6L245.7 140.3ZM213.5 116.8L247.3 145L225.3 212.6L193.2 198.3ZM212 112L191.7 193.5L168.8 163.5L154.9 122.1ZM208.3 110.6L151.1 120.6L156.6 78.3L184.9 80.6Z" fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="bevel"/>
+<circle cx="212" cy="112" r="3" fill="#fff"/>
+<g class="mh-sh" fill="#fff"><path d="M262 62l14-4-6 16z" fill-opacity=".5"/><path d="M240 178l10 2-9 9z" fill-opacity=".35"/><path d="M168 66l-8-8 11 1z" fill-opacity=".4"/></g>
+<path d="M266 64l7-2M244 180l4 1" stroke="#1e73be" stroke-width="1.2"/>
 <rect width="300" height="280" fill="url(#mh-h)"/>
 <g clip-path="url(#mh-c)"><g transform="skewX(-16)"><rect class="mh-sw" x="-60" y="0" width="70" height="300" fill="url(#mh-s)"/></g></g>
 <rect width="300" height="400" fill="url(#mh-f)"/>

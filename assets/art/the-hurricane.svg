@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="hu-t" id="hu-r">
+<title id="hu-t">Storm spiral, cape sweep, gold lightning streaks</title>
+<style>
+#hu-r .hu-sw{animation:hu-sw 12s ease-in-out infinite}
+@keyframes hu-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#hu-r .hu-sp{transform-origin:150px 128px;animation:hu-spin 14s linear infinite reverse}
+@keyframes hu-spin{to{transform:rotate(360deg)}}
+#hu-r .hu-cape{transform-origin:282px 30px;animation:hu-cape 8s ease-in-out infinite}
+@keyframes hu-cape{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+#hu-r .hu-z{animation:hu-z 9s linear infinite}
+#hu-r .hu-z2{animation-delay:-4.5s}
+@keyframes hu-z{0%,58%,74%,100%{opacity:.2}60%,65%{opacity:1}62%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){#hu-r,#hu-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="hu-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="hu-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="hu-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="hu-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="hu-c"><rect width="300" height="280"/></clipPath>
+
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#hu-g)"/>
+<g class="hu-cape"><path d="M282 30Q196 120 40 250Q170 196 282 136Z" fill="#00964b" fill-opacity=".16"/>
+<path d="M282 30Q196 120 40 250" fill="none" stroke="#00964b" stroke-opacity=".7" stroke-width="1.6"/><path d="M40 250Q170 196 282 136" fill="none" stroke="#d4af37" stroke-opacity=".3"/></g>
+<circle cx="150" cy="128" r="92" fill="none" stroke="#00964b" stroke-opacity=".12"/>
+<g class="hu-sp" fill="none" stroke-linecap="round"><path d="M155 128L155.2 126.8L155.1 125.5L154.6 124.1L153.9 122.9L152.8 121.7L151.3 120.9L149.6 120.3L147.7 120.1L145.7 120.3L143.7 121.1L141.8 122.4L140.1 124.2L138.9 126.5L138.1 129.1L137.9 132.1L138.5 135.2L139.8 138.2L141.9 141.1L144.8 143.5L148.4 145.3L152.6 146.4L157.2 146.4L161.9 145.3L166.6 143L170.8 139.5L174.4 134.9L176.9 129.2L178.2 122.6L177.9 115.6L175.9 108.3L172 101.3L166.3 95L158.8 89.8L149.8 86.3L139.7 84.8L128.8 85.8L117.7 89.4L107.1 95.9L97.8 105.2L90.3 117.1L85.5 131.3L84 147.1L86.3 163.9L92.7 180.7L103.5 196.6" stroke="#00964b" stroke-opacity=".8" stroke-width="2.2"/><path d="M147.5 132.3L148.5 133.1L149.7 133.7L151 133.9L152.5 133.9L154 133.5L155.5 132.7L156.9 131.6L158 130L158.8 128.1L159.1 126L159 123.7L158.2 121.4L156.9 119.1L155 117.1L152.5 115.5L149.6 114.4L146.2 114.1L142.7 114.5L139.1 115.8L135.8 118L132.8 121.1L130.5 125L129.1 129.7L128.7 134.8L129.6 140.3L131.9 145.7L135.5 150.7L140.5 155.1L146.8 158.4L154.1 160.2L162.1 160.4L170.5 158.6L178.7 154.7L186.2 148.7L192.6 140.6L197.2 130.7L199.6 119.3L199.2 106.9L195.9 94.2L189.3 81.8L179.4 70.5L166.5 61.3L150.8 54.8L133 52L113.8 53.4" stroke="#fff" stroke-opacity=".35" stroke-width="1.4"/><path d="M147.5 123.7L146.4 124.1L145.3 124.9L144.3 125.9L143.6 127.2L143.2 128.7L143.1 130.4L143.5 132.2L144.3 133.9L145.5 135.5L147.2 136.9L149.2 137.9L151.6 138.4L154.2 138.4L156.9 137.8L159.6 136.4L162 134.4L164 131.7L165.4 128.4L166 124.7L165.8 120.7L164.6 116.6L162.3 112.6L159 109L154.7 106.2L149.6 104.2L143.8 103.5L137.5 104.1L131.3 106.3L125.3 110.1L120 115.4L115.9 122.3L113.3 130.4L112.5 139.4L113.9 149L117.8 158.5L124 167.5L132.7 175.3L143.6 181.2L156.4 184.6L170.4 185.1L185.1 182.2L199.6 175.6L213 165.2L224.3 151.2L232.7 134" stroke="#d4af37" stroke-opacity=".55" stroke-width="1.6"/></g>
+<circle cx="150" cy="128" r="7" fill="#0a0b0d" stroke="#fff" stroke-opacity=".8" stroke-width="1.6"/>
+<g fill="none" stroke="#f2cc4b" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+<path class="hu-z" d="M48 34L70 76L56 80L82 128"/>
+<path class="hu-z hu-z2" d="M244 168L226 196L240 200L216 238"/></g>
+<rect width="300" height="280" fill="url(#hu-h)"/>
+<g clip-path="url(#hu-c)"><g transform="skewX(-16)"><rect class="hu-sw" x="-60" y="0" width="70" height="300" fill="url(#hu-s)"/></g></g>
+<rect width="300" height="400" fill="url(#hu-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

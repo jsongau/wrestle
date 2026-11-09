@@ -24,3 +24,9 @@ Copy style (binding): no em dashes used as sentence separators (write two senten
 Done means: WL_ROOT=/home/claude/wl python3 build/build_dossier.py <slug> prints the page line with no FAILED. (Ignore a missing-art notice if Mary has not finished yet.)
 
 Report back (concise, under 400 words): sections emitted, record row count, FAQ count, source count, every ⚑ flag, anything you omitted and why, and a CROSSLINK list: existing pages (path) that should link to this wrestler, each with the sentence where the link belongs.
+
+## Wave 2 addenda (2026-11-09)
+- The generator now AUTO-LINKS opponents, rivalry cards and the first prose mention of any wrestler, tag team or title that has a page. Plain names are enough; do not hand-build opponent links unless the module already uses that pattern.
+- Legends: for a subject who has died, state the death plainly and respectfully (date, cause only if officially reported), with sources. No speculation, no sensational detail. Status lines describe legacy (Hall of Fame, tributes), never invented activity.
+- Persona pages that already exist as separate folders (e.g. /wrestlers/diesel/ for Kevin Nash) are not yours; mention them, do not edit them.
+- If the subject has a sibling or partner with a tag-team page (e.g. /tag-teams/the-hart-foundation/), link it from the factions slot.

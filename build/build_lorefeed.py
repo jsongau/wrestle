@@ -1645,9 +1645,21 @@ def update_sitemap():
         open(p, "w", encoding="utf-8").write(xml)
         print("sitemap +%d urls" % add.count("<url>"))
 
+# Internal links: every page this script writes goes through the shared linking
+# engine (build/wl_links.py), so it links wrestlers, teams, titles, factions and
+# events like every other page family. Safe to remove only with intent.
+def _wl_link(htmlstr, path):
+    import sys as _s, os as _o
+    _b = _o.path.join(_o.environ.get("WL_ROOT", _o.getcwd()), "build")
+    if _b not in _s.path: _s.path.insert(0, _b)
+    import wl_links
+    return wl_links.link_page(htmlstr, path)
+
 def write(path, htmlstr):
     full = os.path.join(ROOT, path.lstrip("/"))
     os.makedirs(os.path.dirname(full), exist_ok=True)
+    if full.endswith("index.html"):
+        htmlstr = _wl_link(htmlstr, os.path.relpath(full, ROOT))
     open(full, "w", encoding="utf-8").write(htmlstr)
 
 # ------------------------------------------------------------------ PREVIEW (self-contained)

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="oh-t" id="oh-r">
+<title id="oh-t">A single slow star, interlocked sharpshooter geometry, soft halo</title>
+<style>
+#oh-r .oh-sw{animation:oh-sw 12s ease-in-out infinite}
+@keyframes oh-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#oh-r .oh-gl{animation:oh-gl 12s ease-in-out infinite}
+@keyframes oh-gl{0%,100%{opacity:.45}50%{opacity:1}}
+#oh-r .oh-ha{animation:oh-ha 14s ease-in-out infinite}
+@keyframes oh-ha{0%,100%{opacity:.6}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){#oh-r,#oh-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="oh-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="oh-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="oh-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="oh-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="oh-c"><rect width="300" height="280"/></clipPath>
+<radialGradient id="oh-sg"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".5"/><stop offset=".4" stop-color="#f2cc4b" stop-opacity=".12"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#oh-g)"/>
+<g class="oh-ha" fill="none"><circle cx="150" cy="104" r="64" stroke="#fff" stroke-opacity=".16"/><circle cx="150" cy="104" r="71" stroke="#d4af37" stroke-opacity=".26"/></g>
+<circle class="oh-gl" cx="150" cy="104" r="58" fill="url(#oh-sg)"/>
+<path d="M150 78L156.2 95.5L174.7 96L160 107.2L165.3 125L150 114.5L134.7 125L140 107.2L125.3 96L143.8 95.5Z" fill="#f2cc4b"/><path d="M150 78L156.2 95.5L174.7 96L160 107.2L165.3 125L150 114.5L134.7 125L140 107.2L125.3 96L143.8 95.5Z" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width=".8"/>
+<g fill="none" stroke-width="2">
+<ellipse cx="150" cy="200" rx="58" ry="15" transform="rotate(-22 150 200)" stroke="#d4af37" stroke-opacity=".75"/>
+<ellipse cx="150" cy="200" rx="44" ry="9" transform="rotate(-22 150 200)" stroke="#e0409f" stroke-opacity=".35" stroke-width="1"/>
+<ellipse cx="150" cy="200" rx="58" ry="15" transform="rotate(22 150 200)" stroke="#0a0b0d" stroke-width="6"/>
+<ellipse cx="150" cy="200" rx="58" ry="15" transform="rotate(22 150 200)" stroke="#f2cc4b" stroke-opacity=".85"/>
+<path d="M150 193l7 7-7 7-7-7z" stroke="#fff" stroke-opacity=".5" stroke-width="1"/></g>
+<rect width="300" height="280" fill="url(#oh-h)"/>
+<g clip-path="url(#oh-c)"><g transform="skewX(-16)"><rect class="oh-sw" x="-60" y="0" width="70" height="300" fill="url(#oh-s)"/></g></g>
+<rect width="300" height="400" fill="url(#oh-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

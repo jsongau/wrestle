@@ -522,7 +522,9 @@ _LINK_ALIASES = {"Dolph Ziggler": "nic-nemeth", "Ron Killings": "r-truth",
                  "Mankind": "mick-foley", "Cactus Jack": "mick-foley", "Dude Love": "mick-foley",
                  "Bubba Ray Dudley": "bully-ray", "Hurricane": "the-hurricane",
                  "Gregory Helms": "the-hurricane", "Hollywood Hogan": "hulk-hogan",
-                 "Mr. McMahon": "vince-mcmahon", "Bryan": None}
+                 "Mr. McMahon": "vince-mcmahon", "Bryan": None,
+                 "Scott Hall": "razor-ramon", "Davey Boy Smith": "british-bulldog",
+                 "King Booker": "booker-t", "Shane Helms": "the-hurricane"}
 _NAME_RE = None
 _NAME_MAP = {}
 # Team / title names that differ from the page <title>: name -> site path
@@ -544,7 +546,24 @@ _HUB_ALIASES = {"Steiner Brothers": "/tag-teams/the-steiner-brothers/",
                 "World Heavyweight Championship": "/titles/world-heavyweight-championship/",
                 "Undisputed WWE Championship": "/titles/undisputed-wwe-championship/",
                 "WCW World Heavyweight Championship": "/titles/wcw-world-heavyweight-championship/",
-                "ECW World Heavyweight Championship": "/titles/ecw-world-championship/"}
+                "ECW World Heavyweight Championship": "/titles/ecw-world-championship/",
+                # factions ("Evolution" deliberately absent: it is also a PLE name)
+                "Bullet Club": "/factions/bullet-club/", "D-Generation X": "/factions/d-generation-x/",
+                "DX": "/factions/d-generation-x/", "The Four Horsemen": "/factions/four-horsemen/",
+                "Four Horsemen": "/factions/four-horsemen/", "The Judgment Day": "/factions/judgment-day/",
+                "Judgment Day": "/factions/judgment-day/", "The nWo": "/factions/nwo/", "nWo": "/factions/nwo/",
+                "New World Order": "/factions/nwo/", "The Bloodline": "/factions/the-bloodline/",
+                "The Shield": "/factions/the-shield/", "The New Nexus": "/factions/the-new-nexus/",
+                "Straight Edge Society": "/factions/straight-edge-society/",
+                "Second City Saints": "/factions/the-second-city-saints/",
+                # events: dated editions first (longest match wins), then the series hubs
+                "WrestleMania 42": "/events/wrestlemania-42-2026/", "Backlash 2026": "/events/backlash-2026/",
+                "Elimination Chamber 2026": "/events/elimination-chamber-2026/",
+                "Night of Champions 2026": "/events/night-of-champions-2026/",
+                "Royal Rumble 2026": "/events/royal-rumble-2026/",
+                "WrestleMania": "/events/wrestlemania/", "Royal Rumble": "/events/royal-rumble/",
+                "Elimination Chamber": "/events/elimination-chamber/", "Night of Champions": "/events/night-of-champions/",
+                "Backlash": "/events/backlash/"}
 _SELF = None
 
 def _name_index():
@@ -582,8 +601,21 @@ def _name_index():
         if os.path.isfile(os.path.join(ROOT, path.strip("/"), "index.html")):
             _NAME_MAP[nm] = path
     names = sorted(_NAME_MAP, key=len, reverse=True)
-    _NAME_RE = re.compile(r"(?<![\w-])(%s)(?![\w-])(?! (?:&#x27;|'|\u2019)n(?:&#x27;|'|\u2019))" % "|".join(re.escape(_html.escape(n, quote=True)) for n in names)) if names else re.compile(r"(?!x)x")
+    _NAME_RE = re.compile(r"(?<![\w-])(?<!'s )(?<!\u2019s )(?<!&#x27;s )(?<!&#39;s )(%s)(?![\w-])(?! (?:&#x27;|'|\u2019)n(?:&#x27;|'|\u2019))" % "|".join(re.escape(_html.escape(n, quote=True)) for n in names)) if names else re.compile(r"(?!x)x")
     return _NAME_RE
+
+# Phrases that CONTAIN a linkable name but are not that wrestler: event and move
+# names. They are masked before linking and restored after.
+_PROTECT = ["Over the Edge", "Cutting Edge", "Edge of", "Razor's Edge", "Razor&#x27;s Edge",
+            "Sting Like a Butterfly", "Tables, Ladders", "No Way Out", "Kane&#x27;s debut"]
+_PROTECT_RE = re.compile("|".join(re.escape(x) for x in sorted(_PROTECT, key=len, reverse=True)))
+
+def _masked(text, fn):
+    keep = []
+    def put(m):
+        keep.append(m.group(0)); return "\x01%d\x02" % (len(keep) - 1)
+    t = fn(_PROTECT_RE.sub(put, text))
+    return re.sub("\x01(\\d+)\x02", lambda m: keep[int(m.group(1))], t)
 
 def _href(target):
     return target if target.startswith("/") else "/wrestlers/%s/" % target
@@ -598,7 +630,7 @@ def autolink(escaped_text):
             return m.group(0)
         seen.add(slug)
         return '<a class="opp-link" href="%s">%s</a>' % (_href(slug), m.group(1))
-    return rx.sub(sub, escaped_text)
+    return _masked(escaped_text, lambda t: rx.sub(sub, t))
 
 def match_row(r):
     attrs = ['class="rec2-row"', 'data-result="%s"' % r["result"]]
@@ -1134,12 +1166,12 @@ def jsonld(a, secs):
 # mention of each known wrestler that the page does not already link anywhere.
 # Tag-aware: never inside an existing <a>, a heading, <script>/<style>, <button>,
 # <summary>, <th> or an attribute. One link per wrestler per page, never the subject.
-_PROSE_SKIP = re.compile(r"<(a|h1|h2|h3|h4|script|style|title|button|summary|th)\b", re.I)
+_PROSE_SKIP = re.compile(r"<(a|h1|h2|h3|h4|script|style|title|button|summary|th|nav|label|option|select|textarea|code|pre|svg)\b", re.I)
 
 def prose_autolink(chunks):
     rx = _name_index()
     html_all = "\x00".join(chunks)
-    linked = set(re.findall(r'href="(/(?:wrestlers|tag-teams|titles)/[a-z0-9-]+/)"', html_all))
+    linked = set(re.findall(r'href="(/(?:wrestlers|tag-teams|titles|factions|events)/[a-z0-9-]+/)"', html_all))
     out, i, stack = [], 0, []
     def sub(mm):
         nm = _html.unescape(mm.group(1)); slug = _NAME_MAP.get(nm)
@@ -1150,7 +1182,7 @@ def prose_autolink(chunks):
     for m in re.finditer(r"<[^>]+>", html_all):
         text = html_all[i:m.start()]
         if not stack and text.strip():
-            text = rx.sub(sub, text)
+            text = _masked(text, lambda t: rx.sub(sub, t))
         out.append(text)
         tag = m.group(0); out.append(tag)
         o = _PROSE_SKIP.match(tag)

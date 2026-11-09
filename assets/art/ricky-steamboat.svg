@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="rs-t" id="rs-r">
+<title id="rs-t">Dragon as flowing ribbon curves, high crossbody arc, rising flame strokes</title>
+<style>
+#rs-r .rs-sw{animation:rs-sw 12s ease-in-out infinite}
+@keyframes rs-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#rs-r .rs-fw{stroke-dasharray:18 14;animation:rs-fw 7s linear infinite}
+@keyframes rs-fw{to{stroke-dashoffset:-128}}
+#rs-r .rs-rb{animation:rs-rb 12s ease-in-out infinite}
+@keyframes rs-rb{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#rs-r .rs-k{stroke-dasharray:100 100;animation:rs-k 9s cubic-bezier(.55,0,.2,1) infinite}
+@keyframes rs-k{0%{stroke-dashoffset:100}32%,76%{stroke-dashoffset:0}100%{stroke-dashoffset:-100}}
+#rs-r .rs-hit{transform-box:fill-box;transform-origin:center;animation:rs-hit 9s ease-out infinite}
+@keyframes rs-hit{0%,30%{transform:scale(.4);opacity:0}33%{opacity:.9}60%,100%{transform:scale(1.5);opacity:0}}
+#rs-r .rs-fl{transform-box:fill-box;transform-origin:50% 100%;animation:rs-fl 6s ease-in-out infinite}
+@keyframes rs-fl{0%,100%{transform:scaleY(1);opacity:.75}50%{transform:scaleY(.72);opacity:.4}}
+@media (prefers-reduced-motion:reduce){#rs-r,#rs-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="rs-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="rs-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="rs-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="rs-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="rs-c"><rect width="300" height="280"/></clipPath>
+<linearGradient id="rs-kg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#e11d2a" stop-opacity=".15"/><stop offset="1" stop-color="#f2cc4b"/></linearGradient>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#rs-g)"/>
+<g fill="none" stroke-linecap="round" stroke-width="2"><path class="rs-fl" style="animation-delay:-0s" d="M62 262Q53 239.0 64 216Q65 241.3 70 248.2" stroke="#e11d2a"/><path class="rs-fl" style="animation-delay:-0.9s" d="M88 262Q79 230.0 90 198Q91 233.2 96 242.8" stroke="#f2cc4b"/><path class="rs-fl" style="animation-delay:-1.8s" d="M116 262Q107 242.0 118 222Q119 244.0 124 250.0" stroke="#e2b13c"/><path class="rs-fl" style="animation-delay:-2.7s" d="M146 262Q137 227.0 148 192Q149 230.5 154 241.0" stroke="#e11d2a"/><path class="rs-fl" style="animation-delay:-3.6s" d="M176 262Q167 237.0 178 212Q179 239.5 184 247.0" stroke="#f2cc4b"/><path class="rs-fl" style="animation-delay:-4.5s" d="M206 262Q197 231.0 208 200Q209 234.1 214 243.4" stroke="#e11d2a"/><path class="rs-fl" style="animation-delay:-5.4s" d="M234 262Q225 241.0 236 220Q237 243.1 242 249.4" stroke="#e2b13c"/></g>
+<g class="rs-rb" fill="none" stroke-linecap="round">
+<path d="M18 170C70 90 110 230 168 150S244 64 274 96" stroke="#d81f26" stroke-opacity=".45" stroke-width="12"/>
+<path d="M18 170C70 90 110 230 168 150S244 64 274 96" stroke="#d4af37" stroke-opacity=".5" stroke-width="1.2" transform="translate(0 -9)"/>
+<path d="M18 170C70 90 110 230 168 150S244 64 274 96" stroke="#d4af37" stroke-opacity=".3" stroke-width="1" transform="translate(0 10)"/>
+<path class="rs-fw" d="M18 170C70 90 110 230 168 150S244 64 274 96" stroke="#f2cc4b" stroke-opacity=".75" stroke-width="1.4"/>
+<path d="M274 96q10 6 6 22M274 96q14-2 12 14" stroke="#e11d2a" stroke-opacity=".6" stroke-width="1.4"/></g>
+<g stroke-linecap="round"><path d="M14 86H66M14 98H66M14 110H66" stroke="#fff" stroke-opacity=".3" stroke-width="2"/><rect x="62" y="80" width="8" height="36" rx="2.5" fill="#e11d2a" fill-opacity=".85"/></g>
+<g fill="none" stroke-linecap="round">
+<path d="M58 84Q124 -8 236 136" stroke="#fff" stroke-opacity=".1"/>
+<path class="rs-k" pathLength="100" d="M66 78Q130 6 230 140" stroke="url(#rs-kg)" stroke-width="3.4"/></g>
+<circle cx="230" cy="140" r="3.4" fill="#fff"/>
+<circle class="rs-hit" cx="230" cy="140" r="16" fill="none" stroke="#e11d2a" stroke-width="2"/>
+<rect width="300" height="280" fill="url(#rs-h)"/>
+<g clip-path="url(#rs-c)"><g transform="skewX(-16)"><rect class="rs-sw" x="-60" y="0" width="70" height="300" fill="url(#rs-s)"/></g></g>
+<rect width="300" height="400" fill="url(#rs-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

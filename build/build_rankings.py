@@ -16,6 +16,16 @@ BASE     = "https://wrestlelore.com"
 PAGE_PATH = "/" + os.path.relpath(os.path.dirname(SRC_PAGE), ROOT).replace(os.sep, "/") + "/"
 PAGE_URL  = BASE + PAGE_PATH
 
+# Internal links: every page this script writes goes through the shared linking
+# engine (build/wl_links.py), so it links wrestlers, teams, titles, factions and
+# events like every other page family. Safe to remove only with intent.
+def _wl_link(htmlstr, path):
+    import sys as _s, os as _o
+    _b = _o.path.join(_o.environ.get("WL_ROOT", _o.getcwd()), "build")
+    if _b not in _s.path: _s.path.insert(0, _b)
+    import wl_links
+    return wl_links.link_page(htmlstr, path)
+
 def esc(s): return html.escape(s or "", quote=True)
 
 CHIPCLS = {"WWE":"chip--wwe","WWF":"chip--wwe","WCW":"chip--wcw","TNA":"chip--tna","NXT":"chip--nxt"}
@@ -430,6 +440,7 @@ def main():
 
     out = SRC_PAGE
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    page = _wl_link(page, os.path.relpath(out, ROOT))
     open(out, "w", encoding="utf-8").write(page)
     print("wrote", out, "(%d bytes)" % len(page))
     print("cards:", len(data), "| with video:", sum(1 for m in data if m["video"]["id"]))

@@ -14,7 +14,7 @@ Census 2026-11-09 (words on page): 63 dossier pages (55 generated, 3.3k–5.4k w
 |---|---|---|
 | 0 | stacy-keibler (new page) | LIVE 2026-11-09 (b355a4c) |
 | 1 | r-truth, austin-theory, nic-nemeth, trick-williams, yota-tsuji, matt-hardy (thinnest current roster) | LIVE 2026-11-09 (b355a4c) |
-| 2 | british-bulldog, owen-hart, razor-ramon, booker-t, the-hurricane, ricky-steamboat | queued |
+| 2 | british-bulldog, owen-hart, razor-ramon, booker-t, the-hurricane, ricky-steamboat | built + verified 2026-11-09, awaiting deploy |
 | 3 | jake-roberts, arn-anderson, vader, yokozuna, rick-rude, brian-pillman, kevin-nash | queued |
 | 4 | lex-luger, big-show, chyna, mr-perfect, bam-bam-bigelow, dusty-rhodes, roddy-piper | queued |
 | 5 | andre-the-giant, natalya, goldust, christopher-daniels, bobby-lashley, christian, savio-vega | queued |
@@ -52,3 +52,13 @@ Needs a decision from Jay (not queued):
 - events/index.html filter links to 15 missing /events/<promo>/ and /promotions/{nwa,roh,aaa}/ hubs.
 - rankings/ + matches/ link 6 match pages that were never built (hbk-vs-razor x2, hbk-vs-mankind, triple-h x3).
 - Lore Feed ticker in the shell still leads with the Nov 6 Crown Jewel preview; refresh with build_lorefeed.py when the week of Nov 9 is added.
+- 2026-11-09 (batch 3): Wave 2 built (rows 28/28/39/44/37/32, 44 avg sources; old pages carried invented titles, matches and records, all removed and listed in each .md). Mary: 6 new SVGs + matt-hardy fracture redrawn. Sitewide linking: build/wl_links.py is the ONE linking engine (wrestlers, tag teams, titles, factions, events); hooked into build_dossier, build_lorefeed, build_gallery, build_raf, build_factions, build_rankings, build_rankings_hub; hand-authored pages via build/link_sitewide.py (membership/ excluded on purpose). +1,131 links vs live, every page diff = links only (plus the rolling 7-day ticker).
+- Linker guards: no link right after a possessive ("Razor's Edge"); _PROTECT masks event/move names that contain a name ("Over the Edge", "Cutting Edge", "No Way Out"). Add to _PROTECT when a new false positive appears.
+
+## More stale or false facts found by Wave 2 research (verify, then fix)
+- diesel: "2 WCW tag titles" with Hall, should be 6. savio-vega: unsourced WWF tag title with Razor.
+- shawn-michaels: WrestleMania X rated 4.5 (Meltzer 5); bret_hart.py: WrestleMania X vs Owen 4.5 (Meltzer 4.75).
+- goldust: lists a WrestleMania X-Seven match vs Booker T that never happened.
+- lex-luger: claims a 1997 WWF tag title with Davey Boy Smith; they never won one.
+- Signature-card matcher linked Owen's WrestleMania X card to /matches/bret-hart-vs-austin-wm13/ (wrong match); matcher needs a year check.
+- titles/intercontinental-championship: add Razor Ramon (first four-time champion), British Bulldog (SummerSlam 1992), Owen Hart (1997 reigns).

@@ -1,5 +1,6 @@
 ## 2026-11-09
 
+- **Wave 2 + sitewide links:** British Bulldog, Owen Hart, Razor Ramon, Booker T, The Hurricane and Ricky Steamboat rebuilt as sourced dossiers with key art; one linking engine now links wrestlers, teams, titles, factions and events on every page family (+1,131 internal links).
 - **Champions and crawl pass:** nav Titles panel corrected (7 belts were up to three months stale) from a new verified data/champions.md; six title pages, the titles hub and Edge corrected; new NXT Championship, FTR and Steiner Brothers pages end three sitewide 404s; Jeff Hardy dossier refreshed; generator now auto-links wrestlers, teams and titles, lifting body-content wrestler links from 2,653 to 4,342.
 - **Wrestler dossier waves 0-1:** new Stacy Keibler profile plus full rebuilds of R-Truth, Austin Theory, Nic Nemeth, Trick Williams, Yota Tsuji and Matt Hardy, each with a sourced data/<slug>.md and a custom animated key-art SVG; Mike/Ross/Mary agent team in .claude/agents.
 

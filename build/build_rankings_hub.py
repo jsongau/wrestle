@@ -13,6 +13,16 @@ DATA = os.path.join(ROOT, "data", "matches.json")
 BASE = "https://wrestlelore.com"
 PAGE_URL = BASE + "/rankings/"
 
+# Internal links: every page this script writes goes through the shared linking
+# engine (build/wl_links.py), so it links wrestlers, teams, titles, factions and
+# events like every other page family. Safe to remove only with intent.
+def _wl_link(htmlstr, path):
+    import sys as _s, os as _o
+    _b = _o.path.join(_o.environ.get("WL_ROOT", _o.getcwd()), "build")
+    if _b not in _s.path: _s.path.insert(0, _b)
+    import wl_links
+    return wl_links.link_page(htmlstr, path)
+
 def esc(s): return html.escape(s or "", quote=True)
 CHIPCLS = {"WWE":"chip--wwe","WWF":"chip--wwe","WCW":"chip--wcw","TNA":"chip--tna","NXT":"chip--nxt","ROH":"chip--roh","ECW":"chip--ecw"}
 
@@ -170,6 +180,7 @@ def main():
                  (" &rarr;", ""), ("&rarr;", ""), (" →", ""), ("→", ""), ("➜", ""), ("↗", "")):
         page = page.replace(a, b)
 
+    page = _wl_link(page, os.path.relpath(SRC, ROOT))
     open(SRC, "w", encoding="utf-8").write(page)
     print("wrote", SRC, "(%d bytes)" % len(page), "| ranked:", len(data))
 

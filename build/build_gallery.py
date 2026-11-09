@@ -509,8 +509,20 @@ def shell(title, desc, canonical, main, extra_head="", og=None):
       '<header class="site-header nav7"></header>\n<main id="main">\n%s\n</main>\n<footer class="site-footer site-footer--fat"></footer>\n'
       '<script src="/js/media.js" defer></script>\n</body>\n</html>\n' % (esc(title),esc(desc),canonical,extra_head,main))
 
+# Internal links: every page this script writes goes through the shared linking
+# engine (build/wl_links.py), so it links wrestlers, teams, titles, factions and
+# events like every other page family. Safe to remove only with intent.
+def _wl_link(htmlstr, path):
+    import sys as _s, os as _o
+    _b = _o.path.join(_o.environ.get("WL_ROOT", _o.getcwd()), "build")
+    if _b not in _s.path: _s.path.insert(0, _b)
+    import wl_links
+    return wl_links.link_page(htmlstr, path)
+
 def write(path, html):
     full = os.path.join(ROOT, path.lstrip("/")); os.makedirs(os.path.dirname(full), exist_ok=True)
+    if full.endswith("index.html"):
+        html = _wl_link(html, os.path.relpath(full, ROOT))
     open(full,"w",encoding="utf-8").write(html)
 
 def patch_thisweek_file(path):
