@@ -1,0 +1,40 @@
+# Dossier waves 0-1: Stacy Keibler, six rebuilds, key art, and the agent team
+
+**Date:** 2026-11-09
+**Status:** built and verified in the working tree, uncommitted, awaiting Jay's approval. Nothing pushed.
+
+## Asked
+"use john cena's format and do it for stacy keibler ... create multiple .md for each wrestler ... make it crawlable to each other ... create waves to make each one just as detailed as john cena with their own custom animated svg ... use ross mary agents ... create master agent mike who is webmaster ... fan out"
+
+## Corrections to the brief
+- Cena's ~11,700 words are about two thirds match ledger (data/john-cena-matches.csv, 2,326 rows). Other dossiers run 3.3k-5.4k words. "As detailed as Cena" was interpreted as Cena's structure and per-section depth with verified facts, not his word count. Stacy wrestled about six years, mostly as a valet; padding to Cena length would mean inventing rows.
+- Only 4 of 108 wrestlers had a data/<slug>.md before today. 46 pages were under 2,100 words.
+
+## What shipped (working tree)
+- 7 dossiers via build/build_dossier.py: stacy-keibler (new), r-truth, austin-theory, nic-nemeth, trick-williams, yota-tsuji, matt-hardy. Record rows 47/36/38/47/39/27/61; 9-11 FAQs each; ~36-45 sources each.
+- 7 sourced fact files data/<slug>.md, every claim with a URL, disputes flagged.
+- 7 animated key-art SVGs in assets/art/<slug>.svg (one system: dark ground, gold hairline frame, light sweep, halftone; per-wrestler motif; no faces, logos or text; reduced-motion still; 4-10KB).
+- Generator: DATA["art"] inlines assets/art/<slug>.svg into the hero portrait (fallback: the old placeholder). Theme band no longer prints &rarr; in listen links.
+- Crawl: Stacy linked from lita and trish-stratus record tables (Invasion 2001), women/ hub (card, ItemList, intro), wrestlers/ roster card, search index with aliases (Miss Hancock, Skye, Duchess of Dudleyville), sitemap.
+- Agent team defined in .claude/agents/: mike (webmaster, only one who builds or touches git), ross (one per wrestler: .md + wldata), mary (art + measured QA). Brief for Ross: docs/ROSS-BRIEF.md. Ledger: docs/WAVES.md.
+
+## Verified
+- verify() passes on all 9 regenerated pages (7 + lita + trish-stratus). All JSON-LD parses.
+- Headless Chromium at 1440 and 390: 0 console errors, key art renders, no horizontal scroll at 390.
+- Styled preview (build/make_preview.py) rendered from file:// before sending.
+
+## Traps found
+- build/build_roster.py is stale and rewrites /wrestlers/ from scratch, deleting the current design. Patch roster cards instead.
+- The Mac working tree cannot delete or let tar overwrite files: extract to _to_delete/ and write with `cat src > dst`.
+- scrollWidth reads 1773px at 1440 on every page (off-canvas mega panels); html has overflow-x:clip, so users never see it. Not a bug.
+
+## Rejected / deferred
+- Running all 108 at once: rejected for waves of ~7 so each lands fully verified.
+- Persona alias pages, chris-benoit, vince-mcmahon: need Jay's decision (see WAVES.md).
+
+## Next steps (exact)
+1. Jay reviews the Stacy preview. On approval: commit named files only (list in WAVES.md log and git status; never git add -A; css hash restamp touched ~566 pages and those belong in the same commit so the new dossier.css is served fresh).
+2. Fix the sitewide nav 404s (components/meganav.html, 3 links) and the stale title-holder facts in the fix queue.
+3. Crosslink pass for the 7 new dossiers.
+4. Wave 2 (british-bulldog, owen-hart, razor-ramon, booker-t, the-hurricane, ricky-steamboat): same pipeline.
+5. Backend: one match database (matches table keyed by wrestler) so record depth stops being hand-typed per module. That is what Cena-scale ledgers need.

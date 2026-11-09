@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="sk-t" id="sk-r">
+<title id="sk-t">Spotlight cone, high-kick arc, pom bursts and ring-apron ropes</title>
+<style>
+#sk-r .sk-sw{animation:sk-sw 12s ease-in-out infinite}
+@keyframes sk-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#sk-r .sk-cone{transform-origin:150px 0;animation:sk-cone 12s ease-in-out infinite}
+@keyframes sk-cone{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+#sk-r .sk-k{stroke-dasharray:100 100;animation:sk-k 9s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes sk-k{0%{stroke-dashoffset:100}35%,78%{stroke-dashoffset:0}100%{stroke-dashoffset:-100}}
+#sk-r .sk-toe{animation:sk-toe 9s ease-in-out infinite}
+@keyframes sk-toe{0%,25%{opacity:0}36%,78%{opacity:1}95%,100%{opacity:0}}
+#sk-r .sk-pom{transform-box:fill-box;transform-origin:center;animation:sk-pom 10s ease-in-out infinite}
+#sk-r .sk-pom2{animation-delay:-5s}
+@keyframes sk-pom{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(14deg) scale(1.08)}}
+@media (prefers-reduced-motion:reduce){#sk-r,#sk-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="sk-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="sk-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="sk-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="sk-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="sk-c"><rect width="300" height="280"/></clipPath>
+<linearGradient id="sk-cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".34"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></linearGradient>
+<linearGradient id="sk-kg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#d4af37" stop-opacity=".2"/><stop offset="1" stop-color="#f2cc4b"/></linearGradient>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#sk-g)"/>
+<g class="sk-cone"><path d="M140 0h20l92 268H48z" fill="url(#sk-cg)"/><ellipse cx="150" cy="262" rx="96" ry="9" fill="#f2cc4b" fill-opacity=".1"/></g>
+<g fill="none" stroke-linecap="round">
+<path d="M14 196Q150 204 286 196" stroke="#fff" stroke-opacity=".32" stroke-width="2"/>
+<path d="M14 216Q150 224 286 216" stroke="#e2b13c" stroke-opacity=".45" stroke-width="2"/>
+<path d="M14 236Q150 244 286 236" stroke="#fff" stroke-opacity=".22" stroke-width="2"/>
+</g>
+<g fill="#e11d2a" fill-opacity=".85"><rect x="12" y="191" width="9" height="50" rx="3"/><rect x="279" y="191" width="9" height="50" rx="3"/></g>
+<g fill="none" stroke-linecap="round">
+<path d="M70 252A182 182 0 0 1 232 46" stroke="#d4af37" stroke-opacity=".18" stroke-width="1"/>
+<path d="M56 246A190 190 0 0 1 222 40" stroke="#d4af37" stroke-opacity=".12" stroke-width="1"/>
+<path class="sk-k" pathLength="100" d="M64 250A186 186 0 0 1 228 42" stroke="url(#sk-kg)" stroke-width="3.2"/>
+</g>
+<g class="sk-toe"><circle cx="228" cy="42" r="14" fill="#f2cc4b" fill-opacity=".14"/><circle cx="228" cy="42" r="3.4" fill="#fff"/></g>
+<g class="sk-pom"><path d="M80 116L102 116M79.8 117.1L94.2 121.4M79.4 118.2L97.9 130.1M78.6 119L88.4 130.4M77.7 119.6L86.8 139.7M76.6 120L78.7 134.8M75.4 120L72.3 141.7M74.3 119.6L68.1 133.3M73.4 119L59 135.6M72.6 118.2L60 126.3M72.2 117.1L51.1 123.3M72 116L57 116M72.2 114.9L51.1 108.7M72.6 113.8L60 105.7M73.4 113L59 96.4M74.3 112.4L68.1 98.7M75.4 112L72.3 90.3M76.6 112L78.7 97.2M77.7 112.4L86.8 92.3M78.6 113L88.4 101.6M79.4 113.8L97.9 101.9M79.8 114.9L94.2 110.6" stroke="#e2b13c" stroke-opacity=".75" stroke-width="2.2" stroke-linecap="round"/><circle cx="76" cy="116" r="4" fill="#f2cc4b"/></g>
+<g class="sk-pom sk-pom2"><path d="M239 152.4L255.8 154.8M238.6 153.4L248.4 158.6M238 154.2L249.4 166.9M237.1 154.8L241.2 165M236.1 155L236.7 172M235.1 154.9L231.7 165.3M234.2 154.4L223.7 167.8M233.5 153.6L224.1 159.4M233.1 152.6L216.4 156.2M233 151.6L222.1 150.1M233.4 150.6L218.3 142.6M234 149.8L226.6 141.6M234.9 149.2L228.5 133.5M235.9 149L235.5 138M236.9 149.1L242.2 133M237.8 149.6L244.6 141M238.5 150.4L253 141.4M238.9 151.4L249.7 149.1" stroke="#fff" stroke-opacity=".55" stroke-width="1.8" stroke-linecap="round"/><circle cx="236" cy="152" r="3" fill="#fff"/></g>
+<rect width="300" height="280" fill="url(#sk-h)"/>
+<g clip-path="url(#sk-c)"><g transform="skewX(-16)"><rect class="sk-sw" x="-60" y="0" width="70" height="300" fill="url(#sk-s)"/></g></g>
+<rect width="300" height="400" fill="url(#sk-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

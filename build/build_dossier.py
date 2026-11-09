@@ -337,6 +337,21 @@ def fm_figure(a):
       % (esc(a["name"]), a["vlabel"], fm_metrics(a), fm_feed(a),
          esc(a["epithet"]), esc(a["realname"])))
 
+# ------------------------------------------------ KEY ART (optional)
+# DATA["art"] = "<slug>" inlines assets/art/<slug>.svg into the hero portrait in
+# place of the PHOTO SLOT placeholder. The SVG file is the single source: the
+# page inlines it (so its CSS animation runs and costs no extra request) and any
+# other surface (roster cards, share images) can reference the same file.
+# Missing file = the old placeholder, never a broken card.
+def _art_svg(slug):
+    p = os.path.join(ROOT, "assets", "art", "%s.svg" % slug)
+    if not os.path.isfile(p):
+        print("  note: no key art at assets/art/%s.svg, using placeholder" % slug)
+        return ""
+    svg = open(p, encoding="utf-8").read()
+    svg = re.sub(r"<\?xml[^>]*\?>\s*", "", svg).strip()
+    return svg
+
 def hero(a):
     _h1t, _h1s = hero_name(a["name"])
     hs = "".join(
@@ -345,6 +360,13 @@ def hero(a):
         for h in a["hstats"])
     if a.get("pulse") and a["pulse"].get("handle"):
         fig = fm_figure(a)
+    elif a.get("art") and _art_svg(a["art"]):
+        fig = ('<figure class="portrait portrait--art" aria-label="%s key art">\n'
+      '      <div class="art">%s</div>\n'
+      '      <span class="vlabel">%s</span>\n'
+      '      <figcaption class="cap"><span class="r">Roster File &middot; %s</span><span class="n">%s</span>'
+      '</figcaption>\n    </figure>'
+      % (esc(a["name"]), _art_svg(a["art"]), a["vlabel"], esc(a["epithet"]), esc(a["realname"])))
     else:
         fig = ('<figure class="portrait" aria-label="%s key art">\n      <span class="slot">PHOTO SLOT</span>\n'
       '      <span class="vlabel">%s</span>\n'
@@ -408,7 +430,7 @@ def theme_band(a):
     links = "".join(
         '<li><a href="%s" target="_blank" rel="noopener" aria-label="%s">'
         '<span class="wo-svc">%s</span><span class="wo-sub">%s</span>'
-        '<span class="wo-go" aria-hidden="true">&rarr;</span></a></li>'
+        '</a></li>'
         % (esc(l["href"]),
            esc("%s by %s on %s (opens in a new tab)" % (t["track"], t["artist"], l["svc"])),
            esc(l["svc"]), esc(l["sub"]))

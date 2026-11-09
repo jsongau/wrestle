@@ -22,6 +22,10 @@ ROWS = [
          event="Raw", opponent="Stephanie McMahon-Helmsley",
          stip="Singles, with The Rock as special referee — her first championship",
          title="WWF Women's Championship"),
+    dict(result="W", date="2001-07-22", promo="WWE", type="tag",
+         event="Invasion", opponent='<a class="opp-link" href="/wrestlers/stacy-keibler/">Stacy Keibler</a> &amp; Torrie Wilson',
+         opponent_html=True,
+         stip="Tag, with Trish Stratus. The first tag team bra and panties match; Mick Foley refereed", title=""),
     dict(result="L", date="2003-11-24", promo="WWE", landmark=True,
          event="Raw", opponent="Victoria",
          stip="The first women's steel cage match in Raw history",
@@ -73,6 +77,8 @@ ROWS = [
 
 # opponent_html rows carry a real <a>, so the escaping path is not used on them
 for _r in ROWS:
+    if _r.get("opponent", "").startswith("<a "):
+        continue
     if _r.pop("opponent_html", False):
         _slug = {"Trish Stratus": "trish-stratus", "Becky Lynch": "becky-lynch"}[_r["opponent"]]
         _r["opponent"] = '<a class="opp-link" href="/wrestlers/%s/">%s</a>' % (_slug, _r["opponent"])

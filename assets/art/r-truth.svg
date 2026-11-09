@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="rt-t" id="rt-r">
+<title id="rt-t">Party microphone, spinning clock face and rhythm bars</title>
+<style>
+#rt-r .rt-sw{animation:rt-sw 12s ease-in-out infinite}
+@keyframes rt-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#rt-r .rt-ring{transform-origin:150px 124px;animation:rt-spin 14s linear infinite}
+#rt-r .rt-min{transform-origin:150px 124px;animation:rt-spin 12s linear infinite}
+@keyframes rt-spin{to{transform:rotate(360deg)}}
+#rt-r .rt-b{transform-box:fill-box;transform-origin:50% 100%;animation:rt-b 8s ease-in-out infinite}
+@keyframes rt-b{0%,100%{transform:scaleY(1)}12%{transform:scaleY(.55)}25%{transform:scaleY(.9)}37%{transform:scaleY(.45)}50%{transform:scaleY(.95)}62%{transform:scaleY(.6)}75%{transform:scaleY(.85)}87%{transform:scaleY(.5)}}
+#rt-r .rt-mic{transform-origin:176px 254px;animation:rt-mic 7s ease-in-out infinite}
+@keyframes rt-mic{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+#rt-r .rt-sp{animation:rt-sp 6s ease-in-out infinite}
+@keyframes rt-sp{0%,100%{opacity:.7}50%{opacity:.15}}
+@media (prefers-reduced-motion:reduce){#rt-r,#rt-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="rt-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="rt-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="rt-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="rt-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="rt-c"><rect width="300" height="280"/></clipPath>
+<clipPath id="rt-hc"><circle cx="0" cy="0" r="17"/></clipPath>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#rt-g)"/>
+<circle cx="150" cy="124" r="78" fill="#c8102e" fill-opacity=".07"/>
+<circle cx="150" cy="124" r="74" fill="none" stroke="#d4af37" stroke-opacity=".55"/>
+<circle cx="150" cy="124" r="48" fill="none" stroke="#fff" stroke-opacity=".12"/>
+<path class="rt-ring" d="M206 124L220 124M212.8 140.8L217.6 142.1M203.7 155L210.6 159M196 170L199.5 173.5M181 177.7L185 184.6M166.8 186.8L168.1 191.6M150 180L150 194M133.2 186.8L131.9 191.6M119 177.7L115 184.6M104 170L100.5 173.5M96.3 155L89.4 159M87.2 140.8L82.4 142.1M94 124L80 124M87.2 107.2L82.4 105.9M96.3 93L89.4 89M104 78L100.5 74.5M119 70.3L115 63.4M133.2 61.2L131.9 56.4M150 68L150 54M166.8 61.2L168.1 56.4M181 70.3L185 63.4M196 78L199.5 74.5M203.7 93L210.6 89M212.8 107.2L217.6 105.9" stroke="#f2cc4b" stroke-opacity=".7" stroke-width="1.6"/>
+<path d="M150 124L126 146" stroke="#fff" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/>
+<path class="rt-min" d="M150 132V72" stroke="#f2cc4b" stroke-width="2" stroke-linecap="round"/>
+<circle cx="150" cy="124" r="4.5" fill="#c8102e"/>
+<rect class="rt-b" style="animation-delay:-0s" x="26" y="240" width="7" height="22" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-0.7s" x="38" y="224" width="7" height="38" rx="1.5" fill="#c8102e" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-1.5s" x="50" y="232" width="7" height="30" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-2.2s" x="62" y="210" width="7" height="52" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-2.9s" x="74" y="218" width="7" height="44" rx="1.5" fill="#c8102e" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-3.6s" x="86" y="202" width="7" height="60" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-4.4s" x="98" y="226" width="7" height="36" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-5.1s" x="110" y="214" width="7" height="48" rx="1.5" fill="#c8102e" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-5.8s" x="122" y="234" width="7" height="28" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-6.6s" x="134" y="220" width="7" height="42" rx="1.5" fill="#d4af37" fill-opacity=".6"/><rect class="rt-b" style="animation-delay:-7.3s" x="146" y="238" width="7" height="24" rx="1.5" fill="#c8102e" fill-opacity=".6"/><rect class="rt-sp" style="animation-delay:-0s" x="48" y="58" width="4" height="4" fill="#f2cc4b" transform="rotate(45 50 60)"/><rect class="rt-sp" style="animation-delay:-1.1s" x="252" y="70" width="4" height="4" fill="#c8102e" transform="rotate(45 254 72)"/><rect class="rt-sp" style="animation-delay:-2.2s" x="262" y="162" width="4" height="4" fill="#fff" transform="rotate(45 264 164)"/><rect class="rt-sp" style="animation-delay:-3.3s" x="40" y="170" width="4" height="4" fill="#c8102e" transform="rotate(45 42 172)"/><rect class="rt-sp" style="animation-delay:-4.4s" x="232" y="236" width="4" height="4" fill="#f2cc4b" transform="rotate(45 234 238)"/><rect class="rt-sp" style="animation-delay:-5.5s" x="70" y="212" width="4" height="4" fill="#fff" transform="rotate(45 72 214)"/>
+<g class="rt-mic"><g transform="translate(214 182) rotate(28)">
+<path d="M-11 22h22l-5 60h-12z" fill="#0a0b0d" stroke="#d4af37" stroke-width="1.6"/>
+<rect x="-13" y="15" width="26" height="8" rx="2" fill="#c8102e"/>
+<circle r="18" fill="#0a0b0d" stroke="#f2cc4b" stroke-width="2"/>
+<g clip-path="url(#rt-hc)" stroke="#d4af37" stroke-opacity=".55" stroke-width=".9"><path d="M-20 -14L14 20M-20 -6L6 20M-20 2L-2 20M-14 -20L20 14M-6 -20L20 6M2 -20L20 -2M-20 14L14 -20M-20 6L6 -20M-20 -2L-2 -20M-14 20L20 -14M-6 20L20 -6M2 20L20 2"/></g>
+<path d="M-12 -8A15 15 0 0 1 4 -16" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.6" stroke-linecap="round"/>
+</g></g>
+<rect width="300" height="280" fill="url(#rt-h)"/>
+<g clip-path="url(#rt-c)"><g transform="skewX(-16)"><rect class="rt-sw" x="-60" y="0" width="70" height="300" fill="url(#rt-s)"/></g></g>
+<rect width="300" height="400" fill="url(#rt-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

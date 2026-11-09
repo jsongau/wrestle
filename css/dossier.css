@@ -1614,3 +1614,8 @@ button.tt-cred{cursor:pointer}
 .wl-faction .sec-h + p.muted{max-width:var(--fac-measure)}
 .wl-faction .moment-body{max-width:var(--fac-measure)}
 /* ==================== end FACTION PROSE MEASURE ==================== */
+
+/* ==== KEY ART - per-wrestler animated SVG in the hero portrait (assets/art/<slug>.svg) == */
+.wl-dossier .portrait--art .art{position:absolute;inset:0;z-index:0}
+.wl-dossier .portrait--art .art svg{display:block;width:100%;height:100%}
+.wl-dossier .portrait--art .vlabel,.wl-dossier .portrait--art .cap{z-index:1}

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="nn-t" id="nn-r">
+<title id="nn-t">Show-off zig-zag, superkick arc, ladder with hanging briefcase</title>
+<style>
+#nn-r .nn-sw{animation:nn-sw 12s ease-in-out infinite}
+@keyframes nn-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#nn-r .nn-zh{stroke-dasharray:14 86;animation:nn-zh 7s linear infinite}
+@keyframes nn-zh{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+#nn-r .nn-k{stroke-dasharray:100 100;animation:nn-k 9s cubic-bezier(.6,0,.2,1) infinite}
+@keyframes nn-k{0%{stroke-dashoffset:100}30%,76%{stroke-dashoffset:0}100%{stroke-dashoffset:-100}}
+#nn-r .nn-hit{transform-box:fill-box;transform-origin:center;animation:nn-hit 9s ease-out infinite}
+@keyframes nn-hit{0%,28%{transform:scale(.4);opacity:0}32%{opacity:.9}60%,100%{transform:scale(1.5);opacity:0}}
+#nn-r .nn-bc{transform-origin:212px 10px;animation:nn-bc 8s ease-in-out infinite}
+@keyframes nn-bc{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){#nn-r,#nn-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="nn-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="nn-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="nn-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="nn-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="nn-c"><rect width="300" height="280"/></clipPath>
+<linearGradient id="nn-kg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#d4af37" stop-opacity=".15"/><stop offset="1" stop-color="#f2cc4b"/></linearGradient>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#nn-g)"/>
+<path d="M18 178L40 154L62 178L84 154L106 178L128 154L150 178L172 154L194 178L216 154L238 178L260 154L282 178" fill="none" stroke="#1e73be" stroke-opacity=".55" stroke-width="2" stroke-linejoin="round" transform="translate(0 14)"/>
+<path d="M18 178L40 154L62 178L84 154L106 178L128 154L150 178L172 154L194 178L216 154L238 178L260 154L282 178" fill="none" stroke="#d4af37" stroke-opacity=".55" stroke-width="3" stroke-linejoin="round"/>
+<path class="nn-zh" pathLength="100" d="M18 178L40 154L62 178L84 154L106 178L128 154L150 178L172 154L194 178L216 154L238 178L260 154L282 178" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="none" stroke="#d4af37" stroke-linecap="round" stroke-width="2.6">
+<path d="M222 264L246 52M268 264L286 60" stroke-opacity=".5"/>
+<path d="M226 230h44M230 196h42M234 162h40M238 128h40M242 94h40" stroke-opacity=".35" stroke-width="2"/></g>
+<g class="nn-bc"><path d="M212 10v22" stroke="#d4af37" stroke-opacity=".6"/>
+<path d="M205 36v-4h14v4" fill="none" stroke="#f2cc4b" stroke-width="2"/>
+<rect x="196" y="36" width="32" height="22" rx="3" fill="#d4af37" fill-opacity=".2" stroke="#f2cc4b" stroke-width="2"/>
+<path d="M196 45h32" stroke="#f2cc4b" stroke-opacity=".6"/></g>
+<g fill="none" stroke-linecap="round">
+<path d="M28 250A144 144 0 0 1 162 102" stroke="#fff" stroke-opacity=".1"/>
+<path d="M50 254A140 140 0 0 1 176 112" stroke="#fff" stroke-opacity=".08"/>
+<path class="nn-k" pathLength="100" d="M38 252A142 142 0 0 1 170 106" stroke="url(#nn-kg)" stroke-width="3.4"/></g>
+<circle cx="170" cy="106" r="3.4" fill="#fff"/>
+<circle class="nn-hit" cx="170" cy="106" r="16" fill="none" stroke="#1e73be" stroke-width="2"/>
+<rect width="300" height="280" fill="url(#nn-h)"/>
+<g clip-path="url(#nn-c)"><g transform="skewX(-16)"><rect class="nn-sw" x="-60" y="0" width="70" height="300" fill="url(#nn-s)"/></g></g>
+<rect width="300" height="400" fill="url(#nn-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

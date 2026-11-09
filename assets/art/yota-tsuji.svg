@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-labelledby="yt-t" id="yt-r">
+<title id="yt-t">Dojo grid, concentric rising-sun circles, spear streak</title>
+<style>
+#yt-r .yt-sw{animation:yt-sw 12s ease-in-out infinite}
+@keyframes yt-sw{0%{transform:translateX(-120px)}55%,100%{transform:translateX(480px)}}
+#yt-r .yt-sun{animation:yt-sun 12s ease-in-out infinite}
+@keyframes yt-sun{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+#yt-r .yt-ring{transform-box:fill-box;transform-origin:center;animation:yt-ring 12s ease-in-out infinite}
+@keyframes yt-ring{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:.6}}
+#yt-r .yt-sp{animation:yt-sp 8s cubic-bezier(.3,0,.1,1) infinite}
+@keyframes yt-sp{0%{transform:translate(-150px,80px);opacity:0}12%{opacity:1}32%,78%{transform:translate(0,0);opacity:1}100%{transform:translate(30px,-16px);opacity:0}}
+@media (prefers-reduced-motion:reduce){#yt-r,#yt-r *{animation:none!important}}
+</style>
+<defs>
+<radialGradient id="yt-g" cx=".5" cy=".22" r=".62"><stop offset="0" stop-color="#f2cc4b" stop-opacity=".16"/><stop offset="1" stop-color="#f2cc4b" stop-opacity="0"/></radialGradient>
+<linearGradient id="yt-f" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0a0b0d" stop-opacity="0"/><stop offset=".7" stop-color="#0a0b0d" stop-opacity=".96"/><stop offset="1" stop-color="#0a0b0d"/></linearGradient>
+<linearGradient id="yt-s" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="yt-h" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".55" fill="#fff" fill-opacity=".06"/></pattern>
+<clipPath id="yt-c"><rect width="300" height="280"/></clipPath>
+<linearGradient id="yt-st" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f2cc4b" stop-opacity="0"/><stop offset=".8" stop-color="#f2cc4b" stop-opacity=".85"/><stop offset="1" stop-color="#fff"/></linearGradient>
+<clipPath id="yt-dc"><circle cx="150" cy="138" r="45"/></clipPath>
+<radialGradient id="yt-sg" cx=".42" cy=".38"><stop offset="0" stop-color="#e11d2a"/><stop offset="1" stop-color="#d81f26" stop-opacity=".55"/></radialGradient>
+</defs>
+<rect width="300" height="400" fill="#0a0b0d"/>
+<rect width="300" height="400" fill="url(#yt-g)"/>
+<path d="M25 20V280M50 20V280M75 20V280M100 20V280M125 20V280M150 20V280M175 20V280M200 20V280M225 20V280M250 20V280M275 20V280M10 25H290M10 50H290M10 75H290M10 100H290M10 125H290M10 150H290M10 175H290M10 200H290M10 225H290M10 250H290M10 275H290" stroke="#fff" stroke-opacity=".05"/>
+<path d="M35 45H265V255H35zM150 45V255M35 150H265" fill="none" stroke="#d4af37" stroke-opacity=".14"/>
+<g class="yt-sun"><circle cx="150" cy="138" r="44" fill="url(#yt-sg)" fill-opacity=".9"/><g clip-path="url(#yt-dc)" fill="#0a0b0d"><rect x="100" y="146" width="100" height="2"/><rect x="100" y="155" width="100" height="3"/><rect x="100" y="164" width="100" height="4.5"/><rect x="100" y="172" width="100" height="6"/></g>
+<g class="yt-ring" fill="none" stroke="#d4af37"><circle cx="150" cy="138" r="56" stroke-opacity=".5"/><circle cx="152" cy="136" r="70" stroke-opacity=".32"/><circle cx="148" cy="140" r="86" stroke-opacity=".2"/><circle cx="150" cy="134" r="104" stroke-opacity=".11"/></g></g>
+<g class="yt-sp"><g transform="rotate(-28 150 168)">
+<path d="M20 168L262 166L276 168L262 170z" fill="url(#yt-st)"/>
+<path d="M60 158H200M90 179H230M40 186H150" stroke="#fff" stroke-opacity=".28" stroke-linecap="round"/>
+<path d="M290 168l-32-3v6z" fill="#fff"/></g></g>
+<rect width="300" height="280" fill="url(#yt-h)"/>
+<g clip-path="url(#yt-c)"><g transform="skewX(-16)"><rect class="yt-sw" x="-60" y="0" width="70" height="300" fill="url(#yt-s)"/></g></g>
+<rect width="300" height="400" fill="url(#yt-f)"/>
+<rect x="10.5" y="10.5" width="279" height="379" rx="12" fill="none" stroke="#d4af37" stroke-opacity=".38"/>
+<path d="M22 10.5h40M238 389.5h40" stroke="#f2cc4b" stroke-opacity=".7"/>
+</svg>

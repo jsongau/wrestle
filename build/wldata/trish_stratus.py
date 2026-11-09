@@ -16,6 +16,10 @@ Deliberate omissions:
 
 # ----------------------------------------------------------------- record rows
 ROWS = [
+    dict(result="W", date="2001-07-22", promo="WWE", type="tag",
+         event="Invasion", opponent='<a class="opp-link" href="/wrestlers/stacy-keibler/">Stacy Keibler</a> &amp; Torrie Wilson',
+         opponent_html=True,
+         stip="Tag, with Lita. The first tag team bra and panties match; Mick Foley refereed", title=""),
     dict(result="W", date="2001-11-18", promo="WWE", type="tag", landmark=True,
          event="Survivor Series", opponent="Jazz, Jacqueline, Ivory, Lita & Molly Holly",
          stip="Six-pack challenge for the vacant title — the first of a record seven",
@@ -79,6 +83,8 @@ ROWS = [
 
 # opponent_html rows carry a real <a>, so the escaping path is not used on them
 for _r in ROWS:
+    if _r.get("opponent", "").startswith("<a "):
+        continue
     if _r.pop("opponent_html", False):
         _slug = {"Lita": "lita", "Becky Lynch": "becky-lynch"}[_r["opponent"]]
         _r["opponent"] = '<a class="opp-link" href="/wrestlers/%s/">%s</a>' % (_slug, _r["opponent"])

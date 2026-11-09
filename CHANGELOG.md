@@ -1,3 +1,7 @@
+## 2026-11-09
+
+- **Wrestler dossier waves 0-1:** new Stacy Keibler profile plus full rebuilds of R-Truth, Austin Theory, Nic Nemeth, Trick Williams, Yota Tsuji and Matt Hardy, each with a sourced data/<slug>.md and a custom animated key-art SVG; Mike/Ross/Mary agent team in .claude/agents.
+
 ## 2026-11-07
 
 - **Six-week catch-up: Sep 28 through Nov 6 opened.** After the site sat at the Sep 21 week, all six missing weeks were researched live and filed: weeks of Sep 28, Oct 5, Oct 12, Oct 19, Oct 26, and Nov 2. 272 total dispatches across 21 Lore Feed weeks. Every dispatch is sourced to a real, opened recap (Fightful, WWE.com, WrestlingInc, AEW, TNA, Cleveland 19); nothing invented, conflicts omitted rather than guessed.
