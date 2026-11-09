@@ -504,13 +504,109 @@ REC_THEAD = ('<div class="rec2-scroll"><table class="rec2-table"><thead><tr>'
 
 RW = {"W": "rw-w", "L": "rw-l", "D": "rw-d", "NC": "rw-n"}
 
+# ------------------------------------------------ OPPONENT AUTO-LINKS
+# Any opponent named in a record row, or any rivalry card, that has a live
+# /wrestlers/<slug>/ page is linked to it. The index is read from disk at build
+# time, so a page added in a later wave is linked from every older dossier the
+# next time that dossier is generated: the link graph grows without anyone
+# hand-typing links. Rows that already carry HTML (opponent_html) are left alone.
+# Persona alias pages and chris-benoit are never auto-link targets.
+_LINK_SKIP = {"the-ringmaster", "stunning-steve-austin", "mean-mark-callous",
+              "the-american-badass", "chris-benoit"}
+# Ring names that differ from the page title: name -> slug
+_LINK_ALIASES = {"Dolph Ziggler": "nic-nemeth", "Ron Killings": "r-truth",
+                 "Theory": None, "Miss Hancock": "stacy-keibler",
+                 "Stone Cold": None, "Steve Austin": "stone-cold-steve-austin",
+                 "Daniel Bryan": "daniel-bryan", "Bryan Danielson": "daniel-bryan",
+                 "Undertaker": "the-undertaker", "Jake Roberts": "jake-roberts",
+                 "Mankind": "mick-foley", "Cactus Jack": "mick-foley", "Dude Love": "mick-foley",
+                 "Bubba Ray Dudley": "bully-ray", "Hurricane": "the-hurricane",
+                 "Gregory Helms": "the-hurricane", "Hollywood Hogan": "hulk-hogan",
+                 "Mr. McMahon": "vince-mcmahon", "Bryan": None}
+_NAME_RE = None
+_NAME_MAP = {}
+# Team / title names that differ from the page <title>: name -> site path
+_HUB_ALIASES = {"Steiner Brothers": "/tag-teams/the-steiner-brothers/",
+                "Rick Steiner": "/tag-teams/the-steiner-brothers/",
+                "Scott Steiner": "/tag-teams/the-steiner-brothers/",
+                "The Revival": "/tag-teams/ftr/", "FTR": "/tag-teams/ftr/",
+                "The Hardy Boyz": "/tag-teams/the-hardy-boyz/", "The Hardys": "/tag-teams/the-hardy-boyz/",
+                "The Dudley Boyz": "/tag-teams/the-dudley-boyz/", "The Usos": "/tag-teams/the-usos/",
+                "The Young Bucks": "/tag-teams/the-young-bucks/", "The New Day": "/tag-teams/the-new-day/",
+                "Legion of Doom": "/tag-teams/legion-of-doom/", "The Road Warriors": "/tag-teams/legion-of-doom/",
+                "The Hart Foundation": "/tag-teams/the-hart-foundation/",
+                "NXT Championship": "/titles/nxt-championship/",
+                "Intercontinental Championship": "/titles/intercontinental-championship/",
+                "United States Championship": "/titles/united-states-championship/",
+                "TNA World Championship": "/titles/tna-world-championship/",
+                "IWGP Heavyweight Championship": "/titles/iwgp-heavyweight-championship/",
+                "AEW World Championship": "/titles/aew-world-championship/",
+                "World Heavyweight Championship": "/titles/world-heavyweight-championship/",
+                "Undisputed WWE Championship": "/titles/undisputed-wwe-championship/",
+                "WCW World Heavyweight Championship": "/titles/wcw-world-heavyweight-championship/",
+                "ECW World Heavyweight Championship": "/titles/ecw-world-championship/"}
+_SELF = None
+
+def _name_index():
+    global _NAME_RE
+    if _NAME_RE is not None:
+        return _NAME_RE
+    import glob
+    for f in glob.glob(os.path.join(ROOT, "wrestlers", "*", "index.html")):
+        slug = os.path.basename(os.path.dirname(f))
+        if slug in _LINK_SKIP:
+            continue
+        h = open(f, encoding="utf-8", errors="ignore").read(200000)
+        m = re.search(r'"@type":"Person"[^{}]*?"name":"([^"]+)"', h)
+        if not m:
+            m = re.search(r"<title>([^<|\u2014]+?)\s*(?:[:|\u2014-]|</title>)", h)
+        if m:
+            nm = _html.unescape(m.group(1)).strip()
+            if len(nm) >= 4:
+                _NAME_MAP.setdefault(nm, slug)
+    for nm, slug in _LINK_ALIASES.items():
+        if slug and os.path.isfile(os.path.join(ROOT, "wrestlers", slug, "index.html")):
+            _NAME_MAP[nm] = slug
+        elif slug is None:
+            _NAME_MAP.pop(nm, None)
+    for kind in ("tag-teams", "titles"):
+        for f in glob.glob(os.path.join(ROOT, kind, "*", "index.html")):
+            slug = os.path.basename(os.path.dirname(f))
+            h = open(f, encoding="utf-8", errors="ignore").read(20000)
+            m = re.search(r"<title>([^<|:\u2014]+?)\s*(?:[:|\u2014-]|</title>)", h)
+            if m:
+                nm = _html.unescape(m.group(1)).strip()
+                if len(nm) >= 6 and nm not in _NAME_MAP:
+                    _NAME_MAP[nm] = "/%s/%s/" % (kind, slug)
+    for nm, path in _HUB_ALIASES.items():
+        if os.path.isfile(os.path.join(ROOT, path.strip("/"), "index.html")):
+            _NAME_MAP[nm] = path
+    names = sorted(_NAME_MAP, key=len, reverse=True)
+    _NAME_RE = re.compile(r"(?<![\w-])(%s)(?![\w-])(?! (?:&#x27;|'|\u2019)n(?:&#x27;|'|\u2019))" % "|".join(re.escape(_html.escape(n, quote=True)) for n in names)) if names else re.compile(r"(?!x)x")
+    return _NAME_RE
+
+def _href(target):
+    return target if target.startswith("/") else "/wrestlers/%s/" % target
+
+def autolink(escaped_text):
+    """escaped_text is already HTML-escaped plain text. Link each known wrestler once."""
+    rx = _name_index()
+    seen = set()
+    def sub(m):
+        nm = _html.unescape(m.group(1)); slug = _NAME_MAP.get(nm)
+        if not slug or slug == _SELF or slug in seen:
+            return m.group(0)
+        seen.add(slug)
+        return '<a class="opp-link" href="%s">%s</a>' % (_href(slug), m.group(1))
+    return rx.sub(sub, escaped_text)
+
 def match_row(r):
     attrs = ['class="rec2-row"', 'data-result="%s"' % r["result"]]
     if r.get("landmark"): attrs.append('data-landmark="1"')
     attrs.append('data-promo="%s"' % r["promo"])
     if r.get("type"):     attrs.append('data-type="%s"' % r["type"])
     attrs.append('data-sort="%s"' % r["date"].replace("-", ""))
-    opp = r["opponent"] if r.get("opponent_html") else esc(r["opponent"])
+    opp = r["opponent"] if r.get("opponent_html") else autolink(esc(r["opponent"]))
     return ('<tr %s><td><span class="rw %s">%s</span></td><td class="dim rec2-date">%s</td>'
             '<td><span class="pchip pchip-%s">%s</span></td><td class="rec2-ev">%s</td>'
             '<td class="rec2-opp">%s</td><td class="dim rec2-stip">%s</td>'
@@ -839,7 +935,7 @@ def sec_rivalries(n, a):
     r = a["rivalries"]
     cards = "".join(
         '<article class="fac-card"><h3 class="fac-name">%s</h3><p class="fac-desc">%s</p></article>'
-        % (('<a href="/wrestlers/%s/">%s</a>' % (c["slug"], esc(c["name"]))) if c.get("slug") else esc(c["name"]),
+        % (('<a href="/wrestlers/%s/">%s</a>' % (c["slug"], esc(c["name"]))) if c.get("slug") else autolink(esc(c["name"])),
            esc(c["desc"])) for c in r["cards"])
     return sec_h(n, "rivalries") + lead(r["lead"]) + '<div class="fac-grid">%s</div></section>' % cards
 
@@ -1034,13 +1130,48 @@ def jsonld(a, secs):
                          ensure_ascii=False, separators=(",", ":")))
 
 # ------------------------------------------------------------------ page
+# First-mention prose links. After every section is built, link the FIRST plain-text
+# mention of each known wrestler that the page does not already link anywhere.
+# Tag-aware: never inside an existing <a>, a heading, <script>/<style>, <button>,
+# <summary>, <th> or an attribute. One link per wrestler per page, never the subject.
+_PROSE_SKIP = re.compile(r"<(a|h1|h2|h3|h4|script|style|title|button|summary|th)\b", re.I)
+
+def prose_autolink(chunks):
+    rx = _name_index()
+    html_all = "\x00".join(chunks)
+    linked = set(re.findall(r'href="(/(?:wrestlers|tag-teams|titles)/[a-z0-9-]+/)"', html_all))
+    out, i, stack = [], 0, []
+    def sub(mm):
+        nm = _html.unescape(mm.group(1)); slug = _NAME_MAP.get(nm)
+        if not slug or slug == _SELF or _href(slug) in linked:
+            return mm.group(0)
+        linked.add(_href(slug))
+        return '<a class="opp-link" href="%s">%s</a>' % (_href(slug), mm.group(1))
+    for m in re.finditer(r"<[^>]+>", html_all):
+        text = html_all[i:m.start()]
+        if not stack and text.strip():
+            text = rx.sub(sub, text)
+        out.append(text)
+        tag = m.group(0); out.append(tag)
+        o = _PROSE_SKIP.match(tag)
+        if o and not tag.endswith("/>"):
+            stack.append(o.group(1).lower())
+        elif stack and re.match(r"</%s\s*>" % stack[-1], tag, re.I):
+            stack.pop()
+        i = m.end()
+    out.append(html_all[i:])
+    return "".join(out).split("\x00")
+
 def page(a):
+    global _SELF
+    _SELF = a["slug"]
     secs = sections_for(a)
     band = theme_band(a)
     u = "%s/wrestlers/%s/" % (BASE, a["slug"])
     body_secs = []
     for i, sid in enumerate(secs, 1):
         body_secs.append(BUILDERS[sid](i, a))
+    body_secs = prose_autolink(body_secs)
     covered = [SEC_META[s][0].replace("&amp;", "and") for s in secs
                if s in ("titles", "factions", "before", "mma", "feats", "career", "rivalries")]
     title = "%s: %s, %s | Wrestle Lore" % (a["name"], a["epithet"], a["hook"])

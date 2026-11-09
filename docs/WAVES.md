@@ -12,8 +12,8 @@ Census 2026-11-09 (words on page): 63 dossier pages (55 generated, 3.3k–5.4k w
 
 | Wave | Wrestlers | Status |
 |---|---|---|
-| 0 | stacy-keibler (new page) | built + verified 2026-11-09, awaiting Jay approval |
-| 1 | r-truth, austin-theory, nic-nemeth, trick-williams, yota-tsuji, matt-hardy (thinnest current roster) | built + verified 2026-11-09, awaiting Jay approval |
+| 0 | stacy-keibler (new page) | LIVE 2026-11-09 (b355a4c) |
+| 1 | r-truth, austin-theory, nic-nemeth, trick-williams, yota-tsuji, matt-hardy (thinnest current roster) | LIVE 2026-11-09 (b355a4c) |
 | 2 | british-bulldog, owen-hart, razor-ramon, booker-t, the-hurricane, ricky-steamboat | queued |
 | 3 | jake-roberts, arn-anderson, vader, yokozuna, rick-rude, brian-pillman, kevin-nash | queued |
 | 4 | lex-luger, big-show, chyna, mr-perfect, bam-bam-bigelow, dusty-rhodes, roddy-piper | queued |
@@ -41,3 +41,14 @@ Needs a decision from Jay (not queued):
 - Crosslink backlog: ~60 sentence-level links into the 7 new dossiers from existing pages (list kept by Mike; old-template pages get theirs in their own wave).
 - Generator gaps: slot 5 is factions OR before (Trick Williams lost football or Trick Melo, one of them); "Before WWE" heading is hard-coded even for NJPW; no CMLL promo chip; prose fields escape HTML so career/rivalry text cannot carry links except rivalry cards with slug=.
 - Art: matt-hardy crack motif reads as a spider web; one more pass.
+- 2026-11-09 (batch 2): nav 404s fixed by building the 3 missing pages (/titles/nxt-championship/, /tag-teams/ftr/, /tag-teams/the-steiner-brothers/). Nav Titles panel was ~3 months stale (7 belts + featured file + world feeds): all corrected from data/champions.md, the new single source of truth for current champions. 6 title pages + titles hub + edge dossier corrected. Jeff Hardy dossier refreshed (21 to 49 rows, TNA tag reigns 3 to 5, syX reveal). Generator auto-links every opponent, rivalry card and first prose mention of any wrestler / tag team / title with a live page; build/link_opponents.py does the same for hand-authored record tables; build/link_mentions.py for one-off prose links on hand pages. Body-content wrestler links sitewide: 2,653 to 4,342. Sitemap gained 15 missing URLs.
+
+## Champion maintenance rule
+- data/champions.md is the source of truth. When a title changes: update it first, then components/meganav.html (belt plate name + data-start + featured file + world feeds), the title page, titles/index.html, then apply_shell.py. Title pages carry hand-written "As of" dates that go stale.
+
+## Pre-existing broken links (not introduced; backlog)
+- 13 generated dossiers link a missing /data/<slug>.md (fixed by .md backfill waves).
+- Old-template pages link legend pages that do not exist: barry-windham, demolition, big-boss-man, ultimate-warrior, honky-tonk-man, bob-backlund, big-john-studd, smokin-gunns, hart-foundation (should be /tag-teams/the-hart-foundation/), dos-hombres, shane-mcmahon, io-shirai (should be iyo-sky), dustin-rhodes.
+- events/index.html filter links to 15 missing /events/<promo>/ and /promotions/{nwa,roh,aaa}/ hubs.
+- rankings/ + matches/ link 6 match pages that were never built (hbk-vs-razor x2, hbk-vs-mankind, triple-h x3).
+- Lore Feed ticker in the shell still leads with the Nov 6 Crown Jewel preview; refresh with build_lorefeed.py when the week of Nov 9 is added.

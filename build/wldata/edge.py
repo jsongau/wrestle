@@ -6,6 +6,10 @@ Sources: web-verified August 31, 2026 (Wikipedia; Wrestling Inc on Double or Not
 pages; contemporaneous coverage of the 2024 tibia injury and the 2025 FTR turn).
 Every match row carries a day-precision date.
 
+Updated November 9, 2026: Cage & Cope lost the AEW World Tag Team Championship to
+The Young Bucks in a three-way ladder match with FTR at All Out on September 26, 2026
+(Wrestling Inc, Fightful, Bleacher Report); Blood and Guts, November 4, 2026 (Wrestling Inc).
+
 Deliberate omissions:
   * No career win-loss total - none verified, none invented.
   * No social links - handles were not verified in this pass.
@@ -73,6 +77,9 @@ ROWS = [
     dict(result="W", date="2026-08-30", promo="AEW", landmark=True, type="tag",
          event="All In: London — Wembley", opponent="The Young Bucks",
          stip="Tag — retained; stared down by three teams after the bell", title="AEW World Tag Team Championship"),
+    dict(result="L", date="2026-09-26", promo="AEW", landmark=True, type="tag",
+         event="All Out", opponent="The Young Bucks & FTR",
+         stip="Three-way ladder match; the Bucks hit Christian with the BTE Trigger off the ladder and pull down the belts", title="AEW World Tag Team Championship"),
 ]
 
 DATA = dict(
@@ -83,10 +90,10 @@ DATA = dict(
     hook="Record & Titles",
 
     meta_desc=("Edge - Adam 'Cope' Copeland - won 11 world championships in WWE, 31 titles in all, "
-               "and now holds the AEW World Tag Team Championship with Christian Cage. Full record, "
+               "and won the AEW World Tag Team Championship with Christian Cage in 2026. Full record, "
                "titles, factions, records and career."),
     og_desc=("The Rated-R Superstar: 11 WWE world titles, 31 WWE championships, two Royal Rumble "
-             "wins, a nine-year retirement he came back from, and a current AEW tag title reign "
+             "wins, a nine-year retirement he came back from, and a 2026 AEW tag title reign "
              "alongside Christian Cage."),
     tw_desc="11 world titles, two Royal Rumbles, one impossible comeback - and AEW tag gold at 52.",
 
@@ -113,8 +120,8 @@ DATA = dict(
     hero_kick="Adam &ldquo;Cope&rdquo; Copeland &middot; The Ultimate Opportunist",
     hero_tag="Orangeville, Ontario &middot; <em>WWF/WWE &middot; AEW &middot; 1992&ndash;present</em>",
     now_label="NOW",
-    now_bold="AEW World Tag Team Champion",
-    now_tail=" &middot; one half of Cage &amp; Cope with Christian Cage &mdash; retained against the Young Bucks at All In: London on August 30, 2026",
+    now_bold="Former AEW World Tag Team Champion",
+    now_tail=" &middot; Cage &amp; Cope lost the titles to the Young Bucks in a three-way ladder match at All Out on September 26, 2026",
     hstats=[
         dict(value="11", x=True, label="WWE World Titles"),
         dict(value="31", x=False, label="WWE Championships"),
@@ -137,8 +144,8 @@ DATA = dict(
         "He won eleven world championships in WWE &mdash; four WWE Championships and a "
         "record seven World Heavyweight Championships &mdash; among <b>31 total WWE titles</b>, the "
         "most of anyone in that company&rsquo;s history. He won the first Money in the Bank match "
-        "ever held and executed the first cash-in. He won Royal Rumbles eleven years apart. And as "
-        "of August 31, 2026 he is an AEW World Tag Team Champion at 52, alongside the same partner "
+        "ever held and executed the first cash-in. He won Royal Rumbles eleven years apart. And on "
+        "May 24, 2026, at 52, he won the AEW World Tag Team Championship alongside the same partner "
         "he won his first title with at 26: Christian.",
 
         "One number needs untangling, because even the sources trip on it. Edge is frequently "
@@ -149,7 +156,7 @@ DATA = dict(
         "(with Rey Mysterio in 2002, and with Jericho in 2009) on top. Fourteen WWE tag reigns, "
         "seven of them with Christian. The arithmetic that gets him to 31 championships: 4 WWE "
         "titles + 7 World Heavyweight + 5 Intercontinental + 1 United States + 12 World Tag + 2 WWE "
-        "Tag. The AEW titles &mdash; two TNT Championships and the current World Tag Team "
+        "Tag. The AEW titles &mdash; two TNT Championships and the 2026 World Tag Team "
         "Championship &mdash; sit outside that count.",
 
         "The first career ran June 22, 1998 (his televised WWF debut) to April 3, 2011: the ladder "
@@ -176,8 +183,9 @@ DATA = dict(
         "at Double or Nothing on May 24, 2026 &mdash; Beth Phoenix, Copeland&rsquo;s wife, punching "
         "Dax Harwood down the ramp on the way &mdash; to win the AEW World Tag Team Championship, "
         "and retained against the Young Bucks at All In: London on August 30, 2026, where the Motor "
-        "City Machine Guns, FTR and New Level all appeared for the staredown that maps out what "
-        "comes next.",
+        "City Machine Guns, FTR and New Level all appeared for a staredown. The Bucks took the "
+        "titles four weeks later, winning a three-way ladder match with FTR at All Out on "
+        "September 26, 2026.",
     ],
 
     # ---------------------------------------------------------------- 02 record
@@ -194,9 +202,9 @@ DATA = dict(
             ("2&times;", "TNT Champion"),
             ("1&times;", "AEW Tag Champion"),
         ],
-        lead=("Nineteen documented bouts &mdash; the ladder era, the first cash-in, both "
-              "retirement-adjacent matches, the comeback, and the full AEW arc through All In: "
-              "London. This is a curated ledger, not a career count; no career win&ndash;loss total "
+        lead=("Twenty documented bouts &mdash; the ladder era, the first cash-in, both "
+              "retirement-adjacent matches, the comeback, and the full AEW arc through the All "
+              "Out title loss. This is a curated ledger, not a career count; no career win&ndash;loss total "
               "exists across 34 years and none is invented. The two Worlds End rows are the same "
               "night: he won the TNT title and lost it back to Christian Cage inside the same show. "
               "Filter by match type, tap any column header to sort, and turn spoilers on to reveal "
@@ -238,9 +246,10 @@ DATA = dict(
                  sub="The first via the first Money in the Bank cash-in on John Cena at New "
                      "Year&rsquo;s Revolution, January 8, 2006"),
             dict(ic="T", name="AEW World Tag Team Championship", count="1",
-                 sub="Current. With Christian Cage as Cage &amp; Cope &mdash; def. FTR in an I Quit "
+                 sub="With Christian Cage as Cage &amp; Cope. Def. FTR in an I Quit "
                      "match at Double or Nothing, May 24, 2026; retained against the Young Bucks at "
-                     "All In: London, August 30, 2026"),
+                     "All In: London, August 30, 2026; lost to the Young Bucks in a three-way ladder "
+                     "match at All Out, September 26, 2026"),
             dict(ic="N", name="AEW TNT Championship", count="2",
                  sub="Def. Christian Cage at Worlds End, December 30, 2023, for roughly three and a "
                      "half minutes; def. Christian again in an I Quit match on the March 20, 2024 "
@@ -298,8 +307,8 @@ DATA = dict(
                  desc="The reunion nobody in the story wanted until FTR forced it: after the "
                       "Dynasty 2025 betrayal, Christian — Copeland's tormentor through 2023-24 — "
                       "became his partner again at Forbidden Door on August 24, 2025. AEW World "
-                      "Tag Team Champions since Double or Nothing 2026, with Copeland's wife Beth "
-                      "Phoenix as the equaliser at ringside."),
+                      "Tag Team Champions from Double or Nothing 2026 until All Out on September 26, "
+                      "2026, with Copeland's wife Beth Phoenix as the equaliser at ringside."),
         ],
     ),
 
@@ -330,7 +339,7 @@ DATA = dict(
             dict(mono="CO", era="AEW &middot; 2023&ndash;present", name="Cope",
                  desc="Billed under his real name — then just Cope — since WrestleDream 2023. The "
                       "Cope Open challenge series, two TNT titles, a broken tibia off a cage top "
-                      "at 50, and now one half of Cage & Cope. The persona is mostly just Adam "
+                      "at 50, and a 2026 tag title reign as one half of Cage & Cope. The persona is mostly just Adam "
                       "Copeland: a lifer who cannot stop."),
         ],
     ),
@@ -384,8 +393,9 @@ DATA = dict(
                       "24 and beat FTR at All Out in Toronto on September 20."),
             dict(year="2026", title="Tag champions again, 26 years on",
                  desc="Cage & Cope take the AEW World Tag Team Championship from FTR in the "
-                      "Double or Nothing I Quit match on May 24 and retain against the Young Bucks "
-                      "at All In: London on August 30."),
+                      "Double or Nothing I Quit match on May 24, retain against the Young Bucks "
+                      "at All In: London on August 30, and lose the titles to the Bucks in a "
+                      "three-way ladder match at All Out on September 26."),
         ],
     ),
 
@@ -395,7 +405,7 @@ DATA = dict(
         cards=[
             dict(name="Christian Cage",
                  desc="Childhood best friend, seven-time tag partner, 2001 betrayer, 2012 Hall of "
-                      "Fame inductor, 2023-24 AEW tormentor, and current tag partner again. Their "
+                      "Fame inductor, 2023-24 AEW tormentor, and tag partner again from 2025. Their "
                       "three TNT title matches — Worlds End 2023 twice in one night, then the "
                       "Toronto I Quit match — were the meanest wrestling either has done, which is "
                       "exactly why the 2025 reunion landed. No relationship in wrestling has been "
@@ -420,8 +430,9 @@ DATA = dict(
                       "down at Dynasty in April — the turn that put him on a stretcher and "
                       "created Cage & Cope. Beaten at All Out 2025, beaten again in the I Quit "
                       "title match at Double or Nothing 2026 where Dax Harwood threatened his "
-                      "family and Beth Phoenix answered personally — and back in the frame after "
-                      "the All In: London staredown."),
+                      "family and Beth Phoenix answered personally. Both teams then lost the three-way "
+                      "ladder match at All Out on September 26, 2026 that put the titles on the Young "
+                      "Bucks."),
             dict(name="Mick Foley",
                  desc="One match, permanent consequences: the WrestleMania 22 hardcore match, "
                       "April 2, 2006, ending with Edge spearing Foley through a flaming table. "
@@ -484,9 +495,9 @@ DATA = dict(
                  sub="World, Intercontinental, United States and tag titles — the full WWE set."),
             dict(name="Tag team champion 26 years apart, with the same partner",
                  sub="First tag titles with Christian at WrestleMania 2000 on April 2, 2000; AEW "
-                     "World Tag Team Champions with Christian Cage since May 24, 2026. Both were "
-                     "won in ladder-adjacent violence — a triangle ladder match then, an I Quit "
-                     "match now."),
+                     "World Tag Team Champions with Christian Cage from May 24 to September 26, 2026. "
+                     "Both were won in ladder-adjacent violence: a triangle ladder match in 2000, an "
+                     "I Quit match in 2026."),
             dict(name="The barbed-wire cage dive at 50",
                  sub="Double or Nothing, May 26, 2024: retained the TNT title against Malakai "
                      "Black, dove off the top of the cage, and fractured his tibia on landing — "
@@ -508,6 +519,12 @@ DATA = dict(
              href="https://www.wrestlinginc.com/2180296/aew-double-or-nothing-2026-cope-cage-adam-copeland-christian-ftr-dax-harwood-cash-wheeler-new-champs-i-quit/"),
         dict(k="Wrestling Inc", v="All In: London 2026 &mdash; retained over the Young Bucks",
              href="https://www.wrestlinginc.com/2247132/aew-all-in-london-2026-cope-cage-young-bucks-defeat-facing-down-rivals/"),
+        dict(k="Wrestling Inc", v="All Out 2026: the Young Bucks win the ladder match and the tag titles",
+             href="https://wrestlinginc.com/2269980/aew-all-out-2026-young-bucks-ladder-match-four-time-tag-team-champions/"),
+        dict(k="Fightful", v="All Out 2026: Copeland and Cage lose the titles in a three-way ladder match",
+             href="https://www.fightful.com/wrestling-news/the-young-bucks-become-4-time-aew-world-tag-team-champions-at-all-out"),
+        dict(k="Wrestling Inc", v="Dynamite, November 4, 2026: Blood and Guts",
+             href="https://www.wrestlinginc.com/2307145/aew-dynamite-november-4-2026-results/"),
         dict(k="Wikipedia", v="AEW Revolution 2025 &mdash; the Moxley three-way",
              href="https://en.wikipedia.org/wiki/AEW_Revolution_(2025)"),
         dict(k="Wikipedia", v="AEW TNT Championship reign history",
@@ -540,34 +557,39 @@ DATA = dict(
             q="How many world titles has Edge won &mdash; and does AEW change the number?",
             a="Eleven, all in WWE: four WWE Championships and a record seven World Heavyweight "
               "Championships. AEW does not change it &mdash; his AEW titles are two TNT "
-              "Championships and the current World Tag Team Championship, and his one AEW World "
+              "Championships and a 2026 World Tag Team Championship reign, and his one AEW World "
               "Championship match (Revolution, March 9, 2025, against Jon Moxley, turned into a "
               "three-way by Christian Cage&rsquo;s cash-in) was a loss. His overall WWE total is 31 "
               "championships, the most in that company&rsquo;s history.",
             q_ld="How many world championships has Edge won?",
             a_ld="Eleven, all in WWE: four WWE Championships and a record seven World Heavyweight "
                  "Championships. His AEW titles — two TNT Championships and the AEW World Tag Team "
-                 "Championship he currently holds with Christian Cage — are not world titles, and "
+                 "Championship he held with Christian Cage in 2026 — are not world titles, and "
                  "his one AEW World Championship match, at Revolution on March 9, 2025, was a "
                  "loss. He won 31 championships in WWE overall, the most in that company's "
                  "history."),
         dict(
             q="What is Edge&rsquo;s status right now?",
-            a="As of August 31, 2026 he is one half of the reigning <b>AEW World Tag Team "
-              "Champions</b> with Christian Cage, as Cage &amp; Cope. They took the titles from FTR "
-              "in an I Quit match at Double or Nothing on May 24, 2026 &mdash; with Beth Phoenix "
-              "intervening on her husband&rsquo;s behalf &mdash; and retained against the Young "
-              "Bucks at All In: London on August 30, 2026. After that defence the Motor City "
-              "Machine Guns, FTR and New Level all confronted the champions, so the queue is "
-              "formed. He turns 53 in October and wrestles as Cope, under his real surname&rsquo;s "
-              "shorthand, because WWE owns the name Edge.",
+            a="As of November 9, 2026 he holds no title. With Christian Cage, as Cage &amp; Cope, he "
+              "took the <b>AEW World Tag Team Championship</b> from FTR in an I Quit match at "
+              "Double or Nothing on May 24, 2026, with Beth Phoenix intervening on her "
+              "husband&rsquo;s behalf, and retained against the Young Bucks at All In: London on "
+              "August 30, 2026. The Bucks won the titles in a three-way ladder match with FTR at "
+              "All Out on September 26, 2026. On the November 4, 2026 Dynamite he surrendered to "
+              "end the Blood and Guts match, chained to the cage while Kyle Fletcher held a "
+              "screwdriver to Will Ospreay&rsquo;s throat. He turned 53 on October 30, 2026 and "
+              "wrestles as Cope, under his real surname&rsquo;s shorthand, because WWE owns the "
+              "name Edge.",
             q_ld="What is Edge's status in AEW right now?",
-            a_ld="As of August 31, 2026, Adam Copeland, billed as Cope, is one half of the "
-                 "reigning AEW World Tag Team Champions with Christian Cage, as the team Cage and "
-                 "Cope. They won the titles from FTR in an I Quit match at Double or Nothing on "
-                 "May 24, 2026 and retained them against the Young Bucks at All In: London on "
-                 "August 30, 2026, after which the Motor City Machine Guns, FTR and New Level all "
-                 "confronted them as potential challengers."),
+            a_ld="As of November 9, 2026, Adam Copeland, billed as Cope, holds no title. With "
+                 "Christian Cage, as Cage and Cope, he won the AEW World Tag Team Championship "
+                 "from FTR in an I Quit match at Double or Nothing on May 24, 2026, with Beth "
+                 "Phoenix intervening, and retained against the Young Bucks at All In: London on "
+                 "August 30, 2026. The Young Bucks won the titles in a three-way ladder match with "
+                 "FTR at All Out on September 26, 2026. On the November 4, 2026 Dynamite he "
+                 "surrendered to end the Blood and Guts match, chained to the cage while Kyle "
+                 "Fletcher held a screwdriver to Will Ospreay's throat. He turned 53 on October 30, "
+                 "2026 and wrestles as Cope because WWE owns the name Edge."),
         dict(
             q="Why is he called Cope in AEW?",
             a="Because WWE owns the trademark on &ldquo;Edge.&rdquo; He debuted in AEW at "
@@ -589,7 +611,9 @@ DATA = dict(
               "2025 and again &mdash; for FTR&rsquo;s tag titles &mdash; in the Double or Nothing "
               "I Quit match on May 24, 2026, where Dax Harwood invoked Copeland&rsquo;s daughters "
               "and Beth Phoenix personally delivered the receipts. FTR reappeared in the "
-              "challengers&rsquo; staredown at All In: London, so it is not over.",
+              "challengers&rsquo; staredown at All In: London, and both teams lost the three-way "
+              "ladder match at All Out on September 26, 2026, where the Young Bucks took the "
+              "titles.",
             q_ld="What happened between Edge and FTR in AEW?",
             a_ld="FTR were Adam Copeland's allies against the Death Riders until April 2025, when "
                  "they attacked him after AEW Dynasty, leaving him stretchered out. Copeland "
@@ -597,14 +621,15 @@ DATA = dict(
                  "September 20, 2025 and took the AEW World Tag Team Championship from them in an "
                  "I Quit match at Double or Nothing on May 24, 2026, with Beth Phoenix "
                  "intervening. FTR appeared among the challengers confronting the champions at "
-                 "All In: London on August 30, 2026."),
+                 "All In: London on August 30, 2026, and both teams lost the three-way ladder "
+                 "match at All Out on September 26, 2026, where the Young Bucks took the titles."),
     ],
 
     # ---------------------------------------------------------------- rail
     tape=[
         dict(label="Real name", value="Adam Joseph Copeland"),
         dict(label="Born", value="October 30, 1973",
-             sub="Orangeville, Ontario, Canada &middot; age 52"),
+             sub="Orangeville, Ontario, Canada &middot; age 53"),
         dict(label="Billed from", value="Toronto, Ontario"),
         dict(label="Height", value="6&#8242;5&#8243;", sub="196 cm"),
         dict(label="Weight", value="241 lb", sub="109 kg (billed)"),
@@ -618,7 +643,7 @@ DATA = dict(
              sub="the spear delivered from everywhere, including mid-air at TLC II"),
         dict(label="Family", value="Married to Beth Phoenix",
              sub="WWE Hall of Famer, now a recurring presence in his AEW corner; two daughters"),
-        dict(label="Brand", value="AEW", sub="World Tag Team Champion with Christian Cage since May 24, 2026"),
+        dict(label="Brand", value="AEW", sub="Former World Tag Team Champion with Christian Cage, May 24 to September 26, 2026"),
         dict(label="Also known as", value="The Rated-R Superstar &middot; The Ultimate Opportunist &middot; Cope"),
     ],
 
@@ -637,7 +662,7 @@ DATA = dict(
                "WWE Tag Team Championship (2 reigns)",
                "WWE Intercontinental Championship (5 reigns)",
                "WWE United States Championship (1 reign)",
-               "AEW World Tag Team Championship (1 reign, current, with Christian Cage)",
+               "AEW World Tag Team Championship (1 reign, 2026, with Christian Cage)",
                "AEW TNT Championship (2 reigns)",
                "Royal Rumble winner (2010, 2021)",
                "First Money in the Bank winner (2005)",
@@ -652,8 +677,8 @@ DATA = dict(
                     "first Money in the Bank match. Forced to retire in 2011 with cervical spinal "
                     "stenosis, he returned nine years later in 2020. Since 2023 he has wrestled in "
                     "AEW as Cope, winning the TNT Championship twice and, with Christian Cage as "
-                    "Cage & Cope, the AEW World Tag Team Championship, which the pair hold as of "
-                    "August 2026.",
+                    "Cage & Cope, the AEW World Tag Team Championship, which the pair held from May "
+                    "to September 2026.",
         sameAs=["https://en.wikipedia.org/wiki/Adam_Copeland",
                 "https://www.wwe.com/superstars/edge"],
     ),
